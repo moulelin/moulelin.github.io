@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Object detection algorithm based AdaBoost residual correction Fast R-CNN on network</title>
+      <link href="2021/04/01/odfr/"/>
+      <url>2021/04/01/odfr/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/images/4_1.jpg"> </p><h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote><p style="text-align:justify; text-justify:inter-ideograph; color:black">The rapid development of computer hardware has promoted the prosperity of computer vision. Target object detection is widely used in various industrial and commercial fields, and contour detection is the core of target object detection. In order to realize the object target contour recognition method based on computer vision with high accuracy, this paper takes the cattle face position determination as an example, Fast R-CNN as the object contour detection algorithm, and uses AdaBoost as the residual detector to improve the accuracy of the results. In the experiment, the LabelImg tool marks the positional coordinates of the facial contours of 1000 cows, and at the same time, SURF algorithm was used to extract image features. The AdaBoost cascade classifier trained 900 positive images and 100 negative images. Fast R-CNN used the original images and the labeled images as training sets respectively. The results show that in the image set with resolution of 866*652 (pixels), the target detection accuracy of using Fast R-CNN is 91.6%, and AdaBoost as the residual detector will improve the accuracy to 96.76%. Meanwhile, by comparing the two training data sets of Fast r-cnn, the image labeled by LabelImg is used as the Fast r-cnn training set to obtain the optimal accuracy of 96.9% and the optimal recognition time of single picture of 0.35s.</blockquote><h1 id="Image-Label"><a href="#Image-Label" class="headerlink" title="Image Label :"></a>Image Label :</h1><p>  <img src="/images/4_2.jpg"> </p><h1 id="Reslut"><a href="#Reslut" class="headerlink" title="Reslut :"></a>Reslut :</h1><p>  <img src="/images/4_3.jpg">  </p><hr><h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2019-3nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2019-3nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2019 3nd International Conference on Deep Learning Technologies"></a>Conference : 2019 3nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/4_4.jpg"> </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Paper </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Detect </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Short-term prediction of stock market price based on GA optimization LSTM neurons</title>
       <link href="2021/04/01/ga/"/>
       <url>2021/04/01/ga/</url>
