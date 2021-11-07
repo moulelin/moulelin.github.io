@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MATI-Regression, Moujoy">
+    <meta name="keywords" content="3D, Moujoy">
     <meta name="description" content="Keep on going never give up">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MATI-Regression | Moujoy</title>
+    <title>3D | Moujoy</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -223,12 +223,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MATI-Regression</h1>
+                    <h1 class="description center-align post-title">3D</h1>
                 </div>
             </div>
         </div>
@@ -345,8 +345,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/MTAI/">
-                                <span class="chip bg-color">MTAI</span>
+                            <a href="/tags/3D/">
+                                <span class="chip bg-color">3D</span>
                             </a>
                         
                     </div>
@@ -361,7 +361,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-11-02
+                    2021-11-05
                 </div>
                 
 
@@ -377,23 +377,37 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <!-- Do you need some help for 3D?
+I skipped some lectures, so first of all I need to rewatch that. After that, I will ask some help, thanks 
+aassigments
+I will try figure out by myself, then i will ask sometjiogn  -->
 
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-
-<h1 id="L1-amp-L2-regularization"><a href="#L1-amp-L2-regularization" class="headerlink" title="L1 &amp; L2 regularization"></a>L1 &amp; L2 regularization</h1>
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
+<blockquote>
+<p>问题一：为什么要进行相机标定？<br>相机标定的目的是：建立相机成像几何模型并矫正透镜畸变。这句话有点拗口，下面分别对其中两个关键部分进行解释。</p>
+</blockquote>
+<blockquote>
+<p>建立相机成像几何模型：计算机视觉的首要任务就是要通过拍摄到的图像信息获取到物体在真实三维世界里相对应的信息，于是，建立物体从三维世界映射到相机成像平面这一过程中的几何模型就显得尤为重要，而这一过程最关键的部分就是要得到相机的内参和外参（后续文有具体解释）。</p>
+</blockquote>
+<blockquote>
+<p>矫正透镜畸变：我们最开始接触到的成像方面的知识应该是有关小孔成像的，但是由于这种成像方式只有小孔部分能透过光线就会导致物体的成像亮度很低，于是聪明的人类发明了透镜。虽然亮度问题解决了，但是新的问题又来了：由于透镜的制造工艺，会使成像产生多种形式的畸变，于是为了去除畸变（使成像后的图像与真实世界的景象保持一致），人们计算并利用畸变系数来矫正这种像差。虽然理论上可以设计出不产生畸变的透镜，但其制造工艺相对于球面透镜会复杂很多，所以相对于复杂且高成本的制造工艺，人们更喜欢用数学来解决问题。</p>
+</blockquote>
+<p>相机成像模型<br>前面已经说过，相机标定的目的之一是为了建立物体从三维世界到成像平面上各坐标点的对应关系，所以首先我们需要定义这样几个坐标系来为整个过程做好铺垫：</p>
+<blockquote>
+<p>世界坐标系(world coordinate system)：用户定义的三维世界的坐标系，为了描述目标物在真实世界里的位置而被引入。单位为m。</p>
+</blockquote>
+<blockquote>
+<p>相机坐标系(camera coordinate system)：在相机上建立的坐标系，为了从相机的角度描述物体位置而定义，作为沟通世界坐标系和图像/像素坐标系的中间一环。单位为m。</p>
+</blockquote>
+<blockquote>
+<p>图像坐标系(image coordinate system)：为了描述成像过程中物体从相机坐标系到图像坐标系的投影透射关系而引入，方便进一步得到像素坐标系下的坐标。 单位为m。</p>
+</blockquote>
+<blockquote>
+<p>像素坐标系(pixel coordinate system)：为了描述物体成像后的像点在数字图像上（相片）的坐标而引入，是我们真正从相机内读取到的信息所在的坐标系。单位为个（像素数目）。</p>
+</blockquote>
+<p>一下子定义出来四个坐标系可能有点晕，下图可以更清晰地表达这四个坐标系之间的关系：<br><img src="/images/3D-1.jpeg"></p>
+<h2 id="世界坐标系：Xw、Yw、Zw。相机坐标系：-Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。"><a href="#世界坐标系：Xw、Yw、Zw。相机坐标系：-Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。" class="headerlink" title="世界坐标系：Xw、Yw、Zw。相机坐标系： Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。"></a>世界坐标系：Xw、Yw、Zw。相机坐标系： Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。</h2><blockquote>
+<p>其中，相机坐标系的z轴与光轴重合，且垂直于图像坐标系平面并通过图像坐标系的原点，相机坐标系与图像坐标系之间的距离为焦距f（也即图像坐标系原点与焦点重合）。像素坐标系平面u-v和图像坐标系平面x-y重合，但像素坐标系原点位于图中左上角（之所以这么定义，目的是从存储信息的首地址开始读写）。<br><img src="/images/3D-2.jpeg"><br>下面将依次对刚体进行一系列变换，使之从世界坐标系进行仿射变换、投影透射，最终得到像素坐标系下的离散图像点，过程中会逐步引入各参数矩阵。</p>
+</blockquote>
 
             </div>
             <hr/>
@@ -419,7 +433,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://moulelin.github.io/2021/11/02/MATI-Regression/">https://moulelin.github.io/2021/11/02/MATI-Regression/</a>
+                    <a href="https://moulelin.github.io/2021/11/05/3D/">https://moulelin.github.io/2021/11/05/3D/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -457,8 +471,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/MTAI/">
-                                    <span class="chip bg-color">MTAI</span>
+                                <a href="/tags/3D/">
+                                    <span class="chip bg-color">3D</span>
                                 </a>
                             
                         </div>
@@ -630,24 +644,32 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/11/05/3D/">
+                <a href="/2021/11/06/pronounce/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="3D">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="pronounce">
                         
-                        <span class="card-title">3D</span>
+                        <span class="card-title">pronounce</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                             
+                            
+
+	
+    
+	
+
+
+
+
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-05
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-06
                         </span>
                         <span class="publish-author">
                             
@@ -660,8 +682,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/3D/">
-                        <span class="chip bg-color">3D</span>
+                    <a href="/tags/pronounce/">
+                        <span class="chip bg-color">pronounce</span>
                     </a>
                     
                 </div>
@@ -675,13 +697,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/02/3D-python/">
+                <a href="/2021/11/02/MATI-Regression/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="3D-python">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="MATI-Regression">
                         
-                        <span class="card-title">3D-python</span>
+                        <span class="card-title">MATI-Regression</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -705,8 +727,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/python/">
-                        <span class="chip bg-color">python</span>
+                    <a href="/tags/MTAI/">
+                        <span class="chip bg-color">MTAI</span>
                     </a>
                     
                 </div>
