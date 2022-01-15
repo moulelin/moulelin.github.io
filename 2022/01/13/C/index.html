@@ -378,11 +378,83 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>静态函数不能访问非静态变量<br>static method cannot access non-static variables<br>静态函数不会被实例化（不存在对象），就像是写在类外部的函数一样<br>‘’’<br>static void Print(classname e){</p>
+<p>静态函数不能访问非静态变量<br>static method cannot access non-static variables<br>静态函数不会被实例化（不存在对象），就像是写在类外部的函数一样</p>
 </blockquote>
-<pre><code>std::cout&lt;&lt;e.x &lt;&lt; std::endl;
+<pre><code>static void Print(classname e)&#123;
+
+    std::cout&lt;&lt;e.x &lt;&lt; std::endl;
+&#125;
+&#39;&#39;&#39;
+&gt;临时变量作为非const的引用进行参数传递引发的编译错误_mlove编程-程序员宝宝
+技术标签： QT  qt  string  linux  
+
+1.错误原因即解决办法
+Linux环境运行，使用g++编译，观察如下代码，会出现： invalid initialization of non-const reference of type ‘std::string&amp;’ from a temporary of type ‘std::string’的错误。
+
+其中文意思为临时变量无法为非const的引用初始化。也就是在参数传递的过程中，出现错误。出错的代码如下
 </code></pre>
-<p>}<br>‘’’</p>
+<p>void print(string&amp; str)<br>{<br>    cout&lt;&lt;str&lt;&lt;endl;<br>}<br>//如此调用会报上面描述的错误</p>
+<pre><code>print(&quot;hello world&quot;);
+
+
+出错的原因是编译器根据字符串”hello world”构造一个string类型的临时对象，这个临时对象具有const属性。当这个临时对象传递给非const的string&amp;引用类型时，因为非const引用绑定对象时，要求该对象也是非const对象。而在这时，因为string类型的临时对象是const对象，所以就出现错误。因此，解决办法就是将print()函数的参数改为常引用。代码修改如下，可顺利通过编译。
+
+void print(const string&amp; str)
+&#123;
+    cout&lt;&lt;str&lt;&lt;endl;
+&#125;
+//顺利通过编译
+print(&quot;hello world&quot;);
+通过以上代码，也可以看出Effective C++中倡导的一个C++的编程原则，即尽可能的使用const。因为这样可以使代码更为健壮，将错误暴露于编译阶段。
+
+2.所有的临时对象都是const对象吗
+为什么临时对象作为引用参数传递时，必须是常量引用呢？很多人对此的解释是临时对象是常量，不允许赋值改动，所以作为非常量引用传递时，编译器就会报错。这个解释在关于理解临时对象不能作为非const引用参数这个问题上是可以的，但不够准确。更有甚者，认为所有的临时对象均是const对象，因此，对于网上的观点和资源我们应该持着谨慎怀疑的态度去接受学习，应该坚持鲁迅先生倡导的”拿来主义”，应该批判参考和借鉴。
+
+事实上，临时变量是可以被作为左值(LValue) 并被赋值的，请看下面的代码：
+
+class IntClass&#123;
+private:
+    int x;
+public:
+    IntClass(int value):x(value)&#123;
+    &#125;
+
+    friend  ostream&amp; operator&lt;&lt;( ostream &amp;os, const IntClass &amp;intc);
+&#125;;
+
+//重载输出operator&lt;&lt;
+ostream&amp; operator&lt;&lt;( ostream &amp;os, const IntClass &amp;intc)
+&#123;
+    os&lt;&lt;intc.x;
+    return os;
+&#125;
+
+//打印函数
+void print(IntClass &amp; intc)
+&#123;
+    cout&lt;&lt;intc&lt;&lt;endl;
+    //通过引用修改这个临时对象
+    intc=8;
+    cout&lt;&lt;intc&lt;&lt;endl;
+&#125;
+
+int main(int argc,char* argv[])
+&#123;
+    print(IntClass(6));
+&#125;
+程序输出：
+6
+8
+
+以上代正确编译运行，没有错误。IntClass(6)表示生成一个无名的临时对象，传递给非const引用，在print函数中通过引用修改了这个临时对象。这说明了并非所有的临时对象都是const对象。
+
+那哪些临时对象是const对象，哪些临时对象不是const对象呢？这里贴上摘自网上的一句话：“内置类型产生的临时变量具有常性，而自定义类型产生的临时变量不具有常性”，我想这句话能解释你所谓的临时变量为什么能作为左值的原因。
+
+int* const a = new int;
+这个不能修改指针a, 如 a = &amp;b; 报错
+const int* a = new int;
+这个不能修改指针a指向的内容， *a = 2; 报错 
+</code></pre>
 
             </div>
             <hr/>
