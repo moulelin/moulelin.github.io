@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="类内声明和定义, Moujoy">
+    <meta name="keywords" content="进程和线程, Moujoy">
     <meta name="description" content="Keep on going never give up">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>类内声明和定义 | Moujoy</title>
+    <title>进程和线程 | Moujoy</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -223,12 +223,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">类内声明和定义</h1>
+                    <h1 class="description center-align post-title">进程和线程</h1>
                 </div>
             </div>
         </div>
@@ -361,7 +361,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-03-10
+                    2022-03-12
                 </div>
                 
 
@@ -377,20 +377,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>1.类内定义</p>
-<pre><code>    类内定义的概念：成员函数的函数体（实现）是在类的内部完成的。这种实现方式c++隐式为内联函数。
-
-   A.h
-</code></pre>
-<p>class A<br>{<br>public:<br>    A(void);<br>    virtual ~A(void);<br>    int test(){return 1;};<br>    int test1();<br>};<br>         可以看到类A中成员函数test()的定义在类的内部，隐式为内联函数（inline的原理，是用空间换取时间的做法，是以代码复制为代价，仅仅省去了函数调用的开销，从而提高函数的执行效率。如果执行函数体内代码的时间，相比于函数调用的开销较大，那么效率的收获会很少。所以，如果函数体代码过长或者函数体重有循环语句，if语句或switch语句或递归时，不宜用内联）。</p>
-<p>2.类外定义</p>
-<pre><code>   类外定义的概念:成员函数的定义是在类的外部实现的就像类A中的成员函数test1()，在类中只有声明。
-
-   A.h
-</code></pre>
-<p>class A<br>{<br>public:<br>    A(void);<br>    virtual ~A(void);<br>    int test(){return 1;};<br>    int test1();<br>};<br>      A.cpp</p>
-<p>#include “A.h”</p>
-<p>A::A(void)<br>{<br>}<br>A::~A(void)<br>{<br>}<br>int A::test1()<br>{<br>    return 1;<br>}<br>     这种类外定义的方式属于分文件类外定义，声明和定义不在同一文件中，还有一种类外定义方式为同文件类外定义，声明和定义在同一个.cpp文件中。</p>
+                <p>做个简单的比喻：进程=火车，线程=车厢线程在进程下行进（<br>单纯的车厢无法运行）一个进程可以包含多个线程（一辆火车可以有多个车厢）<br>不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）<br>同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）<br>进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）<br>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）<br>进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）<br>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－”互斥锁”进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”</p>
 
             </div>
             <hr/>
@@ -416,7 +403,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://moulelin.github.io/2022/03/10/%E7%B1%BB%E5%86%85%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89/">https://moulelin.github.io/2022/03/10/%E7%B1%BB%E5%86%85%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89/</a>
+                    <a href="https://moulelin.github.io/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/">https://moulelin.github.io/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -623,9 +610,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/">
                     <div class="card-image">
@@ -643,9 +631,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -654,6 +642,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -672,13 +661,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/03/06/subjunctive/">
+                <a href="/2022/03/10/%E7%B1%BB%E5%86%85%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="subjunctive">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="类内声明和定义">
                         
-                        <span class="card-title">subjunctive</span>
+                        <span class="card-title">类内声明和定义</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -689,7 +678,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-10
                             </span>
                         <span class="publish-author">
                             
@@ -702,8 +691,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/English/">
-                        <span class="chip bg-color">English</span>
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
