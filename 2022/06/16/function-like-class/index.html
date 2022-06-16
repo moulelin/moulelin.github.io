@@ -378,35 +378,83 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <ul>
-<li><a href="#%E4%B8%B4%E6%97%B6%E5%87%BD%E6%95%B0">临时函数</a><h1 id="临时函数"><a href="#临时函数" class="headerlink" title="临时函数"></a>临时函数</h1>```<br>#include<iostream></li>
+<li><a href="#%E4%B8%B4%E6%97%B6%E5%87%BD%E6%95%B0">临时函数</a><h1 id="临时函数"><a href="#临时函数" class="headerlink" title="临时函数"></a>临时函数</h1></li>
 </ul>
-<p>class temporary{<br>public:<br>    temporary(){<br>            std::cout &lt;&lt; “temporary ctor” &lt;&lt;std::endl;<br>    }<br>    ~temporary(){<br>        std::cout &lt;&lt; “destory”  &lt;&lt;std::endl;<br>    }<br>    void fun(){<br>        std::cout &lt;&lt; “This is function output”  &lt;&lt;std::endl;<br>    }</p>
-<p>};<br>int main(){</p>
-<pre><code>temporary ().fun();
-return 0;
+<pre><code>#include&lt;iostream&gt;
+
+class temporary&#123;
+public:
+    temporary()&#123;
+            std::cout &lt;&lt; &quot;temporary ctor&quot; &lt;&lt;std::endl;
+    &#125;
+    ~temporary()&#123;
+        std::cout &lt;&lt; &quot;destory&quot;  &lt;&lt;std::endl;
+    &#125;
+    void fun()&#123;
+        std::cout &lt;&lt; &quot;This is function output&quot;  &lt;&lt;std::endl;
+    &#125;
+
+&#125;;
+int main()&#123;
+    
+    temporary ().fun();
+    return 0;
+&#125;
 </code></pre>
-<p>}</p>
-<pre><code>**output**:
+<p><strong>output</strong>:</p>
+<pre><code>temporary ctor
+This is function output
+destory
 </code></pre>
-<p>temporary ctor<br>This is function output<br>destory</p>
-<pre><code>- 建立一个没有命名的非堆（non-heap）对象，也就是无名对象时，会产生临时对象
+<ul>
+<li>建立一个没有命名的非堆（non-heap）对象，也就是无名对象时，会产生临时对象</li>
+</ul>
+<pre><code>Integer inte= Integer(5); //用无名临时对象初始化一个对象
 </code></pre>
-<p>Integer inte= Integer(5); //用无名临时对象初始化一个对象</p>
-<pre><code>- 构造函数作为隐式类型转换函数时，会创建临时对象，用作实参传递给函数。
+<ul>
+<li>构造函数作为隐式类型转换函数时，会创建临时对象，用作实参传递给函数。</li>
+</ul>
+<pre><code>class Integer
+&#123;
+public:
+    Integer(int i):m_val(i)&#123;&#125;
+    ~Integer()&#123;&#125;
+private:
+    int m_val;
+&#125;;
+ 
+void testFunc(Integer itgr)
+&#123;
+    //do something
+&#125;
+
+int  i = 10;
+testFunc(i);
+
+会产生一个临时对象，作为实参传递到 testFunc 函数中。
 </code></pre>
-<p>class Integer<br>{<br>public:<br>    Integer(int i):m_val(i){}<br>    ~Integer(){}<br>private:<br>    int m_val;<br>};</p>
-<p>void testFunc(Integer itgr)<br>{<br>    //do something<br>}</p>
-<p>int  i = 10;<br>testFunc(i);</p>
-<p>会产生一个临时对象，作为实参传递到 testFunc 函数中。</p>
-<pre><code>- 函数返回一个对象时，会产生临时对象。以返回的对象作为拷贝构造函数的实参构造一个临时对象。
+<ul>
+<li>函数返回一个对象时，会产生临时对象。以返回的对象作为拷贝构造函数的实参构造一个临时对象。</li>
+</ul>
+<pre><code>Integer Func()
+&#123;
+    Integer itgr;
+    return itgr;
+&#125;
+ 
+int main()
+&#123;
+    Integer in;
+    in = Func();
+&#125;
 </code></pre>
-<p>Integer Func()<br>{<br>    Integer itgr;<br>    return itgr;<br>}</p>
-<p>int main()<br>{<br>    Integer in;<br>    in = Func();<br>}</p>
-<pre><code># Why we need function-like class?
-- 让类实例化之后的对象可以作为一个参数进行传递（可以随时修改这个类，但是不影响其他类或者函数）
-![](/images/funcion-like-class.png)
-- 标准库中存在很多仿函数，并且会继承很多奇特的base classes
-</code></pre>
+<h1 id="Why-we-need-function-like-class"><a href="#Why-we-need-function-like-class" class="headerlink" title="Why we need function-like class?"></a>Why we need function-like class?</h1><ul>
+<li>让类实例化之后的对象可以作为一个参数进行传递（可以随时修改这个类，但是不影响其他类或者函数）</li>
+</ul>
+<p><img src="/images/function-like-class.png"></p>
+<ul>
+<li>标准库中存在很多仿函数，并且会继承很多奇特的base classes</li>
+</ul>
 
             </div>
             <hr/>
@@ -647,9 +695,9 @@ return 0;
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="namespace">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="p19-namespace">
                         
-                        <span class="card-title">namespace</span>
+                        <span class="card-title">p19-namespace</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
