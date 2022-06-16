@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="p18-function-like-class, Moujoy">
+    <meta name="keywords" content="namespace, Moujoy">
     <meta name="description" content="Keep on going">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>p18-function-like-class | Moujoy</title>
+    <title>namespace | Moujoy</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -223,12 +223,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">p18-function-like-class</h1>
+                    <h1 class="description center-align post-title">namespace</h1>
                 </div>
             </div>
         </div>
@@ -346,7 +346,7 @@
                     <div class="article-tag">
                         
                             <a href="/tags/c/">
-                                <span class="chip bg-color">-c++</span>
+                                <span class="chip bg-color">c++</span>
                             </a>
                         
                     </div>
@@ -377,36 +377,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <ul>
-<li><a href="#%E4%B8%B4%E6%97%B6%E5%87%BD%E6%95%B0">临时函数</a><h1 id="临时函数"><a href="#临时函数" class="headerlink" title="临时函数"></a>临时函数</h1>```<br>#include<iostream></li>
-</ul>
-<p>class temporary{<br>public:<br>    temporary(){<br>            std::cout &lt;&lt; “temporary ctor” &lt;&lt;std::endl;<br>    }<br>    ~temporary(){<br>        std::cout &lt;&lt; “destory”  &lt;&lt;std::endl;<br>    }<br>    void fun(){<br>        std::cout &lt;&lt; “This is function output”  &lt;&lt;std::endl;<br>    }</p>
-<p>};<br>int main(){</p>
-<pre><code>temporary ().fun();
-return 0;
-</code></pre>
-<p>}</p>
-<pre><code>**output**:
-</code></pre>
-<p>temporary ctor<br>This is function output<br>destory</p>
-<pre><code>- 建立一个没有命名的非堆（non-heap）对象，也就是无名对象时，会产生临时对象
-</code></pre>
-<p>Integer inte= Integer(5); //用无名临时对象初始化一个对象</p>
-<pre><code>- 构造函数作为隐式类型转换函数时，会创建临时对象，用作实参传递给函数。
-</code></pre>
-<p>class Integer<br>{<br>public:<br>    Integer(int i):m_val(i){}<br>    ~Integer(){}<br>private:<br>    int m_val;<br>};</p>
-<p>void testFunc(Integer itgr)<br>{<br>    //do something<br>}</p>
-<p>int  i = 10;<br>testFunc(i);</p>
-<p>会产生一个临时对象，作为实参传递到 testFunc 函数中。</p>
-<pre><code>- 函数返回一个对象时，会产生临时对象。以返回的对象作为拷贝构造函数的实参构造一个临时对象。
-</code></pre>
-<p>Integer Func()<br>{<br>    Integer itgr;<br>    return itgr;<br>}</p>
-<p>int main()<br>{<br>    Integer in;<br>    in = Func();<br>}</p>
-<pre><code># Why we need function-like class?
-- 让类实例化之后的对象可以作为一个参数进行传递（可以随时修改这个类，但是不影响其他类或者函数）
-![](/images/funcion-like-class.png)
-- 标准库中存在很多仿函数，并且会继承很多奇特的base classes
-</code></pre>
+                <h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
 
             </div>
             <hr/>
@@ -432,7 +403,7 @@ return 0;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://moulelin.github.io/2022/06/16/function-like-class/">https://moulelin.github.io/2022/06/16/function-like-class/</a>
+                    <a href="https://moulelin.github.io/2022/06/16/namespace/">https://moulelin.github.io/2022/06/16/namespace/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -471,7 +442,7 @@ return 0;
                         <div class="article-tag">
                             
                                 <a href="/tags/c/">
-                                    <span class="chip bg-color">-c++</span>
+                                    <span class="chip bg-color">c++</span>
                                 </a>
                             
                         </div>
@@ -639,9 +610,10 @@ return 0;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2022/06/16/namespace/">
                     <div class="card-image">
@@ -659,9 +631,9 @@ return 0;
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -670,6 +642,7 @@ return 0;
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -688,13 +661,13 @@ return 0;
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/15/whom/">
+                <a href="/2022/06/16/function-like-class/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="whom">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="p18-function-like-class">
                         
-                        <span class="card-title">whom</span>
+                        <span class="card-title">p18-function-like-class</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -705,7 +678,7 @@ return 0;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-16
                             </span>
                         <span class="publish-author">
                             
@@ -718,8 +691,8 @@ return 0;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/English/">
-                        <span class="chip bg-color">English</span>
+                    <a href="/tags/c/">
+                        <span class="chip bg-color">-c++</span>
                     </a>
                     
                 </div>
