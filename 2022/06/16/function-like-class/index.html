@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="whom, Moujoy">
+    <meta name="keywords" content="function-like-class, Moujoy">
     <meta name="description" content="Keep on going">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>whom | Moujoy</title>
+    <title>function-like-class | Moujoy</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -228,7 +228,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">whom</h1>
+                    <h1 class="description center-align post-title">function-like-class</h1>
                 </div>
             </div>
         </div>
@@ -345,8 +345,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/English/">
-                                <span class="chip bg-color">English</span>
+                            <a href="/tags/c/">
+                                <span class="chip bg-color">-c++</span>
                             </a>
                         
                     </div>
@@ -361,7 +361,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-06-15
+                    2022-06-16
                 </div>
                 
 
@@ -377,49 +377,36 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="What’s-different-between-who-and-whom"><a href="#What’s-different-between-who-and-whom" class="headerlink" title="What’s different between who and whom"></a>What’s different between who and whom</h2><blockquote>
-<p>Put simply, use whom—which is a pronoun—when it is the object of a sentence. If you can replace the word with “her,” “him,” or “them” for example, use “whom.” You’ll know when to use “whom” if the pronoun is used in the objective case, or action is being done to the pronoun. Take the sentence:</p>
-</blockquote>
-<blockquote>
-<p>Whom do you believe?</p>
-</blockquote>
-<blockquote>
-<p>The sentence may sound pretentious, even snobbish. But it is correct because “whom” is the subject of the infinitive “to,” as well as the object of the sentence as a whole.</p>
-</blockquote>
-<blockquote>
-<p>Many people thus propose that governments need to tackle this issue by controlling the media, whom they see as responsible for inciting this violence through films and television<br>(这里的whom是做宾语)</p>
-</blockquote>
-<blockquote>
-<p>My father is a doctor whom people trusted.</p>
-</blockquote>
-<blockquote>
-<p>Who/Whom are you going to invite to your party?<br>(这里you是主语)<br>你要邀请谁参加你的聚会？</p>
-</blockquote>
-<blockquote>
-<p>Who/Whom can we turn to in case of an emergence?</p>
-</blockquote>
-<p>万一出现什么情况，我们可以求助于谁？</p>
-<blockquote>
-<p>We have no idea who/whom the president will choose to be the new manager.</p>
-</blockquote>
-<ul>
-<li><p>无论是引导限制性定语从句还是非限制性定语从句，当先行词指人的时候，如果不是直接用于介词后作宾语，都可以用 who（非正式）或 whom（较正式）：</p>
-</li>
-<li><p>This aspect is discussed further by Crane, who / whom I mentioned earlier. 我前面提到过的克雷恩对这方面作了进一步的论述。</p>
-</li>
-<li><p>In that year he met Rachel, who / whom he was later to marry. 那年他遇到了雷切尔，后来和她结了婚。</p>
-</li>
+                <ul>
+<li><a href="#%E4%B8%B4%E6%97%B6%E5%87%BD%E6%95%B0">临时函数</a><h1 id="临时函数"><a href="#临时函数" class="headerlink" title="临时函数"></a>临时函数</h1>```<br>#include<iostream></li>
 </ul>
-<p>注意：直接用于介词后作宾语，只能用 whom：</p>
-<ul>
-<li>I met a man with whom I used to work.  我碰见了个过去曾一起工作的人。</li>
-</ul>
-<p>顺便说一句，引导特殊疑问句时也是如此。如：</p>
-<p>Whom / Who are you writing to? 你在给谁写信?</p>
-<p>Whom / Who do you like best? 你最喜欢谁?</p>
-<p>若是紧跟在介词之后用作宾语，则只能用 whom，但这类表达通常只见于较正式的文体中。如：</p>
-<p>With whom did you go? 你跟谁一起去的?</p>
-<p><img src="/images/whom.png"> </p>
+<p>class temporary{<br>public:<br>    temporary(){<br>            std::cout &lt;&lt; “temporary ctor” &lt;&lt;std::endl;<br>    }<br>    ~temporary(){<br>        std::cout &lt;&lt; “destory”  &lt;&lt;std::endl;<br>    }<br>    void fun(){<br>        std::cout &lt;&lt; “This is function output”  &lt;&lt;std::endl;<br>    }</p>
+<p>};<br>int main(){</p>
+<pre><code>temporary ().fun();
+return 0;
+</code></pre>
+<p>}</p>
+<pre><code>**output**:
+</code></pre>
+<p>temporary ctor<br>This is function output<br>destory</p>
+<pre><code>- 建立一个没有命名的非堆（non-heap）对象，也就是无名对象时，会产生临时对象
+</code></pre>
+<p>Integer inte= Integer(5); //用无名临时对象初始化一个对象</p>
+<pre><code>- 构造函数作为隐式类型转换函数时，会创建临时对象，用作实参传递给函数。
+</code></pre>
+<p>class Integer<br>{<br>public:<br>    Integer(int i):m_val(i){}<br>    ~Integer(){}<br>private:<br>    int m_val;<br>};</p>
+<p>void testFunc(Integer itgr)<br>{<br>    //do something<br>}</p>
+<p>int  i = 10;<br>testFunc(i);</p>
+<p>会产生一个临时对象，作为实参传递到 testFunc 函数中。</p>
+<pre><code>- 函数返回一个对象时，会产生临时对象。以返回的对象作为拷贝构造函数的实参构造一个临时对象。
+</code></pre>
+<p>Integer Func()<br>{<br>    Integer itgr;<br>    return itgr;<br>}</p>
+<p>int main()<br>{<br>    Integer in;<br>    in = Func();<br>}</p>
+<pre><code># Why we need function-like class?
+- 让类实例化之后的对象可以作为一个参数进行传递（可以随时修改这个类，但是不影响其他类或者函数）
+![](/images/funcion-like-class.png)
+
+</code></pre>
 
             </div>
             <hr/>
@@ -445,7 +432,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://moulelin.github.io/2022/06/15/whom/">https://moulelin.github.io/2022/06/15/whom/</a>
+                    <a href="https://moulelin.github.io/2022/06/16/function-like-class/">https://moulelin.github.io/2022/06/16/function-like-class/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -483,8 +470,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/English/">
-                                    <span class="chip bg-color">English</span>
+                                <a href="/tags/c/">
+                                    <span class="chip bg-color">-c++</span>
                                 </a>
                             
                         </div>
@@ -652,9 +639,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2022/06/16/function-like-class/">
                     <div class="card-image">
@@ -672,9 +660,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -683,6 +671,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -701,13 +690,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/11/transitions/">
+                <a href="/2022/06/15/whom/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="transitions">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="whom">
                         
-                        <span class="card-title">transitions</span>
+                        <span class="card-title">whom</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -718,7 +707,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-15
                             </span>
                         <span class="publish-author">
                             
