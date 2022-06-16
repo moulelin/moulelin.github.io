@@ -379,7 +379,20 @@
             <div id="articleContent">
                 <h2 id="模版内还有模版，一般用于构造函数中，"><a href="#模版内还有模版，一般用于构造函数中，" class="headerlink" title="模版内还有模版，一般用于构造函数中，"></a>模版内还有模版，一般用于构造函数中，</h2><ul>
 <li>把草鱼和麻雀用于对鱼类和鸟类的初始化（作为构造函数传入）</li>
-<li>这里的T1 first 能成功，是因为first是草鱼，是继承了鱼这个类的<br><img src="/images/member-template.png"></li>
+<li>这里的T1 first 能成功，是因为first是草鱼，是继承了鱼这个类的,也叫up-cast</li>
+</ul>
+<pre><code>// for smart pointer
+template&lt;class _Tp&gt;
+class shared_pte:public _shared_ptr&lt;_Tp&gt;&#123;
+
+    ...
+    template&lt;class _Tp1&gt;
+    explicit shared_ptr(const _Tp1* _p):_shared_ptr&lt;_Tp&gt;(_p)&#123;&#125;
+&#125;
+shared_ptr&lt;Base1&gt;sptr(new Derived1);
+</code></pre>
+<ul>
+<li>为了让构造函数更有弹性<br><img src="/images/member-template.png"></li>
 </ul>
 
             </div>
