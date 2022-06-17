@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="review-paper, Moujoy">
+    <meta name="keywords" content="p23specialization, Moujoy">
     <meta name="description" content="Keep on going">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>review-paper | Moujoy</title>
+    <title>p23specialization | Moujoy</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -223,12 +223,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">review-paper</h1>
+                    <h1 class="description center-align post-title">p23specialization</h1>
                 </div>
             </div>
         </div>
@@ -345,8 +345,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/paper/">
-                                <span class="chip bg-color">paper</span>
+                            <a href="/tags/c/">
+                                <span class="chip bg-color">c++</span>
                             </a>
                         
                     </div>
@@ -377,84 +377,123 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Reviews:</p>
-<ul>
-<li><a href="#MUMLP">MUMLP</a></li>
-<li><a href="#CUGCN">CUGCN</a></li>
-</ul>
-<p>===============================================</p>
-<pre><code> It records all my papers reviews and certainly can thereby help me to improve my next 
- academic writing according those negative comments
+                <h1 id="Full-specialization"><a href="#Full-specialization" class="headerlink" title="Full specialization"></a>Full specialization</h1><pre><code>template &lt;class key&gt;
+class hash&#123;&#125;
+
+template&lt;&gt;
+class hash&lt;char&gt;&#123;&#125;
+
+template&lt;&gt;
+class hash&lt;int&gt;&#123;&#125;
+
+template&lt;&gt;
+class hash&lt;long&gt;&#123;
+    size_t operator() (const long x)&#123;
+        return x;
+    &#125;
+&#125;
+
+cout&lt;&lt; hash&lt;long&gt;() (100);
+//先创建一个临时对象，之后调用（）重载
+
 </code></pre>
-<h2 id="MUMLP"><a href="#MUMLP" class="headerlink" title="MUMLP"></a>MUMLP</h2><blockquote>
-<p>Comments to the Author<br>This paper proposes a Multi-Scale U-shape Multi-Layer Perceptron (MUMLP) model. This method includes the designed MSC (Multi-Scale Channel) block and the UMLP (U-shape Multi-Layer Perceptron) structure. Some experiments are conducted to analyze the effectiveness of the proposed method. The main comments are</p>
+<blockquote>
+<p>full specialization aims to specialize some type.<br>for exampl:<br><strong>this is a function for judging equality of two members</strong></p>
 </blockquote>
-<p><strong>Reviewer: 1</strong></p>
-<ol>
-<li>   For the background, it lacks some key literatures about the hyperspectral image, which can refer to 10.1109/TGRS.2016.2583219 and 10.1109/LGRS.2019.2936652.</li>
-<li>   Please rewrite the contributions to highlight the innovation. </li>
-<li>   Table I and II can be combined to show the classification results of each class. </li>
-<li>   For the experimental results, please enhance analysis the reason why the proposed method can achieve better results.</li>
-<li>   Please demonstrate the effectiveness of each module in the proposed architecture. </li>
-</ol>
-<p><strong>Reviewer: 2</strong></p>
-<ol>
-<li>Since all the experiments are about image classification, and classification has different meaning compared with identification, change your title.</li>
-<li>Main contribution of a paper should focus on the highlighted novelty, not the experimental results in numbers, refine the first two contributions and delete the last one.</li>
-<li>Move Fig.2 and Table 1 into next pages.</li>
-<li>Acknowledgement part is missing, at least acknowledge the data provider.</li>
-</ol>
+<pre><code>template&lt;class T&gt;
+bool Isequal(T&amp; p1, T&amp; p2)&#123;
+    return p1 == p2;
+&#125;
+</code></pre>
+<p><strong>But it does’t work for string. We need to override this special type</strong></p>
+<pre><code>
+template&lt;&gt;
+bool Isequal&lt;char*&gt; (char* p1, char* p2)&#123;    
+    return strcmp(p1, p2) == 0;
+&#125;
+</code></pre>
+<ul>
+<li>模板及其特例化版本应该声明在同一个头文件中。所有同名模板的声明应该放在前面，然后是这些模板的特例化版本</li>
+</ul>
+<p>注意如果是函数模版，就不需要写&lt;&gt;</p>
+<pre><code>template &lt;class T&gt;
+T max(const T lhs, const T rhs)&#123;   
+    return lhs &gt; rhs ? lhs : rhs;
+&#125;
+
+template &lt;&gt;
+int max(const int lhs, const int rhs)&#123;   
+    return lhs &gt; rhs ? lhs : rhs;
+&#125;
+//这是因为编译器根据int max(const int, const int)的函数签名可以推导出来它是T max(const T, const T)的特化。
+</code></pre>
+<blockquote>
+<p>Note that if specialization funtion does’t have arugements. It has various interpretation. For example</p>
+</blockquote>
+<pre><code>template &lt;class T&gt;
+void f()&#123; T d; &#125;
+
+template &lt;&gt;
+void f()&#123; int d; &#125;
+
+此时编译器不知道f()是从f&lt;T&gt;()特化来的，编译时会有错误：
+
+error: no function template matches function template specialization &#39;f&#39;
+这时我们便需要显式指定&quot;模板实参&quot;：
+
+template &lt;class T&gt;
+void f()&#123; T d; &#125;
+
+template &lt;&gt;
+void f&lt;int&gt;()&#123; int d; &#125;
+</code></pre>
 <hr>
-<h2 id="CUGCN"><a href="#CUGCN" class="headerlink" title="CUGCN"></a>CUGCN</h2><blockquote>
-<p>Associate Editor<br>Comments to the Author:<br>The expert reviewers have raised some major issues, particularly regarding the experimental section. Additionally, they asked for more clarification on the novelty of the proposed method compared with the state-of-the-art. I have some concerns myself that I mentioned below. I encourage the authors to apply the major changes and provide a point-by-point response letter addressing all the concerns.</p>
-</blockquote>
-<p><strong>Editor</strong></p>
-<ol>
-<li>The datasets used are all old. Please evaluate your method using newer benchmark datasets such as Houston 2013 and 2018.</li>
-<li>Please provide the classification maps for all datasets. To save up space the authors can only select a few methods which provide the highest accuracies for the visual comparisons of the final maps.  </li>
-<li>Please provide the hyperparameter analysis. How sensitive is the proposed method to the selection of hyperparameters?</li>
-<li>Please provide citations for the competing methods used in the experiments. Additionally, I recommend the authors provide a comparison with an advanced shallow feature extraction technique such as OTVCA (see “Feature Extraction for Hyperspectral Imagery: The Evolution From Shallow to Deep: Overview and Toolbox”).</li>
-<li>Please provide more detail regarding the selection of training samples.</li>
-<li>Please provide the processing time and compare it to the competing methods.</li>
-</ol>
-<p><strong>reviewer 1</strong></p>
+<h2 id="partial-specialization-偏特化"><a href="#partial-specialization-偏特化" class="headerlink" title="partial specialization (偏特化)"></a>partial specialization (偏特化)</h2><ul>
+<li>arguments (参数的个数上)</li>
+<li>range: shrink the range. For example, arbitary type to pointer (任意类型的变为任意指针类型)</li>
+</ul>
+<p>For arguments:</p>
 <blockquote>
-<p>This paper presents a new model, named the Context-Aware Attentional Graph U-Net (CAGU), to improve interclass variabilities and interclass similarities when classifying hyperspectral data. In general, the paper is interesting since it provides some technical novelties within the remote sensing field. However, there are still some points about the work that should be improved before publication.</p>
+<p>类似于全特化，偏特化也是为了给自定义一个参数集合的模板，但偏特化后的模板需要进一步的实例化才能形成确定的签名。 值得注意的是函数模板不允许偏特化，</p>
 </blockquote>
-<ol>
-<li><p>(Page 1, Line 25, Right) Please, define the acronyms before their first usage.</p>
-</li>
-<li><p>(Page 2, Line 57, Left) The authors should better motivate the use of a U-Net model with respect to other classification architectures.</p>
-</li>
-<li><p>(Page 2, Line 26, Right) Please, try to be more specific when detailing the contributions of the work. For instance, it is not a good idea describing Fig.1 or talking about the conducted experiments as contributions.</p>
-</li>
-<li><p>(Page 3, Line 37, Right) Please, try to join the paragraphs of this section when they are very short.</p>
-</li>
-<li><p>(Page 3, Line 53, Right) Do the authors think that it would be possible to consider alternative kernel sizes? Please, provide more information about this.</p>
-</li>
-<li><p>(Page 4, Line 20, Right) Please, try to better clarify the GRU model here. I think the writing is a little obfuscated. It would be also good to include some visual data here.</p>
-</li>
-<li><p>(Page 5, Line 25, Left) The considered sampling strategy is not clear. What is the rationale behind it?</p>
-</li>
-<li><p>(Page 5, Line 44, Left) Please, provide the references of the considered competitors.</p>
-</li>
-<li><p>(Page 5, Line 52, Right) Please, explain here the insights why the proposed approach is outperforming the other competitors.</p>
-</li>
-<li><p>Please, revise the whole writing carefully:<br>(Page 3, Line 54, Right) “Copy and crop operation combines”<br>(Page 4, Line 30, Left) “an Tesla”</p>
-</li>
-</ol>
-<p><strong>Reviewer 2:</strong></p>
-<p>Comments to the Author</p>
-<blockquote>
-<p>According to the submitted manuscript, my concerns are as follows.</p>
-</blockquote>
-<ol>
-<li>The full classification maps are expected to be given.</li>
-<li>Why is there only a classification map of Salinas dataset? If possible, please give the classification maps of other datasets.</li>
-<li>In Salinas dataset, why is the 2nd order CAGU higher than the 1st one with 10% of the sampled data? There is no such situation in the Pavia data set and the Indian pines data set?</li>
-<li>Please give the accuracy and loss function curves of the training and validation sets of the Pavia data set and the Indian pines data set.</li>
-<li>In the experiment, the latest hyperspectral image algorithm based on graph convolutional network should be added to show the superiority of this algorithm.</li>
-</ol>
+<pre><code>template &lt;class T1, class T2&gt;
+class A&lt;T1, T2&gt;&#123;
+    ...
+&#125;;
+template &lt;class T2&gt;
+class A&lt;int, T2&gt;&#123;
+    ...
+&#125;;
+
+
+函数模板是不允许偏特化的，下面的声明会编译错：
+
+template &lt;class T1, class T2&gt;
+void f()&#123;&#125;
+
+template &lt;class T2&gt;
+void f&lt;int, T2&gt;()&#123;&#125;
+
+
+但函数允许重载，声明另一个函数模板即可替代偏特化的需要：
+
+template &lt;class T2&gt;
+void f()&#123;&#125;              // 注意：这里没有&quot;模板实参&quot;
+
+多数情况下函数模板重载就可以完成函数偏特化的需要，一个例外便是std命名空间。 std是一个特殊的命名空间，用户可以特化其中的模板，但不允许添加模板（其实任何内容都是禁止添加的）
+</code></pre>
+<p><strong>For range:</strong></p>
+<pre><code>template &lt;class T&gt;
+class A&#123;&#125;
+template &lt;class U&gt;
+class A&lt;U*&gt;&#123;&#125;
+// we limit if the type is pointer thereby goes second class
+
+A&lt;string&gt; a;
+
+A&lt;string*&gt; b;
+</code></pre>
+<p>这个设计是为了如果针对指针要做不同的处理，就使用这个偏特化</p>
 
             </div>
             <hr/>
@@ -480,7 +519,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://moulelin.github.io/2022/06/17/review-paper/">https://moulelin.github.io/2022/06/17/review-paper/</a>
+                    <a href="https://moulelin.github.io/2022/06/17/specialization/">https://moulelin.github.io/2022/06/17/specialization/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -518,8 +557,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/paper/">
-                                    <span class="chip bg-color">paper</span>
+                                <a href="/tags/c/">
+                                    <span class="chip bg-color">c++</span>
                                 </a>
                             
                         </div>
@@ -687,9 +726,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2022/06/17/specialization/">
                     <div class="card-image">
@@ -707,9 +747,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -718,6 +758,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -736,13 +777,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/17/p22Member-Template/">
+                <a href="/2022/06/17/review-paper/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="p22Member-Template">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="review-paper">
                         
-                        <span class="card-title">p22Member-Template</span>
+                        <span class="card-title">review-paper</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -766,8 +807,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/c/">
-                        <span class="chip bg-color">c++</span>
+                    <a href="/tags/paper/">
+                        <span class="chip bg-color">paper</span>
                     </a>
                     
                 </div>
