@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="p23specialization, Moujoy">
+    <meta name="keywords" content="cout重载全局函数, Moujoy">
     <meta name="description" content="Keep on going">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>p23specialization | Moujoy</title>
+    <title>cout重载全局函数 | Moujoy</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -223,12 +223,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">p23specialization</h1>
+                    <h1 class="description center-align post-title">cout重载全局函数</h1>
                 </div>
             </div>
         </div>
@@ -377,123 +377,35 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Full-specialization"><a href="#Full-specialization" class="headerlink" title="Full specialization"></a>Full specialization</h1><pre><code>template &lt;class key&gt;
-class hash&#123;&#125;
+                <h1 id="为什么c-中重载流操作符要用友元函数"><a href="#为什么c-中重载流操作符要用友元函数" class="headerlink" title="为什么c++中重载流操作符要用友元函数"></a>为什么c++中重载流操作符要用友元函数</h1><h2 id="作为成员函数的话，左操作数非得是自己不可"><a href="#作为成员函数的话，左操作数非得是自己不可" class="headerlink" title="作为成员函数的话，左操作数非得是自己不可"></a>作为成员函数的话，左操作数非得是自己不可</h2><blockquote>
+<p>cout &lt;&lt; XXX 这种情况是cout在调用operator&lt;&lt;而不是XXX在调用operator&lt;&lt; 。<br>如果你要把operator&lt;&lt;设为成员函数就只能用 XXX &lt;&lt; cout 这种形式。</p>
+</blockquote>
+<p><strong>所以这样也是可以的，就是有违常理</strong></p>
+<pre><code>struct point
+&#123;
+    int x;
+    int y;
 
-template&lt;&gt;
-class hash&lt;char&gt;&#123;&#125;
+    point (int _x, int _y)
+        : x(_x), y(_y)
+    &#123;&#125;
 
-template&lt;&gt;
-class hash&lt;int&gt;&#123;&#125;
-
-template&lt;&gt;
-class hash&lt;long&gt;&#123;
-    size_t operator() (const long x)&#123;
-        return x;
+    std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os) const
+    &#123;
+        os &lt;&lt; &quot;(&quot; &lt;&lt; x &lt;&lt; &quot;, &quot; &lt;&lt; y &lt;&lt; &quot;)&quot;;
+        return os;
     &#125;
-&#125;
-
-cout&lt;&lt; hash&lt;long&gt;() (100);
-//先创建一个临时对象，之后调用（）重载
-
-</code></pre>
-<blockquote>
-<p>full specialization aims to specialize some type.<br>for exampl:<br><strong>this is a function for judging equality of two members</strong></p>
-</blockquote>
-<pre><code>template&lt;class T&gt;
-bool Isequal(T&amp; p1, T&amp; p2)&#123;
-    return p1 == p2;
-&#125;
-</code></pre>
-<p><strong>But it does’t work for string. We need to override this special type</strong></p>
-<pre><code>
-template&lt;&gt;
-bool Isequal&lt;char*&gt; (char* p1, char* p2)&#123;    
-    return strcmp(p1, p2) == 0;
-&#125;
-</code></pre>
-<ul>
-<li>模板及其特例化版本应该声明在同一个头文件中。所有同名模板的声明应该放在前面，然后是这些模板的特例化版本</li>
-</ul>
-<p>注意如果是函数模版，就不需要写&lt;&gt;</p>
-<pre><code>template &lt;class T&gt;
-T max(const T lhs, const T rhs)&#123;   
-    return lhs &gt; rhs ? lhs : rhs;
-&#125;
-
-template &lt;&gt;
-int max(const int lhs, const int rhs)&#123;   
-    return lhs &gt; rhs ? lhs : rhs;
-&#125;
-//这是因为编译器根据int max(const int, const int)的函数签名可以推导出来它是T max(const T, const T)的特化。
-</code></pre>
-<blockquote>
-<p>Note that if specialization funtion does’t have arugements. It has various interpretation. For example</p>
-</blockquote>
-<pre><code>template &lt;class T&gt;
-void f()&#123; T d; &#125;
-
-template &lt;&gt;
-void f()&#123; int d; &#125;
-
-此时编译器不知道f()是从f&lt;T&gt;()特化来的，编译时会有错误：
-
-error: no function template matches function template specialization &#39;f&#39;
-这时我们便需要显式指定&quot;模板实参&quot;：
-
-template &lt;class T&gt;
-void f()&#123; T d; &#125;
-
-template &lt;&gt;
-void f&lt;int&gt;()&#123; int d; &#125;
-</code></pre>
-<hr>
-<h2 id="partial-specialization-偏特化"><a href="#partial-specialization-偏特化" class="headerlink" title="partial specialization (偏特化)"></a>partial specialization (偏特化)</h2><ul>
-<li>arguments (参数的个数上)</li>
-<li>range: shrink the range. For example, arbitary type to pointer (任意类型的变为任意指针类型)</li>
-</ul>
-<p>For arguments:</p>
-<blockquote>
-<p>类似于全特化，偏特化也是为了给自定义一个参数集合的模板，但偏特化后的模板需要进一步的实例化才能形成确定的签名。 值得注意的是函数模板不允许偏特化，</p>
-</blockquote>
-<pre><code>template &lt;class T1, class T2&gt;
-class A&lt;T1, T2&gt;&#123;
-    ...
-&#125;;
-template &lt;class T2&gt;
-class A&lt;int, T2&gt;&#123;
-    ...
 &#125;;
 
+int main(int argc, const char* argv[])
+&#123;
+    point p1(1, 2);
 
-函数模板是不允许偏特化的，下面的声明会编译错：
+    p1 &lt;&lt; std::cout; // 写法同p1.operator&lt;&lt;(std::cout);
 
-template &lt;class T1, class T2&gt;
-void f()&#123;&#125;
-
-template &lt;class T2&gt;
-void f&lt;int, T2&gt;()&#123;&#125;
-
-
-但函数允许重载，声明另一个函数模板即可替代偏特化的需要：
-
-template &lt;class T2&gt;
-void f()&#123;&#125;              // 注意：这里没有&quot;模板实参&quot;
-
-多数情况下函数模板重载就可以完成函数偏特化的需要，一个例外便是std命名空间。 std是一个特殊的命名空间，用户可以特化其中的模板，但不允许添加模板（其实任何内容都是禁止添加的）
+    return 0;
+&#125;
 </code></pre>
-<p><strong>For range:</strong></p>
-<pre><code>template &lt;class T&gt;
-class A&#123;&#125;
-template &lt;class U&gt;
-class A&lt;U*&gt;&#123;&#125;
-// we limit if the type is pointer thereby goes second class
-
-A&lt;string&gt; a;
-
-A&lt;string*&gt; b;
-</code></pre>
-<p>这个设计是为了如果针对指针要做不同的处理，就使用这个偏特化</p>
 
             </div>
             <hr/>
@@ -519,7 +431,7 @@ A&lt;string*&gt; b;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://moulelin.github.io/2022/06/17/specialization/">https://moulelin.github.io/2022/06/17/specialization/</a>
+                    <a href="https://moulelin.github.io/2022/06/17/cout%E9%87%8D%E8%BD%BD%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/">https://moulelin.github.io/2022/06/17/cout%E9%87%8D%E8%BD%BD%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -730,13 +642,13 @@ A&lt;string*&gt; b;
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/06/17/Conv-MPN/">
+                <a href="/2022/06/18/%E6%A8%A1%E7%89%88%E5%86%85%E7%9A%84%E5%8F%8B%E5%85%83/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Conv-MPN">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="模版内的友元">
                         
-                        <span class="card-title">Conv-MPN</span>
+                        <span class="card-title">模版内的友元</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -747,7 +659,7 @@ A&lt;string*&gt; b;
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-17
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-18
                         </span>
                         <span class="publish-author">
                             
@@ -775,13 +687,13 @@ A&lt;string*&gt; b;
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/17/review-paper/">
+                <a href="/2022/06/17/template-template-paramenter/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="review-paper">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="template-template-paramenter">
                         
-                        <span class="card-title">review-paper</span>
+                        <span class="card-title">template-template-paramenter</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -805,8 +717,8 @@ A&lt;string*&gt; b;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/paper/">
-                        <span class="chip bg-color">paper</span>
+                    <a href="/tags/c/">
+                        <span class="chip bg-color">c++</span>
                     </a>
                     
                 </div>

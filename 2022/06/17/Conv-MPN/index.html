@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="p23specialization, Moujoy">
+    <meta name="keywords" content="Conv-MPN, Moujoy">
     <meta name="description" content="Keep on going">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>p23specialization | Moujoy</title>
+    <title>Conv-MPN | Moujoy</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -223,12 +223,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">p23specialization</h1>
+                    <h1 class="description center-align post-title">Conv-MPN</h1>
                 </div>
             </div>
         </div>
@@ -377,123 +377,15 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Full-specialization"><a href="#Full-specialization" class="headerlink" title="Full specialization"></a>Full specialization</h1><pre><code>template &lt;class key&gt;
-class hash&#123;&#125;
-
-template&lt;&gt;
-class hash&lt;char&gt;&#123;&#125;
-
-template&lt;&gt;
-class hash&lt;int&gt;&#123;&#125;
-
-template&lt;&gt;
-class hash&lt;long&gt;&#123;
-    size_t operator() (const long x)&#123;
-        return x;
-    &#125;
-&#125;
-
-cout&lt;&lt; hash&lt;long&gt;() (100);
-//先创建一个临时对象，之后调用（）重载
-
-</code></pre>
-<blockquote>
-<p>full specialization aims to specialize some type.<br>for exampl:<br><strong>this is a function for judging equality of two members</strong></p>
+                <h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
+<li><a href="#">corner_detection</a><blockquote>
+<p>concatenate </p>
 </blockquote>
-<pre><code>template&lt;class T&gt;
-bool Isequal(T&amp; p1, T&amp; p2)&#123;
-    return p1 == p2;
-&#125;
-</code></pre>
-<p><strong>But it does’t work for string. We need to override this special type</strong></p>
-<pre><code>
-template&lt;&gt;
-bool Isequal&lt;char*&gt; (char* p1, char* p2)&#123;    
-    return strcmp(p1, p2) == 0;
-&#125;
-</code></pre>
-<ul>
-<li>模板及其特例化版本应该声明在同一个头文件中。所有同名模板的声明应该放在前面，然后是这些模板的特例化版本</li>
+</li>
 </ul>
-<p>注意如果是函数模版，就不需要写&lt;&gt;</p>
-<pre><code>template &lt;class T&gt;
-T max(const T lhs, const T rhs)&#123;   
-    return lhs &gt; rhs ? lhs : rhs;
-&#125;
-
-template &lt;&gt;
-int max(const int lhs, const int rhs)&#123;   
-    return lhs &gt; rhs ? lhs : rhs;
-&#125;
-//这是因为编译器根据int max(const int, const int)的函数签名可以推导出来它是T max(const T, const T)的特化。
-</code></pre>
-<blockquote>
-<p>Note that if specialization funtion does’t have arugements. It has various interpretation. For example</p>
+<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
+<p>mask_rcnn extracts corner points.</p>
 </blockquote>
-<pre><code>template &lt;class T&gt;
-void f()&#123; T d; &#125;
-
-template &lt;&gt;
-void f()&#123; int d; &#125;
-
-此时编译器不知道f()是从f&lt;T&gt;()特化来的，编译时会有错误：
-
-error: no function template matches function template specialization &#39;f&#39;
-这时我们便需要显式指定&quot;模板实参&quot;：
-
-template &lt;class T&gt;
-void f()&#123; T d; &#125;
-
-template &lt;&gt;
-void f&lt;int&gt;()&#123; int d; &#125;
-</code></pre>
-<hr>
-<h2 id="partial-specialization-偏特化"><a href="#partial-specialization-偏特化" class="headerlink" title="partial specialization (偏特化)"></a>partial specialization (偏特化)</h2><ul>
-<li>arguments (参数的个数上)</li>
-<li>range: shrink the range. For example, arbitary type to pointer (任意类型的变为任意指针类型)</li>
-</ul>
-<p>For arguments:</p>
-<blockquote>
-<p>类似于全特化，偏特化也是为了给自定义一个参数集合的模板，但偏特化后的模板需要进一步的实例化才能形成确定的签名。 值得注意的是函数模板不允许偏特化，</p>
-</blockquote>
-<pre><code>template &lt;class T1, class T2&gt;
-class A&lt;T1, T2&gt;&#123;
-    ...
-&#125;;
-template &lt;class T2&gt;
-class A&lt;int, T2&gt;&#123;
-    ...
-&#125;;
-
-
-函数模板是不允许偏特化的，下面的声明会编译错：
-
-template &lt;class T1, class T2&gt;
-void f()&#123;&#125;
-
-template &lt;class T2&gt;
-void f&lt;int, T2&gt;()&#123;&#125;
-
-
-但函数允许重载，声明另一个函数模板即可替代偏特化的需要：
-
-template &lt;class T2&gt;
-void f()&#123;&#125;              // 注意：这里没有&quot;模板实参&quot;
-
-多数情况下函数模板重载就可以完成函数偏特化的需要，一个例外便是std命名空间。 std是一个特殊的命名空间，用户可以特化其中的模板，但不允许添加模板（其实任何内容都是禁止添加的）
-</code></pre>
-<p><strong>For range:</strong></p>
-<pre><code>template &lt;class T&gt;
-class A&#123;&#125;
-template &lt;class U&gt;
-class A&lt;U*&gt;&#123;&#125;
-// we limit if the type is pointer thereby goes second class
-
-A&lt;string&gt; a;
-
-A&lt;string*&gt; b;
-</code></pre>
-<p>这个设计是为了如果针对指针要做不同的处理，就使用这个偏特化</p>
 
             </div>
             <hr/>
@@ -519,7 +411,7 @@ A&lt;string*&gt; b;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://moulelin.github.io/2022/06/17/specialization/">https://moulelin.github.io/2022/06/17/specialization/</a>
+                    <a href="https://moulelin.github.io/2022/06/17/Conv-MPN/">https://moulelin.github.io/2022/06/17/Conv-MPN/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -730,13 +622,13 @@ A&lt;string*&gt; b;
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/06/17/Conv-MPN/">
+                <a href="/2022/06/17/template-template-paramenter/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Conv-MPN">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="template-template-paramenter">
                         
-                        <span class="card-title">Conv-MPN</span>
+                        <span class="card-title">template-template-paramenter</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -775,13 +667,13 @@ A&lt;string*&gt; b;
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/17/review-paper/">
+                <a href="/2022/06/17/specialization/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="review-paper">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="p23specialization">
                         
-                        <span class="card-title">review-paper</span>
+                        <span class="card-title">p23specialization</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -805,8 +697,8 @@ A&lt;string*&gt; b;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/paper/">
-                        <span class="chip bg-color">paper</span>
+                    <a href="/tags/c/">
+                        <span class="chip bg-color">c++</span>
                     </a>
                     
                 </div>
