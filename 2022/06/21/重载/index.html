@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="other和others, Moujoy">
+    <meta name="keywords" content="重载new(), Moujoy">
     <meta name="description" content="Keep on going">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>other和others | Moujoy</title>
+    <title>重载new() | Moujoy</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -223,12 +223,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">other和others</h1>
+                    <h1 class="description center-align post-title">重载new()</h1>
                 </div>
             </div>
         </div>
@@ -377,34 +377,18 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-other-复数名词。others通常为代词"><a href="#other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-other-复数名词。others通常为代词" class="headerlink" title="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others=other+复数名词。others通常为代词"></a>other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others=other+复数名词。others通常为代词</h2><blockquote>
-<p>He never thinks of <code>others</code>. 他从来不为别人着想。</p>
-</blockquote>
+                <h2 id="可以重载new，同时也可以重载new"><a href="#可以重载new，同时也可以重载new" class="headerlink" title="可以重载new，同时也可以重载new()"></a>可以重载new，同时也可以重载new()</h2><p>Foo* p = new(300,”a”) Foo;</p>
 <blockquote>
-<p>I don’t like these books. Show me some others. 我不喜欢这些书，再拿一些给我看。</p>
+<p>new()里面的参数就是可以加在重载函数的参数中的<br>注意第一个参数必须是size_t</p>
 </blockquote>
-<p>第一句中的others=other people，意为“其他人”“别人”，泛指其他所有人；第二句中的others=other books，意为“其他的书”。</p>
-<p>但是，若要表示确指意义，我们就在other和others前面使用定冠词，同样地，other后可以修饰名词，而others后不能再接名词，两者的关系仍然存在the others=the other+复数名词。如：</p>
+<pre><code>void* operator new(size_t size, int a, char c)&#123;
+.....
+&#125;
+</code></pre>
 <blockquote>
-<p>I started last in the race but I soon caught up with the others. 我在赛跑中最后一个起跑，但不久就赶上了其他人。</p>
+<p>这样就可以写错多个版本的new重载</p>
 </blockquote>
-<p>句中的the others=the other people，意为“其他人”，其中的定冠词特指参加赛跑的所有其他人。</p>
-<blockquote>
-<p>注意：the other后除接复数名词外，还可以接单数名词，此时不能用the others代替。如：</p>
-</blockquote>
-<p>This seat is free; the other seat is taken. 这个座位空着，那个座位有人。</p>
-<h2 id="常用惯用表达"><a href="#常用惯用表达" class="headerlink" title="常用惯用表达"></a>常用惯用表达</h2><p>①<code>one...the other</code>表示“(两者中的)一个……另一个……”。如：</p>
-<p>What I say goes in at one ear and out at the other. 我说话他是一只耳朵进，另一只耳朵出。</p>
-<p>②<code>one...the others</code>表示“(好几个中的)一个……其余都……”。如：</p>
-<p>Of their five children, one is in China and the others are abroad. 他们有五个小孩，一个在中国，其余的都在国外。</p>
-<p>注：若为三者，想要表示“一个……另一个……剩下的一个……”，可用one…another…the other [the third…]；若为四者，可用one…another…another [a third]…the other [the fourth, the last]。</p>
-<p>③<code>some...the others</code>表示“一些……其他一些的……”。如：</p>
-<p>The search party was divided into two groups. Some went to the right, the others went to the left. 搜寻小组一分为二，一部分向右，另一部分人向左。</p>
-<p>④<code>some…others</code>表示“有的……有的……”。如：</p>
-<p>Some people build while others destroy. 有些人建设而另一些人则破坏。</p>
-<p>注：该结构也可说成some…some。如：</p>
-<p>Some of us agree, some disagree. 我们有些人同意，有些人不同意。</p>
-
+<h2 id="delete-也可以这样写多个版本，对应new-参数版本。"><a href="#delete-也可以这样写多个版本，对应new-参数版本。" class="headerlink" title="delete()也可以这样写多个版本，对应new()参数版本。"></a>delete()也可以这样写多个版本，对应new()参数版本。</h2>
             </div>
             <hr/>
 
@@ -429,7 +413,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://moulelin.github.io/2022/06/21/other%E5%92%8Cothers/">https://moulelin.github.io/2022/06/21/other%E5%92%8Cothers/</a>
+                    <a href="https://moulelin.github.io/2022/06/21/%E9%87%8D%E8%BD%BD/">https://moulelin.github.io/2022/06/21/%E9%87%8D%E8%BD%BD/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -636,9 +620,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2022/06/21/%E9%87%8D%E8%BD%BD/">
                     <div class="card-image">
@@ -656,9 +641,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -667,6 +652,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -685,13 +671,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/19/p33const/">
+                <a href="/2022/06/21/other%E5%92%8Cothers/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="p33const">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="other和others">
                         
-                        <span class="card-title">p33const</span>
+                        <span class="card-title">other和others</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -702,7 +688,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-21
                             </span>
                         <span class="publish-author">
                             
