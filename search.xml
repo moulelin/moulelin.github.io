@@ -1840,4 +1840,35 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
         <tag>c++</tag>
       </tags>
   </entry>
+  <entry>
+    <title>FLOPs</title>
+    <url>/2022/06/26/FLOPs/</url>
+    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
+]]></content>
+      <tags>
+        <tag>FLOPs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>probability</title>
+    <url>/2022/06/22/probability/</url>
+    <content><![CDATA[<h2 id="68-95-99"><a href="#68-95-99" class="headerlink" title="68-95-99"></a>68-95-99</h2><ul>
+<li>During one standard, it has 68% probability in it.</li>
+<li>During tow standards, it has 95% probability in it.</li>
+<li>During three standards, it has 99% probability in it.</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>probability</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>t5-假设检验</title>
+    <url>/2022/06/22/t5%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/</url>
+    <content><![CDATA[<p><img src="/images/p5.png"></p>
+]]></content>
+      <tags>
+        <tag>probability</tag>
+      </tags>
+  </entry>
 </search>
