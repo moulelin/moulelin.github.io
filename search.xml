@@ -1880,4 +1880,101 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
         <tag>coding</tag>
       </tags>
   </entry>
+  <entry>
+    <title>cudaMemPitch</title>
+    <url>/2022/06/28/cudaMemPitch/</url>
+    <content><![CDATA[<h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
+<p>cudaError_t cudaMemcpy2D    (    void *     dst,<br>size_t     dpitch,<br>const void *     src,<br>size_t     spitch,<br>size_t     width,<br>size_t     height,<br>enum cudaMemcpyKind     kind<br>)    </p>
+</blockquote>
+<blockquote>
+<p>Parameters:<br>dst     - Destination memory address<br>dpitch     - Pitch of destination memory<br>src     - Source memory address<br>spitch     - Pitch of source memory<br>width     - Width of matrix transfer (columns in bytes)<br>height     - Height of matrix transfer (rows)<br>kind     - Type of transfer</p>
+</blockquote>
+<pre><code>`The spitch is different when cudaMemcpyKind is different`
+
+#include&lt;stdio.h&gt;
+#include&lt;cuda.h&gt;
+#include&lt;cuda_runtime.h&gt;
+#include&lt;device_launch_parameters.h&gt;
+#include&lt;conio.h&gt;
+
+#define BLOCKSIZE_x 16
+#define BLOCKSIZE_y 16
+
+#define Nrows 3
+#define Ncols 5
+
+/*****************/
+/* CUDA MEMCHECK */
+/*****************/
+#define gpuErrchk(ans) &#123; gpuAssert((ans), __FILE__, __LINE__); &#125;
+
+inline void gpuAssert(cudaError_t code, char *file, int line, bool abort = true)
+&#123;
+    if (code != cudaSuccess)
+    &#123;
+        fprintf(stderr, &quot;GPUassert: %s %s %dn&quot;, cudaGetErrorString(code), file, line);
+        if (abort) &#123; getch(); exit(code); &#125;
+    &#125;
+&#125;
+
+/*******************/
+/* iDivUp FUNCTION */
+/*******************/
+int iDivUp(int hostPtr, int b)&#123; return ((hostPtr % b) != 0) ? (hostPtr / b + 1) : (hostPtr / b); &#125;
+
+/******************/
+/* TEST KERNEL 2D */
+/******************/
+__global__ void test_kernel_2D(float *devPtr, size_t pitch)
+&#123;
+    int    tidx = blockIdx.x*blockDim.x + threadIdx.x;
+    int    tidy = blockIdx.y*blockDim.y + threadIdx.y;
+
+    if ((tidx &lt; Ncols) &amp;&amp; (tidy &lt; Nrows))
+    &#123;
+        float *row_a = (float *)((char*)devPtr + tidy * pitch);
+        row_a[tidx] = row_a[tidx] * tidx * tidy;
+    &#125;
+&#125;
+
+/********/
+/* MAIN */
+/********/
+int main()
+&#123;
+    float hostPtr[Nrows][Ncols];
+    float *devPtr;
+    size_t pitch;
+
+    for (int i = 0; i &lt; Nrows; i++)
+        for (int j = 0; j &lt; Ncols; j++) &#123;
+            hostPtr[i][j] = 1.f;
+            //printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
+        &#125;
+
+    // --- 2D pitched allocation and host-&gt;device memcopy
+    gpuErrchk(cudaMallocPitch(&amp;devPtr, &amp;pitch, Ncols * sizeof(float), Nrows));
+    gpuErrchk(cudaMemcpy2D(devPtr, pitch, hostPtr, Ncols*sizeof(float), Ncols*sizeof(float), Nrows, cudaMemcpyHostToDevice));
+
+    dim3 gridSize(iDivUp(Ncols, BLOCKSIZE_x), iDivUp(Nrows, BLOCKSIZE_y));
+    dim3 blockSize(BLOCKSIZE_y, BLOCKSIZE_x);
+
+    test_kernel_2D &lt;&lt; &lt;gridSize, blockSize &gt;&gt; &gt;(devPtr, pitch);
+    gpuErrchk(cudaPeekAtLastError());
+    gpuErrchk(cudaDeviceSynchronize());
+
+    gpuErrchk(cudaMemcpy2D(hostPtr, Ncols * sizeof(float), devPtr, pitch, Ncols * sizeof(float), Nrows, cudaMemcpyDeviceToHost));
+
+    for (int i = 0; i &lt; Nrows; i++) 
+        for (int j = 0; j &lt; Ncols; j++) 
+            printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
+
+    return 0;    
+&#125;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>cuda</tag>
+      </tags>
+  </entry>
 </search>
