@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="cudaMemPitch, Moujoy">
+    <meta name="keywords" content="stl全局, Moujoy">
     <meta name="description" content="Keep on going">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>cudaMemPitch | Moujoy</title>
+    <title>stl全局 | Moujoy</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -223,12 +223,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">cudaMemPitch</h1>
+                    <h1 class="description center-align post-title">stl全局</h1>
                 </div>
             </div>
         </div>
@@ -345,8 +345,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/cuda/">
-                                <span class="chip bg-color">cuda</span>
+                            <a href="/tags/c/">
+                                <span class="chip bg-color">c++</span>
                             </a>
                         
                     </div>
@@ -361,7 +361,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-06-28
+                    2022-06-29
                 </div>
                 
 
@@ -377,95 +377,13 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
-<p>cudaError_t cudaMemcpy2D    (    void *     dst,<br>size_t     dpitch,<br>const void *     src,<br>size_t     spitch,<br>size_t     width,<br>size_t     height,<br>enum cudaMemcpyKind     kind<br>)    </p>
+                <h1 id="C-函数或者命名空间前面加"><a href="#C-函数或者命名空间前面加" class="headerlink" title="C++函数或者命名空间前面加::"></a>C++函数或者命名空间前面加::</h1><ul>
+<li>函数前面= ::find() 表示这个是全局的函数，不是这个作用域下的函数<br><img src="/images/2022-06-29-16-13-57.png"><blockquote>
+<p>比如这里的 ::find()。这个是STL的algorithm中的函数，虽然这里如果不用:: , 编译器没有找到find也会到全局，但是加入会让代码更清晰</p>
 </blockquote>
-<blockquote>
-<p>Parameters:<br>dst     - Destination memory address<br>dpitch     - Pitch of destination memory<br>src     - Source memory address<br>spitch     - Pitch of source memory<br>width     - Width of matrix transfer (columns in bytes)<br>height     - Height of matrix transfer (rows)<br>kind     - Type of transfer</p>
-</blockquote>
-<pre><code>`The spitch is different when cudaMemcpyKind is different`
-
-#include&lt;stdio.h&gt;
-#include&lt;cuda.h&gt;
-#include&lt;cuda_runtime.h&gt;
-#include&lt;device_launch_parameters.h&gt;
-#include&lt;conio.h&gt;
-
-#define BLOCKSIZE_x 16
-#define BLOCKSIZE_y 16
-
-#define Nrows 3
-#define Ncols 5
-
-/*****************/
-/* CUDA MEMCHECK */
-/*****************/
-#define gpuErrchk(ans) &#123; gpuAssert((ans), __FILE__, __LINE__); &#125;
-
-inline void gpuAssert(cudaError_t code, char *file, int line, bool abort = true)
-&#123;
-    if (code != cudaSuccess)
-    &#123;
-        fprintf(stderr, &quot;GPUassert: %s %s %dn&quot;, cudaGetErrorString(code), file, line);
-        if (abort) &#123; getch(); exit(code); &#125;
-    &#125;
-&#125;
-
-/*******************/
-/* iDivUp FUNCTION */
-/*******************/
-int iDivUp(int hostPtr, int b)&#123; return ((hostPtr % b) != 0) ? (hostPtr / b + 1) : (hostPtr / b); &#125;
-
-/******************/
-/* TEST KERNEL 2D */
-/******************/
-__global__ void test_kernel_2D(float *devPtr, size_t pitch)
-&#123;
-    int    tidx = blockIdx.x*blockDim.x + threadIdx.x;
-    int    tidy = blockIdx.y*blockDim.y + threadIdx.y;
-
-    if ((tidx &lt; Ncols) &amp;&amp; (tidy &lt; Nrows))
-    &#123;
-        float *row_a = (float *)((char*)devPtr + tidy * pitch);
-        row_a[tidx] = row_a[tidx] * tidx * tidy;
-    &#125;
-&#125;
-
-/********/
-/* MAIN */
-/********/
-int main()
-&#123;
-    float hostPtr[Nrows][Ncols];
-    float *devPtr;
-    size_t pitch;
-
-    for (int i = 0; i &lt; Nrows; i++)
-        for (int j = 0; j &lt; Ncols; j++) &#123;
-            hostPtr[i][j] = 1.f;
-            //printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
-        &#125;
-
-    // --- 2D pitched allocation and host-&gt;device memcopy
-    gpuErrchk(cudaMallocPitch(&amp;devPtr, &amp;pitch, Ncols * sizeof(float), Nrows));
-    gpuErrchk(cudaMemcpy2D(devPtr, pitch, hostPtr, Ncols*sizeof(float), Ncols*sizeof(float), Nrows, cudaMemcpyHostToDevice));
-
-    dim3 gridSize(iDivUp(Ncols, BLOCKSIZE_x), iDivUp(Nrows, BLOCKSIZE_y));
-    dim3 blockSize(BLOCKSIZE_y, BLOCKSIZE_x);
-
-    test_kernel_2D &lt;&lt; &lt;gridSize, blockSize &gt;&gt; &gt;(devPtr, pitch);
-    gpuErrchk(cudaPeekAtLastError());
-    gpuErrchk(cudaDeviceSynchronize());
-
-    gpuErrchk(cudaMemcpy2D(hostPtr, Ncols * sizeof(float), devPtr, pitch, Ncols * sizeof(float), Nrows, cudaMemcpyDeviceToHost));
-
-    for (int i = 0; i &lt; Nrows; i++) 
-        for (int j = 0; j &lt; Ncols; j++) 
-            printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
-
-    return 0;    
-&#125;
-</code></pre>
+</li>
+<li>jj01::test_array() = 这个就是命名空间</li>
+</ul>
 
             </div>
             <hr/>
@@ -491,7 +409,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://moulelin.github.io/2022/06/28/cudaMemPitch/">https://moulelin.github.io/2022/06/28/cudaMemPitch/</a>
+                    <a href="https://moulelin.github.io/2022/06/29/stl%E5%85%A8%E5%B1%80/">https://moulelin.github.io/2022/06/29/stl%E5%85%A8%E5%B1%80/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -529,8 +447,8 @@ int main()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/cuda/">
-                                    <span class="chip bg-color">cuda</span>
+                                <a href="/tags/c/">
+                                    <span class="chip bg-color">c++</span>
                                 </a>
                             
                         </div>
@@ -698,9 +616,56 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2022/06/29/stl%E5%85%A8%E5%B1%80/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="stl全局">
+                        
+                        <span class="card-title">stl全局</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                             
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Moule Lin
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/c/">
+                        <span class="chip bg-color">c++</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2022/06/28/%E7%BA%A2%E9%BB%91%E6%A0%91/">
                     <div class="card-image">
@@ -718,9 +683,9 @@ int main()
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -734,51 +699,6 @@ int main()
                     
                     <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
                         <span class="chip bg-color">数据结构</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="原反补码">
-                        
-                        <span class="card-title">原反补码</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                             
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-26
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Moule Lin
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/coding/">
-                        <span class="chip bg-color">coding</span>
                     </a>
                     
                 </div>

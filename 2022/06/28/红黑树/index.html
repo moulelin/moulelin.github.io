@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="cudaMemPitch, Moujoy">
+    <meta name="keywords" content="红黑树, Moujoy">
     <meta name="description" content="Keep on going">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>cudaMemPitch | Moujoy</title>
+    <title>红黑树 | Moujoy</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -223,12 +223,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">cudaMemPitch</h1>
+                    <h1 class="description center-align post-title">红黑树</h1>
                 </div>
             </div>
         </div>
@@ -345,8 +345,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/cuda/">
-                                <span class="chip bg-color">cuda</span>
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                <span class="chip bg-color">数据结构</span>
                             </a>
                         
                     </div>
@@ -377,95 +377,38 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
-<p>cudaError_t cudaMemcpy2D    (    void *     dst,<br>size_t     dpitch,<br>const void *     src,<br>size_t     spitch,<br>size_t     width,<br>size_t     height,<br>enum cudaMemcpyKind     kind<br>)    </p>
-</blockquote>
+                <h1 id="红黑树五大特性"><a href="#红黑树五大特性" class="headerlink" title="红黑树五大特性"></a>红黑树五大特性</h1><ul>
+<li>节点是红/黑</li>
+<li>根结点是黑</li>
+<li>空叶子是黑色的（叶子结点和度为一的结点：度为0和度为1）</li>
+<li>红色结点的孩子肯定是黑色的（从根到空叶子的简单路径不存在连续红色结点）</li>
+<li>从根出发到所有空叶子结点的简单路径当中<code>黑色</code>结点数量相同</li>
+</ul>
 <blockquote>
-<p>Parameters:<br>dst     - Destination memory address<br>dpitch     - Pitch of destination memory<br>src     - Source memory address<br>spitch     - Pitch of source memory<br>width     - Width of matrix transfer (columns in bytes)<br>height     - Height of matrix transfer (rows)<br>kind     - Type of transfer</p>
+<p>因此，全黑的一条路径最短，并且 <code>最长&lt; 2*最短</code></p>
 </blockquote>
-<pre><code>`The spitch is different when cudaMemcpyKind is different`
-
-#include&lt;stdio.h&gt;
-#include&lt;cuda.h&gt;
-#include&lt;cuda_runtime.h&gt;
-#include&lt;device_launch_parameters.h&gt;
-#include&lt;conio.h&gt;
-
-#define BLOCKSIZE_x 16
-#define BLOCKSIZE_y 16
-
-#define Nrows 3
-#define Ncols 5
-
-/*****************/
-/* CUDA MEMCHECK */
-/*****************/
-#define gpuErrchk(ans) &#123; gpuAssert((ans), __FILE__, __LINE__); &#125;
-
-inline void gpuAssert(cudaError_t code, char *file, int line, bool abort = true)
-&#123;
-    if (code != cudaSuccess)
-    &#123;
-        fprintf(stderr, &quot;GPUassert: %s %s %dn&quot;, cudaGetErrorString(code), file, line);
-        if (abort) &#123; getch(); exit(code); &#125;
-    &#125;
-&#125;
-
-/*******************/
-/* iDivUp FUNCTION */
-/*******************/
-int iDivUp(int hostPtr, int b)&#123; return ((hostPtr % b) != 0) ? (hostPtr / b + 1) : (hostPtr / b); &#125;
-
-/******************/
-/* TEST KERNEL 2D */
-/******************/
-__global__ void test_kernel_2D(float *devPtr, size_t pitch)
-&#123;
-    int    tidx = blockIdx.x*blockDim.x + threadIdx.x;
-    int    tidy = blockIdx.y*blockDim.y + threadIdx.y;
-
-    if ((tidx &lt; Ncols) &amp;&amp; (tidy &lt; Nrows))
-    &#123;
-        float *row_a = (float *)((char*)devPtr + tidy * pitch);
-        row_a[tidx] = row_a[tidx] * tidx * tidy;
-    &#125;
-&#125;
-
-/********/
-/* MAIN */
-/********/
-int main()
-&#123;
-    float hostPtr[Nrows][Ncols];
-    float *devPtr;
-    size_t pitch;
-
-    for (int i = 0; i &lt; Nrows; i++)
-        for (int j = 0; j &lt; Ncols; j++) &#123;
-            hostPtr[i][j] = 1.f;
-            //printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
-        &#125;
-
-    // --- 2D pitched allocation and host-&gt;device memcopy
-    gpuErrchk(cudaMallocPitch(&amp;devPtr, &amp;pitch, Ncols * sizeof(float), Nrows));
-    gpuErrchk(cudaMemcpy2D(devPtr, pitch, hostPtr, Ncols*sizeof(float), Ncols*sizeof(float), Nrows, cudaMemcpyHostToDevice));
-
-    dim3 gridSize(iDivUp(Ncols, BLOCKSIZE_x), iDivUp(Nrows, BLOCKSIZE_y));
-    dim3 blockSize(BLOCKSIZE_y, BLOCKSIZE_x);
-
-    test_kernel_2D &lt;&lt; &lt;gridSize, blockSize &gt;&gt; &gt;(devPtr, pitch);
-    gpuErrchk(cudaPeekAtLastError());
-    gpuErrchk(cudaDeviceSynchronize());
-
-    gpuErrchk(cudaMemcpy2D(hostPtr, Ncols * sizeof(float), devPtr, pitch, Ncols * sizeof(float), Nrows, cudaMemcpyDeviceToHost));
-
-    for (int i = 0; i &lt; Nrows; i++) 
-        for (int j = 0; j &lt; Ncols; j++) 
-            printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
-
-    return 0;    
-&#125;
-</code></pre>
+<h1 id="建树"><a href="#建树" class="headerlink" title="建树"></a>建树</h1><ul>
+<li>1 初始插入时红色的，先用二叉搜索树的朴素插入构建红黑树</li>
+<li>2 插完之后染色并旋转</li>
+</ul>
+<h2 id="建树不同情况-（插入为红）"><a href="#建树不同情况-（插入为红）" class="headerlink" title="建树不同情况 （插入为红）"></a>建树不同情况 （插入为红）</h2><ul>
+<li>1 加入插入的是根，直接染黑</li>
+<li>2 插入是子，如果父亲是黑色，不需要做任何调整</li>
+<li>3 插入是子，父亲是红色（一定有爷爷结点，且是黑色，因为父亲是红色)，也一定有叔叔结点（空叶子也算），叔叔如果是红色，<code>父亲和叔叔染黑</code>, <code>爷爷染红</code>-&gt;染红会出现问题，因此把爷爷看作新插入的结点，循环向上插入</li>
+<li>4 插入是子，父亲是红色（一定有爷爷结点)，也一定有叔叔结点（空叶子也算），叔叔如果是黑色，<br>如果父亲P的大小在新插入的N和爷爷G之间（插入的位置和父亲一样，比如父亲是左子树，插入的也是左子树；父亲是右子树，插入的也是右子树），则对G旋转，左边重(插入子左子树)，<code>就右旋</code>，右边重（插入在右子树），<code>就左旋</code> （裙子形），并互换颜色，<code>G和P颜色互换</code><blockquote>
+<p>右旋：把爷爷作为父亲的右孩子结点<br>左旋：把爷爷作为父亲的左孩子结点</p>
+</blockquote>
+</li>
+<li>5 插入有子，父亲是红色（一定有爷爷结点)，也一定有叔叔结点（空叶子也算），叔叔如果是黑色，但是新插入的N和父亲的位置相反。旋转P，之前是旋转G。如果父亲是左子树，则左旋P；如果父亲是右子树，则右旋P，现在回到情况4，使用情况4的方法就行；父亲在右边，N在左边，以父节点进行右旋，这是父亲和N都在右边，在进行上述情况4同右操作即可</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>插入节点为根节点，变为黑色</li>
+<li>父节点为黑色，直接插入</li>
+<li>父节点和叔叔节点均为红色，父节点和叔叔节点均变为黑色，祖父节点变红，把祖父节点当作要插入节点，递归执行。</li>
+<li>父节点和插入节点在同一边，父节点变黑，祖父节点变红，同左右旋，同右左旋。这里是对祖父结点进行的</li>
+<li>父节点为红色，叔叔节点为黑色，如果不在同一边，转换为同一边（N在右边以父节点左旋；N在左边，以父节点右旋），然后执行步骤四。</li>
+</ul>
+<p><img src="/images/red-black-tree.png"></p>
 
             </div>
             <hr/>
@@ -491,7 +434,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://moulelin.github.io/2022/06/28/cudaMemPitch/">https://moulelin.github.io/2022/06/28/cudaMemPitch/</a>
+                    <a href="https://moulelin.github.io/2022/06/28/%E7%BA%A2%E9%BB%91%E6%A0%91/">https://moulelin.github.io/2022/06/28/%E7%BA%A2%E9%BB%91%E6%A0%91/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -529,8 +472,8 @@ int main()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/cuda/">
-                                    <span class="chip bg-color">cuda</span>
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                    <span class="chip bg-color">数据结构</span>
                                 </a>
                             
                         </div>
@@ -702,13 +645,13 @@ int main()
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/06/28/%E7%BA%A2%E9%BB%91%E6%A0%91/">
+                <a href="/2022/06/29/stl%E5%85%A8%E5%B1%80/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="红黑树">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="stl全局">
                         
-                        <span class="card-title">红黑树</span>
+                        <span class="card-title">stl全局</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -719,7 +662,7 @@ int main()
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-28
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-29
                         </span>
                         <span class="publish-author">
                             
@@ -732,8 +675,8 @@ int main()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                        <span class="chip bg-color">数据结构</span>
+                    <a href="/tags/c/">
+                        <span class="chip bg-color">c++</span>
                     </a>
                     
                 </div>
@@ -747,13 +690,13 @@ int main()
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/">
+                <a href="/2022/06/28/cudaMemPitch/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="原反补码">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="cudaMemPitch">
                         
-                        <span class="card-title">原反补码</span>
+                        <span class="card-title">cudaMemPitch</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -764,7 +707,7 @@ int main()
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-28
                             </span>
                         <span class="publish-author">
                             
@@ -777,8 +720,8 @@ int main()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/coding/">
-                        <span class="chip bg-color">coding</span>
+                    <a href="/tags/cuda/">
+                        <span class="chip bg-color">cuda</span>
                     </a>
                     
                 </div>
