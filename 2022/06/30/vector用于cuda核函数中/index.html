@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="vector二维数组, Moujoy">
+    <meta name="keywords" content="vector用于cuda核函数中, Moujoy">
     <meta name="description" content="Keep on going">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>vector二维数组 | Moujoy</title>
+    <title>vector用于cuda核函数中 | Moujoy</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -179,12 +179,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">vector二维数组</h1>
+                    <h1 class="description center-align post-title">vector用于cuda核函数中</h1>
                 </div>
             </div>
         </div>
@@ -301,8 +301,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/c/">
-                                <span class="chip bg-color">c++</span>
+                            <a href="/tags/cuda/">
+                                <span class="chip bg-color">cuda</span>
                             </a>
                         
                     </div>
@@ -333,20 +333,41 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
-<li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
-<p>这里的row,col代表二维vector的两个轴方向的大小</p>
+                <blockquote>
+<p>cuda中，是不支持在核函数中直接使用vector的。所以通常情况下是要使用动态数组将vector的数据提取，然后进行计算。</p>
 </blockquote>
-</li>
-<li>第二种通过resize确定大小，之后循环赋值<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
-vec1.resize(row);
-for(int i=0;i&lt;vec1.size();i++)
-  vec1[i].resize(col);
-for(int i=0;i&lt;row;i++)
-  for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
-</code></pre>
-</li>
+<blockquote>
+<p>这里我们来介绍下如何将vector的数据转换为动态数组，并传入到核函数进行计算的。</p>
+</blockquote>
+<ul>
+<li>一维</li>
 </ul>
+<pre><code>vector&lt;int&gt; b;
+int* a;
+cudaMalloc((void**)&amp; a, sizeof(int) * b.size());
+cudaMemcpy(a, &amp;b[0],sizeof(int) * b.size(), cudaMemcpyHostToDevice);
+</code></pre>
+<ul>
+<li>二维比较麻烦，因为要循环处理vector中的每一个vector（每一行）,这里用一个中间的二维数组作为承接</li>
+</ul>
+<pre><code>vector&lt;vector&lt;int&gt;&gt; d;
+int ** a_2d = new int* [d.size()];
+int * a_2d_cu;
+for (int i = 0; i &lt; d.size(); i++)&#123;
+    int* devPtr;
+    int length = d[i].size();
+    cudaMalloc((void**)&amp; devPtr, sizeof(int)*length);
+    cudaMemcpy(devPtr, &amp;d[i], sizeof(int)*length, cudaMemcpyHostToDevice);
+    a_2d[i] = devPtr; //先把指向cuda内存的指针存在host内存的数组中
+&#125;
+cudaMalloc((void**)&amp; a_2d_cu, sizeof(int*)*d.size());
+cudaMemcpy(a_2d_cu, a_2d, sizeof(int*)*d.size(), cudaMemcpyHostToDevice);
+</code></pre>
+<h2 id="这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D"><a href="#这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D" class="headerlink" title="这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D"></a>这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D</h2><pre><code>//这是为了对齐内存，如果数据不是32的整数倍的话，二维数组用这个会比较好
+size_t pitch;
+cudaMallocPitch(&amp; a_2d_cu, &amp;pitch, d[0].size()*sizeof(int), d.size()));
+cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(int), d.size(), cudaMemcpyHostToDevice);
+</code></pre>
 
             </div>
             <hr/>
@@ -372,7 +393,7 @@ for(int i=0;i&lt;row;i++)
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://moulelin.github.io/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/">https://moulelin.github.io/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</a>
+                    <a href="https://moulelin.github.io/2022/06/30/vector%E7%94%A8%E4%BA%8Ecuda%E6%A0%B8%E5%87%BD%E6%95%B0%E4%B8%AD/">https://moulelin.github.io/2022/06/30/vector%E7%94%A8%E4%BA%8Ecuda%E6%A0%B8%E5%87%BD%E6%95%B0%E4%B8%AD/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -410,8 +431,8 @@ for(int i=0;i&lt;row;i++)
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/c/">
-                                    <span class="chip bg-color">c++</span>
+                                <a href="/tags/cuda/">
+                                    <span class="chip bg-color">cuda</span>
                                 </a>
                             
                         </div>
@@ -579,9 +600,10 @@ for(int i=0;i&lt;row;i++)
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2022/06/30/vector%E7%94%A8%E4%BA%8Ecuda%E6%A0%B8%E5%87%BD%E6%95%B0%E4%B8%AD/">
                     <div class="card-image">
@@ -599,9 +621,9 @@ for(int i=0;i&lt;row;i++)
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -610,6 +632,7 @@ for(int i=0;i&lt;row;i++)
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -628,13 +651,13 @@ for(int i=0;i&lt;row;i++)
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/29/stl%E5%85%A8%E5%B1%80/">
+                <a href="/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="stl全局">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="vector二维数组">
                         
-                        <span class="card-title">stl全局</span>
+                        <span class="card-title">vector二维数组</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -645,7 +668,7 @@ for(int i=0;i&lt;row;i++)
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-30
                             </span>
                         <span class="publish-author">
                             

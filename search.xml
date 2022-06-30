@@ -2057,4 +2057,47 @@ for(int i=0;i&lt;row;i++)
         <tag>c++</tag>
       </tags>
   </entry>
+  <entry>
+    <title>vector用于cuda核函数中</title>
+    <url>/2022/06/30/vector%E7%94%A8%E4%BA%8Ecuda%E6%A0%B8%E5%87%BD%E6%95%B0%E4%B8%AD/</url>
+    <content><![CDATA[<blockquote>
+<p>cuda中，是不支持在核函数中直接使用vector的。所以通常情况下是要使用动态数组将vector的数据提取，然后进行计算。</p>
+</blockquote>
+<blockquote>
+<p>这里我们来介绍下如何将vector的数据转换为动态数组，并传入到核函数进行计算的。</p>
+</blockquote>
+<ul>
+<li>一维</li>
+</ul>
+<pre><code>vector&lt;int&gt; b;
+int* a;
+cudaMalloc((void**)&amp; a, sizeof(int) * b.size());
+cudaMemcpy(a, &amp;b[0],sizeof(int) * b.size(), cudaMemcpyHostToDevice);
+</code></pre>
+<ul>
+<li>二维比较麻烦，因为要循环处理vector中的每一个vector（每一行）,这里用一个中间的二维数组作为承接</li>
+</ul>
+<pre><code>vector&lt;vector&lt;int&gt;&gt; d;
+int ** a_2d = new int* [d.size()];
+int * a_2d_cu;
+for (int i = 0; i &lt; d.size(); i++)&#123;
+    int* devPtr;
+    int length = d[i].size();
+    cudaMalloc((void**)&amp; devPtr, sizeof(int)*length);
+    cudaMemcpy(devPtr, &amp;d[i], sizeof(int)*length, cudaMemcpyHostToDevice);
+    a_2d[i] = devPtr; //先把指向cuda内存的指针存在host内存的数组中
+&#125;
+cudaMalloc((void**)&amp; a_2d_cu, sizeof(int*)*d.size());
+cudaMemcpy(a_2d_cu, a_2d, sizeof(int*)*d.size(), cudaMemcpyHostToDevice);
+</code></pre>
+<h2 id="这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D"><a href="#这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D" class="headerlink" title="这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D"></a>这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D</h2><pre><code>//这是为了对齐内存，如果数据不是32的整数倍的话，二维数组用这个会比较好
+size_t pitch;
+cudaMallocPitch(&amp; a_2d_cu, &amp;pitch, d[0].size()*sizeof(int), d.size()));
+cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(int), d.size(), cudaMemcpyHostToDevice);
+</code></pre>
+]]></content>
+      <tags>
+        <tag>cuda</tag>
+      </tags>
+  </entry>
 </search>
