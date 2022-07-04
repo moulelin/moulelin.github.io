@@ -2100,4 +2100,17 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
         <tag>cuda</tag>
       </tags>
   </entry>
+  <entry>
+    <title>sparse</title>
+    <url>/2022/07/02/sparse/</url>
+    <content><![CDATA[<h1 id="How-to-prune-in-MLP"><a href="#How-to-prune-in-MLP" class="headerlink" title="How to prune in MLP?"></a>How to prune in MLP?</h1><p><img src="/images/2022-07-04-01-57-10.png"></p>
+<ul>
+<li>sets the connection weight whose lower than threshold as 0<br><img src="/images/2022-07-04-02-03-25.png"></li>
+</ul>
+<h1 id="Prune-for-CNN"><a href="#Prune-for-CNN" class="headerlink" title="Prune for CNN"></a>Prune for CNN</h1><p><img src="/images/2022-07-04-02-16-55.png"></p>
+]]></content>
+      <tags>
+        <tag>sparse</tag>
+      </tags>
+  </entry>
 </search>
