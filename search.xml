@@ -2113,4 +2113,42 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
         <tag>sparse</tag>
       </tags>
   </entry>
+  <entry>
+    <title>按位与替换取余操作</title>
+    <url>/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<blockquote>
+<p>由于我们知道位运算比较高效，在某些情况下，当b为2的n次方时，有如下替换公式：</p>
+</blockquote>
+<blockquote>
+<p><code>a % b = a &amp; (b-1)</code></p>
+</blockquote>
+<h2 id="notes"><a href="#notes" class="headerlink" title="notes:"></a>notes:</h2><ul>
+<li>b必须为2的整数倍<blockquote>
+<p>因为可以保证b始终只有最高位为1，其他二进制位全部为0，减去1，之后，可以把高位1消除，其他位都为1。<br><code>减一之后，最高位为0，之后都为1（b,b剩下的数就是需要的余数的最高值），就相当于计算低位与原数的与</code></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>例如：14%8，取余数，相当于取出低位，而余数最大为7，14二进制为1110，8的二进制1000，8-1 = 7的二进制为0111，由于现在低位全为1，让其跟14做&amp;运算，正好取出的是其低位上的余数 </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mathematics</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STL</title>
+    <url>/2022/07/06/STL/</url>
+    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
+<blockquote>
+<p>stack和queue不提供iterator</p>
+</blockquote>
+<blockquote>
+<p>set/multiset<br>multiset是基于红黑树实现的</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
 </search>

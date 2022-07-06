@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="sparse, Moujoy">
+    <meta name="keywords" content="按位与替换取余操作, Moujoy">
     <meta name="description" content="Keep on going">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>sparse | Moujoy</title>
+    <title>按位与替换取余操作 | Moujoy</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -179,12 +179,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">sparse</h1>
+                    <h1 class="description center-align post-title">按位与替换取余操作</h1>
                 </div>
             </div>
         </div>
@@ -301,8 +301,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/sparse/">
-                                <span class="chip bg-color">sparse</span>
+                            <a href="/tags/mathematics/">
+                                <span class="chip bg-color">mathematics</span>
                             </a>
                         
                     </div>
@@ -317,7 +317,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-07-02
+                    2022-07-06
                 </div>
                 
 
@@ -333,11 +333,21 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="How-to-prune-in-MLP"><a href="#How-to-prune-in-MLP" class="headerlink" title="How to prune in MLP?"></a>How to prune in MLP?</h1><p><img src="/images/2022-07-04-01-57-10.png"></p>
-<ul>
-<li>sets the connection weight whose lower than threshold as 0<br><img src="/images/2022-07-04-02-03-25.png"></li>
+                <blockquote>
+<p>由于我们知道位运算比较高效，在某些情况下，当b为2的n次方时，有如下替换公式：</p>
+</blockquote>
+<blockquote>
+<p><code>a % b = a &amp; (b-1)</code></p>
+</blockquote>
+<h2 id="notes"><a href="#notes" class="headerlink" title="notes:"></a>notes:</h2><ul>
+<li>b必须为2的整数倍<blockquote>
+<p>因为可以保证b始终只有最高位为1，其他二进制位全部为0，减去1，之后，可以把高位1消除，其他位都为1。<br><code>减一之后，最高位为0，之后都为1（b,b剩下的数就是需要的余数的最高值），就相当于计算低位与原数的与</code></p>
+</blockquote>
+</li>
 </ul>
-<h1 id="Prune-for-CNN"><a href="#Prune-for-CNN" class="headerlink" title="Prune for CNN"></a>Prune for CNN</h1><p><img src="/images/2022-07-04-02-16-55.png"></p>
+<blockquote>
+<p>例如：14%8，取余数，相当于取出低位，而余数最大为7，14二进制为1110，8的二进制1000，8-1 = 7的二进制为0111，由于现在低位全为1，让其跟14做&amp;运算，正好取出的是其低位上的余数 </p>
+</blockquote>
 
             </div>
             <hr/>
@@ -363,7 +373,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://moulelin.github.io/2022/07/02/sparse/">https://moulelin.github.io/2022/07/02/sparse/</a>
+                    <a href="https://moulelin.github.io/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/">https://moulelin.github.io/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -401,8 +411,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/sparse/">
-                                    <span class="chip bg-color">sparse</span>
+                                <a href="/tags/mathematics/">
+                                    <span class="chip bg-color">mathematics</span>
                                 </a>
                             
                         </div>
@@ -570,9 +580,56 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="按位与替换取余操作">
+                        
+                        <span class="card-title">按位与替换取余操作</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                             
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Moule Lin
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/mathematics/">
+                        <span class="chip bg-color">mathematics</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2022/07/06/STL/">
                     <div class="card-image">
@@ -590,9 +647,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -606,51 +663,6 @@
                     
                     <a href="/tags/c/">
                         <span class="chip bg-color">c++</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/06/30/vector%E7%94%A8%E4%BA%8Ecuda%E6%A0%B8%E5%87%BD%E6%95%B0%E4%B8%AD/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="vector用于cuda核函数中">
-                        
-                        <span class="card-title">vector用于cuda核函数中</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                             
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-30
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Moule Lin
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/cuda/">
-                        <span class="chip bg-color">cuda</span>
                     </a>
                     
                 </div>
