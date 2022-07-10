@@ -2151,4 +2151,24 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
         <tag>c++</tag>
       </tags>
   </entry>
+  <entry>
+    <title>warp函数</title>
+    <url>/2022/07/11/warp%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="any-sync用于一个warp之间线程的数据的交换-广播（broadcast）"><a href="#any-sync用于一个warp之间线程的数据的交换-广播（broadcast）" class="headerlink" title="__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）"></a>__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）</h1><h2 id="这里必须注意srcLane是束内w的编号"><a href="#这里必须注意srcLane是束内w的编号" class="headerlink" title="这里必须注意srcLane是束内w的编号"></a>这里必须注意srcLane是束内w的编号</h2><blockquote>
+<p>int value = __any_sync(mask,v,srcLane,w)<br>把srcLane的线程中变量v的值广播给其他线程，其中广播的线程由mask的二进制决定</p>
+</blockquote>
+<pre><code>int value = __any_sync(mask,tid,2,w);
+// 这里把线程2的tid值（也是2），也就是说所有线程走到这里之后的value都是2；如果tid表示是其他含义，那么其余每个线程就是用的对应的值
+输出为： `shfl:  2  2  2  2  2  2  2  2 10 10 10 10 10 10 10 10`
+这里的10是因为其实他现在的tid是10，但是在束编号中，他的下标是2
+</code></pre>
+<p><img src="/images/2022-07-11-00-37-51.png"></p>
+<blockquote>
+<p>__shfl_xor_sync(FULL_MASK, tid, laneMask, WIDTH);<br>按位异或，这里可以把laneMask设置为1，就是将相邻的两个线程的tid变量的值进行交换</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>cuda</tag>
+      </tags>
+  </entry>
 </search>
