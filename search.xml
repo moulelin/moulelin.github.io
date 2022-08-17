@@ -1,41 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>3D</title>
-    <url>/2021/11/05/3D/</url>
-    <content><![CDATA[<!-- Do you need some help for 3D?
-I skipped some lectures, so first of all I need to rewatch that. After that, I will ask some help, thanks 
-aassigments
-I will try figure out by myself, then i will ask sometjiogn  -->
-<blockquote>
-<p>trangulation<br>tip: e2（第二个图像的极点是第一个图片的focal（焦点）在第二个坐标系下的投影），e2 = K’[R T][0,0,0,1]T([0,0,0,1]是第一个图片的坐标原点（世界坐标系的原点）)<br>问题一：为什么要进行相机标定？<br>相机标定的目的是：建立相机成像几何模型并矫正透镜畸变。这句话有点拗口，下面分别对其中两个关键部分进行解释。</p>
-</blockquote>
-<blockquote>
-<p>建立相机成像几何模型：计算机视觉的首要任务就是要通过拍摄到的图像信息获取到物体在真实三维世界里相对应的信息，于是，建立物体从三维世界映射到相机成像平面这一过程中的几何模型就显得尤为重要，而这一过程最关键的部分就是要得到相机的内参和外参（后续文有具体解释）。</p>
-</blockquote>
-<blockquote>
-<p>矫正透镜畸变：我们最开始接触到的成像方面的知识应该是有关小孔成像的，但是由于这种成像方式只有小孔部分能透过光线就会导致物体的成像亮度很低，于是聪明的人类发明了透镜。虽然亮度问题解决了，但是新的问题又来了：由于透镜的制造工艺，会使成像产生多种形式的畸变，于是为了去除畸变（使成像后的图像与真实世界的景象保持一致），人们计算并利用畸变系数来矫正这种像差。虽然理论上可以设计出不产生畸变的透镜，但其制造工艺相对于球面透镜会复杂很多，所以相对于复杂且高成本的制造工艺，人们更喜欢用数学来解决问题。</p>
-</blockquote>
-<p>相机成像模型<br>前面已经说过，相机标定的目的之一是为了建立物体从三维世界到成像平面上各坐标点的对应关系，所以首先我们需要定义这样几个坐标系来为整个过程做好铺垫：</p>
-<blockquote>
-<p>世界坐标系(world coordinate system)：用户定义的三维世界的坐标系，为了描述目标物在真实世界里的位置而被引入。单位为m。</p>
-</blockquote>
-<blockquote>
-<p>相机坐标系(camera coordinate system)：在相机上建立的坐标系，为了从相机的角度描述物体位置而定义，作为沟通世界坐标系和图像/像素坐标系的中间一环。单位为m。</p>
-</blockquote>
-<blockquote>
-<p>图像坐标系(image coordinate system)：为了描述成像过程中物体从相机坐标系到图像坐标系的投影透射关系而引入，方便进一步得到像素坐标系下的坐标。 单位为m。</p>
-</blockquote>
-<blockquote>
-<p>像素坐标系(pixel coordinate system)：为了描述物体成像后的像点在数字图像上（相片）的坐标而引入，是我们真正从相机内读取到的信息所在的坐标系。单位为个（像素数目）。</p>
-</blockquote>
-<p>一下子定义出来四个坐标系可能有点晕，下图可以更清晰地表达这四个坐标系之间的关系：<br><img src="/images/3D-1.jpeg"></p>
-<h2 id="世界坐标系：Xw、Yw、Zw。相机坐标系：-Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。"><a href="#世界坐标系：Xw、Yw、Zw。相机坐标系：-Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。" class="headerlink" title="世界坐标系：Xw、Yw、Zw。相机坐标系： Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。"></a>世界坐标系：Xw、Yw、Zw。相机坐标系： Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。</h2><blockquote>
-<p>其中，相机坐标系的z轴与光轴重合，且垂直于图像坐标系平面并通过图像坐标系的原点，相机坐标系与图像坐标系之间的距离为焦距f（也即图像坐标系原点与焦点重合）。像素坐标系平面u-v和图像坐标系平面x-y重合，但像素坐标系原点位于图中左上角（之所以这么定义，目的是从存储信息的首地址开始读写）。<br><img src="/images/3D-2.jpeg"><br>下面将依次对刚体进行一系列变换，使之从世界坐标系进行仿射变换、投影透射，最终得到像素坐标系下的离散图像点，过程中会逐步引入各参数矩阵。</p>
-</blockquote>
-]]></content>
+    <title>3D-python</title>
+    <url>/2021/11/02/3D-python/</url>
+    <content><![CDATA[<h1 id="plot-3D-by-python"><a href="#plot-3D-by-python" class="headerlink" title="plot 3D by python"></a>plot 3D by python</h1>]]></content>
       <tags>
-        <tag>3D</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -125,11 +95,41 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
       </tags>
   </entry>
   <entry>
-    <title>3D-python</title>
-    <url>/2021/11/02/3D-python/</url>
-    <content><![CDATA[<h1 id="plot-3D-by-python"><a href="#plot-3D-by-python" class="headerlink" title="plot 3D by python"></a>plot 3D by python</h1>]]></content>
+    <title>3D</title>
+    <url>/2021/11/05/3D/</url>
+    <content><![CDATA[<!-- Do you need some help for 3D?
+I skipped some lectures, so first of all I need to rewatch that. After that, I will ask some help, thanks 
+aassigments
+I will try figure out by myself, then i will ask sometjiogn  -->
+<blockquote>
+<p>trangulation<br>tip: e2（第二个图像的极点是第一个图片的focal（焦点）在第二个坐标系下的投影），e2 = K’[R T][0,0,0,1]T([0,0,0,1]是第一个图片的坐标原点（世界坐标系的原点）)<br>问题一：为什么要进行相机标定？<br>相机标定的目的是：建立相机成像几何模型并矫正透镜畸变。这句话有点拗口，下面分别对其中两个关键部分进行解释。</p>
+</blockquote>
+<blockquote>
+<p>建立相机成像几何模型：计算机视觉的首要任务就是要通过拍摄到的图像信息获取到物体在真实三维世界里相对应的信息，于是，建立物体从三维世界映射到相机成像平面这一过程中的几何模型就显得尤为重要，而这一过程最关键的部分就是要得到相机的内参和外参（后续文有具体解释）。</p>
+</blockquote>
+<blockquote>
+<p>矫正透镜畸变：我们最开始接触到的成像方面的知识应该是有关小孔成像的，但是由于这种成像方式只有小孔部分能透过光线就会导致物体的成像亮度很低，于是聪明的人类发明了透镜。虽然亮度问题解决了，但是新的问题又来了：由于透镜的制造工艺，会使成像产生多种形式的畸变，于是为了去除畸变（使成像后的图像与真实世界的景象保持一致），人们计算并利用畸变系数来矫正这种像差。虽然理论上可以设计出不产生畸变的透镜，但其制造工艺相对于球面透镜会复杂很多，所以相对于复杂且高成本的制造工艺，人们更喜欢用数学来解决问题。</p>
+</blockquote>
+<p>相机成像模型<br>前面已经说过，相机标定的目的之一是为了建立物体从三维世界到成像平面上各坐标点的对应关系，所以首先我们需要定义这样几个坐标系来为整个过程做好铺垫：</p>
+<blockquote>
+<p>世界坐标系(world coordinate system)：用户定义的三维世界的坐标系，为了描述目标物在真实世界里的位置而被引入。单位为m。</p>
+</blockquote>
+<blockquote>
+<p>相机坐标系(camera coordinate system)：在相机上建立的坐标系，为了从相机的角度描述物体位置而定义，作为沟通世界坐标系和图像/像素坐标系的中间一环。单位为m。</p>
+</blockquote>
+<blockquote>
+<p>图像坐标系(image coordinate system)：为了描述成像过程中物体从相机坐标系到图像坐标系的投影透射关系而引入，方便进一步得到像素坐标系下的坐标。 单位为m。</p>
+</blockquote>
+<blockquote>
+<p>像素坐标系(pixel coordinate system)：为了描述物体成像后的像点在数字图像上（相片）的坐标而引入，是我们真正从相机内读取到的信息所在的坐标系。单位为个（像素数目）。</p>
+</blockquote>
+<p>一下子定义出来四个坐标系可能有点晕，下图可以更清晰地表达这四个坐标系之间的关系：<br><img src="/images/3D-1.jpeg"></p>
+<h2 id="世界坐标系：Xw、Yw、Zw。相机坐标系：-Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。"><a href="#世界坐标系：Xw、Yw、Zw。相机坐标系：-Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。" class="headerlink" title="世界坐标系：Xw、Yw、Zw。相机坐标系： Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。"></a>世界坐标系：Xw、Yw、Zw。相机坐标系： Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。</h2><blockquote>
+<p>其中，相机坐标系的z轴与光轴重合，且垂直于图像坐标系平面并通过图像坐标系的原点，相机坐标系与图像坐标系之间的距离为焦距f（也即图像坐标系原点与焦点重合）。像素坐标系平面u-v和图像坐标系平面x-y重合，但像素坐标系原点位于图中左上角（之所以这么定义，目的是从存储信息的首地址开始读写）。<br><img src="/images/3D-2.jpeg"><br>下面将依次对刚体进行一系列变换，使之从世界坐标系进行仿射变换、投影透射，最终得到像素坐标系下的离散图像点，过程中会逐步引入各参数矩阵。</p>
+</blockquote>
+]]></content>
       <tags>
-        <tag>python</tag>
+        <tag>3D</tag>
       </tags>
   </entry>
   <entry>
@@ -171,23 +171,6 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
       </tags>
   </entry>
   <entry>
-    <title>Conv-MPN</title>
-    <url>/2022/06/17/Conv-MPN/</url>
-    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
-<li><a href="#">corner_detection</a><blockquote>
-<p>concatenate </p>
-</blockquote>
-</li>
-</ul>
-<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
-<p>mask_rcnn extracts corner points.</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Cplusplusnotes</title>
     <url>/2022/05/01/Cplusplusnotes/</url>
     <content><![CDATA[<blockquote>
@@ -218,6 +201,15 @@ static const int a = 1;
       </tags>
   </entry>
   <entry>
+    <title>DP</title>
+    <url>/2022/03/18/DP/</url>
+    <content><![CDATA[<p><img src="/images/DP.png">  </p>
+]]></content>
+      <tags>
+        <tag>RL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DBSCAN</title>
     <url>/2022/01/06/DBSCAN/</url>
     <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
@@ -227,12 +219,29 @@ static const int a = 1;
       </tags>
   </entry>
   <entry>
-    <title>DP</title>
-    <url>/2022/03/18/DP/</url>
-    <content><![CDATA[<p><img src="/images/DP.png">  </p>
+    <title>Short-term prediction of stock market price based on GA optimization LSTM neurons</title>
+    <url>/2021/04/01/GA/</url>
+    <content><![CDATA[<p><img src="/images/3_1.jpg"> </p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">Long-Short Term Memory Network stands out from the financial sector due to its long-term memory predictability, however, the speed of subsequent operations is extremely slow, and the timeliness of the inability to meet market changes has been criticized. In this paper. Aiming at the shortcomings of the slow running of three gates in each neuron of LSTM in back propagation, we1 propose to use GA to optimize the internal weights of LSTM neurons to optimize the defect. In this experiment, GA optimization could not change the accuracy of the model, but it achieved better results than the original LSTM in terms of speed, and satisfied the demand of the future business field for rapid response to market changes in terms of timeliness.
+</blockquote>
+<h1 id="LSTM-Architecture"><a href="#LSTM-Architecture" class="headerlink" title="LSTM Architecture :"></a>LSTM Architecture :</h1><p>  <img src="/images/3_2.jpg"> </p>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/3_3.jpg"> </p>
+<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">This paper proposes a GA optimization method for LSTM neurons. By comparing the running time of predecessor models, it is possible to overcome the shortcomings of slow operation of LSTM to a certain extent by optimizing the internal weight of neurons through GA update.
+<p style="text-align:justify; text-justify:inter-ideograph; color:black"> In addition, this article does not discuss the generalization ability of the network and other parameters of the network at the same time. The research purpose is too single. However, for the short-term prediction of financial markets, the importance of research on the timeliness and advancing of the model is much higher than that of the generalized network model
+</blockquote>
+<hr>
+<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2018 2nd International Conference on Deep Learning Technologies"></a>Conference : 2018 2nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/3_4.jpg"> </p>
+<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> This paper was published a long time ago, and it is not perfect from my current point of view.<br>
+<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
 ]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
       <tags>
-        <tag>RL</tag>
+        <tag>GA</tag>
       </tags>
   </entry>
   <entry>
@@ -386,95 +395,6 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>FLOPs</title>
-    <url>/2022/06/26/FLOPs/</url>
-    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
-]]></content>
-      <tags>
-        <tag>FLOPs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Short-term prediction of stock market price based on GA optimization LSTM neurons</title>
-    <url>/2021/04/01/GA/</url>
-    <content><![CDATA[<p><img src="/images/3_1.jpg"> </p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">Long-Short Term Memory Network stands out from the financial sector due to its long-term memory predictability, however, the speed of subsequent operations is extremely slow, and the timeliness of the inability to meet market changes has been criticized. In this paper. Aiming at the shortcomings of the slow running of three gates in each neuron of LSTM in back propagation, we1 propose to use GA to optimize the internal weights of LSTM neurons to optimize the defect. In this experiment, GA optimization could not change the accuracy of the model, but it achieved better results than the original LSTM in terms of speed, and satisfied the demand of the future business field for rapid response to market changes in terms of timeliness.
-</blockquote>
-<h1 id="LSTM-Architecture"><a href="#LSTM-Architecture" class="headerlink" title="LSTM Architecture :"></a>LSTM Architecture :</h1><p>  <img src="/images/3_2.jpg"> </p>
-<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/3_3.jpg"> </p>
-<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">This paper proposes a GA optimization method for LSTM neurons. By comparing the running time of predecessor models, it is possible to overcome the shortcomings of slow operation of LSTM to a certain extent by optimizing the internal weight of neurons through GA update.
-<p style="text-align:justify; text-justify:inter-ideograph; color:black"> In addition, this article does not discuss the generalization ability of the network and other parameters of the network at the same time. The research purpose is too single. However, for the short-term prediction of financial markets, the importance of research on the timeliness and advancing of the model is much higher than that of the generalized network model
-</blockquote>
-<hr>
-<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2018 2nd International Conference on Deep Learning Technologies"></a>Conference : 2018 2nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/3_4.jpg"> </p>
-<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> This paper was published a long time ago, and it is not perfect from my current point of view.<br>
-<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>GA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Likelihood2</title>
-    <url>/2022/02/24/Likelihood2/</url>
-    <content><![CDATA[<blockquote>
-<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为=》最大概率处l=0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Likelihood</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Homogeneous</title>
-    <url>/2022/01/26/Homogeneous/</url>
-    <content><![CDATA[<p><img src="/images/homogeneous.png"> </p>
-]]></content>
-      <tags>
-        <tag>3D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MATI-Regression</title>
-    <url>/2021/11/02/MATI-Regression/</url>
-    <content><![CDATA[
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-
-<h1 id="L1-amp-L2-regularization"><a href="#L1-amp-L2-regularization" class="headerlink" title="L1 &amp; L2 regularization"></a>L1 &amp; L2 regularization</h1>
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>MTAI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MC</title>
-    <url>/2022/03/19/MC/</url>
-    <content><![CDATA[<p><img src="/images/MC.png">  </p>
-]]></content>
-      <tags>
-        <tag>RL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hierarchical</title>
     <url>/2021/12/02/Hierarchical/</url>
     <content><![CDATA[<blockquote>
@@ -523,16 +443,63 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>RL3ways</title>
-    <url>/2022/03/20/RL3ways/</url>
+    <title>FLOPs</title>
+    <url>/2022/06/26/FLOPs/</url>
+    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
+]]></content>
+      <tags>
+        <tag>FLOPs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Homogeneous</title>
+    <url>/2022/01/26/Homogeneous/</url>
+    <content><![CDATA[<p><img src="/images/homogeneous.png"> </p>
+]]></content>
+      <tags>
+        <tag>3D</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Likelihood2</title>
+    <url>/2022/02/24/Likelihood2/</url>
+    <content><![CDATA[<blockquote>
+<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为=》最大概率处l=0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Likelihood</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MATI-Regression</title>
+    <url>/2021/11/02/MATI-Regression/</url>
     <content><![CDATA[
 
 	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/RL3.pdf" width="100%" height="550" type="application/pdf">
+    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
 	</div>
 
 
 
+
+<h1 id="L1-amp-L2-regularization"><a href="#L1-amp-L2-regularization" class="headerlink" title="L1 &amp; L2 regularization"></a>L1 &amp; L2 regularization</h1>
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+      <tags>
+        <tag>MTAI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MC</title>
+    <url>/2022/03/19/MC/</url>
+    <content><![CDATA[<p><img src="/images/MC.png">  </p>
 ]]></content>
       <tags>
         <tag>RL</tag>
@@ -550,6 +517,39 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>Conv-MPN</title>
+    <url>/2022/06/17/Conv-MPN/</url>
+    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
+<li><a href="#">corner_detection</a><blockquote>
+<p>concatenate </p>
+</blockquote>
+</li>
+</ul>
+<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
+<p>mask_rcnn extracts corner points.</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RL3ways</title>
+    <url>/2022/03/20/RL3ways/</url>
+    <content><![CDATA[
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/RL3.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+      <tags>
+        <tag>RL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>STL</title>
     <url>/2022/07/06/STL/</url>
     <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
@@ -563,6 +563,19 @@ concorn
       <tags>
         <tag>c++</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Theory</title>
+    <url>/2021/12/01/Theory/</url>
+    <content><![CDATA[<h1 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h1>
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/probability.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
   </entry>
   <entry>
     <title>TF-IDF</title>
@@ -583,28 +596,13 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>VCDimension</title>
-    <url>/2022/02/10/VCDimension/</url>
-    <content><![CDATA[<blockquote>
-<p>注意这里的VC维度指的是只要存在一个不可分的点，比如四个点，一条直线存在无法分割的情况，那就VC维度就不是4，应该从3来看<br><img src="/images/CVDim.png"> </p>
-</blockquote>
+    <title>apriori</title>
+    <url>/2022/01/06/apriori/</url>
+    <content><![CDATA[<p><img src="/images/apriori.png"> </p>
 ]]></content>
       <tags>
-        <tag>Machine</tag>
+        <tag>apriori</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Theory</title>
-    <url>/2021/12/01/Theory/</url>
-    <content><![CDATA[<h1 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h1>
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/probability.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
   </entry>
   <entry>
     <title>ShiftCNN</title>
@@ -646,6 +644,17 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>VCDimension</title>
+    <url>/2022/02/10/VCDimension/</url>
+    <content><![CDATA[<blockquote>
+<p>注意这里的VC维度指的是只要存在一个不可分的点，比如四个点，一条直线存在无法分割的情况，那就VC维度就不是4，应该从3来看<br><img src="/images/CVDim.png"> </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Machine</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>copyC</title>
     <url>/2022/03/13/copyC/</url>
     <content><![CDATA[<p>浅拷贝和深拷贝<br>指针浅拷贝导致堆区的数据重复释放<br>问题：近期在做算法实验的时候碰到一个关于类指针赋值的问题，简单的指针之间的赋值只是把两个指针指向同一个地址，而我需要把每次算法执行完的类指针push_back进vector储存每次算法迭代的结果，如果每次都是存入同一个指针，就会出现vector中的类指针都指向同一个地址，这就让我想到了能不能进行类指针之间的赋值，两个类指针之间内容相同，但是指针指向的地址都不同，就是两个不同的指针。</p>
@@ -668,112 +677,40 @@ rect(const rect *r);
       </tags>
   </entry>
   <entry>
-    <title>apriori</title>
-    <url>/2022/01/06/apriori/</url>
-    <content><![CDATA[<p><img src="/images/apriori.png"> </p>
-]]></content>
-      <tags>
-        <tag>apriori</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cudaMemPitch</title>
-    <url>/2022/06/28/cudaMemPitch/</url>
-    <content><![CDATA[<h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
-<p>cudaMallocPitch ( void** devPtr, size_t* pitch, size_t width, size_t height )<br>devPtr - Pointer to allocated pitched device memory<br>pitch - Pitch for allocation<br>width - Requested pitched allocation width (in bytes)<br>height - Requested pitched allocation height</p>
+    <title>cout重载全局函数</title>
+    <url>/2022/06/17/cout%E9%87%8D%E8%BD%BD%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="为什么c-中重载流操作符要用友元函数"><a href="#为什么c-中重载流操作符要用友元函数" class="headerlink" title="为什么c++中重载流操作符要用友元函数"></a>为什么c++中重载流操作符要用友元函数</h1><h2 id="作为成员函数的话，左操作数非得是自己不可"><a href="#作为成员函数的话，左操作数非得是自己不可" class="headerlink" title="作为成员函数的话，左操作数非得是自己不可"></a>作为成员函数的话，左操作数非得是自己不可</h2><blockquote>
+<p>cout &lt;&lt; XXX 这种情况是cout在调用operator&lt;&lt;而不是XXX在调用operator&lt;&lt; 。<br>如果你要把operator&lt;&lt;设为成员函数就只能用 XXX &lt;&lt; cout 这种形式。</p>
 </blockquote>
-<blockquote>
-<p>cudaError_t cudaMemcpy2D    (    void *     dst,<br>size_t     dpitch,<br>const void *     src,<br>size_t     spitch,<br>size_t     width,<br>size_t     height,<br>enum cudaMemcpyKind     kind<br>)    </p>
-</blockquote>
-<blockquote>
-<p>Parameters:<br>dst     - Destination memory address<br>dpitch     - Pitch of destination memory<br>src     - Source memory address<br>spitch     - Pitch of source memory<br>width     - Width of matrix transfer (columns in bytes)<br>height     - Height of matrix transfer (rows)<br>kind     - Type of transfer</p>
-</blockquote>
-<pre><code>`The spitch is different when cudaMemcpyKind is different`
-
-#include&lt;stdio.h&gt;
-#include&lt;cuda.h&gt;
-#include&lt;cuda_runtime.h&gt;
-#include&lt;device_launch_parameters.h&gt;
-#include&lt;conio.h&gt;
-
-#define BLOCKSIZE_x 16
-#define BLOCKSIZE_y 16
-
-#define Nrows 3
-#define Ncols 5
-
-/*****************/
-/* CUDA MEMCHECK */
-/*****************/
-#define gpuErrchk(ans) &#123; gpuAssert((ans), __FILE__, __LINE__); &#125;
-
-inline void gpuAssert(cudaError_t code, char *file, int line, bool abort = true)
+<p><strong>所以这样也是可以的，就是有违常理</strong></p>
+<pre><code>struct point
 &#123;
-    if (code != cudaSuccess)
+    int x;
+    int y;
+
+    point (int _x, int _y)
+        : x(_x), y(_y)
+    &#123;&#125;
+
+    std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os) const
     &#123;
-        fprintf(stderr, &quot;GPUassert: %s %s %dn&quot;, cudaGetErrorString(code), file, line);
-        if (abort) &#123; getch(); exit(code); &#125;
+        os &lt;&lt; &quot;(&quot; &lt;&lt; x &lt;&lt; &quot;, &quot; &lt;&lt; y &lt;&lt; &quot;)&quot;;
+        return os;
     &#125;
-&#125;
+&#125;;
 
-/*******************/
-/* iDivUp FUNCTION */
-/*******************/
-int iDivUp(int hostPtr, int b)&#123; return ((hostPtr % b) != 0) ? (hostPtr / b + 1) : (hostPtr / b); &#125;
-
-/******************/
-/* TEST KERNEL 2D */
-/******************/
-__global__ void test_kernel_2D(float *devPtr, size_t pitch)
+int main(int argc, const char* argv[])
 &#123;
-    int    tidx = blockIdx.x*blockDim.x + threadIdx.x;
-    int    tidy = blockIdx.y*blockDim.y + threadIdx.y;
+    point p1(1, 2);
 
-    if ((tidx &lt; Ncols) &amp;&amp; (tidy &lt; Nrows))
-    &#123;
-        float *row_a = (float *)((char*)devPtr + tidy * pitch);
-        row_a[tidx] = row_a[tidx] * tidx * tidy;
-    &#125;
-&#125;
+    p1 &lt;&lt; std::cout; // 写法同p1.operator&lt;&lt;(std::cout);
 
-/********/
-/* MAIN */
-/********/
-int main()
-&#123;
-    float hostPtr[Nrows][Ncols];
-    float *devPtr;
-    size_t pitch;
-
-    for (int i = 0; i &lt; Nrows; i++)
-        for (int j = 0; j &lt; Ncols; j++) &#123;
-            hostPtr[i][j] = 1.f;
-            //printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
-        &#125;
-
-    // --- 2D pitched allocation and host-&gt;device memcopy
-    gpuErrchk(cudaMallocPitch(&amp;devPtr, &amp;pitch, Ncols * sizeof(float), Nrows));
-    gpuErrchk(cudaMemcpy2D(devPtr, pitch, hostPtr, Ncols*sizeof(float), Ncols*sizeof(float), Nrows, cudaMemcpyHostToDevice));
-
-    dim3 gridSize(iDivUp(Ncols, BLOCKSIZE_x), iDivUp(Nrows, BLOCKSIZE_y));
-    dim3 blockSize(BLOCKSIZE_y, BLOCKSIZE_x);
-
-    test_kernel_2D &lt;&lt; &lt;gridSize, blockSize &gt;&gt; &gt;(devPtr, pitch);
-    gpuErrchk(cudaPeekAtLastError());
-    gpuErrchk(cudaDeviceSynchronize());
-
-    gpuErrchk(cudaMemcpy2D(hostPtr, Ncols * sizeof(float), devPtr, pitch, Ncols * sizeof(float), Nrows, cudaMemcpyDeviceToHost));
-
-    for (int i = 0; i &lt; Nrows; i++) 
-        for (int j = 0; j &lt; Ncols; j++) 
-            printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
-
-    return 0;    
+    return 0;
 &#125;
 </code></pre>
 ]]></content>
       <tags>
-        <tag>cuda</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -888,6 +825,106 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
       </tags>
   </entry>
   <entry>
+    <title>cudaMemPitch</title>
+    <url>/2022/06/28/cudaMemPitch/</url>
+    <content><![CDATA[<h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
+<p>cudaMallocPitch ( void** devPtr, size_t* pitch, size_t width, size_t height )<br>devPtr - Pointer to allocated pitched device memory<br>pitch - Pitch for allocation<br>width - Requested pitched allocation width (in bytes)<br>height - Requested pitched allocation height</p>
+</blockquote>
+<blockquote>
+<p>cudaError_t cudaMemcpy2D    (    void *     dst,<br>size_t     dpitch,<br>const void *     src,<br>size_t     spitch,<br>size_t     width,<br>size_t     height,<br>enum cudaMemcpyKind     kind<br>)    </p>
+</blockquote>
+<blockquote>
+<p>Parameters:<br>dst     - Destination memory address<br>dpitch     - Pitch of destination memory<br>src     - Source memory address<br>spitch     - Pitch of source memory<br>width     - Width of matrix transfer (columns in bytes)<br>height     - Height of matrix transfer (rows)<br>kind     - Type of transfer</p>
+</blockquote>
+<pre><code>`The spitch is different when cudaMemcpyKind is different`
+
+#include&lt;stdio.h&gt;
+#include&lt;cuda.h&gt;
+#include&lt;cuda_runtime.h&gt;
+#include&lt;device_launch_parameters.h&gt;
+#include&lt;conio.h&gt;
+
+#define BLOCKSIZE_x 16
+#define BLOCKSIZE_y 16
+
+#define Nrows 3
+#define Ncols 5
+
+/*****************/
+/* CUDA MEMCHECK */
+/*****************/
+#define gpuErrchk(ans) &#123; gpuAssert((ans), __FILE__, __LINE__); &#125;
+
+inline void gpuAssert(cudaError_t code, char *file, int line, bool abort = true)
+&#123;
+    if (code != cudaSuccess)
+    &#123;
+        fprintf(stderr, &quot;GPUassert: %s %s %dn&quot;, cudaGetErrorString(code), file, line);
+        if (abort) &#123; getch(); exit(code); &#125;
+    &#125;
+&#125;
+
+/*******************/
+/* iDivUp FUNCTION */
+/*******************/
+int iDivUp(int hostPtr, int b)&#123; return ((hostPtr % b) != 0) ? (hostPtr / b + 1) : (hostPtr / b); &#125;
+
+/******************/
+/* TEST KERNEL 2D */
+/******************/
+__global__ void test_kernel_2D(float *devPtr, size_t pitch)
+&#123;
+    int    tidx = blockIdx.x*blockDim.x + threadIdx.x;
+    int    tidy = blockIdx.y*blockDim.y + threadIdx.y;
+
+    if ((tidx &lt; Ncols) &amp;&amp; (tidy &lt; Nrows))
+    &#123;
+        float *row_a = (float *)((char*)devPtr + tidy * pitch);
+        row_a[tidx] = row_a[tidx] * tidx * tidy;
+    &#125;
+&#125;
+
+/********/
+/* MAIN */
+/********/
+int main()
+&#123;
+    float hostPtr[Nrows][Ncols];
+    float *devPtr;
+    size_t pitch;
+
+    for (int i = 0; i &lt; Nrows; i++)
+        for (int j = 0; j &lt; Ncols; j++) &#123;
+            hostPtr[i][j] = 1.f;
+            //printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
+        &#125;
+
+    // --- 2D pitched allocation and host-&gt;device memcopy
+    gpuErrchk(cudaMallocPitch(&amp;devPtr, &amp;pitch, Ncols * sizeof(float), Nrows));
+    gpuErrchk(cudaMemcpy2D(devPtr, pitch, hostPtr, Ncols*sizeof(float), Ncols*sizeof(float), Nrows, cudaMemcpyHostToDevice));
+
+    dim3 gridSize(iDivUp(Ncols, BLOCKSIZE_x), iDivUp(Nrows, BLOCKSIZE_y));
+    dim3 blockSize(BLOCKSIZE_y, BLOCKSIZE_x);
+
+    test_kernel_2D &lt;&lt; &lt;gridSize, blockSize &gt;&gt; &gt;(devPtr, pitch);
+    gpuErrchk(cudaPeekAtLastError());
+    gpuErrchk(cudaDeviceSynchronize());
+
+    gpuErrchk(cudaMemcpy2D(hostPtr, Ncols * sizeof(float), devPtr, pitch, Ncols * sizeof(float), Nrows, cudaMemcpyDeviceToHost));
+
+    for (int i = 0; i &lt; Nrows; i++) 
+        for (int j = 0; j &lt; Ncols; j++) 
+            printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
+
+    return 0;    
+&#125;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>emotion_behind_your_money_habits</title>
     <url>/2021/12/24/emotion-behind-your-money-habits/</url>
     <content><![CDATA[<blockquote>
@@ -900,20 +937,6 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
       </tags>
   </entry>
   <entry>
-    <title>forandrecursion</title>
-    <url>/2022/04/21/forandrecursion/</url>
-    <content><![CDATA[<blockquote>
-<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
-</blockquote>
-<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
-<p>比如全排列问题</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>-algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>equilibria</title>
     <url>/2022/02/08/equilibria/</url>
     <content><![CDATA[<p><img src="/images/game01.png"> </p>
@@ -921,15 +944,6 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
 ]]></content>
       <tags>
         <tag>game</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>likeihood</title>
-    <url>/2021/12/17/likeihood/</url>
-    <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
-]]></content>
-      <tags>
-        <tag>likelihood</tag>
       </tags>
   </entry>
   <entry>
@@ -1019,52 +1033,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>cout重载全局函数</title>
-    <url>/2022/06/17/cout%E9%87%8D%E8%BD%BD%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="为什么c-中重载流操作符要用友元函数"><a href="#为什么c-中重载流操作符要用友元函数" class="headerlink" title="为什么c++中重载流操作符要用友元函数"></a>为什么c++中重载流操作符要用友元函数</h1><h2 id="作为成员函数的话，左操作数非得是自己不可"><a href="#作为成员函数的话，左操作数非得是自己不可" class="headerlink" title="作为成员函数的话，左操作数非得是自己不可"></a>作为成员函数的话，左操作数非得是自己不可</h2><blockquote>
-<p>cout &lt;&lt; XXX 这种情况是cout在调用operator&lt;&lt;而不是XXX在调用operator&lt;&lt; 。<br>如果你要把operator&lt;&lt;设为成员函数就只能用 XXX &lt;&lt; cout 这种形式。</p>
-</blockquote>
-<p><strong>所以这样也是可以的，就是有违常理</strong></p>
-<pre><code>struct point
-&#123;
-    int x;
-    int y;
-
-    point (int _x, int _y)
-        : x(_x), y(_y)
-    &#123;&#125;
-
-    std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os) const
-    &#123;
-        os &lt;&lt; &quot;(&quot; &lt;&lt; x &lt;&lt; &quot;, &quot; &lt;&lt; y &lt;&lt; &quot;)&quot;;
-        return os;
-    &#125;
-&#125;;
-
-int main(int argc, const char* argv[])
-&#123;
-    point p1(1, 2);
-
-    p1 &lt;&lt; std::cout; // 写法同p1.operator&lt;&lt;(std::cout);
-
-    return 0;
-&#125;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>n-gram</title>
-    <url>/2022/01/04/n-gram/</url>
-    <content><![CDATA[<p><img src="/images/n-gram.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>makefile</title>
     <url>/2022/07/26/makefile/</url>
     <content><![CDATA[<h1 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h1><p>目标: 依赖<br>tab  命令</p>
@@ -1085,6 +1053,38 @@ hello world
 ]]></content>
       <tags>
         <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>likeihood</title>
+    <url>/2021/12/17/likeihood/</url>
+    <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
+]]></content>
+      <tags>
+        <tag>likelihood</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>forandrecursion</title>
+    <url>/2022/04/21/forandrecursion/</url>
+    <content><![CDATA[<blockquote>
+<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
+</blockquote>
+<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
+<p>比如全排列问题</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>-algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>n-gram</title>
+    <url>/2022/01/04/n-gram/</url>
+    <content><![CDATA[<p><img src="/images/n-gram.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
       </tags>
   </entry>
   <entry>
@@ -1116,12 +1116,6 @@ hello world
       </tags>
   </entry>
   <entry>
-    <title>oral_practices</title>
-    <url>/2021/11/01/oral-practices/</url>
-    <content><![CDATA[<p>a new way to get personalized, relevant ideas, delivered right to your inbox.</p>
-]]></content>
-  </entry>
-  <entry>
     <title>operator赋值为什么返回引用</title>
     <url>/2022/03/13/operator%E8%B5%8B%E5%80%BC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%94%E5%9B%9E%E5%BC%95%E7%94%A8/</url>
     <content><![CDATA[<p>一个自定义类，如果没有重载其=运算符，那么编译器将自动生成一个。但是此编译器自动生成的重载函数可能不安全。这是因为它采用了所谓的“浅拷贝”，也就是对于指针而言，它拷贝的是指针的值，而不是其指向的内存空间。那么这个内存空间就有了两个指针指向它，且类对象要析构两次，但是内存空间只能被释放一次，那么第二次就会出现访问错误。</p>
@@ -1132,6 +1126,47 @@ hello world
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>oral_practices</title>
+    <url>/2021/11/01/oral-practices/</url>
+    <content><![CDATA[<p>a new way to get personalized, relevant ideas, delivered right to your inbox.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>other和others</title>
+    <url>/2022/06/21/other%E5%92%8Cothers/</url>
+    <content><![CDATA[<h2 id="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-other-复数名词。others通常为代词"><a href="#other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-other-复数名词。others通常为代词" class="headerlink" title="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others=other+复数名词。others通常为代词"></a>other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others=other+复数名词。others通常为代词</h2><blockquote>
+<p>He never thinks of <code>others</code>. 他从来不为别人着想。</p>
+</blockquote>
+<blockquote>
+<p>I don’t like these books. Show me some others. 我不喜欢这些书，再拿一些给我看。</p>
+</blockquote>
+<p>第一句中的others=other people，意为“其他人”“别人”，泛指其他所有人；第二句中的others=other books，意为“其他的书”。</p>
+<p>但是，若要表示确指意义，我们就在other和others前面使用定冠词，同样地，other后可以修饰名词，而others后不能再接名词，两者的关系仍然存在the others=the other+复数名词。如：</p>
+<blockquote>
+<p>I started last in the race but I soon caught up with the others. 我在赛跑中最后一个起跑，但不久就赶上了其他人。</p>
+</blockquote>
+<p>句中的the others=the other people，意为“其他人”，其中的定冠词特指参加赛跑的所有其他人。</p>
+<blockquote>
+<p>注意：the other后除接复数名词外，还可以接单数名词，此时不能用the others代替。如：</p>
+</blockquote>
+<p>This seat is free; the other seat is taken. 这个座位空着，那个座位有人。</p>
+<h2 id="常用惯用表达"><a href="#常用惯用表达" class="headerlink" title="常用惯用表达"></a>常用惯用表达</h2><p>①<code>one...the other</code>表示“(两者中的)一个……另一个……”。如：</p>
+<p>What I say goes in at one ear and out at the other. 我说话他是一只耳朵进，另一只耳朵出。</p>
+<p>②<code>one...the others</code>表示“(好几个中的)一个……其余都……”。如：</p>
+<p>Of their five children, one is in China and the others are abroad. 他们有五个小孩，一个在中国，其余的都在国外。</p>
+<p>注：若为三者，想要表示“一个……另一个……剩下的一个……”，可用one…another…the other [the third…]；若为四者，可用one…another…another [a third]…the other [the fourth, the last]。</p>
+<p>③<code>some...the others</code>表示“一些……其他一些的……”。如：</p>
+<p>The search party was divided into two groups. Some went to the right, the others went to the left. 搜寻小组一分为二，一部分向右，另一部分人向左。</p>
+<p>④<code>some…others</code>表示“有的……有的……”。如：</p>
+<p>Some people build while others destroy. 有些人建设而另一些人则破坏。</p>
+<p>注：该结构也可说成some…some。如：</p>
+<p>Some of us agree, some disagree. 我们有些人同意，有些人不同意。</p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1157,31 +1192,6 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
 ]]></content>
       <tags>
         <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>p33const</title>
-    <url>/2022/06/19/p33const/</url>
-    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>pronounce</title>
-    <url>/2021/11/06/pronounce/</url>
-    <content><![CDATA[
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/pronounce.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>pronounce</tag>
       </tags>
   </entry>
   <entry>
@@ -1233,41 +1243,6 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>other和others</title>
-    <url>/2022/06/21/other%E5%92%8Cothers/</url>
-    <content><![CDATA[<h2 id="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-other-复数名词。others通常为代词"><a href="#other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-other-复数名词。others通常为代词" class="headerlink" title="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others=other+复数名词。others通常为代词"></a>other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others=other+复数名词。others通常为代词</h2><blockquote>
-<p>He never thinks of <code>others</code>. 他从来不为别人着想。</p>
-</blockquote>
-<blockquote>
-<p>I don’t like these books. Show me some others. 我不喜欢这些书，再拿一些给我看。</p>
-</blockquote>
-<p>第一句中的others=other people，意为“其他人”“别人”，泛指其他所有人；第二句中的others=other books，意为“其他的书”。</p>
-<p>但是，若要表示确指意义，我们就在other和others前面使用定冠词，同样地，other后可以修饰名词，而others后不能再接名词，两者的关系仍然存在the others=the other+复数名词。如：</p>
-<blockquote>
-<p>I started last in the race but I soon caught up with the others. 我在赛跑中最后一个起跑，但不久就赶上了其他人。</p>
-</blockquote>
-<p>句中的the others=the other people，意为“其他人”，其中的定冠词特指参加赛跑的所有其他人。</p>
-<blockquote>
-<p>注意：the other后除接复数名词外，还可以接单数名词，此时不能用the others代替。如：</p>
-</blockquote>
-<p>This seat is free; the other seat is taken. 这个座位空着，那个座位有人。</p>
-<h2 id="常用惯用表达"><a href="#常用惯用表达" class="headerlink" title="常用惯用表达"></a>常用惯用表达</h2><p>①<code>one...the other</code>表示“(两者中的)一个……另一个……”。如：</p>
-<p>What I say goes in at one ear and out at the other. 我说话他是一只耳朵进，另一只耳朵出。</p>
-<p>②<code>one...the others</code>表示“(好几个中的)一个……其余都……”。如：</p>
-<p>Of their five children, one is in China and the others are abroad. 他们有五个小孩，一个在中国，其余的都在国外。</p>
-<p>注：若为三者，想要表示“一个……另一个……剩下的一个……”，可用one…another…the other [the third…]；若为四者，可用one…another…another [a third]…the other [the fourth, the last]。</p>
-<p>③<code>some...the others</code>表示“一些……其他一些的……”。如：</p>
-<p>The search party was divided into two groups. Some went to the right, the others went to the left. 搜寻小组一分为二，一部分向右，另一部分人向左。</p>
-<p>④<code>some…others</code>表示“有的……有的……”。如：</p>
-<p>Some people build while others destroy. 有些人建设而另一些人则破坏。</p>
-<p>注：该结构也可说成some…some。如：</p>
-<p>Some of us agree, some disagree. 我们有些人同意，有些人不同意。</p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>probability</title>
     <url>/2022/06/22/probability/</url>
     <content><![CDATA[<h2 id="68-95-99"><a href="#68-95-99" class="headerlink" title="68-95-99"></a>68-95-99</h2><ul>
@@ -1278,6 +1253,31 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
 ]]></content>
       <tags>
         <tag>probability</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>p33const</title>
+    <url>/2022/06/19/p33const/</url>
+    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pronounce</title>
+    <url>/2021/11/06/pronounce/</url>
+    <content><![CDATA[
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/pronounce.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+      <tags>
+        <tag>pronounce</tag>
       </tags>
   </entry>
   <entry>
@@ -1543,6 +1543,21 @@ A&lt;string*&gt; b;
       </tags>
   </entry>
   <entry>
+    <title>stl全局</title>
+    <url>/2022/06/29/stl%E5%85%A8%E5%B1%80/</url>
+    <content><![CDATA[<h1 id="C-函数或者命名空间前面加"><a href="#C-函数或者命名空间前面加" class="headerlink" title="C++函数或者命名空间前面加::"></a>C++函数或者命名空间前面加::</h1><ul>
+<li>函数前面 ::find() 表示这个是全局的函数，不是这个作用域下的函数<br><img src="/images/2022-06-29-16-13-57.png"><blockquote>
+<p>比如这里的 ::find()。这个是STL的algorithm中的函数，虽然这里如果不用:: , 编译器没有找到find也会到全局，但是加入会让代码更清晰</p>
+</blockquote>
+</li>
+<li>jj01::test_array() = 这个就是命名空间</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sparse</title>
     <url>/2022/07/02/sparse/</url>
     <content><![CDATA[<h1 id="How-to-prune-in-MLP"><a href="#How-to-prune-in-MLP" class="headerlink" title="How to prune in MLP?"></a>How to prune in MLP?</h1><p><img src="/images/2022-07-04-01-57-10.png"></p>
@@ -1581,21 +1596,6 @@ A&lt;string*&gt; b;
       </tags>
   </entry>
   <entry>
-    <title>stl全局</title>
-    <url>/2022/06/29/stl%E5%85%A8%E5%B1%80/</url>
-    <content><![CDATA[<h1 id="C-函数或者命名空间前面加"><a href="#C-函数或者命名空间前面加" class="headerlink" title="C++函数或者命名空间前面加::"></a>C++函数或者命名空间前面加::</h1><ul>
-<li>函数前面 ::find() 表示这个是全局的函数，不是这个作用域下的函数<br><img src="/images/2022-06-29-16-13-57.png"><blockquote>
-<p>比如这里的 ::find()。这个是STL的algorithm中的函数，虽然这里如果不用:: , 编译器没有找到find也会到全局，但是加入会让代码更清晰</p>
-</blockquote>
-</li>
-<li>jj01::test_array() = 这个就是命名空间</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>t5-假设检验</title>
     <url>/2022/06/22/t5%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/</url>
     <content><![CDATA[<p><img src="/images/p5.png"></p>
@@ -1611,15 +1611,6 @@ A&lt;string*&gt; b;
 ]]></content>
       <tags>
         <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>transition-based</title>
-    <url>/2022/01/04/transition-based/</url>
-    <content><![CDATA[<p><img src="/images/transition.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
       </tags>
   </entry>
   <entry>
@@ -1711,6 +1702,15 @@ private:
 ]]></content>
       <tags>
         <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>transition-based</title>
+    <url>/2022/01/04/transition-based/</url>
+    <content><![CDATA[<p><img src="/images/transition.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
       </tags>
   </entry>
   <entry>
@@ -1833,49 +1833,6 @@ for(int i=0;i&lt;row;i++)
       </tags>
   </entry>
   <entry>
-    <title>vector用于cuda核函数中</title>
-    <url>/2022/06/30/vector%E7%94%A8%E4%BA%8Ecuda%E6%A0%B8%E5%87%BD%E6%95%B0%E4%B8%AD/</url>
-    <content><![CDATA[<blockquote>
-<p>cuda中，是不支持在核函数中直接使用vector的。所以通常情况下是要使用动态数组将vector的数据提取，然后进行计算。</p>
-</blockquote>
-<blockquote>
-<p>这里我们来介绍下如何将vector的数据转换为动态数组，并传入到核函数进行计算的。</p>
-</blockquote>
-<ul>
-<li>一维</li>
-</ul>
-<pre><code>vector&lt;int&gt; b;
-int* a;
-cudaMalloc((void**)&amp; a, sizeof(int) * b.size());
-cudaMemcpy(a, &amp;b[0],sizeof(int) * b.size(), cudaMemcpyHostToDevice);
-</code></pre>
-<ul>
-<li>二维比较麻烦，因为要循环处理vector中的每一个vector（每一行）,这里用一个中间的二维数组作为承接</li>
-</ul>
-<pre><code>vector&lt;vector&lt;int&gt;&gt; d;
-int ** a_2d = new int* [d.size()];
-int * a_2d_cu;
-for (int i = 0; i &lt; d.size(); i++)&#123;
-    int* devPtr;
-    int length = d[i].size();
-    cudaMalloc((void**)&amp; devPtr, sizeof(int)*length);
-    cudaMemcpy(devPtr, &amp;d[i], sizeof(int)*length, cudaMemcpyHostToDevice);
-    a_2d[i] = devPtr; //先把指向cuda内存的指针存在host内存的数组中
-&#125;
-cudaMalloc((void**)&amp; a_2d_cu, sizeof(int*)*d.size());
-cudaMemcpy(a_2d_cu, a_2d, sizeof(int*)*d.size(), cudaMemcpyHostToDevice);
-</code></pre>
-<h2 id="这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D"><a href="#这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D" class="headerlink" title="这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D"></a>这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D</h2><pre><code>//这是为了对齐内存，如果数据不是32的整数倍的话，二维数组用这个会比较好
-size_t pitch;
-cudaMallocPitch(&amp; a_2d_cu, &amp;pitch, d[0].size()*sizeof(int), d.size()));
-cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(int), d.size(), cudaMemcpyHostToDevice);
-</code></pre>
-]]></content>
-      <tags>
-        <tag>cuda</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>warp函数</title>
     <url>/2022/07/11/warp%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h1 id="any-sync用于一个warp之间线程的数据的交换-广播（broadcast）"><a href="#any-sync用于一个warp之间线程的数据的交换-广播（broadcast）" class="headerlink" title="__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）"></a>__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）</h1><h2 id="这里必须注意srcLane是束内w的编号"><a href="#这里必须注意srcLane是束内w的编号" class="headerlink" title="这里必须注意srcLane是束内w的编号"></a>这里必须注意srcLane是束内w的编号</h2><blockquote>
@@ -1947,6 +1904,67 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
       </tags>
   </entry>
   <entry>
+    <title>word2vec</title>
+    <url>/2022/01/04/word2vec/</url>
+    <content><![CDATA[<p><img src="/images/word2vec.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>原反补码</title>
+    <url>/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/</url>
+    <content><![CDATA[<p><img src="/images/coding.png"></p>
+]]></content>
+      <tags>
+        <tag>coding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vector用于cuda核函数中</title>
+    <url>/2022/06/30/vector%E7%94%A8%E4%BA%8Ecuda%E6%A0%B8%E5%87%BD%E6%95%B0%E4%B8%AD/</url>
+    <content><![CDATA[<blockquote>
+<p>cuda中，是不支持在核函数中直接使用vector的。所以通常情况下是要使用动态数组将vector的数据提取，然后进行计算。</p>
+</blockquote>
+<blockquote>
+<p>这里我们来介绍下如何将vector的数据转换为动态数组，并传入到核函数进行计算的。</p>
+</blockquote>
+<ul>
+<li>一维</li>
+</ul>
+<pre><code>vector&lt;int&gt; b;
+int* a;
+cudaMalloc((void**)&amp; a, sizeof(int) * b.size());
+cudaMemcpy(a, &amp;b[0],sizeof(int) * b.size(), cudaMemcpyHostToDevice);
+</code></pre>
+<ul>
+<li>二维比较麻烦，因为要循环处理vector中的每一个vector（每一行）,这里用一个中间的二维数组作为承接</li>
+</ul>
+<pre><code>vector&lt;vector&lt;int&gt;&gt; d;
+int ** a_2d = new int* [d.size()];
+int * a_2d_cu;
+for (int i = 0; i &lt; d.size(); i++)&#123;
+    int* devPtr;
+    int length = d[i].size();
+    cudaMalloc((void**)&amp; devPtr, sizeof(int)*length);
+    cudaMemcpy(devPtr, &amp;d[i], sizeof(int)*length, cudaMemcpyHostToDevice);
+    a_2d[i] = devPtr; //先把指向cuda内存的指针存在host内存的数组中
+&#125;
+cudaMalloc((void**)&amp; a_2d_cu, sizeof(int*)*d.size());
+cudaMemcpy(a_2d_cu, a_2d, sizeof(int*)*d.size(), cudaMemcpyHostToDevice);
+</code></pre>
+<h2 id="这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D"><a href="#这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D" class="headerlink" title="这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D"></a>这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D</h2><pre><code>//这是为了对齐内存，如果数据不是32的整数倍的话，二维数组用这个会比较好
+size_t pitch;
+cudaMallocPitch(&amp; a_2d_cu, &amp;pitch, d[0].size()*sizeof(int), d.size()));
+cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(int), d.size(), cudaMemcpyHostToDevice);
+</code></pre>
+]]></content>
+      <tags>
+        <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>按位与替换取余操作</title>
     <url>/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<blockquote>
@@ -1967,33 +1985,6 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
 ]]></content>
       <tags>
         <tag>mathematics</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>原反补码</title>
-    <url>/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/</url>
-    <content><![CDATA[<p><img src="/images/coding.png"></p>
-]]></content>
-      <tags>
-        <tag>coding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>word2vec</title>
-    <url>/2022/01/04/word2vec/</url>
-    <content><![CDATA[<p><img src="/images/word2vec.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>期望和方差</title>
-    <url>/2022/05/21/%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE/</url>
-    <content><![CDATA[<p><img src="/images/expectAndvariance.png"> </p>
-]]></content>
-      <tags>
-        <tag>math</tag>
       </tags>
   </entry>
   <entry>
@@ -2115,6 +2106,15 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>期望和方差</title>
+    <url>/2022/05/21/%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE/</url>
+    <content><![CDATA[<p><img src="/images/expectAndvariance.png"> </p>
+]]></content>
+      <tags>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>类内声明和定义</title>
     <url>/2022/03/10/%E7%B1%BB%E5%86%85%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89/</url>
     <content><![CDATA[<p>1.类内定义</p>
@@ -2177,6 +2177,26 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>英语句子</title>
+    <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
+    <content><![CDATA[<blockquote>
+<p>commence—Many people have wondered why the end of someone’s school days should be celebrated by Commencement Exercises, which, ordinarily, refer to a beginning</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>过去式</title>
+    <url>/2021/12/25/%E8%BF%87%E5%8E%BB%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="过去式变化规则"><a href="#过去式变化规则" class="headerlink" title="过去式变化规则"></a>过去式变化规则</h1><p>1）动词过去式变化规则分为规则变化和不规则变化两种，一般情况下，动词原形词尾加-ed，以不发音的-e结尾动词，动词词尾加-d，以辅音字母+y结尾的动词，把-y变为-i 再加-ed<br>2）以一个元音+一个辅音字母结尾的重读闭音节动词，双写词尾辅音字母，否则就加ed<br>preFER-&gt;preFERRed<br>VISit-&gt;VISited<br>3）不满足一个元音+一个辅音结尾 + ed<br>start-&gt;started 两个辅音结尾<br>need-&gt;needed<br>3) 一个元音+y +ed<br>stay-&gt;stayed</p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>过拟合和欠拟合</title>
     <url>/2022/05/22/%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88/</url>
     <content><![CDATA[<p><img src="/images/overfit.png"> </p>
@@ -2214,26 +2234,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>英语句子</title>
-    <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
-    <content><![CDATA[<blockquote>
-<p>commence—Many people have wondered why the end of someone’s school days should be celebrated by Commencement Exercises, which, ordinarily, refer to a beginning</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>过去式</title>
-    <url>/2021/12/25/%E8%BF%87%E5%8E%BB%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="过去式变化规则"><a href="#过去式变化规则" class="headerlink" title="过去式变化规则"></a>过去式变化规则</h1><p>1）动词过去式变化规则分为规则变化和不规则变化两种，一般情况下，动词原形词尾加-ed，以不发音的-e结尾动词，动词词尾加-d，以辅音字母+y结尾的动词，把-y变为-i 再加-ed<br>2）以一个元音+一个辅音字母结尾的重读闭音节动词，双写词尾辅音字母，否则就加ed<br>preFER-&gt;preFERRed<br>VISit-&gt;VISited<br>3）不满足一个元音+一个辅音结尾 + ed<br>start-&gt;started 两个辅音结尾<br>need-&gt;needed<br>3) 一个元音+y +ed<br>stay-&gt;stayed</p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>递归回溯</title>
     <url>/2022/08/17/%E9%80%92%E5%BD%92%E5%9B%9E%E6%BA%AF/</url>
     <content><![CDATA[<h1 id="当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树"><a href="#当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树" class="headerlink" title="当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树"></a>当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助<strong>递归树</strong></h1><p><img src="/images/2022-08-17-15-00-21.png"></p>
@@ -2255,7 +2255,8 @@ void recursion(vector&lt;int&gt;&amp; nums,vector&lt;int&gt;&amp; temp,int targe
         //原本是4，先回溯到4，for循环结束
         //开始第二个回溯，i=3(这个时候sum和count还有temp都减掉了i=3和i=4的情况)，经过for之后i=4
         // 然后sum加上了i=4的情况，忽略i=3
-        //之后再回溯到i=2,经过for之后i=3(这里又开始叠加两层递归（i=3和i=4），并且对于i=3来说，i=2的值是没有的因为被回溯来，对于i=4来说，这个是i=3的孩子结点)
+        //之后再回溯到i=2,经过for之后i=3(这里又开始叠加两层递归（i=3和i=4），
+        //并且对于i=3来说，i=2的值是没有的因为被回溯来，对于i=4来说，这个是i=3的孩子结点)
         //通过递归树来分析所有的递归流程
         count++;
         sum += nums[i];
