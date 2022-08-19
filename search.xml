@@ -9,6 +9,103 @@
       </tags>
   </entry>
   <entry>
+    <title>3D</title>
+    <url>/2021/11/05/3D/</url>
+    <content><![CDATA[<!-- Do you need some help for 3D?
+I skipped some lectures, so first of all I need to rewatch that. After that, I will ask some help, thanks 
+aassigments
+I will try figure out by myself, then i will ask sometjiogn  -->
+<blockquote>
+<p>trangulation<br>tip: e2（第二个图像的极点是第一个图片的focal（焦点）在第二个坐标系下的投影），e2 = K’[R T][0,0,0,1]T([0,0,0,1]是第一个图片的坐标原点（世界坐标系的原点）)<br>问题一：为什么要进行相机标定？<br>相机标定的目的是：建立相机成像几何模型并矫正透镜畸变。这句话有点拗口，下面分别对其中两个关键部分进行解释。</p>
+</blockquote>
+<blockquote>
+<p>建立相机成像几何模型：计算机视觉的首要任务就是要通过拍摄到的图像信息获取到物体在真实三维世界里相对应的信息，于是，建立物体从三维世界映射到相机成像平面这一过程中的几何模型就显得尤为重要，而这一过程最关键的部分就是要得到相机的内参和外参（后续文有具体解释）。</p>
+</blockquote>
+<blockquote>
+<p>矫正透镜畸变：我们最开始接触到的成像方面的知识应该是有关小孔成像的，但是由于这种成像方式只有小孔部分能透过光线就会导致物体的成像亮度很低，于是聪明的人类发明了透镜。虽然亮度问题解决了，但是新的问题又来了：由于透镜的制造工艺，会使成像产生多种形式的畸变，于是为了去除畸变（使成像后的图像与真实世界的景象保持一致），人们计算并利用畸变系数来矫正这种像差。虽然理论上可以设计出不产生畸变的透镜，但其制造工艺相对于球面透镜会复杂很多，所以相对于复杂且高成本的制造工艺，人们更喜欢用数学来解决问题。</p>
+</blockquote>
+<p>相机成像模型<br>前面已经说过，相机标定的目的之一是为了建立物体从三维世界到成像平面上各坐标点的对应关系，所以首先我们需要定义这样几个坐标系来为整个过程做好铺垫：</p>
+<blockquote>
+<p>世界坐标系(world coordinate system)：用户定义的三维世界的坐标系，为了描述目标物在真实世界里的位置而被引入。单位为m。</p>
+</blockquote>
+<blockquote>
+<p>相机坐标系(camera coordinate system)：在相机上建立的坐标系，为了从相机的角度描述物体位置而定义，作为沟通世界坐标系和图像/像素坐标系的中间一环。单位为m。</p>
+</blockquote>
+<blockquote>
+<p>图像坐标系(image coordinate system)：为了描述成像过程中物体从相机坐标系到图像坐标系的投影透射关系而引入，方便进一步得到像素坐标系下的坐标。 单位为m。</p>
+</blockquote>
+<blockquote>
+<p>像素坐标系(pixel coordinate system)：为了描述物体成像后的像点在数字图像上（相片）的坐标而引入，是我们真正从相机内读取到的信息所在的坐标系。单位为个（像素数目）。</p>
+</blockquote>
+<p>一下子定义出来四个坐标系可能有点晕，下图可以更清晰地表达这四个坐标系之间的关系：<br><img src="/images/3D-1.jpeg"></p>
+<h2 id="世界坐标系：Xw、Yw、Zw。相机坐标系：-Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。"><a href="#世界坐标系：Xw、Yw、Zw。相机坐标系：-Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。" class="headerlink" title="世界坐标系：Xw、Yw、Zw。相机坐标系： Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。"></a>世界坐标系：Xw、Yw、Zw。相机坐标系： Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。</h2><blockquote>
+<p>其中，相机坐标系的z轴与光轴重合，且垂直于图像坐标系平面并通过图像坐标系的原点，相机坐标系与图像坐标系之间的距离为焦距f（也即图像坐标系原点与焦点重合）。像素坐标系平面u-v和图像坐标系平面x-y重合，但像素坐标系原点位于图中左上角（之所以这么定义，目的是从存储信息的首地址开始读写）。<br><img src="/images/3D-2.jpeg"><br>下面将依次对刚体进行一系列变换，使之从世界坐标系进行仿射变换、投影透射，最终得到像素坐标系下的离散图像点，过程中会逐步引入各参数矩阵。</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>3D</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>BPR推荐算法</title>
+    <url>/2021/11/16/BPR/</url>
+    <content><![CDATA[<p><img src="/images/BPR.png"> </p>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>BRP推荐算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Cplusplusnotes</title>
+    <url>/2022/05/01/Cplusplusnotes/</url>
+    <content><![CDATA[<blockquote>
+<p>静态函数只能访问静态数据</p>
+</blockquote>
+<blockquote>
+<p>为什么static成员变量一定要在类外初始化?</p>
+</blockquote>
+<pre><code>static变量属于类，非对象，如果在类内初始了，该类再一次创建对象将变成初始值，会修改其他对象对该静态变量操作的意图可能发生意外
+但是
+static const int a = 1;
+这个可以在类内初始化，因为const说明这个变量是不变的，因此对于每个对象来说，static内存块的的数据就是一样的
+</code></pre>
+<h2 id="为什么静态成员不能在类内初始化？"><a href="#为什么静态成员不能在类内初始化？" class="headerlink" title="为什么静态成员不能在类内初始化？"></a>为什么静态成员不能在类内初始化？</h2><p>在C++中，类的静态成员（static member）必须在类内声明，在类外初始化，像下面这样。</p>
+<p>class A<br>{<br>private:<br>static int count ; // 类内声明<br>};</p>
+<ul>
+<li><p>类外定义并初始化，不必再加static关键字<br>int A::count = 0 ;<br>或者只进行定义不赋初始值，但是默认值是否是0，可能会与具体的编译器有关吧？</p>
+</li>
+<li><p>只进行定义不赋初始值，但默认值视编译器而定<br>int A::count;<br>为什么？</p>
+</li>
+<li><p>因为静态成员属于整个类，而不属于某个对象，如果在类内初始化，会导致每个对象都包含该静态成员，这是矛盾的。</p>
+</li>
+</ul>
+<p>如果不增加int A::count = 0 ; //变量定义，在编译的时候将会报出：‘A::count’未定义的引用”错误。这是因为静态成员变量count未定义，也就是还没有分配内存，显然是不可以访问的。</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Conv-MPN</title>
+    <url>/2022/06/17/Conv-MPN/</url>
+    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
+<li><a href="#">corner_detection</a><blockquote>
+<p>concatenate </p>
+</blockquote>
+</li>
+</ul>
+<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
+<p>mask_rcnn extracts corner points.</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++</title>
     <url>/2022/01/13/C/</url>
     <content><![CDATA[<blockquote>
@@ -95,56 +192,6 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
       </tags>
   </entry>
   <entry>
-    <title>3D</title>
-    <url>/2021/11/05/3D/</url>
-    <content><![CDATA[<!-- Do you need some help for 3D?
-I skipped some lectures, so first of all I need to rewatch that. After that, I will ask some help, thanks 
-aassigments
-I will try figure out by myself, then i will ask sometjiogn  -->
-<blockquote>
-<p>trangulation<br>tip: e2（第二个图像的极点是第一个图片的focal（焦点）在第二个坐标系下的投影），e2 = K’[R T][0,0,0,1]T([0,0,0,1]是第一个图片的坐标原点（世界坐标系的原点）)<br>问题一：为什么要进行相机标定？<br>相机标定的目的是：建立相机成像几何模型并矫正透镜畸变。这句话有点拗口，下面分别对其中两个关键部分进行解释。</p>
-</blockquote>
-<blockquote>
-<p>建立相机成像几何模型：计算机视觉的首要任务就是要通过拍摄到的图像信息获取到物体在真实三维世界里相对应的信息，于是，建立物体从三维世界映射到相机成像平面这一过程中的几何模型就显得尤为重要，而这一过程最关键的部分就是要得到相机的内参和外参（后续文有具体解释）。</p>
-</blockquote>
-<blockquote>
-<p>矫正透镜畸变：我们最开始接触到的成像方面的知识应该是有关小孔成像的，但是由于这种成像方式只有小孔部分能透过光线就会导致物体的成像亮度很低，于是聪明的人类发明了透镜。虽然亮度问题解决了，但是新的问题又来了：由于透镜的制造工艺，会使成像产生多种形式的畸变，于是为了去除畸变（使成像后的图像与真实世界的景象保持一致），人们计算并利用畸变系数来矫正这种像差。虽然理论上可以设计出不产生畸变的透镜，但其制造工艺相对于球面透镜会复杂很多，所以相对于复杂且高成本的制造工艺，人们更喜欢用数学来解决问题。</p>
-</blockquote>
-<p>相机成像模型<br>前面已经说过，相机标定的目的之一是为了建立物体从三维世界到成像平面上各坐标点的对应关系，所以首先我们需要定义这样几个坐标系来为整个过程做好铺垫：</p>
-<blockquote>
-<p>世界坐标系(world coordinate system)：用户定义的三维世界的坐标系，为了描述目标物在真实世界里的位置而被引入。单位为m。</p>
-</blockquote>
-<blockquote>
-<p>相机坐标系(camera coordinate system)：在相机上建立的坐标系，为了从相机的角度描述物体位置而定义，作为沟通世界坐标系和图像/像素坐标系的中间一环。单位为m。</p>
-</blockquote>
-<blockquote>
-<p>图像坐标系(image coordinate system)：为了描述成像过程中物体从相机坐标系到图像坐标系的投影透射关系而引入，方便进一步得到像素坐标系下的坐标。 单位为m。</p>
-</blockquote>
-<blockquote>
-<p>像素坐标系(pixel coordinate system)：为了描述物体成像后的像点在数字图像上（相片）的坐标而引入，是我们真正从相机内读取到的信息所在的坐标系。单位为个（像素数目）。</p>
-</blockquote>
-<p>一下子定义出来四个坐标系可能有点晕，下图可以更清晰地表达这四个坐标系之间的关系：<br><img src="/images/3D-1.jpeg"></p>
-<h2 id="世界坐标系：Xw、Yw、Zw。相机坐标系：-Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。"><a href="#世界坐标系：Xw、Yw、Zw。相机坐标系：-Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。" class="headerlink" title="世界坐标系：Xw、Yw、Zw。相机坐标系： Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。"></a>世界坐标系：Xw、Yw、Zw。相机坐标系： Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。</h2><blockquote>
-<p>其中，相机坐标系的z轴与光轴重合，且垂直于图像坐标系平面并通过图像坐标系的原点，相机坐标系与图像坐标系之间的距离为焦距f（也即图像坐标系原点与焦点重合）。像素坐标系平面u-v和图像坐标系平面x-y重合，但像素坐标系原点位于图中左上角（之所以这么定义，目的是从存储信息的首地址开始读写）。<br><img src="/images/3D-2.jpeg"><br>下面将依次对刚体进行一系列变换，使之从世界坐标系进行仿射变换、投影透射，最终得到像素坐标系下的离散图像点，过程中会逐步引入各参数矩阵。</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>3D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>BPR推荐算法</title>
-    <url>/2021/11/16/BPR/</url>
-    <content><![CDATA[<p><img src="/images/BPR.png"> </p>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>BRP推荐算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Context-Aware Attentional Graph U-Net for Hyperspectral Image Classification</title>
     <url>/2021/03/31/CAGU/</url>
     <content><![CDATA[<p><img src="/images/2_author.jpg"> </p>
@@ -171,33 +218,12 @@ I will try figure out by myself, then i will ask sometjiogn  -->
       </tags>
   </entry>
   <entry>
-    <title>Cplusplusnotes</title>
-    <url>/2022/05/01/Cplusplusnotes/</url>
-    <content><![CDATA[<blockquote>
-<p>静态函数只能访问静态数据</p>
-</blockquote>
-<blockquote>
-<p>为什么static成员变量一定要在类外初始化?</p>
-</blockquote>
-<pre><code>static变量属于类，非对象，如果在类内初始了，该类再一次创建对象将变成初始值，会修改其他对象对该静态变量操作的意图可能发生意外
-但是
-static const int a = 1;
-这个可以在类内初始化，因为const说明这个变量是不变的，因此对于每个对象来说，static内存块的的数据就是一样的
-</code></pre>
-<h2 id="为什么静态成员不能在类内初始化？"><a href="#为什么静态成员不能在类内初始化？" class="headerlink" title="为什么静态成员不能在类内初始化？"></a>为什么静态成员不能在类内初始化？</h2><p>在C++中，类的静态成员（static member）必须在类内声明，在类外初始化，像下面这样。</p>
-<p>class A<br>{<br>private:<br>static int count ; // 类内声明<br>};</p>
-<ul>
-<li><p>类外定义并初始化，不必再加static关键字<br>int A::count = 0 ;<br>或者只进行定义不赋初始值，但是默认值是否是0，可能会与具体的编译器有关吧？</p>
-</li>
-<li><p>只进行定义不赋初始值，但默认值视编译器而定<br>int A::count;<br>为什么？</p>
-</li>
-<li><p>因为静态成员属于整个类，而不属于某个对象，如果在类内初始化，会导致每个对象都包含该静态成员，这是矛盾的。</p>
-</li>
-</ul>
-<p>如果不增加int A::count = 0 ; //变量定义，在编译的时候将会报出：‘A::count’未定义的引用”错误。这是因为静态成员变量count未定义，也就是还没有分配内存，显然是不可以访问的。</p>
+    <title>DBSCAN</title>
+    <url>/2022/01/06/DBSCAN/</url>
+    <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
 ]]></content>
       <tags>
-        <tag>C++</tag>
+        <tag>DBSCAN</tag>
       </tags>
   </entry>
   <entry>
@@ -210,12 +236,12 @@ static const int a = 1;
       </tags>
   </entry>
   <entry>
-    <title>DBSCAN</title>
-    <url>/2022/01/06/DBSCAN/</url>
-    <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
+    <title>FLOPs</title>
+    <url>/2022/06/26/FLOPs/</url>
+    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
 ]]></content>
       <tags>
-        <tag>DBSCAN</tag>
+        <tag>FLOPs</tag>
       </tags>
   </entry>
   <entry>
@@ -242,6 +268,15 @@ static const int a = 1;
       </categories>
       <tags>
         <tag>GA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Homogeneous</title>
+    <url>/2022/01/26/Homogeneous/</url>
+    <content><![CDATA[<p><img src="/images/homogeneous.png"> </p>
+]]></content>
+      <tags>
+        <tag>3D</tag>
       </tags>
   </entry>
   <entry>
@@ -395,6 +430,17 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>Likelihood2</title>
+    <url>/2022/02/24/Likelihood2/</url>
+    <content><![CDATA[<blockquote>
+<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为=》最大概率处l=0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Likelihood</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hierarchical</title>
     <url>/2021/12/02/Hierarchical/</url>
     <content><![CDATA[<blockquote>
@@ -443,35 +489,6 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>FLOPs</title>
-    <url>/2022/06/26/FLOPs/</url>
-    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
-]]></content>
-      <tags>
-        <tag>FLOPs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Homogeneous</title>
-    <url>/2022/01/26/Homogeneous/</url>
-    <content><![CDATA[<p><img src="/images/homogeneous.png"> </p>
-]]></content>
-      <tags>
-        <tag>3D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Likelihood2</title>
-    <url>/2022/02/24/Likelihood2/</url>
-    <content><![CDATA[<blockquote>
-<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为=》最大概率处l=0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Likelihood</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MATI-Regression</title>
     <url>/2021/11/02/MATI-Regression/</url>
     <content><![CDATA[
@@ -517,23 +534,6 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>Conv-MPN</title>
-    <url>/2022/06/17/Conv-MPN/</url>
-    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
-<li><a href="#">corner_detection</a><blockquote>
-<p>concatenate </p>
-</blockquote>
-</li>
-</ul>
-<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
-<p>mask_rcnn extracts corner points.</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>RL3ways</title>
     <url>/2022/03/20/RL3ways/</url>
     <content><![CDATA[
@@ -550,59 +550,9 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>STL</title>
-    <url>/2022/07/06/STL/</url>
-    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
-<blockquote>
-<p>stack和queue不提供iterator</p>
-</blockquote>
-<blockquote>
-<p>set/multiset<br>multiset是基于红黑树实现的</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Theory</title>
-    <url>/2021/12/01/Theory/</url>
-    <content><![CDATA[<h1 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h1>
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/probability.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-  </entry>
-  <entry>
-    <title>TF-IDF</title>
-    <url>/2022/01/04/TF-IDF/</url>
-    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>across_loss</title>
-    <url>/2022/03/29/across-loss/</url>
-    <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
-]]></content>
-      <tags>
-        <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>apriori</title>
-    <url>/2022/01/06/apriori/</url>
-    <content><![CDATA[<p><img src="/images/apriori.png"> </p>
-]]></content>
-      <tags>
-        <tag>apriori</tag>
-      </tags>
+    <title>ShiftGCN</title>
+    <url>/2022/08/17/ShiftGCN/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>ShiftCNN</title>
@@ -644,6 +594,43 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>STL</title>
+    <url>/2022/07/06/STL/</url>
+    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
+<blockquote>
+<p>stack和queue不提供iterator</p>
+</blockquote>
+<blockquote>
+<p>set/multiset<br>multiset是基于红黑树实现的</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TF-IDF</title>
+    <url>/2022/01/04/TF-IDF/</url>
+    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Theory</title>
+    <url>/2021/12/01/Theory/</url>
+    <content><![CDATA[<h1 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h1>
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/probability.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+  </entry>
+  <entry>
     <title>VCDimension</title>
     <url>/2022/02/10/VCDimension/</url>
     <content><![CDATA[<blockquote>
@@ -652,6 +639,24 @@ concorn
 ]]></content>
       <tags>
         <tag>Machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>across_loss</title>
+    <url>/2022/03/29/across-loss/</url>
+    <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
+]]></content>
+      <tags>
+        <tag>machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>apriori</title>
+    <url>/2022/01/06/apriori/</url>
+    <content><![CDATA[<p><img src="/images/apriori.png"> </p>
+]]></content>
+      <tags>
+        <tag>apriori</tag>
       </tags>
   </entry>
   <entry>
@@ -677,40 +682,103 @@ rect(const rect *r);
       </tags>
   </entry>
   <entry>
-    <title>cout重载全局函数</title>
-    <url>/2022/06/17/cout%E9%87%8D%E8%BD%BD%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="为什么c-中重载流操作符要用友元函数"><a href="#为什么c-中重载流操作符要用友元函数" class="headerlink" title="为什么c++中重载流操作符要用友元函数"></a>为什么c++中重载流操作符要用友元函数</h1><h2 id="作为成员函数的话，左操作数非得是自己不可"><a href="#作为成员函数的话，左操作数非得是自己不可" class="headerlink" title="作为成员函数的话，左操作数非得是自己不可"></a>作为成员函数的话，左操作数非得是自己不可</h2><blockquote>
-<p>cout &lt;&lt; XXX 这种情况是cout在调用operator&lt;&lt;而不是XXX在调用operator&lt;&lt; 。<br>如果你要把operator&lt;&lt;设为成员函数就只能用 XXX &lt;&lt; cout 这种形式。</p>
+    <title>cudaMemPitch</title>
+    <url>/2022/06/28/cudaMemPitch/</url>
+    <content><![CDATA[<h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
+<p>cudaMallocPitch ( void** devPtr, size_t* pitch, size_t width, size_t height )<br>devPtr - Pointer to allocated pitched device memory<br>pitch - Pitch for allocation<br>width - Requested pitched allocation width (in bytes)<br>height - Requested pitched allocation height</p>
 </blockquote>
-<p><strong>所以这样也是可以的，就是有违常理</strong></p>
-<pre><code>struct point
+<blockquote>
+<p>cudaError_t cudaMemcpy2D    (    void *     dst,<br>size_t     dpitch,<br>const void *     src,<br>size_t     spitch,<br>size_t     width,<br>size_t     height,<br>enum cudaMemcpyKind     kind<br>)    </p>
+</blockquote>
+<blockquote>
+<p>Parameters:<br>dst     - Destination memory address<br>dpitch     - Pitch of destination memory<br>src     - Source memory address<br>spitch     - Pitch of source memory<br>width     - Width of matrix transfer (columns in bytes)<br>height     - Height of matrix transfer (rows)<br>kind     - Type of transfer</p>
+</blockquote>
+<pre><code>`The spitch is different when cudaMemcpyKind is different`
+
+#include&lt;stdio.h&gt;
+#include&lt;cuda.h&gt;
+#include&lt;cuda_runtime.h&gt;
+#include&lt;device_launch_parameters.h&gt;
+#include&lt;conio.h&gt;
+
+#define BLOCKSIZE_x 16
+#define BLOCKSIZE_y 16
+
+#define Nrows 3
+#define Ncols 5
+
+/*****************/
+/* CUDA MEMCHECK */
+/*****************/
+#define gpuErrchk(ans) &#123; gpuAssert((ans), __FILE__, __LINE__); &#125;
+
+inline void gpuAssert(cudaError_t code, char *file, int line, bool abort = true)
 &#123;
-    int x;
-    int y;
-
-    point (int _x, int _y)
-        : x(_x), y(_y)
-    &#123;&#125;
-
-    std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os) const
+    if (code != cudaSuccess)
     &#123;
-        os &lt;&lt; &quot;(&quot; &lt;&lt; x &lt;&lt; &quot;, &quot; &lt;&lt; y &lt;&lt; &quot;)&quot;;
-        return os;
+        fprintf(stderr, &quot;GPUassert: %s %s %dn&quot;, cudaGetErrorString(code), file, line);
+        if (abort) &#123; getch(); exit(code); &#125;
     &#125;
-&#125;;
+&#125;
 
-int main(int argc, const char* argv[])
+/*******************/
+/* iDivUp FUNCTION */
+/*******************/
+int iDivUp(int hostPtr, int b)&#123; return ((hostPtr % b) != 0) ? (hostPtr / b + 1) : (hostPtr / b); &#125;
+
+/******************/
+/* TEST KERNEL 2D */
+/******************/
+__global__ void test_kernel_2D(float *devPtr, size_t pitch)
 &#123;
-    point p1(1, 2);
+    int    tidx = blockIdx.x*blockDim.x + threadIdx.x;
+    int    tidy = blockIdx.y*blockDim.y + threadIdx.y;
 
-    p1 &lt;&lt; std::cout; // 写法同p1.operator&lt;&lt;(std::cout);
+    if ((tidx &lt; Ncols) &amp;&amp; (tidy &lt; Nrows))
+    &#123;
+        float *row_a = (float *)((char*)devPtr + tidy * pitch);
+        row_a[tidx] = row_a[tidx] * tidx * tidy;
+    &#125;
+&#125;
 
-    return 0;
+/********/
+/* MAIN */
+/********/
+int main()
+&#123;
+    float hostPtr[Nrows][Ncols];
+    float *devPtr;
+    size_t pitch;
+
+    for (int i = 0; i &lt; Nrows; i++)
+        for (int j = 0; j &lt; Ncols; j++) &#123;
+            hostPtr[i][j] = 1.f;
+            //printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
+        &#125;
+
+    // --- 2D pitched allocation and host-&gt;device memcopy
+    gpuErrchk(cudaMallocPitch(&amp;devPtr, &amp;pitch, Ncols * sizeof(float), Nrows));
+    gpuErrchk(cudaMemcpy2D(devPtr, pitch, hostPtr, Ncols*sizeof(float), Ncols*sizeof(float), Nrows, cudaMemcpyHostToDevice));
+
+    dim3 gridSize(iDivUp(Ncols, BLOCKSIZE_x), iDivUp(Nrows, BLOCKSIZE_y));
+    dim3 blockSize(BLOCKSIZE_y, BLOCKSIZE_x);
+
+    test_kernel_2D &lt;&lt; &lt;gridSize, blockSize &gt;&gt; &gt;(devPtr, pitch);
+    gpuErrchk(cudaPeekAtLastError());
+    gpuErrchk(cudaDeviceSynchronize());
+
+    gpuErrchk(cudaMemcpy2D(hostPtr, Ncols * sizeof(float), devPtr, pitch, Ncols * sizeof(float), Nrows, cudaMemcpyDeviceToHost));
+
+    for (int i = 0; i &lt; Nrows; i++) 
+        for (int j = 0; j &lt; Ncols; j++) 
+            printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
+
+    return 0;    
 &#125;
 </code></pre>
 ]]></content>
       <tags>
-        <tag>c++</tag>
+        <tag>cuda</tag>
       </tags>
   </entry>
   <entry>
@@ -825,106 +893,6 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
       </tags>
   </entry>
   <entry>
-    <title>cudaMemPitch</title>
-    <url>/2022/06/28/cudaMemPitch/</url>
-    <content><![CDATA[<h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
-<p>cudaMallocPitch ( void** devPtr, size_t* pitch, size_t width, size_t height )<br>devPtr - Pointer to allocated pitched device memory<br>pitch - Pitch for allocation<br>width - Requested pitched allocation width (in bytes)<br>height - Requested pitched allocation height</p>
-</blockquote>
-<blockquote>
-<p>cudaError_t cudaMemcpy2D    (    void *     dst,<br>size_t     dpitch,<br>const void *     src,<br>size_t     spitch,<br>size_t     width,<br>size_t     height,<br>enum cudaMemcpyKind     kind<br>)    </p>
-</blockquote>
-<blockquote>
-<p>Parameters:<br>dst     - Destination memory address<br>dpitch     - Pitch of destination memory<br>src     - Source memory address<br>spitch     - Pitch of source memory<br>width     - Width of matrix transfer (columns in bytes)<br>height     - Height of matrix transfer (rows)<br>kind     - Type of transfer</p>
-</blockquote>
-<pre><code>`The spitch is different when cudaMemcpyKind is different`
-
-#include&lt;stdio.h&gt;
-#include&lt;cuda.h&gt;
-#include&lt;cuda_runtime.h&gt;
-#include&lt;device_launch_parameters.h&gt;
-#include&lt;conio.h&gt;
-
-#define BLOCKSIZE_x 16
-#define BLOCKSIZE_y 16
-
-#define Nrows 3
-#define Ncols 5
-
-/*****************/
-/* CUDA MEMCHECK */
-/*****************/
-#define gpuErrchk(ans) &#123; gpuAssert((ans), __FILE__, __LINE__); &#125;
-
-inline void gpuAssert(cudaError_t code, char *file, int line, bool abort = true)
-&#123;
-    if (code != cudaSuccess)
-    &#123;
-        fprintf(stderr, &quot;GPUassert: %s %s %dn&quot;, cudaGetErrorString(code), file, line);
-        if (abort) &#123; getch(); exit(code); &#125;
-    &#125;
-&#125;
-
-/*******************/
-/* iDivUp FUNCTION */
-/*******************/
-int iDivUp(int hostPtr, int b)&#123; return ((hostPtr % b) != 0) ? (hostPtr / b + 1) : (hostPtr / b); &#125;
-
-/******************/
-/* TEST KERNEL 2D */
-/******************/
-__global__ void test_kernel_2D(float *devPtr, size_t pitch)
-&#123;
-    int    tidx = blockIdx.x*blockDim.x + threadIdx.x;
-    int    tidy = blockIdx.y*blockDim.y + threadIdx.y;
-
-    if ((tidx &lt; Ncols) &amp;&amp; (tidy &lt; Nrows))
-    &#123;
-        float *row_a = (float *)((char*)devPtr + tidy * pitch);
-        row_a[tidx] = row_a[tidx] * tidx * tidy;
-    &#125;
-&#125;
-
-/********/
-/* MAIN */
-/********/
-int main()
-&#123;
-    float hostPtr[Nrows][Ncols];
-    float *devPtr;
-    size_t pitch;
-
-    for (int i = 0; i &lt; Nrows; i++)
-        for (int j = 0; j &lt; Ncols; j++) &#123;
-            hostPtr[i][j] = 1.f;
-            //printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
-        &#125;
-
-    // --- 2D pitched allocation and host-&gt;device memcopy
-    gpuErrchk(cudaMallocPitch(&amp;devPtr, &amp;pitch, Ncols * sizeof(float), Nrows));
-    gpuErrchk(cudaMemcpy2D(devPtr, pitch, hostPtr, Ncols*sizeof(float), Ncols*sizeof(float), Nrows, cudaMemcpyHostToDevice));
-
-    dim3 gridSize(iDivUp(Ncols, BLOCKSIZE_x), iDivUp(Nrows, BLOCKSIZE_y));
-    dim3 blockSize(BLOCKSIZE_y, BLOCKSIZE_x);
-
-    test_kernel_2D &lt;&lt; &lt;gridSize, blockSize &gt;&gt; &gt;(devPtr, pitch);
-    gpuErrchk(cudaPeekAtLastError());
-    gpuErrchk(cudaDeviceSynchronize());
-
-    gpuErrchk(cudaMemcpy2D(hostPtr, Ncols * sizeof(float), devPtr, pitch, Ncols * sizeof(float), Nrows, cudaMemcpyDeviceToHost));
-
-    for (int i = 0; i &lt; Nrows; i++) 
-        for (int j = 0; j &lt; Ncols; j++) 
-            printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
-
-    return 0;    
-&#125;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>cuda</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>emotion_behind_your_money_habits</title>
     <url>/2021/12/24/emotion-behind-your-money-habits/</url>
     <content><![CDATA[<blockquote>
@@ -944,6 +912,20 @@ int main()
 ]]></content>
       <tags>
         <tag>game</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>forandrecursion</title>
+    <url>/2022/04/21/forandrecursion/</url>
+    <content><![CDATA[<blockquote>
+<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
+</blockquote>
+<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
+<p>比如全排列问题</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>-algorithm</tag>
       </tags>
   </entry>
   <entry>
@@ -1033,6 +1015,15 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>likeihood</title>
+    <url>/2021/12/17/likeihood/</url>
+    <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
+]]></content>
+      <tags>
+        <tag>likelihood</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>makefile</title>
     <url>/2022/07/26/makefile/</url>
     <content><![CDATA[<h1 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h1><p>目标: 依赖<br>tab  命令</p>
@@ -1056,26 +1047,40 @@ hello world
       </tags>
   </entry>
   <entry>
-    <title>likeihood</title>
-    <url>/2021/12/17/likeihood/</url>
-    <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
+    <title>cout重载全局函数</title>
+    <url>/2022/06/17/cout%E9%87%8D%E8%BD%BD%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="为什么c-中重载流操作符要用友元函数"><a href="#为什么c-中重载流操作符要用友元函数" class="headerlink" title="为什么c++中重载流操作符要用友元函数"></a>为什么c++中重载流操作符要用友元函数</h1><h2 id="作为成员函数的话，左操作数非得是自己不可"><a href="#作为成员函数的话，左操作数非得是自己不可" class="headerlink" title="作为成员函数的话，左操作数非得是自己不可"></a>作为成员函数的话，左操作数非得是自己不可</h2><blockquote>
+<p>cout &lt;&lt; XXX 这种情况是cout在调用operator&lt;&lt;而不是XXX在调用operator&lt;&lt; 。<br>如果你要把operator&lt;&lt;设为成员函数就只能用 XXX &lt;&lt; cout 这种形式。</p>
+</blockquote>
+<p><strong>所以这样也是可以的，就是有违常理</strong></p>
+<pre><code>struct point
+&#123;
+    int x;
+    int y;
+
+    point (int _x, int _y)
+        : x(_x), y(_y)
+    &#123;&#125;
+
+    std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os) const
+    &#123;
+        os &lt;&lt; &quot;(&quot; &lt;&lt; x &lt;&lt; &quot;, &quot; &lt;&lt; y &lt;&lt; &quot;)&quot;;
+        return os;
+    &#125;
+&#125;;
+
+int main(int argc, const char* argv[])
+&#123;
+    point p1(1, 2);
+
+    p1 &lt;&lt; std::cout; // 写法同p1.operator&lt;&lt;(std::cout);
+
+    return 0;
+&#125;
+</code></pre>
 ]]></content>
       <tags>
-        <tag>likelihood</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>forandrecursion</title>
-    <url>/2022/04/21/forandrecursion/</url>
-    <content><![CDATA[<blockquote>
-<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
-</blockquote>
-<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
-<p>比如全排列问题</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>-algorithm</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1091,6 +1096,18 @@ hello world
     <title>p19-namespace</title>
     <url>/2022/06/16/namespace/</url>
     <content><![CDATA[<h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>note</title>
+    <url>/2022/08/17/note/</url>
+    <content><![CDATA[<p>所有通道像素的组合排列决定了这个像素的属性。同时这个像素点与周围像素也存在联系，通常来说，如果相邻两个像素点所有通道的欧式距离之差不小于某个阈值，可以认为是属于一类的<br>对通道进行卷积操作，</p>
+<blockquote>
+<p>想法：双重推理，首先构建一个建筑语义分割的算法来获得建筑（0-1），之后通过图生成算法，输入为用户指定出的点和分割出来的图片</p>
+</blockquote>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -1116,6 +1133,12 @@ hello world
       </tags>
   </entry>
   <entry>
+    <title>oral_practices</title>
+    <url>/2021/11/01/oral-practices/</url>
+    <content><![CDATA[<p>a new way to get personalized, relevant ideas, delivered right to your inbox.</p>
+]]></content>
+  </entry>
+  <entry>
     <title>operator赋值为什么返回引用</title>
     <url>/2022/03/13/operator%E8%B5%8B%E5%80%BC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%94%E5%9B%9E%E5%BC%95%E7%94%A8/</url>
     <content><![CDATA[<p>一个自定义类，如果没有重载其=运算符，那么编译器将自动生成一个。但是此编译器自动生成的重载函数可能不安全。这是因为它采用了所谓的“浅拷贝”，也就是对于指针而言，它拷贝的是指针的值，而不是其指向的内存空间。那么这个内存空间就有了两个指针指向它，且类对象要析构两次，但是内存空间只能被释放一次，那么第二次就会出现访问错误。</p>
@@ -1127,12 +1150,6 @@ hello world
       <tags>
         <tag>C++</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>oral_practices</title>
-    <url>/2021/11/01/oral-practices/</url>
-    <content><![CDATA[<p>a new way to get personalized, relevant ideas, delivered right to your inbox.</p>
-]]></content>
   </entry>
   <entry>
     <title>other和others</title>
@@ -1243,6 +1260,15 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
+    <title>p33const</title>
+    <url>/2022/06/19/p33const/</url>
+    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>probability</title>
     <url>/2022/06/22/probability/</url>
     <content><![CDATA[<h2 id="68-95-99"><a href="#68-95-99" class="headerlink" title="68-95-99"></a>68-95-99</h2><ul>
@@ -1253,15 +1279,6 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
 ]]></content>
       <tags>
         <tag>probability</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>p33const</title>
-    <url>/2022/06/19/p33const/</url>
-    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1389,23 +1406,25 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>shardptrCirculate</title>
-    <url>/2022/03/04/shardptrCirculate/</url>
-    <content><![CDATA[<blockquote>
-<p>定义对象用强智能指针，引用对象的时候用弱智能指针<br><img src="/images/shardptrcirculate.png">  </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>silhouette</title>
     <url>/2021/12/04/silhouette/</url>
     <content><![CDATA[<p><img src="/images/silhouette.png"> </p>
 ]]></content>
       <tags>
         <tag>intr</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sparse</title>
+    <url>/2022/07/02/sparse/</url>
+    <content><![CDATA[<h1 id="How-to-prune-in-MLP"><a href="#How-to-prune-in-MLP" class="headerlink" title="How to prune in MLP?"></a>How to prune in MLP?</h1><p><img src="/images/2022-07-04-01-57-10.png"></p>
+<ul>
+<li>sets the connection weight whose lower than threshold as 0<br><img src="/images/2022-07-04-02-03-25.png"></li>
+</ul>
+<h1 id="Prune-for-CNN"><a href="#Prune-for-CNN" class="headerlink" title="Prune for CNN"></a>Prune for CNN</h1><p><img src="/images/2022-07-04-02-16-55.png"></p>
+]]></content>
+      <tags>
+        <tag>sparse</tag>
       </tags>
   </entry>
   <entry>
@@ -1558,41 +1577,14 @@ A&lt;string*&gt; b;
       </tags>
   </entry>
   <entry>
-    <title>sparse</title>
-    <url>/2022/07/02/sparse/</url>
-    <content><![CDATA[<h1 id="How-to-prune-in-MLP"><a href="#How-to-prune-in-MLP" class="headerlink" title="How to prune in MLP?"></a>How to prune in MLP?</h1><p><img src="/images/2022-07-04-01-57-10.png"></p>
-<ul>
-<li>sets the connection weight whose lower than threshold as 0<br><img src="/images/2022-07-04-02-03-25.png"></li>
-</ul>
-<h1 id="Prune-for-CNN"><a href="#Prune-for-CNN" class="headerlink" title="Prune for CNN"></a>Prune for CNN</h1><p><img src="/images/2022-07-04-02-16-55.png"></p>
-]]></content>
-      <tags>
-        <tag>sparse</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>subjunctive</title>
-    <url>/2022/03/06/subjunctive/</url>
-    <content><![CDATA[<h2 id="The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy"><a href="#The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy" class="headerlink" title="The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy."></a>The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy.</h2><blockquote>
-<p>wouldn’t have done 表示不会做某事，但是实际上做了。文章中的意思是本来不会降低美国的油气价格。</p>
+    <title>shardptrCirculate</title>
+    <url>/2022/03/04/shardptrCirculate/</url>
+    <content><![CDATA[<blockquote>
+<p>定义对象用强智能指针，引用对象的时候用弱智能指针<br><img src="/images/shardptrcirculate.png">  </p>
 </blockquote>
-<p>would have done</p>
-<p>是一个固定虚拟语气的用法。</p>
-<p>表示对过去事情的假设，意为“本来想做、要做但没做”，使用时大多会给出导致没做成或会这样做的条件。<br>英汉例句1：</p>
-<p>If I had a chance，I would have set off on a journey round the world.<br>要是有机会，我早就环游世界了。（也可译为对现在的虚拟“要是有机会，我会环游世界”）</p>
-<p>英汉例句2：</p>
-<p>I would have told you the story about him, but you were not home.</p>
-<p>我本来可以告诉你关于他的故事，但是你不在家。（由于：你不在家”这样的条件下，没有告诉关于他的的故事。）</p>
-<p>5.would have done与if连用</p>
-<p>例句：If I hadn’t been busy that day, I would have gone there with them.</p>
-<p>如果那天我不忙，我会和他们一起去那儿。（事实上表示没有由于忙，而没有去。）</p>
-<p>在这里也可以不用if</p>
-<p>如：I was busy that day. Otherwise I would have gone there with them. </p>
-<p>我那天很忙，否则，我就和他们一起去那儿了。</p>
-<p>6.文章中lower 在这里作为动词，“降低”的意思。<br><img src="/images/subjunctive.png"> </p>
 ]]></content>
       <tags>
-        <tag>English</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -1602,15 +1594,6 @@ A&lt;string*&gt; b;
 ]]></content>
       <tags>
         <tag>probability</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>to+do+or+doing</title>
-    <url>/2021/12/12/to-do-or-doing/</url>
-    <content><![CDATA[<p><img src="/images/todo.png"> </p>
-]]></content>
-      <tags>
-        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -1705,6 +1688,24 @@ private:
       </tags>
   </entry>
   <entry>
+    <title>transformer</title>
+    <url>/2022/01/02/transformer/</url>
+    <content><![CDATA[<p><img src="/images/transformer.png"> </p>
+]]></content>
+      <tags>
+        <tag>transformer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>to+do+or+doing</title>
+    <url>/2021/12/12/to-do-or-doing/</url>
+    <content><![CDATA[<p><img src="/images/todo.png"> </p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>transition-based</title>
     <url>/2022/01/04/transition-based/</url>
     <content><![CDATA[<p><img src="/images/transition.png"> </p>
@@ -1714,12 +1715,50 @@ private:
       </tags>
   </entry>
   <entry>
-    <title>transformer</title>
-    <url>/2022/01/02/transformer/</url>
-    <content><![CDATA[<p><img src="/images/transformer.png"> </p>
+    <title>vector二维数组</title>
+    <url>/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
+<li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
+<p>这里的row,col代表二维vector的两个轴方向的大小</p>
+</blockquote>
+</li>
+<li>第二种通过resize确定大小，之后循环赋值<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
+vec1.resize(row);
+for(int i=0;i&lt;vec1.size();i++)
+  vec1[i].resize(col);
+for(int i=0;i&lt;row;i++)
+  for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
+</code></pre>
+</li>
+</ul>
 ]]></content>
       <tags>
-        <tag>transformer</tag>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>subjunctive</title>
+    <url>/2022/03/06/subjunctive/</url>
+    <content><![CDATA[<h2 id="The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy"><a href="#The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy" class="headerlink" title="The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy."></a>The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy.</h2><blockquote>
+<p>wouldn’t have done 表示不会做某事，但是实际上做了。文章中的意思是本来不会降低美国的油气价格。</p>
+</blockquote>
+<p>would have done</p>
+<p>是一个固定虚拟语气的用法。</p>
+<p>表示对过去事情的假设，意为“本来想做、要做但没做”，使用时大多会给出导致没做成或会这样做的条件。<br>英汉例句1：</p>
+<p>If I had a chance，I would have set off on a journey round the world.<br>要是有机会，我早就环游世界了。（也可译为对现在的虚拟“要是有机会，我会环游世界”）</p>
+<p>英汉例句2：</p>
+<p>I would have told you the story about him, but you were not home.</p>
+<p>我本来可以告诉你关于他的故事，但是你不在家。（由于：你不在家”这样的条件下，没有告诉关于他的的故事。）</p>
+<p>5.would have done与if连用</p>
+<p>例句：If I hadn’t been busy that day, I would have gone there with them.</p>
+<p>如果那天我不忙，我会和他们一起去那儿。（事实上表示没有由于忙，而没有去。）</p>
+<p>在这里也可以不用if</p>
+<p>如：I was busy that day. Otherwise I would have gone there with them. </p>
+<p>我那天很忙，否则，我就和他们一起去那儿了。</p>
+<p>6.文章中lower 在这里作为动词，“降低”的意思。<br><img src="/images/subjunctive.png"> </p>
+]]></content>
+      <tags>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -1811,28 +1850,6 @@ private:
       </tags>
   </entry>
   <entry>
-    <title>vector二维数组</title>
-    <url>/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
-<li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
-<p>这里的row,col代表二维vector的两个轴方向的大小</p>
-</blockquote>
-</li>
-<li>第二种通过resize确定大小，之后循环赋值<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
-vec1.resize(row);
-for(int i=0;i&lt;vec1.size();i++)
-  vec1[i].resize(col);
-for(int i=0;i&lt;row;i++)
-  for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>warp函数</title>
     <url>/2022/07/11/warp%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h1 id="any-sync用于一个warp之间线程的数据的交换-广播（broadcast）"><a href="#any-sync用于一个warp之间线程的数据的交换-广播（broadcast）" class="headerlink" title="__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）"></a>__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）</h1><h2 id="这里必须注意srcLane是束内w的编号"><a href="#这里必须注意srcLane是束内w的编号" class="headerlink" title="这里必须注意srcLane是束内w的编号"></a>这里必须注意srcLane是束内w的编号</h2><blockquote>
@@ -1847,6 +1864,49 @@ for(int i=0;i&lt;row;i++)
 <blockquote>
 <p>__shfl_xor_sync(FULL_MASK, tid, laneMask, WIDTH);<br>按位异或，这里可以把laneMask设置为1，就是将相邻的两个线程的tid变量的值进行交换</p>
 </blockquote>
+]]></content>
+      <tags>
+        <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vector用于cuda核函数中</title>
+    <url>/2022/06/30/vector%E7%94%A8%E4%BA%8Ecuda%E6%A0%B8%E5%87%BD%E6%95%B0%E4%B8%AD/</url>
+    <content><![CDATA[<blockquote>
+<p>cuda中，是不支持在核函数中直接使用vector的。所以通常情况下是要使用动态数组将vector的数据提取，然后进行计算。</p>
+</blockquote>
+<blockquote>
+<p>这里我们来介绍下如何将vector的数据转换为动态数组，并传入到核函数进行计算的。</p>
+</blockquote>
+<ul>
+<li>一维</li>
+</ul>
+<pre><code>vector&lt;int&gt; b;
+int* a;
+cudaMalloc((void**)&amp; a, sizeof(int) * b.size());
+cudaMemcpy(a, &amp;b[0],sizeof(int) * b.size(), cudaMemcpyHostToDevice);
+</code></pre>
+<ul>
+<li>二维比较麻烦，因为要循环处理vector中的每一个vector（每一行）,这里用一个中间的二维数组作为承接</li>
+</ul>
+<pre><code>vector&lt;vector&lt;int&gt;&gt; d;
+int ** a_2d = new int* [d.size()];
+int * a_2d_cu;
+for (int i = 0; i &lt; d.size(); i++)&#123;
+    int* devPtr;
+    int length = d[i].size();
+    cudaMalloc((void**)&amp; devPtr, sizeof(int)*length);
+    cudaMemcpy(devPtr, &amp;d[i], sizeof(int)*length, cudaMemcpyHostToDevice);
+    a_2d[i] = devPtr; //先把指向cuda内存的指针存在host内存的数组中
+&#125;
+cudaMalloc((void**)&amp; a_2d_cu, sizeof(int*)*d.size());
+cudaMemcpy(a_2d_cu, a_2d, sizeof(int*)*d.size(), cudaMemcpyHostToDevice);
+</code></pre>
+<h2 id="这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D"><a href="#这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D" class="headerlink" title="这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D"></a>这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D</h2><pre><code>//这是为了对齐内存，如果数据不是32的整数倍的话，二维数组用这个会比较好
+size_t pitch;
+cudaMallocPitch(&amp; a_2d_cu, &amp;pitch, d[0].size()*sizeof(int), d.size()));
+cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(int), d.size(), cudaMemcpyHostToDevice);
+</code></pre>
 ]]></content>
       <tags>
         <tag>cuda</tag>
@@ -1919,72 +1979,6 @@ for(int i=0;i&lt;row;i++)
 ]]></content>
       <tags>
         <tag>coding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vector用于cuda核函数中</title>
-    <url>/2022/06/30/vector%E7%94%A8%E4%BA%8Ecuda%E6%A0%B8%E5%87%BD%E6%95%B0%E4%B8%AD/</url>
-    <content><![CDATA[<blockquote>
-<p>cuda中，是不支持在核函数中直接使用vector的。所以通常情况下是要使用动态数组将vector的数据提取，然后进行计算。</p>
-</blockquote>
-<blockquote>
-<p>这里我们来介绍下如何将vector的数据转换为动态数组，并传入到核函数进行计算的。</p>
-</blockquote>
-<ul>
-<li>一维</li>
-</ul>
-<pre><code>vector&lt;int&gt; b;
-int* a;
-cudaMalloc((void**)&amp; a, sizeof(int) * b.size());
-cudaMemcpy(a, &amp;b[0],sizeof(int) * b.size(), cudaMemcpyHostToDevice);
-</code></pre>
-<ul>
-<li>二维比较麻烦，因为要循环处理vector中的每一个vector（每一行）,这里用一个中间的二维数组作为承接</li>
-</ul>
-<pre><code>vector&lt;vector&lt;int&gt;&gt; d;
-int ** a_2d = new int* [d.size()];
-int * a_2d_cu;
-for (int i = 0; i &lt; d.size(); i++)&#123;
-    int* devPtr;
-    int length = d[i].size();
-    cudaMalloc((void**)&amp; devPtr, sizeof(int)*length);
-    cudaMemcpy(devPtr, &amp;d[i], sizeof(int)*length, cudaMemcpyHostToDevice);
-    a_2d[i] = devPtr; //先把指向cuda内存的指针存在host内存的数组中
-&#125;
-cudaMalloc((void**)&amp; a_2d_cu, sizeof(int*)*d.size());
-cudaMemcpy(a_2d_cu, a_2d, sizeof(int*)*d.size(), cudaMemcpyHostToDevice);
-</code></pre>
-<h2 id="这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D"><a href="#这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D" class="headerlink" title="这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D"></a>这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D</h2><pre><code>//这是为了对齐内存，如果数据不是32的整数倍的话，二维数组用这个会比较好
-size_t pitch;
-cudaMallocPitch(&amp; a_2d_cu, &amp;pitch, d[0].size()*sizeof(int), d.size()));
-cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(int), d.size(), cudaMemcpyHostToDevice);
-</code></pre>
-]]></content>
-      <tags>
-        <tag>cuda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>按位与替换取余操作</title>
-    <url>/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<blockquote>
-<p>由于我们知道位运算比较高效，在某些情况下，当b为2的n次方时，有如下替换公式：</p>
-</blockquote>
-<blockquote>
-<p><code>a % b = a &amp; (b-1)</code></p>
-</blockquote>
-<h2 id="notes"><a href="#notes" class="headerlink" title="notes:"></a>notes:</h2><ul>
-<li>b必须为2的整数倍<blockquote>
-<p>因为可以保证b始终只有最高位为1，其他二进制位全部为0，减去1，之后，可以把高位1消除，其他位都为1。<br><code>减一之后，最高位为0，之后都为1（b,b剩下的数就是需要的余数的最高值），就相当于计算低位与原数的与</code></p>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p>例如：14%8，取余数，相当于取出低位，而余数最大为7，14二进制为1110，8的二进制1000，8-1 = 7的二进制为0111，由于现在低位全为1，让其跟14做&amp;运算，正好取出的是其低位上的余数 </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>mathematics</tag>
       </tags>
   </entry>
   <entry>
@@ -2115,6 +2109,33 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>长难句</title>
+    <url>/2022/08/20/%E7%8A%B6%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
+    <content><![CDATA[<ul>
+<li><a href="#Despite">Despite a spell…</a></li>
+</ul>
+<h2 id="Despite"><a href="#Despite" class="headerlink" title="Despite"></a>Despite</h2><blockquote>
+<p>当状语从句的主语和主句的主语一致时,从句可以将主语和be动词简化掉（只能从句动词是be才可以）</p>
+</blockquote>
+<blockquote>
+<p>Despite a spell of initial optimism in the 1960s and 1970s when it appeared that transistor circuits and microprocessors might be able to copy the action of human brain by the year 2010, researchers lately have begun to extend that forecast by decades if (researchers are) not centuries</p>
+</blockquote>
+<ul>
+<li>Despite 是引导一个状语状语，对应的是have begun</li>
+<li>if 是一个条件状语从句，主语和be动词省略了</li>
+</ul>
+<pre><code>transistor 晶体管
+circuit n. 电路，v.巡回
+microprocessor 处理器
+by decades 几十年
+</code></pre>
+<hr>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>类内声明和定义</title>
     <url>/2022/03/10/%E7%B1%BB%E5%86%85%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89/</url>
     <content><![CDATA[<p>1.类内定义</p>
@@ -2134,6 +2155,29 @@ int main()
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>按位与替换取余操作</title>
+    <url>/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<blockquote>
+<p>由于我们知道位运算比较高效，在某些情况下，当b为2的n次方时，有如下替换公式：</p>
+</blockquote>
+<blockquote>
+<p><code>a % b = a &amp; (b-1)</code></p>
+</blockquote>
+<h2 id="notes"><a href="#notes" class="headerlink" title="notes:"></a>notes:</h2><ul>
+<li>b必须为2的整数倍<blockquote>
+<p>因为可以保证b始终只有最高位为1，其他二进制位全部为0，减去1，之后，可以把高位1消除，其他位都为1。<br><code>减一之后，最高位为0，之后都为1（b,b剩下的数就是需要的余数的最高值），就相当于计算低位与原数的与</code></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>例如：14%8，取余数，相当于取出低位，而余数最大为7，14二进制为1110，8的二进制1000，8-1 = 7的二进制为0111，由于现在低位全为1，让其跟14做&amp;运算，正好取出的是其低位上的余数 </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mathematics</tag>
       </tags>
   </entry>
   <entry>
@@ -2177,14 +2221,12 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>英语句子</title>
-    <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
-    <content><![CDATA[<blockquote>
-<p>commence—Many people have wondered why the end of someone’s school days should be celebrated by Commencement Exercises, which, ordinarily, refer to a beginning</p>
-</blockquote>
+    <title>进程和线程</title>
+    <url>/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
+    <content><![CDATA[<p>做个简单的比喻：进程=火车，线程=车厢线程在进程下行进（<br>单纯的车厢无法运行）一个进程可以包含多个线程（一辆火车可以有多个车厢）<br>不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）<br>同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）<br>进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）<br>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）<br>进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）<br>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－”互斥锁”进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”</p>
 ]]></content>
       <tags>
-        <tag>English</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -2203,34 +2245,6 @@ int main()
 ]]></content>
       <tags>
         <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>进程和线程</title>
-    <url>/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<p>做个简单的比喻：进程=火车，线程=车厢线程在进程下行进（<br>单纯的车厢无法运行）一个进程可以包含多个线程（一辆火车可以有多个车厢）<br>不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）<br>同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）<br>进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）<br>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）<br>进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）<br>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－”互斥锁”进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”</p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>重载new()</title>
-    <url>/2022/06/21/%E9%87%8D%E8%BD%BD/</url>
-    <content><![CDATA[<h2 id="可以重载new，同时也可以重载new"><a href="#可以重载new，同时也可以重载new" class="headerlink" title="可以重载new，同时也可以重载new()"></a>可以重载new，同时也可以重载new()</h2><p>Foo* p = new(300,”a”) Foo;</p>
-<blockquote>
-<p>new()里面的参数就是可以加在重载函数的参数中的<br>注意第一个参数必须是size_t</p>
-</blockquote>
-<pre><code>void* operator new(size_t size, int a, char c)&#123;
-.....
-&#125;
-</code></pre>
-<blockquote>
-<p>这样就可以写错多个版本的new重载</p>
-</blockquote>
-<h2 id="delete-也可以这样写多个版本，对应new-参数版本。"><a href="#delete-也可以这样写多个版本，对应new-参数版本。" class="headerlink" title="delete()也可以这样写多个版本，对应new()参数版本。"></a>delete()也可以这样写多个版本，对应new()参数版本。</h2>]]></content>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -2294,6 +2308,36 @@ int main(int argc, const char * argv[]) &#123;
 <h2 id="遇到这些问题记得先画递归树"><a href="#遇到这些问题记得先画递归树" class="headerlink" title="遇到这些问题记得先画递归树"></a>遇到这些问题记得先画递归树</h2>]]></content>
       <tags>
         <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>重载new()</title>
+    <url>/2022/06/21/%E9%87%8D%E8%BD%BD/</url>
+    <content><![CDATA[<h2 id="可以重载new，同时也可以重载new"><a href="#可以重载new，同时也可以重载new" class="headerlink" title="可以重载new，同时也可以重载new()"></a>可以重载new，同时也可以重载new()</h2><p>Foo* p = new(300,”a”) Foo;</p>
+<blockquote>
+<p>new()里面的参数就是可以加在重载函数的参数中的<br>注意第一个参数必须是size_t</p>
+</blockquote>
+<pre><code>void* operator new(size_t size, int a, char c)&#123;
+.....
+&#125;
+</code></pre>
+<blockquote>
+<p>这样就可以写错多个版本的new重载</p>
+</blockquote>
+<h2 id="delete-也可以这样写多个版本，对应new-参数版本。"><a href="#delete-也可以这样写多个版本，对应new-参数版本。" class="headerlink" title="delete()也可以这样写多个版本，对应new()参数版本。"></a>delete()也可以这样写多个版本，对应new()参数版本。</h2>]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>英语句子</title>
+    <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
+    <content><![CDATA[<blockquote>
+<p>commence—Many people have wondered why the end of someone’s school days should be celebrated by Commencement Exercises, which, ordinarily, refer to a beginning</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>English</tag>
       </tags>
   </entry>
 </search>
