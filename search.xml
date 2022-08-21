@@ -1916,7 +1916,7 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
     <title>whom</title>
     <url>/2022/06/15/whom/</url>
     <content><![CDATA[<h2 id="What’s-different-between-who-and-whom"><a href="#What’s-different-between-who-and-whom" class="headerlink" title="What’s different between who and whom"></a>What’s different between who and whom</h2><blockquote>
-<p>Put simply, use whom—which is a pronoun—when it is the object of a sentence. If you can replace the word with “her,” “him,” or “them” for example, use “whom.” You’ll know when to use “whom” if the pronoun is used in the objective case, or action is being done to the pronoun. Take the sentence:</p>
+<p>Put simply, use whom—which is a pronoun(代词)—when it is the object of a sentence. If you can replace the word with “her,” “him,” or “them” for example, use “whom.” You’ll know when to use “whom” if the pronoun is used in the objective case, or action is being done to the pronoun. Take the sentence:</p>
 </blockquote>
 <blockquote>
 <p>Whom do you believe?</p>
@@ -1958,6 +1958,13 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
 <p>若是紧跟在介词之后用作宾语，则只能用 whom，但这类表达通常只见于较正式的文体中。如：</p>
 <p>With whom did you go? 你跟谁一起去的?</p>
 <p><img src="/images/whom.png"> </p>
+<h2 id="whom是作为宾语"><a href="#whom是作为宾语" class="headerlink" title="whom是作为宾语"></a>whom是作为宾语</h2><p>1.Who is at the door?</p>
+<p>2.Whom did you see at the door?</p>
+<p>你知道为什么第一句要用who，而第二句用whom吗?答案是，who永远在句子或从句中作为主语使用，而whom永远作为宾语。</p>
+<p>在上面的第一句话中who是主语。第二局中，you才是主语，而whom是直接宾语。</p>
+<p>1.whom did you recommend for the job?</p>
+<p>2.Are there any people whom you would recommend?</p>
+<p>注意，在上面的两句中，you是主语。whom是动词“推荐”的宾语。</p>
 ]]></content>
       <tags>
         <tag>English</tag>
@@ -2113,10 +2120,11 @@ int main()
     <url>/2022/08/20/%E7%8A%B6%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
     <content><![CDATA[<ul>
 <li><a href="#Despite">Despite a spell…</a></li>
-</ul>
-<h2 id="Despite"><a href="#Despite" class="headerlink" title="Despite"></a>Despite</h2><blockquote>
+<li><a href="#Social">Social science…</a><h2 id="Despite"><a href="#Despite" class="headerlink" title="Despite"></a>Despite</h2><blockquote>
 <p>当状语从句的主语和主句的主语一致时,从句可以将主语和be动词简化掉（只能从句动词是be才可以）</p>
 </blockquote>
+</li>
+</ul>
 <blockquote>
 <p>Despite a spell of initial optimism in the 1960s and 1970s when it appeared that transistor circuits and microprocessors might be able to copy the action of human brain by the year 2010, researchers lately have begun to extend that forecast by decades if (researchers are) not centuries</p>
 </blockquote>
@@ -2130,6 +2138,25 @@ microprocessor 处理器
 by decades 几十年
 </code></pre>
 <hr>
+<h2 id="Social"><a href="#Social" class="headerlink" title="Social"></a>Social</h2><blockquote>
+<p>Social science is that branch of intellectual enquiry, which(先行词是branch of intellectual enquiry) seeks to study humans and their endeavors <strong>in（方式状语）</strong> the same reasoned, orderly, systematic, and dispassioned <strong>manner</strong> that natural scientists use（缺了宾语，这里的宾语是前面的说的manner） for the study of natural phenomena</p>
+</blockquote>
+<ul>
+<li>in…manner 用…方式（方式状语）</li>
+<li>use 是及物动词， 要加宾语，什么是宾语，宾语是动作的承受者，什么词语能够做宾语呢？一般名词，代词宾格，数词，动词不定式，动名词，句子和其他都可以做宾语。<strong>但是 谓语动词，形容词，介词，副词是一定不能做宾语的</strong></li>
+</ul>
+<hr>
+<p>curb n,v 抑制<br>Curbs（名词，主语） on business-method claims（申请）（介词短语表示补充说明） would be a dramatic about-face(彻底转变), because <strong>it was</strong> the Federal Circuit itself <strong>that</strong> introduced such patents with its 1998 decision in the so-called State Street Bank case, approving（逗号加doing,这是非谓语动词修饰整个句子，看主语，主语是Federal Circuit，看和主语的关系。Federal Circuit主动赞同了一个专利在这个方面（筹集pooling是名词动词意化）筹集相互基金资产方面） a patent on a way of pooling mutual-fund assets</p>
+<ul>
+<li>It is/was … that 强调句，普通句子把要强调的部分放入中间，就构成强调句，删除掉it is/was … that 也是一个完整的句子</li>
+</ul>
+<hr>
+<ul>
+<li>非谓语动词是修饰作用，一般就近修饰</li>
+</ul>
+<blockquote>
+<p>The Federal Circuit issued an unusual order stating(非谓语doing，就近修饰order，而state这里是动词，因此后面的that是宾语从句) that the case would be heard by all 12 court’s judges, rather than a typical panel of three, and（这里和前面的that并列，因此这里也是state所陈述的内容） that one issue it <strong>wants</strong> to evaluate（这里是主主谓谓it <strong>wants</strong> to evaluate是从句，是定语从句） <strong>is</strong> whether it <strong>should</strong> “reconsider” its State Street Bank ruling.</p>
+</blockquote>
 ]]></content>
       <tags>
         <tag>English</tag>
@@ -2334,6 +2361,50 @@ int main(int argc, const char * argv[]) &#123;
     <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
     <content><![CDATA[<blockquote>
 <p>commence—Many people have wondered why the end of someone’s school days should be celebrated by Commencement Exercises, which, ordinarily, refer to a beginning</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>定语从句省略</title>
+    <url>/2022/08/21/%E5%AE%9A%E8%AF%AD%E4%BB%8E%E5%8F%A5%E7%9C%81%E7%95%A5/</url>
+    <content><![CDATA[<ul>
+<li><p><a href="#%E5%AE%9A%E8%AF%AD%E4%BB%8E%E5%8F%A5%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%8F%AF%E4%BB%A5%E7%9C%81%E7%95%A5">定从that省略</a></p>
+</li>
+<li><p><a href="#%E6%B3%A8%E6%84%8F%E8%BF%99%E4%B8%AA%E5%8E%9F%E5%88%99%E5%90%8C%E6%A0%B7%E9%80%82%E7%94%A8%E4%BA%8E%E5%85%B3%E7%B3%BB%E8%AF%8D%E4%B8%BA-who-%E5%92%8C-which%E7%9A%84%E5%AE%9A%E8%AF%AD%E4%BB%8E%E5%8F%A5">定从who和which省略</a></p>
+</li>
+<li><p><a href="#%E5%88%A4%E6%96%AD">判断</a></p>
+<h1 id="定语从句什么时候可以省略"><a href="#定语从句什么时候可以省略" class="headerlink" title="定语从句什么时候可以省略"></a>定语从句什么时候可以省略</h1></li>
+<li><p>定语从句本质上是一个<strong>形容词</strong>，修饰名词。从句子的树形结构出发，任何定语从句可以被拆分成两个句子。</p>
+</li>
+</ul>
+<blockquote>
+<p>eg: The cat that is eating an apple has a cute head.<br>这里拆分<br><img src="/images/2022-08-21-15-06-03.png"></p>
+</blockquote>
+<p><strong>注意看，这里的that扮演的是从句的主语部分</strong></p>
+<blockquote>
+<p>eg:  The cat that I bought has a cute head.<br>这里拆分<br><img src="/images/2022-08-21-15-06-59.png"></p>
+</blockquote>
+<p><strong>注意看，这里的that是从句的宾语部分，这里的that可以省略</strong></p>
+<h2 id="summary："><a href="#summary：" class="headerlink" title="summary："></a>summary：</h2><h3 id="当that只有在从句中扮演宾语时，这个that就可以省略，否则不可省略"><a href="#当that只有在从句中扮演宾语时，这个that就可以省略，否则不可省略" class="headerlink" title="当that只有在从句中扮演宾语时，这个that就可以省略，否则不可省略"></a>当that只有在从句中扮演宾语时，这个that就可以省略，否则不可省略</h3><blockquote>
+<p>The cat that is eating an apple has a cute head.<br>The cat I bought has a cute head.</p>
+</blockquote>
+<h1 id="注意，这个原则同样适用于关系词为-who-和-which的定语从句。"><a href="#注意，这个原则同样适用于关系词为-who-和-which的定语从句。" class="headerlink" title="注意，这个原则同样适用于关系词为 who 和 which的定语从句。"></a>注意，这个原则同样适用于关系词为 who 和 which的定语从句。</h1><blockquote>
+<p>eg: The man who once saved my life is speaking.<br>eg: The man whom you saw on the street once saved my life.</p>
+</blockquote>
+<p>这里的who可以换成whom，因为做宾语，更进一步，这里的whom可以省略，因为这个是定语从句，whom做的宾语</p>
+<blockquote>
+<p>eg: The man you saw on the street once saved my life.</p>
+</blockquote>
+<h1 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h1><p>如果关系代词（that、which、who）后面直接跟的是动词，则关系代词做主语，即不可省略。如果不是动词，那么可以直接省略。</p>
+<blockquote>
+<p>eg：The picture which caused the sensation is on exhibition.</p>
+</blockquote>
+<p>(which 后面紧跟动词 caused，在从句中作主语，不可省略)</p>
+<blockquote>
+<p>eg：The picture that I drew last year is on exhibition.<br>(that 后面紧跟的不是动词，因此可以省略 that)</p>
 </blockquote>
 ]]></content>
       <tags>
