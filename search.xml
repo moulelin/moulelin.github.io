@@ -47,65 +47,6 @@ I will try figure out by myself, then i will ask sometjiogn  -->
       </tags>
   </entry>
   <entry>
-    <title>BPR推荐算法</title>
-    <url>/2021/11/16/BPR/</url>
-    <content><![CDATA[<p><img src="/images/BPR.png"> </p>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>BRP推荐算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Cplusplusnotes</title>
-    <url>/2022/05/01/Cplusplusnotes/</url>
-    <content><![CDATA[<blockquote>
-<p>静态函数只能访问静态数据</p>
-</blockquote>
-<blockquote>
-<p>为什么static成员变量一定要在类外初始化?</p>
-</blockquote>
-<pre><code>static变量属于类，非对象，如果在类内初始了，该类再一次创建对象将变成初始值，会修改其他对象对该静态变量操作的意图可能发生意外
-但是
-static const int a = 1;
-这个可以在类内初始化，因为const说明这个变量是不变的，因此对于每个对象来说，static内存块的的数据就是一样的
-</code></pre>
-<h2 id="为什么静态成员不能在类内初始化？"><a href="#为什么静态成员不能在类内初始化？" class="headerlink" title="为什么静态成员不能在类内初始化？"></a>为什么静态成员不能在类内初始化？</h2><p>在C++中，类的静态成员（static member）必须在类内声明，在类外初始化，像下面这样。</p>
-<p>class A<br>{<br>private:<br>static int count ; // 类内声明<br>};</p>
-<ul>
-<li><p>类外定义并初始化，不必再加static关键字<br>int A::count = 0 ;<br>或者只进行定义不赋初始值，但是默认值是否是0，可能会与具体的编译器有关吧？</p>
-</li>
-<li><p>只进行定义不赋初始值，但默认值视编译器而定<br>int A::count;<br>为什么？</p>
-</li>
-<li><p>因为静态成员属于整个类，而不属于某个对象，如果在类内初始化，会导致每个对象都包含该静态成员，这是矛盾的。</p>
-</li>
-</ul>
-<p>如果不增加int A::count = 0 ; //变量定义，在编译的时候将会报出：‘A::count’未定义的引用”错误。这是因为静态成员变量count未定义，也就是还没有分配内存，显然是不可以访问的。</p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Conv-MPN</title>
-    <url>/2022/06/17/Conv-MPN/</url>
-    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
-<li><a href="#">corner_detection</a><blockquote>
-<p>concatenate </p>
-</blockquote>
-</li>
-</ul>
-<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
-<p>mask_rcnn extracts corner points.</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++</title>
     <url>/2022/01/13/C/</url>
     <content><![CDATA[<blockquote>
@@ -218,6 +159,35 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
       </tags>
   </entry>
   <entry>
+    <title>BPR推荐算法</title>
+    <url>/2021/11/16/BPR/</url>
+    <content><![CDATA[<p><img src="/images/BPR.png"> </p>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>BRP推荐算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Conv-MPN</title>
+    <url>/2022/06/17/Conv-MPN/</url>
+    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
+<li><a href="#">corner_detection</a><blockquote>
+<p>concatenate </p>
+</blockquote>
+</li>
+</ul>
+<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
+<p>mask_rcnn extracts corner points.</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DBSCAN</title>
     <url>/2022/01/06/DBSCAN/</url>
     <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
@@ -233,50 +203,6 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
 ]]></content>
       <tags>
         <tag>RL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>FLOPs</title>
-    <url>/2022/06/26/FLOPs/</url>
-    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
-]]></content>
-      <tags>
-        <tag>FLOPs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Short-term prediction of stock market price based on GA optimization LSTM neurons</title>
-    <url>/2021/04/01/GA/</url>
-    <content><![CDATA[<p><img src="/images/3_1.jpg"> </p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">Long-Short Term Memory Network stands out from the financial sector due to its long-term memory predictability, however, the speed of subsequent operations is extremely slow, and the timeliness of the inability to meet market changes has been criticized. In this paper. Aiming at the shortcomings of the slow running of three gates in each neuron of LSTM in back propagation, we1 propose to use GA to optimize the internal weights of LSTM neurons to optimize the defect. In this experiment, GA optimization could not change the accuracy of the model, but it achieved better results than the original LSTM in terms of speed, and satisfied the demand of the future business field for rapid response to market changes in terms of timeliness.
-</blockquote>
-<h1 id="LSTM-Architecture"><a href="#LSTM-Architecture" class="headerlink" title="LSTM Architecture :"></a>LSTM Architecture :</h1><p>  <img src="/images/3_2.jpg"> </p>
-<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/3_3.jpg"> </p>
-<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">This paper proposes a GA optimization method for LSTM neurons. By comparing the running time of predecessor models, it is possible to overcome the shortcomings of slow operation of LSTM to a certain extent by optimizing the internal weight of neurons through GA update.
-<p style="text-align:justify; text-justify:inter-ideograph; color:black"> In addition, this article does not discuss the generalization ability of the network and other parameters of the network at the same time. The research purpose is too single. However, for the short-term prediction of financial markets, the importance of research on the timeliness and advancing of the model is much higher than that of the generalized network model
-</blockquote>
-<hr>
-<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2018 2nd International Conference on Deep Learning Technologies"></a>Conference : 2018 2nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/3_4.jpg"> </p>
-<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> This paper was published a long time ago, and it is not perfect from my current point of view.<br>
-<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>GA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Homogeneous</title>
-    <url>/2022/01/26/Homogeneous/</url>
-    <content><![CDATA[<p><img src="/images/homogeneous.png"> </p>
-]]></content>
-      <tags>
-        <tag>3D</tag>
       </tags>
   </entry>
   <entry>
@@ -430,6 +356,71 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>FLOPs</title>
+    <url>/2022/06/26/FLOPs/</url>
+    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
+]]></content>
+      <tags>
+        <tag>FLOPs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Short-term prediction of stock market price based on GA optimization LSTM neurons</title>
+    <url>/2021/04/01/GA/</url>
+    <content><![CDATA[<p><img src="/images/3_1.jpg"> </p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">Long-Short Term Memory Network stands out from the financial sector due to its long-term memory predictability, however, the speed of subsequent operations is extremely slow, and the timeliness of the inability to meet market changes has been criticized. In this paper. Aiming at the shortcomings of the slow running of three gates in each neuron of LSTM in back propagation, we1 propose to use GA to optimize the internal weights of LSTM neurons to optimize the defect. In this experiment, GA optimization could not change the accuracy of the model, but it achieved better results than the original LSTM in terms of speed, and satisfied the demand of the future business field for rapid response to market changes in terms of timeliness.
+</blockquote>
+<h1 id="LSTM-Architecture"><a href="#LSTM-Architecture" class="headerlink" title="LSTM Architecture :"></a>LSTM Architecture :</h1><p>  <img src="/images/3_2.jpg"> </p>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/3_3.jpg"> </p>
+<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">This paper proposes a GA optimization method for LSTM neurons. By comparing the running time of predecessor models, it is possible to overcome the shortcomings of slow operation of LSTM to a certain extent by optimizing the internal weight of neurons through GA update.
+<p style="text-align:justify; text-justify:inter-ideograph; color:black"> In addition, this article does not discuss the generalization ability of the network and other parameters of the network at the same time. The research purpose is too single. However, for the short-term prediction of financial markets, the importance of research on the timeliness and advancing of the model is much higher than that of the generalized network model
+</blockquote>
+<hr>
+<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2018 2nd International Conference on Deep Learning Technologies"></a>Conference : 2018 2nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/3_4.jpg"> </p>
+<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> This paper was published a long time ago, and it is not perfect from my current point of view.<br>
+<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>GA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Cplusplusnotes</title>
+    <url>/2022/05/01/Cplusplusnotes/</url>
+    <content><![CDATA[<blockquote>
+<p>静态函数只能访问静态数据</p>
+</blockquote>
+<blockquote>
+<p>为什么static成员变量一定要在类外初始化?</p>
+</blockquote>
+<pre><code>static变量属于类，非对象，如果在类内初始了，该类再一次创建对象将变成初始值，会修改其他对象对该静态变量操作的意图可能发生意外
+但是
+static const int a = 1;
+这个可以在类内初始化，因为const说明这个变量是不变的，因此对于每个对象来说，static内存块的的数据就是一样的
+</code></pre>
+<h2 id="为什么静态成员不能在类内初始化？"><a href="#为什么静态成员不能在类内初始化？" class="headerlink" title="为什么静态成员不能在类内初始化？"></a>为什么静态成员不能在类内初始化？</h2><p>在C++中，类的静态成员（static member）必须在类内声明，在类外初始化，像下面这样。</p>
+<p>class A<br>{<br>private:<br>static int count ; // 类内声明<br>};</p>
+<ul>
+<li><p>类外定义并初始化，不必再加static关键字<br>int A::count = 0 ;<br>或者只进行定义不赋初始值，但是默认值是否是0，可能会与具体的编译器有关吧？</p>
+</li>
+<li><p>只进行定义不赋初始值，但默认值视编译器而定<br>int A::count;<br>为什么？</p>
+</li>
+<li><p>因为静态成员属于整个类，而不属于某个对象，如果在类内初始化，会导致每个对象都包含该静态成员，这是矛盾的。</p>
+</li>
+</ul>
+<p>如果不增加int A::count = 0 ; //变量定义，在编译的时候将会报出：‘A::count’未定义的引用”错误。这是因为静态成员变量count未定义，也就是还没有分配内存，显然是不可以访问的。</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Likelihood2</title>
     <url>/2022/02/24/Likelihood2/</url>
     <content><![CDATA[<blockquote>
@@ -489,6 +480,35 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>Homogeneous</title>
+    <url>/2022/01/26/Homogeneous/</url>
+    <content><![CDATA[<p><img src="/images/homogeneous.png"> </p>
+]]></content>
+      <tags>
+        <tag>3D</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MC</title>
+    <url>/2022/03/19/MC/</url>
+    <content><![CDATA[<p><img src="/images/MC.png">  </p>
+]]></content>
+      <tags>
+        <tag>RL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Monte</title>
+    <url>/2022/03/17/Monte/</url>
+    <content><![CDATA[<blockquote>
+<p>引入概率密度函数的蒙特卡洛公式推导，是把p(x) 看作前面分数的密度概率函数，也就是对前面分数求期望，而期望可以通过对p（x）采样并平均得到<br><img src="/images/MCMC.png">  </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>machine</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MATI-Regression</title>
     <url>/2021/11/02/MATI-Regression/</url>
     <content><![CDATA[
@@ -514,26 +534,6 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>MC</title>
-    <url>/2022/03/19/MC/</url>
-    <content><![CDATA[<p><img src="/images/MC.png">  </p>
-]]></content>
-      <tags>
-        <tag>RL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Monte</title>
-    <url>/2022/03/17/Monte/</url>
-    <content><![CDATA[<blockquote>
-<p>引入概率密度函数的蒙特卡洛公式推导，是把p(x) 看作前面分数的密度概率函数，也就是对前面分数求期望，而期望可以通过对p（x）采样并平均得到<br><img src="/images/MCMC.png">  </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>RL3ways</title>
     <url>/2022/03/20/RL3ways/</url>
     <content><![CDATA[
@@ -550,9 +550,19 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>ShiftGCN</title>
-    <url>/2022/08/17/ShiftGCN/</url>
-    <content><![CDATA[]]></content>
+    <title>STL</title>
+    <url>/2022/07/06/STL/</url>
+    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
+<blockquote>
+<p>stack和queue不提供iterator</p>
+</blockquote>
+<blockquote>
+<p>set/multiset<br>multiset是基于红黑树实现的</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
   </entry>
   <entry>
     <title>ShiftCNN</title>
@@ -594,30 +604,6 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>STL</title>
-    <url>/2022/07/06/STL/</url>
-    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
-<blockquote>
-<p>stack和queue不提供iterator</p>
-</blockquote>
-<blockquote>
-<p>set/multiset<br>multiset是基于红黑树实现的</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>TF-IDF</title>
-    <url>/2022/01/04/TF-IDF/</url>
-    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Theory</title>
     <url>/2021/12/01/Theory/</url>
     <content><![CDATA[<h1 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h1>
@@ -629,6 +615,15 @@ concorn
 
 
 ]]></content>
+  </entry>
+  <entry>
+    <title>TF-IDF</title>
+    <url>/2022/01/04/TF-IDF/</url>
+    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
   </entry>
   <entry>
     <title>VCDimension</title>
@@ -660,6 +655,14 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>ShiftGCN</title>
+    <url>/2022/08/17/ShiftGCN/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>GCN</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>copyC</title>
     <url>/2022/03/13/copyC/</url>
     <content><![CDATA[<p>浅拷贝和深拷贝<br>指针浅拷贝导致堆区的数据重复释放<br>问题：近期在做算法实验的时候碰到一个关于类指针赋值的问题，简单的指针之间的赋值只是把两个指针指向同一个地址，而我需要把每次算法执行完的类指针push_back进vector储存每次算法迭代的结果，如果每次都是存入同一个指针，就会出现vector中的类指针都指向同一个地址，这就让我想到了能不能进行类指针之间的赋值，两个类指针之间内容相同，但是指针指向的地址都不同，就是两个不同的指针。</p>
@@ -679,6 +682,43 @@ rect(const rect *r);
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cout重载全局函数</title>
+    <url>/2022/06/17/cout%E9%87%8D%E8%BD%BD%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="为什么c-中重载流操作符要用友元函数"><a href="#为什么c-中重载流操作符要用友元函数" class="headerlink" title="为什么c++中重载流操作符要用友元函数"></a>为什么c++中重载流操作符要用友元函数</h1><h2 id="作为成员函数的话，左操作数非得是自己不可"><a href="#作为成员函数的话，左操作数非得是自己不可" class="headerlink" title="作为成员函数的话，左操作数非得是自己不可"></a>作为成员函数的话，左操作数非得是自己不可</h2><blockquote>
+<p>cout &lt;&lt; XXX 这种情况是cout在调用operator&lt;&lt;而不是XXX在调用operator&lt;&lt; 。<br>如果你要把operator&lt;&lt;设为成员函数就只能用 XXX &lt;&lt; cout 这种形式。</p>
+</blockquote>
+<p><strong>所以这样也是可以的，就是有违常理</strong></p>
+<pre><code>struct point
+&#123;
+    int x;
+    int y;
+
+    point (int _x, int _y)
+        : x(_x), y(_y)
+    &#123;&#125;
+
+    std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os) const
+    &#123;
+        os &lt;&lt; &quot;(&quot; &lt;&lt; x &lt;&lt; &quot;, &quot; &lt;&lt; y &lt;&lt; &quot;)&quot;;
+        return os;
+    &#125;
+&#125;;
+
+int main(int argc, const char* argv[])
+&#123;
+    point p1(1, 2);
+
+    p1 &lt;&lt; std::cout; // 写法同p1.operator&lt;&lt;(std::cout);
+
+    return 0;
+&#125;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -905,16 +945,6 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
       </tags>
   </entry>
   <entry>
-    <title>equilibria</title>
-    <url>/2022/02/08/equilibria/</url>
-    <content><![CDATA[<p><img src="/images/game01.png"> </p>
-<p>举个例子吧如图所示：首先固定1<br>1选择C–&gt; 2最好选择C(-5&gt;-15)，<br>画上蓝色线条<br>1选择N–&gt; 2最好选择C(0&gt;-1)，画上蓝色线条<br>接下来固定2<br>2选择C–&gt; 1最好选择C(-5&gt;-15)，画上红色线条<br>2选择N–&gt; 1最好选择C(0&gt;-1)，画上红色线条得纯策略纳什均衡(-5,-5)</p>
-]]></content>
-      <tags>
-        <tag>game</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>forandrecursion</title>
     <url>/2022/04/21/forandrecursion/</url>
     <content><![CDATA[<blockquote>
@@ -926,6 +956,16 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
 ]]></content>
       <tags>
         <tag>-algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>equilibria</title>
+    <url>/2022/02/08/equilibria/</url>
+    <content><![CDATA[<p><img src="/images/game01.png"> </p>
+<p>举个例子吧如图所示：首先固定1<br>1选择C–&gt; 2最好选择C(-5&gt;-15)，<br>画上蓝色线条<br>1选择N–&gt; 2最好选择C(0&gt;-1)，画上蓝色线条<br>接下来固定2<br>2选择C–&gt; 1最好选择C(-5&gt;-15)，画上红色线条<br>2选择N–&gt; 1最好选择C(0&gt;-1)，画上红色线条得纯策略纳什均衡(-5,-5)</p>
+]]></content>
+      <tags>
+        <tag>game</tag>
       </tags>
   </entry>
   <entry>
@@ -1047,43 +1087,6 @@ hello world
       </tags>
   </entry>
   <entry>
-    <title>cout重载全局函数</title>
-    <url>/2022/06/17/cout%E9%87%8D%E8%BD%BD%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="为什么c-中重载流操作符要用友元函数"><a href="#为什么c-中重载流操作符要用友元函数" class="headerlink" title="为什么c++中重载流操作符要用友元函数"></a>为什么c++中重载流操作符要用友元函数</h1><h2 id="作为成员函数的话，左操作数非得是自己不可"><a href="#作为成员函数的话，左操作数非得是自己不可" class="headerlink" title="作为成员函数的话，左操作数非得是自己不可"></a>作为成员函数的话，左操作数非得是自己不可</h2><blockquote>
-<p>cout &lt;&lt; XXX 这种情况是cout在调用operator&lt;&lt;而不是XXX在调用operator&lt;&lt; 。<br>如果你要把operator&lt;&lt;设为成员函数就只能用 XXX &lt;&lt; cout 这种形式。</p>
-</blockquote>
-<p><strong>所以这样也是可以的，就是有违常理</strong></p>
-<pre><code>struct point
-&#123;
-    int x;
-    int y;
-
-    point (int _x, int _y)
-        : x(_x), y(_y)
-    &#123;&#125;
-
-    std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os) const
-    &#123;
-        os &lt;&lt; &quot;(&quot; &lt;&lt; x &lt;&lt; &quot;, &quot; &lt;&lt; y &lt;&lt; &quot;)&quot;;
-        return os;
-    &#125;
-&#125;;
-
-int main(int argc, const char* argv[])
-&#123;
-    point p1(1, 2);
-
-    p1 &lt;&lt; std::cout; // 写法同p1.operator&lt;&lt;(std::cout);
-
-    return 0;
-&#125;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>n-gram</title>
     <url>/2022/01/04/n-gram/</url>
     <content><![CDATA[<p><img src="/images/n-gram.png"> </p>
@@ -1112,31 +1115,6 @@ int main(int argc, const char* argv[])
       <tags>
         <tag>c++</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Object detection algorithm based AdaBoost residual correction Fast R-CNN on network</title>
-    <url>/2021/04/01/odfr/</url>
-    <content><![CDATA[<p><img src="/images/4_1.jpg"> </p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">The rapid development of computer hardware has promoted the prosperity of computer vision. Target object detection is widely used in various industrial and commercial fields, and contour detection is the core of target object detection. In order to realize the object target contour recognition method based on computer vision with high accuracy, this paper takes the cattle face position determination as an example, Fast R-CNN as the object contour detection algorithm, and uses AdaBoost as the residual detector to improve the accuracy of the results. In the experiment, the LabelImg tool marks the positional coordinates of the facial contours of 1000 cows, and at the same time, SURF algorithm was used to extract image features. The AdaBoost cascade classifier trained 900 positive images and 100 negative images. Fast R-CNN used the original images and the labeled images as training sets respectively. The results show that in the image set with resolution of 866*652 (pixels), the target detection accuracy of using Fast R-CNN is 91.6%, and AdaBoost as the residual detector will improve the accuracy to 96.76%. Meanwhile, by comparing the two training data sets of Fast r-cnn, the image labeled by LabelImg is used as the Fast r-cnn training set to obtain the optimal accuracy of 96.9% and the optimal recognition time of single picture of 0.35s.
-</blockquote>
-<h1 id="Image-Label"><a href="#Image-Label" class="headerlink" title="Image Label :"></a>Image Label :</h1><p>  <img src="/images/4_2.jpg"> </p>
-<h1 id="Reslut"><a href="#Reslut" class="headerlink" title="Reslut :"></a>Reslut :</h1><p>  <img src="/images/4_3.jpg">  </p>
-<hr>
-<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2019-3nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2019-3nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2019 3nd International Conference on Deep Learning Technologies"></a>Conference : 2019 3nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/4_4.jpg"> </p>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>Detect</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>oral_practices</title>
-    <url>/2021/11/01/oral-practices/</url>
-    <content><![CDATA[<p>a new way to get personalized, relevant ideas, delivered right to your inbox.</p>
-]]></content>
   </entry>
   <entry>
     <title>operator赋值为什么返回引用</title>
@@ -1212,6 +1190,31 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
+    <title>oral_practices</title>
+    <url>/2021/11/01/oral-practices/</url>
+    <content><![CDATA[<p>a new way to get personalized, relevant ideas, delivered right to your inbox.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Object detection algorithm based AdaBoost residual correction Fast R-CNN on network</title>
+    <url>/2021/04/01/odfr/</url>
+    <content><![CDATA[<p><img src="/images/4_1.jpg"> </p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">The rapid development of computer hardware has promoted the prosperity of computer vision. Target object detection is widely used in various industrial and commercial fields, and contour detection is the core of target object detection. In order to realize the object target contour recognition method based on computer vision with high accuracy, this paper takes the cattle face position determination as an example, Fast R-CNN as the object contour detection algorithm, and uses AdaBoost as the residual detector to improve the accuracy of the results. In the experiment, the LabelImg tool marks the positional coordinates of the facial contours of 1000 cows, and at the same time, SURF algorithm was used to extract image features. The AdaBoost cascade classifier trained 900 positive images and 100 negative images. Fast R-CNN used the original images and the labeled images as training sets respectively. The results show that in the image set with resolution of 866*652 (pixels), the target detection accuracy of using Fast R-CNN is 91.6%, and AdaBoost as the residual detector will improve the accuracy to 96.76%. Meanwhile, by comparing the two training data sets of Fast r-cnn, the image labeled by LabelImg is used as the Fast r-cnn training set to obtain the optimal accuracy of 96.9% and the optimal recognition time of single picture of 0.35s.
+</blockquote>
+<h1 id="Image-Label"><a href="#Image-Label" class="headerlink" title="Image Label :"></a>Image Label :</h1><p>  <img src="/images/4_2.jpg"> </p>
+<h1 id="Reslut"><a href="#Reslut" class="headerlink" title="Reslut :"></a>Reslut :</h1><p>  <img src="/images/4_3.jpg">  </p>
+<hr>
+<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2019-3nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2019-3nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2019 3nd International Conference on Deep Learning Technologies"></a>Conference : 2019 3nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/4_4.jpg"> </p>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>Detect</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>p27variadic-template</title>
     <url>/2022/06/18/p27variadic-template/</url>
     <content><![CDATA[<h1 id="不定模版参数"><a href="#不定模版参数" class="headerlink" title="不定模版参数"></a>不定模版参数</h1><pre><code>template &lt;class T1, class... args&gt;
@@ -1260,15 +1263,6 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>p33const</title>
-    <url>/2022/06/19/p33const/</url>
-    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>probability</title>
     <url>/2022/06/22/probability/</url>
     <content><![CDATA[<h2 id="68-95-99"><a href="#68-95-99" class="headerlink" title="68-95-99"></a>68-95-99</h2><ul>
@@ -1279,6 +1273,15 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
 ]]></content>
       <tags>
         <tag>probability</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>p33const</title>
+    <url>/2022/06/19/p33const/</url>
+    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1295,6 +1298,19 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
 ]]></content>
       <tags>
         <tag>pronounce</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>scrapy</title>
+    <url>/2021/10/31/scrapy/</url>
+    <content><![CDATA[<h2 id="span如果中间夹了其他的span。比如"><a href="#span如果中间夹了其他的span。比如" class="headerlink" title="span如果中间夹了其他的span。比如"></a>span如果中间夹了其他的span。比如</h2><pre><code>&lt;span&gt; &lt;span&gt;aa &lt;/span&gt; &lt;span&gt;bb &lt;/span&gt;cc&lt;/span&gt;
+</code></pre>
+<blockquote>
+<p>adpote [-1] to acquire “cc” if I want to get it instead of text() directly<br>amount4 = ingredient.xpath(‘span[@class=”recipe__list-qty”]/text()’)[-1].get()</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>spacpy</tag>
       </tags>
   </entry>
   <entry>
@@ -1384,25 +1400,23 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>scrapy</title>
-    <url>/2021/10/31/scrapy/</url>
-    <content><![CDATA[<h2 id="span如果中间夹了其他的span。比如"><a href="#span如果中间夹了其他的span。比如" class="headerlink" title="span如果中间夹了其他的span。比如"></a>span如果中间夹了其他的span。比如</h2><pre><code>&lt;span&gt; &lt;span&gt;aa &lt;/span&gt; &lt;span&gt;bb &lt;/span&gt;cc&lt;/span&gt;
-</code></pre>
-<blockquote>
-<p>adpote [-1] to acquire “cc” if I want to get it instead of text() directly<br>amount4 = ingredient.xpath(‘span[@class=”recipe__list-qty”]/text()’)[-1].get()</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>spacpy</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>self-attention</title>
     <url>/2022/01/02/self-attention/</url>
     <content><![CDATA[<p><img src="/images/attention.png"> </p>
 ]]></content>
       <tags>
         <tag>attention</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>shardptrCirculate</title>
+    <url>/2022/03/04/shardptrCirculate/</url>
+    <content><![CDATA[<blockquote>
+<p>定义对象用强智能指针，引用对象的时候用弱智能指针<br><img src="/images/shardptrcirculate.png">  </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -1434,6 +1448,21 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>stl全局</title>
+    <url>/2022/06/29/stl%E5%85%A8%E5%B1%80/</url>
+    <content><![CDATA[<h1 id="C-函数或者命名空间前面加"><a href="#C-函数或者命名空间前面加" class="headerlink" title="C++函数或者命名空间前面加::"></a>C++函数或者命名空间前面加::</h1><ul>
+<li>函数前面 ::find() 表示这个是全局的函数，不是这个作用域下的函数<br><img src="/images/2022-06-29-16-13-57.png"><blockquote>
+<p>比如这里的 ::find()。这个是STL的algorithm中的函数，虽然这里如果不用:: , 编译器没有找到find也会到全局，但是加入会让代码更清晰</p>
+</blockquote>
+</li>
+<li>jj01::test_array() = 这个就是命名空间</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1562,38 +1591,28 @@ A&lt;string*&gt; b;
       </tags>
   </entry>
   <entry>
-    <title>stl全局</title>
-    <url>/2022/06/29/stl%E5%85%A8%E5%B1%80/</url>
-    <content><![CDATA[<h1 id="C-函数或者命名空间前面加"><a href="#C-函数或者命名空间前面加" class="headerlink" title="C++函数或者命名空间前面加::"></a>C++函数或者命名空间前面加::</h1><ul>
-<li>函数前面 ::find() 表示这个是全局的函数，不是这个作用域下的函数<br><img src="/images/2022-06-29-16-13-57.png"><blockquote>
-<p>比如这里的 ::find()。这个是STL的algorithm中的函数，虽然这里如果不用:: , 编译器没有找到find也会到全局，但是加入会让代码更清晰</p>
+    <title>subjunctive</title>
+    <url>/2022/03/06/subjunctive/</url>
+    <content><![CDATA[<h2 id="The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy"><a href="#The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy" class="headerlink" title="The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy."></a>The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy.</h2><blockquote>
+<p>wouldn’t have done 表示不会做某事，但是实际上做了。文章中的意思是本来不会降低美国的油气价格。</p>
 </blockquote>
-</li>
-<li>jj01::test_array() = 这个就是命名空间</li>
-</ul>
+<p>would have done</p>
+<p>是一个固定虚拟语气的用法。</p>
+<p>表示对过去事情的假设，意为“本来想做、要做但没做”，使用时大多会给出导致没做成或会这样做的条件。<br>英汉例句1：</p>
+<p>If I had a chance，I would have set off on a journey round the world.<br>要是有机会，我早就环游世界了。（也可译为对现在的虚拟“要是有机会，我会环游世界”）</p>
+<p>英汉例句2：</p>
+<p>I would have told you the story about him, but you were not home.</p>
+<p>我本来可以告诉你关于他的故事，但是你不在家。（由于：你不在家”这样的条件下，没有告诉关于他的的故事。）</p>
+<p>5.would have done与if连用</p>
+<p>例句：If I hadn’t been busy that day, I would have gone there with them.</p>
+<p>如果那天我不忙，我会和他们一起去那儿。（事实上表示没有由于忙，而没有去。）</p>
+<p>在这里也可以不用if</p>
+<p>如：I was busy that day. Otherwise I would have gone there with them. </p>
+<p>我那天很忙，否则，我就和他们一起去那儿了。</p>
+<p>6.文章中lower 在这里作为动词，“降低”的意思。<br><img src="/images/subjunctive.png"> </p>
 ]]></content>
       <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>shardptrCirculate</title>
-    <url>/2022/03/04/shardptrCirculate/</url>
-    <content><![CDATA[<blockquote>
-<p>定义对象用强智能指针，引用对象的时候用弱智能指针<br><img src="/images/shardptrcirculate.png">  </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>t5-假设检验</title>
-    <url>/2022/06/22/t5%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/</url>
-    <content><![CDATA[<p><img src="/images/p5.png"></p>
-]]></content>
-      <tags>
-        <tag>probability</tag>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -1688,21 +1707,21 @@ private:
       </tags>
   </entry>
   <entry>
-    <title>transformer</title>
-    <url>/2022/01/02/transformer/</url>
-    <content><![CDATA[<p><img src="/images/transformer.png"> </p>
-]]></content>
-      <tags>
-        <tag>transformer</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>to+do+or+doing</title>
     <url>/2021/12/12/to-do-or-doing/</url>
     <content><![CDATA[<p><img src="/images/todo.png"> </p>
 ]]></content>
       <tags>
         <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>t5-假设检验</title>
+    <url>/2022/06/22/t5%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/</url>
+    <content><![CDATA[<p><img src="/images/p5.png"></p>
+]]></content>
+      <tags>
+        <tag>probability</tag>
       </tags>
   </entry>
   <entry>
@@ -1715,50 +1734,12 @@ private:
       </tags>
   </entry>
   <entry>
-    <title>vector二维数组</title>
-    <url>/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
-<li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
-<p>这里的row,col代表二维vector的两个轴方向的大小</p>
-</blockquote>
-</li>
-<li>第二种通过resize确定大小，之后循环赋值<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
-vec1.resize(row);
-for(int i=0;i&lt;vec1.size();i++)
-  vec1[i].resize(col);
-for(int i=0;i&lt;row;i++)
-  for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
-</code></pre>
-</li>
-</ul>
+    <title>transformer</title>
+    <url>/2022/01/02/transformer/</url>
+    <content><![CDATA[<p><img src="/images/transformer.png"> </p>
 ]]></content>
       <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>subjunctive</title>
-    <url>/2022/03/06/subjunctive/</url>
-    <content><![CDATA[<h2 id="The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy"><a href="#The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy" class="headerlink" title="The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy."></a>The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy.</h2><blockquote>
-<p>wouldn’t have done 表示不会做某事，但是实际上做了。文章中的意思是本来不会降低美国的油气价格。</p>
-</blockquote>
-<p>would have done</p>
-<p>是一个固定虚拟语气的用法。</p>
-<p>表示对过去事情的假设，意为“本来想做、要做但没做”，使用时大多会给出导致没做成或会这样做的条件。<br>英汉例句1：</p>
-<p>If I had a chance，I would have set off on a journey round the world.<br>要是有机会，我早就环游世界了。（也可译为对现在的虚拟“要是有机会，我会环游世界”）</p>
-<p>英汉例句2：</p>
-<p>I would have told you the story about him, but you were not home.</p>
-<p>我本来可以告诉你关于他的故事，但是你不在家。（由于：你不在家”这样的条件下，没有告诉关于他的的故事。）</p>
-<p>5.would have done与if连用</p>
-<p>例句：If I hadn’t been busy that day, I would have gone there with them.</p>
-<p>如果那天我不忙，我会和他们一起去那儿。（事实上表示没有由于忙，而没有去。）</p>
-<p>在这里也可以不用if</p>
-<p>如：I was busy that day. Otherwise I would have gone there with them. </p>
-<p>我那天很忙，否则，我就和他们一起去那儿了。</p>
-<p>6.文章中lower 在这里作为动词，“降低”的意思。<br><img src="/images/subjunctive.png"> </p>
-]]></content>
-      <tags>
-        <tag>English</tag>
+        <tag>transformer</tag>
       </tags>
   </entry>
   <entry>
@@ -1850,6 +1831,28 @@ for(int i=0;i&lt;row;i++)
       </tags>
   </entry>
   <entry>
+    <title>vector二维数组</title>
+    <url>/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
+<li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
+<p>这里的row,col代表二维vector的两个轴方向的大小</p>
+</blockquote>
+</li>
+<li>第二种通过resize确定大小，之后循环赋值<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
+vec1.resize(row);
+for(int i=0;i&lt;vec1.size();i++)
+  vec1[i].resize(col);
+for(int i=0;i&lt;row;i++)
+  for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
+</code></pre>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>warp函数</title>
     <url>/2022/07/11/warp%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h1 id="any-sync用于一个warp之间线程的数据的交换-广播（broadcast）"><a href="#any-sync用于一个warp之间线程的数据的交换-广播（broadcast）" class="headerlink" title="__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）"></a>__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）</h1><h2 id="这里必须注意srcLane是束内w的编号"><a href="#这里必须注意srcLane是束内w的编号" class="headerlink" title="这里必须注意srcLane是束内w的编号"></a>这里必须注意srcLane是束内w的编号</h2><blockquote>
@@ -1864,49 +1867,6 @@ for(int i=0;i&lt;row;i++)
 <blockquote>
 <p>__shfl_xor_sync(FULL_MASK, tid, laneMask, WIDTH);<br>按位异或，这里可以把laneMask设置为1，就是将相邻的两个线程的tid变量的值进行交换</p>
 </blockquote>
-]]></content>
-      <tags>
-        <tag>cuda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vector用于cuda核函数中</title>
-    <url>/2022/06/30/vector%E7%94%A8%E4%BA%8Ecuda%E6%A0%B8%E5%87%BD%E6%95%B0%E4%B8%AD/</url>
-    <content><![CDATA[<blockquote>
-<p>cuda中，是不支持在核函数中直接使用vector的。所以通常情况下是要使用动态数组将vector的数据提取，然后进行计算。</p>
-</blockquote>
-<blockquote>
-<p>这里我们来介绍下如何将vector的数据转换为动态数组，并传入到核函数进行计算的。</p>
-</blockquote>
-<ul>
-<li>一维</li>
-</ul>
-<pre><code>vector&lt;int&gt; b;
-int* a;
-cudaMalloc((void**)&amp; a, sizeof(int) * b.size());
-cudaMemcpy(a, &amp;b[0],sizeof(int) * b.size(), cudaMemcpyHostToDevice);
-</code></pre>
-<ul>
-<li>二维比较麻烦，因为要循环处理vector中的每一个vector（每一行）,这里用一个中间的二维数组作为承接</li>
-</ul>
-<pre><code>vector&lt;vector&lt;int&gt;&gt; d;
-int ** a_2d = new int* [d.size()];
-int * a_2d_cu;
-for (int i = 0; i &lt; d.size(); i++)&#123;
-    int* devPtr;
-    int length = d[i].size();
-    cudaMalloc((void**)&amp; devPtr, sizeof(int)*length);
-    cudaMemcpy(devPtr, &amp;d[i], sizeof(int)*length, cudaMemcpyHostToDevice);
-    a_2d[i] = devPtr; //先把指向cuda内存的指针存在host内存的数组中
-&#125;
-cudaMalloc((void**)&amp; a_2d_cu, sizeof(int*)*d.size());
-cudaMemcpy(a_2d_cu, a_2d, sizeof(int*)*d.size(), cudaMemcpyHostToDevice);
-</code></pre>
-<h2 id="这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D"><a href="#这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D" class="headerlink" title="这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D"></a>这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D</h2><pre><code>//这是为了对齐内存，如果数据不是32的整数倍的话，二维数组用这个会比较好
-size_t pitch;
-cudaMallocPitch(&amp; a_2d_cu, &amp;pitch, d[0].size()*sizeof(int), d.size()));
-cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(int), d.size(), cudaMemcpyHostToDevice);
-</code></pre>
 ]]></content>
       <tags>
         <tag>cuda</tag>
@@ -1980,6 +1940,49 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
       </tags>
   </entry>
   <entry>
+    <title>vector用于cuda核函数中</title>
+    <url>/2022/06/30/vector%E7%94%A8%E4%BA%8Ecuda%E6%A0%B8%E5%87%BD%E6%95%B0%E4%B8%AD/</url>
+    <content><![CDATA[<blockquote>
+<p>cuda中，是不支持在核函数中直接使用vector的。所以通常情况下是要使用动态数组将vector的数据提取，然后进行计算。</p>
+</blockquote>
+<blockquote>
+<p>这里我们来介绍下如何将vector的数据转换为动态数组，并传入到核函数进行计算的。</p>
+</blockquote>
+<ul>
+<li>一维</li>
+</ul>
+<pre><code>vector&lt;int&gt; b;
+int* a;
+cudaMalloc((void**)&amp; a, sizeof(int) * b.size());
+cudaMemcpy(a, &amp;b[0],sizeof(int) * b.size(), cudaMemcpyHostToDevice);
+</code></pre>
+<ul>
+<li>二维比较麻烦，因为要循环处理vector中的每一个vector（每一行）,这里用一个中间的二维数组作为承接</li>
+</ul>
+<pre><code>vector&lt;vector&lt;int&gt;&gt; d;
+int ** a_2d = new int* [d.size()];
+int * a_2d_cu;
+for (int i = 0; i &lt; d.size(); i++)&#123;
+    int* devPtr;
+    int length = d[i].size();
+    cudaMalloc((void**)&amp; devPtr, sizeof(int)*length);
+    cudaMemcpy(devPtr, &amp;d[i], sizeof(int)*length, cudaMemcpyHostToDevice);
+    a_2d[i] = devPtr; //先把指向cuda内存的指针存在host内存的数组中
+&#125;
+cudaMalloc((void**)&amp; a_2d_cu, sizeof(int*)*d.size());
+cudaMemcpy(a_2d_cu, a_2d, sizeof(int*)*d.size(), cudaMemcpyHostToDevice);
+</code></pre>
+<h2 id="这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D"><a href="#这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D" class="headerlink" title="这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D"></a>这里的cudaMalloc可以进一步使用cudaMallocPitch和cudaMemcpy2D</h2><pre><code>//这是为了对齐内存，如果数据不是32的整数倍的话，二维数组用这个会比较好
+size_t pitch;
+cudaMallocPitch(&amp; a_2d_cu, &amp;pitch, d[0].size()*sizeof(int), d.size()));
+cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(int), d.size(), cudaMemcpyHostToDevice);
+</code></pre>
+]]></content>
+      <tags>
+        <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>原反补码</title>
     <url>/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/</url>
     <content><![CDATA[<p><img src="/images/coding.png"></p>
@@ -1992,6 +1995,59 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
     <title>均方误差分解</title>
     <url>/2022/05/21/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE%E5%88%86%E8%A7%A3/</url>
     <content><![CDATA[<p><img src="/images/biasAndvariance.png"> </p>
+]]></content>
+      <tags>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>定语从句省略</title>
+    <url>/2022/08/21/%E5%AE%9A%E8%AF%AD%E4%BB%8E%E5%8F%A5%E7%9C%81%E7%95%A5/</url>
+    <content><![CDATA[<ul>
+<li><p><a href="#%E5%AE%9A%E8%AF%AD%E4%BB%8E%E5%8F%A5%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%8F%AF%E4%BB%A5%E7%9C%81%E7%95%A5">定从that省略</a></p>
+</li>
+<li><p><a href="#%E6%B3%A8%E6%84%8F%E8%BF%99%E4%B8%AA%E5%8E%9F%E5%88%99%E5%90%8C%E6%A0%B7%E9%80%82%E7%94%A8%E4%BA%8E%E5%85%B3%E7%B3%BB%E8%AF%8D%E4%B8%BA-who-%E5%92%8C-which%E7%9A%84%E5%AE%9A%E8%AF%AD%E4%BB%8E%E5%8F%A5">定从who和which省略</a></p>
+</li>
+<li><p><a href="#%E5%88%A4%E6%96%AD">判断</a></p>
+<h1 id="定语从句什么时候可以省略"><a href="#定语从句什么时候可以省略" class="headerlink" title="定语从句什么时候可以省略"></a>定语从句什么时候可以省略</h1></li>
+<li><p>定语从句本质上是一个<strong>形容词</strong>，修饰名词。从句子的树形结构出发，任何定语从句可以被拆分成两个句子。</p>
+</li>
+</ul>
+<blockquote>
+<p>eg: The cat that is eating an apple has a cute head.<br>这里拆分<br><img src="/images/2022-08-21-15-06-03.png"></p>
+</blockquote>
+<p><strong>注意看，这里的that扮演的是从句的主语部分</strong></p>
+<blockquote>
+<p>eg:  The cat that I bought has a cute head.<br>这里拆分<br><img src="/images/2022-08-21-15-06-59.png"></p>
+</blockquote>
+<p><strong>注意看，这里的that是从句的宾语部分，这里的that可以省略</strong></p>
+<h2 id="summary："><a href="#summary：" class="headerlink" title="summary："></a>summary：</h2><h3 id="当that只有在从句中扮演宾语时，这个that就可以省略，否则不可省略"><a href="#当that只有在从句中扮演宾语时，这个that就可以省略，否则不可省略" class="headerlink" title="当that只有在从句中扮演宾语时，这个that就可以省略，否则不可省略"></a>当that只有在从句中扮演宾语时，这个that就可以省略，否则不可省略</h3><blockquote>
+<p>The cat that is eating an apple has a cute head.<br>The cat I bought has a cute head.</p>
+</blockquote>
+<h1 id="注意，这个原则同样适用于关系词为-who-和-which的定语从句。"><a href="#注意，这个原则同样适用于关系词为-who-和-which的定语从句。" class="headerlink" title="注意，这个原则同样适用于关系词为 who 和 which的定语从句。"></a>注意，这个原则同样适用于关系词为 who 和 which的定语从句。</h1><blockquote>
+<p>eg: The man who once saved my life is speaking.<br>eg: The man whom you saw on the street once saved my life.</p>
+</blockquote>
+<p>这里的who可以换成whom，因为做宾语，更进一步，这里的whom可以省略，因为这个是定语从句，whom做的宾语</p>
+<blockquote>
+<p>eg: The man you saw on the street once saved my life.</p>
+</blockquote>
+<h1 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h1><p>如果关系代词（that、which、who）后面直接跟的是动词，则关系代词做主语，即不可省略。如果不是动词，那么可以直接省略。</p>
+<blockquote>
+<p>eg：The picture which caused the sensation is on exhibition.</p>
+</blockquote>
+<p>(which 后面紧跟动词 caused，在从句中作主语，不可省略)</p>
+<blockquote>
+<p>eg：The picture that I drew last year is on exhibition.<br>(that 后面紧跟的不是动词，因此可以省略 that)</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>期望和方差</title>
+    <url>/2022/05/21/%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE/</url>
+    <content><![CDATA[<p><img src="/images/expectAndvariance.png"> </p>
 ]]></content>
       <tags>
         <tag>math</tag>
@@ -2107,62 +2163,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>期望和方差</title>
-    <url>/2022/05/21/%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE/</url>
-    <content><![CDATA[<p><img src="/images/expectAndvariance.png"> </p>
-]]></content>
-      <tags>
-        <tag>math</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>长难句</title>
-    <url>/2022/08/20/%E7%8A%B6%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
-    <content><![CDATA[<ul>
-<li><a href="#Despite">Despite a spell…</a></li>
-<li><a href="#Social">Social science…</a><h2 id="Despite"><a href="#Despite" class="headerlink" title="Despite"></a>Despite</h2><blockquote>
-<p>当状语从句的主语和主句的主语一致时,从句可以将主语和be动词简化掉（只能从句动词是be才可以）</p>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p>Despite a spell of initial optimism in the 1960s and 1970s when it appeared that transistor circuits and microprocessors might be able to copy the action of human brain by the year 2010, researchers lately have begun to extend that forecast by decades if (researchers are) not centuries</p>
-</blockquote>
-<ul>
-<li>Despite 是引导一个状语状语，对应的是have begun</li>
-<li>if 是一个条件状语从句，主语和be动词省略了</li>
-</ul>
-<pre><code>transistor 晶体管
-circuit n. 电路，v.巡回
-microprocessor 处理器
-by decades 几十年
-</code></pre>
-<hr>
-<h2 id="Social"><a href="#Social" class="headerlink" title="Social"></a>Social</h2><blockquote>
-<p>Social science is that branch of intellectual enquiry, which(先行词是branch of intellectual enquiry) seeks to study humans and their endeavors <strong>in（方式状语）</strong> the same reasoned, orderly, systematic, and dispassioned <strong>manner</strong> that natural scientists use（缺了宾语，这里的宾语是前面的说的manner） for the study of natural phenomena</p>
-</blockquote>
-<ul>
-<li>in…manner 用…方式（方式状语）</li>
-<li>use 是及物动词， 要加宾语，什么是宾语，宾语是动作的承受者，什么词语能够做宾语呢？一般名词，代词宾格，数词，动词不定式，动名词，句子和其他都可以做宾语。<strong>但是 谓语动词，形容词，介词，副词是一定不能做宾语的</strong></li>
-</ul>
-<hr>
-<p>curb n,v 抑制<br>Curbs（名词，主语） on business-method claims（申请）（介词短语表示补充说明） would be a dramatic about-face(彻底转变), because <strong>it was</strong> the Federal Circuit itself <strong>that</strong> introduced such patents with its 1998 decision in the so-called State Street Bank case, approving（逗号加doing,这是非谓语动词修饰整个句子，看主语，主语是Federal Circuit，看和主语的关系。Federal Circuit主动赞同了一个专利在这个方面（筹集pooling是名词动词意化）筹集相互基金资产方面） a patent on a way of pooling mutual-fund assets</p>
-<ul>
-<li>It is/was … that 强调句，普通句子把要强调的部分放入中间，就构成强调句，删除掉it is/was … that 也是一个完整的句子</li>
-</ul>
-<hr>
-<ul>
-<li>非谓语动词是修饰作用，一般就近修饰</li>
-</ul>
-<blockquote>
-<p>The Federal Circuit issued an unusual order stating(非谓语doing，就近修饰order，而state这里是动词，因此后面的that是宾语从句) that the case would be heard by all 12 court’s judges, rather than a typical panel of three, and（这里和前面的that并列，因此这里也是state所陈述的内容） that one issue it <strong>wants</strong> to evaluate（这里是主主谓谓it <strong>wants</strong> to evaluate是从句，是定语从句） <strong>is</strong> whether it <strong>should</strong> “reconsider” its State Street Bank ruling.</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>类内声明和定义</title>
     <url>/2022/03/10/%E7%B1%BB%E5%86%85%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89/</url>
     <content><![CDATA[<p>1.类内定义</p>
@@ -2208,6 +2208,87 @@ by decades 几十年
       </tags>
   </entry>
   <entry>
+    <title>宾语从句</title>
+    <url>/2022/08/21/%E5%AE%BE%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
+    <content><![CDATA[<h1 id="宾语从句（objective-clause）"><a href="#宾语从句（objective-clause）" class="headerlink" title="宾语从句（objective clause）"></a>宾语从句（objective clause）</h1><p>that引导的宾语从句作动词或某些形容词的宾语时，that在口语和非正式文体中可以省略，并且是经常省略。<br><img src="/images/2022-08-21-17-29-44.png"></p>
+<h2 id="下面这些情况下that是不能省略的"><a href="#下面这些情况下that是不能省略的" class="headerlink" title="下面这些情况下that是不能省略的"></a>下面这些情况下that是不能省略的</h2><ol>
+<li><p>that引导的宾语从句作动词的宾语时，如果动词的后面有几个并列that引导的宾语从句，这时只有紧挨着动词的第一个that可以省略，其他的that都不可以省略。比如：<br><img src="/images/2022-08-21-17-30-29.png"></p>
+</li>
+<li><p>当为了强调把that引导的宾语从句可位于句首时，that不能省略。如：</p>
+<ul>
+<li><blockquote>
+<p>That she is a good girl I know. 她是一个好姑娘，我是知道的。</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>That he ever said such a thing I simply don’t believe. 我简直不相信他曾说过这样的话。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>当that从句与动词被其他词或从句隔开时，that一般不宜省略，以免造成语义混乱。如：</p>
+<ul>
+<li><blockquote>
+<p>They told us once again that the situation was serious.他们又一次告诉我们说形势是严重的。</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>The dealer told me how much he was prepared to pay for my car and that I could have the money without delay. 那个商人告诉我他准备出多少钱买我的汽车，并说我会立即收到款。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>动词后面如果接的是复合宾语，即宾语+宾补的结构，宾语是一个由that引导的宾语从句，这时候要用it做形式宾语来替代宾语从句，而把这个宾语从句放在句子后面，这时候that不能省略。比如：<br><img src="/images/2022-08-21-17-38-41.png"></p>
+</li>
+<li><p>that引导的宾语从句作一些介词的宾语，这些介词有：except、but、 in，that不能省略。这里需要知道的是除了这几个介词，that引导的宾语从句一般不作介词的宾语。比如：<br><img src="/images/2022-08-21-17-39-00.png"></p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>状语从句</title>
+    <url>/2022/08/20/%E7%8A%B6%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
+    <content><![CDATA[<h1 id="状语从句主谓成分的省略，须遵循下面原则："><a href="#状语从句主谓成分的省略，须遵循下面原则：" class="headerlink" title="状语从句主谓成分的省略，须遵循下面原则："></a>状语从句主谓成分的省略，须遵循下面原则：</h1><ol>
+<li><p>当从句的主语与主句的主语一致时，从句可以省略主语，从句的谓语动词采用其V-ing结构。例如：</p>
+<ul>
+<li><p>Although working very hard, he failed in the final exam. (Although he worked very hard）</p>
+</li>
+<li><p>After taking the medicine, she felt much better. (After she took the medicine)</p>
+</li>
+<li><p>If going there by air, we’ll have to pay twice the fare. (If we go there by air)</p>
+</li>
+</ul>
+</li>
+<li><p>当从句的主语和主句的主语一致时，若从句的谓语动词是系动词be或包含be的某种形式，此时从句的主语和be动词通常可以一同省略</p>
+<ul>
+<li>Whenever (she is) free, she often goes shopping.她有空就去逛商店。</li>
+<li>Work hard when (you are) young, or you’ll regret.少壮不努力,老大徒伤悲。</li>
+<li>While (he was) a young boy, he was always ready to help others. 他在孩提时代就乐于助人。<br><img src="/images/2022-08-22-11-59-37.png"><br><img src="/images/2022-08-22-11-59-56.png"></li>
+</ul>
+</li>
+<li><p>若从句的主语和主句的主语不一致，但和主句的宾语一致时，从句中的主语和be动词亦常可省略。例如：</p>
+<ul>
+<li>Father advised me not to say anything until (I was) asked.</li>
+</ul>
+</li>
+<li><p>当从句的主语是it, 且谓语动词是be或包含be的某种形式时, it和be常可同时省略。例如:</p>
+<ul>
+<li><p>If (it is) possible, he will help you out of the difficulty.如果可能的话,他会帮你摆脱困境。</p>
+</li>
+<li><p>You must attend the meeting unless (it is) inconvenient to you.除非情况对你来说不方便,否则你必须出席这次会议。<br><img src="/images/2022-08-22-12-05-52.png"></p>
+</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>红黑树</title>
     <url>/2022/06/28/%E7%BA%A2%E9%BB%91%E6%A0%91/</url>
     <content><![CDATA[<h1 id="红黑树五大特性"><a href="#红黑树五大特性" class="headerlink" title="红黑树五大特性"></a>红黑树五大特性</h1><ul>
@@ -2248,15 +2329,6 @@ by decades 几十年
       </tags>
   </entry>
   <entry>
-    <title>进程和线程</title>
-    <url>/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<p>做个简单的比喻：进程=火车，线程=车厢线程在进程下行进（<br>单纯的车厢无法运行）一个进程可以包含多个线程（一辆火车可以有多个车厢）<br>不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）<br>同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）<br>进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）<br>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）<br>进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）<br>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－”互斥锁”进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”</p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>过去式</title>
     <url>/2021/12/25/%E8%BF%87%E5%8E%BB%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="过去式变化规则"><a href="#过去式变化规则" class="headerlink" title="过去式变化规则"></a>过去式变化规则</h1><p>1）动词过去式变化规则分为规则变化和不规则变化两种，一般情况下，动词原形词尾加-ed，以不发音的-e结尾动词，动词词尾加-d，以辅音字母+y结尾的动词，把-y变为-i 再加-ed<br>2）以一个元音+一个辅音字母结尾的重读闭音节动词，双写词尾辅音字母，否则就加ed<br>preFER-&gt;preFERRed<br>VISit-&gt;VISited<br>3）不满足一个元音+一个辅音结尾 + ed<br>start-&gt;started 两个辅音结尾<br>need-&gt;needed<br>3) 一个元音+y +ed<br>stay-&gt;stayed</p>
@@ -2272,6 +2344,26 @@ by decades 几十年
 ]]></content>
       <tags>
         <tag>machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>英语句子</title>
+    <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
+    <content><![CDATA[<blockquote>
+<p>commence—Many people have wondered why the end of someone’s school days should be celebrated by Commencement Exercises, which, ordinarily, refer to a beginning</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程和线程</title>
+    <url>/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
+    <content><![CDATA[<p>做个简单的比喻：进程=火车，线程=车厢线程在进程下行进（<br>单纯的车厢无法运行）一个进程可以包含多个线程（一辆火车可以有多个车厢）<br>不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）<br>同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）<br>进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）<br>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）<br>进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）<br>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－”互斥锁”进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -2357,55 +2449,118 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
-    <title>英语句子</title>
-    <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
-    <content><![CDATA[<blockquote>
-<p>commence—Many people have wondered why the end of someone’s school days should be celebrated by Commencement Exercises, which, ordinarily, refer to a beginning</p>
+    <title>长难句</title>
+    <url>/2022/08/20/%E9%95%BF%E9%9A%BE%E5%8F%A5/</url>
+    <content><![CDATA[<ul>
+<li><a href="#Despite">Despite a spell…</a></li>
+<li><a href="#Social">Social science…</a></li>
+<li><a href="#Railroads">Railroads…</a></li>
+<li><a href="#shortlists">Shortlists…</a></li>
+<li><a href="#the-emphasis">The emphasis…</a></li>
+</ul>
+<h2 id="Despite"><a href="#Despite" class="headerlink" title="Despite"></a>Despite</h2><blockquote>
+<p>当状语从句的主语和主句的主语一致时,从句可以将主语和be动词简化掉（只能从句动词是be才可以）</p>
 </blockquote>
+<blockquote>
+<p>Despite a spell of initial optimism in the 1960s and 1970s when it appeared that transistor circuits and microprocessors might be able to copy the action of human brain by the year 2010, researchers lately have begun to extend that forecast by decades if (researchers are) not centuries </p>
+</blockquote>
+<ul>
+<li>Despite 是引导一个状语状语，对应的是have begun</li>
+<li>if 是一个条件状语从句，主语和be动词省略了</li>
+</ul>
+<pre><code>transistor 晶体管
+circuit n. 电路，v.巡回
+microprocessor 处理器
+by decades 几十年
+</code></pre>
+<hr>
+<h2 id="Social"><a href="#Social" class="headerlink" title="Social"></a>Social</h2><blockquote>
+<p>Social science is that branch of intellectual enquiry, which(先行词是branch of intellectual enquiry) seeks to study humans and their endeavors <strong>in（方式状语）</strong> the same reasoned, orderly, systematic, and dispassioned <strong>manner</strong> that natural scientists use（缺了宾语，这里的宾语是前面的说的manner） for the study of natural phenomena</p>
+</blockquote>
+<ul>
+<li>in…manner 用…方式（方式状语）</li>
+<li>use 是及物动词， 要加宾语，什么是宾语，宾语是动作的承受者，什么词语能够做宾语呢？一般名词，代词宾格，数词，动词不定式，动名词，句子和其他都可以做宾语。<strong>但是 谓语动词，形容词，介词，副词是一定不能做宾语的</strong></li>
+</ul>
+<hr>
+<pre><code>curb n,v 抑制
+</code></pre>
+<blockquote>
+<p>Curbs（名词，主语） on business-method claims（申请）（介词短语表示补充说明） would be a dramatic about-face(彻底转变), because <strong>it was</strong> the Federal Circuit itself <strong>that</strong> introduced such patents with its 1998 decision in the so-called State Street Bank case, approving（逗号加doing,这是非谓语动词修饰整个句子，看主语，主语是Federal Circuit，看和主语的关系。Federal Circuit主动赞同了一个专利在这个方面（筹集pooling是名词动词意化）筹集相互基金资产方面） a patent on a way of pooling mutual-fund assets</p>
+</blockquote>
+<ul>
+<li>It is/was … that 强调句，普通句子把要强调的部分放入中间，就构成强调句，删除掉it is/was … that 也是一个完整的句子</li>
+</ul>
+<hr>
+<ul>
+<li>非谓语动词是修饰作用，一般就近修饰</li>
+</ul>
+<blockquote>
+<p>The Federal Circuit issued an unusual order stating(非谓语doing，就近修饰order，而state这里是动词，因此后面的that是宾语从句) that the case would be heard by all 12 court’s judges, rather than a typical panel of three(这里的插入语补充说明前面的句子，造成了两个并列的宾语从句的分裂（分裂结构）), and（这里和前面的that并列，因此这里也是state所陈述的内容） that one issue it <strong>wants</strong> to evaluate（这里是主主谓谓it <strong>wants</strong> to evaluate是从句，是定语从句，这里的that可以省略，因为这个that做的是宾语，不做主语就可以省略） <strong>is</strong> whether it <strong>should</strong> “reconsider” its State Street Bank ruling.</p>
+</blockquote>
+<hr>
+<ul>
+<li>in the grips of sth 控制在…手中</li>
+<li>hostility 敌意 hostile 怀有敌意的</li>
+<li>hospitality 殷情 hospitable 好客的</li>
+<li>militant a 好战的<br><img src="/images/2022-08-21-17-07-50.png"></li>
+<li>promise 可以做潜力，希望的意思</li>
+</ul>
+<hr>
+<h1 id="Railroads"><a href="#Railroads" class="headerlink" title="Railroads"></a>Railroads</h1><blockquote>
+<p>Railroads justify（证明…合理） rate（比率，也可以做价格的意思） discrimination against(against sb 反对某人，这里是针对某人) captive shippers（受限托运商） on the grounds（以…根据） that(同位语从句) in the long run（长期看来） it reduces everyone’s cost</p>
+</blockquote>
+<pre><code>- against 这里做 **针对**
+- rate 价格
+- on the grounds 基于...  以...为根据
+</code></pre>
+<p><img src="/images/2022-08-22-11-31-42.png"></p>
+<hr>
+<h2 id="Shielded"><a href="#Shielded" class="headerlink" title="Shielded"></a>Shielded</h2><blockquote>
+<p>Shielded by third-party payers(付款人) from the cost of our care, we demand everything that can possibly be done for us, even if it’s useless</p>
+</blockquote>
+<pre><code>- Shielded...from 保护...
+- Shielded...off 避开，挡开...
+</code></pre>
+<p><img src="/images/2022-08-22-13-26-20.png"></p>
+<hr>
+<p><img src="/images/2022-08-22-14-20-12.png"></p>
+<ul>
+<li>while状语从句，主语一致，从句的动词可以直接用ing形式</li>
+</ul>
+<hr>
+<h2 id="The-emphasis"><a href="#The-emphasis" class="headerlink" title="The emphasis"></a>The emphasis</h2><blockquote>
+<p>The emphasis（on是介词短语做后置定语） on data gathered(非谓语做后置定语，这里是修饰data的,被收集的) first hand, combined(伴随状语) with a cross-cultural perspective brought(非谓语做后置定语，修饰perspective，被带来的) to the analysis of cultures past and persent, makes(真正的动词) <strong>this study</strong>（宾语） a unique and distinctly important social science （宾补）.</p>
+</blockquote>
+<ul>
+<li>动词后面多个名词是可以的，是宾补，修饰前面的宾语<br><img src="/images/2022-08-22-14-59-01.png"></li>
+</ul>
+<hr>
+<h2 id="Shortlists"><a href="#Shortlists" class="headerlink" title="Shortlists"></a>Shortlists</h2><p>Shortlists for job interviews, election ballot papers, lists of conference speakers and attendees: all tend to be drawn up alphabetically, and（并列两个简单句） their recipents lose interest as they plough through them</p>
+<pre><code>- Shortlists n 入围名单， v 把什么列入名单
+- ballot n 选举 v 投票
+- draw up 起草
+- alphabetically 按字母顺序的
+- plough through 费劲地阅读
+</code></pre>
+<p>: 一般是解释说明前面，和all是相同的，同位语<br><img src="/images/2022-08-23-12-16-35.png"></p>
+<hr>
 ]]></content>
       <tags>
         <tag>English</tag>
       </tags>
   </entry>
   <entry>
-    <title>定语从句省略</title>
-    <url>/2022/08/21/%E5%AE%9A%E8%AF%AD%E4%BB%8E%E5%8F%A5%E7%9C%81%E7%95%A5/</url>
-    <content><![CDATA[<ul>
-<li><p><a href="#%E5%AE%9A%E8%AF%AD%E4%BB%8E%E5%8F%A5%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%8F%AF%E4%BB%A5%E7%9C%81%E7%95%A5">定从that省略</a></p>
-</li>
-<li><p><a href="#%E6%B3%A8%E6%84%8F%E8%BF%99%E4%B8%AA%E5%8E%9F%E5%88%99%E5%90%8C%E6%A0%B7%E9%80%82%E7%94%A8%E4%BA%8E%E5%85%B3%E7%B3%BB%E8%AF%8D%E4%B8%BA-who-%E5%92%8C-which%E7%9A%84%E5%AE%9A%E8%AF%AD%E4%BB%8E%E5%8F%A5">定从who和which省略</a></p>
-</li>
-<li><p><a href="#%E5%88%A4%E6%96%AD">判断</a></p>
-<h1 id="定语从句什么时候可以省略"><a href="#定语从句什么时候可以省略" class="headerlink" title="定语从句什么时候可以省略"></a>定语从句什么时候可以省略</h1></li>
-<li><p>定语从句本质上是一个<strong>形容词</strong>，修饰名词。从句子的树形结构出发，任何定语从句可以被拆分成两个句子。</p>
+    <title>宾语补足语</title>
+    <url>/2022/08/22/%E5%AE%BE%E8%AF%AD%E8%A1%A5%E8%B6%B3%E8%AF%AD/</url>
+    <content><![CDATA[<h1 id="有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语"><a href="#有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语" class="headerlink" title="有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语"></a>有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语</h1><ul>
+<li>本质上来说后面的名词也是修饰前面的名词的<ul>
+<li>名词做宾补<blockquote>
+<p>eg: I think the job a great honor. 我认为这份工作是一份荣誉</p>
+</blockquote>
 </li>
 </ul>
-<blockquote>
-<p>eg: The cat that is eating an apple has a cute head.<br>这里拆分<br><img src="/images/2022-08-21-15-06-03.png"></p>
-</blockquote>
-<p><strong>注意看，这里的that扮演的是从句的主语部分</strong></p>
-<blockquote>
-<p>eg:  The cat that I bought has a cute head.<br>这里拆分<br><img src="/images/2022-08-21-15-06-59.png"></p>
-</blockquote>
-<p><strong>注意看，这里的that是从句的宾语部分，这里的that可以省略</strong></p>
-<h2 id="summary："><a href="#summary：" class="headerlink" title="summary："></a>summary：</h2><h3 id="当that只有在从句中扮演宾语时，这个that就可以省略，否则不可省略"><a href="#当that只有在从句中扮演宾语时，这个that就可以省略，否则不可省略" class="headerlink" title="当that只有在从句中扮演宾语时，这个that就可以省略，否则不可省略"></a>当that只有在从句中扮演宾语时，这个that就可以省略，否则不可省略</h3><blockquote>
-<p>The cat that is eating an apple has a cute head.<br>The cat I bought has a cute head.</p>
-</blockquote>
-<h1 id="注意，这个原则同样适用于关系词为-who-和-which的定语从句。"><a href="#注意，这个原则同样适用于关系词为-who-和-which的定语从句。" class="headerlink" title="注意，这个原则同样适用于关系词为 who 和 which的定语从句。"></a>注意，这个原则同样适用于关系词为 who 和 which的定语从句。</h1><blockquote>
-<p>eg: The man who once saved my life is speaking.<br>eg: The man whom you saw on the street once saved my life.</p>
-</blockquote>
-<p>这里的who可以换成whom，因为做宾语，更进一步，这里的whom可以省略，因为这个是定语从句，whom做的宾语</p>
-<blockquote>
-<p>eg: The man you saw on the street once saved my life.</p>
-</blockquote>
-<h1 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h1><p>如果关系代词（that、which、who）后面直接跟的是动词，则关系代词做主语，即不可省略。如果不是动词，那么可以直接省略。</p>
-<blockquote>
-<p>eg：The picture which caused the sensation is on exhibition.</p>
-</blockquote>
-<p>(which 后面紧跟动词 caused，在从句中作主语，不可省略)</p>
-<blockquote>
-<p>eg：The picture that I drew last year is on exhibition.<br>(that 后面紧跟的不是动词，因此可以省略 that)</p>
-</blockquote>
+</li>
+</ul>
 ]]></content>
       <tags>
         <tag>English</tag>
