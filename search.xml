@@ -2030,6 +2030,19 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
 <blockquote>
 <p>eg：The picture that I drew last year is on exhibition.<br>(that 后面紧跟的不是动词，因此可以省略 that)</p>
 </blockquote>
+<h2 id="定语从句和名词性从句的区别"><a href="#定语从句和名词性从句的区别" class="headerlink" title="定语从句和名词性从句的区别"></a>定语从句和名词性从句的区别</h2><blockquote>
+<p>名词性从句(Noun clause)是在句子中起<strong>名词</strong>作用的句子。 名词性从句的功能相当于名词词组， 它在复合句中能担任主语、宾语、表语、同位语、介词宾语等，因此根据它在句中不同的语法功能，名词性从句又可分别称为<strong>主语从句、宾语从句、表语从句和同位语从句</strong>。</p>
+</blockquote>
+<ol>
+<li><p>第一，定语从句有先行词，且先行词可以放入后面的从句中使从句完整；</p>
+</li>
+<li><p>第二，名词从句的功能相当于名词词组，在复合句中可担任主语、宾语、同位语等，在句中有不同的语法功能；</p>
+</li>
+<li><p>第三，名词从句相当于名词，而定语从句相当于形容词，修饰或限定名词和代词；</p>
+</li>
+<li><p>第四，定语从句在句中只做定语，即使去掉句子也还完整，而名词性从句充当句子的骨干成分，不可去掉。</p>
+</li>
+</ol>
 ]]></content>
       <tags>
         <tag>English</tag>
@@ -2474,10 +2487,11 @@ int main(int argc, const char * argv[]) &#123;
 <li><a href="#Railroads">Railroads…</a></li>
 <li><a href="#shortlists">Shortlists…</a></li>
 <li><a href="#the-emphasis">The emphasis…</a></li>
-</ul>
-<h2 id="Despite"><a href="#Despite" class="headerlink" title="Despite"></a>Despite</h2><blockquote>
+<li><a href="#whether">whether…</a><h2 id="Despite"><a href="#Despite" class="headerlink" title="Despite"></a>Despite</h2><blockquote>
 <p>当状语从句的主语和主句的主语一致时,从句可以将主语和be动词简化掉（只能从句动词是be才可以）</p>
 </blockquote>
+</li>
+</ul>
 <blockquote>
 <p>Despite a spell of initial optimism in the 1960s and 1970s when it appeared that transistor circuits and microprocessors might be able to copy the action of human brain by the year 2010, researchers lately have begun to extend that forecast by decades if (researchers are) not centuries </p>
 </blockquote>
@@ -2523,7 +2537,7 @@ by decades 几十年
 <li>promise 可以做潜力，希望的意思</li>
 </ul>
 <hr>
-<h1 id="Railroads"><a href="#Railroads" class="headerlink" title="Railroads"></a>Railroads</h1><blockquote>
+<h2 id="Railroads"><a href="#Railroads" class="headerlink" title="Railroads"></a>Railroads</h2><blockquote>
 <p>Railroads justify（证明…合理） rate（比率，也可以做价格的意思） discrimination against(against sb 反对某人，这里是针对某人) captive shippers（受限托运商） on the grounds（以…根据） that(同位语从句) in the long run（长期看来） it reduces everyone’s cost</p>
 </blockquote>
 <pre><code>- against 这里做 **针对**
@@ -2567,9 +2581,118 @@ by decades 几十年
 <li><p>determinism 决定论<br><img src="/images/2022-08-24-19-19-01.png"></p>
 </li>
 </ul>
+<hr>
+<h2 id="whether"><a href="#whether" class="headerlink" title="whether"></a>whether</h2><p>主语从句做主语</p>
+<blockquote>
+<p>However, whether such a sense of fairness evolved independently in capuchins and humans, or whether it stems from the common ancestor that the species had 35 million years ago, is, as yet, an unanswered question<br>        - whether引导的两个并列主语从句做is的主语<br>eg: What she said is </p>
+</blockquote>
+<p><img src="/images/2022-08-24-21-24-32.png"></p>
 ]]></content>
       <tags>
         <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>主语从句</title>
+    <url>/2022/08/24/%E4%B8%BB%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
+    <content><![CDATA[<h2 id="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"><a href="#主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾" class="headerlink" title="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"></a>主语从句：<strong>在句子中担当主语的是一个从句</strong>，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾</h2><blockquote>
+<p>主语从句使用陈述语序，其通常结构为“引导词 + 主语 + 谓语 + 其他成分”；</p>
+</blockquote>
+<ol>
+<li><p>that</p>
+<ul>
+<li>That you are coming to London is the best news(定从，做从句宾语可以省略) I have heard this long time.<blockquote>
+<p>一般来说会用形式主语it来代替主语，真正的主语放后面</p>
+</blockquote>
+</li>
+<li>It is the best news I have heard this long time that you are coming to London </li>
+</ul>
+</li>
+<li><p>whether引导</p>
+<ul>
+<li>Whether they would support us was a problem</li>
+<li>However, whether such a sense of fairness evolved independently in capuchins and humans, or whether it stems from the common ancestor that the species had 35 million years ago, is, as yet, an unanswered question<ul>
+<li>whether引导的两个并列主语从句做is的主语</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>连接代词引导</p>
+<blockquote>
+<p>例句：Whoever is top from wins the game when two matched players meet. 两强相争勇者胜。</p>
+</blockquote>
+</li>
+<li><p>连接副词引导</p>
+<blockquote>
+<p>例句：How this happended is not clear to anyone. 这件事怎样发生的，谁也不清楚。</p>
+</blockquote>
+</li>
+<li><p>关系代词型what引导</p>
+<blockquote>
+<p>例句：What struck me was that they have all suffered a lot. 给我很深印象的是他们都受过很多苦。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="二、主语从句与形式主语it"><a href="#二、主语从句与形式主语it" class="headerlink" title="二、主语从句与形式主语it"></a>二、主语从句与形式主语it</h2><ol>
+<li>对于以连词that引导的主语从句，通常用形式主语代主语从句：</li>
+</ol>
+<p>例句：That they should refuse to sign the petition required great courage. 他们拒绝在请愿书上签字这是需要很大勇气的。</p>
+<ol start="2">
+<li>对于以连接代词(副词)引导的主语从句，可以使用形式主语代主语从句，也可直接在句首使用主语从句：</li>
+</ol>
+<p>例句：Whether they would support us was a problem. 他们是否会支持我们还是一个问题。</p>
+<ol start="3">
+<li>对关系代词型what引导的主语从句，通常直接将主语从句放在句首。</li>
+</ol>
+<p>例句：What I want to know is this. 我想知道的就是这一点。</p>
+<p>有时也可将助用形式主语。</p>
+<p>例句：It is clear enough what he meant. 他是什么意思很清楚。</p>
+<ol start="4">
+<li>如果句子是疑问句，则必须用带形式主语it的结构：</li>
+</ol>
+<p>例句：Is it true that he is the girl’s father? 他是那女孩的父亲，是真的吗?</p>
+<h2 id="三、连词that的省略问题"><a href="#三、连词that的省略问题" class="headerlink" title="三、连词that的省略问题"></a>三、连词that的省略问题</h2><blockquote>
+<p>引导主语从句的连词that 有时可省，有时不能省，其原则是：若that引导的主语从句直接位于句首，则that不能省略；若that引导的主语从句位于句末，而在句首使用了形式主语it，则that可以省略：</p>
+</blockquote>
+<pre><code>&gt; 例句：That you didn’t go to the talk was a pity. 很遗憾你没去听报告。(that不可省)
+
+&gt; 例句：It was a pity (that) you didn’t go to the talk. 很遗憾你没去听报告。(that可省)
+</code></pre>
+]]></content>
+      <tags>
+        <tag>Enlish</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>字节对齐</title>
+    <url>/2022/08/25/%E5%AD%97%E8%8A%82%E5%AF%B9%E9%BD%90/</url>
+    <content><![CDATA[<ul>
+<li>结构体变量的首地址能够被其最宽基本类型成员的大小所整除；</li>
+<li>结构体每个成员相对于结构体首地址的偏移量（offset）都是成员大小的整数倍，如有需要编译器会在成员之间加上填充字节（internal padding）；</li>
+<li>结构体的总大小为结构体最宽基本类型成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节（trailing padding）</li>
+</ul>
+<p>比如</p>
+<pre><code>struct student
+&#123;
+    char name[5];
+    int num;
+    short score;
+&#125;
+</code></pre>
+<p>|char|char|char|char|<br>|char|—-|—-|—-|<br>|——–int——–|<br>|–short–|—-|—-|</p>
+<p>本来只用了11bytes（5+4+2）的空间，但是由于int型默认4字节对齐，存放在地址能被4整除的起始位置，即：如果name[5]从0开始存放，它占5bytes，而num则从第8(<strong>因为int是4，开始存的位置必须要可以整除4</strong>)（偏移量）个字节开始存放。所以sizeof(student)=16。于是中间空出几个字节闲置着。但这样便于计算机快速读写数据，是一种以空间换取时间的方式。其数据对齐如下图：</p>
+<p>作者：安然_fc00<br>链接：<a href="https://www.jianshu.com/p/c42599622c31">https://www.jianshu.com/p/c42599622c31</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<pre><code>struct student
+&#123;
+    int num;
+    char name[5];
+    short score;
+&#125;
+</code></pre>
+<p>num从0开始存放，而name从第4（偏移量）个字节开始存放，连续5个字节，score从第10（偏移量）开始存放，故sizeof(student)=12。其数据对齐如下图：<br>|——–int——–|<br>|char|char|char|char|<br>|char|—-|–short–|</p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
 </search>
