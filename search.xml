@@ -59,15 +59,6 @@ I will try figure out by myself, then i will ask sometjiogn  -->
       </tags>
   </entry>
   <entry>
-    <title>DBSCAN</title>
-    <url>/2022/01/06/DBSCAN/</url>
-    <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
-]]></content>
-      <tags>
-        <tag>DBSCAN</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Context-Aware Attentional Graph U-Net for Hyperspectral Image Classification</title>
     <url>/2021/03/31/CAGU/</url>
     <content><![CDATA[<p><img src="/images/2_author.jpg"> </p>
@@ -94,89 +85,20 @@ I will try figure out by myself, then i will ask sometjiogn  -->
       </tags>
   </entry>
   <entry>
-    <title>C++</title>
-    <url>/2022/01/13/C/</url>
-    <content><![CDATA[<blockquote>
-<p>静态函数不能访问非静态变量<br>static method cannot access non-static variables<br>静态函数不会被实例化（不存在对象），就像是写在类外部的函数一样</p>
+    <title>Conv-MPN</title>
+    <url>/2022/06/17/Conv-MPN/</url>
+    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
+<li><a href="#">corner_detection</a><blockquote>
+<p>concatenate </p>
 </blockquote>
-<pre><code>static void Print(classname e)&#123;
-
-    std::cout&lt;&lt;e.x &lt;&lt; std::endl;
-&#125;
-&#39;&#39;&#39;
-&gt;临时变量作为非const的引用进行参数传递引发的编译错误_mlove编程-程序员宝宝
-技术标签： QT  qt  string  linux  
-
-1.错误原因即解决办法
-Linux环境运行，使用g++编译，观察如下代码，会出现： invalid initialization of non-const reference of type ‘std::string&amp;’ from a temporary of type ‘std::string’的错误。
-
-其中文意思为临时变量无法为非const的引用初始化。也就是在参数传递的过程中，出现错误。出错的代码如下
-</code></pre>
-<p>void print(string&amp; str)<br>{<br>    cout&lt;&lt;str&lt;&lt;endl;<br>}<br>//如此调用会报上面描述的错误</p>
-<pre><code>print(&quot;hello world&quot;);
-
-
-出错的原因是编译器根据字符串”hello world”构造一个string类型的临时对象，这个临时对象具有const属性。当这个临时对象传递给非const的string&amp;引用类型时，因为非const引用绑定对象时，要求该对象也是非const对象。而在这时，因为string类型的临时对象是const对象，所以就出现错误。因此，解决办法就是将print()函数的参数改为常引用。代码修改如下，可顺利通过编译。
-
-void print(const string&amp; str)
-&#123;
-    cout&lt;&lt;str&lt;&lt;endl;
-&#125;
-//顺利通过编译
-print(&quot;hello world&quot;);
-通过以上代码，也可以看出Effective C++中倡导的一个C++的编程原则，即尽可能的使用const。因为这样可以使代码更为健壮，将错误暴露于编译阶段。
-
-2.所有的临时对象都是const对象吗
-为什么临时对象作为引用参数传递时，必须是常量引用呢？很多人对此的解释是临时对象是常量，不允许赋值改动，所以作为非常量引用传递时，编译器就会报错。这个解释在关于理解临时对象不能作为非const引用参数这个问题上是可以的，但不够准确。更有甚者，认为所有的临时对象均是const对象，因此，对于网上的观点和资源我们应该持着谨慎怀疑的态度去接受学习，应该坚持鲁迅先生倡导的”拿来主义”，应该批判参考和借鉴。
-
-事实上，临时变量是可以被作为左值(LValue) 并被赋值的，请看下面的代码：
-
-class IntClass&#123;
-private:
-    int x;
-public:
-    IntClass(int value):x(value)&#123;
-    &#125;
-
-    friend  ostream&amp; operator&lt;&lt;( ostream &amp;os, const IntClass &amp;intc);
-&#125;;
-
-//重载输出operator&lt;&lt;
-ostream&amp; operator&lt;&lt;( ostream &amp;os, const IntClass &amp;intc)
-&#123;
-    os&lt;&lt;intc.x;
-    return os;
-&#125;
-
-//打印函数
-void print(IntClass &amp; intc)
-&#123;
-    cout&lt;&lt;intc&lt;&lt;endl;
-    //通过引用修改这个临时对象
-    intc=8;
-    cout&lt;&lt;intc&lt;&lt;endl;
-&#125;
-
-int main(int argc,char* argv[])
-&#123;
-    print(IntClass(6));
-&#125;
-程序输出：
-6
-8
-
-以上代正确编译运行，没有错误。IntClass(6)表示生成一个无名的临时对象，传递给非const引用，在print函数中通过引用修改了这个临时对象。这说明了并非所有的临时对象都是const对象。
-
-那哪些临时对象是const对象，哪些临时对象不是const对象呢？这里贴上摘自网上的一句话：“内置类型产生的临时变量具有常性，而自定义类型产生的临时变量不具有常性”，我想这句话能解释你所谓的临时变量为什么能作为左值的原因。
-
-int* const a = new int;
-这个不能修改指针a, 如 a = &amp;b; 报错
-const int* a = new int; int const* a = new int; 这两个相同，看const的位置
-这个不能修改指针a指向的内容， *a = 2; 报错 
-</code></pre>
+</li>
+</ul>
+<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
+<p>mask_rcnn extracts corner points.</p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>C++</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -210,12 +132,12 @@ static const int a = 1;
       </tags>
   </entry>
   <entry>
-    <title>FLOPs</title>
-    <url>/2022/06/26/FLOPs/</url>
-    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
+    <title>DBSCAN</title>
+    <url>/2022/01/06/DBSCAN/</url>
+    <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
 ]]></content>
       <tags>
-        <tag>FLOPs</tag>
+        <tag>DBSCAN</tag>
       </tags>
   </entry>
   <entry>
@@ -226,200 +148,6 @@ static const int a = 1;
       <tags>
         <tag>RL</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Short-term prediction of stock market price based on GA optimization LSTM neurons</title>
-    <url>/2021/04/01/GA/</url>
-    <content><![CDATA[<p><img src="/images/3_1.jpg"> </p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">Long-Short Term Memory Network stands out from the financial sector due to its long-term memory predictability, however, the speed of subsequent operations is extremely slow, and the timeliness of the inability to meet market changes has been criticized. In this paper. Aiming at the shortcomings of the slow running of three gates in each neuron of LSTM in back propagation, we1 propose to use GA to optimize the internal weights of LSTM neurons to optimize the defect. In this experiment, GA optimization could not change the accuracy of the model, but it achieved better results than the original LSTM in terms of speed, and satisfied the demand of the future business field for rapid response to market changes in terms of timeliness.
-</blockquote>
-<h1 id="LSTM-Architecture"><a href="#LSTM-Architecture" class="headerlink" title="LSTM Architecture :"></a>LSTM Architecture :</h1><p>  <img src="/images/3_2.jpg"> </p>
-<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/3_3.jpg"> </p>
-<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">This paper proposes a GA optimization method for LSTM neurons. By comparing the running time of predecessor models, it is possible to overcome the shortcomings of slow operation of LSTM to a certain extent by optimizing the internal weight of neurons through GA update.
-<p style="text-align:justify; text-justify:inter-ideograph; color:black"> In addition, this article does not discuss the generalization ability of the network and other parameters of the network at the same time. The research purpose is too single. However, for the short-term prediction of financial markets, the importance of research on the timeliness and advancing of the model is much higher than that of the generalized network model
-</blockquote>
-<hr>
-<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2018 2nd International Conference on Deep Learning Technologies"></a>Conference : 2018 2nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/3_4.jpg"> </p>
-<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> This paper was published a long time ago, and it is not perfect from my current point of view.<br>
-<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>GA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Conv-MPN</title>
-    <url>/2022/06/17/Conv-MPN/</url>
-    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
-<li><a href="#">corner_detection</a><blockquote>
-<p>concatenate </p>
-</blockquote>
-</li>
-</ul>
-<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
-<p>mask_rcnn extracts corner points.</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Homogeneous</title>
-    <url>/2022/01/26/Homogeneous/</url>
-    <content><![CDATA[<p><img src="/images/homogeneous.png"> </p>
-]]></content>
-      <tags>
-        <tag>3D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MATI-Regression</title>
-    <url>/2021/11/02/MATI-Regression/</url>
-    <content><![CDATA[
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-
-<h1 id="L1-amp-L2-regularization"><a href="#L1-amp-L2-regularization" class="headerlink" title="L1 &amp; L2 regularization"></a>L1 &amp; L2 regularization</h1>
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>MTAI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MC</title>
-    <url>/2022/03/19/MC/</url>
-    <content><![CDATA[<p><img src="/images/MC.png">  </p>
-]]></content>
-      <tags>
-        <tag>RL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hierarchical</title>
-    <url>/2021/12/02/Hierarchical/</url>
-    <content><![CDATA[<blockquote>
-<p>层次聚类算法 各种linkage</p>
-</blockquote>
-<p>基本工作原理<br>给定要聚类的N的对象以及N*N的距离矩阵(或者是相似性矩阵), 层次式聚类方法的基本步骤(参看S.C. Johnson in 1967)如下:</p>
-<ol>
-<li><pre><code>将每个对象归为一类, 共得到N类, 每类仅包含一个对象. 类与类之间的距离就是它们所包含的对象之间的距离.
-</code></pre>
-</li>
-<li><pre><code>找到最接近的两个类并合并成一类, 于是总的类数少了一个.
-</code></pre>
-</li>
-<li><pre><code>重新计算新的类与所有旧类之间的距离.
-</code></pre>
-</li>
-<li><pre><code>重复第2步和第3步, 直到最后合并成一个类为止(此类包含了N个对象).
-</code></pre>
-<p>根据步骤3的不同, 可将层次式聚类方法分为几类: single-linkage, complete-linkage 以及 average-linkage 聚类方法等.</p>
-</li>
-</ol>
-<p>single-linkage 聚类法(也称 connectedness 或 minimum 方法)：</p>
-<p>类间距离等于两类对象之间的最小距离，若用相似度衡量，则是各类中的任一对象与另一类中任一对象的最大相似度。</p>
-<p>complete-linkage 聚类法 (也称 diameter 或 maximum 方法)：</p>
-<p>组间距离等于两组对象之间的最大距离。</p>
-<p>average-linkage 聚类法：</p>
-<p>组间距离等于两组对象之间的平均距离。</p>
-<p>average-link 聚类的一个变种是R. D’Andrade (1978) 的UCLUS方法, 它使用的是median距离, 在受异常数据对象的影响方面, 它要比平均距离表现更佳一些.</p>
-<p>这种层次聚类称为“凝聚”法，由于它迭代合并所有分类。也有一种“划分”层次聚类法，与“凝聚”相反，它先将所有对象放在同一类中，并不断划分成更小的类，划分法一般很少使用。</p>
-<p>整个聚类过程其实是建立了一棵树，在建立的过程中，可以通过在第二步上设置一个阈值，当最近的两个类的距离大于这个阈值，则认为迭代可以终止。另外关键的一步就是第三步，如何判断两个类之间的相似度有不少种方法。这里介绍一下三种：</p>
-<p>SingleLinkage：又叫做 nearest-neighbor ，就是取两个类中距离最近的两个样本的距离作为这两个集合的距离，也就是说，最近两个样本之间的距离越小，这两个类之间的相似度就越大。容易造成一种叫做 Chaining 的效果，两个 cluster 明明从“大局”上离得比较远，但是由于其中个别的点距离比较近就被合并了，并且这样合并之后 Chaining 效应会进一步扩大，最后会得到比较松散的 cluster 。</p>
-<p>CompleteLinkage：这个则完全是 Single Linkage 的反面极端，取两个集合中距离最远的两个点的距离作为两个集合的距离。其效果也是刚好相反的，限制非常大，两个 cluster 即使已经很接近了，但是只要有不配合的点存在，就顽固到底，老死不相合并，也是不太好的办法。这两种相似度的定义方法的共同问题就是指考虑了某个有特点的数据，而没有考虑类内数据的整体特点。</p>
-<p>Average-linkage：这种方法就是把两个集合中的点两两的距离全部放在一起求一个平均值，相对也能得到合适一点的结果。</p>
-<p>average-linkage的一个变种就是取两两距离的中值，与取均值相比更加能够解除个别偏离样本对结果的干扰。</p>
-
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/cluster.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>culster</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RL3ways</title>
-    <url>/2022/03/20/RL3ways/</url>
-    <content><![CDATA[
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/RL3.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>RL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Likelihood2</title>
-    <url>/2022/02/24/Likelihood2/</url>
-    <content><![CDATA[<blockquote>
-<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为=》最大概率处l=0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Likelihood</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Monte</title>
-    <url>/2022/03/17/Monte/</url>
-    <content><![CDATA[<blockquote>
-<p>引入概率密度函数的蒙特卡洛公式推导，是把p(x) 看作前面分数的密度概率函数，也就是对前面分数求期望，而期望可以通过对p（x）采样并平均得到<br><img src="/images/MCMC.png">  </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>TF-IDF</title>
-    <url>/2022/01/04/TF-IDF/</url>
-    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Theory</title>
-    <url>/2021/12/01/Theory/</url>
-    <content><![CDATA[<h1 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h1>
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/probability.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
   </entry>
   <entry>
     <title>English-Sentences</title>
@@ -572,6 +300,106 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>FLOPs</title>
+    <url>/2022/06/26/FLOPs/</url>
+    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
+]]></content>
+      <tags>
+        <tag>FLOPs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Homogeneous</title>
+    <url>/2022/01/26/Homogeneous/</url>
+    <content><![CDATA[<p><img src="/images/homogeneous.png"> </p>
+]]></content>
+      <tags>
+        <tag>3D</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Short-term prediction of stock market price based on GA optimization LSTM neurons</title>
+    <url>/2021/04/01/GA/</url>
+    <content><![CDATA[<p><img src="/images/3_1.jpg"> </p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">Long-Short Term Memory Network stands out from the financial sector due to its long-term memory predictability, however, the speed of subsequent operations is extremely slow, and the timeliness of the inability to meet market changes has been criticized. In this paper. Aiming at the shortcomings of the slow running of three gates in each neuron of LSTM in back propagation, we1 propose to use GA to optimize the internal weights of LSTM neurons to optimize the defect. In this experiment, GA optimization could not change the accuracy of the model, but it achieved better results than the original LSTM in terms of speed, and satisfied the demand of the future business field for rapid response to market changes in terms of timeliness.
+</blockquote>
+<h1 id="LSTM-Architecture"><a href="#LSTM-Architecture" class="headerlink" title="LSTM Architecture :"></a>LSTM Architecture :</h1><p>  <img src="/images/3_2.jpg"> </p>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/3_3.jpg"> </p>
+<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">This paper proposes a GA optimization method for LSTM neurons. By comparing the running time of predecessor models, it is possible to overcome the shortcomings of slow operation of LSTM to a certain extent by optimizing the internal weight of neurons through GA update.
+<p style="text-align:justify; text-justify:inter-ideograph; color:black"> In addition, this article does not discuss the generalization ability of the network and other parameters of the network at the same time. The research purpose is too single. However, for the short-term prediction of financial markets, the importance of research on the timeliness and advancing of the model is much higher than that of the generalized network model
+</blockquote>
+<hr>
+<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2018 2nd International Conference on Deep Learning Technologies"></a>Conference : 2018 2nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/3_4.jpg"> </p>
+<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> This paper was published a long time ago, and it is not perfect from my current point of view.<br>
+<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>GA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MATI-Regression</title>
+    <url>/2021/11/02/MATI-Regression/</url>
+    <content><![CDATA[
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+
+<h1 id="L1-amp-L2-regularization"><a href="#L1-amp-L2-regularization" class="headerlink" title="L1 &amp; L2 regularization"></a>L1 &amp; L2 regularization</h1>
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+      <tags>
+        <tag>MTAI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Likelihood2</title>
+    <url>/2022/02/24/Likelihood2/</url>
+    <content><![CDATA[<blockquote>
+<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为=》最大概率处l=0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Likelihood</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MC</title>
+    <url>/2022/03/19/MC/</url>
+    <content><![CDATA[<p><img src="/images/MC.png">  </p>
+]]></content>
+      <tags>
+        <tag>RL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Monte</title>
+    <url>/2022/03/17/Monte/</url>
+    <content><![CDATA[<blockquote>
+<p>引入概率密度函数的蒙特卡洛公式推导，是把p(x) 看作前面分数的密度概率函数，也就是对前面分数求期望，而期望可以通过对p（x）采样并平均得到<br><img src="/images/MCMC.png">  </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>machine</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>STL</title>
     <url>/2022/07/06/STL/</url>
     <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
@@ -626,6 +454,173 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>Hierarchical</title>
+    <url>/2021/12/02/Hierarchical/</url>
+    <content><![CDATA[<blockquote>
+<p>层次聚类算法 各种linkage</p>
+</blockquote>
+<p>基本工作原理<br>给定要聚类的N的对象以及N*N的距离矩阵(或者是相似性矩阵), 层次式聚类方法的基本步骤(参看S.C. Johnson in 1967)如下:</p>
+<ol>
+<li><pre><code>将每个对象归为一类, 共得到N类, 每类仅包含一个对象. 类与类之间的距离就是它们所包含的对象之间的距离.
+</code></pre>
+</li>
+<li><pre><code>找到最接近的两个类并合并成一类, 于是总的类数少了一个.
+</code></pre>
+</li>
+<li><pre><code>重新计算新的类与所有旧类之间的距离.
+</code></pre>
+</li>
+<li><pre><code>重复第2步和第3步, 直到最后合并成一个类为止(此类包含了N个对象).
+</code></pre>
+<p>根据步骤3的不同, 可将层次式聚类方法分为几类: single-linkage, complete-linkage 以及 average-linkage 聚类方法等.</p>
+</li>
+</ol>
+<p>single-linkage 聚类法(也称 connectedness 或 minimum 方法)：</p>
+<p>类间距离等于两类对象之间的最小距离，若用相似度衡量，则是各类中的任一对象与另一类中任一对象的最大相似度。</p>
+<p>complete-linkage 聚类法 (也称 diameter 或 maximum 方法)：</p>
+<p>组间距离等于两组对象之间的最大距离。</p>
+<p>average-linkage 聚类法：</p>
+<p>组间距离等于两组对象之间的平均距离。</p>
+<p>average-link 聚类的一个变种是R. D’Andrade (1978) 的UCLUS方法, 它使用的是median距离, 在受异常数据对象的影响方面, 它要比平均距离表现更佳一些.</p>
+<p>这种层次聚类称为“凝聚”法，由于它迭代合并所有分类。也有一种“划分”层次聚类法，与“凝聚”相反，它先将所有对象放在同一类中，并不断划分成更小的类，划分法一般很少使用。</p>
+<p>整个聚类过程其实是建立了一棵树，在建立的过程中，可以通过在第二步上设置一个阈值，当最近的两个类的距离大于这个阈值，则认为迭代可以终止。另外关键的一步就是第三步，如何判断两个类之间的相似度有不少种方法。这里介绍一下三种：</p>
+<p>SingleLinkage：又叫做 nearest-neighbor ，就是取两个类中距离最近的两个样本的距离作为这两个集合的距离，也就是说，最近两个样本之间的距离越小，这两个类之间的相似度就越大。容易造成一种叫做 Chaining 的效果，两个 cluster 明明从“大局”上离得比较远，但是由于其中个别的点距离比较近就被合并了，并且这样合并之后 Chaining 效应会进一步扩大，最后会得到比较松散的 cluster 。</p>
+<p>CompleteLinkage：这个则完全是 Single Linkage 的反面极端，取两个集合中距离最远的两个点的距离作为两个集合的距离。其效果也是刚好相反的，限制非常大，两个 cluster 即使已经很接近了，但是只要有不配合的点存在，就顽固到底，老死不相合并，也是不太好的办法。这两种相似度的定义方法的共同问题就是指考虑了某个有特点的数据，而没有考虑类内数据的整体特点。</p>
+<p>Average-linkage：这种方法就是把两个集合中的点两两的距离全部放在一起求一个平均值，相对也能得到合适一点的结果。</p>
+<p>average-linkage的一个变种就是取两两距离的中值，与取均值相比更加能够解除个别偏离样本对结果的干扰。</p>
+
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/cluster.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+      <tags>
+        <tag>culster</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TF-IDF</title>
+    <url>/2022/01/04/TF-IDF/</url>
+    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Theory</title>
+    <url>/2021/12/01/Theory/</url>
+    <content><![CDATA[<h1 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h1>
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/probability.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+  </entry>
+  <entry>
+    <title>VCDimension</title>
+    <url>/2022/02/10/VCDimension/</url>
+    <content><![CDATA[<blockquote>
+<p>注意这里的VC维度指的是只要存在一个不可分的点，比如四个点，一条直线存在无法分割的情况，那就VC维度就不是4，应该从3来看<br><img src="/images/CVDim.png"> </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++</title>
+    <url>/2022/01/13/C/</url>
+    <content><![CDATA[<blockquote>
+<p>静态函数不能访问非静态变量<br>static method cannot access non-static variables<br>静态函数不会被实例化（不存在对象），就像是写在类外部的函数一样</p>
+</blockquote>
+<pre><code>static void Print(classname e)&#123;
+
+    std::cout&lt;&lt;e.x &lt;&lt; std::endl;
+&#125;
+&#39;&#39;&#39;
+&gt;临时变量作为非const的引用进行参数传递引发的编译错误_mlove编程-程序员宝宝
+技术标签： QT  qt  string  linux  
+
+1.错误原因即解决办法
+Linux环境运行，使用g++编译，观察如下代码，会出现： invalid initialization of non-const reference of type ‘std::string&amp;’ from a temporary of type ‘std::string’的错误。
+
+其中文意思为临时变量无法为非const的引用初始化。也就是在参数传递的过程中，出现错误。出错的代码如下
+</code></pre>
+<p>void print(string&amp; str)<br>{<br>    cout&lt;&lt;str&lt;&lt;endl;<br>}<br>//如此调用会报上面描述的错误</p>
+<pre><code>print(&quot;hello world&quot;);
+
+
+出错的原因是编译器根据字符串”hello world”构造一个string类型的临时对象，这个临时对象具有const属性。当这个临时对象传递给非const的string&amp;引用类型时，因为非const引用绑定对象时，要求该对象也是非const对象。而在这时，因为string类型的临时对象是const对象，所以就出现错误。因此，解决办法就是将print()函数的参数改为常引用。代码修改如下，可顺利通过编译。
+
+void print(const string&amp; str)
+&#123;
+    cout&lt;&lt;str&lt;&lt;endl;
+&#125;
+//顺利通过编译
+print(&quot;hello world&quot;);
+通过以上代码，也可以看出Effective C++中倡导的一个C++的编程原则，即尽可能的使用const。因为这样可以使代码更为健壮，将错误暴露于编译阶段。
+
+2.所有的临时对象都是const对象吗
+为什么临时对象作为引用参数传递时，必须是常量引用呢？很多人对此的解释是临时对象是常量，不允许赋值改动，所以作为非常量引用传递时，编译器就会报错。这个解释在关于理解临时对象不能作为非const引用参数这个问题上是可以的，但不够准确。更有甚者，认为所有的临时对象均是const对象，因此，对于网上的观点和资源我们应该持着谨慎怀疑的态度去接受学习，应该坚持鲁迅先生倡导的”拿来主义”，应该批判参考和借鉴。
+
+事实上，临时变量是可以被作为左值(LValue) 并被赋值的，请看下面的代码：
+
+class IntClass&#123;
+private:
+    int x;
+public:
+    IntClass(int value):x(value)&#123;
+    &#125;
+
+    friend  ostream&amp; operator&lt;&lt;( ostream &amp;os, const IntClass &amp;intc);
+&#125;;
+
+//重载输出operator&lt;&lt;
+ostream&amp; operator&lt;&lt;( ostream &amp;os, const IntClass &amp;intc)
+&#123;
+    os&lt;&lt;intc.x;
+    return os;
+&#125;
+
+//打印函数
+void print(IntClass &amp; intc)
+&#123;
+    cout&lt;&lt;intc&lt;&lt;endl;
+    //通过引用修改这个临时对象
+    intc=8;
+    cout&lt;&lt;intc&lt;&lt;endl;
+&#125;
+
+int main(int argc,char* argv[])
+&#123;
+    print(IntClass(6));
+&#125;
+程序输出：
+6
+8
+
+以上代正确编译运行，没有错误。IntClass(6)表示生成一个无名的临时对象，传递给非const引用，在print函数中通过引用修改了这个临时对象。这说明了并非所有的临时对象都是const对象。
+
+那哪些临时对象是const对象，哪些临时对象不是const对象呢？这里贴上摘自网上的一句话：“内置类型产生的临时变量具有常性，而自定义类型产生的临时变量不具有常性”，我想这句话能解释你所谓的临时变量为什么能作为左值的原因。
+
+int* const a = new int;
+这个不能修改指针a, 如 a = &amp;b; 报错
+const int* a = new int; int const* a = new int; 这两个相同，看const的位置
+这个不能修改指针a指向的内容， *a = 2; 报错 
+</code></pre>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>across_loss</title>
     <url>/2022/03/29/across-loss/</url>
     <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
@@ -641,17 +636,6 @@ concorn
 ]]></content>
       <tags>
         <tag>apriori</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VCDimension</title>
-    <url>/2022/02/10/VCDimension/</url>
-    <content><![CDATA[<blockquote>
-<p>注意这里的VC维度指的是只要存在一个不可分的点，比如四个点，一条直线存在无法分割的情况，那就VC维度就不是4，应该从3来看<br><img src="/images/CVDim.png"> </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Machine</tag>
       </tags>
   </entry>
   <entry>
@@ -692,103 +676,19 @@ int main(int argc, const char* argv[])
       </tags>
   </entry>
   <entry>
-    <title>cudaMemPitch</title>
-    <url>/2022/06/28/cudaMemPitch/</url>
-    <content><![CDATA[<h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
-<p>cudaMallocPitch ( void** devPtr, size_t* pitch, size_t width, size_t height )<br>devPtr - Pointer to allocated pitched device memory<br>pitch - Pitch for allocation<br>width - Requested pitched allocation width (in bytes)<br>height - Requested pitched allocation height</p>
-</blockquote>
-<blockquote>
-<p>cudaError_t cudaMemcpy2D    (    void *     dst,<br>size_t     dpitch,<br>const void *     src,<br>size_t     spitch,<br>size_t     width,<br>size_t     height,<br>enum cudaMemcpyKind     kind<br>)    </p>
-</blockquote>
-<blockquote>
-<p>Parameters:<br>dst     - Destination memory address<br>dpitch     - Pitch of destination memory<br>src     - Source memory address<br>spitch     - Pitch of source memory<br>width     - Width of matrix transfer (columns in bytes)<br>height     - Height of matrix transfer (rows)<br>kind     - Type of transfer</p>
-</blockquote>
-<pre><code>`The spitch is different when cudaMemcpyKind is different`
+    <title>RL3ways</title>
+    <url>/2022/03/20/RL3ways/</url>
+    <content><![CDATA[
 
-#include&lt;stdio.h&gt;
-#include&lt;cuda.h&gt;
-#include&lt;cuda_runtime.h&gt;
-#include&lt;device_launch_parameters.h&gt;
-#include&lt;conio.h&gt;
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/RL3.pdf" width="100%" height="550" type="application/pdf">
+	</div>
 
-#define BLOCKSIZE_x 16
-#define BLOCKSIZE_y 16
 
-#define Nrows 3
-#define Ncols 5
 
-/*****************/
-/* CUDA MEMCHECK */
-/*****************/
-#define gpuErrchk(ans) &#123; gpuAssert((ans), __FILE__, __LINE__); &#125;
-
-inline void gpuAssert(cudaError_t code, char *file, int line, bool abort = true)
-&#123;
-    if (code != cudaSuccess)
-    &#123;
-        fprintf(stderr, &quot;GPUassert: %s %s %dn&quot;, cudaGetErrorString(code), file, line);
-        if (abort) &#123; getch(); exit(code); &#125;
-    &#125;
-&#125;
-
-/*******************/
-/* iDivUp FUNCTION */
-/*******************/
-int iDivUp(int hostPtr, int b)&#123; return ((hostPtr % b) != 0) ? (hostPtr / b + 1) : (hostPtr / b); &#125;
-
-/******************/
-/* TEST KERNEL 2D */
-/******************/
-__global__ void test_kernel_2D(float *devPtr, size_t pitch)
-&#123;
-    int    tidx = blockIdx.x*blockDim.x + threadIdx.x;
-    int    tidy = blockIdx.y*blockDim.y + threadIdx.y;
-
-    if ((tidx &lt; Ncols) &amp;&amp; (tidy &lt; Nrows))
-    &#123;
-        float *row_a = (float *)((char*)devPtr + tidy * pitch);
-        row_a[tidx] = row_a[tidx] * tidx * tidy;
-    &#125;
-&#125;
-
-/********/
-/* MAIN */
-/********/
-int main()
-&#123;
-    float hostPtr[Nrows][Ncols];
-    float *devPtr;
-    size_t pitch;
-
-    for (int i = 0; i &lt; Nrows; i++)
-        for (int j = 0; j &lt; Ncols; j++) &#123;
-            hostPtr[i][j] = 1.f;
-            //printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
-        &#125;
-
-    // --- 2D pitched allocation and host-&gt;device memcopy
-    gpuErrchk(cudaMallocPitch(&amp;devPtr, &amp;pitch, Ncols * sizeof(float), Nrows));
-    gpuErrchk(cudaMemcpy2D(devPtr, pitch, hostPtr, Ncols*sizeof(float), Ncols*sizeof(float), Nrows, cudaMemcpyHostToDevice));
-
-    dim3 gridSize(iDivUp(Ncols, BLOCKSIZE_x), iDivUp(Nrows, BLOCKSIZE_y));
-    dim3 blockSize(BLOCKSIZE_y, BLOCKSIZE_x);
-
-    test_kernel_2D &lt;&lt; &lt;gridSize, blockSize &gt;&gt; &gt;(devPtr, pitch);
-    gpuErrchk(cudaPeekAtLastError());
-    gpuErrchk(cudaDeviceSynchronize());
-
-    gpuErrchk(cudaMemcpy2D(hostPtr, Ncols * sizeof(float), devPtr, pitch, Ncols * sizeof(float), Nrows, cudaMemcpyDeviceToHost));
-
-    for (int i = 0; i &lt; Nrows; i++) 
-        for (int j = 0; j &lt; Ncols; j++) 
-            printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
-
-    return 0;    
-&#125;
-</code></pre>
 ]]></content>
       <tags>
-        <tag>cuda</tag>
+        <tag>RL</tag>
       </tags>
   </entry>
   <entry>
@@ -903,15 +803,121 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
       </tags>
   </entry>
   <entry>
-    <title>emotion_behind_your_money_habits</title>
-    <url>/2021/12/24/emotion-behind-your-money-habits/</url>
-    <content><![CDATA[<blockquote>
-<p>I’m good with numbers and using them to report what’s happening, but I’m also concerned with the full story behind those numbers, the part that gets lost in translation, the part that numbers can’t quite tell, the story that goes deeper than mere stratetgies for saving and earning money.</p>
+    <title>cudaMemPitch</title>
+    <url>/2022/06/28/cudaMemPitch/</url>
+    <content><![CDATA[<h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
+<p>cudaMallocPitch ( void** devPtr, size_t* pitch, size_t width, size_t height )<br>devPtr - Pointer to allocated pitched device memory<br>pitch - Pitch for allocation<br>width - Requested pitched allocation width (in bytes)<br>height - Requested pitched allocation height</p>
 </blockquote>
-<p><img src="/images/emotional.png"> </p>
+<blockquote>
+<p>cudaError_t cudaMemcpy2D    (    void *     dst,<br>size_t     dpitch,<br>const void *     src,<br>size_t     spitch,<br>size_t     width,<br>size_t     height,<br>enum cudaMemcpyKind     kind<br>)    </p>
+</blockquote>
+<blockquote>
+<p>Parameters:<br>dst     - Destination memory address<br>dpitch     - Pitch of destination memory<br>src     - Source memory address<br>spitch     - Pitch of source memory<br>width     - Width of matrix transfer (columns in bytes)<br>height     - Height of matrix transfer (rows)<br>kind     - Type of transfer</p>
+</blockquote>
+<pre><code>`The spitch is different when cudaMemcpyKind is different`
+
+#include&lt;stdio.h&gt;
+#include&lt;cuda.h&gt;
+#include&lt;cuda_runtime.h&gt;
+#include&lt;device_launch_parameters.h&gt;
+#include&lt;conio.h&gt;
+
+#define BLOCKSIZE_x 16
+#define BLOCKSIZE_y 16
+
+#define Nrows 3
+#define Ncols 5
+
+/*****************/
+/* CUDA MEMCHECK */
+/*****************/
+#define gpuErrchk(ans) &#123; gpuAssert((ans), __FILE__, __LINE__); &#125;
+
+inline void gpuAssert(cudaError_t code, char *file, int line, bool abort = true)
+&#123;
+    if (code != cudaSuccess)
+    &#123;
+        fprintf(stderr, &quot;GPUassert: %s %s %dn&quot;, cudaGetErrorString(code), file, line);
+        if (abort) &#123; getch(); exit(code); &#125;
+    &#125;
+&#125;
+
+/*******************/
+/* iDivUp FUNCTION */
+/*******************/
+int iDivUp(int hostPtr, int b)&#123; return ((hostPtr % b) != 0) ? (hostPtr / b + 1) : (hostPtr / b); &#125;
+
+/******************/
+/* TEST KERNEL 2D */
+/******************/
+__global__ void test_kernel_2D(float *devPtr, size_t pitch)
+&#123;
+    int    tidx = blockIdx.x*blockDim.x + threadIdx.x;
+    int    tidy = blockIdx.y*blockDim.y + threadIdx.y;
+
+    if ((tidx &lt; Ncols) &amp;&amp; (tidy &lt; Nrows))
+    &#123;
+        float *row_a = (float *)((char*)devPtr + tidy * pitch);
+        row_a[tidx] = row_a[tidx] * tidx * tidy;
+    &#125;
+&#125;
+
+/********/
+/* MAIN */
+/********/
+int main()
+&#123;
+    float hostPtr[Nrows][Ncols];
+    float *devPtr;
+    size_t pitch;
+
+    for (int i = 0; i &lt; Nrows; i++)
+        for (int j = 0; j &lt; Ncols; j++) &#123;
+            hostPtr[i][j] = 1.f;
+            //printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
+        &#125;
+
+    // --- 2D pitched allocation and host-&gt;device memcopy
+    gpuErrchk(cudaMallocPitch(&amp;devPtr, &amp;pitch, Ncols * sizeof(float), Nrows));
+    gpuErrchk(cudaMemcpy2D(devPtr, pitch, hostPtr, Ncols*sizeof(float), Ncols*sizeof(float), Nrows, cudaMemcpyHostToDevice));
+
+    dim3 gridSize(iDivUp(Ncols, BLOCKSIZE_x), iDivUp(Nrows, BLOCKSIZE_y));
+    dim3 blockSize(BLOCKSIZE_y, BLOCKSIZE_x);
+
+    test_kernel_2D &lt;&lt; &lt;gridSize, blockSize &gt;&gt; &gt;(devPtr, pitch);
+    gpuErrchk(cudaPeekAtLastError());
+    gpuErrchk(cudaDeviceSynchronize());
+
+    gpuErrchk(cudaMemcpy2D(hostPtr, Ncols * sizeof(float), devPtr, pitch, Ncols * sizeof(float), Nrows, cudaMemcpyDeviceToHost));
+
+    for (int i = 0; i &lt; Nrows; i++) 
+        for (int j = 0; j &lt; Ncols; j++) 
+            printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
+
+    return 0;    
+&#125;
+</code></pre>
 ]]></content>
       <tags>
-        <tag>ted</tag>
+        <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>equilibria</title>
+    <url>/2022/02/08/equilibria/</url>
+    <content><![CDATA[<p><img src="/images/game01.png"> </p>
+<p>举个例子吧如图所示：首先固定1<br>1选择C–&gt; 2最好选择C(-5&gt;-15)，<br>画上蓝色线条<br>1选择N–&gt; 2最好选择C(0&gt;-1)，画上蓝色线条<br>接下来固定2<br>2选择C–&gt; 1最好选择C(-5&gt;-15)，画上红色线条<br>2选择N–&gt; 1最好选择C(0&gt;-1)，画上红色线条得纯策略纳什均衡(-5,-5)</p>
+]]></content>
+      <tags>
+        <tag>game</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ShiftGCN</title>
+    <url>/2022/08/17/ShiftGCN/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>GCN</tag>
       </tags>
   </entry>
   <entry>
@@ -1001,21 +1007,34 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>copyC</title>
+    <url>/2022/03/13/copyC/</url>
+    <content><![CDATA[<p>浅拷贝和深拷贝<br>指针浅拷贝导致堆区的数据重复释放<br>问题：近期在做算法实验的时候碰到一个关于类指针赋值的问题，简单的指针之间的赋值只是把两个指针指向同一个地址，而我需要把每次算法执行完的类指针push_back进vector储存每次算法迭代的结果，如果每次都是存入同一个指针，就会出现vector中的类指针都指向同一个地址，这就让我想到了能不能进行类指针之间的赋值，两个类指针之间内容相同，但是指针指向的地址都不同，就是两个不同的指针。</p>
+<p>定义</p>
+<p>浅拷贝：按照我的理解就是，两类之间发生数据成员的赋值，如果只是简单数据类型之间的赋值，浅拷贝完全能够胜任，但是碰到有指针的时候，两个类之间浅拷贝，那么两个对象中的指针会指向同一个地址，那么析构函数执行的时候就会发生错误（同一指针释放了两次）。</p>
+<p>深拷贝：在浅拷贝的基础上对指针拷贝进行处理，让两个类指针中的指针指向不同的区域，这样两个类指针虽然内容想到，但是是存储在内存的不同区域。<br>‘’’<br>class rect<br>{<br>public:</p>
+<pre><code>rect();
+rect(const rect *r);
+~rect();
+</code></pre>
+<p>private:<br>    int width, height;<br>    int *p;<br>};<br>rect::rect(const rect *r)<br>{<br>    width = r-&gt;width;<br>    height = r-&gt;height;<br>    p = new int;<br>    *p = *(r-&gt;p);<br>}</p>
+<p>rect::rect()<br>{<br>    p = new int(100);<br>}</p>
+<p>rect::~rect()<br>{<br>    if (p != NULL)<br>        delete p;<br>}<br>int _tmain(int argc, _TCHAR* argv[])<br>{<br>    rect *rect1;<br>    rect *rect2;<br>    rect1 = new rect;<br>    rect2 = new rect(rect1);</p>
+<pre><code>return 0;
+</code></pre>
+<p>}<br>‘’’<br>类指针和类内成员p指针都指向了不同的地址</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>likeihood</title>
     <url>/2021/12/17/likeihood/</url>
     <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
 ]]></content>
       <tags>
         <tag>likelihood</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>p19-namespace</title>
-    <url>/2022/06/16/namespace/</url>
-    <content><![CDATA[<h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1042,6 +1061,29 @@ hello world
       </tags>
   </entry>
   <entry>
+    <title>multiset</title>
+    <url>/2022/09/05/mutiset/</url>
+    <content><![CDATA[<p><img src="/images/2022-09-05-22-49-24.png"></p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>forandrecursion</title>
+    <url>/2022/04/21/forandrecursion/</url>
+    <content><![CDATA[<blockquote>
+<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
+</blockquote>
+<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
+<p>比如全排列问题</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>-algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>n-gram</title>
     <url>/2022/01/04/n-gram/</url>
     <content><![CDATA[<p><img src="/images/n-gram.png"> </p>
@@ -1051,13 +1093,12 @@ hello world
       </tags>
   </entry>
   <entry>
-    <title>equilibria</title>
-    <url>/2022/02/08/equilibria/</url>
-    <content><![CDATA[<p><img src="/images/game01.png"> </p>
-<p>举个例子吧如图所示：首先固定1<br>1选择C–&gt; 2最好选择C(-5&gt;-15)，<br>画上蓝色线条<br>1选择N–&gt; 2最好选择C(0&gt;-1)，画上蓝色线条<br>接下来固定2<br>2选择C–&gt; 1最好选择C(-5&gt;-15)，画上红色线条<br>2选择N–&gt; 1最好选择C(0&gt;-1)，画上红色线条得纯策略纳什均衡(-5,-5)</p>
+    <title>p19-namespace</title>
+    <url>/2022/06/16/namespace/</url>
+    <content><![CDATA[<h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
 ]]></content>
       <tags>
-        <tag>game</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1080,68 +1121,6 @@ hello world
       </tags>
   </entry>
   <entry>
-    <title>copyC</title>
-    <url>/2022/03/13/copyC/</url>
-    <content><![CDATA[<p>浅拷贝和深拷贝<br>指针浅拷贝导致堆区的数据重复释放<br>问题：近期在做算法实验的时候碰到一个关于类指针赋值的问题，简单的指针之间的赋值只是把两个指针指向同一个地址，而我需要把每次算法执行完的类指针push_back进vector储存每次算法迭代的结果，如果每次都是存入同一个指针，就会出现vector中的类指针都指向同一个地址，这就让我想到了能不能进行类指针之间的赋值，两个类指针之间内容相同，但是指针指向的地址都不同，就是两个不同的指针。</p>
-<p>定义</p>
-<p>浅拷贝：按照我的理解就是，两类之间发生数据成员的赋值，如果只是简单数据类型之间的赋值，浅拷贝完全能够胜任，但是碰到有指针的时候，两个类之间浅拷贝，那么两个对象中的指针会指向同一个地址，那么析构函数执行的时候就会发生错误（同一指针释放了两次）。</p>
-<p>深拷贝：在浅拷贝的基础上对指针拷贝进行处理，让两个类指针中的指针指向不同的区域，这样两个类指针虽然内容想到，但是是存储在内存的不同区域。<br>‘’’<br>class rect<br>{<br>public:</p>
-<pre><code>rect();
-rect(const rect *r);
-~rect();
-</code></pre>
-<p>private:<br>    int width, height;<br>    int *p;<br>};<br>rect::rect(const rect *r)<br>{<br>    width = r-&gt;width;<br>    height = r-&gt;height;<br>    p = new int;<br>    *p = *(r-&gt;p);<br>}</p>
-<p>rect::rect()<br>{<br>    p = new int(100);<br>}</p>
-<p>rect::~rect()<br>{<br>    if (p != NULL)<br>        delete p;<br>}<br>int _tmain(int argc, _TCHAR* argv[])<br>{<br>    rect *rect1;<br>    rect *rect2;<br>    rect1 = new rect;<br>    rect2 = new rect(rect1);</p>
-<pre><code>return 0;
-</code></pre>
-<p>}<br>‘’’<br>类指针和类内成员p指针都指向了不同的地址</p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>note</title>
-    <url>/2022/08/17/note/</url>
-    <content><![CDATA[<p>所有通道像素的组合排列决定了这个像素的属性。同时这个像素点与周围像素也存在联系，通常来说，如果相邻两个像素点所有通道的欧式距离之差不小于某个阈值，可以认为是属于一类的<br>对通道进行卷积操作，</p>
-<blockquote>
-<p>想法：双重推理，首先构建一个建筑语义分割的算法来获得建筑（0-1），之后通过图生成算法，输入为用户指定出的点和分割出来的图片</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>forandrecursion</title>
-    <url>/2022/04/21/forandrecursion/</url>
-    <content><![CDATA[<blockquote>
-<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
-</blockquote>
-<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
-<p>比如全排列问题</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>-algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>oral_practices</title>
-    <url>/2021/11/01/oral-practices/</url>
-    <content><![CDATA[<p>a new way to get personalized, relevant ideas, delivered right to your inbox.</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>ShiftGCN</title>
-    <url>/2022/08/17/ShiftGCN/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>GCN</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>operator赋值为什么返回引用</title>
     <url>/2022/03/13/operator%E8%B5%8B%E5%80%BC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%94%E5%9B%9E%E5%BC%95%E7%94%A8/</url>
     <content><![CDATA[<p>一个自定义类，如果没有重载其=运算符，那么编译器将自动生成一个。但是此编译器自动生成的重载函数可能不安全。这是因为它采用了所谓的“浅拷贝”，也就是对于指针而言，它拷贝的是指针的值，而不是其指向的内存空间。那么这个内存空间就有了两个指针指向它，且类对象要析构两次，但是内存空间只能被释放一次，那么第二次就会出现访问错误。</p>
@@ -1155,9 +1134,34 @@ rect(const rect *r);
       </tags>
   </entry>
   <entry>
-    <title>p33const</title>
-    <url>/2022/06/19/p33const/</url>
-    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
+    <title>oral_practices</title>
+    <url>/2021/11/01/oral-practices/</url>
+    <content><![CDATA[<p>a new way to get personalized, relevant ideas, delivered right to your inbox.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>emotion_behind_your_money_habits</title>
+    <url>/2021/12/24/emotion-behind-your-money-habits/</url>
+    <content><![CDATA[<blockquote>
+<p>I’m good with numbers and using them to report what’s happening, but I’m also concerned with the full story behind those numbers, the part that gets lost in translation, the part that numbers can’t quite tell, the story that goes deeper than mere stratetgies for saving and earning money.</p>
+</blockquote>
+<p><img src="/images/emotional.png"> </p>
+]]></content>
+      <tags>
+        <tag>ted</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>list必须用自己的sort</title>
+    <url>/2022/09/06/list%E5%BF%85%E9%A1%BB%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84sort/</url>
+    <content><![CDATA[<h2 id="list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定"><a href="#list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定" class="headerlink" title="list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定"></a>list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定</h2><p><img src="/images/2022-09-06-14-01-14.png"></p>
+<ul>
+<li>list因为链表结构，不能随机访问，因此不能使用全局的sort，全局sort涉及到对iterator的随机访问</li>
+</ul>
+<h2 id="函数模板流程，先判断是stone，之后调用stone的重载符号-gt"><a href="#函数模板流程，先判断是stone，之后调用stone的重载符号-gt" class="headerlink" title="函数模板流程，先判断是stone，之后调用stone的重载符号&gt;"></a>函数模板流程，先判断是stone，之后调用stone的重载符号&gt;</h2><ul>
+<li>作用在左边的变量中，这里就是 b._weight &gt; rsh(a)._weight</li>
+</ul>
+<p><img src="/images/2022-09-06-14-17-28.png"></p>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -1199,22 +1203,6 @@ rect(const rect *r);
       </tags>
   </entry>
   <entry>
-    <title>pronounce</title>
-    <url>/2021/11/06/pronounce/</url>
-    <content><![CDATA[
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/pronounce.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>pronounce</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>p22Member-Template</title>
     <url>/2022/06/17/p22Member-Template/</url>
     <content><![CDATA[<h2 id="模版内还有模版，一般用于构造函数中，"><a href="#模版内还有模版，一般用于构造函数中，" class="headerlink" title="模版内还有模版，一般用于构造函数中，"></a>模版内还有模版，一般用于构造函数中，</h2><ul>
@@ -1240,19 +1228,6 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
-    <title>scrapy</title>
-    <url>/2021/10/31/scrapy/</url>
-    <content><![CDATA[<h2 id="span如果中间夹了其他的span。比如"><a href="#span如果中间夹了其他的span。比如" class="headerlink" title="span如果中间夹了其他的span。比如"></a>span如果中间夹了其他的span。比如</h2><pre><code>&lt;span&gt; &lt;span&gt;aa &lt;/span&gt; &lt;span&gt;bb &lt;/span&gt;cc&lt;/span&gt;
-</code></pre>
-<blockquote>
-<p>adpote [-1] to acquire “cc” if I want to get it instead of text() directly<br>amount4 = ingredient.xpath(‘span[@class=”recipe__list-qty”]/text()’)[-1].get()</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>spacpy</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>probability</title>
     <url>/2022/06/22/probability/</url>
     <content><![CDATA[<h2 id="68-95-99"><a href="#68-95-99" class="headerlink" title="68-95-99"></a>68-95-99</h2><ul>
@@ -1266,93 +1241,19 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
-    <title>p27variadic-template</title>
-    <url>/2022/06/18/p27variadic-template/</url>
-    <content><![CDATA[<h1 id="不定模版参数"><a href="#不定模版参数" class="headerlink" title="不定模版参数"></a>不定模版参数</h1><pre><code>template &lt;class T1, class... args&gt;
-void test(T1 t, args&amp;... arg)&#123;
+    <title>pronounce</title>
+    <url>/2021/11/06/pronounce/</url>
+    <content><![CDATA[
 
-&#125;
-test(1,2,&#39;a&#39;,&#39;c&#39;); 
-</code></pre>
-<h1 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h1><pre><code>list&lt;string&gt; c;
-auto ite = find(c.begin(), c.end(),traget);
-//auto声明变量的时候必须就赋值
-auto ite; //这行和下一行是不对的
-itr = find(c.begin(), c.end(),traget);
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/pronounce.pdf" width="100%" height="550" type="application/pdf">
+	</div>
 
-or
-list&lt;string&gt;::interate ite = find(c.begin(), c.end(),traget);
-</code></pre>
-<h1 id="ranged-base-for"><a href="#ranged-base-for" class="headerlink" title="ranged-base for"></a>ranged-base for</h1><pre><code>for (decl:coll)&#123;
-    statement
-&#125;
-for(auto elem:vec)&#123; //这每个拿出来赋值到左边
-    // 右边是容器，左边是输出的每个数
-    cout &lt;&lt; elem &lt;&lt; endl;
-&#125;
-//用引用也行
-for(auto&amp; elem:vec)&#123;
-    // 右边是容器，左边是输出的每个数
-    cout &lt;&lt; elem &lt;&lt; endl;
-&#125;
 
-for (int i:&#123;1,2,3,4,5&#125;)&#123;
-    cout &lt;&lt; i;
-&#125;
-</code></pre>
-<h1 id="传引用和传value是相同的signature"><a href="#传引用和传value是相同的signature" class="headerlink" title="传引用和传value是相同的signature"></a>传引用和传value是相同的signature</h1><p>signature指的是除了返回值类型的余下部分<br>double image(const double&amp; in) const {}<br>double image(const double in) const {}</p>
-<blockquote>
-<p>上面两个是相同的，不能同时存在</p>
-</blockquote>
-<p> notes：image() 后的const也是signature的一部分，<br> double image(const double&amp; in) const {}<br>double image(const double in) {}</p>
-<blockquote>
-<p>这样是可以共存的</p>
-</blockquote>
+
 ]]></content>
       <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>smartpointer</title>
-    <url>/2022/03/04/smartpointer/</url>
-    <content><![CDATA[<p><img src="/images/smartPointer.png"> </p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sparse</title>
-    <url>/2022/07/02/sparse/</url>
-    <content><![CDATA[<h1 id="How-to-prune-in-MLP"><a href="#How-to-prune-in-MLP" class="headerlink" title="How to prune in MLP?"></a>How to prune in MLP?</h1><p><img src="/images/2022-07-04-01-57-10.png"></p>
-<ul>
-<li>sets the connection weight whose lower than threshold as 0<br><img src="/images/2022-07-04-02-03-25.png"></li>
-</ul>
-<h1 id="Prune-for-CNN"><a href="#Prune-for-CNN" class="headerlink" title="Prune for CNN"></a>Prune for CNN</h1><p><img src="/images/2022-07-04-02-16-55.png"></p>
-]]></content>
-      <tags>
-        <tag>sparse</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>self-attention</title>
-    <url>/2022/01/02/self-attention/</url>
-    <content><![CDATA[<p><img src="/images/attention.png"> </p>
-]]></content>
-      <tags>
-        <tag>attention</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>shardptrCirculate</title>
-    <url>/2022/03/04/shardptrCirculate/</url>
-    <content><![CDATA[<blockquote>
-<p>定义对象用强智能指针，引用对象的时候用弱智能指针<br><img src="/images/shardptrcirculate.png">  </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>C++</tag>
+        <tag>pronounce</tag>
       </tags>
   </entry>
   <entry>
@@ -1442,88 +1343,107 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>stl全局</title>
-    <url>/2022/06/29/stl%E5%85%A8%E5%B1%80/</url>
-    <content><![CDATA[<h1 id="C-函数或者命名空间前面加"><a href="#C-函数或者命名空间前面加" class="headerlink" title="C++函数或者命名空间前面加::"></a>C++函数或者命名空间前面加::</h1><ul>
-<li>函数前面 ::find() 表示这个是全局的函数，不是这个作用域下的函数<br><img src="/images/2022-06-29-16-13-57.png"><blockquote>
-<p>比如这里的 ::find()。这个是STL的algorithm中的函数，虽然这里如果不用:: , 编译器没有找到find也会到全局，但是加入会让代码更清晰</p>
+    <title>note</title>
+    <url>/2022/08/17/note/</url>
+    <content><![CDATA[<p>所有通道像素的组合排列决定了这个像素的属性。同时这个像素点与周围像素也存在联系，通常来说，如果相邻两个像素点所有通道的欧式距离之差不小于某个阈值，可以认为是属于一类的<br>对通道进行卷积操作，</p>
+<blockquote>
+<p>想法：双重推理，首先构建一个建筑语义分割的算法来获得建筑（0-1），之后通过图生成算法，输入为用户指定出的点和分割出来的图片</p>
 </blockquote>
-</li>
-<li>jj01::test_array() = 这个就是命名空间</li>
-</ul>
 ]]></content>
       <tags>
         <tag>c++</tag>
       </tags>
   </entry>
   <entry>
-    <title>subjunctive</title>
-    <url>/2022/03/06/subjunctive/</url>
-    <content><![CDATA[<h2 id="The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy"><a href="#The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy" class="headerlink" title="The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy."></a>The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy.</h2><blockquote>
-<p>wouldn’t have done 表示不会做某事，但是实际上做了。文章中的意思是本来不会降低美国的油气价格。</p>
+    <title>scrapy</title>
+    <url>/2021/10/31/scrapy/</url>
+    <content><![CDATA[<h2 id="span如果中间夹了其他的span。比如"><a href="#span如果中间夹了其他的span。比如" class="headerlink" title="span如果中间夹了其他的span。比如"></a>span如果中间夹了其他的span。比如</h2><pre><code>&lt;span&gt; &lt;span&gt;aa &lt;/span&gt; &lt;span&gt;bb &lt;/span&gt;cc&lt;/span&gt;
+</code></pre>
+<blockquote>
+<p>adpote [-1] to acquire “cc” if I want to get it instead of text() directly<br>amount4 = ingredient.xpath(‘span[@class=”recipe__list-qty”]/text()’)[-1].get()</p>
 </blockquote>
-<p>would have done</p>
-<p>是一个固定虚拟语气的用法。</p>
-<p>表示对过去事情的假设，意为“本来想做、要做但没做”，使用时大多会给出导致没做成或会这样做的条件。<br>英汉例句1：</p>
-<p>If I had a chance，I would have set off on a journey round the world.<br>要是有机会，我早就环游世界了。（也可译为对现在的虚拟“要是有机会，我会环游世界”）</p>
-<p>英汉例句2：</p>
-<p>I would have told you the story about him, but you were not home.</p>
-<p>我本来可以告诉你关于他的故事，但是你不在家。（由于：你不在家”这样的条件下，没有告诉关于他的的故事。）</p>
-<p>5.would have done与if连用</p>
-<p>例句：If I hadn’t been busy that day, I would have gone there with them.</p>
-<p>如果那天我不忙，我会和他们一起去那儿。（事实上表示没有由于忙，而没有去。）</p>
-<p>在这里也可以不用if</p>
-<p>如：I was busy that day. Otherwise I would have gone there with them. </p>
-<p>我那天很忙，否则，我就和他们一起去那儿了。</p>
-<p>6.文章中lower 在这里作为动词，“降低”的意思。<br><img src="/images/subjunctive.png"> </p>
 ]]></content>
       <tags>
-        <tag>English</tag>
+        <tag>spacpy</tag>
       </tags>
   </entry>
   <entry>
-    <title>t5-假设检验</title>
-    <url>/2022/06/22/t5%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/</url>
-    <content><![CDATA[<p><img src="/images/p5.png"></p>
+    <title>p27variadic-template</title>
+    <url>/2022/06/18/p27variadic-template/</url>
+    <content><![CDATA[<h1 id="不定模版参数"><a href="#不定模版参数" class="headerlink" title="不定模版参数"></a>不定模版参数</h1><pre><code>template &lt;class T1, class... args&gt;
+void test(T1 t, args&amp;... arg)&#123;
+
+&#125;
+test(1,2,&#39;a&#39;,&#39;c&#39;); 
+</code></pre>
+<h1 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h1><pre><code>list&lt;string&gt; c;
+auto ite = find(c.begin(), c.end(),traget);
+//auto声明变量的时候必须就赋值
+auto ite; //这行和下一行是不对的
+itr = find(c.begin(), c.end(),traget);
+
+or
+list&lt;string&gt;::interate ite = find(c.begin(), c.end(),traget);
+</code></pre>
+<h1 id="ranged-base-for"><a href="#ranged-base-for" class="headerlink" title="ranged-base for"></a>ranged-base for</h1><pre><code>for (decl:coll)&#123;
+    statement
+&#125;
+for(auto elem:vec)&#123; //这每个拿出来赋值到左边
+    // 右边是容器，左边是输出的每个数
+    cout &lt;&lt; elem &lt;&lt; endl;
+&#125;
+//用引用也行
+for(auto&amp; elem:vec)&#123;
+    // 右边是容器，左边是输出的每个数
+    cout &lt;&lt; elem &lt;&lt; endl;
+&#125;
+
+for (int i:&#123;1,2,3,4,5&#125;)&#123;
+    cout &lt;&lt; i;
+&#125;
+</code></pre>
+<h1 id="传引用和传value是相同的signature"><a href="#传引用和传value是相同的signature" class="headerlink" title="传引用和传value是相同的signature"></a>传引用和传value是相同的signature</h1><p>signature指的是除了返回值类型的余下部分<br>double image(const double&amp; in) const {}<br>double image(const double in) const {}</p>
+<blockquote>
+<p>上面两个是相同的，不能同时存在</p>
+</blockquote>
+<p> notes：image() 后的const也是signature的一部分，<br> double image(const double&amp; in) const {}<br>double image(const double in) {}</p>
+<blockquote>
+<p>这样是可以共存的</p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>probability</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
-    <title>silhouette</title>
-    <url>/2021/12/04/silhouette/</url>
-    <content><![CDATA[<p><img src="/images/silhouette.png"> </p>
+    <title>p33const</title>
+    <url>/2022/06/19/p33const/</url>
+    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
 ]]></content>
       <tags>
-        <tag>intr</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
-    <title>transformer</title>
-    <url>/2022/01/02/transformer/</url>
-    <content><![CDATA[<p><img src="/images/transformer.png"> </p>
+    <title>smartpointer</title>
+    <url>/2022/03/04/smartpointer/</url>
+    <content><![CDATA[<p><img src="/images/smartPointer.png"> </p>
 ]]></content>
       <tags>
-        <tag>transformer</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
-    <title>transition-based</title>
-    <url>/2022/01/04/transition-based/</url>
-    <content><![CDATA[<p><img src="/images/transition.png"> </p>
+    <title>sparse</title>
+    <url>/2022/07/02/sparse/</url>
+    <content><![CDATA[<h1 id="How-to-prune-in-MLP"><a href="#How-to-prune-in-MLP" class="headerlink" title="How to prune in MLP?"></a>How to prune in MLP?</h1><p><img src="/images/2022-07-04-01-57-10.png"></p>
+<ul>
+<li>sets the connection weight whose lower than threshold as 0<br><img src="/images/2022-07-04-02-03-25.png"></li>
+</ul>
+<h1 id="Prune-for-CNN"><a href="#Prune-for-CNN" class="headerlink" title="Prune for CNN"></a>Prune for CNN</h1><p><img src="/images/2022-07-04-02-16-55.png"></p>
 ]]></content>
       <tags>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>to+do+or+doing</title>
-    <url>/2021/12/12/to-do-or-doing/</url>
-    <content><![CDATA[<p><img src="/images/todo.png"> </p>
-]]></content>
-      <tags>
-        <tag>English</tag>
+        <tag>sparse</tag>
       </tags>
   </entry>
   <entry>
@@ -1652,116 +1572,99 @@ A&lt;string*&gt; b;
       </tags>
   </entry>
   <entry>
-    <title>template-template-paramenter</title>
-    <url>/2022/06/17/template-template-paramenter/</url>
-    <content><![CDATA[<h1 id="模版参数中包含模版"><a href="#模版参数中包含模版" class="headerlink" title="模版参数中包含模版"></a>模版参数中包含模版</h1><ul>
-<li>允许模板参数本身也是一个类模板，这可能会很有用。我们将继续以stack类模板作为例子</li>
+    <title>silhouette</title>
+    <url>/2021/12/04/silhouette/</url>
+    <content><![CDATA[<p><img src="/images/silhouette.png"> </p>
+]]></content>
+      <tags>
+        <tag>intr</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>self-attention</title>
+    <url>/2022/01/02/self-attention/</url>
+    <content><![CDATA[<p><img src="/images/attention.png"> </p>
+]]></content>
+      <tags>
+        <tag>attention</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>subjunctive</title>
+    <url>/2022/03/06/subjunctive/</url>
+    <content><![CDATA[<h2 id="The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy"><a href="#The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy" class="headerlink" title="The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy."></a>The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy.</h2><blockquote>
+<p>wouldn’t have done 表示不会做某事，但是实际上做了。文章中的意思是本来不会降低美国的油气价格。</p>
+</blockquote>
+<p>would have done</p>
+<p>是一个固定虚拟语气的用法。</p>
+<p>表示对过去事情的假设，意为“本来想做、要做但没做”，使用时大多会给出导致没做成或会这样做的条件。<br>英汉例句1：</p>
+<p>If I had a chance，I would have set off on a journey round the world.<br>要是有机会，我早就环游世界了。（也可译为对现在的虚拟“要是有机会，我会环游世界”）</p>
+<p>英汉例句2：</p>
+<p>I would have told you the story about him, but you were not home.</p>
+<p>我本来可以告诉你关于他的故事，但是你不在家。（由于：你不在家”这样的条件下，没有告诉关于他的的故事。）</p>
+<p>5.would have done与if连用</p>
+<p>例句：If I hadn’t been busy that day, I would have gone there with them.</p>
+<p>如果那天我不忙，我会和他们一起去那儿。（事实上表示没有由于忙，而没有去。）</p>
+<p>在这里也可以不用if</p>
+<p>如：I was busy that day. Otherwise I would have gone there with them. </p>
+<p>我那天很忙，否则，我就和他们一起去那儿了。</p>
+<p>6.文章中lower 在这里作为动词，“降低”的意思。<br><img src="/images/subjunctive.png"> </p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>stl全局</title>
+    <url>/2022/06/29/stl%E5%85%A8%E5%B1%80/</url>
+    <content><![CDATA[<h1 id="C-函数或者命名空间前面加"><a href="#C-函数或者命名空间前面加" class="headerlink" title="C++函数或者命名空间前面加::"></a>C++函数或者命名空间前面加::</h1><ul>
+<li>函数前面 ::find() 表示这个是全局的函数，不是这个作用域下的函数<br><img src="/images/2022-06-29-16-13-57.png"><blockquote>
+<p>比如这里的 ::find()。这个是STL的algorithm中的函数，虽然这里如果不用:: , 编译器没有找到find也会到全局，但是加入会让代码更清晰</p>
+</blockquote>
+</li>
+<li>jj01::test_array() = 这个就是命名空间</li>
 </ul>
-<pre><code>template &lt;class T1, template&lt;class T2&gt; 
-class Container&gt;
-
-class XCls&#123;
-
-    private:
-    Container&lt;T&gt; c;
-    public:
-    ...
-&#125;
-template&lt;class T&gt;
-using Lst = List&lt;T,allocator&lt;T&gt;&gt;;
-
-
-XCls&lt;string, Lst&gt; mylst;
-</code></pre>
-<blockquote>
-<p>由于Stack类模板的声明中第二个参数是一个类型（typename Container），所以我们通过Stack&lt;int, std::deque<int>&gt;定义一个具体的栈类型时，第二个参数传递std::deque<int>，而不能是std::deque。上述定义中我们一共把int写了两遍，而这种重复是一种必然的重复。</p>
-</blockquote>
-<p>为了避免上述重复，我们可以让Stack的第二个参数直接是一个模板，而不再是一个具体类型。</p>
-<pre><code>template&lt;typename T,
-         template&lt;typename&gt; class Container = std::vector&gt;
-struct Stack
-&#123;
-    void push(const T&amp; elem)
-    &#123;
-        elems.push_back(elem);
-    &#125;
-
-    T pop()
-    &#123;
-        if(empty()) throw std::out_of_range(&quot;Stack&lt;&gt;::pop: empty!&quot;);
-
-        auto elem = elems.back();
-        elems.pop_back();
-        return elem;
-    &#125;
-
-    bool empty() const
-    &#123;
-        return elems.empty();
-    &#125;
-
-private:
-    Container&lt;T&gt; elems;
-&#125;;
-</code></pre>
-<blockquote>
-<p>如上Stack类模板的第二个参数变为template<typename> class Container，它的名字仍旧是Container，但是类型变为一个模板，这个模板具有一个类型参数。由于Container自身的模板形参名字没有被使用，所以我们可以省略。按照标准这里声明Container前的关键字只能是class，不能是typename。最后，模板的模板参数也可以有默认值，这里我们设置为std::vector。</p>
-</blockquote>
-<p>有了上面的定义，我们期望可以这样使用Stack：Stack&lt;int, std::deque&gt; intStack，但编译器却给了我们一个教训。</p>
-<p>std::deque类模板在stl库中的定义有两个类型参数，第一个参数是元素类型，第二个参数是分配器allocator的类型。虽然std::deque的第二个类型参数有默认值，但是当编译器使用std::deque替换Container时却会严格匹配参数，默认值被忽略了。</p>
-<p>我们修改Stack的定义如下：</p>
-<pre><code>template&lt;typename T,
-         template&lt;typename Elem, typename Allocator = std::allocator&lt;Elem&gt;&gt; class Container = std::vector&gt;
-struct Stack
-&#123;
-    void push(const T&amp; elem)
-    &#123;
-        elems.push_back(elem);
-    &#125;
-
-    T pop()
-    &#123;
-        if(empty()) throw std::out_of_range(&quot;Stack&lt;&gt;::pop: empty!&quot;);
-
-        auto elem = elems.back();
-        elems.pop_back();
-        return elem;
-    &#125;
-
-    bool empty() const
-    &#123;
-        return elems.empty();
-    &#125;
-
-private:
-    Container&lt;T&gt; elems;
-&#125;;
-</code></pre>
 ]]></content>
       <tags>
         <tag>c++</tag>
       </tags>
   </entry>
   <entry>
-    <title>vector二维数组</title>
-    <url>/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
-<li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
-<p>这里的row,col代表二维vector的两个轴方向的大小</p>
-</blockquote>
-</li>
-<li>第二种通过resize确定大小，之后循环赋值<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
-vec1.resize(row);
-for(int i=0;i&lt;vec1.size();i++)
-  vec1[i].resize(col);
-for(int i=0;i&lt;row;i++)
-  for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
-</code></pre>
-</li>
-</ul>
+    <title>t5-假设检验</title>
+    <url>/2022/06/22/t5%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/</url>
+    <content><![CDATA[<p><img src="/images/p5.png"></p>
 ]]></content>
       <tags>
-        <tag>c++</tag>
+        <tag>probability</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>shardptrCirculate</title>
+    <url>/2022/03/04/shardptrCirculate/</url>
+    <content><![CDATA[<blockquote>
+<p>定义对象用强智能指针，引用对象的时候用弱智能指针<br><img src="/images/shardptrcirculate.png">  </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>transformer</title>
+    <url>/2022/01/02/transformer/</url>
+    <content><![CDATA[<p><img src="/images/transformer.png"> </p>
+]]></content>
+      <tags>
+        <tag>transformer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>transition-based</title>
+    <url>/2022/01/04/transition-based/</url>
+    <content><![CDATA[<p><img src="/images/transition.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
       </tags>
   </entry>
   <entry>
@@ -1853,32 +1756,25 @@ for(int i=0;i&lt;row;i++)
       </tags>
   </entry>
   <entry>
-    <title>word2vec</title>
-    <url>/2022/01/04/word2vec/</url>
-    <content><![CDATA[<p><img src="/images/word2vec.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>warp函数</title>
-    <url>/2022/07/11/warp%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="any-sync用于一个warp之间线程的数据的交换-广播（broadcast）"><a href="#any-sync用于一个warp之间线程的数据的交换-广播（broadcast）" class="headerlink" title="__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）"></a>__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）</h1><h2 id="这里必须注意srcLane是束内w的编号"><a href="#这里必须注意srcLane是束内w的编号" class="headerlink" title="这里必须注意srcLane是束内w的编号"></a>这里必须注意srcLane是束内w的编号</h2><blockquote>
-<p>int value = __any_sync(mask,v,srcLane,w)<br>把srcLane的线程中变量v的值广播给其他线程，其中广播的线程由mask的二进制决定</p>
+    <title>vector二维数组</title>
+    <url>/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
+<li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
+<p>这里的row,col代表二维vector的两个轴方向的大小</p>
 </blockquote>
-<pre><code>int value = __any_sync(mask,tid,2,w);
-// 这里把线程2的tid值（也是2），也就是说所有线程走到这里之后的value都是2；如果tid表示是其他含义，那么其余每个线程就是用的对应的值
-输出为： `shfl:  2  2  2  2  2  2  2  2 10 10 10 10 10 10 10 10`
-这里的10是因为其实他现在的tid是10，但是在束编号中，他的下标是2
+</li>
+<li>第二种通过resize确定大小，之后循环赋值<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
+vec1.resize(row);
+for(int i=0;i&lt;vec1.size();i++)
+  vec1[i].resize(col);
+for(int i=0;i&lt;row;i++)
+  for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
 </code></pre>
-<p><img src="/images/2022-07-11-00-37-51.png"></p>
-<blockquote>
-<p>__shfl_xor_sync(FULL_MASK, tid, laneMask, WIDTH);<br>按位异或，这里可以把laneMask设置为1，就是将相邻的两个线程的tid变量的值进行交换</p>
-</blockquote>
+</li>
+</ul>
 ]]></content>
       <tags>
-        <tag>cuda</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1922,6 +1818,117 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
 ]]></content>
       <tags>
         <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>warp函数</title>
+    <url>/2022/07/11/warp%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="any-sync用于一个warp之间线程的数据的交换-广播（broadcast）"><a href="#any-sync用于一个warp之间线程的数据的交换-广播（broadcast）" class="headerlink" title="__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）"></a>__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）</h1><h2 id="这里必须注意srcLane是束内w的编号"><a href="#这里必须注意srcLane是束内w的编号" class="headerlink" title="这里必须注意srcLane是束内w的编号"></a>这里必须注意srcLane是束内w的编号</h2><blockquote>
+<p>int value = __any_sync(mask,v,srcLane,w)<br>把srcLane的线程中变量v的值广播给其他线程，其中广播的线程由mask的二进制决定</p>
+</blockquote>
+<pre><code>int value = __any_sync(mask,tid,2,w);
+// 这里把线程2的tid值（也是2），也就是说所有线程走到这里之后的value都是2；如果tid表示是其他含义，那么其余每个线程就是用的对应的值
+输出为： `shfl:  2  2  2  2  2  2  2  2 10 10 10 10 10 10 10 10`
+这里的10是因为其实他现在的tid是10，但是在束编号中，他的下标是2
+</code></pre>
+<p><img src="/images/2022-07-11-00-37-51.png"></p>
+<blockquote>
+<p>__shfl_xor_sync(FULL_MASK, tid, laneMask, WIDTH);<br>按位异或，这里可以把laneMask设置为1，就是将相邻的两个线程的tid变量的值进行交换</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>template-template-paramenter</title>
+    <url>/2022/06/17/template-template-paramenter/</url>
+    <content><![CDATA[<h1 id="模版参数中包含模版"><a href="#模版参数中包含模版" class="headerlink" title="模版参数中包含模版"></a>模版参数中包含模版</h1><ul>
+<li>允许模板参数本身也是一个类模板，这可能会很有用。我们将继续以stack类模板作为例子</li>
+</ul>
+<pre><code>template &lt;class T1, template&lt;class T2&gt; 
+class Container&gt;
+
+class XCls&#123;
+
+    private:
+    Container&lt;T&gt; c;
+    public:
+    ...
+&#125;
+template&lt;class T&gt;
+using Lst = List&lt;T,allocator&lt;T&gt;&gt;;
+
+
+XCls&lt;string, Lst&gt; mylst;
+</code></pre>
+<blockquote>
+<p>由于Stack类模板的声明中第二个参数是一个类型（typename Container），所以我们通过Stack&lt;int, std::deque<int>&gt;定义一个具体的栈类型时，第二个参数传递std::deque<int>，而不能是std::deque。上述定义中我们一共把int写了两遍，而这种重复是一种必然的重复。</p>
+</blockquote>
+<p>为了避免上述重复，我们可以让Stack的第二个参数直接是一个模板，而不再是一个具体类型。</p>
+<pre><code>template&lt;typename T,
+         template&lt;typename&gt; class Container = std::vector&gt;
+struct Stack
+&#123;
+    void push(const T&amp; elem)
+    &#123;
+        elems.push_back(elem);
+    &#125;
+
+    T pop()
+    &#123;
+        if(empty()) throw std::out_of_range(&quot;Stack&lt;&gt;::pop: empty!&quot;);
+
+        auto elem = elems.back();
+        elems.pop_back();
+        return elem;
+    &#125;
+
+    bool empty() const
+    &#123;
+        return elems.empty();
+    &#125;
+
+private:
+    Container&lt;T&gt; elems;
+&#125;;
+</code></pre>
+<blockquote>
+<p>如上Stack类模板的第二个参数变为template<typename> class Container，它的名字仍旧是Container，但是类型变为一个模板，这个模板具有一个类型参数。由于Container自身的模板形参名字没有被使用，所以我们可以省略。按照标准这里声明Container前的关键字只能是class，不能是typename。最后，模板的模板参数也可以有默认值，这里我们设置为std::vector。</p>
+</blockquote>
+<p>有了上面的定义，我们期望可以这样使用Stack：Stack&lt;int, std::deque&gt; intStack，但编译器却给了我们一个教训。</p>
+<p>std::deque类模板在stl库中的定义有两个类型参数，第一个参数是元素类型，第二个参数是分配器allocator的类型。虽然std::deque的第二个类型参数有默认值，但是当编译器使用std::deque替换Container时却会严格匹配参数，默认值被忽略了。</p>
+<p>我们修改Stack的定义如下：</p>
+<pre><code>template&lt;typename T,
+         template&lt;typename Elem, typename Allocator = std::allocator&lt;Elem&gt;&gt; class Container = std::vector&gt;
+struct Stack
+&#123;
+    void push(const T&amp; elem)
+    &#123;
+        elems.push_back(elem);
+    &#125;
+
+    T pop()
+    &#123;
+        if(empty()) throw std::out_of_range(&quot;Stack&lt;&gt;::pop: empty!&quot;);
+
+        auto elem = elems.back();
+        elems.pop_back();
+        return elem;
+    &#125;
+
+    bool empty() const
+    &#123;
+        return elems.empty();
+    &#125;
+
+private:
+    Container&lt;T&gt; elems;
+&#125;;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1983,83 +1990,12 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
       </tags>
   </entry>
   <entry>
-    <title>均方误差分解</title>
-    <url>/2022/05/21/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE%E5%88%86%E8%A7%A3/</url>
-    <content><![CDATA[<p><img src="/images/biasAndvariance.png"> </p>
+    <title>word2vec</title>
+    <url>/2022/01/04/word2vec/</url>
+    <content><![CDATA[<p><img src="/images/word2vec.png"> </p>
 ]]></content>
       <tags>
-        <tag>math</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>分治法</title>
-    <url>/2022/09/03/%E5%88%86%E6%B2%BB%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"><a href="#分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解" class="headerlink" title="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"></a>分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解</h1><pre><code>//
-//  main.cpp
-//  两个数组调整为一样的最小距离
-//
-//  Created by moule on 2022/9/3.
-//
-
-#include &lt;iostream&gt;
-#include &lt;vector&gt;
-using namespace std;
-int minimal_distance(vector&lt;int&gt;&amp; num1, vector&lt;int&gt;&amp; num2, int idx1, int idx2)&#123;
-    
-    if(idx1 == num1.size() &amp;&amp; idx2 == num2.size())&#123;
-        return 0;
-    &#125;
-    if(idx1==num1.size() &amp;&amp; idx2 != num2.size())&#123;
-       // cout &lt;&lt; idx2 &lt;&lt; endl;
-        int k = num2[idx2] + minimal_distance(num1, num2, idx1, idx2+1);
-        return k;
-    &#125;
-    if(idx2==num2.size() &amp;&amp; idx1 != num1.size())&#123;
-       // cout &lt;&lt; idx2 &lt;&lt; endl;
-        return num1[idx1] + minimal_distance(num1, num2, idx1+1, idx2);
-        
-    &#125;
-    // delete num1[idx1]
-    
-    int p1 = num1[idx1] + minimal_distance(num1, num2, idx1+1, idx2);
- //   cout &lt;&lt; p1;
-    // delete num2[idx2]
-    int p2 = num2[idx2] + minimal_distance(num1, num2, idx1, idx2+1);
-   // cout &lt;&lt; p2;
-//    // num1[idx1] - num2[idx2]
-    int p3 = abs(num1[idx1]-num2[idx2]) + minimal_distance(num1, num2, idx1+1, idx2+1);
-   
-    
-    return min((p1,p2),p3);
-&#125;
-int main(int argc, const char * argv[]) &#123;
-    // insert code here...
-    vector&lt;int&gt; num1 = &#123;2,3&#125;;
-    vector&lt;int&gt; num2 = &#123;2,3,5&#125;;
-    cout &lt;&lt; minimal_distance(num1, num2, 0, 0) &lt;&lt; endl;
-    std::cout &lt;&lt; &quot;Hello, World!\n&quot;;
-    return 0;
-&#125;
-</code></pre>
-<h2 id="比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解"><a href="#比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解" class="headerlink" title="比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解"></a>比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解</h2><p><img src="/images/2022-09-03-21-56-00.png"><br><img src="/images/2022-09-03-21-56-18.png"><br><img src="/images/2022-09-03-21-56-31.png"></p>
-<blockquote>
-<p>汉诺塔的子问题如下：</p>
-</blockquote>
-<pre><code>- 1）把 N-1个盘子 移到中转柱
-- 2）把第N个盘子移动到 目标柱
-- 3）把中转柱上面的N-1个盘子借助目前空闲的柱子 移动到 目标柱。
-</code></pre>
-<blockquote>
-<p>两个数组变为一样的子问题</p>
-</blockquote>
-<pre><code>- 1）第一个数组的下标数删掉
-- 2）第二个数组的下标数删掉
-- 3）删掉两个数组对应下标数值的差
-合：找到三个子解代价最小的
-</code></pre>
-]]></content>
-      <tags>
-        <tag>算法</tag>
+        <tag>NLP</tag>
       </tags>
   </entry>
   <entry>
@@ -2134,6 +2070,135 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
+    <title>分治法</title>
+    <url>/2022/09/03/%E5%88%86%E6%B2%BB%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"><a href="#分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解" class="headerlink" title="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"></a>分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解</h1><pre><code>//
+//  main.cpp
+//  两个数组调整为一样的最小距离
+//
+//  Created by moule on 2022/9/3.
+//
+
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+int minimal_distance(vector&lt;int&gt;&amp; num1, vector&lt;int&gt;&amp; num2, int idx1, int idx2)&#123;
+    
+    if(idx1 == num1.size() &amp;&amp; idx2 == num2.size())&#123;
+        return 0;
+    &#125;
+    if(idx1==num1.size() &amp;&amp; idx2 != num2.size())&#123;
+       // cout &lt;&lt; idx2 &lt;&lt; endl;
+        int k = num2[idx2] + minimal_distance(num1, num2, idx1, idx2+1);
+        return k;
+    &#125;
+    if(idx2==num2.size() &amp;&amp; idx1 != num1.size())&#123;
+       // cout &lt;&lt; idx2 &lt;&lt; endl;
+        return num1[idx1] + minimal_distance(num1, num2, idx1+1, idx2);
+        
+    &#125;
+    // delete num1[idx1]
+    
+    int p1 = num1[idx1] + minimal_distance(num1, num2, idx1+1, idx2);
+ //   cout &lt;&lt; p1;
+    // delete num2[idx2]
+    int p2 = num2[idx2] + minimal_distance(num1, num2, idx1, idx2+1);
+   // cout &lt;&lt; p2;
+//    // num1[idx1] - num2[idx2]
+    int p3 = abs(num1[idx1]-num2[idx2]) + minimal_distance(num1, num2, idx1+1, idx2+1);
+   
+    
+    return min((p1,p2),p3);
+&#125;
+int main(int argc, const char * argv[]) &#123;
+    // insert code here...
+    vector&lt;int&gt; num1 = &#123;2,3&#125;;
+    vector&lt;int&gt; num2 = &#123;2,3,5&#125;;
+    cout &lt;&lt; minimal_distance(num1, num2, 0, 0) &lt;&lt; endl;
+    std::cout &lt;&lt; &quot;Hello, World!\n&quot;;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解"><a href="#比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解" class="headerlink" title="比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解"></a>比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解</h2><p><img src="/images/2022-09-03-21-56-00.png"><br><img src="/images/2022-09-03-21-56-18.png"><br><img src="/images/2022-09-03-21-56-31.png"></p>
+<blockquote>
+<p>汉诺塔的子问题如下：</p>
+</blockquote>
+<pre><code>- 1）把 N-1个盘子 移到中转柱
+- 2）把第N个盘子移动到 目标柱
+- 3）把中转柱上面的N-1个盘子借助目前空闲的柱子 移动到 目标柱。
+</code></pre>
+<blockquote>
+<p>两个数组变为一样的子问题</p>
+</blockquote>
+<pre><code>- 1）第一个数组的下标数删掉
+- 2）第二个数组的下标数删掉
+- 3）删掉两个数组对应下标数值的差
+合：找到三个子解代价最小的
+</code></pre>
+]]></content>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>原反补码</title>
+    <url>/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/</url>
+    <content><![CDATA[<p><img src="/images/coding.png"></p>
+]]></content>
+      <tags>
+        <tag>coding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>均方误差分解</title>
+    <url>/2022/05/21/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE%E5%88%86%E8%A7%A3/</url>
+    <content><![CDATA[<p><img src="/images/biasAndvariance.png"> </p>
+]]></content>
+      <tags>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>字节对齐</title>
+    <url>/2022/08/25/%E5%AD%97%E8%8A%82%E5%AF%B9%E9%BD%90/</url>
+    <content><![CDATA[<ul>
+<li>结构体变量的首地址能够被其最宽基本类型成员的大小所整除；</li>
+<li>结构体每个成员相对于结构体首地址的偏移量（offset）都是成员大小的整数倍，如有需要编译器会在成员之间加上填充字节（internal padding）；</li>
+<li>结构体的总大小为结构体最宽基本类型成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节（trailing padding）</li>
+</ul>
+<p>比如</p>
+<pre><code>struct student
+&#123;
+    char name[5];
+    int num;
+    short score;
+&#125;
+</code></pre>
+<p>|char|char|char|char|<br>|char|—-|—-|—-|<br>|——–int——–|<br>|–short–|—-|—-|</p>
+<p>本来只用了11bytes（5+4+2）的空间，但是由于int型默认4字节对齐，存放在地址能被4整除的起始位置，即：如果name[5]从0开始存放，它占5bytes，而num则从第8(<strong>因为int是4，开始存的位置必须要可以整除4</strong>)（偏移量）个字节开始存放。所以sizeof(student)=16。于是中间空出几个字节闲置着。但这样便于计算机快速读写数据，是一种以空间换取时间的方式。其数据对齐如下图：</p>
+<pre><code>struct student
+&#123;
+    int num;
+    char name[5];
+    short score;
+&#125;
+</code></pre>
+<p>num从0开始存放，而name从第4（偏移量）个字节开始存放，连续5个字节，score从第10（偏移量）开始存放，故sizeof(student)=12。其数据对齐如下图：<br>|——–int——–|<br>|char|char|char|char|<br>|char|—-|–short–|</p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>to+do+or+doing</title>
+    <url>/2021/12/12/to-do-or-doing/</url>
+    <content><![CDATA[<p><img src="/images/todo.png"> </p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>定语从句省略</title>
     <url>/2022/08/21/%E5%AE%9A%E8%AF%AD%E4%BB%8E%E5%8F%A5%E7%9C%81%E7%95%A5/</url>
     <content><![CDATA[<ul>
@@ -2191,112 +2256,6 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
-    <title>原反补码</title>
-    <url>/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/</url>
-    <content><![CDATA[<p><img src="/images/coding.png"></p>
-]]></content>
-      <tags>
-        <tag>coding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>宾语补足语</title>
-    <url>/2022/08/22/%E5%AE%BE%E8%AF%AD%E8%A1%A5%E8%B6%B3%E8%AF%AD/</url>
-    <content><![CDATA[<h1 id="有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语"><a href="#有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语" class="headerlink" title="有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语"></a>有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语</h1><ul>
-<li>本质上来说后面的名词也是修饰前面的名词的<ul>
-<li>名词做宾补<blockquote>
-<p>eg: I think the job a great honor. 我认为这份工作是一份荣誉</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>期望和方差</title>
-    <url>/2022/05/21/%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE/</url>
-    <content><![CDATA[<p><img src="/images/expectAndvariance.png"> </p>
-]]></content>
-      <tags>
-        <tag>math</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>字节对齐</title>
-    <url>/2022/08/25/%E5%AD%97%E8%8A%82%E5%AF%B9%E9%BD%90/</url>
-    <content><![CDATA[<ul>
-<li>结构体变量的首地址能够被其最宽基本类型成员的大小所整除；</li>
-<li>结构体每个成员相对于结构体首地址的偏移量（offset）都是成员大小的整数倍，如有需要编译器会在成员之间加上填充字节（internal padding）；</li>
-<li>结构体的总大小为结构体最宽基本类型成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节（trailing padding）</li>
-</ul>
-<p>比如</p>
-<pre><code>struct student
-&#123;
-    char name[5];
-    int num;
-    short score;
-&#125;
-</code></pre>
-<p>|char|char|char|char|<br>|char|—-|—-|—-|<br>|——–int——–|<br>|–short–|—-|—-|</p>
-<p>本来只用了11bytes（5+4+2）的空间，但是由于int型默认4字节对齐，存放在地址能被4整除的起始位置，即：如果name[5]从0开始存放，它占5bytes，而num则从第8(<strong>因为int是4，开始存的位置必须要可以整除4</strong>)（偏移量）个字节开始存放。所以sizeof(student)=16。于是中间空出几个字节闲置着。但这样便于计算机快速读写数据，是一种以空间换取时间的方式。其数据对齐如下图：</p>
-<pre><code>struct student
-&#123;
-    int num;
-    char name[5];
-    short score;
-&#125;
-</code></pre>
-<p>num从0开始存放，而name从第4（偏移量）个字节开始存放，连续5个字节，score从第10（偏移量）开始存放，故sizeof(student)=12。其数据对齐如下图：<br>|——–int——–|<br>|char|char|char|char|<br>|char|—-|–short–|</p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>状语从句</title>
-    <url>/2022/08/20/%E7%8A%B6%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
-    <content><![CDATA[<h1 id="状语从句主谓成分的省略，须遵循下面原则："><a href="#状语从句主谓成分的省略，须遵循下面原则：" class="headerlink" title="状语从句主谓成分的省略，须遵循下面原则："></a>状语从句主谓成分的省略，须遵循下面原则：</h1><ol>
-<li><p>当从句的主语与主句的主语一致时，从句可以省略主语，从句的谓语动词采用其V-ing结构。例如：</p>
-<ul>
-<li><p>Although working very hard, he failed in the final exam. (Although he worked very hard）</p>
-</li>
-<li><p>After taking the medicine, she felt much better. (After she took the medicine)</p>
-</li>
-<li><p>If going there by air, we’ll have to pay twice the fare. (If we go there by air)</p>
-</li>
-</ul>
-</li>
-<li><p>当从句的主语和主句的主语一致时，若从句的谓语动词是系动词be或包含be的某种形式，此时从句的主语和be动词通常可以一同省略</p>
-<ul>
-<li>Whenever (she is) free, she often goes shopping.她有空就去逛商店。</li>
-<li>Work hard when (you are) young, or you’ll regret.少壮不努力,老大徒伤悲。</li>
-<li>While (he was) a young boy, he was always ready to help others. 他在孩提时代就乐于助人。<br><img src="/images/2022-08-22-11-59-37.png"><br><img src="/images/2022-08-22-11-59-56.png"></li>
-</ul>
-</li>
-<li><p>若从句的主语和主句的主语不一致，但和主句的宾语一致时，从句中的主语和be动词亦常可省略。例如：</p>
-<ul>
-<li>Father advised me not to say anything until (I was) asked.</li>
-</ul>
-</li>
-<li><p>当从句的主语是it, 且谓语动词是be或包含be的某种形式时, it和be常可同时省略。例如:</p>
-<ul>
-<li><p>If (it is) possible, he will help you out of the difficulty.如果可能的话,他会帮你摆脱困境。</p>
-</li>
-<li><p>You must attend the meeting unless (it is) inconvenient to you.除非情况对你来说不方便,否则你必须出席这次会议。<br><img src="/images/2022-08-22-12-05-52.png"></p>
-</li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>宾语从句</title>
     <url>/2022/08/21/%E5%AE%BE%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
     <content><![CDATA[<h1 id="宾语从句（objective-clause）"><a href="#宾语从句（objective-clause）" class="headerlink" title="宾语从句（objective clause）"></a>宾语从句（objective clause）</h1><p>that引导的宾语从句作动词或某些形容词的宾语时，that在口语和非正式文体中可以省略，并且是经常省略。<br><img src="/images/2022-08-21-17-29-44.png"></p>
@@ -2338,6 +2297,23 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
+    <title>宾语补足语</title>
+    <url>/2022/08/22/%E5%AE%BE%E8%AF%AD%E8%A1%A5%E8%B6%B3%E8%AF%AD/</url>
+    <content><![CDATA[<h1 id="有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语"><a href="#有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语" class="headerlink" title="有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语"></a>有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语</h1><ul>
+<li>本质上来说后面的名词也是修饰前面的名词的<ul>
+<li>名词做宾补<blockquote>
+<p>eg: I think the job a great honor. 我认为这份工作是一份荣誉</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>按位与替换取余操作</title>
     <url>/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<blockquote>
@@ -2358,15 +2334,6 @@ int main(int argc, const char * argv[]) &#123;
 ]]></content>
       <tags>
         <tag>mathematics</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>线性插值</title>
-    <url>/2022/08/20/%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/</url>
-    <content><![CDATA[<p><img src="/images/2022-08-28-19-14-47.png"></p>
-]]></content>
-      <tags>
-        <tag>ShiftGCN</tag>
       </tags>
   </entry>
   <entry>
@@ -2479,6 +2446,46 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>状语从句</title>
+    <url>/2022/08/20/%E7%8A%B6%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
+    <content><![CDATA[<h1 id="状语从句主谓成分的省略，须遵循下面原则："><a href="#状语从句主谓成分的省略，须遵循下面原则：" class="headerlink" title="状语从句主谓成分的省略，须遵循下面原则："></a>状语从句主谓成分的省略，须遵循下面原则：</h1><ol>
+<li><p>当从句的主语与主句的主语一致时，从句可以省略主语，从句的谓语动词采用其V-ing结构。例如：</p>
+<ul>
+<li><p>Although working very hard, he failed in the final exam. (Although he worked very hard）</p>
+</li>
+<li><p>After taking the medicine, she felt much better. (After she took the medicine)</p>
+</li>
+<li><p>If going there by air, we’ll have to pay twice the fare. (If we go there by air)</p>
+</li>
+</ul>
+</li>
+<li><p>当从句的主语和主句的主语一致时，若从句的谓语动词是系动词be或包含be的某种形式，此时从句的主语和be动词通常可以一同省略</p>
+<ul>
+<li>Whenever (she is) free, she often goes shopping.她有空就去逛商店。</li>
+<li>Work hard when (you are) young, or you’ll regret.少壮不努力,老大徒伤悲。</li>
+<li>While (he was) a young boy, he was always ready to help others. 他在孩提时代就乐于助人。<br><img src="/images/2022-08-22-11-59-37.png"><br><img src="/images/2022-08-22-11-59-56.png"></li>
+</ul>
+</li>
+<li><p>若从句的主语和主句的主语不一致，但和主句的宾语一致时，从句中的主语和be动词亦常可省略。例如：</p>
+<ul>
+<li>Father advised me not to say anything until (I was) asked.</li>
+</ul>
+</li>
+<li><p>当从句的主语是it, 且谓语动词是be或包含be的某种形式时, it和be常可同时省略。例如:</p>
+<ul>
+<li><p>If (it is) possible, he will help you out of the difficulty.如果可能的话,他会帮你摆脱困境。</p>
+</li>
+<li><p>You must attend the meeting unless (it is) inconvenient to you.除非情况对你来说不方便,否则你必须出席这次会议。<br><img src="/images/2022-08-22-12-05-52.png"></p>
+</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>红黑树</title>
     <url>/2022/06/28/%E7%BA%A2%E9%BB%91%E6%A0%91/</url>
     <content><![CDATA[<h1 id="红黑树五大特性"><a href="#红黑树五大特性" class="headerlink" title="红黑树五大特性"></a>红黑树五大特性</h1><ul>
@@ -2519,6 +2526,24 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>线性插值</title>
+    <url>/2022/08/20/%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/</url>
+    <content><![CDATA[<p><img src="/images/2022-08-28-19-14-47.png"></p>
+]]></content>
+      <tags>
+        <tag>ShiftGCN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>期望和方差</title>
+    <url>/2022/05/21/%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE/</url>
+    <content><![CDATA[<p><img src="/images/expectAndvariance.png"> </p>
+]]></content>
+      <tags>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>英语句子</title>
     <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
     <content><![CDATA[<blockquote>
@@ -2536,6 +2561,25 @@ int main()
 ]]></content>
       <tags>
         <tag>machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>重载new()</title>
+    <url>/2022/06/21/%E9%87%8D%E8%BD%BD/</url>
+    <content><![CDATA[<h2 id="可以重载new，同时也可以重载new"><a href="#可以重载new，同时也可以重载new" class="headerlink" title="可以重载new，同时也可以重载new()"></a>可以重载new，同时也可以重载new()</h2><p>Foo* p = new(300,”a”) Foo;</p>
+<blockquote>
+<p>new()里面的参数就是可以加在重载函数的参数中的<br>注意第一个参数必须是size_t</p>
+</blockquote>
+<pre><code>void* operator new(size_t size, int a, char c)&#123;
+.....
+&#125;
+</code></pre>
+<blockquote>
+<p>这样就可以写错多个版本的new重载</p>
+</blockquote>
+<h2 id="delete-也可以这样写多个版本，对应new-参数版本。"><a href="#delete-也可以这样写多个版本，对应new-参数版本。" class="headerlink" title="delete()也可以这样写多个版本，对应new()参数版本。"></a>delete()也可以这样写多个版本，对应new()参数版本。</h2>]]></content>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -2599,15 +2643,6 @@ int main(int argc, const char * argv[]) &#123;
 <h2 id="遇到这些问题记得先画递归树"><a href="#遇到这些问题记得先画递归树" class="headerlink" title="遇到这些问题记得先画递归树"></a>遇到这些问题记得先画递归树</h2>]]></content>
       <tags>
         <tag>递归</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>过去式</title>
-    <url>/2021/12/25/%E8%BF%87%E5%8E%BB%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="过去式变化规则"><a href="#过去式变化规则" class="headerlink" title="过去式变化规则"></a>过去式变化规则</h1><p>1）动词过去式变化规则分为规则变化和不规则变化两种，一般情况下，动词原形词尾加-ed，以不发音的-e结尾动词，动词词尾加-d，以辅音字母+y结尾的动词，把-y变为-i 再加-ed<br>2）以一个元音+一个辅音字母结尾的重读闭音节动词，双写词尾辅音字母，否则就加ed<br>preFER-&gt;preFERRed<br>VISit-&gt;VISited<br>3）不满足一个元音+一个辅音结尾 + ed<br>start-&gt;started 两个辅音结尾<br>need-&gt;needed<br>3) 一个元音+y +ed<br>stay-&gt;stayed</p>
-]]></content>
-      <tags>
-        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -2799,22 +2834,12 @@ by decades 几十年
       </tags>
   </entry>
   <entry>
-    <title>重载new()</title>
-    <url>/2022/06/21/%E9%87%8D%E8%BD%BD/</url>
-    <content><![CDATA[<h2 id="可以重载new，同时也可以重载new"><a href="#可以重载new，同时也可以重载new" class="headerlink" title="可以重载new，同时也可以重载new()"></a>可以重载new，同时也可以重载new()</h2><p>Foo* p = new(300,”a”) Foo;</p>
-<blockquote>
-<p>new()里面的参数就是可以加在重载函数的参数中的<br>注意第一个参数必须是size_t</p>
-</blockquote>
-<pre><code>void* operator new(size_t size, int a, char c)&#123;
-.....
-&#125;
-</code></pre>
-<blockquote>
-<p>这样就可以写错多个版本的new重载</p>
-</blockquote>
-<h2 id="delete-也可以这样写多个版本，对应new-参数版本。"><a href="#delete-也可以这样写多个版本，对应new-参数版本。" class="headerlink" title="delete()也可以这样写多个版本，对应new()参数版本。"></a>delete()也可以这样写多个版本，对应new()参数版本。</h2>]]></content>
+    <title>过去式</title>
+    <url>/2021/12/25/%E8%BF%87%E5%8E%BB%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="过去式变化规则"><a href="#过去式变化规则" class="headerlink" title="过去式变化规则"></a>过去式变化规则</h1><p>1）动词过去式变化规则分为规则变化和不规则变化两种，一般情况下，动词原形词尾加-ed，以不发音的-e结尾动词，动词词尾加-d，以辅音字母+y结尾的动词，把-y变为-i 再加-ed<br>2）以一个元音+一个辅音字母结尾的重读闭音节动词，双写词尾辅音字母，否则就加ed<br>preFER-&gt;preFERRed<br>VISit-&gt;VISited<br>3）不满足一个元音+一个辅音结尾 + ed<br>start-&gt;started 两个辅音结尾<br>need-&gt;needed<br>3) 一个元音+y +ed<br>stay-&gt;stayed</p>
+]]></content>
       <tags>
-        <tag>c++</tag>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -2825,11 +2850,5 @@ by decades 几十年
       <tags>
         <tag>C++</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>multiset</title>
-    <url>/2022/09/05/mutiset/</url>
-    <content><![CDATA[<p><img src="/images/2022-09-05-22-49-24.png"></p>
-]]></content>
   </entry>
 </search>
