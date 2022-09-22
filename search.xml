@@ -59,6 +59,49 @@ I will try figure out by myself, then i will ask sometjiogn  -->
       </tags>
   </entry>
   <entry>
+    <title>Conv-MPN</title>
+    <url>/2022/06/17/Conv-MPN/</url>
+    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
+<li><a href="#">corner_detection</a><blockquote>
+<p>concatenate</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
+<p>mask_rcnn extracts corner points.</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Context-Aware Attentional Graph U-Net for Hyperspectral Image Classification</title>
+    <url>/2021/03/31/CAGU/</url>
+    <content><![CDATA[<p><img src="/images/2_author.jpg"> </p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">Hyperspectral Image (HSI) registers hundreds of spectral bands, whose intraclass variability and interclass similarity are resourceful information to be mined. Intraclass variability reflects the non-uniform and redundancy of the spatial and semantic features extracted from HSI. Interclass similarity represents the inherent relationship between adjacent features and snapshots. Existing models extract the superficial correlation representation for HSI to tackle the classification task but fail to embed the interclass and intraclass correlations due to these models intrinsic bottlenecks. Confronting the challenges of capturing interrelation for complex data in practice, we propose a Context-Aware Attentional Graph U-Net (CAGU) to improve these two modes of representation, which is more flexible in feature enhancement. In this method, attentional Graph U-Net is capable of extracting the intraclass embeddings within a non-Euclidean space by combining similar distributing feature vertices. The Gated Recurrent Unit (GRU) is another critical component of our model to capture the context-aware dynamic interclass embeddings. Extensive experiments demonstrate that our model can efficiently outperform state-of-the-art methods across-the-board on five wide-adopted public datasets, namely Pavia University, Indian Pines, Salinas Scene-show, Houston 2013 and Houston 2018, on a par with the same scale of model parameters.
+</blockquote>
+<h1 id="CAGU-Architecture"><a href="#CAGU-Architecture" class="headerlink" title="CAGU Architecture :"></a>CAGU Architecture :</h1><p> <img src="/images/2_2.jpg"> </p>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/2_3.jpg"> </p>
+<h1 id="Classification-maps"><a href="#Classification-maps" class="headerlink" title="Classification maps :"></a>Classification maps :</h1><p> <img src="/images/2_5.jpg"> </p>
+<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black"> CAGU considers the intrinsic relationship in feature space, and promotes high cohesion of features through the graph network. CAGU can explore deeper spectral information in the image than the state-of-the-art methods, which enhances the cohesion of features and provides clear data for subsequent modules. Therefore, CAGU outperforms all the compared methods, and it can be universally employed in most models for feature enhancement, not restricted in U-Net. What’s more, GCN and GRU will not increase the parameters of the model due to the reduction in depth of U-Net.
+</blockquote>
+<hr>
+<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Journal-IEEE-Geoscience-and-Remote-Sensing-Letters"><a href="#Journal-IEEE-Geoscience-and-Remote-Sensing-Letters" class="headerlink" title="Journal : IEEE Geoscience and Remote Sensing Letters"></a>Journal : IEEE Geoscience and Remote Sensing Letters</h3><h3 id="Impact-factor-3-833"><a href="#Impact-factor-3-833" class="headerlink" title="Impact factor : 3.833"></a>Impact factor : 3.833</h3><h3 id="State-Accepted-28-Mar-2021"><a href="#State-Accepted-28-Mar-2021" class="headerlink" title="State : Accepted (28-Mar-2021)"></a>State : Accepted (28-Mar-2021)</h3><p><img src="/images/2_4.jpg"> </p>
+<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> When the paper is published, we will open source the code.<br>
+<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>CAGU</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++</title>
     <url>/2022/01/13/C/</url>
     <content><![CDATA[<blockquote>
@@ -145,46 +188,21 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
       </tags>
   </entry>
   <entry>
-    <title>Conv-MPN</title>
-    <url>/2022/06/17/Conv-MPN/</url>
-    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
-<li><a href="#">corner_detection</a><blockquote>
-<p>concatenate</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
-<p>mask_rcnn extracts corner points.</p>
-</blockquote>
+    <title>DBSCAN</title>
+    <url>/2022/01/06/DBSCAN/</url>
+    <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
 ]]></content>
       <tags>
-        <tag>c++</tag>
+        <tag>DBSCAN</tag>
       </tags>
   </entry>
   <entry>
-    <title>Context-Aware Attentional Graph U-Net for Hyperspectral Image Classification</title>
-    <url>/2021/03/31/CAGU/</url>
-    <content><![CDATA[<p><img src="/images/2_author.jpg"> </p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">Hyperspectral Image (HSI) registers hundreds of spectral bands, whose intraclass variability and interclass similarity are resourceful information to be mined. Intraclass variability reflects the non-uniform and redundancy of the spatial and semantic features extracted from HSI. Interclass similarity represents the inherent relationship between adjacent features and snapshots. Existing models extract the superficial correlation representation for HSI to tackle the classification task but fail to embed the interclass and intraclass correlations due to these models intrinsic bottlenecks. Confronting the challenges of capturing interrelation for complex data in practice, we propose a Context-Aware Attentional Graph U-Net (CAGU) to improve these two modes of representation, which is more flexible in feature enhancement. In this method, attentional Graph U-Net is capable of extracting the intraclass embeddings within a non-Euclidean space by combining similar distributing feature vertices. The Gated Recurrent Unit (GRU) is another critical component of our model to capture the context-aware dynamic interclass embeddings. Extensive experiments demonstrate that our model can efficiently outperform state-of-the-art methods across-the-board on five wide-adopted public datasets, namely Pavia University, Indian Pines, Salinas Scene-show, Houston 2013 and Houston 2018, on a par with the same scale of model parameters.
-</blockquote>
-<h1 id="CAGU-Architecture"><a href="#CAGU-Architecture" class="headerlink" title="CAGU Architecture :"></a>CAGU Architecture :</h1><p> <img src="/images/2_2.jpg"> </p>
-<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/2_3.jpg"> </p>
-<h1 id="Classification-maps"><a href="#Classification-maps" class="headerlink" title="Classification maps :"></a>Classification maps :</h1><p> <img src="/images/2_5.jpg"> </p>
-<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black"> CAGU considers the intrinsic relationship in feature space, and promotes high cohesion of features through the graph network. CAGU can explore deeper spectral information in the image than the state-of-the-art methods, which enhances the cohesion of features and provides clear data for subsequent modules. Therefore, CAGU outperforms all the compared methods, and it can be universally employed in most models for feature enhancement, not restricted in U-Net. What’s more, GCN and GRU will not increase the parameters of the model due to the reduction in depth of U-Net.
-</blockquote>
-<hr>
-<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Journal-IEEE-Geoscience-and-Remote-Sensing-Letters"><a href="#Journal-IEEE-Geoscience-and-Remote-Sensing-Letters" class="headerlink" title="Journal : IEEE Geoscience and Remote Sensing Letters"></a>Journal : IEEE Geoscience and Remote Sensing Letters</h3><h3 id="Impact-factor-3-833"><a href="#Impact-factor-3-833" class="headerlink" title="Impact factor : 3.833"></a>Impact factor : 3.833</h3><h3 id="State-Accepted-28-Mar-2021"><a href="#State-Accepted-28-Mar-2021" class="headerlink" title="State : Accepted (28-Mar-2021)"></a>State : Accepted (28-Mar-2021)</h3><p><img src="/images/2_4.jpg"> </p>
-<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> When the paper is published, we will open source the code.<br>
-<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
+    <title>DP</title>
+    <url>/2022/03/18/DP/</url>
+    <content><![CDATA[<p><img src="/images/DP.png">  </p>
 ]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
       <tags>
-        <tag>CAGU</tag>
+        <tag>RL</tag>
       </tags>
   </entry>
   <entry>
@@ -215,24 +233,6 @@ static const int a = 1;
 ]]></content>
       <tags>
         <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DBSCAN</title>
-    <url>/2022/01/06/DBSCAN/</url>
-    <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
-]]></content>
-      <tags>
-        <tag>DBSCAN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DP</title>
-    <url>/2022/03/18/DP/</url>
-    <content><![CDATA[<p><img src="/images/DP.png">  </p>
-]]></content>
-      <tags>
-        <tag>RL</tag>
       </tags>
   </entry>
   <entry>
@@ -443,26 +443,6 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>Homogeneous</title>
-    <url>/2022/01/26/Homogeneous/</url>
-    <content><![CDATA[<p><img src="/images/homogeneous.png"> </p>
-]]></content>
-      <tags>
-        <tag>3D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Likelihood2</title>
-    <url>/2022/02/24/Likelihood2/</url>
-    <content><![CDATA[<blockquote>
-<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为&#x3D;》最大概率处l&#x3D;0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Likelihood</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Short-term prediction of stock market price based on GA optimization LSTM neurons</title>
     <url>/2021/04/01/GA/</url>
     <content><![CDATA[<p><img src="/images/3_1.jpg"> </p>
@@ -486,6 +466,26 @@ concorn
       </categories>
       <tags>
         <tag>GA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Homogeneous</title>
+    <url>/2022/01/26/Homogeneous/</url>
+    <content><![CDATA[<p><img src="/images/homogeneous.png"> </p>
+]]></content>
+      <tags>
+        <tag>3D</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Likelihood2</title>
+    <url>/2022/02/24/Likelihood2/</url>
+    <content><![CDATA[<blockquote>
+<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为&#x3D;》最大概率处l&#x3D;0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Likelihood</tag>
       </tags>
   </entry>
   <entry>
@@ -550,6 +550,29 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>STL</title>
+    <url>/2022/07/06/STL/</url>
+    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
+<blockquote>
+<p>stack和queue不提供iterator</p>
+</blockquote>
+<blockquote>
+<p>set&#x2F;multiset<br>multiset是基于红黑树实现的</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ShiftGCN</title>
+    <url>/2022/08/17/ShiftGCN/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>GCN</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ShiftCNN</title>
     <url>/2022/08/16/ShiftCNN/</url>
     <content><![CDATA[<h2 id="ShiftCNN-shifts-the-channels-based-on-the-shift-matrix-kernel"><a href="#ShiftCNN-shifts-the-channels-based-on-the-shift-matrix-kernel" class="headerlink" title="ShiftCNN shifts the channels based on the shift matrix(kernel)"></a>ShiftCNN shifts the channels based on the shift matrix(kernel)</h2><blockquote>
@@ -589,29 +612,6 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>ShiftGCN</title>
-    <url>/2022/08/17/ShiftGCN/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>GCN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STL</title>
-    <url>/2022/07/06/STL/</url>
-    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
-<blockquote>
-<p>stack和queue不提供iterator</p>
-</blockquote>
-<blockquote>
-<p>set&#x2F;multiset<br>multiset是基于红黑树实现的</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>TF-IDF</title>
     <url>/2022/01/04/TF-IDF/</url>
     <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
@@ -645,21 +645,21 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>across_loss</title>
-    <url>/2022/03/29/across-loss/</url>
-    <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
-]]></content>
-      <tags>
-        <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>apriori</title>
     <url>/2022/01/06/apriori/</url>
     <content><![CDATA[<p><img src="/images/apriori.png"> </p>
 ]]></content>
       <tags>
         <tag>apriori</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>across_loss</title>
+    <url>/2022/03/29/across-loss/</url>
+    <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
+]]></content>
+      <tags>
+        <tag>machine</tag>
       </tags>
   </entry>
   <entry>
@@ -1080,6 +1080,15 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>multiset</title>
+    <url>/2022/09/05/mutiset/</url>
+    <content><![CDATA[<p><img src="/images/2022-09-05-22-49-24.png"></p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>makefile</title>
     <url>/2022/07/26/makefile/</url>
     <content><![CDATA[<h1 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h1><p>目标: 依赖<br>tab  命令</p>
@@ -1097,15 +1106,6 @@ c:
 hello c
 hello world
 </code></pre>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>multiset</title>
-    <url>/2022/09/05/mutiset/</url>
-    <content><![CDATA[<p><img src="/images/2022-09-05-22-49-24.png"></p>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -1180,6 +1180,31 @@ hello world
 ]]></content>
   </entry>
   <entry>
+    <title>p22Member-Template</title>
+    <url>/2022/06/17/p22Member-Template/</url>
+    <content><![CDATA[<h2 id="模版内还有模版，一般用于构造函数中，"><a href="#模版内还有模版，一般用于构造函数中，" class="headerlink" title="模版内还有模版，一般用于构造函数中，"></a>模版内还有模版，一般用于构造函数中，</h2><ul>
+<li>把草鱼和麻雀用于对鱼类和鸟类的初始化（作为构造函数传入）</li>
+<li>这里的T1 first 能成功，是因为first是草鱼，是继承了鱼这个类的,也叫up-cast</li>
+</ul>
+<pre><code>// for smart pointer
+template&lt;class _Tp&gt;
+class shared_pte:public _shared_ptr&lt;_Tp&gt;&#123;
+
+    ...
+    template&lt;class _Tp1&gt;
+    explicit shared_ptr(const _Tp1* _p):_shared_ptr&lt;_Tp&gt;(_p)&#123;&#125;
+&#125;
+shared_ptr&lt;Base1&gt;sptr(new Derived1);
+</code></pre>
+<ul>
+<li>为了让构造函数更有弹性<br><img src="/images/member-template.png"></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>other和others</title>
     <url>/2022/06/21/other%E5%92%8Cothers/</url>
     <content><![CDATA[<h2 id="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-x3D-other-复数名词。others通常为代词"><a href="#other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-x3D-other-复数名词。others通常为代词" class="headerlink" title="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others&#x3D;other+复数名词。others通常为代词"></a>other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others&#x3D;other+复数名词。others通常为代词</h2><blockquote>
@@ -1209,31 +1234,6 @@ hello world
 <p>Some people build while others destroy. 有些人建设而另一些人则破坏。</p>
 <p>注：该结构也可说成some…some。如：</p>
 <p>Some of us agree, some disagree. 我们有些人同意，有些人不同意。</p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>p22Member-Template</title>
-    <url>/2022/06/17/p22Member-Template/</url>
-    <content><![CDATA[<h2 id="模版内还有模版，一般用于构造函数中，"><a href="#模版内还有模版，一般用于构造函数中，" class="headerlink" title="模版内还有模版，一般用于构造函数中，"></a>模版内还有模版，一般用于构造函数中，</h2><ul>
-<li>把草鱼和麻雀用于对鱼类和鸟类的初始化（作为构造函数传入）</li>
-<li>这里的T1 first 能成功，是因为first是草鱼，是继承了鱼这个类的,也叫up-cast</li>
-</ul>
-<pre><code>// for smart pointer
-template&lt;class _Tp&gt;
-class shared_pte:public _shared_ptr&lt;_Tp&gt;&#123;
-
-    ...
-    template&lt;class _Tp1&gt;
-    explicit shared_ptr(const _Tp1* _p):_shared_ptr&lt;_Tp&gt;(_p)&#123;&#125;
-&#125;
-shared_ptr&lt;Base1&gt;sptr(new Derived1);
-</code></pre>
-<ul>
-<li>为了让构造函数更有弹性<br><img src="/images/member-template.png"></li>
-</ul>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -1619,21 +1619,6 @@ A&lt;string*&gt; b;
       </tags>
   </entry>
   <entry>
-    <title>stl全局</title>
-    <url>/2022/06/29/stl%E5%85%A8%E5%B1%80/</url>
-    <content><![CDATA[<h1 id="C-函数或者命名空间前面加"><a href="#C-函数或者命名空间前面加" class="headerlink" title="C++函数或者命名空间前面加::"></a>C++函数或者命名空间前面加::</h1><ul>
-<li>函数前面 ::find() 表示这个是全局的函数，不是这个作用域下的函数<br><img src="/images/2022-06-29-16-13-57.png"><blockquote>
-<p>比如这里的 ::find()。这个是STL的algorithm中的函数，虽然这里如果不用:: , 编译器没有找到find也会到全局，但是加入会让代码更清晰</p>
-</blockquote>
-</li>
-<li>jj01::test_array() &#x3D; 这个就是命名空间</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>subjunctive</title>
     <url>/2022/03/06/subjunctive/</url>
     <content><![CDATA[<h2 id="The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy"><a href="#The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy" class="headerlink" title="The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy."></a>The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy.</h2><blockquote>
@@ -1656,6 +1641,30 @@ A&lt;string*&gt; b;
 ]]></content>
       <tags>
         <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>stl全局</title>
+    <url>/2022/06/29/stl%E5%85%A8%E5%B1%80/</url>
+    <content><![CDATA[<h1 id="C-函数或者命名空间前面加"><a href="#C-函数或者命名空间前面加" class="headerlink" title="C++函数或者命名空间前面加::"></a>C++函数或者命名空间前面加::</h1><ul>
+<li>函数前面 ::find() 表示这个是全局的函数，不是这个作用域下的函数<br><img src="/images/2022-06-29-16-13-57.png"><blockquote>
+<p>比如这里的 ::find()。这个是STL的algorithm中的函数，虽然这里如果不用:: , 编译器没有找到find也会到全局，但是加入会让代码更清晰</p>
+</blockquote>
+</li>
+<li>jj01::test_array() &#x3D; 这个就是命名空间</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>t5-假设检验</title>
+    <url>/2022/06/22/t5%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/</url>
+    <content><![CDATA[<p><img src="/images/p5.png"></p>
+]]></content>
+      <tags>
+        <tag>probability</tag>
       </tags>
   </entry>
   <entry>
@@ -1750,12 +1759,12 @@ private:
       </tags>
   </entry>
   <entry>
-    <title>t5-假设检验</title>
-    <url>/2022/06/22/t5%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/</url>
-    <content><![CDATA[<p><img src="/images/p5.png"></p>
+    <title>to+do+or+doing</title>
+    <url>/2021/12/12/to-do-or-doing/</url>
+    <content><![CDATA[<p><img src="/images/todo.png"> </p>
 ]]></content>
       <tags>
-        <tag>probability</tag>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -1765,15 +1774,6 @@ private:
 ]]></content>
       <tags>
         <tag>transformer</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>to+do+or+doing</title>
-    <url>/2021/12/12/to-do-or-doing/</url>
-    <content><![CDATA[<p><img src="/images/todo.png"> </p>
-]]></content>
-      <tags>
-        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -2026,77 +2026,6 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
       </tags>
   </entry>
   <entry>
-    <title>分治法</title>
-    <url>/2022/09/03/%E5%88%86%E6%B2%BB%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"><a href="#分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解" class="headerlink" title="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"></a>分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解</h1><pre><code>//
-//  main.cpp
-//  两个数组调整为一样的最小距离
-//
-//  Created by moule on 2022/9/3.
-//
-
-#include &lt;iostream&gt;
-#include &lt;vector&gt;
-using namespace std;
-int minimal_distance(vector&lt;int&gt;&amp; num1, vector&lt;int&gt;&amp; num2, int idx1, int idx2)&#123;
-    
-    if(idx1 == num1.size() &amp;&amp; idx2 == num2.size())&#123;
-        return 0;
-    &#125;
-    if(idx1==num1.size() &amp;&amp; idx2 != num2.size())&#123;
-       // cout &lt;&lt; idx2 &lt;&lt; endl;
-        int k = num2[idx2] + minimal_distance(num1, num2, idx1, idx2+1);
-        return k;
-    &#125;
-    if(idx2==num2.size() &amp;&amp; idx1 != num1.size())&#123;
-       // cout &lt;&lt; idx2 &lt;&lt; endl;
-        return num1[idx1] + minimal_distance(num1, num2, idx1+1, idx2);
-        
-    &#125;
-    // delete num1[idx1]
-    
-    int p1 = num1[idx1] + minimal_distance(num1, num2, idx1+1, idx2);
- //   cout &lt;&lt; p1;
-    // delete num2[idx2]
-    int p2 = num2[idx2] + minimal_distance(num1, num2, idx1, idx2+1);
-   // cout &lt;&lt; p2;
-//    // num1[idx1] - num2[idx2]
-    int p3 = abs(num1[idx1]-num2[idx2]) + minimal_distance(num1, num2, idx1+1, idx2+1);
-   
-    
-    return min((p1,p2),p3);
-&#125;
-int main(int argc, const char * argv[]) &#123;
-    // insert code here...
-    vector&lt;int&gt; num1 = &#123;2,3&#125;;
-    vector&lt;int&gt; num2 = &#123;2,3,5&#125;;
-    cout &lt;&lt; minimal_distance(num1, num2, 0, 0) &lt;&lt; endl;
-    std::cout &lt;&lt; &quot;Hello, World!\n&quot;;
-    return 0;
-&#125;
-</code></pre>
-<h2 id="比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解"><a href="#比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解" class="headerlink" title="比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解"></a>比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解</h2><p><img src="/images/2022-09-03-21-56-00.png"><br><img src="/images/2022-09-03-21-56-18.png"><br><img src="/images/2022-09-03-21-56-31.png"></p>
-<blockquote>
-<p>汉诺塔的子问题如下：</p>
-</blockquote>
-<pre><code>- 1）把 N-1个盘子 移到中转柱
-- 2）把第N个盘子移动到 目标柱
-- 3）把中转柱上面的N-1个盘子借助目前空闲的柱子 移动到 目标柱。
-</code></pre>
-<blockquote>
-<p>两个数组变为一样的子问题</p>
-</blockquote>
-<pre><code>- 1）第一个数组的下标数删掉
-- 2）第二个数组的下标数删掉
-- 3）删掉两个数组对应下标数值的差
-合：找到三个子解代价最小的
-</code></pre>
-]]></content>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>主语从句</title>
     <url>/2022/08/24/%E4%B8%BB%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
     <content><![CDATA[<h2 id="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"><a href="#主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾" class="headerlink" title="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"></a>主语从句：<strong>在句子中担当主语的是一个从句</strong>，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾</h2><blockquote>
@@ -2165,6 +2094,77 @@ int main(int argc, const char * argv[]) &#123;
 ]]></content>
       <tags>
         <tag>Enlish</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>分治法</title>
+    <url>/2022/09/03/%E5%88%86%E6%B2%BB%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"><a href="#分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解" class="headerlink" title="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"></a>分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解</h1><pre><code>//
+//  main.cpp
+//  两个数组调整为一样的最小距离
+//
+//  Created by moule on 2022/9/3.
+//
+
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+int minimal_distance(vector&lt;int&gt;&amp; num1, vector&lt;int&gt;&amp; num2, int idx1, int idx2)&#123;
+    
+    if(idx1 == num1.size() &amp;&amp; idx2 == num2.size())&#123;
+        return 0;
+    &#125;
+    if(idx1==num1.size() &amp;&amp; idx2 != num2.size())&#123;
+       // cout &lt;&lt; idx2 &lt;&lt; endl;
+        int k = num2[idx2] + minimal_distance(num1, num2, idx1, idx2+1);
+        return k;
+    &#125;
+    if(idx2==num2.size() &amp;&amp; idx1 != num1.size())&#123;
+       // cout &lt;&lt; idx2 &lt;&lt; endl;
+        return num1[idx1] + minimal_distance(num1, num2, idx1+1, idx2);
+        
+    &#125;
+    // delete num1[idx1]
+    
+    int p1 = num1[idx1] + minimal_distance(num1, num2, idx1+1, idx2);
+ //   cout &lt;&lt; p1;
+    // delete num2[idx2]
+    int p2 = num2[idx2] + minimal_distance(num1, num2, idx1, idx2+1);
+   // cout &lt;&lt; p2;
+//    // num1[idx1] - num2[idx2]
+    int p3 = abs(num1[idx1]-num2[idx2]) + minimal_distance(num1, num2, idx1+1, idx2+1);
+   
+    
+    return min((p1,p2),p3);
+&#125;
+int main(int argc, const char * argv[]) &#123;
+    // insert code here...
+    vector&lt;int&gt; num1 = &#123;2,3&#125;;
+    vector&lt;int&gt; num2 = &#123;2,3,5&#125;;
+    cout &lt;&lt; minimal_distance(num1, num2, 0, 0) &lt;&lt; endl;
+    std::cout &lt;&lt; &quot;Hello, World!\n&quot;;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解"><a href="#比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解" class="headerlink" title="比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解"></a>比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解</h2><p><img src="/images/2022-09-03-21-56-00.png"><br><img src="/images/2022-09-03-21-56-18.png"><br><img src="/images/2022-09-03-21-56-31.png"></p>
+<blockquote>
+<p>汉诺塔的子问题如下：</p>
+</blockquote>
+<pre><code>- 1）把 N-1个盘子 移到中转柱
+- 2）把第N个盘子移动到 目标柱
+- 3）把中转柱上面的N-1个盘子借助目前空闲的柱子 移动到 目标柱。
+</code></pre>
+<blockquote>
+<p>两个数组变为一样的子问题</p>
+</blockquote>
+<pre><code>- 1）第一个数组的下标数删掉
+- 2）第二个数组的下标数删掉
+- 3）删掉两个数组对应下标数值的差
+合：找到三个子解代价最小的
+</code></pre>
+]]></content>
+      <tags>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -2275,6 +2275,29 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
+    <title>按位与替换取余操作</title>
+    <url>/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<blockquote>
+<p>由于我们知道位运算比较高效，在某些情况下，当b为2的n次方时，有如下替换公式：</p>
+</blockquote>
+<blockquote>
+<p><code>a % b = a &amp; (b-1)</code></p>
+</blockquote>
+<h2 id="notes"><a href="#notes" class="headerlink" title="notes:"></a>notes:</h2><ul>
+<li>b必须为2的整数倍<blockquote>
+<p>因为可以保证b始终只有最高位为1，其他二进制位全部为0，减去1，之后，可以把高位1消除，其他位都为1。<br><code>减一之后，最高位为0，之后都为1（b,b剩下的数就是需要的余数的最高值），就相当于计算低位与原数的与</code></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>例如：14%8，取余数，相当于取出低位，而余数最大为7，14二进制为1110，8的二进制1000，8-1 &#x3D; 7的二进制为0111，由于现在低位全为1，让其跟14做&amp;运算，正好取出的是其低位上的余数 </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mathematics</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>宾语从句</title>
     <url>/2022/08/21/%E5%AE%BE%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
     <content><![CDATA[<h1 id="宾语从句（objective-clause）"><a href="#宾语从句（objective-clause）" class="headerlink" title="宾语从句（objective clause）"></a>宾语从句（objective clause）</h1><p>that引导的宾语从句作动词或某些形容词的宾语时，that在口语和非正式文体中可以省略，并且是经常省略。<br><img src="/images/2022-08-21-17-29-44.png"></p>
@@ -2313,46 +2336,6 @@ int main(int argc, const char * argv[]) &#123;
 ]]></content>
       <tags>
         <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>宾语补足语</title>
-    <url>/2022/08/22/%E5%AE%BE%E8%AF%AD%E8%A1%A5%E8%B6%B3%E8%AF%AD/</url>
-    <content><![CDATA[<h1 id="有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语"><a href="#有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语" class="headerlink" title="有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语"></a>有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语</h1><ul>
-<li>本质上来说后面的名词也是修饰前面的名词的<ul>
-<li>名词做宾补<blockquote>
-<p>eg: I think the job a great honor. 我认为这份工作是一份荣誉</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>按位与替换取余操作</title>
-    <url>/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<blockquote>
-<p>由于我们知道位运算比较高效，在某些情况下，当b为2的n次方时，有如下替换公式：</p>
-</blockquote>
-<blockquote>
-<p><code>a % b = a &amp; (b-1)</code></p>
-</blockquote>
-<h2 id="notes"><a href="#notes" class="headerlink" title="notes:"></a>notes:</h2><ul>
-<li>b必须为2的整数倍<blockquote>
-<p>因为可以保证b始终只有最高位为1，其他二进制位全部为0，减去1，之后，可以把高位1消除，其他位都为1。<br><code>减一之后，最高位为0，之后都为1（b,b剩下的数就是需要的余数的最高值），就相当于计算低位与原数的与</code></p>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p>例如：14%8，取余数，相当于取出低位，而余数最大为7，14二进制为1110，8的二进制1000，8-1 &#x3D; 7的二进制为0111，由于现在低位全为1，让其跟14做&amp;运算，正好取出的是其低位上的余数 </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>mathematics</tag>
       </tags>
   </entry>
   <entry>
@@ -2534,6 +2517,23 @@ int main()
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>宾语补足语</title>
+    <url>/2022/08/22/%E5%AE%BE%E8%AF%AD%E8%A1%A5%E8%B6%B3%E8%AF%AD/</url>
+    <content><![CDATA[<h1 id="有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语"><a href="#有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语" class="headerlink" title="有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语"></a>有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语</h1><ul>
+<li>本质上来说后面的名词也是修饰前面的名词的<ul>
+<li>名词做宾补<blockquote>
+<p>eg: I think the job a great honor. 我认为这份工作是一份荣誉</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -2879,7 +2879,7 @@ by decades 几十年
     <url>/2022/09/22/docker/docker/</url>
     <content><![CDATA[<p>Docker 一些基本操作</p>
 <ul>
-<li><a href="./docker-compose.md">docker-compose</a></li>
+<li><a href="../docker-compose">docker-compose</a></li>
 </ul>
 ]]></content>
       <tags>
