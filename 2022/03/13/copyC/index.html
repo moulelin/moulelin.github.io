@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -341,9 +341,9 @@
 rect(const rect *r);
 ~rect();
 </code></pre>
-<p>private:<br>    int width, height;<br>    int *p;<br>};<br>rect::rect(const rect *r)<br>{<br>    width = r-&gt;width;<br>    height = r-&gt;height;<br>    p = new int;<br>    *p = *(r-&gt;p);<br>}</p>
-<p>rect::rect()<br>{<br>    p = new int(100);<br>}</p>
-<p>rect::~rect()<br>{<br>    if (p != NULL)<br>        delete p;<br>}<br>int _tmain(int argc, _TCHAR* argv[])<br>{<br>    rect *rect1;<br>    rect *rect2;<br>    rect1 = new rect;<br>    rect2 = new rect(rect1);</p>
+<p>private:<br>    int width, height;<br>    int *p;<br>};<br>rect::rect(const rect *r)<br>{<br>    width &#x3D; r-&gt;width;<br>    height &#x3D; r-&gt;height;<br>    p &#x3D; new int;<br>    *p &#x3D; *(r-&gt;p);<br>}</p>
+<p>rect::rect()<br>{<br>    p &#x3D; new int(100);<br>}</p>
+<p>rect::~rect()<br>{<br>    if (p !&#x3D; NULL)<br>        delete p;<br>}<br>int _tmain(int argc, _TCHAR* argv[])<br>{<br>    rect *rect1;<br>    rect *rect2;<br>    rect1 &#x3D; new rect;<br>    rect2 &#x3D; new rect(rect1);</p>
 <pre><code>return 0;
 </code></pre>
 <p>}<br>‘’’<br>类指针和类内成员p指针都指向了不同的地址</p>

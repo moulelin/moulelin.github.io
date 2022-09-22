@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -349,7 +349,7 @@ Linux环境运行，使用g++编译，观察如下代码，会出现： invalid 
 
 其中文意思为临时变量无法为非const的引用初始化。也就是在参数传递的过程中，出现错误。出错的代码如下
 </code></pre>
-<p>void print(string&amp; str)<br>{<br>    cout&lt;&lt;str&lt;&lt;endl;<br>}<br>//如此调用会报上面描述的错误</p>
+<p>void print(string&amp; str)<br>{<br>    cout&lt;&lt;str&lt;&lt;endl;<br>}<br>&#x2F;&#x2F;如此调用会报上面描述的错误</p>
 <pre><code>print(&quot;hello world&quot;);
 
 

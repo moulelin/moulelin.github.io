@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -338,7 +338,7 @@ I skipped some lectures, so first of all I need to rewatch that. After that, I w
 aassigments
 I will try figure out by myself, then i will ask sometjiogn  -->
 <blockquote>
-<p>trangulation<br>tip: e2（第二个图像的极点是第一个图片的focal（焦点）在第二个坐标系下的投影），e2 = K’[R T][0,0,0,1]T([0,0,0,1]是第一个图片的坐标原点（世界坐标系的原点）)<br>问题一：为什么要进行相机标定？<br>相机标定的目的是：建立相机成像几何模型并矫正透镜畸变。这句话有点拗口，下面分别对其中两个关键部分进行解释。</p>
+<p>trangulation<br>tip: e2（第二个图像的极点是第一个图片的focal（焦点）在第二个坐标系下的投影），e2 &#x3D; K’[R T][0,0,0,1]T([0,0,0,1]是第一个图片的坐标原点（世界坐标系的原点）)<br>问题一：为什么要进行相机标定？<br>相机标定的目的是：建立相机成像几何模型并矫正透镜畸变。这句话有点拗口，下面分别对其中两个关键部分进行解释。</p>
 </blockquote>
 <blockquote>
 <p>建立相机成像几何模型：计算机视觉的首要任务就是要通过拍摄到的图像信息获取到物体在真实三维世界里相对应的信息，于是，建立物体从三维世界映射到相机成像平面这一过程中的几何模型就显得尤为重要，而这一过程最关键的部分就是要得到相机的内参和外参（后续文有具体解释）。</p>
@@ -351,7 +351,7 @@ I will try figure out by myself, then i will ask sometjiogn  -->
 <p>世界坐标系(world coordinate system)：用户定义的三维世界的坐标系，为了描述目标物在真实世界里的位置而被引入。单位为m。</p>
 </blockquote>
 <blockquote>
-<p>相机坐标系(camera coordinate system)：在相机上建立的坐标系，为了从相机的角度描述物体位置而定义，作为沟通世界坐标系和图像/像素坐标系的中间一环。单位为m。</p>
+<p>相机坐标系(camera coordinate system)：在相机上建立的坐标系，为了从相机的角度描述物体位置而定义，作为沟通世界坐标系和图像&#x2F;像素坐标系的中间一环。单位为m。</p>
 </blockquote>
 <blockquote>
 <p>图像坐标系(image coordinate system)：为了描述成像过程中物体从相机坐标系到图像坐标系的投影透射关系而引入，方便进一步得到像素坐标系下的坐标。 单位为m。</p>

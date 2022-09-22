@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -338,15 +338,15 @@
 <p>这里的row,col代表二维vector的两个轴方向的大小</p>
 </blockquote>
 </li>
-<li>第二种通过resize确定大小，之后循环赋值<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
+<li>第二种通过resize确定大小，之后循环赋值</li>
+</ul>
+<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
 vec1.resize(row);
 for(int i=0;i&lt;vec1.size();i++)
-  vec1[i].resize(col);
+    vec1[i].resize(col);
 for(int i=0;i&lt;row;i++)
-  for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
+    for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
 </code></pre>
-</li>
-</ul>
 
             </div>
             <hr/>

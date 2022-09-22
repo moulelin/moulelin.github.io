@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -333,11 +333,11 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>一个自定义类，如果没有重载其=运算符，那么编译器将自动生成一个。但是此编译器自动生成的重载函数可能不安全。这是因为它采用了所谓的“浅拷贝”，也就是对于指针而言，它拷贝的是指针的值，而不是其指向的内存空间。那么这个内存空间就有了两个指针指向它，且类对象要析构两次，但是内存空间只能被释放一次，那么第二次就会出现访问错误。</p>
-<p>　　要避免这种“浅拷贝”问题，就需要重载=运算符。这是一个二元运算符，函数名和参数比较容易确定，重点是其返回类型。一般来说，要返回一个类的引用类型。这是因为要能实现所谓的“链式编程”。我存在过的疑问是，为什么要返回一个引用，才能实现所谓的“链式编程”呢？这里从代码出发，进行思考与总结。</p>
-<p>复制代码<br>class Student<br>{<br>public:<br>    Student(const char* name);~Student();<br>    Student&amp; operator=(const Student &amp;student);private:<br>    char *m_name;<br>};<br>复制代码<br>复制代码<br>//测试代码<br>Student s1(“Lee”);<br>Student s2(“Diwen”);<br>Student s3(“Tom”);</p>
-<p>//先执行s2 = s1, 即执行 s2.operator=(s1), 返回的是s2的引用<br>//然后执行s3 = s2, 即执行 s3.operator=(s2)<br>s3 = s2 = s1;<br>复制代码<br>　　=的链式编程执行顺序是从右向左的。因此右边需要返回一个Student类型的对象，是肯定的。那么问题是，为何要返回一个引用呢？</p>
-<p>　　观察一下重载=运算符的函数，参数类型是一个常量引用，也即是说传进去的实参必须是一个左值。而如果返回类型是Student，那么返回的就是一个匿名对象（右值），作为链式编程，此返回值（右值）又要作为实参传进去，那么显然不行(不加const不行，加了是可以的)。<br>const引用可以绑定到右值，而重载的赋值运算符返回一个引用当然是为了避免没有意义的拷贝了。</p>
+                <p>一个自定义类，如果没有重载其&#x3D;运算符，那么编译器将自动生成一个。但是此编译器自动生成的重载函数可能不安全。这是因为它采用了所谓的“浅拷贝”，也就是对于指针而言，它拷贝的是指针的值，而不是其指向的内存空间。那么这个内存空间就有了两个指针指向它，且类对象要析构两次，但是内存空间只能被释放一次，那么第二次就会出现访问错误。</p>
+<p>　　要避免这种“浅拷贝”问题，就需要重载&#x3D;运算符。这是一个二元运算符，函数名和参数比较容易确定，重点是其返回类型。一般来说，要返回一个类的引用类型。这是因为要能实现所谓的“链式编程”。我存在过的疑问是，为什么要返回一个引用，才能实现所谓的“链式编程”呢？这里从代码出发，进行思考与总结。</p>
+<p>复制代码<br>class Student<br>{<br>public:<br>    Student(const char* name);~Student();<br>    Student&amp; operator&#x3D;(const Student &amp;student);private:<br>    char *m_name;<br>};<br>复制代码<br>复制代码<br>&#x2F;&#x2F;测试代码<br>Student s1(“Lee”);<br>Student s2(“Diwen”);<br>Student s3(“Tom”);</p>
+<p>&#x2F;&#x2F;先执行s2 &#x3D; s1, 即执行 s2.operator&#x3D;(s1), 返回的是s2的引用<br>&#x2F;&#x2F;然后执行s3 &#x3D; s2, 即执行 s3.operator&#x3D;(s2)<br>s3 &#x3D; s2 &#x3D; s1;<br>复制代码<br>　　&#x3D;的链式编程执行顺序是从右向左的。因此右边需要返回一个Student类型的对象，是肯定的。那么问题是，为何要返回一个引用呢？</p>
+<p>　　观察一下重载&#x3D;运算符的函数，参数类型是一个常量引用，也即是说传进去的实参必须是一个左值。而如果返回类型是Student，那么返回的就是一个匿名对象（右值），作为链式编程，此返回值（右值）又要作为实参传进去，那么显然不行(不加const不行，加了是可以的)。<br>const引用可以绑定到右值，而重载的赋值运算符返回一个引用当然是为了避免没有意义的拷贝了。</p>
 
             </div>
             <hr/>

@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -342,7 +342,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="交叉熵的数学原理—pytorch中的CrossEntropyLoss-函数"><a href="#交叉熵的数学原理—pytorch中的CrossEntropyLoss-函数" class="headerlink" title="交叉熵的数学原理—pytorch中的CrossEntropyLoss()函数"></a>交叉熵的数学原理—pytorch中的CrossEntropyLoss()函数</h1><p>对于二分类来说，我们使用的是Binary Cross Entropy Loss,公式如下：<br> <img src="/images/1_1.png"><br>因为ln后的数为负数，所以加负号，保证我们是优化最小（不然就要往最大值优化了）；<br>如当l=1时（标签为正样本），此时Loss = -logp, 我们要使p的值尽量大，loss才会尽量小，最好能到1，就代表分类正确了</p>
+                <h1 id="交叉熵的数学原理—pytorch中的CrossEntropyLoss-函数"><a href="#交叉熵的数学原理—pytorch中的CrossEntropyLoss-函数" class="headerlink" title="交叉熵的数学原理—pytorch中的CrossEntropyLoss()函数"></a>交叉熵的数学原理—pytorch中的CrossEntropyLoss()函数</h1><p>对于二分类来说，我们使用的是Binary Cross Entropy Loss,公式如下：<br> <img src="/images/1_1.png"><br>因为ln后的数为负数，所以加负号，保证我们是优化最小（不然就要往最大值优化了）；<br>如当l&#x3D;1时（标签为正样本），此时Loss &#x3D; -logp, 我们要使p的值尽量大，loss才会尽量小，最好能到1，就代表分类正确了</p>
 <h2 id="多分类"><a href="#多分类" class="headerlink" title="多分类"></a>多分类</h2><p><img src="/images/1_2.png"><br>这里的label会被展开为<strong>one-hot</strong>编码<br><strong>主要讨论图像像素级的分类</strong></p>
 <pre><code># -*- coding: utf-8 -*-
 &#39;&#39;&#39;
@@ -440,7 +440,7 @@ tensor([[[[-1.1189, -1.4660],
 tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
 </code></pre>
 <blockquote>
-<p>这里一共有四个像素点,分别是[[0, 1],[2, 0]]，对于第一个像素点来说，它的分类结果是0，输出为3类，即分为三类，所以会被展开为[1,0,0]<br>代表第一个元素的第0个通道上的数值是我想取出来的，这里就是-1.1189，同理，对于第二个像素点来说展开为[0，1，0]，取得-1.1371，第三个[0,0,1],取得-1.3066，第四个[1,0,0],取得-0.3823， 将这四个数取绝对值相加再除4，（1.1189+1.1371+1.3066+0.3823）/4 = 0.9862<br>所以说，对于一个图像来说，输入维度为B,C,W,H，label对应的维度就是B,1,W,H就可以</p>
+<p>这里一共有四个像素点,分别是[[0, 1],[2, 0]]，对于第一个像素点来说，它的分类结果是0，输出为3类，即分为三类，所以会被展开为[1,0,0]<br>代表第一个元素的第0个通道上的数值是我想取出来的，这里就是-1.1189，同理，对于第二个像素点来说展开为[0，1，0]，取得-1.1371，第三个[0,0,1],取得-1.3066，第四个[1,0,0],取得-0.3823， 将这四个数取绝对值相加再除4，（1.1189+1.1371+1.3066+0.3823）&#x2F;4 &#x3D; 0.9862<br>所以说，对于一个图像来说，输入维度为B,C,W,H，label对应的维度就是B,1,W,H就可以</p>
 </blockquote>
 
             </div>

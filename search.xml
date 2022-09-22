@@ -16,7 +16,7 @@ I skipped some lectures, so first of all I need to rewatch that. After that, I w
 aassigments
 I will try figure out by myself, then i will ask sometjiogn  -->
 <blockquote>
-<p>trangulation<br>tip: e2（第二个图像的极点是第一个图片的focal（焦点）在第二个坐标系下的投影），e2 = K’[R T][0,0,0,1]T([0,0,0,1]是第一个图片的坐标原点（世界坐标系的原点）)<br>问题一：为什么要进行相机标定？<br>相机标定的目的是：建立相机成像几何模型并矫正透镜畸变。这句话有点拗口，下面分别对其中两个关键部分进行解释。</p>
+<p>trangulation<br>tip: e2（第二个图像的极点是第一个图片的focal（焦点）在第二个坐标系下的投影），e2 &#x3D; K’[R T][0,0,0,1]T([0,0,0,1]是第一个图片的坐标原点（世界坐标系的原点）)<br>问题一：为什么要进行相机标定？<br>相机标定的目的是：建立相机成像几何模型并矫正透镜畸变。这句话有点拗口，下面分别对其中两个关键部分进行解释。</p>
 </blockquote>
 <blockquote>
 <p>建立相机成像几何模型：计算机视觉的首要任务就是要通过拍摄到的图像信息获取到物体在真实三维世界里相对应的信息，于是，建立物体从三维世界映射到相机成像平面这一过程中的几何模型就显得尤为重要，而这一过程最关键的部分就是要得到相机的内参和外参（后续文有具体解释）。</p>
@@ -29,7 +29,7 @@ I will try figure out by myself, then i will ask sometjiogn  -->
 <p>世界坐标系(world coordinate system)：用户定义的三维世界的坐标系，为了描述目标物在真实世界里的位置而被引入。单位为m。</p>
 </blockquote>
 <blockquote>
-<p>相机坐标系(camera coordinate system)：在相机上建立的坐标系，为了从相机的角度描述物体位置而定义，作为沟通世界坐标系和图像/像素坐标系的中间一环。单位为m。</p>
+<p>相机坐标系(camera coordinate system)：在相机上建立的坐标系，为了从相机的角度描述物体位置而定义，作为沟通世界坐标系和图像&#x2F;像素坐标系的中间一环。单位为m。</p>
 </blockquote>
 <blockquote>
 <p>图像坐标系(image coordinate system)：为了描述成像过程中物体从相机坐标系到图像坐标系的投影透射关系而引入，方便进一步得到像素坐标系下的坐标。 单位为m。</p>
@@ -59,6 +59,32 @@ I will try figure out by myself, then i will ask sometjiogn  -->
       </tags>
   </entry>
   <entry>
+    <title>Context-Aware Attentional Graph U-Net for Hyperspectral Image Classification</title>
+    <url>/2021/03/31/CAGU/</url>
+    <content><![CDATA[<p><img src="/images/2_author.jpg"> </p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">Hyperspectral Image (HSI) registers hundreds of spectral bands, whose intraclass variability and interclass similarity are resourceful information to be mined. Intraclass variability reflects the non-uniform and redundancy of the spatial and semantic features extracted from HSI. Interclass similarity represents the inherent relationship between adjacent features and snapshots. Existing models extract the superficial correlation representation for HSI to tackle the classification task but fail to embed the interclass and intraclass correlations due to these models intrinsic bottlenecks. Confronting the challenges of capturing interrelation for complex data in practice, we propose a Context-Aware Attentional Graph U-Net (CAGU) to improve these two modes of representation, which is more flexible in feature enhancement. In this method, attentional Graph U-Net is capable of extracting the intraclass embeddings within a non-Euclidean space by combining similar distributing feature vertices. The Gated Recurrent Unit (GRU) is another critical component of our model to capture the context-aware dynamic interclass embeddings. Extensive experiments demonstrate that our model can efficiently outperform state-of-the-art methods across-the-board on five wide-adopted public datasets, namely Pavia University, Indian Pines, Salinas Scene-show, Houston 2013 and Houston 2018, on a par with the same scale of model parameters.
+</blockquote>
+<h1 id="CAGU-Architecture"><a href="#CAGU-Architecture" class="headerlink" title="CAGU Architecture :"></a>CAGU Architecture :</h1><p> <img src="/images/2_2.jpg"> </p>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/2_3.jpg"> </p>
+<h1 id="Classification-maps"><a href="#Classification-maps" class="headerlink" title="Classification maps :"></a>Classification maps :</h1><p> <img src="/images/2_5.jpg"> </p>
+<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black"> CAGU considers the intrinsic relationship in feature space, and promotes high cohesion of features through the graph network. CAGU can explore deeper spectral information in the image than the state-of-the-art methods, which enhances the cohesion of features and provides clear data for subsequent modules. Therefore, CAGU outperforms all the compared methods, and it can be universally employed in most models for feature enhancement, not restricted in U-Net. What’s more, GCN and GRU will not increase the parameters of the model due to the reduction in depth of U-Net.
+</blockquote>
+<hr>
+<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Journal-IEEE-Geoscience-and-Remote-Sensing-Letters"><a href="#Journal-IEEE-Geoscience-and-Remote-Sensing-Letters" class="headerlink" title="Journal : IEEE Geoscience and Remote Sensing Letters"></a>Journal : IEEE Geoscience and Remote Sensing Letters</h3><h3 id="Impact-factor-3-833"><a href="#Impact-factor-3-833" class="headerlink" title="Impact factor : 3.833"></a>Impact factor : 3.833</h3><h3 id="State-Accepted-28-Mar-2021"><a href="#State-Accepted-28-Mar-2021" class="headerlink" title="State : Accepted (28-Mar-2021)"></a>State : Accepted (28-Mar-2021)</h3><p><img src="/images/2_4.jpg"> </p>
+<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> When the paper is published, we will open source the code.<br>
+<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>CAGU</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++</title>
     <url>/2022/01/13/C/</url>
     <content><![CDATA[<blockquote>
@@ -77,7 +103,7 @@ Linux环境运行，使用g++编译，观察如下代码，会出现： invalid 
 
 其中文意思为临时变量无法为非const的引用初始化。也就是在参数传递的过程中，出现错误。出错的代码如下
 </code></pre>
-<p>void print(string&amp; str)<br>{<br>    cout&lt;&lt;str&lt;&lt;endl;<br>}<br>//如此调用会报上面描述的错误</p>
+<p>void print(string&amp; str)<br>{<br>    cout&lt;&lt;str&lt;&lt;endl;<br>}<br>&#x2F;&#x2F;如此调用会报上面描述的错误</p>
 <pre><code>print(&quot;hello world&quot;);
 
 
@@ -145,37 +171,11 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
       </tags>
   </entry>
   <entry>
-    <title>Context-Aware Attentional Graph U-Net for Hyperspectral Image Classification</title>
-    <url>/2021/03/31/CAGU/</url>
-    <content><![CDATA[<p><img src="/images/2_author.jpg"> </p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">Hyperspectral Image (HSI) registers hundreds of spectral bands, whose intraclass variability and interclass similarity are resourceful information to be mined. Intraclass variability reflects the non-uniform and redundancy of the spatial and semantic features extracted from HSI. Interclass similarity represents the inherent relationship between adjacent features and snapshots. Existing models extract the superficial correlation representation for HSI to tackle the classification task but fail to embed the interclass and intraclass correlations due to these models intrinsic bottlenecks. Confronting the challenges of capturing interrelation for complex data in practice, we propose a Context-Aware Attentional Graph U-Net (CAGU) to improve these two modes of representation, which is more flexible in feature enhancement. In this method, attentional Graph U-Net is capable of extracting the intraclass embeddings within a non-Euclidean space by combining similar distributing feature vertices. The Gated Recurrent Unit (GRU) is another critical component of our model to capture the context-aware dynamic interclass embeddings. Extensive experiments demonstrate that our model can efficiently outperform state-of-the-art methods across-the-board on five wide-adopted public datasets, namely Pavia University, Indian Pines, Salinas Scene-show, Houston 2013 and Houston 2018, on a par with the same scale of model parameters.
-</blockquote>
-<h1 id="CAGU-Architecture"><a href="#CAGU-Architecture" class="headerlink" title="CAGU Architecture :"></a>CAGU Architecture :</h1><p> <img src="/images/2_2.jpg"> </p>
-<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/2_3.jpg"> </p>
-<h1 id="Classification-maps"><a href="#Classification-maps" class="headerlink" title="Classification maps :"></a>Classification maps :</h1><p> <img src="/images/2_5.jpg"> </p>
-<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black"> CAGU considers the intrinsic relationship in feature space, and promotes high cohesion of features through the graph network. CAGU can explore deeper spectral information in the image than the state-of-the-art methods, which enhances the cohesion of features and provides clear data for subsequent modules. Therefore, CAGU outperforms all the compared methods, and it can be universally employed in most models for feature enhancement, not restricted in U-Net. What’s more, GCN and GRU will not increase the parameters of the model due to the reduction in depth of U-Net.
-</blockquote>
-<hr>
-<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Journal-IEEE-Geoscience-and-Remote-Sensing-Letters"><a href="#Journal-IEEE-Geoscience-and-Remote-Sensing-Letters" class="headerlink" title="Journal : IEEE Geoscience and Remote Sensing Letters"></a>Journal : IEEE Geoscience and Remote Sensing Letters</h3><h3 id="Impact-factor-3-833"><a href="#Impact-factor-3-833" class="headerlink" title="Impact factor : 3.833"></a>Impact factor : 3.833</h3><h3 id="State-Accepted-28-Mar-2021"><a href="#State-Accepted-28-Mar-2021" class="headerlink" title="State : Accepted (28-Mar-2021)"></a>State : Accepted (28-Mar-2021)</h3><p><img src="/images/2_4.jpg"> </p>
-<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> When the paper is published, we will open source the code.<br>
-<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>CAGU</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Conv-MPN</title>
     <url>/2022/06/17/Conv-MPN/</url>
     <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
 <li><a href="#">corner_detection</a><blockquote>
-<p>concatenate </p>
+<p>concatenate</p>
 </blockquote>
 </li>
 </ul>
@@ -185,6 +185,36 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
 ]]></content>
       <tags>
         <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Cplusplusnotes</title>
+    <url>/2022/05/01/Cplusplusnotes/</url>
+    <content><![CDATA[<blockquote>
+<p>静态函数只能访问静态数据</p>
+</blockquote>
+<blockquote>
+<p>为什么static成员变量一定要在类外初始化?</p>
+</blockquote>
+<pre><code>static变量属于类，非对象，如果在类内初始了，该类再一次创建对象将变成初始值，会修改其他对象对该静态变量操作的意图可能发生意外
+但是
+static const int a = 1;
+这个可以在类内初始化，因为const说明这个变量是不变的，因此对于每个对象来说，static内存块的的数据就是一样的
+</code></pre>
+<h2 id="为什么静态成员不能在类内初始化？"><a href="#为什么静态成员不能在类内初始化？" class="headerlink" title="为什么静态成员不能在类内初始化？"></a>为什么静态成员不能在类内初始化？</h2><p>在C++中，类的静态成员（static member）必须在类内声明，在类外初始化，像下面这样。</p>
+<p>class A<br>{<br>private:<br>static int count ; &#x2F;&#x2F; 类内声明<br>};</p>
+<ul>
+<li><p>类外定义并初始化，不必再加static关键字<br>int A::count &#x3D; 0 ;<br>或者只进行定义不赋初始值，但是默认值是否是0，可能会与具体的编译器有关吧？</p>
+</li>
+<li><p>只进行定义不赋初始值，但默认值视编译器而定<br>int A::count;<br>为什么？</p>
+</li>
+<li><p>因为静态成员属于整个类，而不属于某个对象，如果在类内初始化，会导致每个对象都包含该静态成员，这是矛盾的。</p>
+</li>
+</ul>
+<p>如果不增加int A::count &#x3D; 0 ; &#x2F;&#x2F;变量定义，在编译的时候将会报出：‘A::count’未定义的引用”错误。这是因为静态成员变量count未定义，也就是还没有分配内存，显然是不可以访问的。</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -203,36 +233,6 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
 ]]></content>
       <tags>
         <tag>RL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Cplusplusnotes</title>
-    <url>/2022/05/01/Cplusplusnotes/</url>
-    <content><![CDATA[<blockquote>
-<p>静态函数只能访问静态数据</p>
-</blockquote>
-<blockquote>
-<p>为什么static成员变量一定要在类外初始化?</p>
-</blockquote>
-<pre><code>static变量属于类，非对象，如果在类内初始了，该类再一次创建对象将变成初始值，会修改其他对象对该静态变量操作的意图可能发生意外
-但是
-static const int a = 1;
-这个可以在类内初始化，因为const说明这个变量是不变的，因此对于每个对象来说，static内存块的的数据就是一样的
-</code></pre>
-<h2 id="为什么静态成员不能在类内初始化？"><a href="#为什么静态成员不能在类内初始化？" class="headerlink" title="为什么静态成员不能在类内初始化？"></a>为什么静态成员不能在类内初始化？</h2><p>在C++中，类的静态成员（static member）必须在类内声明，在类外初始化，像下面这样。</p>
-<p>class A<br>{<br>private:<br>static int count ; // 类内声明<br>};</p>
-<ul>
-<li><p>类外定义并初始化，不必再加static关键字<br>int A::count = 0 ;<br>或者只进行定义不赋初始值，但是默认值是否是0，可能会与具体的编译器有关吧？</p>
-</li>
-<li><p>只进行定义不赋初始值，但默认值视编译器而定<br>int A::count;<br>为什么？</p>
-</li>
-<li><p>因为静态成员属于整个类，而不属于某个对象，如果在类内初始化，会导致每个对象都包含该静态成员，这是矛盾的。</p>
-</li>
-</ul>
-<p>如果不增加int A::count = 0 ; //变量定义，在编译的时候将会报出：‘A::count’未定义的引用”错误。这是因为静态成员变量count未定义，也就是还没有分配内存，显然是不可以访问的。</p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -312,12 +312,12 @@ You had better lock the door before you leave.
 You had better unplug the toaster before you try to clean it.
 </code></pre>
 <h1 id="被动"><a href="#被动" class="headerlink" title="被动"></a>被动</h1><blockquote>
-<p>主动态表示句子的主语是行为的发生者或执行者。被动态表示句子的主语是行为的承受者。如果需要体现动作的发生者，需要借助by，谓语的时态要用“be的相应时态+过去分词”的来表。<br>看不懂没关系，给个例子就懂了。<br>[举例]过去时态下的被动语态<br>主动态：The teacher gave me the book.<br>被动态：I was given the book by the teacher.<br>从这个例子中可以看出，老师给我一本书，老师是动作的发生者，我是动作的承受者。所以在主动态中，主谓宾依次排放。<br>但当在被动态中。宾语放在了名首，所以宾语要承担动作。谓语就要发生相应的变化。由原来的gave改变为was given（记忆法：被动态中，一般现在时is/are + done，过去时was/were + done，将来时 shall/will be + done）。<br>[举例]现在完成时态下的被动语态<br>主动态：We have finished our work.<br>被动态：Our work has been finished.<br>（记忆法：被动态中，现在完成时has/have been + done，过去完成时had been + done，将来完成时 shall/will have been + done）。<br>学到这里，不知大家有没有注意到，have been done 又出现了。与今天主题句They have been married for more than 10 years.中have been married的句型完全一样。所以主题句使用的是被动句？<br>答案是：否，这也是大家在学习被动句后，特别要注意的一点。<br>●“be + 过去分词”不一定就是被动态<br>[例句]<br>The glass plate is broken. 这玻璃板是破的。（作表语）<br>The glass plate was broken by him. 这玻璃板（当时）被他打碎了。（被动态）<br>[例句]<br>The book is written well. 这本书写得很好。（作表语）<br>The book has been written by our teacher. 这本书已经由我们的老师写成。（被动态）<br>拿今天的主题句来进行解析。<br>They have been married for more than 10 years.<br>简短点来说“他们结婚了”<br>They are married.<br>“他们已经结婚了”<br>They have been married.<br>所以今日主题句的句型属于表语形式，并不是被动态哦。</p>
+<p>主动态表示句子的主语是行为的发生者或执行者。被动态表示句子的主语是行为的承受者。如果需要体现动作的发生者，需要借助by，谓语的时态要用“be的相应时态+过去分词”的来表。<br>看不懂没关系，给个例子就懂了。<br>[举例]过去时态下的被动语态<br>主动态：The teacher gave me the book.<br>被动态：I was given the book by the teacher.<br>从这个例子中可以看出，老师给我一本书，老师是动作的发生者，我是动作的承受者。所以在主动态中，主谓宾依次排放。<br>但当在被动态中。宾语放在了名首，所以宾语要承担动作。谓语就要发生相应的变化。由原来的gave改变为was given（记忆法：被动态中，一般现在时is&#x2F;are + done，过去时was&#x2F;were + done，将来时 shall&#x2F;will be + done）。<br>[举例]现在完成时态下的被动语态<br>主动态：We have finished our work.<br>被动态：Our work has been finished.<br>（记忆法：被动态中，现在完成时has&#x2F;have been + done，过去完成时had been + done，将来完成时 shall&#x2F;will have been + done）。<br>学到这里，不知大家有没有注意到，have been done 又出现了。与今天主题句They have been married for more than 10 years.中have been married的句型完全一样。所以主题句使用的是被动句？<br>答案是：否，这也是大家在学习被动句后，特别要注意的一点。<br>●“be + 过去分词”不一定就是被动态<br>[例句]<br>The glass plate is broken. 这玻璃板是破的。（作表语）<br>The glass plate was broken by him. 这玻璃板（当时）被他打碎了。（被动态）<br>[例句]<br>The book is written well. 这本书写得很好。（作表语）<br>The book has been written by our teacher. 这本书已经由我们的老师写成。（被动态）<br>拿今天的主题句来进行解析。<br>They have been married for more than 10 years.<br>简短点来说“他们结婚了”<br>They are married.<br>“他们已经结婚了”<br>They have been married.<br>所以今日主题句的句型属于表语形式，并不是被动态哦。</p>
 </blockquote>
 <h1 id="words"><a href="#words" class="headerlink" title="words"></a>words</h1><blockquote>
 <p>examine<br>scar scary scarf (scare v)<br>apparnently, the two things that people are most afraid of<br>when it comes to making a speech<br>used to do和be used to doing的含义不同，be used to doing表达习惯于做某事的意思；used to所表示的意思是“过去常常做某事”，强调过去发生的事，所以一般用于描述发生在过去的事情。<br>Get used to ：开始习惯于（从不习惯到习惯的一个过程）</p>
 </blockquote>
-<p>用法：Get used to V-ing/sth</p>
+<p>用法：Get used to V-ing&#x2F;sth</p>
 <p>这里的to也是充当介词，因此后面要有动名词或者名词</p>
 <p>The food here is not so tasty but you will get used to that.</p>
 <p>这里的伙食不怎么样，但你会慢慢习惯的。</p>
@@ -481,7 +481,7 @@ concorn
     <title>Likelihood2</title>
     <url>/2022/02/24/Likelihood2/</url>
     <content><![CDATA[<blockquote>
-<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为=》最大概率处l=0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
+<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为&#x3D;》最大概率处l&#x3D;0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
 </blockquote>
 ]]></content>
       <tags>
@@ -514,6 +514,22 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>RL3ways</title>
+    <url>/2022/03/20/RL3ways/</url>
+    <content><![CDATA[
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/RL3.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+      <tags>
+        <tag>RL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MC</title>
     <url>/2022/03/19/MC/</url>
     <content><![CDATA[<p><img src="/images/MC.png">  </p>
@@ -534,22 +550,6 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>RL3ways</title>
-    <url>/2022/03/20/RL3ways/</url>
-    <content><![CDATA[
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/RL3.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>RL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>STL</title>
     <url>/2022/07/06/STL/</url>
     <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
@@ -557,11 +557,19 @@ concorn
 <p>stack和queue不提供iterator</p>
 </blockquote>
 <blockquote>
-<p>set/multiset<br>multiset是基于红黑树实现的</p>
+<p>set&#x2F;multiset<br>multiset是基于红黑树实现的</p>
 </blockquote>
 ]]></content>
       <tags>
         <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ShiftGCN</title>
+    <url>/2022/08/17/ShiftGCN/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>GCN</tag>
       </tags>
   </entry>
   <entry>
@@ -578,7 +586,7 @@ concorn
 <p>这个操作就是移动不同通道（移动方向是固定的，对于channel相同的数据来说）<br><img src="/images/image.png.png"></p>
 </blockquote>
 <h1 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h1><blockquote>
-<p>To reduce the state space, we use a simple heuristic: di- vide the M channels evenly into DK2 groups, where each group of ⌊M/DK2 ⌋ channels adopts one shift<br>(划分M和通道到M/D^2中。每M/D^2个通道共享一个shift的方向)</p>
+<p>To reduce the state space, we use a simple heuristic: di- vide the M channels evenly into DK2 groups, where each group of ⌊M&#x2F;DK2 ⌋ channels adopts one shift<br>(划分M和通道到M&#x2F;D^2中。每M&#x2F;D^2个通道共享一个shift的方向)</p>
 </blockquote>
 <blockquote>
 <p>I.e.和e.g.都是拉丁语缩写，i.e.代表id est，意为“也就是说，即”（that is），e.g.代表exempli gratia，意思是“举个例子”（for example）<br>However, finding the optimal permutation, <strong>i.e</strong>., how to map each channel-m to a shift group, requires searching a <strong>combinatorially(组合地)</strong> large search space.</p>
@@ -587,7 +595,7 @@ concorn
 <p>we introduce a <strong>modification(限制)</strong> to the shift operation that makes input and output invariant to channel order:  We denote a shift operation with channel permutation π as Kπ(<strong>这里不是很明白，K代表的是通道置换</strong>),</p>
 </blockquote>
 <blockquote>
-<p>G ̃=Pπ2(Kπ(Pπ1(F)))<br>wherePπi are permutation operators and◦ denotes operator composition(<strong>这里不明白，Pπ代表的是置换算子，但是Pπ(K)Pπ结合起来是整个Shift操作</strong>)</p>
+<p>G ̃&#x3D;Pπ2(Kπ(Pπ1(F)))<br>wherePπi are permutation operators and◦ denotes operator composition(<strong>这里不明白，Pπ代表的是置换算子，但是Pπ(K)Pπ结合起来是整个Shift操作</strong>)</p>
 </blockquote>
 <blockquote>
 <p><strong>因为shift是离散的，因此加入point-wise convolution P1(F)来进行参数更新，离散的不好进行权重更新，同时shift matrix也不会更新</strong></p>
@@ -604,6 +612,15 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>TF-IDF</title>
+    <url>/2022/01/04/TF-IDF/</url>
+    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Theory</title>
     <url>/2021/12/01/Theory/</url>
     <content><![CDATA[<h1 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h1>
@@ -617,14 +634,6 @@ concorn
 ]]></content>
   </entry>
   <entry>
-    <title>ShiftGCN</title>
-    <url>/2022/08/17/ShiftGCN/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>GCN</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>VCDimension</title>
     <url>/2022/02/10/VCDimension/</url>
     <content><![CDATA[<blockquote>
@@ -636,12 +645,12 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>TF-IDF</title>
-    <url>/2022/01/04/TF-IDF/</url>
-    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
+    <title>across_loss</title>
+    <url>/2022/03/29/across-loss/</url>
+    <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
 ]]></content>
       <tags>
-        <tag>NLP</tag>
+        <tag>machine</tag>
       </tags>
   </entry>
   <entry>
@@ -651,15 +660,6 @@ concorn
 ]]></content>
       <tags>
         <tag>apriori</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>across_loss</title>
-    <url>/2022/03/29/across-loss/</url>
-    <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
-]]></content>
-      <tags>
-        <tag>machine</tag>
       </tags>
   </entry>
   <entry>
@@ -673,9 +673,9 @@ concorn
 rect(const rect *r);
 ~rect();
 </code></pre>
-<p>private:<br>    int width, height;<br>    int *p;<br>};<br>rect::rect(const rect *r)<br>{<br>    width = r-&gt;width;<br>    height = r-&gt;height;<br>    p = new int;<br>    *p = *(r-&gt;p);<br>}</p>
-<p>rect::rect()<br>{<br>    p = new int(100);<br>}</p>
-<p>rect::~rect()<br>{<br>    if (p != NULL)<br>        delete p;<br>}<br>int _tmain(int argc, _TCHAR* argv[])<br>{<br>    rect *rect1;<br>    rect *rect2;<br>    rect1 = new rect;<br>    rect2 = new rect(rect1);</p>
+<p>private:<br>    int width, height;<br>    int *p;<br>};<br>rect::rect(const rect *r)<br>{<br>    width &#x3D; r-&gt;width;<br>    height &#x3D; r-&gt;height;<br>    p &#x3D; new int;<br>    *p &#x3D; *(r-&gt;p);<br>}</p>
+<p>rect::rect()<br>{<br>    p &#x3D; new int(100);<br>}</p>
+<p>rect::~rect()<br>{<br>    if (p !&#x3D; NULL)<br>        delete p;<br>}<br>int _tmain(int argc, _TCHAR* argv[])<br>{<br>    rect *rect1;<br>    rect *rect2;<br>    rect1 &#x3D; new rect;<br>    rect2 &#x3D; new rect(rect1);</p>
 <pre><code>return 0;
 </code></pre>
 <p>}<br>‘’’<br>类指针和类内成员p指针都指向了不同的地址</p>
@@ -724,7 +724,7 @@ int main(int argc, const char* argv[])
   <entry>
     <title>交叉熵损失函数详解</title>
     <url>/2020/11/02/crossentropy/</url>
-    <content><![CDATA[<h1 id="交叉熵的数学原理—pytorch中的CrossEntropyLoss-函数"><a href="#交叉熵的数学原理—pytorch中的CrossEntropyLoss-函数" class="headerlink" title="交叉熵的数学原理—pytorch中的CrossEntropyLoss()函数"></a>交叉熵的数学原理—pytorch中的CrossEntropyLoss()函数</h1><p>对于二分类来说，我们使用的是Binary Cross Entropy Loss,公式如下：<br> <img src="/images/1_1.png"><br>因为ln后的数为负数，所以加负号，保证我们是优化最小（不然就要往最大值优化了）；<br>如当l=1时（标签为正样本），此时Loss = -logp, 我们要使p的值尽量大，loss才会尽量小，最好能到1，就代表分类正确了</p>
+    <content><![CDATA[<h1 id="交叉熵的数学原理—pytorch中的CrossEntropyLoss-函数"><a href="#交叉熵的数学原理—pytorch中的CrossEntropyLoss-函数" class="headerlink" title="交叉熵的数学原理—pytorch中的CrossEntropyLoss()函数"></a>交叉熵的数学原理—pytorch中的CrossEntropyLoss()函数</h1><p>对于二分类来说，我们使用的是Binary Cross Entropy Loss,公式如下：<br> <img src="/images/1_1.png"><br>因为ln后的数为负数，所以加负号，保证我们是优化最小（不然就要往最大值优化了）；<br>如当l&#x3D;1时（标签为正样本），此时Loss &#x3D; -logp, 我们要使p的值尽量大，loss才会尽量小，最好能到1，就代表分类正确了</p>
 <h2 id="多分类"><a href="#多分类" class="headerlink" title="多分类"></a>多分类</h2><p><img src="/images/1_2.png"><br>这里的label会被展开为<strong>one-hot</strong>编码<br><strong>主要讨论图像像素级的分类</strong></p>
 <pre><code># -*- coding: utf-8 -*-
 &#39;&#39;&#39;
@@ -822,7 +822,7 @@ tensor([[[[-1.1189, -1.4660],
 tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
 </code></pre>
 <blockquote>
-<p>这里一共有四个像素点,分别是[[0, 1],[2, 0]]，对于第一个像素点来说，它的分类结果是0，输出为3类，即分为三类，所以会被展开为[1,0,0]<br>代表第一个元素的第0个通道上的数值是我想取出来的，这里就是-1.1189，同理，对于第二个像素点来说展开为[0，1，0]，取得-1.1371，第三个[0,0,1],取得-1.3066，第四个[1,0,0],取得-0.3823， 将这四个数取绝对值相加再除4，（1.1189+1.1371+1.3066+0.3823）/4 = 0.9862<br>所以说，对于一个图像来说，输入维度为B,C,W,H，label对应的维度就是B,1,W,H就可以</p>
+<p>这里一共有四个像素点,分别是[[0, 1],[2, 0]]，对于第一个像素点来说，它的分类结果是0，输出为3类，即分为三类，所以会被展开为[1,0,0]<br>代表第一个元素的第0个通道上的数值是我想取出来的，这里就是-1.1189，同理，对于第二个像素点来说展开为[0，1，0]，取得-1.1371，第三个[0,0,1],取得-1.3066，第四个[1,0,0],取得-0.3823， 将这四个数取绝对值相加再除4，（1.1189+1.1371+1.3066+0.3823）&#x2F;4 &#x3D; 0.9862<br>所以说，对于一个图像来说，输入维度为B,C,W,H，label对应的维度就是B,1,W,H就可以</p>
 </blockquote>
 ]]></content>
       <categories>
@@ -833,40 +833,16 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
       </tags>
   </entry>
   <entry>
-    <title>docker</title>
-    <url>/2022/09/22/docker/</url>
-    <content><![CDATA[<p>Docker 一些基本操作</p>
-<ul>
-<li><a href="#./DP.md">docker-compose</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>emotion_behind_your_money_habits</title>
-    <url>/2021/12/24/emotion-behind-your-money-habits/</url>
-    <content><![CDATA[<blockquote>
-<p>I’m good with numbers and using them to report what’s happening, but I’m also concerned with the full story behind those numbers, the part that gets lost in translation, the part that numbers can’t quite tell, the story that goes deeper than mere stratetgies for saving and earning money.</p>
-</blockquote>
-<p><img src="/images/emotional.png"> </p>
-]]></content>
-      <tags>
-        <tag>ted</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>cudaMemPitch</title>
     <url>/2022/06/28/cudaMemPitch/</url>
     <content><![CDATA[<h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
 <p>cudaMallocPitch ( void** devPtr, size_t* pitch, size_t width, size_t height )<br>devPtr - Pointer to allocated pitched device memory<br>pitch - Pitch for allocation<br>width - Requested pitched allocation width (in bytes)<br>height - Requested pitched allocation height</p>
 </blockquote>
 <blockquote>
-<p>cudaError_t cudaMemcpy2D    (    void *     dst,<br>size_t     dpitch,<br>const void *     src,<br>size_t     spitch,<br>size_t     width,<br>size_t     height,<br>enum cudaMemcpyKind     kind<br>)    </p>
+<p>cudaError_t cudaMemcpy2D	(	void * 	dst,<br>size_t 	dpitch,<br>const void * 	src,<br>size_t 	spitch,<br>size_t 	width,<br>size_t 	height,<br>enum cudaMemcpyKind 	kind	<br>)	</p>
 </blockquote>
 <blockquote>
-<p>Parameters:<br>dst     - Destination memory address<br>dpitch     - Pitch of destination memory<br>src     - Source memory address<br>spitch     - Pitch of source memory<br>width     - Width of matrix transfer (columns in bytes)<br>height     - Height of matrix transfer (rows)<br>kind     - Type of transfer</p>
+<p>Parameters:<br>dst 	- Destination memory address<br>dpitch 	- Pitch of destination memory<br>src 	- Source memory address<br>spitch 	- Pitch of source memory<br>width 	- Width of matrix transfer (columns in bytes)<br>height 	- Height of matrix transfer (rows)<br>kind 	- Type of transfer</p>
 </blockquote>
 <pre><code>`The spitch is different when cudaMemcpyKind is different`
 
@@ -957,6 +933,18 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>emotion_behind_your_money_habits</title>
+    <url>/2021/12/24/emotion-behind-your-money-habits/</url>
+    <content><![CDATA[<blockquote>
+<p>I’m good with numbers and using them to report what’s happening, but I’m also concerned with the full story behind those numbers, the part that gets lost in translation, the part that numbers can’t quite tell, the story that goes deeper than mere stratetgies for saving and earning money.</p>
+</blockquote>
+<p><img src="/images/emotional.png"> </p>
+]]></content>
+      <tags>
+        <tag>ted</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>equilibria</title>
     <url>/2022/02/08/equilibria/</url>
     <content><![CDATA[<p><img src="/images/game01.png"> </p>
@@ -981,12 +969,21 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>likeihood</title>
+    <url>/2021/12/17/likeihood/</url>
+    <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
+]]></content>
+      <tags>
+        <tag>likelihood</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>p18-function-like-class</title>
     <url>/2022/06/16/function-like-class/</url>
     <content><![CDATA[<ul>
-<li><a href="#%E4%B8%B4%E6%97%B6%E5%87%BD%E6%95%B0">临时函数</a><h1 id="临时函数"><a href="#临时函数" class="headerlink" title="临时函数"></a>临时函数</h1></li>
+<li><a href="#%E4%B8%B4%E6%97%B6%E5%87%BD%E6%95%B0">临时函数</a></li>
 </ul>
-<pre><code>#include&lt;iostream&gt;
+<h1 id="临时函数"><a href="#临时函数" class="headerlink" title="临时函数"></a>临时函数</h1><pre><code>#include&lt;iostream&gt;
 
 class temporary&#123;
 public:
@@ -1064,15 +1061,6 @@ int main()
 ]]></content>
       <tags>
         <tag>-c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>likeihood</title>
-    <url>/2021/12/17/likeihood/</url>
-    <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
-]]></content>
-      <tags>
-        <tag>likelihood</tag>
       </tags>
   </entry>
   <entry>
@@ -1175,11 +1163,11 @@ hello world
   <entry>
     <title>operator赋值为什么返回引用</title>
     <url>/2022/03/13/operator%E8%B5%8B%E5%80%BC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%94%E5%9B%9E%E5%BC%95%E7%94%A8/</url>
-    <content><![CDATA[<p>一个自定义类，如果没有重载其=运算符，那么编译器将自动生成一个。但是此编译器自动生成的重载函数可能不安全。这是因为它采用了所谓的“浅拷贝”，也就是对于指针而言，它拷贝的是指针的值，而不是其指向的内存空间。那么这个内存空间就有了两个指针指向它，且类对象要析构两次，但是内存空间只能被释放一次，那么第二次就会出现访问错误。</p>
-<p>　　要避免这种“浅拷贝”问题，就需要重载=运算符。这是一个二元运算符，函数名和参数比较容易确定，重点是其返回类型。一般来说，要返回一个类的引用类型。这是因为要能实现所谓的“链式编程”。我存在过的疑问是，为什么要返回一个引用，才能实现所谓的“链式编程”呢？这里从代码出发，进行思考与总结。</p>
-<p>复制代码<br>class Student<br>{<br>public:<br>    Student(const char* name);~Student();<br>    Student&amp; operator=(const Student &amp;student);private:<br>    char *m_name;<br>};<br>复制代码<br>复制代码<br>//测试代码<br>Student s1(“Lee”);<br>Student s2(“Diwen”);<br>Student s3(“Tom”);</p>
-<p>//先执行s2 = s1, 即执行 s2.operator=(s1), 返回的是s2的引用<br>//然后执行s3 = s2, 即执行 s3.operator=(s2)<br>s3 = s2 = s1;<br>复制代码<br>　　=的链式编程执行顺序是从右向左的。因此右边需要返回一个Student类型的对象，是肯定的。那么问题是，为何要返回一个引用呢？</p>
-<p>　　观察一下重载=运算符的函数，参数类型是一个常量引用，也即是说传进去的实参必须是一个左值。而如果返回类型是Student，那么返回的就是一个匿名对象（右值），作为链式编程，此返回值（右值）又要作为实参传进去，那么显然不行(不加const不行，加了是可以的)。<br>const引用可以绑定到右值，而重载的赋值运算符返回一个引用当然是为了避免没有意义的拷贝了。</p>
+    <content><![CDATA[<p>一个自定义类，如果没有重载其&#x3D;运算符，那么编译器将自动生成一个。但是此编译器自动生成的重载函数可能不安全。这是因为它采用了所谓的“浅拷贝”，也就是对于指针而言，它拷贝的是指针的值，而不是其指向的内存空间。那么这个内存空间就有了两个指针指向它，且类对象要析构两次，但是内存空间只能被释放一次，那么第二次就会出现访问错误。</p>
+<p>　　要避免这种“浅拷贝”问题，就需要重载&#x3D;运算符。这是一个二元运算符，函数名和参数比较容易确定，重点是其返回类型。一般来说，要返回一个类的引用类型。这是因为要能实现所谓的“链式编程”。我存在过的疑问是，为什么要返回一个引用，才能实现所谓的“链式编程”呢？这里从代码出发，进行思考与总结。</p>
+<p>复制代码<br>class Student<br>{<br>public:<br>    Student(const char* name);~Student();<br>    Student&amp; operator&#x3D;(const Student &amp;student);private:<br>    char *m_name;<br>};<br>复制代码<br>复制代码<br>&#x2F;&#x2F;测试代码<br>Student s1(“Lee”);<br>Student s2(“Diwen”);<br>Student s3(“Tom”);</p>
+<p>&#x2F;&#x2F;先执行s2 &#x3D; s1, 即执行 s2.operator&#x3D;(s1), 返回的是s2的引用<br>&#x2F;&#x2F;然后执行s3 &#x3D; s2, 即执行 s3.operator&#x3D;(s2)<br>s3 &#x3D; s2 &#x3D; s1;<br>复制代码<br>　　&#x3D;的链式编程执行顺序是从右向左的。因此右边需要返回一个Student类型的对象，是肯定的。那么问题是，为何要返回一个引用呢？</p>
+<p>　　观察一下重载&#x3D;运算符的函数，参数类型是一个常量引用，也即是说传进去的实参必须是一个左值。而如果返回类型是Student，那么返回的就是一个匿名对象（右值），作为链式编程，此返回值（右值）又要作为实参传进去，那么显然不行(不加const不行，加了是可以的)。<br>const引用可以绑定到右值，而重载的赋值运算符返回一个引用当然是为了避免没有意义的拷贝了。</p>
 ]]></content>
       <tags>
         <tag>C++</tag>
@@ -1194,18 +1182,18 @@ hello world
   <entry>
     <title>other和others</title>
     <url>/2022/06/21/other%E5%92%8Cothers/</url>
-    <content><![CDATA[<h2 id="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-other-复数名词。others通常为代词"><a href="#other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-other-复数名词。others通常为代词" class="headerlink" title="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others=other+复数名词。others通常为代词"></a>other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others=other+复数名词。others通常为代词</h2><blockquote>
+    <content><![CDATA[<h2 id="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-x3D-other-复数名词。others通常为代词"><a href="#other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-x3D-other-复数名词。others通常为代词" class="headerlink" title="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others&#x3D;other+复数名词。others通常为代词"></a>other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others&#x3D;other+复数名词。others通常为代词</h2><blockquote>
 <p>He never thinks of <code>others</code>. 他从来不为别人着想。</p>
 </blockquote>
 <blockquote>
 <p>I don’t like these books. Show me some others. 我不喜欢这些书，再拿一些给我看。</p>
 </blockquote>
-<p>第一句中的others=other people，意为“其他人”“别人”，泛指其他所有人；第二句中的others=other books，意为“其他的书”。</p>
-<p>但是，若要表示确指意义，我们就在other和others前面使用定冠词，同样地，other后可以修饰名词，而others后不能再接名词，两者的关系仍然存在the others=the other+复数名词。如：</p>
+<p>第一句中的others&#x3D;other people，意为“其他人”“别人”，泛指其他所有人；第二句中的others&#x3D;other books，意为“其他的书”。</p>
+<p>但是，若要表示确指意义，我们就在other和others前面使用定冠词，同样地，other后可以修饰名词，而others后不能再接名词，两者的关系仍然存在the others&#x3D;the other+复数名词。如：</p>
 <blockquote>
 <p>I started last in the race but I soon caught up with the others. 我在赛跑中最后一个起跑，但不久就赶上了其他人。</p>
 </blockquote>
-<p>句中的the others=the other people，意为“其他人”，其中的定冠词特指参加赛跑的所有其他人。</p>
+<p>句中的the others&#x3D;the other people，意为“其他人”，其中的定冠词特指参加赛跑的所有其他人。</p>
 <blockquote>
 <p>注意：the other后除接复数名词外，还可以接单数名词，此时不能用the others代替。如：</p>
 </blockquote>
@@ -1338,19 +1326,6 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>scrapy</title>
-    <url>/2021/10/31/scrapy/</url>
-    <content><![CDATA[<h2 id="span如果中间夹了其他的span。比如"><a href="#span如果中间夹了其他的span。比如" class="headerlink" title="span如果中间夹了其他的span。比如"></a>span如果中间夹了其他的span。比如</h2><pre><code>&lt;span&gt; &lt;span&gt;aa &lt;/span&gt; &lt;span&gt;bb &lt;/span&gt;cc&lt;/span&gt;
-</code></pre>
-<blockquote>
-<p>adpote [-1] to acquire “cc” if I want to get it instead of text() directly<br>amount4 = ingredient.xpath(‘span[@class=”recipe__list-qty”]/text()’)[-1].get()</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>spacpy</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>review-paper</title>
     <url>/2022/06/17/review-paper/</url>
     <content><![CDATA[<p>Reviews:</p>
@@ -1358,7 +1333,7 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
 <li><a href="#MUMLP">MUMLP</a></li>
 <li><a href="#CUGCN">CUGCN</a></li>
 </ul>
-<p>===============================================</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
 <pre><code> It records all my papers reviews and certainly can thereby help me to improve my next 
  academic writing according those negative comments
 </code></pre>
@@ -1367,11 +1342,29 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
 </blockquote>
 <p><strong>Reviewer: 1</strong></p>
 <ol>
-<li>   For the background, it lacks some key literatures about the hyperspectral image, which can refer to 10.1109/TGRS.2016.2583219 and 10.1109/LGRS.2019.2936652.</li>
-<li>   Please rewrite the contributions to highlight the innovation. </li>
-<li>   Table I and II can be combined to show the classification results of each class. </li>
-<li>   For the experimental results, please enhance analysis the reason why the proposed method can achieve better results.</li>
-<li>   Please demonstrate the effectiveness of each module in the proposed architecture. </li>
+<li><pre><code>For the background, it lacks some key literatures about the hyperspectral image, which can refer to 10.1109/TGRS.2016.2583219 and 10.1109/LGRS.2019.2936652.
+</code></pre>
+<ol start="2">
+<li><pre><code>Please rewrite the contributions to highlight the innovation. 
+</code></pre>
+<ol start="3">
+<li><pre><code>Table I and II can be combined to show the classification results of each class. 
+</code></pre>
+<ol start="4">
+<li><pre><code>For the experimental results, please enhance analysis the reason why the proposed method can achieve better results.
+</code></pre>
+<ol start="5">
+<li><pre><code>Please demonstrate the effectiveness of each module in the proposed architecture.
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
 </ol>
 <p><strong>Reviewer: 2</strong></p>
 <ol>
@@ -1434,6 +1427,19 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
 ]]></content>
       <tags>
         <tag>paper</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>scrapy</title>
+    <url>/2021/10/31/scrapy/</url>
+    <content><![CDATA[<h2 id="span如果中间夹了其他的span。比如"><a href="#span如果中间夹了其他的span。比如" class="headerlink" title="span如果中间夹了其他的span。比如"></a>span如果中间夹了其他的span。比如</h2><pre><code>&lt;span&gt; &lt;span&gt;aa &lt;/span&gt; &lt;span&gt;bb &lt;/span&gt;cc&lt;/span&gt;
+</code></pre>
+<blockquote>
+<p>adpote [-1] to acquire “cc” if I want to get it instead of text() directly<br>amount4 &#x3D; ingredient.xpath(‘span[@class&#x3D;”recipe__list-qty”]&#x2F;text()’)[-1].get()</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>spacpy</tag>
       </tags>
   </entry>
   <entry>
@@ -1521,7 +1527,7 @@ bool Isequal(T&amp; p1, T&amp; p2)&#123;
 <p><strong>But it does’t work for string. We need to override this special type</strong></p>
 <pre><code>
 template&lt;&gt;
-bool Isequal&lt;char*&gt; (char* p1, char* p2)&#123;    
+bool Isequal&lt;char*&gt; (char* p1, char* p2)&#123;	
     return strcmp(p1, p2) == 0;
 &#125;
 </code></pre>
@@ -1620,7 +1626,7 @@ A&lt;string*&gt; b;
 <p>比如这里的 ::find()。这个是STL的algorithm中的函数，虽然这里如果不用:: , 编译器没有找到find也会到全局，但是加入会让代码更清晰</p>
 </blockquote>
 </li>
-<li>jj01::test_array() = 这个就是命名空间</li>
+<li>jj01::test_array() &#x3D; 这个就是命名空间</li>
 </ul>
 ]]></content>
       <tags>
@@ -1753,21 +1759,21 @@ private:
       </tags>
   </entry>
   <entry>
-    <title>to+do+or+doing</title>
-    <url>/2021/12/12/to-do-or-doing/</url>
-    <content><![CDATA[<p><img src="/images/todo.png"> </p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>transformer</title>
     <url>/2022/01/02/transformer/</url>
     <content><![CDATA[<p><img src="/images/transformer.png"> </p>
 ]]></content>
       <tags>
         <tag>transformer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>to+do+or+doing</title>
+    <url>/2021/12/12/to-do-or-doing/</url>
+    <content><![CDATA[<p><img src="/images/todo.png"> </p>
+]]></content>
+      <tags>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -1792,11 +1798,11 @@ private:
 <li><a href="#Wherein">Wherein</a></li>
 <li><a href="#Whereby">Whereby</a></li>
 <li><a href="#Hereby">Hereby</a></li>
-<li><a href="#Semicolon">Semicolon</a><br>so as to 为的是<h2 id="Thereby"><a href="#Thereby" class="headerlink" title="Thereby:"></a>Thereby:</h2><blockquote>
+<li><a href="#Semicolon">Semicolon</a><br>so as to 为的是</li>
+</ul>
+<h2 id="Thereby"><a href="#Thereby" class="headerlink" title="Thereby:"></a>Thereby:</h2><blockquote>
 <p>The team lost the final game of the season, thereby <strong>missing</strong> the playoffs<br>(thereby : through the reason)</p>
 </blockquote>
-</li>
-</ul>
 <blockquote>
 <p>Due to the team lost the final game of the season, they missed the palyoffs</p>
 </blockquote>
@@ -1816,28 +1822,28 @@ private:
 <p>The contract does not allow for extended maternity leave; therein lies the problem for the union, 60% of whose membership is young women<br>(合同不允许延长产假； 这就是工会的问题所在，60% 的会员是年轻女性)</p>
 </blockquote>
 <blockquote>
-<p>The tomb, and all the contents therein(在坟墓的内容), were photographed before analysis could begin == The tomb and and all the contents were photographed before analysis could begin.<br>(加therein显得更academic)</p>
+<p>The tomb, and all the contents therein(在坟墓的内容), were photographed before analysis could begin &#x3D;&#x3D; The tomb and and all the contents were photographed before analysis could begin.<br>(加therein显得更academic)</p>
 </blockquote>
 <p>（这里的were代表前面是多个东西，需要保持consensus,所以需要加and，这里也是两个东西，用and连接; before这个介词比较特殊，后面可以加句子，比如：Please come to my house before you leave.<br>）</p>
-<h2 id="Thereof"><a href="#Thereof" class="headerlink" title="Thereof"></a>Thereof</h2><p>thereof=of that thing mentioned earlier</p>
+<h2 id="Thereof"><a href="#Thereof" class="headerlink" title="Thereof"></a>Thereof</h2><p>thereof&#x3D;of that thing mentioned earlier</p>
 <blockquote>
 <p>Fine wines, and a knowledge thereof (of wines) are a luxury few can afford</p>
 </blockquote>
 <p>（这是主语从句，一句话做主语的句子英语？<br>What he did made US surprised，这个句子就是一个主语从句做主语的例子<br>The bag i bought is too big.<br>What you see is what you get. 所见即所得。）</p>
 <blockquote>
-<p>We will focus on China, espeically its history and culture thereof (=of China).</p>
+<p>We will focus on China, espeically its history and culture thereof (&#x3D;of China).</p>
 </blockquote>
 <blockquote>
 <p>Both parties had their sights foused on the northern regions, especially the demographics thereof, and were preparing for an ad wars</p>
 </blockquote>
 <h2 id="Therefore"><a href="#Therefore" class="headerlink" title="Therefore"></a>Therefore</h2><p>I am well-prepared, there is no reason, therefore, that I should stumble<br>(I am well-prepared. Therefore there is no reason that I should stumble)</p>
 <h2 id="Thereafter"><a href="#Thereafter" class="headerlink" title="Thereafter"></a>Thereafter</h2><p>He worked at the university until he retired; thereafter, he took on sporadic work as a consultant.</p>
-<h2 id="Wherein"><a href="#Wherein" class="headerlink" title="Wherein"></a>Wherein</h2><p>Wherein(in which); wherein=in which part</p>
+<h2 id="Wherein"><a href="#Wherein" class="headerlink" title="Wherein"></a>Wherein</h2><p>Wherein(in which); wherein&#x3D;in which part</p>
 <blockquote>
 <p>It is not specified wherein (in which part) he violated the law.</p>
 </blockquote>
 <p>The affidavit did not implictly outline wherein Mr.Smith had broken any laws.</p>
-<h2 id="Whereby"><a href="#Whereby" class="headerlink" title="Whereby"></a>Whereby</h2><p>whereby= by means of which/according to which</p>
+<h2 id="Whereby"><a href="#Whereby" class="headerlink" title="Whereby"></a>Whereby</h2><p>whereby&#x3D; by means of which&#x2F;according to which</p>
 <blockquote>
 <p>a proposal whereby (according to the proposal) everyone has to learn Chinesea </p>
 </blockquote>
@@ -1847,9 +1853,9 @@ private:
 <blockquote>
 <p>The company introduced a new incentive program whereby all employees were given an equal shot at the bonuses.</p>
 </blockquote>
-<h2 id="Hereby"><a href="#Hereby" class="headerlink" title="Hereby"></a>Hereby</h2><p> = caused by this (document)</p>
+<h2 id="Hereby"><a href="#Hereby" class="headerlink" title="Hereby"></a>Hereby</h2><p> &#x3D; caused by this (document)</p>
 <blockquote>
-<p>I hereby (affected by this situation) agree/submit…</p>
+<p>I hereby (affected by this situation) agree&#x2F;submit…</p>
 </blockquote>
 <blockquote>
 <p>Given the present circumstances, I hereby resign my post as CEO</p>
@@ -1865,28 +1871,6 @@ private:
 ]]></content>
       <tags>
         <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vector二维数组</title>
-    <url>/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
-<li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
-<p>这里的row,col代表二维vector的两个轴方向的大小</p>
-</blockquote>
-</li>
-<li>第二种通过resize确定大小，之后循环赋值<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
-vec1.resize(row);
-for(int i=0;i&lt;vec1.size();i++)
-  vec1[i].resize(col);
-for(int i=0;i&lt;row;i++)
-  for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
-</code></pre>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1933,10 +1917,32 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
       </tags>
   </entry>
   <entry>
+    <title>vector二维数组</title>
+    <url>/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
+<li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
+<p>这里的row,col代表二维vector的两个轴方向的大小</p>
+</blockquote>
+</li>
+<li>第二种通过resize确定大小，之后循环赋值</li>
+</ul>
+<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
+vec1.resize(row);
+for(int i=0;i&lt;vec1.size();i++)
+    vec1[i].resize(col);
+for(int i=0;i&lt;row;i++)
+    for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>warp函数</title>
     <url>/2022/07/11/warp%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h1 id="any-sync用于一个warp之间线程的数据的交换-广播（broadcast）"><a href="#any-sync用于一个warp之间线程的数据的交换-广播（broadcast）" class="headerlink" title="__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）"></a>__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）</h1><h2 id="这里必须注意srcLane是束内w的编号"><a href="#这里必须注意srcLane是束内w的编号" class="headerlink" title="这里必须注意srcLane是束内w的编号"></a>这里必须注意srcLane是束内w的编号</h2><blockquote>
-<p>int value = __any_sync(mask,v,srcLane,w)<br>把srcLane的线程中变量v的值广播给其他线程，其中广播的线程由mask的二进制决定</p>
+<p>int value &#x3D; __any_sync(mask,v,srcLane,w)<br>把srcLane的线程中变量v的值广播给其他线程，其中广播的线程由mask的二进制决定</p>
 </blockquote>
 <pre><code>int value = __any_sync(mask,tid,2,w);
 // 这里把线程2的tid值（也是2），也就是说所有线程走到这里之后的value都是2；如果tid表示是其他含义，那么其余每个线程就是用的对应的值
@@ -1971,21 +1977,21 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
 <p>My father is a doctor whom people trusted.</p>
 </blockquote>
 <blockquote>
-<p>Who/Whom are you going to invite to your party?<br>(这里you是主语)<br>你要邀请谁参加你的聚会？</p>
+<p>Who&#x2F;Whom are you going to invite to your party?<br>(这里you是主语)<br>你要邀请谁参加你的聚会？</p>
 </blockquote>
 <blockquote>
-<p>Who/Whom can we turn to in case of an emergence?</p>
+<p>Who&#x2F;Whom can we turn to in case of an emergence?</p>
 </blockquote>
 <p>万一出现什么情况，我们可以求助于谁？</p>
 <blockquote>
-<p>We have no idea who/whom the president will choose to be the new manager.</p>
+<p>We have no idea who&#x2F;whom the president will choose to be the new manager.</p>
 </blockquote>
 <ul>
 <li><p>无论是引导限制性定语从句还是非限制性定语从句，当先行词指人的时候，如果不是直接用于介词后作宾语，都可以用 who（非正式）或 whom（较正式）：</p>
 </li>
-<li><p>This aspect is discussed further by Crane, who / whom I mentioned earlier. 我前面提到过的克雷恩对这方面作了进一步的论述。</p>
+<li><p>This aspect is discussed further by Crane, who &#x2F; whom I mentioned earlier. 我前面提到过的克雷恩对这方面作了进一步的论述。</p>
 </li>
-<li><p>In that year he met Rachel, who / whom he was later to marry. 那年他遇到了雷切尔，后来和她结了婚。</p>
+<li><p>In that year he met Rachel, who &#x2F; whom he was later to marry. 那年他遇到了雷切尔，后来和她结了婚。</p>
 </li>
 </ul>
 <p>注意：直接用于介词后作宾语，只能用 whom：</p>
@@ -1993,8 +1999,8 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
 <li>I met a man with whom I used to work.  我碰见了个过去曾一起工作的人。</li>
 </ul>
 <p>顺便说一句，引导特殊疑问句时也是如此。如：</p>
-<p>Whom / Who are you writing to? 你在给谁写信?</p>
-<p>Whom / Who do you like best? 你最喜欢谁?</p>
+<p>Whom &#x2F; Who are you writing to? 你在给谁写信?</p>
+<p>Whom &#x2F; Who do you like best? 你最喜欢谁?</p>
 <p>若是紧跟在介词之后用作宾语，则只能用 whom，但这类表达通常只见于较正式的文体中。如：</p>
 <p>With whom did you go? 你跟谁一起去的?</p>
 <p><img src="/images/whom.png"> </p>
@@ -2011,15 +2017,6 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
       </tags>
   </entry>
   <entry>
-    <title>word2vec</title>
-    <url>/2022/01/04/word2vec/</url>
-    <content><![CDATA[<p><img src="/images/word2vec.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>主语从句</title>
     <url>/2022/08/24/%E4%B8%BB%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
     <content><![CDATA[<h2 id="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"><a href="#主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾" class="headerlink" title="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"></a>主语从句：<strong>在句子中担当主语的是一个从句</strong>，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾</h2><blockquote>
@@ -2032,7 +2029,7 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
 <p>一般来说会用形式主语it来代替主语，真正的主语放后面</p>
 </blockquote>
 </li>
-<li>It is the best news I have heard this long time that you are coming to London </li>
+<li>It is the best news I have heard this long time that you are coming to London</li>
 </ul>
 </li>
 <li><p>whether引导</p>
@@ -2171,6 +2168,15 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
+    <title>word2vec</title>
+    <url>/2022/01/04/word2vec/</url>
+    <content><![CDATA[<p><img src="/images/word2vec.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>均方误差分解</title>
     <url>/2022/05/21/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE%E5%88%86%E8%A7%A3/</url>
     <content><![CDATA[<p><img src="/images/biasAndvariance.png"> </p>
@@ -2196,7 +2202,7 @@ int main(int argc, const char * argv[]) &#123;
 &#125;
 </code></pre>
 <p>|char|char|char|char|<br>|char|—-|—-|—-|<br>|——–int——–|<br>|–short–|—-|—-|</p>
-<p>本来只用了11bytes（5+4+2）的空间，但是由于int型默认4字节对齐，存放在地址能被4整除的起始位置，即：如果name[5]从0开始存放，它占5bytes，而num则从第8(<strong>因为int是4，开始存的位置必须要可以整除4</strong>)（偏移量）个字节开始存放。所以sizeof(student)=16。于是中间空出几个字节闲置着。但这样便于计算机快速读写数据，是一种以空间换取时间的方式。其数据对齐如下图：</p>
+<p>本来只用了11bytes（5+4+2）的空间，但是由于int型默认4字节对齐，存放在地址能被4整除的起始位置，即：如果name[5]从0开始存放，它占5bytes，而num则从第8(<strong>因为int是4，开始存的位置必须要可以整除4</strong>)（偏移量）个字节开始存放。所以sizeof(student)&#x3D;16。于是中间空出几个字节闲置着。但这样便于计算机快速读写数据，是一种以空间换取时间的方式。其数据对齐如下图：</p>
 <pre><code>struct student
 &#123;
     int num;
@@ -2204,7 +2210,7 @@ int main(int argc, const char * argv[]) &#123;
     short score;
 &#125;
 </code></pre>
-<p>num从0开始存放，而name从第4（偏移量）个字节开始存放，连续5个字节，score从第10（偏移量）开始存放，故sizeof(student)=12。其数据对齐如下图：<br>|——–int——–|<br>|char|char|char|char|<br>|char|—-|–short–|</p>
+<p>num从0开始存放，而name从第4（偏移量）个字节开始存放，连续5个字节，score从第10（偏移量）开始存放，故sizeof(student)&#x3D;12。其数据对齐如下图：<br>|——–int——–|<br>|char|char|char|char|<br>|char|—-|–short–|</p>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -2219,9 +2225,10 @@ int main(int argc, const char * argv[]) &#123;
 <li><p><a href="#%E6%B3%A8%E6%84%8F%E8%BF%99%E4%B8%AA%E5%8E%9F%E5%88%99%E5%90%8C%E6%A0%B7%E9%80%82%E7%94%A8%E4%BA%8E%E5%85%B3%E7%B3%BB%E8%AF%8D%E4%B8%BA-who-%E5%92%8C-which%E7%9A%84%E5%AE%9A%E8%AF%AD%E4%BB%8E%E5%8F%A5">定从who和which省略</a></p>
 </li>
 <li><p><a href="#%E5%88%A4%E6%96%AD">判断</a></p>
-<h1 id="定语从句什么时候可以省略"><a href="#定语从句什么时候可以省略" class="headerlink" title="定语从句什么时候可以省略"></a>定语从句什么时候可以省略</h1></li>
-<li><p>定语从句本质上是一个<strong>形容词</strong>，修饰名词。从句子的树形结构出发，任何定语从句可以被拆分成两个句子。</p>
 </li>
+</ul>
+<h1 id="定语从句什么时候可以省略"><a href="#定语从句什么时候可以省略" class="headerlink" title="定语从句什么时候可以省略"></a>定语从句什么时候可以省略</h1><ul>
+<li>定语从句本质上是一个<strong>形容词</strong>，修饰名词。从句子的树形结构出发，任何定语从句可以被拆分成两个句子。</li>
 </ul>
 <blockquote>
 <p>eg: The cat that is eating an apple has a cute head.<br>这里拆分<br><img src="/images/2022-08-21-15-06-03.png"></p>
@@ -2341,7 +2348,7 @@ int main(int argc, const char * argv[]) &#123;
 </li>
 </ul>
 <blockquote>
-<p>例如：14%8，取余数，相当于取出低位，而余数最大为7，14二进制为1110，8的二进制1000，8-1 = 7的二进制为0111，由于现在低位全为1，让其跟14做&amp;运算，正好取出的是其低位上的余数 </p>
+<p>例如：14%8，取余数，相当于取出低位，而余数最大为7，14二进制为1110，8的二进制1000，8-1 &#x3D; 7的二进制为0111，由于现在低位全为1，让其跟14做&amp;运算，正好取出的是其低位上的余数 </p>
 </blockquote>
 ]]></content>
       <tags>
@@ -2484,7 +2491,7 @@ int main()
 <ul>
 <li>Whenever (she is) free, she often goes shopping.她有空就去逛商店。</li>
 <li>Work hard when (you are) young, or you’ll regret.少壮不努力,老大徒伤悲。</li>
-<li>While (he was) a young boy, he was always ready to help others. 他在孩提时代就乐于助人。<br><img src="/images/2022-08-22-11-59-37.png"><br><img src="/images/2022-08-22-11-59-56.png"></li>
+<li>While (he was) a young boy, he was always ready to help others. 他在孩提时代就乐于助人。<br> <img src="/images/2022-08-22-11-59-37.png"><br> <img src="/images/2022-08-22-11-59-56.png"></li>
 </ul>
 </li>
 <li><p>若从句的主语和主句的主语不一致，但和主句的宾语一致时，从句中的主语和be动词亦常可省略。例如：</p>
@@ -2496,11 +2503,12 @@ int main()
 <ul>
 <li><p>If (it is) possible, he will help you out of the difficulty.如果可能的话,他会帮你摆脱困境。</p>
 </li>
-<li><p>You must attend the meeting unless (it is) inconvenient to you.除非情况对你来说不方便,否则你必须出席这次会议。<br><img src="/images/2022-08-22-12-05-52.png"></p>
+<li><p>You must attend the meeting unless (it is) inconvenient to you.除非情况对你来说不方便,否则你必须出席这次会议。</p>
 </li>
 </ul>
 </li>
 </ol>
+<p><img src="/images/2022-08-22-12-05-52.png"></p>
 ]]></content>
       <tags>
         <tag>English</tag>
@@ -2532,7 +2540,7 @@ int main()
     <title>红黑树</title>
     <url>/2022/06/28/%E7%BA%A2%E9%BB%91%E6%A0%91/</url>
     <content><![CDATA[<h1 id="红黑树五大特性"><a href="#红黑树五大特性" class="headerlink" title="红黑树五大特性"></a>红黑树五大特性</h1><ul>
-<li>节点是红/黑</li>
+<li>节点是红&#x2F;黑</li>
 <li>根结点是黑</li>
 <li>空叶子是黑色的（叶子结点和度为一的结点：度为0和度为1）</li>
 <li>红色结点的孩子肯定是黑色的（从根到空叶子的简单路径不存在连续红色结点）</li>
@@ -2609,7 +2617,7 @@ int main()
   <entry>
     <title>进程和线程</title>
     <url>/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<p>做个简单的比喻：进程=火车，线程=车厢线程在进程下行进（<br>单纯的车厢无法运行）一个进程可以包含多个线程（一辆火车可以有多个车厢）<br>不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）<br>同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）<br>进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）<br>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）<br>进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）<br>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－”互斥锁”进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”</p>
+    <content><![CDATA[<p>做个简单的比喻：进程&#x3D;火车，线程&#x3D;车厢线程在进程下行进（<br>单纯的车厢无法运行）一个进程可以包含多个线程（一辆火车可以有多个车厢）<br>不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）<br>同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）<br>进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）<br>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）<br>进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）<br>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－”互斥锁”进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”</p>
 ]]></content>
       <tags>
         <tag>C++</tag>
@@ -2681,7 +2689,7 @@ int main(int argc, const char * argv[]) &#123;
   <entry>
     <title>重载new()</title>
     <url>/2022/06/21/%E9%87%8D%E8%BD%BD/</url>
-    <content><![CDATA[<h2 id="可以重载new，同时也可以重载new"><a href="#可以重载new，同时也可以重载new" class="headerlink" title="可以重载new，同时也可以重载new()"></a>可以重载new，同时也可以重载new()</h2><p>Foo* p = new(300,”a”) Foo;</p>
+    <content><![CDATA[<h2 id="可以重载new，同时也可以重载new"><a href="#可以重载new，同时也可以重载new" class="headerlink" title="可以重载new，同时也可以重载new()"></a>可以重载new，同时也可以重载new()</h2><p>Foo* p &#x3D; new(300,”a”) Foo;</p>
 <blockquote>
 <p>new()里面的参数就是可以加在重载函数的参数中的<br>注意第一个参数必须是size_t</p>
 </blockquote>
@@ -2707,11 +2715,11 @@ int main(int argc, const char * argv[]) &#123;
 <li><a href="#shortlists">Shortlists…</a></li>
 <li><a href="#the-emphasis">The emphasis…</a></li>
 <li><a href="#whether">whether…</a></li>
-<li><a href="#Stocks">Stocks…</a><h2 id="Despite"><a href="#Despite" class="headerlink" title="Despite"></a>Despite</h2><blockquote>
+<li><a href="#Stocks">Stocks…</a></li>
+</ul>
+<h2 id="Despite"><a href="#Despite" class="headerlink" title="Despite"></a>Despite</h2><blockquote>
 <p>当状语从句的主语和主句的主语一致时,从句可以将主语和be动词简化掉（只能从句动词是be才可以）</p>
 </blockquote>
-</li>
-</ul>
 <blockquote>
 <p>Despite a spell of initial optimism in the 1960s and 1970s when it appeared that transistor circuits and microprocessors might be able to copy the action of human brain by the year 2010, researchers lately have begun to extend that forecast by decades if (researchers are) not centuries </p>
 </blockquote>
@@ -2739,7 +2747,7 @@ by decades 几十年
 <p>Curbs（名词，主语） on business-method claims（申请）（介词短语表示补充说明） would be a dramatic about-face(彻底转变), because <strong>it was</strong> the Federal Circuit itself <strong>that</strong> introduced such patents with its 1998 decision in the so-called State Street Bank case, approving（逗号加doing,这是非谓语动词修饰整个句子，看主语，主语是Federal Circuit，看和主语的关系。Federal Circuit主动赞同了一个专利在这个方面（筹集pooling是名词动词意化）筹集相互基金资产方面） a patent on a way of pooling mutual-fund assets</p>
 </blockquote>
 <ul>
-<li>It is/was … that 强调句，普通句子把要强调的部分放入中间，就构成强调句，删除掉it is/was … that 也是一个完整的句子</li>
+<li>It is&#x2F;was … that 强调句，普通句子把要强调的部分放入中间，就构成强调句，删除掉it is&#x2F;was … that 也是一个完整的句子</li>
 </ul>
 <hr>
 <ul>
@@ -2823,7 +2831,7 @@ by decades 几十年
 <li>to help do sth 固定搭配</li>
 </ul>
 <hr>
-<p> Misfortune may be an actual（这里连读 /bi na/） blessing</p>
+<p> Misfortune may be an actual（这里连读 &#x2F;bi na&#x2F;） blessing</p>
 <hr>
 <p>department stores 百货商店</p>
 <hr>
@@ -2857,13 +2865,25 @@ by decades 几十年
 <p><img src="/images/2022-09-04-09-29-56.png"></p>
 <ul>
 <li>eluded 难倒</li>
-<li>suit sb to do sth 让某人去做某事 </li>
+<li>suit sb to do sth 让某人去做某事</li>
 </ul>
 <hr>
 <h2 id="Stocks"><a href="#Stocks" class="headerlink" title="Stocks"></a>Stocks</h2><p>Stocks rushed lower on a jarring(使某人不安) inflation report, dashing hopes(破碎美梦) of many investors that prices would cool to allow The Federal Reserve to pause their aggressive effort to slow the economy with interest rate increases sometime soon.</p>
 ]]></content>
       <tags>
         <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker</title>
+    <url>/2022/09/22/docker/docker/</url>
+    <content><![CDATA[<p>Docker 一些基本操作</p>
+<ul>
+<li><a href="./docker-compose.md">docker-compose</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker</tag>
       </tags>
   </entry>
 </search>

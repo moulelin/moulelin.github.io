@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -334,7 +334,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="any-sync用于一个warp之间线程的数据的交换-广播（broadcast）"><a href="#any-sync用于一个warp之间线程的数据的交换-广播（broadcast）" class="headerlink" title="__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）"></a>__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）</h1><h2 id="这里必须注意srcLane是束内w的编号"><a href="#这里必须注意srcLane是束内w的编号" class="headerlink" title="这里必须注意srcLane是束内w的编号"></a>这里必须注意srcLane是束内w的编号</h2><blockquote>
-<p>int value = __any_sync(mask,v,srcLane,w)<br>把srcLane的线程中变量v的值广播给其他线程，其中广播的线程由mask的二进制决定</p>
+<p>int value &#x3D; __any_sync(mask,v,srcLane,w)<br>把srcLane的线程中变量v的值广播给其他线程，其中广播的线程由mask的二进制决定</p>
 </blockquote>
 <pre><code>int value = __any_sync(mask,tid,2,w);
 // 这里把线程2的tid值（也是2），也就是说所有线程走到这里之后的value都是2；如果tid表示是其他含义，那么其余每个线程就是用的对应的值

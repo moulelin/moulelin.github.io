@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -344,7 +344,7 @@
 <p>这个操作就是移动不同通道（移动方向是固定的，对于channel相同的数据来说）<br><img src="/images/image.png.png"></p>
 </blockquote>
 <h1 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h1><blockquote>
-<p>To reduce the state space, we use a simple heuristic: di- vide the M channels evenly into DK2 groups, where each group of ⌊M/DK2 ⌋ channels adopts one shift<br>(划分M和通道到M/D^2中。每M/D^2个通道共享一个shift的方向)</p>
+<p>To reduce the state space, we use a simple heuristic: di- vide the M channels evenly into DK2 groups, where each group of ⌊M&#x2F;DK2 ⌋ channels adopts one shift<br>(划分M和通道到M&#x2F;D^2中。每M&#x2F;D^2个通道共享一个shift的方向)</p>
 </blockquote>
 <blockquote>
 <p>I.e.和e.g.都是拉丁语缩写，i.e.代表id est，意为“也就是说，即”（that is），e.g.代表exempli gratia，意思是“举个例子”（for example）<br>However, finding the optimal permutation, <strong>i.e</strong>., how to map each channel-m to a shift group, requires searching a <strong>combinatorially(组合地)</strong> large search space.</p>
@@ -353,7 +353,7 @@
 <p>we introduce a <strong>modification(限制)</strong> to the shift operation that makes input and output invariant to channel order:  We denote a shift operation with channel permutation π as Kπ(<strong>这里不是很明白，K代表的是通道置换</strong>),</p>
 </blockquote>
 <blockquote>
-<p>G ̃=Pπ2(Kπ(Pπ1(F)))<br>wherePπi are permutation operators and◦ denotes operator composition(<strong>这里不明白，Pπ代表的是置换算子，但是Pπ(K)Pπ结合起来是整个Shift操作</strong>)</p>
+<p>G ̃&#x3D;Pπ2(Kπ(Pπ1(F)))<br>wherePπi are permutation operators and◦ denotes operator composition(<strong>这里不明白，Pπ代表的是置换算子，但是Pπ(K)Pπ结合起来是整个Shift操作</strong>)</p>
 </blockquote>
 <blockquote>
 <p><strong>因为shift是离散的，因此加入point-wise convolution P1(F)来进行参数更新，离散的不好进行权重更新，同时shift matrix也不会更新</strong></p>

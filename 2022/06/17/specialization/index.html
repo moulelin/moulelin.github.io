@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -364,7 +364,7 @@ bool Isequal(T&amp; p1, T&amp; p2)&#123;
 <p><strong>But it does’t work for string. We need to override this special type</strong></p>
 <pre><code>
 template&lt;&gt;
-bool Isequal&lt;char*&gt; (char* p1, char* p2)&#123;    
+bool Isequal&lt;char*&gt; (char* p1, char* p2)&#123;	
     return strcmp(p1, p2) == 0;
 &#125;
 </code></pre>
