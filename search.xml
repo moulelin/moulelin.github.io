@@ -59,32 +59,6 @@ I will try figure out by myself, then i will ask sometjiogn  -->
       </tags>
   </entry>
   <entry>
-    <title>Context-Aware Attentional Graph U-Net for Hyperspectral Image Classification</title>
-    <url>/2021/03/31/CAGU/</url>
-    <content><![CDATA[<p><img src="/images/2_author.jpg"> </p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">Hyperspectral Image (HSI) registers hundreds of spectral bands, whose intraclass variability and interclass similarity are resourceful information to be mined. Intraclass variability reflects the non-uniform and redundancy of the spatial and semantic features extracted from HSI. Interclass similarity represents the inherent relationship between adjacent features and snapshots. Existing models extract the superficial correlation representation for HSI to tackle the classification task but fail to embed the interclass and intraclass correlations due to these models intrinsic bottlenecks. Confronting the challenges of capturing interrelation for complex data in practice, we propose a Context-Aware Attentional Graph U-Net (CAGU) to improve these two modes of representation, which is more flexible in feature enhancement. In this method, attentional Graph U-Net is capable of extracting the intraclass embeddings within a non-Euclidean space by combining similar distributing feature vertices. The Gated Recurrent Unit (GRU) is another critical component of our model to capture the context-aware dynamic interclass embeddings. Extensive experiments demonstrate that our model can efficiently outperform state-of-the-art methods across-the-board on five wide-adopted public datasets, namely Pavia University, Indian Pines, Salinas Scene-show, Houston 2013 and Houston 2018, on a par with the same scale of model parameters.
-</blockquote>
-<h1 id="CAGU-Architecture"><a href="#CAGU-Architecture" class="headerlink" title="CAGU Architecture :"></a>CAGU Architecture :</h1><p> <img src="/images/2_2.jpg"> </p>
-<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/2_3.jpg"> </p>
-<h1 id="Classification-maps"><a href="#Classification-maps" class="headerlink" title="Classification maps :"></a>Classification maps :</h1><p> <img src="/images/2_5.jpg"> </p>
-<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black"> CAGU considers the intrinsic relationship in feature space, and promotes high cohesion of features through the graph network. CAGU can explore deeper spectral information in the image than the state-of-the-art methods, which enhances the cohesion of features and provides clear data for subsequent modules. Therefore, CAGU outperforms all the compared methods, and it can be universally employed in most models for feature enhancement, not restricted in U-Net. What’s more, GCN and GRU will not increase the parameters of the model due to the reduction in depth of U-Net.
-</blockquote>
-<hr>
-<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Journal-IEEE-Geoscience-and-Remote-Sensing-Letters"><a href="#Journal-IEEE-Geoscience-and-Remote-Sensing-Letters" class="headerlink" title="Journal : IEEE Geoscience and Remote Sensing Letters"></a>Journal : IEEE Geoscience and Remote Sensing Letters</h3><h3 id="Impact-factor-3-833"><a href="#Impact-factor-3-833" class="headerlink" title="Impact factor : 3.833"></a>Impact factor : 3.833</h3><h3 id="State-Accepted-28-Mar-2021"><a href="#State-Accepted-28-Mar-2021" class="headerlink" title="State : Accepted (28-Mar-2021)"></a>State : Accepted (28-Mar-2021)</h3><p><img src="/images/2_4.jpg"> </p>
-<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> When the paper is published, we will open source the code.<br>
-<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>CAGU</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++</title>
     <url>/2022/01/13/C/</url>
     <content><![CDATA[<blockquote>
@@ -185,6 +159,32 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
 ]]></content>
       <tags>
         <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Context-Aware Attentional Graph U-Net for Hyperspectral Image Classification</title>
+    <url>/2021/03/31/CAGU/</url>
+    <content><![CDATA[<p><img src="/images/2_author.jpg"> </p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">Hyperspectral Image (HSI) registers hundreds of spectral bands, whose intraclass variability and interclass similarity are resourceful information to be mined. Intraclass variability reflects the non-uniform and redundancy of the spatial and semantic features extracted from HSI. Interclass similarity represents the inherent relationship between adjacent features and snapshots. Existing models extract the superficial correlation representation for HSI to tackle the classification task but fail to embed the interclass and intraclass correlations due to these models intrinsic bottlenecks. Confronting the challenges of capturing interrelation for complex data in practice, we propose a Context-Aware Attentional Graph U-Net (CAGU) to improve these two modes of representation, which is more flexible in feature enhancement. In this method, attentional Graph U-Net is capable of extracting the intraclass embeddings within a non-Euclidean space by combining similar distributing feature vertices. The Gated Recurrent Unit (GRU) is another critical component of our model to capture the context-aware dynamic interclass embeddings. Extensive experiments demonstrate that our model can efficiently outperform state-of-the-art methods across-the-board on five wide-adopted public datasets, namely Pavia University, Indian Pines, Salinas Scene-show, Houston 2013 and Houston 2018, on a par with the same scale of model parameters.
+</blockquote>
+<h1 id="CAGU-Architecture"><a href="#CAGU-Architecture" class="headerlink" title="CAGU Architecture :"></a>CAGU Architecture :</h1><p> <img src="/images/2_2.jpg"> </p>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/2_3.jpg"> </p>
+<h1 id="Classification-maps"><a href="#Classification-maps" class="headerlink" title="Classification maps :"></a>Classification maps :</h1><p> <img src="/images/2_5.jpg"> </p>
+<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black"> CAGU considers the intrinsic relationship in feature space, and promotes high cohesion of features through the graph network. CAGU can explore deeper spectral information in the image than the state-of-the-art methods, which enhances the cohesion of features and provides clear data for subsequent modules. Therefore, CAGU outperforms all the compared methods, and it can be universally employed in most models for feature enhancement, not restricted in U-Net. What’s more, GCN and GRU will not increase the parameters of the model due to the reduction in depth of U-Net.
+</blockquote>
+<hr>
+<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Journal-IEEE-Geoscience-and-Remote-Sensing-Letters"><a href="#Journal-IEEE-Geoscience-and-Remote-Sensing-Letters" class="headerlink" title="Journal : IEEE Geoscience and Remote Sensing Letters"></a>Journal : IEEE Geoscience and Remote Sensing Letters</h3><h3 id="Impact-factor-3-833"><a href="#Impact-factor-3-833" class="headerlink" title="Impact factor : 3.833"></a>Impact factor : 3.833</h3><h3 id="State-Accepted-28-Mar-2021"><a href="#State-Accepted-28-Mar-2021" class="headerlink" title="State : Accepted (28-Mar-2021)"></a>State : Accepted (28-Mar-2021)</h3><p><img src="/images/2_4.jpg"> </p>
+<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> When the paper is published, we will open source the code.<br>
+<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>CAGU</tag>
       </tags>
   </entry>
   <entry>
@@ -395,32 +395,6 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>Short-term prediction of stock market price based on GA optimization LSTM neurons</title>
-    <url>/2021/04/01/GA/</url>
-    <content><![CDATA[<p><img src="/images/3_1.jpg"> </p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">Long-Short Term Memory Network stands out from the financial sector due to its long-term memory predictability, however, the speed of subsequent operations is extremely slow, and the timeliness of the inability to meet market changes has been criticized. In this paper. Aiming at the shortcomings of the slow running of three gates in each neuron of LSTM in back propagation, we1 propose to use GA to optimize the internal weights of LSTM neurons to optimize the defect. In this experiment, GA optimization could not change the accuracy of the model, but it achieved better results than the original LSTM in terms of speed, and satisfied the demand of the future business field for rapid response to market changes in terms of timeliness.
-</blockquote>
-<h1 id="LSTM-Architecture"><a href="#LSTM-Architecture" class="headerlink" title="LSTM Architecture :"></a>LSTM Architecture :</h1><p>  <img src="/images/3_2.jpg"> </p>
-<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/3_3.jpg"> </p>
-<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">This paper proposes a GA optimization method for LSTM neurons. By comparing the running time of predecessor models, it is possible to overcome the shortcomings of slow operation of LSTM to a certain extent by optimizing the internal weight of neurons through GA update.
-<p style="text-align:justify; text-justify:inter-ideograph; color:black"> In addition, this article does not discuss the generalization ability of the network and other parameters of the network at the same time. The research purpose is too single. However, for the short-term prediction of financial markets, the importance of research on the timeliness and advancing of the model is much higher than that of the generalized network model
-</blockquote>
-<hr>
-<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2018 2nd International Conference on Deep Learning Technologies"></a>Conference : 2018 2nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/3_4.jpg"> </p>
-<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> This paper was published a long time ago, and it is not perfect from my current point of view.<br>
-<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>GA</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hierarchical</title>
     <url>/2021/12/02/Hierarchical/</url>
     <content><![CDATA[<blockquote>
@@ -489,6 +463,32 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>Short-term prediction of stock market price based on GA optimization LSTM neurons</title>
+    <url>/2021/04/01/GA/</url>
+    <content><![CDATA[<p><img src="/images/3_1.jpg"> </p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">Long-Short Term Memory Network stands out from the financial sector due to its long-term memory predictability, however, the speed of subsequent operations is extremely slow, and the timeliness of the inability to meet market changes has been criticized. In this paper. Aiming at the shortcomings of the slow running of three gates in each neuron of LSTM in back propagation, we1 propose to use GA to optimize the internal weights of LSTM neurons to optimize the defect. In this experiment, GA optimization could not change the accuracy of the model, but it achieved better results than the original LSTM in terms of speed, and satisfied the demand of the future business field for rapid response to market changes in terms of timeliness.
+</blockquote>
+<h1 id="LSTM-Architecture"><a href="#LSTM-Architecture" class="headerlink" title="LSTM Architecture :"></a>LSTM Architecture :</h1><p>  <img src="/images/3_2.jpg"> </p>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/3_3.jpg"> </p>
+<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">This paper proposes a GA optimization method for LSTM neurons. By comparing the running time of predecessor models, it is possible to overcome the shortcomings of slow operation of LSTM to a certain extent by optimizing the internal weight of neurons through GA update.
+<p style="text-align:justify; text-justify:inter-ideograph; color:black"> In addition, this article does not discuss the generalization ability of the network and other parameters of the network at the same time. The research purpose is too single. However, for the short-term prediction of financial markets, the importance of research on the timeliness and advancing of the model is much higher than that of the generalized network model
+</blockquote>
+<hr>
+<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2018 2nd International Conference on Deep Learning Technologies"></a>Conference : 2018 2nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/3_4.jpg"> </p>
+<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> This paper was published a long time ago, and it is not perfect from my current point of view.<br>
+<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>GA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MATI-Regression</title>
     <url>/2021/11/02/MATI-Regression/</url>
     <content><![CDATA[
@@ -514,22 +514,6 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>RL3ways</title>
-    <url>/2022/03/20/RL3ways/</url>
-    <content><![CDATA[
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/RL3.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>RL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MC</title>
     <url>/2022/03/19/MC/</url>
     <content><![CDATA[<p><img src="/images/MC.png">  </p>
@@ -550,26 +534,19 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>STL</title>
-    <url>/2022/07/06/STL/</url>
-    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
-<blockquote>
-<p>stack和queue不提供iterator</p>
-</blockquote>
-<blockquote>
-<p>set&#x2F;multiset<br>multiset是基于红黑树实现的</p>
-</blockquote>
+    <title>RL3ways</title>
+    <url>/2022/03/20/RL3ways/</url>
+    <content><![CDATA[
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/RL3.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
 ]]></content>
       <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ShiftGCN</title>
-    <url>/2022/08/17/ShiftGCN/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>GCN</tag>
+        <tag>RL</tag>
       </tags>
   </entry>
   <entry>
@@ -609,6 +586,29 @@ concorn
 ]]></content>
       <tags>
         <tag>Shift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ShiftGCN</title>
+    <url>/2022/08/17/ShiftGCN/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>GCN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STL</title>
+    <url>/2022/07/06/STL/</url>
+    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
+<blockquote>
+<p>stack和queue不提供iterator</p>
+</blockquote>
+<blockquote>
+<p>set&#x2F;multiset<br>multiset是基于红黑树实现的</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -969,15 +969,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>likeihood</title>
-    <url>/2021/12/17/likeihood/</url>
-    <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
-]]></content>
-      <tags>
-        <tag>likelihood</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>p18-function-like-class</title>
     <url>/2022/06/16/function-like-class/</url>
     <content><![CDATA[<ul>
@@ -1061,6 +1052,15 @@ int main()
 ]]></content>
       <tags>
         <tag>-c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>likeihood</title>
+    <url>/2021/12/17/likeihood/</url>
+    <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
+]]></content>
+      <tags>
+        <tag>likelihood</tag>
       </tags>
   </entry>
   <entry>
@@ -1659,15 +1659,6 @@ A&lt;string*&gt; b;
       </tags>
   </entry>
   <entry>
-    <title>t5-假设检验</title>
-    <url>/2022/06/22/t5%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/</url>
-    <content><![CDATA[<p><img src="/images/p5.png"></p>
-]]></content>
-      <tags>
-        <tag>probability</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>template-template-paramenter</title>
     <url>/2022/06/17/template-template-paramenter/</url>
     <content><![CDATA[<h1 id="模版参数中包含模版"><a href="#模版参数中包含模版" class="headerlink" title="模版参数中包含模版"></a>模版参数中包含模版</h1><ul>
@@ -1756,6 +1747,15 @@ private:
 ]]></content>
       <tags>
         <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>t5-假设检验</title>
+    <url>/2022/06/22/t5%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/</url>
+    <content><![CDATA[<p><img src="/images/p5.png"></p>
+]]></content>
+      <tags>
+        <tag>probability</tag>
       </tags>
   </entry>
   <entry>
@@ -1874,6 +1874,28 @@ private:
       </tags>
   </entry>
   <entry>
+    <title>vector二维数组</title>
+    <url>/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
+<li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
+<p>这里的row,col代表二维vector的两个轴方向的大小</p>
+</blockquote>
+</li>
+<li>第二种通过resize确定大小，之后循环赋值</li>
+</ul>
+<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
+vec1.resize(row);
+for(int i=0;i&lt;vec1.size();i++)
+    vec1[i].resize(col);
+for(int i=0;i&lt;row;i++)
+    for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vector用于cuda核函数中</title>
     <url>/2022/06/30/vector%E7%94%A8%E4%BA%8Ecuda%E6%A0%B8%E5%87%BD%E6%95%B0%E4%B8%AD/</url>
     <content><![CDATA[<blockquote>
@@ -1914,28 +1936,6 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
 ]]></content>
       <tags>
         <tag>cuda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vector二维数组</title>
-    <url>/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
-<li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
-<p>这里的row,col代表二维vector的两个轴方向的大小</p>
-</blockquote>
-</li>
-<li>第二种通过resize确定大小，之后循环赋值</li>
-</ul>
-<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
-vec1.resize(row);
-for(int i=0;i&lt;vec1.size();i++)
-    vec1[i].resize(col);
-for(int i=0;i&lt;row;i++)
-    for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -2017,74 +2017,12 @@ for(int i=0;i&lt;row;i++)
       </tags>
   </entry>
   <entry>
-    <title>主语从句</title>
-    <url>/2022/08/24/%E4%B8%BB%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
-    <content><![CDATA[<h2 id="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"><a href="#主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾" class="headerlink" title="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"></a>主语从句：<strong>在句子中担当主语的是一个从句</strong>，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾</h2><blockquote>
-<p>主语从句使用陈述语序，其通常结构为“引导词 + 主语 + 谓语 + 其他成分”；</p>
-</blockquote>
-<ol>
-<li><p>that</p>
-<ul>
-<li>That you are coming to London is the best news(定从，做从句宾语可以省略) I have heard this long time.<blockquote>
-<p>一般来说会用形式主语it来代替主语，真正的主语放后面</p>
-</blockquote>
-</li>
-<li>It is the best news I have heard this long time that you are coming to London</li>
-</ul>
-</li>
-<li><p>whether引导</p>
-<ul>
-<li>Whether they would support us was a problem</li>
-<li>However, whether such a sense of fairness evolved independently in capuchins and humans, or whether it stems from the common ancestor that the species had 35 million years ago, is, as yet, an unanswered question<ul>
-<li>whether引导的两个并列主语从句做is的主语</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>连接代词引导</p>
-<blockquote>
-<p>例句：Whoever is top from wins the game when two matched players meet. 两强相争勇者胜。</p>
-</blockquote>
-</li>
-<li><p>连接副词引导</p>
-<blockquote>
-<p>例句：How this happended is not clear to anyone. 这件事怎样发生的，谁也不清楚。</p>
-</blockquote>
-</li>
-<li><p>关系代词型what引导</p>
-<blockquote>
-<p>例句：What struck me was that they have all suffered a lot. 给我很深印象的是他们都受过很多苦。</p>
-</blockquote>
-</li>
-</ol>
-<h2 id="二、主语从句与形式主语it"><a href="#二、主语从句与形式主语it" class="headerlink" title="二、主语从句与形式主语it"></a>二、主语从句与形式主语it</h2><ol>
-<li>对于以连词that引导的主语从句，通常用形式主语代主语从句：</li>
-</ol>
-<p>例句：That they should refuse to sign the petition required great courage. 他们拒绝在请愿书上签字这是需要很大勇气的。</p>
-<ol start="2">
-<li>对于以连接代词(副词)引导的主语从句，可以使用形式主语代主语从句，也可直接在句首使用主语从句：</li>
-</ol>
-<p>例句：Whether they would support us was a problem. 他们是否会支持我们还是一个问题。</p>
-<ol start="3">
-<li>对关系代词型what引导的主语从句，通常直接将主语从句放在句首。</li>
-</ol>
-<p>例句：What I want to know is this. 我想知道的就是这一点。</p>
-<p>有时也可将助用形式主语。</p>
-<p>例句：It is clear enough what he meant. 他是什么意思很清楚。</p>
-<ol start="4">
-<li>如果句子是疑问句，则必须用带形式主语it的结构：</li>
-</ol>
-<p>例句：Is it true that he is the girl’s father? 他是那女孩的父亲，是真的吗?</p>
-<h2 id="三、连词that的省略问题"><a href="#三、连词that的省略问题" class="headerlink" title="三、连词that的省略问题"></a>三、连词that的省略问题</h2><blockquote>
-<p>引导主语从句的连词that 有时可省，有时不能省，其原则是：若that引导的主语从句直接位于句首，则that不能省略；若that引导的主语从句位于句末，而在句首使用了形式主语it，则that可以省略：</p>
-</blockquote>
-<pre><code>&gt; 例句：That you didn’t go to the talk was a pity. 很遗憾你没去听报告。(that不可省)
-
-&gt; 例句：It was a pity (that) you didn’t go to the talk. 很遗憾你没去听报告。(that可省)
-</code></pre>
+    <title>word2vec</title>
+    <url>/2022/01/04/word2vec/</url>
+    <content><![CDATA[<p><img src="/images/word2vec.png"> </p>
 ]]></content>
       <tags>
-        <tag>Enlish</tag>
+        <tag>NLP</tag>
       </tags>
   </entry>
   <entry>
@@ -2159,21 +2097,83 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
+    <title>主语从句</title>
+    <url>/2022/08/24/%E4%B8%BB%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
+    <content><![CDATA[<h2 id="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"><a href="#主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾" class="headerlink" title="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"></a>主语从句：<strong>在句子中担当主语的是一个从句</strong>，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾</h2><blockquote>
+<p>主语从句使用陈述语序，其通常结构为“引导词 + 主语 + 谓语 + 其他成分”；</p>
+</blockquote>
+<ol>
+<li><p>that</p>
+<ul>
+<li>That you are coming to London is the best news(定从，做从句宾语可以省略) I have heard this long time.<blockquote>
+<p>一般来说会用形式主语it来代替主语，真正的主语放后面</p>
+</blockquote>
+</li>
+<li>It is the best news I have heard this long time that you are coming to London</li>
+</ul>
+</li>
+<li><p>whether引导</p>
+<ul>
+<li>Whether they would support us was a problem</li>
+<li>However, whether such a sense of fairness evolved independently in capuchins and humans, or whether it stems from the common ancestor that the species had 35 million years ago, is, as yet, an unanswered question<ul>
+<li>whether引导的两个并列主语从句做is的主语</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>连接代词引导</p>
+<blockquote>
+<p>例句：Whoever is top from wins the game when two matched players meet. 两强相争勇者胜。</p>
+</blockquote>
+</li>
+<li><p>连接副词引导</p>
+<blockquote>
+<p>例句：How this happended is not clear to anyone. 这件事怎样发生的，谁也不清楚。</p>
+</blockquote>
+</li>
+<li><p>关系代词型what引导</p>
+<blockquote>
+<p>例句：What struck me was that they have all suffered a lot. 给我很深印象的是他们都受过很多苦。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="二、主语从句与形式主语it"><a href="#二、主语从句与形式主语it" class="headerlink" title="二、主语从句与形式主语it"></a>二、主语从句与形式主语it</h2><ol>
+<li>对于以连词that引导的主语从句，通常用形式主语代主语从句：</li>
+</ol>
+<p>例句：That they should refuse to sign the petition required great courage. 他们拒绝在请愿书上签字这是需要很大勇气的。</p>
+<ol start="2">
+<li>对于以连接代词(副词)引导的主语从句，可以使用形式主语代主语从句，也可直接在句首使用主语从句：</li>
+</ol>
+<p>例句：Whether they would support us was a problem. 他们是否会支持我们还是一个问题。</p>
+<ol start="3">
+<li>对关系代词型what引导的主语从句，通常直接将主语从句放在句首。</li>
+</ol>
+<p>例句：What I want to know is this. 我想知道的就是这一点。</p>
+<p>有时也可将助用形式主语。</p>
+<p>例句：It is clear enough what he meant. 他是什么意思很清楚。</p>
+<ol start="4">
+<li>如果句子是疑问句，则必须用带形式主语it的结构：</li>
+</ol>
+<p>例句：Is it true that he is the girl’s father? 他是那女孩的父亲，是真的吗?</p>
+<h2 id="三、连词that的省略问题"><a href="#三、连词that的省略问题" class="headerlink" title="三、连词that的省略问题"></a>三、连词that的省略问题</h2><blockquote>
+<p>引导主语从句的连词that 有时可省，有时不能省，其原则是：若that引导的主语从句直接位于句首，则that不能省略；若that引导的主语从句位于句末，而在句首使用了形式主语it，则that可以省略：</p>
+</blockquote>
+<pre><code>&gt; 例句：That you didn’t go to the talk was a pity. 很遗憾你没去听报告。(that不可省)
+
+&gt; 例句：It was a pity (that) you didn’t go to the talk. 很遗憾你没去听报告。(that可省)
+</code></pre>
+]]></content>
+      <tags>
+        <tag>Enlish</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>原反补码</title>
     <url>/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/</url>
     <content><![CDATA[<p><img src="/images/coding.png"></p>
 ]]></content>
       <tags>
         <tag>coding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>word2vec</title>
-    <url>/2022/01/04/word2vec/</url>
-    <content><![CDATA[<p><img src="/images/word2vec.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
       </tags>
   </entry>
   <entry>
