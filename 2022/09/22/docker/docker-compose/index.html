@@ -376,6 +376,30 @@ volumes:
   wordpress:
   db:
 </code></pre>
+<h2 id="重要一点。在docker-compose-中调用dockerfile。"><a href="#重要一点。在docker-compose-中调用dockerfile。" class="headerlink" title="重要一点。在docker-compose 中调用dockerfile。"></a>重要一点。在docker-compose 中调用dockerfile。</h2><ul>
+<li>他们会直接处于同一个网络之下，并且他们的名字就是ip别名</li>
+</ul>
+<pre><code>version: &quot;3.7&quot;
+
+services:
+  app:
+    build: ./
+    ports:
+      - 80:8080
+    volumes:
+      - ./:/app
+    environment:
+      - TZ=Asia/Shanghai
+  redis:
+    image: redis:5.0.13
+    volumes:
+      - redis:/data
+    environment:
+      - TZ=Asia/Shanghai
+
+volumes:
+  redis:
+</code></pre>
 <!-- flag of hidden posts -->
             </div>
             <hr/>
