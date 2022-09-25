@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>3D-python</title>
+    <url>/2021/11/02/3D-python/</url>
+    <content><![CDATA[<h1 id="plot-3D-by-python"><a href="#plot-3D-by-python" class="headerlink" title="plot 3D by python"></a>plot 3D by python</h1>]]></content>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>BPR推荐算法</title>
+    <url>/2021/11/16/BPR/</url>
+    <content><![CDATA[<p><img src="/images/BPR.png"> </p>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>BRP推荐算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>3D</title>
     <url>/2021/11/05/3D/</url>
     <content><![CDATA[<!-- Do you need some help for 3D?
@@ -36,26 +56,6 @@ I will try figure out by myself, then i will ask sometjiogn  -->
 ]]></content>
       <tags>
         <tag>3D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>3D-python</title>
-    <url>/2021/11/02/3D-python/</url>
-    <content><![CDATA[<h1 id="plot-3D-by-python"><a href="#plot-3D-by-python" class="headerlink" title="plot 3D by python"></a>plot 3D by python</h1>]]></content>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>BPR推荐算法</title>
-    <url>/2021/11/16/BPR/</url>
-    <content><![CDATA[<p><img src="/images/BPR.png"> </p>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>BRP推荐算法</tag>
       </tags>
   </entry>
   <entry>
@@ -171,6 +171,23 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
       </tags>
   </entry>
   <entry>
+    <title>Conv-MPN</title>
+    <url>/2022/06/17/Conv-MPN/</url>
+    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
+<li><a href="#">corner_detection</a><blockquote>
+<p>concatenate</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
+<p>mask_rcnn extracts corner points.</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Cplusplusnotes</title>
     <url>/2022/05/01/Cplusplusnotes/</url>
     <content><![CDATA[<blockquote>
@@ -207,23 +224,6 @@ static const int a = 1;
 ]]></content>
       <tags>
         <tag>DBSCAN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Conv-MPN</title>
-    <url>/2022/06/17/Conv-MPN/</url>
-    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
-<li><a href="#">corner_detection</a><blockquote>
-<p>concatenate</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
-<p>mask_rcnn extracts corner points.</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -503,14 +503,12 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>Likelihood2</title>
-    <url>/2022/02/24/Likelihood2/</url>
-    <content><![CDATA[<blockquote>
-<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为&#x3D;》最大概率处l&#x3D;0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
-</blockquote>
+    <title>MC</title>
+    <url>/2022/03/19/MC/</url>
+    <content><![CDATA[<p><img src="/images/MC.png">  </p>
 ]]></content>
       <tags>
-        <tag>Likelihood</tag>
+        <tag>RL</tag>
       </tags>
   </entry>
   <entry>
@@ -522,6 +520,21 @@ concorn
 ]]></content>
       <tags>
         <tag>machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STL</title>
+    <url>/2022/07/06/STL/</url>
+    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
+<blockquote>
+<p>stack和queue不提供iterator</p>
+</blockquote>
+<blockquote>
+<p>set&#x2F;multiset<br>multiset是基于红黑树实现的</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -538,30 +551,6 @@ concorn
 ]]></content>
       <tags>
         <tag>RL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MC</title>
-    <url>/2022/03/19/MC/</url>
-    <content><![CDATA[<p><img src="/images/MC.png">  </p>
-]]></content>
-      <tags>
-        <tag>RL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STL</title>
-    <url>/2022/07/06/STL/</url>
-    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
-<blockquote>
-<p>stack和queue不提供iterator</p>
-</blockquote>
-<blockquote>
-<p>set&#x2F;multiset<br>multiset是基于红黑树实现的</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -621,19 +610,6 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>Theory</title>
-    <url>/2021/12/01/Theory/</url>
-    <content><![CDATA[<h1 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h1>
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/probability.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-  </entry>
-  <entry>
     <title>VCDimension</title>
     <url>/2022/02/10/VCDimension/</url>
     <content><![CDATA[<blockquote>
@@ -654,12 +630,45 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>Theory</title>
+    <url>/2021/12/01/Theory/</url>
+    <content><![CDATA[<h1 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h1>
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/probability.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+  </entry>
+  <entry>
     <title>apriori</title>
     <url>/2022/01/06/apriori/</url>
     <content><![CDATA[<p><img src="/images/apriori.png"> </p>
 ]]></content>
       <tags>
         <tag>apriori</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>as从句</title>
+    <url>/2022/09/24/as%E4%BB%8E%E5%8F%A5/</url>
+    <content><![CDATA[<p><img src="/images/as.jpeg"></p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Likelihood2</title>
+    <url>/2022/02/24/Likelihood2/</url>
+    <content><![CDATA[<blockquote>
+<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为&#x3D;》最大概率处l&#x3D;0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Likelihood</tag>
       </tags>
   </entry>
   <entry>
@@ -719,106 +728,6 @@ int main(int argc, const char* argv[])
 ]]></content>
       <tags>
         <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cudaMemPitch</title>
-    <url>/2022/06/28/cudaMemPitch/</url>
-    <content><![CDATA[<h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
-<p>cudaMallocPitch ( void** devPtr, size_t* pitch, size_t width, size_t height )<br>devPtr - Pointer to allocated pitched device memory<br>pitch - Pitch for allocation<br>width - Requested pitched allocation width (in bytes)<br>height - Requested pitched allocation height</p>
-</blockquote>
-<blockquote>
-<p>cudaError_t cudaMemcpy2D	(	void * 	dst,<br>size_t 	dpitch,<br>const void * 	src,<br>size_t 	spitch,<br>size_t 	width,<br>size_t 	height,<br>enum cudaMemcpyKind 	kind	<br>)	</p>
-</blockquote>
-<blockquote>
-<p>Parameters:<br>dst 	- Destination memory address<br>dpitch 	- Pitch of destination memory<br>src 	- Source memory address<br>spitch 	- Pitch of source memory<br>width 	- Width of matrix transfer (columns in bytes)<br>height 	- Height of matrix transfer (rows)<br>kind 	- Type of transfer</p>
-</blockquote>
-<pre><code>`The spitch is different when cudaMemcpyKind is different`
-
-#include&lt;stdio.h&gt;
-#include&lt;cuda.h&gt;
-#include&lt;cuda_runtime.h&gt;
-#include&lt;device_launch_parameters.h&gt;
-#include&lt;conio.h&gt;
-
-#define BLOCKSIZE_x 16
-#define BLOCKSIZE_y 16
-
-#define Nrows 3
-#define Ncols 5
-
-/*****************/
-/* CUDA MEMCHECK */
-/*****************/
-#define gpuErrchk(ans) &#123; gpuAssert((ans), __FILE__, __LINE__); &#125;
-
-inline void gpuAssert(cudaError_t code, char *file, int line, bool abort = true)
-&#123;
-    if (code != cudaSuccess)
-    &#123;
-        fprintf(stderr, &quot;GPUassert: %s %s %dn&quot;, cudaGetErrorString(code), file, line);
-        if (abort) &#123; getch(); exit(code); &#125;
-    &#125;
-&#125;
-
-/*******************/
-/* iDivUp FUNCTION */
-/*******************/
-int iDivUp(int hostPtr, int b)&#123; return ((hostPtr % b) != 0) ? (hostPtr / b + 1) : (hostPtr / b); &#125;
-
-/******************/
-/* TEST KERNEL 2D */
-/******************/
-__global__ void test_kernel_2D(float *devPtr, size_t pitch)
-&#123;
-    int    tidx = blockIdx.x*blockDim.x + threadIdx.x;
-    int    tidy = blockIdx.y*blockDim.y + threadIdx.y;
-
-    if ((tidx &lt; Ncols) &amp;&amp; (tidy &lt; Nrows))
-    &#123;
-        float *row_a = (float *)((char*)devPtr + tidy * pitch);
-        row_a[tidx] = row_a[tidx] * tidx * tidy;
-    &#125;
-&#125;
-
-/********/
-/* MAIN */
-/********/
-int main()
-&#123;
-    float hostPtr[Nrows][Ncols];
-    float *devPtr;
-    size_t pitch;
-
-    for (int i = 0; i &lt; Nrows; i++)
-        for (int j = 0; j &lt; Ncols; j++) &#123;
-            hostPtr[i][j] = 1.f;
-            //printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
-        &#125;
-
-    // --- 2D pitched allocation and host-&gt;device memcopy
-    gpuErrchk(cudaMallocPitch(&amp;devPtr, &amp;pitch, Ncols * sizeof(float), Nrows));
-    gpuErrchk(cudaMemcpy2D(devPtr, pitch, hostPtr, Ncols*sizeof(float), Ncols*sizeof(float), Nrows, cudaMemcpyHostToDevice));
-
-    dim3 gridSize(iDivUp(Ncols, BLOCKSIZE_x), iDivUp(Nrows, BLOCKSIZE_y));
-    dim3 blockSize(BLOCKSIZE_y, BLOCKSIZE_x);
-
-    test_kernel_2D &lt;&lt; &lt;gridSize, blockSize &gt;&gt; &gt;(devPtr, pitch);
-    gpuErrchk(cudaPeekAtLastError());
-    gpuErrchk(cudaDeviceSynchronize());
-
-    gpuErrchk(cudaMemcpy2D(hostPtr, Ncols * sizeof(float), devPtr, pitch, Ncols * sizeof(float), Nrows, cudaMemcpyDeviceToHost));
-
-    for (int i = 0; i &lt; Nrows; i++) 
-        for (int j = 0; j &lt; Ncols; j++) 
-            printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
-
-    return 0;    
-&#125;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>cuda</tag>
       </tags>
   </entry>
   <entry>
@@ -933,6 +842,106 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
       </tags>
   </entry>
   <entry>
+    <title>cudaMemPitch</title>
+    <url>/2022/06/28/cudaMemPitch/</url>
+    <content><![CDATA[<h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
+<p>cudaMallocPitch ( void** devPtr, size_t* pitch, size_t width, size_t height )<br>devPtr - Pointer to allocated pitched device memory<br>pitch - Pitch for allocation<br>width - Requested pitched allocation width (in bytes)<br>height - Requested pitched allocation height</p>
+</blockquote>
+<blockquote>
+<p>cudaError_t cudaMemcpy2D	(	void * 	dst,<br>size_t 	dpitch,<br>const void * 	src,<br>size_t 	spitch,<br>size_t 	width,<br>size_t 	height,<br>enum cudaMemcpyKind 	kind	<br>)	</p>
+</blockquote>
+<blockquote>
+<p>Parameters:<br>dst 	- Destination memory address<br>dpitch 	- Pitch of destination memory<br>src 	- Source memory address<br>spitch 	- Pitch of source memory<br>width 	- Width of matrix transfer (columns in bytes)<br>height 	- Height of matrix transfer (rows)<br>kind 	- Type of transfer</p>
+</blockquote>
+<pre><code>`The spitch is different when cudaMemcpyKind is different`
+
+#include&lt;stdio.h&gt;
+#include&lt;cuda.h&gt;
+#include&lt;cuda_runtime.h&gt;
+#include&lt;device_launch_parameters.h&gt;
+#include&lt;conio.h&gt;
+
+#define BLOCKSIZE_x 16
+#define BLOCKSIZE_y 16
+
+#define Nrows 3
+#define Ncols 5
+
+/*****************/
+/* CUDA MEMCHECK */
+/*****************/
+#define gpuErrchk(ans) &#123; gpuAssert((ans), __FILE__, __LINE__); &#125;
+
+inline void gpuAssert(cudaError_t code, char *file, int line, bool abort = true)
+&#123;
+    if (code != cudaSuccess)
+    &#123;
+        fprintf(stderr, &quot;GPUassert: %s %s %dn&quot;, cudaGetErrorString(code), file, line);
+        if (abort) &#123; getch(); exit(code); &#125;
+    &#125;
+&#125;
+
+/*******************/
+/* iDivUp FUNCTION */
+/*******************/
+int iDivUp(int hostPtr, int b)&#123; return ((hostPtr % b) != 0) ? (hostPtr / b + 1) : (hostPtr / b); &#125;
+
+/******************/
+/* TEST KERNEL 2D */
+/******************/
+__global__ void test_kernel_2D(float *devPtr, size_t pitch)
+&#123;
+    int    tidx = blockIdx.x*blockDim.x + threadIdx.x;
+    int    tidy = blockIdx.y*blockDim.y + threadIdx.y;
+
+    if ((tidx &lt; Ncols) &amp;&amp; (tidy &lt; Nrows))
+    &#123;
+        float *row_a = (float *)((char*)devPtr + tidy * pitch);
+        row_a[tidx] = row_a[tidx] * tidx * tidy;
+    &#125;
+&#125;
+
+/********/
+/* MAIN */
+/********/
+int main()
+&#123;
+    float hostPtr[Nrows][Ncols];
+    float *devPtr;
+    size_t pitch;
+
+    for (int i = 0; i &lt; Nrows; i++)
+        for (int j = 0; j &lt; Ncols; j++) &#123;
+            hostPtr[i][j] = 1.f;
+            //printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
+        &#125;
+
+    // --- 2D pitched allocation and host-&gt;device memcopy
+    gpuErrchk(cudaMallocPitch(&amp;devPtr, &amp;pitch, Ncols * sizeof(float), Nrows));
+    gpuErrchk(cudaMemcpy2D(devPtr, pitch, hostPtr, Ncols*sizeof(float), Ncols*sizeof(float), Nrows, cudaMemcpyHostToDevice));
+
+    dim3 gridSize(iDivUp(Ncols, BLOCKSIZE_x), iDivUp(Nrows, BLOCKSIZE_y));
+    dim3 blockSize(BLOCKSIZE_y, BLOCKSIZE_x);
+
+    test_kernel_2D &lt;&lt; &lt;gridSize, blockSize &gt;&gt; &gt;(devPtr, pitch);
+    gpuErrchk(cudaPeekAtLastError());
+    gpuErrchk(cudaDeviceSynchronize());
+
+    gpuErrchk(cudaMemcpy2D(hostPtr, Ncols * sizeof(float), devPtr, pitch, Ncols * sizeof(float), Nrows, cudaMemcpyDeviceToHost));
+
+    for (int i = 0; i &lt; Nrows; i++) 
+        for (int j = 0; j &lt; Ncols; j++) 
+            printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
+
+    return 0;    
+&#125;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>emotion_behind_your_money_habits</title>
     <url>/2021/12/24/emotion-behind-your-money-habits/</url>
     <content><![CDATA[<blockquote>
@@ -952,29 +961,6 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
 ]]></content>
       <tags>
         <tag>game</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>forandrecursion</title>
-    <url>/2022/04/21/forandrecursion/</url>
-    <content><![CDATA[<blockquote>
-<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
-</blockquote>
-<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
-<p>比如全排列问题</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>-algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>as从句</title>
-    <url>/2022/09/24/as%E4%BB%8E%E5%8F%A5/</url>
-    <content><![CDATA[<p><img src="/images/as.jpeg"></p>
-]]></content>
-      <tags>
-        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -1073,6 +1059,20 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>forandrecursion</title>
+    <url>/2022/04/21/forandrecursion/</url>
+    <content><![CDATA[<blockquote>
+<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
+</blockquote>
+<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
+<p>比如全排列问题</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>-algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>list必须用自己的sort</title>
     <url>/2022/09/06/list%E5%BF%85%E9%A1%BB%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84sort/</url>
     <content><![CDATA[<h2 id="list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定"><a href="#list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定" class="headerlink" title="list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定"></a>list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定</h2><p><img src="/images/2022-09-06-14-01-14.png"></p>
@@ -1130,21 +1130,21 @@ hello world
       </tags>
   </entry>
   <entry>
-    <title>p19-namespace</title>
-    <url>/2022/06/16/namespace/</url>
-    <content><![CDATA[<h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>note</title>
     <url>/2022/08/17/note/</url>
     <content><![CDATA[<p>所有通道像素的组合排列决定了这个像素的属性。同时这个像素点与周围像素也存在联系，通常来说，如果相邻两个像素点所有通道的欧式距离之差不小于某个阈值，可以认为是属于一类的<br>对通道进行卷积操作，</p>
 <blockquote>
 <p>想法：双重推理，首先构建一个建筑语义分割的算法来获得建筑（0-1），之后通过图生成算法，输入为用户指定出的点和分割出来的图片</p>
 </blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>p19-namespace</title>
+    <url>/2022/06/16/namespace/</url>
+    <content><![CDATA[<h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -1170,17 +1170,10 @@ hello world
       </tags>
   </entry>
   <entry>
-    <title>operator赋值为什么返回引用</title>
-    <url>/2022/03/13/operator%E8%B5%8B%E5%80%BC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%94%E5%9B%9E%E5%BC%95%E7%94%A8/</url>
-    <content><![CDATA[<p>一个自定义类，如果没有重载其&#x3D;运算符，那么编译器将自动生成一个。但是此编译器自动生成的重载函数可能不安全。这是因为它采用了所谓的“浅拷贝”，也就是对于指针而言，它拷贝的是指针的值，而不是其指向的内存空间。那么这个内存空间就有了两个指针指向它，且类对象要析构两次，但是内存空间只能被释放一次，那么第二次就会出现访问错误。</p>
-<p>　　要避免这种“浅拷贝”问题，就需要重载&#x3D;运算符。这是一个二元运算符，函数名和参数比较容易确定，重点是其返回类型。一般来说，要返回一个类的引用类型。这是因为要能实现所谓的“链式编程”。我存在过的疑问是，为什么要返回一个引用，才能实现所谓的“链式编程”呢？这里从代码出发，进行思考与总结。</p>
-<p>复制代码<br>class Student<br>{<br>public:<br>    Student(const char* name);~Student();<br>    Student&amp; operator&#x3D;(const Student &amp;student);private:<br>    char *m_name;<br>};<br>复制代码<br>复制代码<br>&#x2F;&#x2F;测试代码<br>Student s1(“Lee”);<br>Student s2(“Diwen”);<br>Student s3(“Tom”);</p>
-<p>&#x2F;&#x2F;先执行s2 &#x3D; s1, 即执行 s2.operator&#x3D;(s1), 返回的是s2的引用<br>&#x2F;&#x2F;然后执行s3 &#x3D; s2, 即执行 s3.operator&#x3D;(s2)<br>s3 &#x3D; s2 &#x3D; s1;<br>复制代码<br>　　&#x3D;的链式编程执行顺序是从右向左的。因此右边需要返回一个Student类型的对象，是肯定的。那么问题是，为何要返回一个引用呢？</p>
-<p>　　观察一下重载&#x3D;运算符的函数，参数类型是一个常量引用，也即是说传进去的实参必须是一个左值。而如果返回类型是Student，那么返回的就是一个匿名对象（右值），作为链式编程，此返回值（右值）又要作为实参传进去，那么显然不行(不加const不行，加了是可以的)。<br>const引用可以绑定到右值，而重载的赋值运算符返回一个引用当然是为了避免没有意义的拷贝了。</p>
+    <title>oral_practices</title>
+    <url>/2021/11/01/oral-practices/</url>
+    <content><![CDATA[<p>a new way to get personalized, relevant ideas, delivered right to your inbox.</p>
 ]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
   </entry>
   <entry>
     <title>other和others</title>
@@ -1212,6 +1205,44 @@ hello world
 <p>Some people build while others destroy. 有些人建设而另一些人则破坏。</p>
 <p>注：该结构也可说成some…some。如：</p>
 <p>Some of us agree, some disagree. 我们有些人同意，有些人不同意。</p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>operator赋值为什么返回引用</title>
+    <url>/2022/03/13/operator%E8%B5%8B%E5%80%BC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%94%E5%9B%9E%E5%BC%95%E7%94%A8/</url>
+    <content><![CDATA[<p>一个自定义类，如果没有重载其&#x3D;运算符，那么编译器将自动生成一个。但是此编译器自动生成的重载函数可能不安全。这是因为它采用了所谓的“浅拷贝”，也就是对于指针而言，它拷贝的是指针的值，而不是其指向的内存空间。那么这个内存空间就有了两个指针指向它，且类对象要析构两次，但是内存空间只能被释放一次，那么第二次就会出现访问错误。</p>
+<p>　　要避免这种“浅拷贝”问题，就需要重载&#x3D;运算符。这是一个二元运算符，函数名和参数比较容易确定，重点是其返回类型。一般来说，要返回一个类的引用类型。这是因为要能实现所谓的“链式编程”。我存在过的疑问是，为什么要返回一个引用，才能实现所谓的“链式编程”呢？这里从代码出发，进行思考与总结。</p>
+<p>复制代码<br>class Student<br>{<br>public:<br>    Student(const char* name);~Student();<br>    Student&amp; operator&#x3D;(const Student &amp;student);private:<br>    char *m_name;<br>};<br>复制代码<br>复制代码<br>&#x2F;&#x2F;测试代码<br>Student s1(“Lee”);<br>Student s2(“Diwen”);<br>Student s3(“Tom”);</p>
+<p>&#x2F;&#x2F;先执行s2 &#x3D; s1, 即执行 s2.operator&#x3D;(s1), 返回的是s2的引用<br>&#x2F;&#x2F;然后执行s3 &#x3D; s2, 即执行 s3.operator&#x3D;(s2)<br>s3 &#x3D; s2 &#x3D; s1;<br>复制代码<br>　　&#x3D;的链式编程执行顺序是从右向左的。因此右边需要返回一个Student类型的对象，是肯定的。那么问题是，为何要返回一个引用呢？</p>
+<p>　　观察一下重载&#x3D;运算符的函数，参数类型是一个常量引用，也即是说传进去的实参必须是一个左值。而如果返回类型是Student，那么返回的就是一个匿名对象（右值），作为链式编程，此返回值（右值）又要作为实参传进去，那么显然不行(不加const不行，加了是可以的)。<br>const引用可以绑定到右值，而重载的赋值运算符返回一个引用当然是为了避免没有意义的拷贝了。</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>p22Member-Template</title>
+    <url>/2022/06/17/p22Member-Template/</url>
+    <content><![CDATA[<h2 id="模版内还有模版，一般用于构造函数中，"><a href="#模版内还有模版，一般用于构造函数中，" class="headerlink" title="模版内还有模版，一般用于构造函数中，"></a>模版内还有模版，一般用于构造函数中，</h2><ul>
+<li>把草鱼和麻雀用于对鱼类和鸟类的初始化（作为构造函数传入）</li>
+<li>这里的T1 first 能成功，是因为first是草鱼，是继承了鱼这个类的,也叫up-cast</li>
+</ul>
+<pre><code>// for smart pointer
+template&lt;class _Tp&gt;
+class shared_pte:public _shared_ptr&lt;_Tp&gt;&#123;
+
+    ...
+    template&lt;class _Tp1&gt;
+    explicit shared_ptr(const _Tp1* _p):_shared_ptr&lt;_Tp&gt;(_p)&#123;&#125;
+&#125;
+shared_ptr&lt;Base1&gt;sptr(new Derived1);
+</code></pre>
+<ul>
+<li>为了让构造函数更有弹性<br><img src="/images/member-template.png"></li>
+</ul>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -1266,40 +1297,9 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>oral_practices</title>
-    <url>/2021/11/01/oral-practices/</url>
-    <content><![CDATA[<p>a new way to get personalized, relevant ideas, delivered right to your inbox.</p>
-]]></content>
-  </entry>
-  <entry>
     <title>p33const</title>
     <url>/2022/06/19/p33const/</url>
     <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>p22Member-Template</title>
-    <url>/2022/06/17/p22Member-Template/</url>
-    <content><![CDATA[<h2 id="模版内还有模版，一般用于构造函数中，"><a href="#模版内还有模版，一般用于构造函数中，" class="headerlink" title="模版内还有模版，一般用于构造函数中，"></a>模版内还有模版，一般用于构造函数中，</h2><ul>
-<li>把草鱼和麻雀用于对鱼类和鸟类的初始化（作为构造函数传入）</li>
-<li>这里的T1 first 能成功，是因为first是草鱼，是继承了鱼这个类的,也叫up-cast</li>
-</ul>
-<pre><code>// for smart pointer
-template&lt;class _Tp&gt;
-class shared_pte:public _shared_ptr&lt;_Tp&gt;&#123;
-
-    ...
-    template&lt;class _Tp1&gt;
-    explicit shared_ptr(const _Tp1* _p):_shared_ptr&lt;_Tp&gt;(_p)&#123;&#125;
-&#125;
-shared_ptr&lt;Base1&gt;sptr(new Derived1);
-</code></pre>
-<ul>
-<li>为了让构造函数更有弹性<br><img src="/images/member-template.png"></li>
-</ul>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -2624,15 +2624,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>进程和线程</title>
-    <url>/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<p>做个简单的比喻：进程&#x3D;火车，线程&#x3D;车厢线程在进程下行进（<br>单纯的车厢无法运行）一个进程可以包含多个线程（一辆火车可以有多个车厢）<br>不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）<br>同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）<br>进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）<br>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）<br>进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）<br>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－”互斥锁”进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”</p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>递归回溯</title>
     <url>/2022/08/17/%E9%80%92%E5%BD%92%E5%9B%9E%E6%BA%AF/</url>
     <content><![CDATA[<h1 id="当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树"><a href="#当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树" class="headerlink" title="当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树"></a>当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助<strong>递归树</strong></h1><p><img src="/images/2022-08-17-15-00-21.png"></p>
@@ -2693,6 +2684,15 @@ int main(int argc, const char * argv[]) &#123;
 <h2 id="遇到这些问题记得先画递归树"><a href="#遇到这些问题记得先画递归树" class="headerlink" title="遇到这些问题记得先画递归树"></a>遇到这些问题记得先画递归树</h2>]]></content>
       <tags>
         <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程和线程</title>
+    <url>/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
+    <content><![CDATA[<p>做个简单的比喻：进程&#x3D;火车，线程&#x3D;车厢线程在进程下行进（<br>单纯的车厢无法运行）一个进程可以包含多个线程（一辆火车可以有多个车厢）<br>不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）<br>同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）<br>进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）<br>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）<br>进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）<br>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－”互斥锁”进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
