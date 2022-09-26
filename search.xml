@@ -59,6 +59,88 @@ I will try figure out by myself, then i will ask sometjiogn  -->
       </tags>
   </entry>
   <entry>
+    <title>Conv-MPN</title>
+    <url>/2022/06/17/Conv-MPN/</url>
+    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
+<li><a href="#">corner_detection</a><blockquote>
+<p>concatenate</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
+<p>mask_rcnn extracts corner points.</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Cplusplusnotes</title>
+    <url>/2022/05/01/Cplusplusnotes/</url>
+    <content><![CDATA[<blockquote>
+<p>静态函数只能访问静态数据</p>
+</blockquote>
+<blockquote>
+<p>为什么static成员变量一定要在类外初始化?</p>
+</blockquote>
+<pre><code>static变量属于类，非对象，如果在类内初始了，该类再一次创建对象将变成初始值，会修改其他对象对该静态变量操作的意图可能发生意外
+但是
+static const int a = 1;
+这个可以在类内初始化，因为const说明这个变量是不变的，因此对于每个对象来说，static内存块的的数据就是一样的
+</code></pre>
+<h2 id="为什么静态成员不能在类内初始化？"><a href="#为什么静态成员不能在类内初始化？" class="headerlink" title="为什么静态成员不能在类内初始化？"></a>为什么静态成员不能在类内初始化？</h2><p>在C++中，类的静态成员（static member）必须在类内声明，在类外初始化，像下面这样。</p>
+<p>class A<br>{<br>private:<br>static int count ; &#x2F;&#x2F; 类内声明<br>};</p>
+<ul>
+<li><p>类外定义并初始化，不必再加static关键字<br>int A::count &#x3D; 0 ;<br>或者只进行定义不赋初始值，但是默认值是否是0，可能会与具体的编译器有关吧？</p>
+</li>
+<li><p>只进行定义不赋初始值，但默认值视编译器而定<br>int A::count;<br>为什么？</p>
+</li>
+<li><p>因为静态成员属于整个类，而不属于某个对象，如果在类内初始化，会导致每个对象都包含该静态成员，这是矛盾的。</p>
+</li>
+</ul>
+<p>如果不增加int A::count &#x3D; 0 ; &#x2F;&#x2F;变量定义，在编译的时候将会报出：‘A::count’未定义的引用”错误。这是因为静态成员变量count未定义，也就是还没有分配内存，显然是不可以访问的。</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Context-Aware Attentional Graph U-Net for Hyperspectral Image Classification</title>
+    <url>/2021/03/31/CAGU/</url>
+    <content><![CDATA[<p><img src="/images/2_author.jpg"> </p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">Hyperspectral Image (HSI) registers hundreds of spectral bands, whose intraclass variability and interclass similarity are resourceful information to be mined. Intraclass variability reflects the non-uniform and redundancy of the spatial and semantic features extracted from HSI. Interclass similarity represents the inherent relationship between adjacent features and snapshots. Existing models extract the superficial correlation representation for HSI to tackle the classification task but fail to embed the interclass and intraclass correlations due to these models intrinsic bottlenecks. Confronting the challenges of capturing interrelation for complex data in practice, we propose a Context-Aware Attentional Graph U-Net (CAGU) to improve these two modes of representation, which is more flexible in feature enhancement. In this method, attentional Graph U-Net is capable of extracting the intraclass embeddings within a non-Euclidean space by combining similar distributing feature vertices. The Gated Recurrent Unit (GRU) is another critical component of our model to capture the context-aware dynamic interclass embeddings. Extensive experiments demonstrate that our model can efficiently outperform state-of-the-art methods across-the-board on five wide-adopted public datasets, namely Pavia University, Indian Pines, Salinas Scene-show, Houston 2013 and Houston 2018, on a par with the same scale of model parameters.
+</blockquote>
+<h1 id="CAGU-Architecture"><a href="#CAGU-Architecture" class="headerlink" title="CAGU Architecture :"></a>CAGU Architecture :</h1><p> <img src="/images/2_2.jpg"> </p>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/2_3.jpg"> </p>
+<h1 id="Classification-maps"><a href="#Classification-maps" class="headerlink" title="Classification maps :"></a>Classification maps :</h1><p> <img src="/images/2_5.jpg"> </p>
+<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black"> CAGU considers the intrinsic relationship in feature space, and promotes high cohesion of features through the graph network. CAGU can explore deeper spectral information in the image than the state-of-the-art methods, which enhances the cohesion of features and provides clear data for subsequent modules. Therefore, CAGU outperforms all the compared methods, and it can be universally employed in most models for feature enhancement, not restricted in U-Net. What’s more, GCN and GRU will not increase the parameters of the model due to the reduction in depth of U-Net.
+</blockquote>
+<hr>
+<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Journal-IEEE-Geoscience-and-Remote-Sensing-Letters"><a href="#Journal-IEEE-Geoscience-and-Remote-Sensing-Letters" class="headerlink" title="Journal : IEEE Geoscience and Remote Sensing Letters"></a>Journal : IEEE Geoscience and Remote Sensing Letters</h3><h3 id="Impact-factor-3-833"><a href="#Impact-factor-3-833" class="headerlink" title="Impact factor : 3.833"></a>Impact factor : 3.833</h3><h3 id="State-Accepted-28-Mar-2021"><a href="#State-Accepted-28-Mar-2021" class="headerlink" title="State : Accepted (28-Mar-2021)"></a>State : Accepted (28-Mar-2021)</h3><p><img src="/images/2_4.jpg"> </p>
+<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> When the paper is published, we will open source the code.<br>
+<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>CAGU</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DBSCAN</title>
+    <url>/2022/01/06/DBSCAN/</url>
+    <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
+]]></content>
+      <tags>
+        <tag>DBSCAN</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++</title>
     <url>/2022/01/13/C/</url>
     <content><![CDATA[<blockquote>
@@ -142,97 +224,6 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
 ]]></content>
       <tags>
         <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Context-Aware Attentional Graph U-Net for Hyperspectral Image Classification</title>
-    <url>/2021/03/31/CAGU/</url>
-    <content><![CDATA[<p><img src="/images/2_author.jpg"> </p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">Hyperspectral Image (HSI) registers hundreds of spectral bands, whose intraclass variability and interclass similarity are resourceful information to be mined. Intraclass variability reflects the non-uniform and redundancy of the spatial and semantic features extracted from HSI. Interclass similarity represents the inherent relationship between adjacent features and snapshots. Existing models extract the superficial correlation representation for HSI to tackle the classification task but fail to embed the interclass and intraclass correlations due to these models intrinsic bottlenecks. Confronting the challenges of capturing interrelation for complex data in practice, we propose a Context-Aware Attentional Graph U-Net (CAGU) to improve these two modes of representation, which is more flexible in feature enhancement. In this method, attentional Graph U-Net is capable of extracting the intraclass embeddings within a non-Euclidean space by combining similar distributing feature vertices. The Gated Recurrent Unit (GRU) is another critical component of our model to capture the context-aware dynamic interclass embeddings. Extensive experiments demonstrate that our model can efficiently outperform state-of-the-art methods across-the-board on five wide-adopted public datasets, namely Pavia University, Indian Pines, Salinas Scene-show, Houston 2013 and Houston 2018, on a par with the same scale of model parameters.
-</blockquote>
-<h1 id="CAGU-Architecture"><a href="#CAGU-Architecture" class="headerlink" title="CAGU Architecture :"></a>CAGU Architecture :</h1><p> <img src="/images/2_2.jpg"> </p>
-<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/2_3.jpg"> </p>
-<h1 id="Classification-maps"><a href="#Classification-maps" class="headerlink" title="Classification maps :"></a>Classification maps :</h1><p> <img src="/images/2_5.jpg"> </p>
-<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black"> CAGU considers the intrinsic relationship in feature space, and promotes high cohesion of features through the graph network. CAGU can explore deeper spectral information in the image than the state-of-the-art methods, which enhances the cohesion of features and provides clear data for subsequent modules. Therefore, CAGU outperforms all the compared methods, and it can be universally employed in most models for feature enhancement, not restricted in U-Net. What’s more, GCN and GRU will not increase the parameters of the model due to the reduction in depth of U-Net.
-</blockquote>
-<hr>
-<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Journal-IEEE-Geoscience-and-Remote-Sensing-Letters"><a href="#Journal-IEEE-Geoscience-and-Remote-Sensing-Letters" class="headerlink" title="Journal : IEEE Geoscience and Remote Sensing Letters"></a>Journal : IEEE Geoscience and Remote Sensing Letters</h3><h3 id="Impact-factor-3-833"><a href="#Impact-factor-3-833" class="headerlink" title="Impact factor : 3.833"></a>Impact factor : 3.833</h3><h3 id="State-Accepted-28-Mar-2021"><a href="#State-Accepted-28-Mar-2021" class="headerlink" title="State : Accepted (28-Mar-2021)"></a>State : Accepted (28-Mar-2021)</h3><p><img src="/images/2_4.jpg"> </p>
-<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> When the paper is published, we will open source the code.<br>
-<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>CAGU</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Conv-MPN</title>
-    <url>/2022/06/17/Conv-MPN/</url>
-    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
-<li><a href="#">corner_detection</a><blockquote>
-<p>concatenate</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
-<p>mask_rcnn extracts corner points.</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Cplusplusnotes</title>
-    <url>/2022/05/01/Cplusplusnotes/</url>
-    <content><![CDATA[<blockquote>
-<p>静态函数只能访问静态数据</p>
-</blockquote>
-<blockquote>
-<p>为什么static成员变量一定要在类外初始化?</p>
-</blockquote>
-<pre><code>static变量属于类，非对象，如果在类内初始了，该类再一次创建对象将变成初始值，会修改其他对象对该静态变量操作的意图可能发生意外
-但是
-static const int a = 1;
-这个可以在类内初始化，因为const说明这个变量是不变的，因此对于每个对象来说，static内存块的的数据就是一样的
-</code></pre>
-<h2 id="为什么静态成员不能在类内初始化？"><a href="#为什么静态成员不能在类内初始化？" class="headerlink" title="为什么静态成员不能在类内初始化？"></a>为什么静态成员不能在类内初始化？</h2><p>在C++中，类的静态成员（static member）必须在类内声明，在类外初始化，像下面这样。</p>
-<p>class A<br>{<br>private:<br>static int count ; &#x2F;&#x2F; 类内声明<br>};</p>
-<ul>
-<li><p>类外定义并初始化，不必再加static关键字<br>int A::count &#x3D; 0 ;<br>或者只进行定义不赋初始值，但是默认值是否是0，可能会与具体的编译器有关吧？</p>
-</li>
-<li><p>只进行定义不赋初始值，但默认值视编译器而定<br>int A::count;<br>为什么？</p>
-</li>
-<li><p>因为静态成员属于整个类，而不属于某个对象，如果在类内初始化，会导致每个对象都包含该静态成员，这是矛盾的。</p>
-</li>
-</ul>
-<p>如果不增加int A::count &#x3D; 0 ; &#x2F;&#x2F;变量定义，在编译的时候将会报出：‘A::count’未定义的引用”错误。这是因为静态成员变量count未定义，也就是还没有分配内存，显然是不可以访问的。</p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DBSCAN</title>
-    <url>/2022/01/06/DBSCAN/</url>
-    <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
-]]></content>
-      <tags>
-        <tag>DBSCAN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DP</title>
-    <url>/2022/03/18/DP/</url>
-    <content><![CDATA[<p><img src="/images/DP.png">  </p>
-]]></content>
-      <tags>
-        <tag>RL</tag>
       </tags>
   </entry>
   <entry>
@@ -386,38 +377,21 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>DP</title>
+    <url>/2022/03/18/DP/</url>
+    <content><![CDATA[<p><img src="/images/DP.png">  </p>
+]]></content>
+      <tags>
+        <tag>RL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>FLOPs</title>
     <url>/2022/06/26/FLOPs/</url>
     <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
 ]]></content>
       <tags>
         <tag>FLOPs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Short-term prediction of stock market price based on GA optimization LSTM neurons</title>
-    <url>/2021/04/01/GA/</url>
-    <content><![CDATA[<p><img src="/images/3_1.jpg"> </p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">Long-Short Term Memory Network stands out from the financial sector due to its long-term memory predictability, however, the speed of subsequent operations is extremely slow, and the timeliness of the inability to meet market changes has been criticized. In this paper. Aiming at the shortcomings of the slow running of three gates in each neuron of LSTM in back propagation, we1 propose to use GA to optimize the internal weights of LSTM neurons to optimize the defect. In this experiment, GA optimization could not change the accuracy of the model, but it achieved better results than the original LSTM in terms of speed, and satisfied the demand of the future business field for rapid response to market changes in terms of timeliness.
-</blockquote>
-<h1 id="LSTM-Architecture"><a href="#LSTM-Architecture" class="headerlink" title="LSTM Architecture :"></a>LSTM Architecture :</h1><p>  <img src="/images/3_2.jpg"> </p>
-<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/3_3.jpg"> </p>
-<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">This paper proposes a GA optimization method for LSTM neurons. By comparing the running time of predecessor models, it is possible to overcome the shortcomings of slow operation of LSTM to a certain extent by optimizing the internal weight of neurons through GA update.
-<p style="text-align:justify; text-justify:inter-ideograph; color:black"> In addition, this article does not discuss the generalization ability of the network and other parameters of the network at the same time. The research purpose is too single. However, for the short-term prediction of financial markets, the importance of research on the timeliness and advancing of the model is much higher than that of the generalized network model
-</blockquote>
-<hr>
-<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2018 2nd International Conference on Deep Learning Technologies"></a>Conference : 2018 2nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/3_4.jpg"> </p>
-<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> This paper was published a long time ago, and it is not perfect from my current point of view.<br>
-<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>GA</tag>
       </tags>
   </entry>
   <entry>
@@ -466,6 +440,43 @@ concorn
 ]]></content>
       <tags>
         <tag>culster</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Short-term prediction of stock market price based on GA optimization LSTM neurons</title>
+    <url>/2021/04/01/GA/</url>
+    <content><![CDATA[<p><img src="/images/3_1.jpg"> </p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">Long-Short Term Memory Network stands out from the financial sector due to its long-term memory predictability, however, the speed of subsequent operations is extremely slow, and the timeliness of the inability to meet market changes has been criticized. In this paper. Aiming at the shortcomings of the slow running of three gates in each neuron of LSTM in back propagation, we1 propose to use GA to optimize the internal weights of LSTM neurons to optimize the defect. In this experiment, GA optimization could not change the accuracy of the model, but it achieved better results than the original LSTM in terms of speed, and satisfied the demand of the future business field for rapid response to market changes in terms of timeliness.
+</blockquote>
+<h1 id="LSTM-Architecture"><a href="#LSTM-Architecture" class="headerlink" title="LSTM Architecture :"></a>LSTM Architecture :</h1><p>  <img src="/images/3_2.jpg"> </p>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/3_3.jpg"> </p>
+<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">This paper proposes a GA optimization method for LSTM neurons. By comparing the running time of predecessor models, it is possible to overcome the shortcomings of slow operation of LSTM to a certain extent by optimizing the internal weight of neurons through GA update.
+<p style="text-align:justify; text-justify:inter-ideograph; color:black"> In addition, this article does not discuss the generalization ability of the network and other parameters of the network at the same time. The research purpose is too single. However, for the short-term prediction of financial markets, the importance of research on the timeliness and advancing of the model is much higher than that of the generalized network model
+</blockquote>
+<hr>
+<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2018 2nd International Conference on Deep Learning Technologies"></a>Conference : 2018 2nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/3_4.jpg"> </p>
+<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> This paper was published a long time ago, and it is not perfect from my current point of view.<br>
+<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>GA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Likelihood2</title>
+    <url>/2022/02/24/Likelihood2/</url>
+    <content><![CDATA[<blockquote>
+<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为&#x3D;》最大概率处l&#x3D;0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Likelihood</tag>
       </tags>
   </entry>
   <entry>
@@ -554,6 +565,23 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>ShiftGCN</title>
+    <url>/2022/08/17/ShiftGCN/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>GCN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TF-IDF</title>
+    <url>/2022/01/04/TF-IDF/</url>
+    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ShiftCNN</title>
     <url>/2022/08/16/ShiftCNN/</url>
     <content><![CDATA[<h2 id="ShiftCNN-shifts-the-channels-based-on-the-shift-matrix-kernel"><a href="#ShiftCNN-shifts-the-channels-based-on-the-shift-matrix-kernel" class="headerlink" title="ShiftCNN shifts the channels based on the shift matrix(kernel)"></a>ShiftCNN shifts the channels based on the shift matrix(kernel)</h2><blockquote>
@@ -593,20 +621,12 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>ShiftGCN</title>
-    <url>/2022/08/17/ShiftGCN/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>GCN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>TF-IDF</title>
-    <url>/2022/01/04/TF-IDF/</url>
-    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
+    <title>across_loss</title>
+    <url>/2022/03/29/across-loss/</url>
+    <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
 ]]></content>
       <tags>
-        <tag>NLP</tag>
+        <tag>machine</tag>
       </tags>
   </entry>
   <entry>
@@ -618,15 +638,6 @@ concorn
 ]]></content>
       <tags>
         <tag>Machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>across_loss</title>
-    <url>/2022/03/29/across-loss/</url>
-    <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
-]]></content>
-      <tags>
-        <tag>machine</tag>
       </tags>
   </entry>
   <entry>
@@ -661,76 +672,6 @@ concorn
 ]]></content>
       <tags>
         <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Likelihood2</title>
-    <url>/2022/02/24/Likelihood2/</url>
-    <content><![CDATA[<blockquote>
-<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为&#x3D;》最大概率处l&#x3D;0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Likelihood</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>copyC</title>
-    <url>/2022/03/13/copyC/</url>
-    <content><![CDATA[<p>浅拷贝和深拷贝<br>指针浅拷贝导致堆区的数据重复释放<br>问题：近期在做算法实验的时候碰到一个关于类指针赋值的问题，简单的指针之间的赋值只是把两个指针指向同一个地址，而我需要把每次算法执行完的类指针push_back进vector储存每次算法迭代的结果，如果每次都是存入同一个指针，就会出现vector中的类指针都指向同一个地址，这就让我想到了能不能进行类指针之间的赋值，两个类指针之间内容相同，但是指针指向的地址都不同，就是两个不同的指针。</p>
-<p>定义</p>
-<p>浅拷贝：按照我的理解就是，两类之间发生数据成员的赋值，如果只是简单数据类型之间的赋值，浅拷贝完全能够胜任，但是碰到有指针的时候，两个类之间浅拷贝，那么两个对象中的指针会指向同一个地址，那么析构函数执行的时候就会发生错误（同一指针释放了两次）。</p>
-<p>深拷贝：在浅拷贝的基础上对指针拷贝进行处理，让两个类指针中的指针指向不同的区域，这样两个类指针虽然内容想到，但是是存储在内存的不同区域。<br>‘’’<br>class rect<br>{<br>public:</p>
-<pre><code>rect();
-rect(const rect *r);
-~rect();
-</code></pre>
-<p>private:<br>    int width, height;<br>    int *p;<br>};<br>rect::rect(const rect *r)<br>{<br>    width &#x3D; r-&gt;width;<br>    height &#x3D; r-&gt;height;<br>    p &#x3D; new int;<br>    *p &#x3D; *(r-&gt;p);<br>}</p>
-<p>rect::rect()<br>{<br>    p &#x3D; new int(100);<br>}</p>
-<p>rect::~rect()<br>{<br>    if (p !&#x3D; NULL)<br>        delete p;<br>}<br>int _tmain(int argc, _TCHAR* argv[])<br>{<br>    rect *rect1;<br>    rect *rect2;<br>    rect1 &#x3D; new rect;<br>    rect2 &#x3D; new rect(rect1);</p>
-<pre><code>return 0;
-</code></pre>
-<p>}<br>‘’’<br>类指针和类内成员p指针都指向了不同的地址</p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cout重载全局函数</title>
-    <url>/2022/06/17/cout%E9%87%8D%E8%BD%BD%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="为什么c-中重载流操作符要用友元函数"><a href="#为什么c-中重载流操作符要用友元函数" class="headerlink" title="为什么c++中重载流操作符要用友元函数"></a>为什么c++中重载流操作符要用友元函数</h1><h2 id="作为成员函数的话，左操作数非得是自己不可"><a href="#作为成员函数的话，左操作数非得是自己不可" class="headerlink" title="作为成员函数的话，左操作数非得是自己不可"></a>作为成员函数的话，左操作数非得是自己不可</h2><blockquote>
-<p>cout &lt;&lt; XXX 这种情况是cout在调用operator&lt;&lt;而不是XXX在调用operator&lt;&lt; 。<br>如果你要把operator&lt;&lt;设为成员函数就只能用 XXX &lt;&lt; cout 这种形式。</p>
-</blockquote>
-<p><strong>所以这样也是可以的，就是有违常理</strong></p>
-<pre><code>struct point
-&#123;
-    int x;
-    int y;
-
-    point (int _x, int _y)
-        : x(_x), y(_y)
-    &#123;&#125;
-
-    std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os) const
-    &#123;
-        os &lt;&lt; &quot;(&quot; &lt;&lt; x &lt;&lt; &quot;, &quot; &lt;&lt; y &lt;&lt; &quot;)&quot;;
-        return os;
-    &#125;
-&#125;;
-
-int main(int argc, const char* argv[])
-&#123;
-    point p1(1, 2);
-
-    p1 &lt;&lt; std::cout; // 写法同p1.operator&lt;&lt;(std::cout);
-
-    return 0;
-&#125;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -845,6 +786,43 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
       </tags>
   </entry>
   <entry>
+    <title>cout重载全局函数</title>
+    <url>/2022/06/17/cout%E9%87%8D%E8%BD%BD%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="为什么c-中重载流操作符要用友元函数"><a href="#为什么c-中重载流操作符要用友元函数" class="headerlink" title="为什么c++中重载流操作符要用友元函数"></a>为什么c++中重载流操作符要用友元函数</h1><h2 id="作为成员函数的话，左操作数非得是自己不可"><a href="#作为成员函数的话，左操作数非得是自己不可" class="headerlink" title="作为成员函数的话，左操作数非得是自己不可"></a>作为成员函数的话，左操作数非得是自己不可</h2><blockquote>
+<p>cout &lt;&lt; XXX 这种情况是cout在调用operator&lt;&lt;而不是XXX在调用operator&lt;&lt; 。<br>如果你要把operator&lt;&lt;设为成员函数就只能用 XXX &lt;&lt; cout 这种形式。</p>
+</blockquote>
+<p><strong>所以这样也是可以的，就是有违常理</strong></p>
+<pre><code>struct point
+&#123;
+    int x;
+    int y;
+
+    point (int _x, int _y)
+        : x(_x), y(_y)
+    &#123;&#125;
+
+    std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os) const
+    &#123;
+        os &lt;&lt; &quot;(&quot; &lt;&lt; x &lt;&lt; &quot;, &quot; &lt;&lt; y &lt;&lt; &quot;)&quot;;
+        return os;
+    &#125;
+&#125;;
+
+int main(int argc, const char* argv[])
+&#123;
+    point p1(1, 2);
+
+    p1 &lt;&lt; std::cout; // 写法同p1.operator&lt;&lt;(std::cout);
+
+    return 0;
+&#125;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>cudaMemPitch</title>
     <url>/2022/06/28/cudaMemPitch/</url>
     <content><![CDATA[<h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
@@ -945,6 +923,42 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>copyC</title>
+    <url>/2022/03/13/copyC/</url>
+    <content><![CDATA[<p>浅拷贝和深拷贝<br>指针浅拷贝导致堆区的数据重复释放<br>问题：近期在做算法实验的时候碰到一个关于类指针赋值的问题，简单的指针之间的赋值只是把两个指针指向同一个地址，而我需要把每次算法执行完的类指针push_back进vector储存每次算法迭代的结果，如果每次都是存入同一个指针，就会出现vector中的类指针都指向同一个地址，这就让我想到了能不能进行类指针之间的赋值，两个类指针之间内容相同，但是指针指向的地址都不同，就是两个不同的指针。</p>
+<p>定义</p>
+<p>浅拷贝：按照我的理解就是，两类之间发生数据成员的赋值，如果只是简单数据类型之间的赋值，浅拷贝完全能够胜任，但是碰到有指针的时候，两个类之间浅拷贝，那么两个对象中的指针会指向同一个地址，那么析构函数执行的时候就会发生错误（同一指针释放了两次）。</p>
+<p>深拷贝：在浅拷贝的基础上对指针拷贝进行处理，让两个类指针中的指针指向不同的区域，这样两个类指针虽然内容想到，但是是存储在内存的不同区域。<br>‘’’<br>class rect<br>{<br>public:</p>
+<pre><code>rect();
+rect(const rect *r);
+~rect();
+</code></pre>
+<p>private:<br>    int width, height;<br>    int *p;<br>};<br>rect::rect(const rect *r)<br>{<br>    width &#x3D; r-&gt;width;<br>    height &#x3D; r-&gt;height;<br>    p &#x3D; new int;<br>    *p &#x3D; *(r-&gt;p);<br>}</p>
+<p>rect::rect()<br>{<br>    p &#x3D; new int(100);<br>}</p>
+<p>rect::~rect()<br>{<br>    if (p !&#x3D; NULL)<br>        delete p;<br>}<br>int _tmain(int argc, _TCHAR* argv[])<br>{<br>    rect *rect1;<br>    rect *rect2;<br>    rect1 &#x3D; new rect;<br>    rect2 &#x3D; new rect(rect1);</p>
+<pre><code>return 0;
+</code></pre>
+<p>}<br>‘’’<br>类指针和类内成员p指针都指向了不同的地址</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>forandrecursion</title>
+    <url>/2022/04/21/forandrecursion/</url>
+    <content><![CDATA[<blockquote>
+<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
+</blockquote>
+<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
+<p>比如全排列问题</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>-algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>emotion_behind_your_money_habits</title>
     <url>/2021/12/24/emotion-behind-your-money-habits/</url>
     <content><![CDATA[<blockquote>
@@ -964,6 +978,15 @@ int main()
 ]]></content>
       <tags>
         <tag>game</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>likeihood</title>
+    <url>/2021/12/17/likeihood/</url>
+    <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
+]]></content>
+      <tags>
+        <tag>likelihood</tag>
       </tags>
   </entry>
   <entry>
@@ -1053,29 +1076,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>likeihood</title>
-    <url>/2021/12/17/likeihood/</url>
-    <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
-]]></content>
-      <tags>
-        <tag>likelihood</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>forandrecursion</title>
-    <url>/2022/04/21/forandrecursion/</url>
-    <content><![CDATA[<blockquote>
-<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
-</blockquote>
-<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
-<p>比如全排列问题</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>-algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>list必须用自己的sort</title>
     <url>/2022/09/06/list%E5%BF%85%E9%A1%BB%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84sort/</url>
     <content><![CDATA[<h2 id="list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定"><a href="#list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定" class="headerlink" title="list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定"></a>list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定</h2><p><img src="/images/2022-09-06-14-01-14.png"></p>
@@ -1086,15 +1086,6 @@ int main()
 <li>作用在左边的变量中，这里就是 b._weight &gt; rsh(a)._weight</li>
 </ul>
 <p><img src="/images/2022-09-06-14-17-28.png"></p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>multiset</title>
-    <url>/2022/09/05/mutiset/</url>
-    <content><![CDATA[<p><img src="/images/2022-09-05-22-49-24.png"></p>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -1124,12 +1115,30 @@ hello world
       </tags>
   </entry>
   <entry>
+    <title>multiset</title>
+    <url>/2022/09/05/mutiset/</url>
+    <content><![CDATA[<p><img src="/images/2022-09-05-22-49-24.png"></p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>n-gram</title>
     <url>/2022/01/04/n-gram/</url>
     <content><![CDATA[<p><img src="/images/n-gram.png"> </p>
 ]]></content>
       <tags>
         <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>p19-namespace</title>
+    <url>/2022/06/16/namespace/</url>
+    <content><![CDATA[<h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1145,12 +1154,12 @@ hello world
       </tags>
   </entry>
   <entry>
-    <title>p19-namespace</title>
-    <url>/2022/06/16/namespace/</url>
-    <content><![CDATA[<h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
+    <title>oral_practices</title>
+    <url>/2021/11/01/oral-practices/</url>
+    <content><![CDATA[<p>a new way to get personalized, relevant ideas, delivered right to your inbox.</p>
 ]]></content>
       <tags>
-        <tag>c++</tag>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -1170,50 +1179,6 @@ hello world
       </categories>
       <tags>
         <tag>Detect</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>oral_practices</title>
-    <url>/2021/11/01/oral-practices/</url>
-    <content><![CDATA[<p>a new way to get personalized, relevant ideas, delivered right to your inbox.</p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>other和others</title>
-    <url>/2022/06/21/other%E5%92%8Cothers/</url>
-    <content><![CDATA[<h2 id="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-x3D-other-复数名词。others通常为代词"><a href="#other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-x3D-other-复数名词。others通常为代词" class="headerlink" title="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others&#x3D;other+复数名词。others通常为代词"></a>other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others&#x3D;other+复数名词。others通常为代词</h2><blockquote>
-<p>He never thinks of <code>others</code>. 他从来不为别人着想。</p>
-</blockquote>
-<blockquote>
-<p>I don’t like these books. Show me some others. 我不喜欢这些书，再拿一些给我看。</p>
-</blockquote>
-<p>第一句中的others&#x3D;other people，意为“其他人”“别人”，泛指其他所有人；第二句中的others&#x3D;other books，意为“其他的书”。</p>
-<p>但是，若要表示确指意义，我们就在other和others前面使用定冠词，同样地，other后可以修饰名词，而others后不能再接名词，两者的关系仍然存在the others&#x3D;the other+复数名词。如：</p>
-<blockquote>
-<p>I started last in the race but I soon caught up with the others. 我在赛跑中最后一个起跑，但不久就赶上了其他人。</p>
-</blockquote>
-<p>句中的the others&#x3D;the other people，意为“其他人”，其中的定冠词特指参加赛跑的所有其他人。</p>
-<blockquote>
-<p>注意：the other后除接复数名词外，还可以接单数名词，此时不能用the others代替。如：</p>
-</blockquote>
-<p>This seat is free; the other seat is taken. 这个座位空着，那个座位有人。</p>
-<h2 id="常用惯用表达"><a href="#常用惯用表达" class="headerlink" title="常用惯用表达"></a>常用惯用表达</h2><p>①<code>one...the other</code>表示“(两者中的)一个……另一个……”。如：</p>
-<p>What I say goes in at one ear and out at the other. 我说话他是一只耳朵进，另一只耳朵出。</p>
-<p>②<code>one...the others</code>表示“(好几个中的)一个……其余都……”。如：</p>
-<p>Of their five children, one is in China and the others are abroad. 他们有五个小孩，一个在中国，其余的都在国外。</p>
-<p>注：若为三者，想要表示“一个……另一个……剩下的一个……”，可用one…another…the other [the third…]；若为四者，可用one…another…another [a third]…the other [the fourth, the last]。</p>
-<p>③<code>some...the others</code>表示“一些……其他一些的……”。如：</p>
-<p>The search party was divided into two groups. Some went to the right, the others went to the left. 搜寻小组一分为二，一部分向右，另一部分人向左。</p>
-<p>④<code>some…others</code>表示“有的……有的……”。如：</p>
-<p>Some people build while others destroy. 有些人建设而另一些人则破坏。</p>
-<p>注：该结构也可说成some…some。如：</p>
-<p>Some of us agree, some disagree. 我们有些人同意，有些人不同意。</p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1249,6 +1214,41 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
 <ul>
 <li>为了让构造函数更有弹性<br><img src="/images/member-template.png"></li>
 </ul>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>other和others</title>
+    <url>/2022/06/21/other%E5%92%8Cothers/</url>
+    <content><![CDATA[<h2 id="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-x3D-other-复数名词。others通常为代词"><a href="#other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-x3D-other-复数名词。others通常为代词" class="headerlink" title="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others&#x3D;other+复数名词。others通常为代词"></a>other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others&#x3D;other+复数名词。others通常为代词</h2><blockquote>
+<p>He never thinks of <code>others</code>. 他从来不为别人着想。</p>
+</blockquote>
+<blockquote>
+<p>I don’t like these books. Show me some others. 我不喜欢这些书，再拿一些给我看。</p>
+</blockquote>
+<p>第一句中的others&#x3D;other people，意为“其他人”“别人”，泛指其他所有人；第二句中的others&#x3D;other books，意为“其他的书”。</p>
+<p>但是，若要表示确指意义，我们就在other和others前面使用定冠词，同样地，other后可以修饰名词，而others后不能再接名词，两者的关系仍然存在the others&#x3D;the other+复数名词。如：</p>
+<blockquote>
+<p>I started last in the race but I soon caught up with the others. 我在赛跑中最后一个起跑，但不久就赶上了其他人。</p>
+</blockquote>
+<p>句中的the others&#x3D;the other people，意为“其他人”，其中的定冠词特指参加赛跑的所有其他人。</p>
+<blockquote>
+<p>注意：the other后除接复数名词外，还可以接单数名词，此时不能用the others代替。如：</p>
+</blockquote>
+<p>This seat is free; the other seat is taken. 这个座位空着，那个座位有人。</p>
+<h2 id="常用惯用表达"><a href="#常用惯用表达" class="headerlink" title="常用惯用表达"></a>常用惯用表达</h2><p>①<code>one...the other</code>表示“(两者中的)一个……另一个……”。如：</p>
+<p>What I say goes in at one ear and out at the other. 我说话他是一只耳朵进，另一只耳朵出。</p>
+<p>②<code>one...the others</code>表示“(好几个中的)一个……其余都……”。如：</p>
+<p>Of their five children, one is in China and the others are abroad. 他们有五个小孩，一个在中国，其余的都在国外。</p>
+<p>注：若为三者，想要表示“一个……另一个……剩下的一个……”，可用one…another…the other [the third…]；若为四者，可用one…another…another [a third]…the other [the fourth, the last]。</p>
+<p>③<code>some...the others</code>表示“一些……其他一些的……”。如：</p>
+<p>The search party was divided into two groups. Some went to the right, the others went to the left. 搜寻小组一分为二，一部分向右，另一部分人向左。</p>
+<p>④<code>some…others</code>表示“有的……有的……”。如：</p>
+<p>Some people build while others destroy. 有些人建设而另一些人则破坏。</p>
+<p>注：该结构也可说成some…some。如：</p>
+<p>Some of us agree, some disagree. 我们有些人同意，有些人不同意。</p>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -1303,28 +1303,6 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>p33const</title>
-    <url>/2022/06/19/p33const/</url>
-    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>probability</title>
-    <url>/2022/06/22/probability/</url>
-    <content><![CDATA[<h2 id="68-95-99"><a href="#68-95-99" class="headerlink" title="68-95-99"></a>68-95-99</h2><ul>
-<li>During one standard, it has 68% probability in it.</li>
-<li>During tow standards, it has 95% probability in it.</li>
-<li>During three standards, it has 99% probability in it.</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>probability</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>pronounce</title>
     <url>/2021/11/06/pronounce/</url>
     <content><![CDATA[
@@ -1338,6 +1316,28 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
 ]]></content>
       <tags>
         <tag>pronounce</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>scrapy</title>
+    <url>/2021/10/31/scrapy/</url>
+    <content><![CDATA[<h2 id="span如果中间夹了其他的span。比如"><a href="#span如果中间夹了其他的span。比如" class="headerlink" title="span如果中间夹了其他的span。比如"></a>span如果中间夹了其他的span。比如</h2><pre><code>&lt;span&gt; &lt;span&gt;aa &lt;/span&gt; &lt;span&gt;bb &lt;/span&gt;cc&lt;/span&gt;
+</code></pre>
+<blockquote>
+<p>adpote [-1] to acquire “cc” if I want to get it instead of text() directly<br>amount4 &#x3D; ingredient.xpath(‘span[@class&#x3D;”recipe__list-qty”]&#x2F;text()’)[-1].get()</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>spacpy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>p33const</title>
+    <url>/2022/06/19/p33const/</url>
+    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1445,25 +1445,25 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>scrapy</title>
-    <url>/2021/10/31/scrapy/</url>
-    <content><![CDATA[<h2 id="span如果中间夹了其他的span。比如"><a href="#span如果中间夹了其他的span。比如" class="headerlink" title="span如果中间夹了其他的span。比如"></a>span如果中间夹了其他的span。比如</h2><pre><code>&lt;span&gt; &lt;span&gt;aa &lt;/span&gt; &lt;span&gt;bb &lt;/span&gt;cc&lt;/span&gt;
-</code></pre>
-<blockquote>
-<p>adpote [-1] to acquire “cc” if I want to get it instead of text() directly<br>amount4 &#x3D; ingredient.xpath(‘span[@class&#x3D;”recipe__list-qty”]&#x2F;text()’)[-1].get()</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>spacpy</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>self-attention</title>
     <url>/2022/01/02/self-attention/</url>
     <content><![CDATA[<p><img src="/images/attention.png"> </p>
 ]]></content>
       <tags>
         <tag>attention</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>probability</title>
+    <url>/2022/06/22/probability/</url>
+    <content><![CDATA[<h2 id="68-95-99"><a href="#68-95-99" class="headerlink" title="68-95-99"></a>68-95-99</h2><ul>
+<li>During one standard, it has 68% probability in it.</li>
+<li>During tow standards, it has 95% probability in it.</li>
+<li>During three standards, it has 99% probability in it.</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>probability</tag>
       </tags>
   </entry>
   <entry>
@@ -1487,15 +1487,6 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>smartpointer</title>
-    <url>/2022/03/04/smartpointer/</url>
-    <content><![CDATA[<p><img src="/images/smartPointer.png"> </p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sparse</title>
     <url>/2022/07/02/sparse/</url>
     <content><![CDATA[<h1 id="How-to-prune-in-MLP"><a href="#How-to-prune-in-MLP" class="headerlink" title="How to prune in MLP?"></a>How to prune in MLP?</h1><p><img src="/images/2022-07-04-01-57-10.png"></p>
@@ -1506,6 +1497,30 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
 ]]></content>
       <tags>
         <tag>sparse</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>stl全局</title>
+    <url>/2022/06/29/stl%E5%85%A8%E5%B1%80/</url>
+    <content><![CDATA[<h1 id="C-函数或者命名空间前面加"><a href="#C-函数或者命名空间前面加" class="headerlink" title="C++函数或者命名空间前面加::"></a>C++函数或者命名空间前面加::</h1><ul>
+<li>函数前面 ::find() 表示这个是全局的函数，不是这个作用域下的函数<br><img src="/images/2022-06-29-16-13-57.png"><blockquote>
+<p>比如这里的 ::find()。这个是STL的algorithm中的函数，虽然这里如果不用:: , 编译器没有找到find也会到全局，但是加入会让代码更清晰</p>
+</blockquote>
+</li>
+<li>jj01::test_array() &#x3D; 这个就是命名空间</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>smartpointer</title>
+    <url>/2022/03/04/smartpointer/</url>
+    <content><![CDATA[<p><img src="/images/smartPointer.png"> </p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -1634,46 +1649,6 @@ A&lt;string*&gt; b;
       </tags>
   </entry>
   <entry>
-    <title>stl全局</title>
-    <url>/2022/06/29/stl%E5%85%A8%E5%B1%80/</url>
-    <content><![CDATA[<h1 id="C-函数或者命名空间前面加"><a href="#C-函数或者命名空间前面加" class="headerlink" title="C++函数或者命名空间前面加::"></a>C++函数或者命名空间前面加::</h1><ul>
-<li>函数前面 ::find() 表示这个是全局的函数，不是这个作用域下的函数<br><img src="/images/2022-06-29-16-13-57.png"><blockquote>
-<p>比如这里的 ::find()。这个是STL的algorithm中的函数，虽然这里如果不用:: , 编译器没有找到find也会到全局，但是加入会让代码更清晰</p>
-</blockquote>
-</li>
-<li>jj01::test_array() &#x3D; 这个就是命名空间</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>subjunctive</title>
-    <url>/2022/03/06/subjunctive/</url>
-    <content><![CDATA[<h2 id="The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy"><a href="#The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy" class="headerlink" title="The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy."></a>The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy.</h2><blockquote>
-<p>wouldn’t have done 表示不会做某事，但是实际上做了。文章中的意思是本来不会降低美国的油气价格。</p>
-</blockquote>
-<p>would have done</p>
-<p>是一个固定虚拟语气的用法。</p>
-<p>表示对过去事情的假设，意为“本来想做、要做但没做”，使用时大多会给出导致没做成或会这样做的条件。<br>英汉例句1：</p>
-<p>If I had a chance，I would have set off on a journey round the world.<br>要是有机会，我早就环游世界了。（也可译为对现在的虚拟“要是有机会，我会环游世界”）</p>
-<p>英汉例句2：</p>
-<p>I would have told you the story about him, but you were not home.</p>
-<p>我本来可以告诉你关于他的故事，但是你不在家。（由于：你不在家”这样的条件下，没有告诉关于他的的故事。）</p>
-<p>5.would have done与if连用</p>
-<p>例句：If I hadn’t been busy that day, I would have gone there with them.</p>
-<p>如果那天我不忙，我会和他们一起去那儿。（事实上表示没有由于忙，而没有去。）</p>
-<p>在这里也可以不用if</p>
-<p>如：I was busy that day. Otherwise I would have gone there with them. </p>
-<p>我那天很忙，否则，我就和他们一起去那儿了。</p>
-<p>6.文章中lower 在这里作为动词，“降低”的意思。<br><img src="/images/subjunctive.png"> </p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>t5-假设检验</title>
     <url>/2022/06/22/t5%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/</url>
     <content><![CDATA[<p><img src="/images/p5.png"></p>
@@ -1783,21 +1758,37 @@ private:
       </tags>
   </entry>
   <entry>
+    <title>subjunctive</title>
+    <url>/2022/03/06/subjunctive/</url>
+    <content><![CDATA[<h2 id="The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy"><a href="#The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy" class="headerlink" title="The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy."></a>The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy.</h2><blockquote>
+<p>wouldn’t have done 表示不会做某事，但是实际上做了。文章中的意思是本来不会降低美国的油气价格。</p>
+</blockquote>
+<p>would have done</p>
+<p>是一个固定虚拟语气的用法。</p>
+<p>表示对过去事情的假设，意为“本来想做、要做但没做”，使用时大多会给出导致没做成或会这样做的条件。<br>英汉例句1：</p>
+<p>If I had a chance，I would have set off on a journey round the world.<br>要是有机会，我早就环游世界了。（也可译为对现在的虚拟“要是有机会，我会环游世界”）</p>
+<p>英汉例句2：</p>
+<p>I would have told you the story about him, but you were not home.</p>
+<p>我本来可以告诉你关于他的故事，但是你不在家。（由于：你不在家”这样的条件下，没有告诉关于他的的故事。）</p>
+<p>5.would have done与if连用</p>
+<p>例句：If I hadn’t been busy that day, I would have gone there with them.</p>
+<p>如果那天我不忙，我会和他们一起去那儿。（事实上表示没有由于忙，而没有去。）</p>
+<p>在这里也可以不用if</p>
+<p>如：I was busy that day. Otherwise I would have gone there with them. </p>
+<p>我那天很忙，否则，我就和他们一起去那儿了。</p>
+<p>6.文章中lower 在这里作为动词，“降低”的意思。<br><img src="/images/subjunctive.png"> </p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>transformer</title>
     <url>/2022/01/02/transformer/</url>
     <content><![CDATA[<p><img src="/images/transformer.png"> </p>
 ]]></content>
       <tags>
         <tag>transformer</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>transition-based</title>
-    <url>/2022/01/04/transition-based/</url>
-    <content><![CDATA[<p><img src="/images/transition.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
       </tags>
   </entry>
   <entry>
@@ -1911,6 +1902,35 @@ for(int i=0;i&lt;row;i++)
       </tags>
   </entry>
   <entry>
+    <title>transition-based</title>
+    <url>/2022/01/04/transition-based/</url>
+    <content><![CDATA[<p><img src="/images/transition.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>warp函数</title>
+    <url>/2022/07/11/warp%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="any-sync用于一个warp之间线程的数据的交换-广播（broadcast）"><a href="#any-sync用于一个warp之间线程的数据的交换-广播（broadcast）" class="headerlink" title="__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）"></a>__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）</h1><h2 id="这里必须注意srcLane是束内w的编号"><a href="#这里必须注意srcLane是束内w的编号" class="headerlink" title="这里必须注意srcLane是束内w的编号"></a>这里必须注意srcLane是束内w的编号</h2><blockquote>
+<p>int value &#x3D; __any_sync(mask,v,srcLane,w)<br>把srcLane的线程中变量v的值广播给其他线程，其中广播的线程由mask的二进制决定</p>
+</blockquote>
+<pre><code>int value = __any_sync(mask,tid,2,w);
+// 这里把线程2的tid值（也是2），也就是说所有线程走到这里之后的value都是2；如果tid表示是其他含义，那么其余每个线程就是用的对应的值
+输出为： `shfl:  2  2  2  2  2  2  2  2 10 10 10 10 10 10 10 10`
+这里的10是因为其实他现在的tid是10，但是在束编号中，他的下标是2
+</code></pre>
+<p><img src="/images/2022-07-11-00-37-51.png"></p>
+<blockquote>
+<p>__shfl_xor_sync(FULL_MASK, tid, laneMask, WIDTH);<br>按位异或，这里可以把laneMask设置为1，就是将相邻的两个线程的tid变量的值进行交换</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vector用于cuda核函数中</title>
     <url>/2022/06/30/vector%E7%94%A8%E4%BA%8Ecuda%E6%A0%B8%E5%87%BD%E6%95%B0%E4%B8%AD/</url>
     <content><![CDATA[<blockquote>
@@ -1948,26 +1968,6 @@ size_t pitch;
 cudaMallocPitch(&amp; a_2d_cu, &amp;pitch, d[0].size()*sizeof(int), d.size()));
 cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(int), d.size(), cudaMemcpyHostToDevice);
 </code></pre>
-]]></content>
-      <tags>
-        <tag>cuda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>warp函数</title>
-    <url>/2022/07/11/warp%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="any-sync用于一个warp之间线程的数据的交换-广播（broadcast）"><a href="#any-sync用于一个warp之间线程的数据的交换-广播（broadcast）" class="headerlink" title="__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）"></a>__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）</h1><h2 id="这里必须注意srcLane是束内w的编号"><a href="#这里必须注意srcLane是束内w的编号" class="headerlink" title="这里必须注意srcLane是束内w的编号"></a>这里必须注意srcLane是束内w的编号</h2><blockquote>
-<p>int value &#x3D; __any_sync(mask,v,srcLane,w)<br>把srcLane的线程中变量v的值广播给其他线程，其中广播的线程由mask的二进制决定</p>
-</blockquote>
-<pre><code>int value = __any_sync(mask,tid,2,w);
-// 这里把线程2的tid值（也是2），也就是说所有线程走到这里之后的value都是2；如果tid表示是其他含义，那么其余每个线程就是用的对应的值
-输出为： `shfl:  2  2  2  2  2  2  2  2 10 10 10 10 10 10 10 10`
-这里的10是因为其实他现在的tid是10，但是在束编号中，他的下标是2
-</code></pre>
-<p><img src="/images/2022-07-11-00-37-51.png"></p>
-<blockquote>
-<p>__shfl_xor_sync(FULL_MASK, tid, laneMask, WIDTH);<br>按位异或，这里可以把laneMask设置为1，就是将相邻的两个线程的tid变量的值进行交换</p>
-</blockquote>
 ]]></content>
       <tags>
         <tag>cuda</tag>
@@ -2112,6 +2112,15 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
       </tags>
   </entry>
   <entry>
+    <title>原反补码</title>
+    <url>/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/</url>
+    <content><![CDATA[<p><img src="/images/coding.png"></p>
+]]></content>
+      <tags>
+        <tag>coding</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>分治法</title>
     <url>/2022/09/03/%E5%88%86%E6%B2%BB%E6%B3%95/</url>
     <content><![CDATA[<h1 id="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"><a href="#分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解" class="headerlink" title="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"></a>分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解</h1><pre><code>//
@@ -2183,24 +2192,6 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
-    <title>原反补码</title>
-    <url>/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/</url>
-    <content><![CDATA[<p><img src="/images/coding.png"></p>
-]]></content>
-      <tags>
-        <tag>coding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>均方误差分解</title>
-    <url>/2022/05/21/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE%E5%88%86%E8%A7%A3/</url>
-    <content><![CDATA[<p><img src="/images/biasAndvariance.png"> </p>
-]]></content>
-      <tags>
-        <tag>math</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>字节对齐</title>
     <url>/2022/08/25/%E5%AD%97%E8%8A%82%E5%AF%B9%E9%BD%90/</url>
     <content><![CDATA[<ul>
@@ -2229,6 +2220,15 @@ int main(int argc, const char * argv[]) &#123;
 ]]></content>
       <tags>
         <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>均方误差分解</title>
+    <url>/2022/05/21/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE%E5%88%86%E8%A7%A3/</url>
+    <content><![CDATA[<p><img src="/images/biasAndvariance.png"> </p>
+]]></content>
+      <tags>
+        <tag>math</tag>
       </tags>
   </entry>
   <entry>
@@ -2331,23 +2331,6 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
-    <title>宾语补足语</title>
-    <url>/2022/08/22/%E5%AE%BE%E8%AF%AD%E8%A1%A5%E8%B6%B3%E8%AF%AD/</url>
-    <content><![CDATA[<h1 id="有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语"><a href="#有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语" class="headerlink" title="有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语"></a>有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语</h1><ul>
-<li>本质上来说后面的名词也是修饰前面的名词的<ul>
-<li>名词做宾补<blockquote>
-<p>eg: I think the job a great honor. 我认为这份工作是一份荣誉</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>按位与替换取余操作</title>
     <url>/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<blockquote>
@@ -2368,6 +2351,23 @@ int main(int argc, const char * argv[]) &#123;
 ]]></content>
       <tags>
         <tag>mathematics</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>宾语补足语</title>
+    <url>/2022/08/22/%E5%AE%BE%E8%AF%AD%E8%A1%A5%E8%B6%B3%E8%AF%AD/</url>
+    <content><![CDATA[<h1 id="有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语"><a href="#有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语" class="headerlink" title="有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语"></a>有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语</h1><ul>
+<li>本质上来说后面的名词也是修饰前面的名词的<ul>
+<li>名词做宾补<blockquote>
+<p>eg: I think the job a great honor. 我认为这份工作是一份荣誉</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -2552,6 +2552,15 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>线性插值</title>
+    <url>/2022/08/20/%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/</url>
+    <content><![CDATA[<p><img src="/images/2022-08-28-19-14-47.png"></p>
+]]></content>
+      <tags>
+        <tag>ShiftGCN</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>红黑树</title>
     <url>/2022/06/28/%E7%BA%A2%E9%BB%91%E6%A0%91/</url>
     <content><![CDATA[<h1 id="红黑树五大特性"><a href="#红黑树五大特性" class="headerlink" title="红黑树五大特性"></a>红黑树五大特性</h1><ul>
@@ -2589,15 +2598,6 @@ int main()
 ]]></content>
       <tags>
         <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>线性插值</title>
-    <url>/2022/08/20/%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/</url>
-    <content><![CDATA[<p><img src="/images/2022-08-28-19-14-47.png"></p>
-]]></content>
-      <tags>
-        <tag>ShiftGCN</tag>
       </tags>
   </entry>
   <entry>
@@ -2721,6 +2721,83 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
+    <title>限制性和非限制性</title>
+    <url>/2022/09/24/%E9%99%90%E5%88%B6%E6%80%A7%E5%92%8C%E9%9D%9E%E9%99%90%E5%88%B6%E6%80%A7/</url>
+    <content><![CDATA[<p>限制性定语从句限制所修饰名词或代词的意义，一般说来如把从句去掉句子意思就不清楚，甚至失去意义。而非限制性定语从句主句(句子的其他部分)关系不太紧密，对所修饰名词或代词的意思没有太大影响，把它们拿掉，句子依然很完整，它们可以说是附加上去的东西，而且通常都有逗号把它们和句子的其他部分分开。具体说来，限制性定语从句与非限制性定语从句有以下几个方面的区别： </p>
+<ul>
+<li><ol>
+<li>形式不同限定性定语从句主句和从句之间不用逗号隔开，口语中使用时也不停顿；而非限定性定语从句与主句之间通常有逗号隔开，口语中使用时有停顿。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>作用不同限定性定语从句用于对先行词的意义进行修饰、限制和识别，如果去掉，就会造成句意不完整或概念不清；而非限定性定语从句用于对先行词起补充说明作用，如果省略，句意仍然清楚、完整： People who take physical exercise live longer.<br>进行体育锻炼的人活得长些。(若把从句去掉句子就失去意义)</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>His daughter, who is in Boston now, is coming home next week. 他女儿现在波士顿，下星期回来。(若把从句去句子意义仍然完整)</p>
+</blockquote>
+<ul>
+<li><ol start="3">
+<li>翻译不同在翻译定语从句时，一般把限定性定语从句翻译在它所修饰的先行词之前，而把非限定性定语从句与主句分开：He is the man whose car was stolen. 他就是汽车被窃的那个人。</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>I’ve invited Jim, who lives in the next flat. 我请了吉姆，他就住在隔壁。</p>
+</blockquote>
+<p>我请了吉姆，他就住在隔壁。</p>
+<ul>
+<li><ol start="4">
+<li>含义不同比较：I have a sister who is a doctor. 我有一个当医生的姐姐。(姐姐不止一个)<blockquote>
+<p>I have a sister ,who is a doctor. 我有一个姐姐，她是当医生的。(只有一个姐姐)</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>先行词不同限定性定语从句的先行词只能是名词或代词，而非限定性定语从句的先行词则可以是名词或代词，也可以是短语或句子；另外，当先行词为专有名词或其他具有独一无二性的:</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>Peter drove too fast, which was dangerous. 彼得开车很快，这是很危险的。(which指drive too fast)He changed his mind, which made me very angry. 他改变了主意，这使我很生气。(which指整个主句)Mr. Smith, who is our boss, will leave for Japan 我们的老板史密斯先生下周要去日本。(先行词为专有名词，要用非限制性定语从句修饰)</p>
+</blockquote>
+<blockquote>
+<p>Her father, who has a lot of money, wishes her to study abroad. 她父亲很有钱，希望她出国学习。(先行词为表独一无二意义的普通名词，要用非限制性定语从句修饰)</p>
+</blockquote>
+<ul>
+<li><ol start="6">
+<li>关系词不同关系词that和why可用于限制性定语从句中，通常不用于非限制性定语从句；另外，在限制性定语从句中，关系词有时可以省略，而在非限制性定语从句中关系词一律不省略。</li>
+</ol>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker</title>
+    <url>/2022/09/22/docker/docker/</url>
+    <content><![CDATA[<h4 id="1-Docker-一些基本操作"><a href="#1-Docker-一些基本操作" class="headerlink" title="1.Docker 一些基本操作"></a>1.Docker 一些基本操作</h4><ul>
+<li><p><a href="../docker-compose">一次docker-compose配置多个镜像，如Wordpress+mysql</a></p>
+</li>
+<li><p><a href="../dockerfile">DockerFile</a></p>
+</li>
+<li><p><a href="../network">Communicate containers</a></p>
+</li>
+<li><p><a href="../image">upload your images</a></p>
+</li>
+<li><p><a href="../backup">容器数据的备份与恢复</a></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>长难句</title>
     <url>/2022/08/20/%E9%95%BF%E9%9A%BE%E5%8F%A5/</url>
     <content><![CDATA[<ul>
@@ -2731,6 +2808,8 @@ int main(int argc, const char * argv[]) &#123;
 <li><a href="#the-emphasis">The emphasis…</a></li>
 <li><a href="#whether">whether…</a></li>
 <li><a href="#Stocks">Stocks…</a></li>
+<li><a href="#but">But…</a></li>
+<li><a href="#rather-than-dismissing">Rather than dismissing…</a></li>
 </ul>
 <h2 id="Despite"><a href="#Despite" class="headerlink" title="Despite"></a>Despite</h2><blockquote>
 <p>当状语从句的主语和主句的主语一致时,从句可以将主语和be动词简化掉（只能从句动词是be才可以）</p>
@@ -2891,101 +2970,46 @@ by decades 几十年
 <li>reasoning 推理</li>
 <li>这里的made，只有done，没有be,并且后面是by， 同时semantic上也是passive<br><img src="/images/2022-09-25-13-48-43.png"></li>
 </ul>
+<hr>
+<h2 id="But"><a href="#But" class="headerlink" title="But"></a>But</h2><p><img src="/images/2022-09-26-21-33-49.png"></p>
+<ul>
+<li>that when…., 句子…  这里的that连词连的是后面的句子，而不是when….</li>
+</ul>
+<hr>
+<h2 id="Rather-than-dismissing"><a href="#Rather-than-dismissing" class="headerlink" title="Rather than dismissing"></a>Rather than dismissing</h2><p><img src="/images/2022-09-26-22-08-13.png"></p>
+<p><img src="/images/2022-09-26-22-09-47.png"></p>
+<blockquote>
+<p>注意这里的the more…–the mroe–the more, 中间的the more做的是插入语<br><img src="/images/2022-09-26-22-04-49.png"></p>
+</blockquote>
+<ul>
+<li><p>dismissing A as B 轻视A为B</p>
+</li>
+<li><p>只有主句会发生到装，从句是不会倒装的</p>
+</li>
+</ul>
+<hr>
+<h2 id="the-new-habits"><a href="#the-new-habits" class="headerlink" title="the new habits"></a>the new habits</h2><p>Instead, the new habits(名词后面加人称代词是不对的，明显这里要断开，这里的that引导的定语从句做后面press new habits 宾语，因此可以省略) we deliberately press into ourselves create parallel pathways that can bypass those old roads.</p>
+<p><img src="/images/2022-09-26-22-21-56.png"></p>
+<p><img src="/images/2022-09-26-22-30-17.png"></p>
 ]]></content>
       <tags>
         <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>限制性和非限制性</title>
-    <url>/2022/09/24/%E9%99%90%E5%88%B6%E6%80%A7%E5%92%8C%E9%9D%9E%E9%99%90%E5%88%B6%E6%80%A7/</url>
-    <content><![CDATA[<p>限制性定语从句限制所修饰名词或代词的意义，一般说来如把从句去掉句子意思就不清楚，甚至失去意义。而非限制性定语从句主句(句子的其他部分)关系不太紧密，对所修饰名词或代词的意思没有太大影响，把它们拿掉，句子依然很完整，它们可以说是附加上去的东西，而且通常都有逗号把它们和句子的其他部分分开。具体说来，限制性定语从句与非限制性定语从句有以下几个方面的区别： </p>
-<ul>
-<li><ol>
-<li>形式不同限定性定语从句主句和从句之间不用逗号隔开，口语中使用时也不停顿；而非限定性定语从句与主句之间通常有逗号隔开，口语中使用时有停顿。</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>作用不同限定性定语从句用于对先行词的意义进行修饰、限制和识别，如果去掉，就会造成句意不完整或概念不清；而非限定性定语从句用于对先行词起补充说明作用，如果省略，句意仍然清楚、完整： People who take physical exercise live longer.<br>进行体育锻炼的人活得长些。(若把从句去掉句子就失去意义)</li>
-</ol>
-</li>
-</ul>
-<blockquote>
-<p>His daughter, who is in Boston now, is coming home next week. 他女儿现在波士顿，下星期回来。(若把从句去句子意义仍然完整)</p>
-</blockquote>
-<ul>
-<li><ol start="3">
-<li>翻译不同在翻译定语从句时，一般把限定性定语从句翻译在它所修饰的先行词之前，而把非限定性定语从句与主句分开：He is the man whose car was stolen. 他就是汽车被窃的那个人。</li>
-</ol>
-</li>
-</ul>
-<blockquote>
-<p>I’ve invited Jim, who lives in the next flat. 我请了吉姆，他就住在隔壁。</p>
-</blockquote>
-<p>我请了吉姆，他就住在隔壁。</p>
-<ul>
-<li><ol start="4">
-<li>含义不同比较：I have a sister who is a doctor. 我有一个当医生的姐姐。(姐姐不止一个)<blockquote>
-<p>I have a sister ,who is a doctor. 我有一个姐姐，她是当医生的。(只有一个姐姐)</p>
-</blockquote>
-</li>
-</ol>
-</li>
-<li><ol start="5">
-<li>先行词不同限定性定语从句的先行词只能是名词或代词，而非限定性定语从句的先行词则可以是名词或代词，也可以是短语或句子；另外，当先行词为专有名词或其他具有独一无二性的:</li>
-</ol>
-</li>
-</ul>
-<blockquote>
-<p>Peter drove too fast, which was dangerous. 彼得开车很快，这是很危险的。(which指drive too fast)He changed his mind, which made me very angry. 他改变了主意，这使我很生气。(which指整个主句)Mr. Smith, who is our boss, will leave for Japan 我们的老板史密斯先生下周要去日本。(先行词为专有名词，要用非限制性定语从句修饰)</p>
-</blockquote>
-<blockquote>
-<p>Her father, who has a lot of money, wishes her to study abroad. 她父亲很有钱，希望她出国学习。(先行词为表独一无二意义的普通名词，要用非限制性定语从句修饰)</p>
-</blockquote>
-<ul>
-<li><ol start="6">
-<li>关系词不同关系词that和why可用于限制性定语从句中，通常不用于非限制性定语从句；另外，在限制性定语从句中，关系词有时可以省略，而在非限制性定语从句中关系词一律不省略。</li>
-</ol>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker</title>
-    <url>/2022/09/22/docker/docker/</url>
-    <content><![CDATA[<h4 id="1-Docker-一些基本操作"><a href="#1-Docker-一些基本操作" class="headerlink" title="1.Docker 一些基本操作"></a>1.Docker 一些基本操作</h4><ul>
-<li><p><a href="../docker-compose">一次docker-compose配置多个镜像，如Wordpress+mysql</a></p>
-</li>
-<li><p><a href="../dockerfile">DockerFile</a></p>
-</li>
-<li><p><a href="../network">Communicate containers</a></p>
-</li>
-<li><p><a href="../image">upload your images</a></p>
-</li>
-<li><p><a href="../backup">容器数据的备份与恢复</a></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
     <title>kubenetes</title>
     <url>/2022/09/25/k8s/kubenetes/</url>
     <content><![CDATA[<h4 id="minicube是用dockerm模拟一个工作的node"><a href="#minicube是用dockerm模拟一个工作的node" class="headerlink" title="minicube是用dockerm模拟一个工作的node"></a>minicube是用dockerm模拟一个工作的node</h4><ul>
-<li><h1 id="启动集群"><a href="#启动集群" class="headerlink" title="启动集群"></a>启动集群</h1><p>minikube start</p>
+<li><p>启动集群<br>minikube start</p>
 </li>
-<li><h1 id="查看节点。kubectl-是一个用来跟-K8S-集群进行交互的命令行工具"><a href="#查看节点。kubectl-是一个用来跟-K8S-集群进行交互的命令行工具" class="headerlink" title="查看节点。kubectl 是一个用来跟 K8S 集群进行交互的命令行工具"></a>查看节点。kubectl 是一个用来跟 K8S 集群进行交互的命令行工具</h1><p>kubectl get node</p>
+<li><p>查看节点。kubectl 是一个用来跟 K8S 集群进行交互的命令行工具<br>kubectl get node</p>
 </li>
-<li><h1 id="停止集群"><a href="#停止集群" class="headerlink" title="停止集群"></a>停止集群</h1><p>minikube stop</p>
+<li><p>停止集群<br>minikube stop</p>
 </li>
-<li><h1 id="清空集群"><a href="#清空集群" class="headerlink" title="清空集群"></a>清空集群</h1><p>minikube delete –all</p>
+<li><p>清空集群<br>minikube delete –all</p>
 </li>
-<li><h1 id="安装集群可视化-Web-UI-控制台"><a href="#安装集群可视化-Web-UI-控制台" class="headerlink" title="安装集群可视化 Web UI 控制台"></a>安装集群可视化 Web UI 控制台</h1><h2 id="minikube-dashboard"><a href="#minikube-dashboard" class="headerlink" title="minikube dashboard"></a>minikube dashboard</h2></li>
+<li><p>安装集群可视化 Web UI 控制台<br>minikube dashboard</p>
+</li>
 </ul>
 ]]></content>
       <tags>
