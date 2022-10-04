@@ -536,7 +536,16 @@ concorn
   <entry>
     <title>KalmanFilter</title>
     <url>/2022/09/29/KalmanFilter/</url>
-    <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3>]]></content>
+    <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3>
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/kalman.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+
+]]></content>
       <tags>
         <tag>kalman</tag>
       </tags>
@@ -2166,9 +2175,12 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
       </tags>
   </entry>
   <entry>
-    <title>KalmanFilter</title>
+    <title>卡尔曼滤波详解</title>
     <url>/2022/09/29/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/</url>
-    <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3><h4 id="1-数据融合（data-fusion）"><a href="#1-数据融合（data-fusion）" class="headerlink" title="1.数据融合（data fusion）"></a>1.数据融合（data fusion）</h4><p><img src="/images/2022-09-30-14-51-08.png"></p>
+    <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3><ul>
+<li>对于一个高斯分布，方差越小，越接近期望值（这里的期望值是0），越小，图越尖</li>
+</ul>
+<h4 id="1-数据融合（data-fusion）"><a href="#1-数据融合（data-fusion）" class="headerlink" title="1.数据融合（data fusion）"></a>1.数据融合（data fusion）</h4><p><img src="/images/2022-09-30-14-51-08.png"></p>
 <p><img src="/images/2022-09-30-14-52-55.png"></p>
 <h3 id="2-协方差矩阵-（covariance-matrix）"><a href="#2-协方差矩阵-（covariance-matrix）" class="headerlink" title="2.协方差矩阵 （covariance matrix）"></a>2.协方差矩阵 （covariance matrix）</h3><blockquote>
 <p>方差协方差在一个矩阵中表现出来</p>
@@ -2178,7 +2190,9 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
 <li>快速计算方法</li>
 </ul>
 <p><img src="/images/2022-09-30-19-54-59.png"></p>
-<h3 id="3-状态空间表示（state-space-representation）"><a href="#3-状态空间表示（state-space-representation）" class="headerlink" title="3.状态空间表示（state space representation）"></a>3.状态空间表示（state space representation）</h3>]]></content>
+<h3 id="3-状态空间表示（state-space-representation）"><a href="#3-状态空间表示（state-space-representation）" class="headerlink" title="3.状态空间表示（state space representation）"></a>3.状态空间表示（state space representation）</h3><p><img src="/images/2022-10-02-18-30-07.png"></p>
+<h3 id="4-公式推导"><a href="#4-公式推导" class="headerlink" title="4.公式推导"></a>4.公式推导</h3><p><img src="/images/2022-10-02-19-11-53.png"><br><img src="/images/2022-10-02-19-11-17.png"><br><img src="/images/2022-10-02-19-12-57.png"><br><img src="/images/2022-10-02-19-14-35.png"></p>
+]]></content>
       <tags>
         <tag>kalman</tag>
       </tags>
@@ -3097,6 +3111,16 @@ by decades 几十年
 </ul>
 <p><img src="/images/2022-09-29-01-22-51.png"></p>
 <p><img src="/images/2022-09-29-01-23-08.png"></p>
+<hr>
+<p><img src="/images/2022-10-03-23-59-11.png"></p>
+<hr>
+<p><img src="/images/2022-10-04-00-17-30.png"></p>
+<hr>
+<p><img src="/images/2022-10-04-00-20-53.png"></p>
+<hr>
+<p><img src="/images/2022-10-04-00-27-03.png"></p>
+<hr>
+<p><img src="/images/2022-10-04-00-30-56.png"></p>
 ]]></content>
       <tags>
         <tag>English</tag>
