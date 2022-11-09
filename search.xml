@@ -1414,6 +1414,9 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
     <title>robotics</title>
     <url>/2022/10/10/robotics/</url>
     <content><![CDATA[]]></content>
+      <tags>
+        <tag>robotics</tag>
+      </tags>
   </entry>
   <entry>
     <title>review-paper</title>
@@ -3103,6 +3106,23 @@ by decades 几十年
 </li>
 </ul>
 <p><img src="/images/2022-10-24-00-18-56.png"></p>
+<hr>
+<p><img src="/images/2022-10-27-00-52-04.png"></p>
+<ul>
+<li>complete with adj 使具备 是形容词短语</li>
+<li>indulgent adj 放纵的</li>
+</ul>
+<hr>
+<p><img src="/images/2022-10-27-01-00-33.png"></p>
+<hr>
+<ul>
+<li><p>let alone 更不用说</p>
+<p><img src="/images/2022-11-08-12-23-37.png"></p>
+</li>
+</ul>
+<hr>
+<p><img src="/images/2022-11-08-12-27-53.png"></p>
+<p><img src="/images/2022-11-08-12-30-38.png"></p>
 ]]></content>
       <tags>
         <tag>English</tag>
@@ -3277,5 +3297,10 @@ by decades 几十年
       <tags>
         <tag>Kubenetes</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>测试</title>
+    <url>/2022/10/30/%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
