@@ -9,6 +9,23 @@
       </tags>
   </entry>
   <entry>
+    <title>AI_robotics</title>
+    <url>/2022/10/10/AI-robotics/</url>
+    <content><![CDATA[<h3 id="rotation-matrix"><a href="#rotation-matrix" class="headerlink" title="rotation matrix"></a>rotation matrix</h3><p><img src="/images/2022-10-10-12-29-05.png"></p>
+<p><img src="/images/2022-10-10-12-34-54.png"></p>
+<ul>
+<li>S(ab), a is fixed frame and b is orientation frame.</li>
+</ul>
+<p><img src="/images/2022-10-10-12-52-07.png"></p>
+<p><img src="/images/2022-10-10-12-54-01.png"></p>
+<hr>
+<h3 id="rotation-R-sb-b-rotate-by-s"><a href="#rotation-R-sb-b-rotate-by-s" class="headerlink" title="rotation R(sb), b rotate by s."></a>rotation R(sb), b rotate by s.</h3><p><img src="/images/2022-10-10-13-09-31.png"></p>
+]]></content>
+      <tags>
+        <tag>3D</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>3D</title>
     <url>/2021/11/05/3D/</url>
     <content><![CDATA[<!-- Do you need some help for 3D?
@@ -44,35 +61,6 @@ I will try figure out by myself, then i will ask sometjiogn  -->
 ]]></content>
       <tags>
         <tag>3D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AI_robotics</title>
-    <url>/2022/10/10/AI-robotics/</url>
-    <content><![CDATA[<h3 id="rotation-matrix"><a href="#rotation-matrix" class="headerlink" title="rotation matrix"></a>rotation matrix</h3><p><img src="/images/2022-10-10-12-29-05.png"></p>
-<p><img src="/images/2022-10-10-12-34-54.png"></p>
-<ul>
-<li>S(ab), a is fixed frame and b is orientation frame.</li>
-</ul>
-<p><img src="/images/2022-10-10-12-52-07.png"></p>
-<p><img src="/images/2022-10-10-12-54-01.png"></p>
-<hr>
-<h3 id="rotation-R-sb-b-rotate-by-s"><a href="#rotation-R-sb-b-rotate-by-s" class="headerlink" title="rotation R(sb), b rotate by s."></a>rotation R(sb), b rotate by s.</h3><p><img src="/images/2022-10-10-13-09-31.png"></p>
-]]></content>
-      <tags>
-        <tag>3D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>BPR推荐算法</title>
-    <url>/2021/11/16/BPR/</url>
-    <content><![CDATA[<p><img src="/images/BPR.png"> </p>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>BRP推荐算法</tag>
       </tags>
   </entry>
   <entry>
@@ -162,29 +150,15 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
       </tags>
   </entry>
   <entry>
-    <title>Context-Aware Attentional Graph U-Net for Hyperspectral Image Classification</title>
-    <url>/2021/03/31/CAGU/</url>
-    <content><![CDATA[<p><img src="/images/2_author.jpg"> </p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">Hyperspectral Image (HSI) registers hundreds of spectral bands, whose intraclass variability and interclass similarity are resourceful information to be mined. Intraclass variability reflects the non-uniform and redundancy of the spatial and semantic features extracted from HSI. Interclass similarity represents the inherent relationship between adjacent features and snapshots. Existing models extract the superficial correlation representation for HSI to tackle the classification task but fail to embed the interclass and intraclass correlations due to these models intrinsic bottlenecks. Confronting the challenges of capturing interrelation for complex data in practice, we propose a Context-Aware Attentional Graph U-Net (CAGU) to improve these two modes of representation, which is more flexible in feature enhancement. In this method, attentional Graph U-Net is capable of extracting the intraclass embeddings within a non-Euclidean space by combining similar distributing feature vertices. The Gated Recurrent Unit (GRU) is another critical component of our model to capture the context-aware dynamic interclass embeddings. Extensive experiments demonstrate that our model can efficiently outperform state-of-the-art methods across-the-board on five wide-adopted public datasets, namely Pavia University, Indian Pines, Salinas Scene-show, Houston 2013 and Houston 2018, on a par with the same scale of model parameters.
-</blockquote>
-<h1 id="CAGU-Architecture"><a href="#CAGU-Architecture" class="headerlink" title="CAGU Architecture :"></a>CAGU Architecture :</h1><p> <img src="/images/2_2.jpg"> </p>
-<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/2_3.jpg"> </p>
-<h1 id="Classification-maps"><a href="#Classification-maps" class="headerlink" title="Classification maps :"></a>Classification maps :</h1><p> <img src="/images/2_5.jpg"> </p>
-<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black"> CAGU considers the intrinsic relationship in feature space, and promotes high cohesion of features through the graph network. CAGU can explore deeper spectral information in the image than the state-of-the-art methods, which enhances the cohesion of features and provides clear data for subsequent modules. Therefore, CAGU outperforms all the compared methods, and it can be universally employed in most models for feature enhancement, not restricted in U-Net. What’s more, GCN and GRU will not increase the parameters of the model due to the reduction in depth of U-Net.
-</blockquote>
-<hr>
-<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Journal-IEEE-Geoscience-and-Remote-Sensing-Letters"><a href="#Journal-IEEE-Geoscience-and-Remote-Sensing-Letters" class="headerlink" title="Journal : IEEE Geoscience and Remote Sensing Letters"></a>Journal : IEEE Geoscience and Remote Sensing Letters</h3><h3 id="Impact-factor-3-833"><a href="#Impact-factor-3-833" class="headerlink" title="Impact factor : 3.833"></a>Impact factor : 3.833</h3><h3 id="State-Accepted-28-Mar-2021"><a href="#State-Accepted-28-Mar-2021" class="headerlink" title="State : Accepted (28-Mar-2021)"></a>State : Accepted (28-Mar-2021)</h3><p><img src="/images/2_4.jpg"> </p>
-<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> When the paper is published, we will open source the code.<br>
-<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
+    <title>BPR推荐算法</title>
+    <url>/2021/11/16/BPR/</url>
+    <content><![CDATA[<p><img src="/images/BPR.png"> </p>
 ]]></content>
       <categories>
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>CAGU</tag>
+        <tag>BRP推荐算法</tag>
       </tags>
   </entry>
   <entry>
@@ -232,6 +206,83 @@ static const int a = 1;
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Cplusplus</title>
+    <url>/2023/11/26/Cplusplus/</url>
+    <content><![CDATA[<ol>
+<li><p>main 函数的参数</p>
+<ul>
+<li><p>argc 是 argument count的缩写，表示传入main函数的参数个数；</p>
+</li>
+<li><p>argv 是 argument vector的缩写，表示传入main函数的参数序列或指针，并且第一个参数argv[0]一定是程序的名称，并且包含了程序所在的完整路径，所以确切的说需要我们输入的main函数的参数个数应该是argc-1个；</p>
+</li>
+</ul>
+<pre><code>#include &lt;iostream&gt;
+
+using namespace std;
+
+void main(int argc,char *argv[])
+&#123;
+    for(int i=0;i&lt;argc;i++)
+    &#123;
+        cout&lt;&lt;&quot;argument[&quot;&lt;&lt;i&lt;&lt;&quot;] is: &quot;&lt;&lt;argv[i]&lt;&lt;endl;
+    &#125;
+    system(&quot;pause&quot;);
+&#125;
+</code></pre>
+</li>
+</ol>
+<hr>
+<p>2. </p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DBSCAN</title>
+    <url>/2022/01/06/DBSCAN/</url>
+    <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
+]]></content>
+      <tags>
+        <tag>DBSCAN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FLOPs</title>
+    <url>/2022/06/26/FLOPs/</url>
+    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
+]]></content>
+      <tags>
+        <tag>FLOPs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Context-Aware Attentional Graph U-Net for Hyperspectral Image Classification</title>
+    <url>/2021/03/31/CAGU/</url>
+    <content><![CDATA[<p><img src="/images/2_author.jpg"> </p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">Hyperspectral Image (HSI) registers hundreds of spectral bands, whose intraclass variability and interclass similarity are resourceful information to be mined. Intraclass variability reflects the non-uniform and redundancy of the spatial and semantic features extracted from HSI. Interclass similarity represents the inherent relationship between adjacent features and snapshots. Existing models extract the superficial correlation representation for HSI to tackle the classification task but fail to embed the interclass and intraclass correlations due to these models intrinsic bottlenecks. Confronting the challenges of capturing interrelation for complex data in practice, we propose a Context-Aware Attentional Graph U-Net (CAGU) to improve these two modes of representation, which is more flexible in feature enhancement. In this method, attentional Graph U-Net is capable of extracting the intraclass embeddings within a non-Euclidean space by combining similar distributing feature vertices. The Gated Recurrent Unit (GRU) is another critical component of our model to capture the context-aware dynamic interclass embeddings. Extensive experiments demonstrate that our model can efficiently outperform state-of-the-art methods across-the-board on five wide-adopted public datasets, namely Pavia University, Indian Pines, Salinas Scene-show, Houston 2013 and Houston 2018, on a par with the same scale of model parameters.
+</blockquote>
+<h1 id="CAGU-Architecture"><a href="#CAGU-Architecture" class="headerlink" title="CAGU Architecture :"></a>CAGU Architecture :</h1><p> <img src="/images/2_2.jpg"> </p>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/2_3.jpg"> </p>
+<h1 id="Classification-maps"><a href="#Classification-maps" class="headerlink" title="Classification maps :"></a>Classification maps :</h1><p> <img src="/images/2_5.jpg"> </p>
+<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black"> CAGU considers the intrinsic relationship in feature space, and promotes high cohesion of features through the graph network. CAGU can explore deeper spectral information in the image than the state-of-the-art methods, which enhances the cohesion of features and provides clear data for subsequent modules. Therefore, CAGU outperforms all the compared methods, and it can be universally employed in most models for feature enhancement, not restricted in U-Net. What’s more, GCN and GRU will not increase the parameters of the model due to the reduction in depth of U-Net.
+</blockquote>
+<hr>
+<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Journal-IEEE-Geoscience-and-Remote-Sensing-Letters"><a href="#Journal-IEEE-Geoscience-and-Remote-Sensing-Letters" class="headerlink" title="Journal : IEEE Geoscience and Remote Sensing Letters"></a>Journal : IEEE Geoscience and Remote Sensing Letters</h3><h3 id="Impact-factor-3-833"><a href="#Impact-factor-3-833" class="headerlink" title="Impact factor : 3.833"></a>Impact factor : 3.833</h3><h3 id="State-Accepted-28-Mar-2021"><a href="#State-Accepted-28-Mar-2021" class="headerlink" title="State : Accepted (28-Mar-2021)"></a>State : Accepted (28-Mar-2021)</h3><p><img src="/images/2_4.jpg"> </p>
+<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> When the paper is published, we will open source the code.<br>
+<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>CAGU</tag>
       </tags>
   </entry>
   <entry>
@@ -394,24 +445,6 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>DBSCAN</title>
-    <url>/2022/01/06/DBSCAN/</url>
-    <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
-]]></content>
-      <tags>
-        <tag>DBSCAN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>FLOPs</title>
-    <url>/2022/06/26/FLOPs/</url>
-    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
-]]></content>
-      <tags>
-        <tag>FLOPs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Short-term prediction of stock market price based on GA optimization LSTM neurons</title>
     <url>/2021/04/01/GA/</url>
     <content><![CDATA[<p><img src="/images/3_1.jpg"> </p>
@@ -523,6 +556,26 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>MC</title>
+    <url>/2022/03/19/MC/</url>
+    <content><![CDATA[<p><img src="/images/MC.png">  </p>
+]]></content>
+      <tags>
+        <tag>RL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Monte</title>
+    <url>/2022/03/17/Monte/</url>
+    <content><![CDATA[<blockquote>
+<p>引入概率密度函数的蒙特卡洛公式推导，是把p(x) 看作前面分数的密度概率函数，也就是对前面分数求期望，而期望可以通过对p（x）采样并平均得到<br><img src="/images/MCMC.png">  </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>machine</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MATI-Regression</title>
     <url>/2021/11/02/MATI-Regression/</url>
     <content><![CDATA[
@@ -548,26 +601,6 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>MC</title>
-    <url>/2022/03/19/MC/</url>
-    <content><![CDATA[<p><img src="/images/MC.png">  </p>
-]]></content>
-      <tags>
-        <tag>RL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Monte</title>
-    <url>/2022/03/17/Monte/</url>
-    <content><![CDATA[<blockquote>
-<p>引入概率密度函数的蒙特卡洛公式推导，是把p(x) 看作前面分数的密度概率函数，也就是对前面分数求期望，而期望可以通过对p（x）采样并平均得到<br><img src="/images/MCMC.png">  </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>RL3ways</title>
     <url>/2022/03/20/RL3ways/</url>
     <content><![CDATA[
@@ -581,21 +614,6 @@ concorn
 ]]></content>
       <tags>
         <tag>RL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STL</title>
-    <url>/2022/07/06/STL/</url>
-    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
-<blockquote>
-<p>stack和queue不提供iterator</p>
-</blockquote>
-<blockquote>
-<p>set&#x2F;multiset<br>multiset是基于红黑树实现的</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -638,23 +656,6 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>ShiftGCN</title>
-    <url>/2022/08/17/ShiftGCN/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>GCN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>TF-IDF</title>
-    <url>/2022/01/04/TF-IDF/</url>
-    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Theory</title>
     <url>/2021/12/01/Theory/</url>
     <content><![CDATA[<h1 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h1>
@@ -671,21 +672,40 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>TF-IDF</title>
+    <url>/2022/01/04/TF-IDF/</url>
+    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VCDimension</title>
+    <url>/2022/02/10/VCDimension/</url>
+    <content><![CDATA[<blockquote>
+<p>注意这里的VC维度指的是只要存在一个不可分的点，比如四个点，一条直线存在无法分割的情况，那就VC维度就不是4，应该从3来看<br><img src="/images/CVDim.png"> </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ShiftGCN</title>
+    <url>/2022/08/17/ShiftGCN/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>GCN</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>across_loss</title>
     <url>/2022/03/29/across-loss/</url>
     <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
 ]]></content>
       <tags>
         <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>apriori</title>
-    <url>/2022/01/06/apriori/</url>
-    <content><![CDATA[<p><img src="/images/apriori.png"> </p>
-]]></content>
-      <tags>
-        <tag>apriori</tag>
       </tags>
   </entry>
   <entry>
@@ -711,23 +731,312 @@ rect(const rect *r);
       </tags>
   </entry>
   <entry>
-    <title>as从句</title>
-    <url>/2022/09/24/as%E4%BB%8E%E5%8F%A5/</url>
-    <content><![CDATA[<p><img src="/images/as.jpeg"></p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VCDimension</title>
-    <url>/2022/02/10/VCDimension/</url>
-    <content><![CDATA[<blockquote>
-<p>注意这里的VC维度指的是只要存在一个不可分的点，比如四个点，一条直线存在无法分割的情况，那就VC维度就不是4，应该从3来看<br><img src="/images/CVDim.png"> </p>
+    <title>STL</title>
+    <url>/2022/07/06/STL/</url>
+    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
+<blockquote>
+<p>stack和queue不提供iterator</p>
+</blockquote>
+<blockquote>
+<p>set&#x2F;multiset<br>multiset是基于红黑树实现的</p>
 </blockquote>
 ]]></content>
       <tags>
-        <tag>Machine</tag>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cmake</title>
+    <url>/2022/11/26/cmake/</url>
+    <content><![CDATA[<p><a href="https://github.com/moulelin/Cmake">cmake仓库</a>存放了一些学习的例子</p>
+<h2 id="1-为什么要cmake"><a href="#1-为什么要cmake" class="headerlink" title="1. 为什么要cmake?"></a>1. 为什么要cmake?</h2><blockquote>
+<p>有很多的Make 工具，例如 GNU Make ，QT 的 qmake ，微软的 MS nmake，BSD Make（pmake），Makepp，等等。这些 Make 工具遵循着不同的规范和标准，所执行的 Makefile 格式也千差万别。这样就带来了一个严峻的问题：如果软件想跨平台，必须要保证能够在不同平台编译。而如果使用上面的 Make 工具，就得为每一种标准写一次 Makefile ，这将是一件让人抓狂的工作。CMake 就是针对上面问题所设计的工具：它首先允许开发者编写一种平台无关的 CMakeList.txt 文件来定制整个编译流程，然后再根据目标用户的平台进一步生成所需的本地化 Makefile 和工程文件</p>
+</blockquote>
+<h2 id="2-make-install"><a href="#2-make-install" class="headerlink" title="2. make install"></a>2. <a href="https://github.com/moulelin/Cmake/tree/master/demo2_install">make install</a></h2><ul>
+<li><p>自定义编译之后的.o文件和.h文件的路径 </p>
+<p>  2.1 主目录下的CMakeLists.txt</p>
+<pre><code>cmake_minimum_required(VERSION 2.8)
+
+project(demo1)
+#PROJECT_SOURCE_DIR/CMAKE_SOURCE_DIR/_SOURCE_DIR： 为包含PROJECT()命令的最近一个CMakeLists.txt文件所在的文件夹路径。
+#PROJECT_BINARY_DIR/CMAKE_BINARY_DIR/_BINARY_DIR： 运行cmake命令的目录，即工程编译发生的路径。
+
+configure_file(
+    &quot;$&#123;PROJECT_SOURCE_DIR&#125;/config.h.in&quot;
+    &quot;$&#123;PROJECT_BINARY_DIR&#125;/config.h&quot;
+)
+option(USE_MYMATH &quot;Use the provide library&quot; ON)
+
+if(USE_MYMATH)
+    include_directories(&quot;$&#123;PROJECT_SOURCE_DIR&#125;/math&quot;)
+    add_subdirectory(math)
+    set(EXTRA_LIBS $&#123;EXTRA_LIBS&#125; MathFunctions)
+endif(USE_MYMATH)
+
+aux_source_directory(. DIR_SRCS)
+
+# 指定生成exe文件
+
+add_executable(Demo1 $&#123;DIR_SRCS&#125;)
+target_link_libraries(Demo1 $&#123;EXTRA_LIBS&#125;)
+
+# 指定生成的文件目录
+install(TARGETS Demo1 DESTINATION bin)
+install(FILES &quot;$&#123;PROJECT_BINARY_DIR&#125;/config.h&quot; DESTINATION include)
+</code></pre>
+<ul>
+<li>cmake_minimum_required 最低cmake版本要求</li>
+<li>project 项目名称</li>
+<li>configure_file 读取配置文件，这里写config.h.in就行，config.h会自动生成</li>
+<li>option 作为ON和OFF，两个选项</li>
+<li>if里面的变量不需要${}</li>
+<li>include_directories找头文件的路径</li>
+<li>add_subdirectory添加子文件夹，下面存放了一些需要的类</li>
+<li>set 把后面的value赋值给前面的变量，这里：<ul>
+<li>set(EXTRA_LIBS ${EXTRA_LIBS} MathFunctions)</li>
+<li>EXTRA_LIBS ${EXTRA_LIBS} 是为了，如果EXTRA_LIBS有值，就加一块，没有就是空</li>
+<li>和 path&#x3D;${path}:&#x2F;usr&#x2F; 一样</li>
+</ul>
+</li>
+<li>aux_source_directory 找到当前文件夹的需要执行的文件</li>
+<li>add_executable 生成的可执行文件的名字</li>
+<li>target_link_libraries 链接子库（main需要用到的函数和类）</li>
+<li>install(TARGETS Demo1 DESTINATION bin) .o文件的路径，默认值是&#x2F;usr&#x2F;local&#x2F;，这里是&#x2F;usr&#x2F;local&#x2F;bin</li>
+<li>可以使用set来修改内置变量修改<code>CMAKE_INSTALL_PREFIX</code>的值</li>
+<li>install(FILES “${PROJECT_BINARY_DIR}&#x2F;config.h” DESTINATION include) .h 的文件路径，这里是&#x2F;usr&#x2F;local&#x2F;include’</li>
+</ul>
+<hr>
+<p>  2.2 math目录下的CMakeLists.txt</p>
+<pre><code>aux_source_directory(. DIR_LIB_SRCS)
+
+# 指定生成 MathFunctions 链接库
+add_library (MathFunctions $&#123;DIR_LIB_SRCS&#125;)
+install(TARGETS MathFunctions DESTINATION bin)
+install(FILES MathFunctions.h DESTINATION include)
+</code></pre>
+<hr>
+<p>  2.3工程添加测试</p>
+<p>   CMake 提供了一个称为 CTest 的测试工具。我们要做的只是在项目根目录的 CMakeLists 文件中调用一系列的 add_test 命令。</p>
+<pre><code># 启用测试
+  enable_testing()
+
+  # 测试程序是否成功运行
+  add_test (test_run Demo 5 2)
+
+  # 测试帮助信息是否可以正常提示
+  add_test (test_usage Demo)
+  set_tests_properties (test_usage
+  PROPERTIES PASS_REGULAR_EXPRESSION &quot;Usage: .* base exponent&quot;)
+
+  # 测试 5 的平方
+  add_test (test_5_2 Demo 5 2)
+
+  set_tests_properties (test_5_2
+  PROPERTIES PASS_REGULAR_EXPRESSION &quot;is 25&quot;)
+
+  # 测试 10 的 5 次方
+  add_test (test_10_5 Demo 10 5)
+
+  set_tests_properties (test_10_5
+  PROPERTIES PASS_REGULAR_EXPRESSION &quot;is 100000&quot;)
+
+  # 测试 2 的 10 次方
+  add_test (test_2_10 Demo 2 10)
+
+  set_tests_properties (test_2_10
+  PROPERTIES PASS_REGULAR_EXPRESSION &quot;is 1024&quot;)
+</code></pre>
+<p>   或者使用宏定义</p>
+<pre><code># 定义一个宏，用来简化测试工作
+  macro (do_test arg1 arg2 result)
+  add_test (test_$&#123;arg1&#125;_$&#123;arg2&#125; Demo $&#123;arg1&#125; $&#123;arg2&#125;)
+  set_tests_properties (test_$&#123;arg1&#125;_$&#123;arg2&#125;
+   PROPERTIES PASS_REGULAR_EXPRESSION $&#123;result&#125;)
+  endmacro (do_test)
+  
+  # 使用该宏进行一系列的数据测试
+  do_test (5 2 &quot;is 25&quot;)
+  do_test (10 5 &quot;is 100000&quot;)
+  do_test (2 10 &quot;is 1024&quot;)
+  
+</code></pre>
+</li>
+</ul>
+<h2 id="3-configure-file"><a href="#3-configure-file" class="headerlink" title="3. configure_file"></a>3. configure_file</h2><ul>
+<li>configure_file(input output options)</li>
+<li>将一个文件(由input参数指定)拷贝到指定位置(由output参数指定)，并根据options修改其内容。</li>
+<li> configure_file命令一般用于自定义编译选项或者自定义宏的场景。configure_file命令会根据options指定的规则，自动对input文件中cmakedefine关键字及其内容进行转换</li>
+</ul>
+<pre><code>Demo
+
+```
+#cmakedefine var1
+#cmakedefine var2 &quot;@var2@&quot; #注意：@@之间的名称要与cmakedefine后的变量名一样
+#cmakedefine var3 &quot;$&#123;var3&#125;&quot; #注意：$&#123;&#125;之间的名称要与cmakedefine后的变量名一样
+
+```
+</code></pre>
+<h2 id="4-cmake获得git的hash和版本，综合例子"><a href="#4-cmake获得git的hash和版本，综合例子" class="headerlink" title="4. cmake获得git的hash和版本，综合例子"></a>4. cmake获得git的hash和版本，综合例子</h2><p><a href="https://github.com/moulelin/Cmake/tree/master/demo_git_config">Github代码</a><br>有些时候，我们需要在项目中标明版本号、Git的hash号、编译时间等信息，但是显然，对于Git的hash号、编译时间我们不想自己手动填写。现在提供一种途径，将这些信息写入到头文件中，再编译到so库文件或者可执行程序中。</p>
+<p>这样，就可以通过提供库文件的接口或者可执行程序的打印中得到这些值了</p>
+<h3 id="4-1-utils-cmake-文件"><a href="#4-1-utils-cmake-文件" class="headerlink" title="4.1 utils.cmake 文件"></a>4.1 utils.cmake 文件</h3><pre><code>```
+# 用于获取git的hash和分支
+macro(get_git_hash _git_hash)
+    find_package(GIT QUIET) 
+    if(GIT_FOUND)# GIT_FOUND是内置变量
+        execute_process( # cmake：execute_process执行外部命令
+            # command 是命令行执行
+            # GIT_EXECUTABLE 是git执行路径， -1 是最后一条
+            #-—pretty＝：使用其他格式显示历史提交信息，可选项有：oneline,short,medium,full,fuller,email,raw以及format:&lt;string&gt;,默认为medium，如：
+            # --pretty=oneline：一行显示，只显示哈希值和提交说明（--online本身也可以作为单独的属性）
+            # --pretty=format:” &quot;：控制显示的记录格式，如：
+            #     %H  提交对象（commit）的完整哈希字串
+            #     %h  提交对象的简短哈希字串
+            #     %T  树对象（tree）的完整哈希字串
+            #     %t  树对象的简短哈希字串
+            #     %P  父对象（parent）的完整哈希字串
+            #     %p  父对象的简短哈希字串
+            #     %an 作者（author）的名字
+            #     %ae 作者的电子邮件地址
+            #     %ad 作者修订日期（可以用 -date= 选项定制格式）
+            #     %ar 作者修订日期，按多久以前的方式显示
+            #     %cn 提交者(committer)的名字
+            #         作者和提交者的区别不知道是啥？
+            #         作者与提交者的关系：作者是程序的修改者，提交者是代码提交人（自己的修改不提交是怎么能让别人拉下来再提交的？）
+            #         其实作者指的是实际作出修改的人，提交者指的是最后将此工作成果提交到仓库的人。所以，当你为某个项目发布补丁，然后某个核心成员将你的补丁并入项目时，你就是作者，而那个核心成员就是提交者（soga）
+            #     %ce 提交者的电子邮件地址
+            #     %cd 提交日期（可以用 -date= 选项定制格式）
+            #     %cr 提交日期，按多久以前的方式显示
+            #     %s  提交说明
+            COMMAND $&#123;GIT_EXECUTABLE&#125; log -1 --pretty=format:%h
+            OUTPUT_VARIABLE $&#123;_git_hash&#125;        # 输出字符串存入变量
+            # OUTPUT_VARIABLE ：指定接收输出到标准输出 内容的变量；
+            OUTPUT_STRIP_TRAILING_WHITESPACE    # 删除字符串尾的换行符
+            ERROR_QUIET                         # 对执行错误静默
+            WORKING_DIRECTORY                   # 执行路径
+            $&#123;CMAKE_CURRENT_SOURCE_DIR&#125;
+            )
+        endif()
+endmacro()
+
+# get git branch
+macro(get_git_branch _git_branch)   # 宏的开始
+    find_package(Git QUIET)     # 查找Git，QUIET静默方式不报错
+    if(GIT_FOUND)
+    execute_process(          # 执行一个子进程
+        COMMAND $&#123;GIT_EXECUTABLE&#125; symbolic-ref --short -q HEAD
+        OUTPUT_VARIABLE $&#123;_git_branch&#125;        # 输出字符串存入变量
+        OUTPUT_STRIP_TRAILING_WHITESPACE    # 删除字符串尾的换行符
+        ERROR_QUIET                         # 对执行错误静默
+        WORKING_DIRECTORY                   # 执行路径
+        $&#123;CMAKE_CURRENT_SOURCE_DIR&#125;
+        )
+    endif()
+endmacro()                      # 宏的结束
+
+```
+</code></pre>
+<ul>
+<li>使用宏定义来定义两个宏定义</li>
+<li>使用execute_process执行外部命令</li>
+<li>OUTPUT_VARIABLE可以获得输出到命令行的东西并赋值给变量</li>
+</ul>
+<h3 id="4-2-CMakeLists-txt"><a href="#4-2-CMakeLists-txt" class="headerlink" title="4.2 CMakeLists.txt"></a>4.2 CMakeLists.txt</h3><pre><code>```
+cmake_minimum_required(VERSION 2.9)
+
+include(utils.cmake)
+project(demo_git_config)
+
+
+string(TIMESTAMP BUILD_TIMESTAMP &quot;%Y-%m-%d %H:%M:%S&quot;)
+message(&quot;Build timestamp is $&#123;BUILD_TIMESTAMP&#125;&quot;)
+
+set(VERSION_MAJOR 0)
+set(VERSION_MINOR 0)
+set(VERSION_PATCH 1)
+message(&quot;Version is $&#123;VERSION_MAJOR&#125; $&#123;VERSION_MINOR&#125; $&#123;VERSION_PATCH&#125;&quot;)
+
+set(GIT_HASH &quot;&quot;)
+get_git_hash(GIT_HASH)
+message(&quot;Git hash is $&#123;GIT_HASH&#125;&quot;)
+
+set(GIT_BRANCH &quot;&quot;)
+get_git_branch(GIT_BRANCH)
+message(&quot;Git branch is $&#123;GIT_BRANCH&#125;&quot;)
+
+
+configure_file(
+    &quot;$&#123;PROJECT_SOURCE_DIR&#125;/include/utils.h.in&quot;
+    &quot;$&#123;PROJECT_SOURCE_DIR&#125;/include/utils.h&quot;
+)
+add_executable($&#123;PROJECT_NAME&#125; main.cpp)
+
+include_directories(
+    $&#123;PROJECT_SOURCE_DIR&#125;/include
+)
+
+install(TARGETS $&#123;PROJECT_NAME&#125;
+    DESTINATION $&#123;PROJECT_SOURCE_DIR&#125;)
+
+```
+</code></pre>
+<ul>
+<li>调用了宏定义</li>
+</ul>
+<h3 id="4-3-utils-h-in"><a href="#4-3-utils-h-in" class="headerlink" title="4.3 utils.h.in"></a>4.3 utils.h.in</h3><pre><code>```
+#ifndef UTILS_H_IN
+#define UTILS_H_IN
+
+#define VERSION_MAJOR @VERSION_MAJOR@
+#define VERSION_MINOR @VERSION_MINOR@
+#define VERSION_PATCH @VERSION_PATCH@
+
+#define BUILD_TIMESTAMP &quot;@BUILD_TIMESTAMP@&quot;
+
+#define GIT_BRANCH &quot;@GIT_BRANCH@&quot;
+#define GIT_HASH &quot;@GIT_HASH@&quot;
+
+#endif // UTILS_H_IN
+
+```
+</code></pre>
+<h3 id="4-4-执行cmake"><a href="#4-4-执行cmake" class="headerlink" title="4.4 执行cmake ."></a>4.4 执行cmake .</h3><p>  生成utils.h如下</p>
+<pre><code>```
+#ifndef UTILS_H_IN
+#define UTILS_H_IN
+
+#define VERSION_MAJOR 0
+#define VERSION_MINOR 0
+#define VERSION_PATCH 1
+
+#define BUILD_TIMESTAMP &quot;2022-11-26 21:35:07&quot;
+
+#define GIT_BRANCH &quot;master&quot;
+#define GIT_HASH &quot;0e1f110&quot;
+
+#endif // UTILS_H_IN
+
+``` 
+</code></pre>
+<h3 id="4-5-使用make链接-o文件，生成可执行文件"><a href="#4-5-使用make链接-o文件，生成可执行文件" class="headerlink" title="4.5 使用make链接.o文件，生成可执行文件"></a>4.5 使用make链接.o文件，生成可执行文件</h3><p> 输出如下</p>
+<pre><code>```
+(base) moule@mouledeMacBook-Air demo_git_config % ./demo_git_config 
+version is 0, 0, 1
+timestamp is 2022-11-26 21:35:07
+git is master, 0e1f110
+```
+</code></pre>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>apriori</title>
+    <url>/2022/01/06/apriori/</url>
+    <content><![CDATA[<p><img src="/images/apriori.png"> </p>
+]]></content>
+      <tags>
+        <tag>apriori</tag>
       </tags>
   </entry>
   <entry>
@@ -879,6 +1188,15 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
       </tags>
   </entry>
   <entry>
+    <title>as从句</title>
+    <url>/2022/09/24/as%E4%BB%8E%E5%8F%A5/</url>
+    <content><![CDATA[<p><img src="/images/as.jpeg"></p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>cudaMemPitch</title>
     <url>/2022/06/28/cudaMemPitch/</url>
     <content><![CDATA[<h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
@@ -979,13 +1297,17 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>equilibria</title>
-    <url>/2022/02/08/equilibria/</url>
-    <content><![CDATA[<p><img src="/images/game01.png"> </p>
-<p>举个例子吧如图所示：首先固定1<br>1选择C–&gt; 2最好选择C(-5&gt;-15)，<br>画上蓝色线条<br>1选择N–&gt; 2最好选择C(0&gt;-1)，画上蓝色线条<br>接下来固定2<br>2选择C–&gt; 1最好选择C(-5&gt;-15)，画上红色线条<br>2选择N–&gt; 1最好选择C(0&gt;-1)，画上红色线条得纯策略纳什均衡(-5,-5)</p>
+    <title>forandrecursion</title>
+    <url>/2022/04/21/forandrecursion/</url>
+    <content><![CDATA[<blockquote>
+<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
+</blockquote>
+<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
+<p>比如全排列问题</p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>game</tag>
+        <tag>-algorithm</tag>
       </tags>
   </entry>
   <entry>
@@ -998,20 +1320,6 @@ int main()
 ]]></content>
       <tags>
         <tag>ted</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>forandrecursion</title>
-    <url>/2022/04/21/forandrecursion/</url>
-    <content><![CDATA[<blockquote>
-<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
-</blockquote>
-<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
-<p>比如全排列问题</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>-algorithm</tag>
       </tags>
   </entry>
   <entry>
@@ -1155,12 +1463,13 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>likeihood</title>
-    <url>/2021/12/17/likeihood/</url>
-    <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
+    <title>equilibria</title>
+    <url>/2022/02/08/equilibria/</url>
+    <content><![CDATA[<p><img src="/images/game01.png"> </p>
+<p>举个例子吧如图所示：首先固定1<br>1选择C–&gt; 2最好选择C(-5&gt;-15)，<br>画上蓝色线条<br>1选择N–&gt; 2最好选择C(0&gt;-1)，画上蓝色线条<br>接下来固定2<br>2选择C–&gt; 1最好选择C(-5&gt;-15)，画上红色线条<br>2选择N–&gt; 1最好选择C(0&gt;-1)，画上红色线条得纯策略纳什均衡(-5,-5)</p>
 ]]></content>
       <tags>
-        <tag>likelihood</tag>
+        <tag>game</tag>
       </tags>
   </entry>
   <entry>
@@ -1174,6 +1483,24 @@ int main()
 <li>作用在左边的变量中，这里就是 b._weight &gt; rsh(a)._weight</li>
 </ul>
 <p><img src="/images/2022-09-06-14-17-28.png"></p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>likeihood</title>
+    <url>/2021/12/17/likeihood/</url>
+    <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
+]]></content>
+      <tags>
+        <tag>likelihood</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>multiset</title>
+    <url>/2022/09/05/mutiset/</url>
+    <content><![CDATA[<p><img src="/images/2022-09-05-22-49-24.png"></p>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -1203,9 +1530,9 @@ hello world
       </tags>
   </entry>
   <entry>
-    <title>multiset</title>
-    <url>/2022/09/05/mutiset/</url>
-    <content><![CDATA[<p><img src="/images/2022-09-05-22-49-24.png"></p>
+    <title>p19-namespace</title>
+    <url>/2022/06/16/namespace/</url>
+    <content><![CDATA[<h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -1221,15 +1548,6 @@ hello world
       </tags>
   </entry>
   <entry>
-    <title>p19-namespace</title>
-    <url>/2022/06/16/namespace/</url>
-    <content><![CDATA[<h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>note</title>
     <url>/2022/08/17/note/</url>
     <content><![CDATA[<p>所有通道像素的组合排列决定了这个像素的属性。同时这个像素点与周围像素也存在联系，通常来说，如果相邻两个像素点所有通道的欧式距离之差不小于某个阈值，可以认为是属于一类的<br>对通道进行卷积操作，</p>
@@ -1239,25 +1557,6 @@ hello world
 ]]></content>
       <tags>
         <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Object detection algorithm based AdaBoost residual correction Fast R-CNN on network</title>
-    <url>/2021/04/01/odfr/</url>
-    <content><![CDATA[<p><img src="/images/4_1.jpg"> </p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">The rapid development of computer hardware has promoted the prosperity of computer vision. Target object detection is widely used in various industrial and commercial fields, and contour detection is the core of target object detection. In order to realize the object target contour recognition method based on computer vision with high accuracy, this paper takes the cattle face position determination as an example, Fast R-CNN as the object contour detection algorithm, and uses AdaBoost as the residual detector to improve the accuracy of the results. In the experiment, the LabelImg tool marks the positional coordinates of the facial contours of 1000 cows, and at the same time, SURF algorithm was used to extract image features. The AdaBoost cascade classifier trained 900 positive images and 100 negative images. Fast R-CNN used the original images and the labeled images as training sets respectively. The results show that in the image set with resolution of 866*652 (pixels), the target detection accuracy of using Fast R-CNN is 91.6%, and AdaBoost as the residual detector will improve the accuracy to 96.76%. Meanwhile, by comparing the two training data sets of Fast r-cnn, the image labeled by LabelImg is used as the Fast r-cnn training set to obtain the optimal accuracy of 96.9% and the optimal recognition time of single picture of 0.35s.
-</blockquote>
-<h1 id="Image-Label"><a href="#Image-Label" class="headerlink" title="Image Label :"></a>Image Label :</h1><p>  <img src="/images/4_2.jpg"> </p>
-<h1 id="Reslut"><a href="#Reslut" class="headerlink" title="Reslut :"></a>Reslut :</h1><p>  <img src="/images/4_3.jpg">  </p>
-<hr>
-<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2019-3nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2019-3nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2019 3nd International Conference on Deep Learning Technologies"></a>Conference : 2019 3nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/4_4.jpg"> </p>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>Detect</tag>
       </tags>
   </entry>
   <entry>
@@ -1343,28 +1642,6 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
-    <title>p33const</title>
-    <url>/2022/06/19/p33const/</url>
-    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>probability</title>
-    <url>/2022/06/22/probability/</url>
-    <content><![CDATA[<h2 id="68-95-99"><a href="#68-95-99" class="headerlink" title="68-95-99"></a>68-95-99</h2><ul>
-<li>During one standard, it has 68% probability in it.</li>
-<li>During tow standards, it has 95% probability in it.</li>
-<li>During three standards, it has 99% probability in it.</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>probability</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>p27variadic-template</title>
     <url>/2022/06/18/p27variadic-template/</url>
     <content><![CDATA[<h1 id="不定模版参数"><a href="#不定模版参数" class="headerlink" title="不定模版参数"></a>不定模版参数</h1><pre><code>template &lt;class T1, class... args&gt;
@@ -1410,6 +1687,47 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
 ]]></content>
       <tags>
         <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>p33const</title>
+    <url>/2022/06/19/p33const/</url>
+    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Object detection algorithm based AdaBoost residual correction Fast R-CNN on network</title>
+    <url>/2021/04/01/odfr/</url>
+    <content><![CDATA[<p><img src="/images/4_1.jpg"> </p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">The rapid development of computer hardware has promoted the prosperity of computer vision. Target object detection is widely used in various industrial and commercial fields, and contour detection is the core of target object detection. In order to realize the object target contour recognition method based on computer vision with high accuracy, this paper takes the cattle face position determination as an example, Fast R-CNN as the object contour detection algorithm, and uses AdaBoost as the residual detector to improve the accuracy of the results. In the experiment, the LabelImg tool marks the positional coordinates of the facial contours of 1000 cows, and at the same time, SURF algorithm was used to extract image features. The AdaBoost cascade classifier trained 900 positive images and 100 negative images. Fast R-CNN used the original images and the labeled images as training sets respectively. The results show that in the image set with resolution of 866*652 (pixels), the target detection accuracy of using Fast R-CNN is 91.6%, and AdaBoost as the residual detector will improve the accuracy to 96.76%. Meanwhile, by comparing the two training data sets of Fast r-cnn, the image labeled by LabelImg is used as the Fast r-cnn training set to obtain the optimal accuracy of 96.9% and the optimal recognition time of single picture of 0.35s.
+</blockquote>
+<h1 id="Image-Label"><a href="#Image-Label" class="headerlink" title="Image Label :"></a>Image Label :</h1><p>  <img src="/images/4_2.jpg"> </p>
+<h1 id="Reslut"><a href="#Reslut" class="headerlink" title="Reslut :"></a>Reslut :</h1><p>  <img src="/images/4_3.jpg">  </p>
+<hr>
+<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2019-3nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2019-3nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2019 3nd International Conference on Deep Learning Technologies"></a>Conference : 2019 3nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/4_4.jpg"> </p>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>Detect</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>probability</title>
+    <url>/2022/06/22/probability/</url>
+    <content><![CDATA[<h2 id="68-95-99"><a href="#68-95-99" class="headerlink" title="68-95-99"></a>68-95-99</h2><ul>
+<li>During one standard, it has 68% probability in it.</li>
+<li>During tow standards, it has 95% probability in it.</li>
+<li>During three standards, it has 99% probability in it.</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>probability</tag>
       </tags>
   </entry>
   <entry>
@@ -1551,20 +1869,20 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>self-attention</title>
-    <url>/2022/01/02/self-attention/</url>
-    <content><![CDATA[<p><img src="/images/attention.png"> </p>
-]]></content>
-      <tags>
-        <tag>attention</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>shardptrCirculate</title>
     <url>/2022/03/04/shardptrCirculate/</url>
     <content><![CDATA[<blockquote>
 <p>定义对象用强智能指针，引用对象的时候用弱智能指针<br><img src="/images/shardptrcirculate.png">  </p>
 </blockquote>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>smartpointer</title>
+    <url>/2022/03/04/smartpointer/</url>
+    <content><![CDATA[<p><img src="/images/smartPointer.png"> </p>
 ]]></content>
       <tags>
         <tag>C++</tag>
@@ -1584,24 +1902,6 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>silhouette</title>
-    <url>/2021/12/04/silhouette/</url>
-    <content><![CDATA[<p><img src="/images/silhouette.png"> </p>
-]]></content>
-      <tags>
-        <tag>intr</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>smartpointer</title>
-    <url>/2022/03/04/smartpointer/</url>
-    <content><![CDATA[<p><img src="/images/smartPointer.png"> </p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sparse</title>
     <url>/2022/07/02/sparse/</url>
     <content><![CDATA[<h1 id="How-to-prune-in-MLP"><a href="#How-to-prune-in-MLP" class="headerlink" title="How to prune in MLP?"></a>How to prune in MLP?</h1><p><img src="/images/2022-07-04-01-57-10.png"></p>
@@ -1615,125 +1915,33 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>p23specialization</title>
-    <url>/2022/06/17/specialization/</url>
-    <content><![CDATA[<h1 id="Full-specialization"><a href="#Full-specialization" class="headerlink" title="Full specialization"></a>Full specialization</h1><pre><code>template &lt;class key&gt;
-class hash&#123;&#125;
-
-template&lt;&gt;
-class hash&lt;char&gt;&#123;&#125;
-
-template&lt;&gt;
-class hash&lt;int&gt;&#123;&#125;
-
-template&lt;&gt;
-class hash&lt;long&gt;&#123;
-    size_t operator() (const long x)&#123;
-        return x;
-    &#125;
-&#125;
-
-cout&lt;&lt; hash&lt;long&gt;() (100);
-//先创建一个临时对象，之后调用（）重载
-
-</code></pre>
-<blockquote>
-<p>full specialization aims to specialize some type.<br>for exampl:<br><strong>this is a function for judging equality of two members</strong></p>
+    <title>silhouette</title>
+    <url>/2021/12/04/silhouette/</url>
+    <content><![CDATA[<p><img src="/images/silhouette.png"> </p>
+]]></content>
+      <tags>
+        <tag>intr</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>self-attention</title>
+    <url>/2022/01/02/self-attention/</url>
+    <content><![CDATA[<p><img src="/images/attention.png"> </p>
+]]></content>
+      <tags>
+        <tag>attention</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>stl全局</title>
+    <url>/2022/06/29/stl%E5%85%A8%E5%B1%80/</url>
+    <content><![CDATA[<h1 id="C-函数或者命名空间前面加"><a href="#C-函数或者命名空间前面加" class="headerlink" title="C++函数或者命名空间前面加::"></a>C++函数或者命名空间前面加::</h1><ul>
+<li>函数前面 ::find() 表示这个是全局的函数，不是这个作用域下的函数<br><img src="/images/2022-06-29-16-13-57.png"><blockquote>
+<p>比如这里的 ::find()。这个是STL的algorithm中的函数，虽然这里如果不用:: , 编译器没有找到find也会到全局，但是加入会让代码更清晰</p>
 </blockquote>
-<pre><code>template&lt;class T&gt;
-bool Isequal(T&amp; p1, T&amp; p2)&#123;
-    return p1 == p2;
-&#125;
-</code></pre>
-<p><strong>But it does’t work for string. We need to override this special type</strong></p>
-<pre><code>
-template&lt;&gt;
-bool Isequal&lt;char*&gt; (char* p1, char* p2)&#123;	
-    return strcmp(p1, p2) == 0;
-&#125;
-</code></pre>
-<ul>
-<li>模板及其特例化版本应该声明在同一个头文件中。所有同名模板的声明应该放在前面，然后是这些模板的特例化版本</li>
+</li>
+<li>jj01::test_array() &#x3D; 这个就是命名空间</li>
 </ul>
-<p>注意如果是函数模版，就不需要写&lt;&gt;</p>
-<pre><code>template &lt;class T&gt;
-T max(const T lhs, const T rhs)&#123;   
-    return lhs &gt; rhs ? lhs : rhs;
-&#125;
-
-template &lt;&gt;
-int max(const int lhs, const int rhs)&#123;   
-    return lhs &gt; rhs ? lhs : rhs;
-&#125;
-//这是因为编译器根据int max(const int, const int)的函数签名可以推导出来它是T max(const T, const T)的特化。
-</code></pre>
-<blockquote>
-<p>Note that if specialization funtion does’t have arugements. It has various interpretation. For example</p>
-</blockquote>
-<pre><code>template &lt;class T&gt;
-void f()&#123; T d; &#125;
-
-template &lt;&gt;
-void f()&#123; int d; &#125;
-
-此时编译器不知道f()是从f&lt;T&gt;()特化来的，编译时会有错误：
-
-error: no function template matches function template specialization &#39;f&#39;
-这时我们便需要显式指定&quot;模板实参&quot;：
-
-template &lt;class T&gt;
-void f()&#123; T d; &#125;
-
-template &lt;&gt;
-void f&lt;int&gt;()&#123; int d; &#125;
-</code></pre>
-<hr>
-<h2 id="partial-specialization-偏特化"><a href="#partial-specialization-偏特化" class="headerlink" title="partial specialization (偏特化)"></a>partial specialization (偏特化)</h2><ul>
-<li>arguments (参数的个数上)</li>
-<li>range: shrink the range. For example, arbitary type to pointer (任意类型的变为任意指针类型)</li>
-</ul>
-<p>For arguments:</p>
-<blockquote>
-<p>类似于全特化，偏特化也是为了给自定义一个参数集合的模板，但偏特化后的模板需要进一步的实例化才能形成确定的签名。 值得注意的是函数模板不允许偏特化，</p>
-</blockquote>
-<pre><code>template &lt;class T1, class T2&gt;
-class A&lt;T1, T2&gt;&#123;
-    ...
-&#125;;
-template &lt;class T2&gt;
-class A&lt;int, T2&gt;&#123;
-    ...
-&#125;;
-
-
-函数模板是不允许偏特化的，下面的声明会编译错：
-
-template &lt;class T1, class T2&gt;
-void f()&#123;&#125;
-
-template &lt;class T2&gt;
-void f&lt;int, T2&gt;()&#123;&#125;
-
-
-但函数允许重载，声明另一个函数模板即可替代偏特化的需要：
-
-template &lt;class T2&gt;
-void f()&#123;&#125;              // 注意：这里没有&quot;模板实参&quot;
-
-多数情况下函数模板重载就可以完成函数偏特化的需要，一个例外便是std命名空间。 std是一个特殊的命名空间，用户可以特化其中的模板，但不允许添加模板（其实任何内容都是禁止添加的）
-</code></pre>
-<p><strong>For range:</strong></p>
-<pre><code>template &lt;class T&gt;
-class A&#123;&#125;
-template &lt;class U&gt;
-class A&lt;U*&gt;&#123;&#125;
-// we limit if the type is pointer thereby goes second class
-
-A&lt;string&gt; a;
-
-A&lt;string*&gt; b;
-</code></pre>
-<p>这个设计是为了如果针对指针要做不同的处理，就使用这个偏特化</p>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -1865,21 +2073,128 @@ private:
       </tags>
   </entry>
   <entry>
-    <title>to+do+or+doing</title>
-    <url>/2021/12/12/to-do-or-doing/</url>
-    <content><![CDATA[<p><img src="/images/todo.png"> </p>
+    <title>p23specialization</title>
+    <url>/2022/06/17/specialization/</url>
+    <content><![CDATA[<h1 id="Full-specialization"><a href="#Full-specialization" class="headerlink" title="Full specialization"></a>Full specialization</h1><pre><code>template &lt;class key&gt;
+class hash&#123;&#125;
+
+template&lt;&gt;
+class hash&lt;char&gt;&#123;&#125;
+
+template&lt;&gt;
+class hash&lt;int&gt;&#123;&#125;
+
+template&lt;&gt;
+class hash&lt;long&gt;&#123;
+    size_t operator() (const long x)&#123;
+        return x;
+    &#125;
+&#125;
+
+cout&lt;&lt; hash&lt;long&gt;() (100);
+//先创建一个临时对象，之后调用（）重载
+
+</code></pre>
+<blockquote>
+<p>full specialization aims to specialize some type.<br>for exampl:<br><strong>this is a function for judging equality of two members</strong></p>
+</blockquote>
+<pre><code>template&lt;class T&gt;
+bool Isequal(T&amp; p1, T&amp; p2)&#123;
+    return p1 == p2;
+&#125;
+</code></pre>
+<p><strong>But it does’t work for string. We need to override this special type</strong></p>
+<pre><code>
+template&lt;&gt;
+bool Isequal&lt;char*&gt; (char* p1, char* p2)&#123;	
+    return strcmp(p1, p2) == 0;
+&#125;
+</code></pre>
+<ul>
+<li>模板及其特例化版本应该声明在同一个头文件中。所有同名模板的声明应该放在前面，然后是这些模板的特例化版本</li>
+</ul>
+<p>注意如果是函数模版，就不需要写&lt;&gt;</p>
+<pre><code>template &lt;class T&gt;
+T max(const T lhs, const T rhs)&#123;   
+    return lhs &gt; rhs ? lhs : rhs;
+&#125;
+
+template &lt;&gt;
+int max(const int lhs, const int rhs)&#123;   
+    return lhs &gt; rhs ? lhs : rhs;
+&#125;
+//这是因为编译器根据int max(const int, const int)的函数签名可以推导出来它是T max(const T, const T)的特化。
+</code></pre>
+<blockquote>
+<p>Note that if specialization funtion does’t have arugements. It has various interpretation. For example</p>
+</blockquote>
+<pre><code>template &lt;class T&gt;
+void f()&#123; T d; &#125;
+
+template &lt;&gt;
+void f()&#123; int d; &#125;
+
+此时编译器不知道f()是从f&lt;T&gt;()特化来的，编译时会有错误：
+
+error: no function template matches function template specialization &#39;f&#39;
+这时我们便需要显式指定&quot;模板实参&quot;：
+
+template &lt;class T&gt;
+void f()&#123; T d; &#125;
+
+template &lt;&gt;
+void f&lt;int&gt;()&#123; int d; &#125;
+</code></pre>
+<hr>
+<h2 id="partial-specialization-偏特化"><a href="#partial-specialization-偏特化" class="headerlink" title="partial specialization (偏特化)"></a>partial specialization (偏特化)</h2><ul>
+<li>arguments (参数的个数上)</li>
+<li>range: shrink the range. For example, arbitary type to pointer (任意类型的变为任意指针类型)</li>
+</ul>
+<p>For arguments:</p>
+<blockquote>
+<p>类似于全特化，偏特化也是为了给自定义一个参数集合的模板，但偏特化后的模板需要进一步的实例化才能形成确定的签名。 值得注意的是函数模板不允许偏特化，</p>
+</blockquote>
+<pre><code>template &lt;class T1, class T2&gt;
+class A&lt;T1, T2&gt;&#123;
+    ...
+&#125;;
+template &lt;class T2&gt;
+class A&lt;int, T2&gt;&#123;
+    ...
+&#125;;
+
+
+函数模板是不允许偏特化的，下面的声明会编译错：
+
+template &lt;class T1, class T2&gt;
+void f()&#123;&#125;
+
+template &lt;class T2&gt;
+void f&lt;int, T2&gt;()&#123;&#125;
+
+
+但函数允许重载，声明另一个函数模板即可替代偏特化的需要：
+
+template &lt;class T2&gt;
+void f()&#123;&#125;              // 注意：这里没有&quot;模板实参&quot;
+
+多数情况下函数模板重载就可以完成函数偏特化的需要，一个例外便是std命名空间。 std是一个特殊的命名空间，用户可以特化其中的模板，但不允许添加模板（其实任何内容都是禁止添加的）
+</code></pre>
+<p><strong>For range:</strong></p>
+<pre><code>template &lt;class T&gt;
+class A&#123;&#125;
+template &lt;class U&gt;
+class A&lt;U*&gt;&#123;&#125;
+// we limit if the type is pointer thereby goes second class
+
+A&lt;string&gt; a;
+
+A&lt;string*&gt; b;
+</code></pre>
+<p>这个设计是为了如果针对指针要做不同的处理，就使用这个偏特化</p>
 ]]></content>
       <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>transition-based</title>
-    <url>/2022/01/04/transition-based/</url>
-    <content><![CDATA[<p><img src="/images/transition.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1892,40 +2207,12 @@ private:
       </tags>
   </entry>
   <entry>
-    <title>stl全局</title>
-    <url>/2022/06/29/stl%E5%85%A8%E5%B1%80/</url>
-    <content><![CDATA[<h1 id="C-函数或者命名空间前面加"><a href="#C-函数或者命名空间前面加" class="headerlink" title="C++函数或者命名空间前面加::"></a>C++函数或者命名空间前面加::</h1><ul>
-<li>函数前面 ::find() 表示这个是全局的函数，不是这个作用域下的函数<br><img src="/images/2022-06-29-16-13-57.png"><blockquote>
-<p>比如这里的 ::find()。这个是STL的algorithm中的函数，虽然这里如果不用:: , 编译器没有找到find也会到全局，但是加入会让代码更清晰</p>
-</blockquote>
-</li>
-<li>jj01::test_array() &#x3D; 这个就是命名空间</li>
-</ul>
+    <title>transition-based</title>
+    <url>/2022/01/04/transition-based/</url>
+    <content><![CDATA[<p><img src="/images/transition.png"> </p>
 ]]></content>
       <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vector二维数组</title>
-    <url>/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
-<li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
-<p>这里的row,col代表二维vector的两个轴方向的大小</p>
-</blockquote>
-</li>
-<li>第二种通过resize确定大小，之后循环赋值</li>
-</ul>
-<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
-vec1.resize(row);
-for(int i=0;i&lt;vec1.size();i++)
-    vec1[i].resize(col);
-for(int i=0;i&lt;row;i++)
-    for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>c++</tag>
+        <tag>NLP</tag>
       </tags>
   </entry>
   <entry>
@@ -2014,6 +2301,26 @@ for(int i=0;i&lt;row;i++)
 ]]></content>
       <tags>
         <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>warp函数</title>
+    <url>/2022/07/11/warp%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="any-sync用于一个warp之间线程的数据的交换-广播（broadcast）"><a href="#any-sync用于一个warp之间线程的数据的交换-广播（broadcast）" class="headerlink" title="__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）"></a>__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）</h1><h2 id="这里必须注意srcLane是束内w的编号"><a href="#这里必须注意srcLane是束内w的编号" class="headerlink" title="这里必须注意srcLane是束内w的编号"></a>这里必须注意srcLane是束内w的编号</h2><blockquote>
+<p>int value &#x3D; __any_sync(mask,v,srcLane,w)<br>把srcLane的线程中变量v的值广播给其他线程，其中广播的线程由mask的二进制决定</p>
+</blockquote>
+<pre><code>int value = __any_sync(mask,tid,2,w);
+// 这里把线程2的tid值（也是2），也就是说所有线程走到这里之后的value都是2；如果tid表示是其他含义，那么其余每个线程就是用的对应的值
+输出为： `shfl:  2  2  2  2  2  2  2  2 10 10 10 10 10 10 10 10`
+这里的10是因为其实他现在的tid是10，但是在束编号中，他的下标是2
+</code></pre>
+<p><img src="/images/2022-07-11-00-37-51.png"></p>
+<blockquote>
+<p>__shfl_xor_sync(FULL_MASK, tid, laneMask, WIDTH);<br>按位异或，这里可以把laneMask设置为1，就是将相邻的两个线程的tid变量的值进行交换</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>cuda</tag>
       </tags>
   </entry>
   <entry>
@@ -2118,23 +2425,43 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
       </tags>
   </entry>
   <entry>
-    <title>warp函数</title>
-    <url>/2022/07/11/warp%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="any-sync用于一个warp之间线程的数据的交换-广播（broadcast）"><a href="#any-sync用于一个warp之间线程的数据的交换-广播（broadcast）" class="headerlink" title="__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）"></a>__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）</h1><h2 id="这里必须注意srcLane是束内w的编号"><a href="#这里必须注意srcLane是束内w的编号" class="headerlink" title="这里必须注意srcLane是束内w的编号"></a>这里必须注意srcLane是束内w的编号</h2><blockquote>
-<p>int value &#x3D; __any_sync(mask,v,srcLane,w)<br>把srcLane的线程中变量v的值广播给其他线程，其中广播的线程由mask的二进制决定</p>
-</blockquote>
-<pre><code>int value = __any_sync(mask,tid,2,w);
-// 这里把线程2的tid值（也是2），也就是说所有线程走到这里之后的value都是2；如果tid表示是其他含义，那么其余每个线程就是用的对应的值
-输出为： `shfl:  2  2  2  2  2  2  2  2 10 10 10 10 10 10 10 10`
-这里的10是因为其实他现在的tid是10，但是在束编号中，他的下标是2
-</code></pre>
-<p><img src="/images/2022-07-11-00-37-51.png"></p>
-<blockquote>
-<p>__shfl_xor_sync(FULL_MASK, tid, laneMask, WIDTH);<br>按位异或，这里可以把laneMask设置为1，就是将相邻的两个线程的tid变量的值进行交换</p>
-</blockquote>
+    <title>to+do+or+doing</title>
+    <url>/2021/12/12/to-do-or-doing/</url>
+    <content><![CDATA[<p><img src="/images/todo.png"> </p>
 ]]></content>
       <tags>
-        <tag>cuda</tag>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>word2vec</title>
+    <url>/2022/01/04/word2vec/</url>
+    <content><![CDATA[<p><img src="/images/word2vec.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vector二维数组</title>
+    <url>/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
+<li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
+<p>这里的row,col代表二维vector的两个轴方向的大小</p>
+</blockquote>
+</li>
+<li>第二种通过resize确定大小，之后循环赋值</li>
+</ul>
+<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
+vec1.resize(row);
+for(int i=0;i&lt;vec1.size();i++)
+    vec1[i].resize(col);
+for(int i=0;i&lt;row;i++)
+    for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -2209,15 +2536,6 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
       </tags>
   </entry>
   <entry>
-    <title>word2vec</title>
-    <url>/2022/01/04/word2vec/</url>
-    <content><![CDATA[<p><img src="/images/word2vec.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>分治法</title>
     <url>/2022/09/03/%E5%88%86%E6%B2%BB%E6%B3%95/</url>
     <content><![CDATA[<h1 id="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"><a href="#分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解" class="headerlink" title="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"></a>分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解</h1><pre><code>//
@@ -2289,37 +2607,6 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
-    <title>单词</title>
-    <url>/2022/10/08/%E5%8D%95%E8%AF%8D/</url>
-    <content><![CDATA[<ul>
-<li>right after 一会，短暂的</li>
-<li>right along 持久的</li>
-<li>long-lasting effects</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>原反补码</title>
-    <url>/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/</url>
-    <content><![CDATA[<p><img src="/images/coding.png"></p>
-]]></content>
-      <tags>
-        <tag>coding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>均方误差分解</title>
-    <url>/2022/05/21/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE%E5%88%86%E8%A7%A3/</url>
-    <content><![CDATA[<p><img src="/images/biasAndvariance.png"> </p>
-]]></content>
-      <tags>
-        <tag>math</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>卡尔曼滤波详解</title>
     <url>/2022/09/29/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/</url>
     <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3><ul>
@@ -2343,34 +2630,21 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
-    <title>字节对齐</title>
-    <url>/2022/08/25/%E5%AD%97%E8%8A%82%E5%AF%B9%E9%BD%90/</url>
-    <content><![CDATA[<ul>
-<li>结构体变量的首地址能够被其最宽基本类型成员的大小所整除；</li>
-<li>结构体每个成员相对于结构体首地址的偏移量（offset）都是成员大小的整数倍，如有需要编译器会在成员之间加上填充字节（internal padding）；</li>
-<li>结构体的总大小为结构体最宽基本类型成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节（trailing padding）</li>
-</ul>
-<p>比如</p>
-<pre><code>struct student
-&#123;
-    char name[5];
-    int num;
-    short score;
-&#125;
-</code></pre>
-<p>|char|char|char|char|<br>|char|—-|—-|—-|<br>|——–int——–|<br>|–short–|—-|—-|</p>
-<p>本来只用了11bytes（5+4+2）的空间，但是由于int型默认4字节对齐，存放在地址能被4整除的起始位置，即：如果name[5]从0开始存放，它占5bytes，而num则从第8(<strong>因为int是4，开始存的位置必须要可以整除4</strong>)（偏移量）个字节开始存放。所以sizeof(student)&#x3D;16。于是中间空出几个字节闲置着。但这样便于计算机快速读写数据，是一种以空间换取时间的方式。其数据对齐如下图：</p>
-<pre><code>struct student
-&#123;
-    int num;
-    char name[5];
-    short score;
-&#125;
-</code></pre>
-<p>num从0开始存放，而name从第4（偏移量）个字节开始存放，连续5个字节，score从第10（偏移量）开始存放，故sizeof(student)&#x3D;12。其数据对齐如下图：<br>|——–int——–|<br>|char|char|char|char|<br>|char|—-|–short–|</p>
+    <title>均方误差分解</title>
+    <url>/2022/05/21/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE%E5%88%86%E8%A7%A3/</url>
+    <content><![CDATA[<p><img src="/images/biasAndvariance.png"> </p>
 ]]></content>
       <tags>
-        <tag>c++</tag>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>原反补码</title>
+    <url>/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/</url>
+    <content><![CDATA[<p><img src="/images/coding.png"></p>
+]]></content>
+      <tags>
+        <tag>coding</tag>
       </tags>
   </entry>
   <entry>
@@ -2432,46 +2706,6 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
-    <title>按位与替换取余操作</title>
-    <url>/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<blockquote>
-<p>由于我们知道位运算比较高效，在某些情况下，当b为2的n次方时，有如下替换公式：</p>
-</blockquote>
-<blockquote>
-<p><code>a % b = a &amp; (b-1)</code></p>
-</blockquote>
-<h2 id="notes"><a href="#notes" class="headerlink" title="notes:"></a>notes:</h2><ul>
-<li>b必须为2的整数倍<blockquote>
-<p>因为可以保证b始终只有最高位为1，其他二进制位全部为0，减去1，之后，可以把高位1消除，其他位都为1。<br><code>减一之后，最高位为0，之后都为1（b,b剩下的数就是需要的余数的最高值），就相当于计算低位与原数的与</code></p>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p>例如：14%8，取余数，相当于取出低位，而余数最大为7，14二进制为1110，8的二进制1000，8-1 &#x3D; 7的二进制为0111，由于现在低位全为1，让其跟14做&amp;运算，正好取出的是其低位上的余数 </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>mathematics</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>宾语补足语</title>
-    <url>/2022/08/22/%E5%AE%BE%E8%AF%AD%E8%A1%A5%E8%B6%B3%E8%AF%AD/</url>
-    <content><![CDATA[<h1 id="有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语"><a href="#有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语" class="headerlink" title="有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语"></a>有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语</h1><ul>
-<li>本质上来说后面的名词也是修饰前面的名词的<ul>
-<li>名词做宾补<blockquote>
-<p>eg: I think the job a great honor. 我认为这份工作是一份荣誉</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>宾语从句</title>
     <url>/2022/08/21/%E5%AE%BE%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
     <content><![CDATA[<h1 id="宾语从句（objective-clause）"><a href="#宾语从句（objective-clause）" class="headerlink" title="宾语从句（objective clause）"></a>宾语从句（objective clause）</h1><p>that引导的宾语从句作动词或某些形容词的宾语时，that在口语和非正式文体中可以省略，并且是经常省略。<br><img src="/images/2022-08-21-17-29-44.png"></p>
@@ -2513,6 +2747,19 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
+    <title>单词</title>
+    <url>/2022/10/08/%E5%8D%95%E8%AF%8D/</url>
+    <content><![CDATA[<ul>
+<li>right after 一会，短暂的</li>
+<li>right along 持久的</li>
+<li>long-lasting effects</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>期望和方差</title>
     <url>/2022/05/21/%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE/</url>
     <content><![CDATA[<p><img src="/images/expectAndvariance.png"> </p>
@@ -2522,112 +2769,114 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
-    <title>模版内的友元</title>
-    <url>/2022/06/18/%E6%A8%A1%E7%89%88%E5%86%85%E7%9A%84%E5%8F%8B%E5%85%83/</url>
-    <content><![CDATA[<h1 id="模板类使用友元模板函数"><a href="#模板类使用友元模板函数" class="headerlink" title="模板类使用友元模板函数"></a>模板类使用友元模板函数</h1><p>在类模板中可以出现三种友元声明：<br>（1）普通非模板类或函数的友元声明，将友元关系授予明确指定的类或函数。<br>（2）类模板或函数模板的友元声明，授予对友元所有实例的访问权。<br>（3）只授予对类模板或函数模板的特定实例的访问权的友元声明。</p>
-<p>（1）普通友元：</p>
-<pre><code>template&lt;class T&gt;
-
-class A&#123;
-
-   friend void fun();
-
-//...
-
-&#125;;
-此例中fun可访问A任意类实例中的私有和保护成员
+    <title>按位与替换取余操作</title>
+    <url>/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<blockquote>
+<p>由于我们知道位运算比较高效，在某些情况下，当b为2的n次方时，有如下替换公式：</p>
+</blockquote>
+<blockquote>
+<p><code>a % b = a &amp; (b-1)</code></p>
+</blockquote>
+<h2 id="notes"><a href="#notes" class="headerlink" title="notes:"></a>notes:</h2><ul>
+<li>b必须为2的整数倍<blockquote>
+<p>因为可以保证b始终只有最高位为1，其他二进制位全部为0，减去1，之后，可以把高位1消除，其他位都为1。<br><code>减一之后，最高位为0，之后都为1（b,b剩下的数就是需要的余数的最高值），就相当于计算低位与原数的与</code></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>例如：14%8，取余数，相当于取出低位，而余数最大为7，14二进制为1110，8的二进制1000，8-1 &#x3D; 7的二进制为0111，由于现在低位全为1，让其跟14做&amp;运算，正好取出的是其低位上的余数 </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mathematics</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>字节对齐</title>
+    <url>/2022/08/25/%E5%AD%97%E8%8A%82%E5%AF%B9%E9%BD%90/</url>
+    <content><![CDATA[<ul>
+<li>结构体变量的首地址能够被其最宽基本类型成员的大小所整除；</li>
+<li>结构体每个成员相对于结构体首地址的偏移量（offset）都是成员大小的整数倍，如有需要编译器会在成员之间加上填充字节（internal padding）；</li>
+<li>结构体的总大小为结构体最宽基本类型成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节（trailing padding）</li>
+</ul>
+<p>比如</p>
+<pre><code>struct student
+&#123;
+    char name[5];
+    int num;
+    short score;
+&#125;
 </code></pre>
-<p>（2）一般模板友元关系</p>
-<pre><code>template&lt;class type&gt;
-
-class A&#123;
-
-  template&lt;classT&gt;
-
-   friend void fun(T u);
-
-//...
-
-&#125;;
-
-这时友元使用与类不同的模板形参，T可以是任意合法标志符，友元函数可以访问A类的任何类实例的数据，即不论A的形参是int，double或其他都可以。
+<p>|char|char|char|char|<br>|char|—-|—-|—-|<br>|——–int——–|<br>|–short–|—-|—-|</p>
+<p>本来只用了11bytes（5+4+2）的空间，但是由于int型默认4字节对齐，存放在地址能被4整除的起始位置，即：如果name[5]从0开始存放，它占5bytes，而num则从第8(<strong>因为int是4，开始存的位置必须要可以整除4</strong>)（偏移量）个字节开始存放。所以sizeof(student)&#x3D;16。于是中间空出几个字节闲置着。但这样便于计算机快速读写数据，是一种以空间换取时间的方式。其数据对齐如下图：</p>
+<pre><code>struct student
+&#123;
+    int num;
+    char name[5];
+    short score;
+&#125;
 </code></pre>
-<p>（3）特定的模板友元关系</p>
-<pre><code>template &lt;class T&gt; void fun(T,u);//对与特定的模板友元关系，这里的声明是必须的
-
-template&lt;class T&gt;
-
-class A&#123;
-
-   friend voidfun&lt;T&gt;(T u);//这里也可以是friend void fun&lt;char&gt;(char u);
-
-//...
-
-&#125;;
-
-此时fun只有访问类中特定实例的数据。换句话说，此时具有相同模板实参的fun函数与A类才是友元关系。即假如调用fun时其模板实参为int，则它只具有A&lt;int&gt;的访问权限。当然friendvoid fun&lt;T&gt;(Tu);中&lt;&gt;中的T可以是任意类型，比如int，double等
-
- 
-
- 
-
- 
-
-对类建立友元函数很容易。但是迁移到模板上却容易出现让人摸不着头脑的连接错误。
-层次不够，不做分析，单纯介绍两种为类模板定义友元函数的方法
-</code></pre>
-<pre><code>　　１　封闭型
-
-template&lt; typename T &gt;
-class MyClass
-&#123;
-    friend void function( MyClass&lt; T &gt; &amp;arg )
-    &#123;
-        
-     &#125;
- &#125;;　　要点：友元函数定义在模板体内。
-
-       ２　开放型
-template&lt; typename T &gt;
-class MyClass
-&#123;
-    template&lt; typename C &gt;
-    friend void function( MyClass&lt; C &gt; &amp;arg );
- &#125;;
-
-template&lt; typename C &gt;
-void function( MyClass&lt; C &gt; &amp;arg )
-&#123;
-    
- &#125;　　要点：模板体内要另建模板。 
-　　
-　　3 告诉编译器声明的设个是模板
-#include &lt;iostream&gt;
-using namespace std;
-
-template &lt; typename T &gt;
-class A
-&#123;
-    friend ostream &amp;operator&lt;&lt; &lt; T &gt;( ostream &amp;, const A&lt; T &gt; &amp; );
- &#125;;
-
-template &lt; typename T &gt;
-ostream &amp;operator&lt;&lt; ( ostream &amp;output, const A&lt; T &gt; &amp;a )
-&#123;
-    output &lt;&lt; &quot;重载成功&quot; &lt;&lt; endl;
-    return output;
- &#125;
-
-int main()
-&#123;
-    A&lt; int &gt; a;
-    cout &lt;&lt; a;
- &#125;要点：显示地在重载的运算符或者函数后面加上模板声明&lt; T&gt;，告诉编译器友元函数是一个类型一致的模板。
-</code></pre>
-<p> 建议：<br>            如果希望使用函数与模板特化的类型相对应，则使用方法3（模板显示声明）<br>            如果希望使用函数与模板特化的类型相独立，则使用方法2（二重模板）<br>            简短的内联函数使用方法1</p>
+<p>num从0开始存放，而name从第4（偏移量）个字节开始存放，连续5个字节，score从第10（偏移量）开始存放，故sizeof(student)&#x3D;12。其数据对齐如下图：<br>|——–int——–|<br>|char|char|char|char|<br>|char|—-|–short–|</p>
 ]]></content>
       <tags>
         <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>宾语补足语</title>
+    <url>/2022/08/22/%E5%AE%BE%E8%AF%AD%E8%A1%A5%E8%B6%B3%E8%AF%AD/</url>
+    <content><![CDATA[<h1 id="有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语"><a href="#有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语" class="headerlink" title="有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语"></a>有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语</h1><ul>
+<li>本质上来说后面的名词也是修饰前面的名词的<ul>
+<li>名词做宾补<blockquote>
+<p>eg: I think the job a great honor. 我认为这份工作是一份荣誉</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>红黑树</title>
+    <url>/2022/06/28/%E7%BA%A2%E9%BB%91%E6%A0%91/</url>
+    <content><![CDATA[<h1 id="红黑树五大特性"><a href="#红黑树五大特性" class="headerlink" title="红黑树五大特性"></a>红黑树五大特性</h1><ul>
+<li>节点是红&#x2F;黑</li>
+<li>根结点是黑</li>
+<li>空叶子是黑色的（叶子结点和度为一的结点：度为0和度为1）</li>
+<li>红色结点的孩子肯定是黑色的（从根到空叶子的简单路径不存在连续红色结点）</li>
+<li>从根出发到所有空叶子结点的简单路径当中<code>黑色</code>结点数量相同</li>
+</ul>
+<blockquote>
+<p>因此，全黑的一条路径最短，并且 <code>最长&lt; 2*最短</code></p>
+</blockquote>
+<h1 id="建树"><a href="#建树" class="headerlink" title="建树"></a>建树</h1><ul>
+<li>1 初始插入时红色的，先用二叉搜索树的朴素插入构建红黑树</li>
+<li>2 插完之后染色并旋转</li>
+</ul>
+<h2 id="建树不同情况-（插入为红）"><a href="#建树不同情况-（插入为红）" class="headerlink" title="建树不同情况 （插入为红）"></a>建树不同情况 （插入为红）</h2><ul>
+<li>1 加入插入的是根，直接染黑</li>
+<li>2 插入是子，如果父亲是黑色，不需要做任何调整</li>
+<li>3 插入是子，父亲是红色（一定有爷爷结点，且是黑色，因为父亲是红色)，也一定有叔叔结点（空叶子也算），叔叔如果是红色，<code>父亲和叔叔染黑</code>, <code>爷爷染红</code>-&gt;染红会出现问题，因此把爷爷看作新插入的结点，循环向上插入</li>
+<li>4 插入是子，父亲是红色（一定有爷爷结点)，也一定有叔叔结点（空叶子也算），叔叔如果是黑色，<br>如果父亲P的大小在新插入的N和爷爷G之间（插入的位置和父亲一样，比如父亲是左子树，插入的也是左子树；父亲是右子树，插入的也是右子树），则对G旋转，左边重(插入子左子树)，<code>就右旋</code>，右边重（插入在右子树），<code>就左旋</code> （裙子形），并互换颜色，<code>G和P颜色互换</code><blockquote>
+<p>右旋：把爷爷作为父亲的右孩子结点<br>左旋：把爷爷作为父亲的左孩子结点</p>
+</blockquote>
+</li>
+<li>5 插入有子，父亲是红色（一定有爷爷结点)，也一定有叔叔结点（空叶子也算），叔叔如果是黑色，但是新插入的N和父亲的位置相反。旋转P，之前是旋转G。如果父亲是左子树，则左旋P；如果父亲是右子树，则右旋P，现在回到情况4，使用情况4的方法就行；父亲在右边，N在左边，以父节点进行右旋，这是父亲和N都在右边，在进行上述情况4同右操作即可</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>插入节点为根节点，变为黑色</li>
+<li>父节点为黑色，直接插入</li>
+<li>父节点和叔叔节点均为红色，父节点和叔叔节点均变为黑色，祖父节点变红，把祖父节点当作要插入节点，递归执行。</li>
+<li>父节点和插入节点在同一边，父节点变黑，祖父节点变红，同左右旋，同右左旋。这里是对祖父结点进行的</li>
+<li>父节点为红色，叔叔节点为黑色，如果不在同一边，转换为同一边（N在右边以父节点左旋；N在左边，以父节点右旋），然后执行步骤四。</li>
+</ul>
+<p><img src="/images/red-black-tree.png"></p>
+]]></content>
+      <tags>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -2694,46 +2943,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>红黑树</title>
-    <url>/2022/06/28/%E7%BA%A2%E9%BB%91%E6%A0%91/</url>
-    <content><![CDATA[<h1 id="红黑树五大特性"><a href="#红黑树五大特性" class="headerlink" title="红黑树五大特性"></a>红黑树五大特性</h1><ul>
-<li>节点是红&#x2F;黑</li>
-<li>根结点是黑</li>
-<li>空叶子是黑色的（叶子结点和度为一的结点：度为0和度为1）</li>
-<li>红色结点的孩子肯定是黑色的（从根到空叶子的简单路径不存在连续红色结点）</li>
-<li>从根出发到所有空叶子结点的简单路径当中<code>黑色</code>结点数量相同</li>
-</ul>
-<blockquote>
-<p>因此，全黑的一条路径最短，并且 <code>最长&lt; 2*最短</code></p>
-</blockquote>
-<h1 id="建树"><a href="#建树" class="headerlink" title="建树"></a>建树</h1><ul>
-<li>1 初始插入时红色的，先用二叉搜索树的朴素插入构建红黑树</li>
-<li>2 插完之后染色并旋转</li>
-</ul>
-<h2 id="建树不同情况-（插入为红）"><a href="#建树不同情况-（插入为红）" class="headerlink" title="建树不同情况 （插入为红）"></a>建树不同情况 （插入为红）</h2><ul>
-<li>1 加入插入的是根，直接染黑</li>
-<li>2 插入是子，如果父亲是黑色，不需要做任何调整</li>
-<li>3 插入是子，父亲是红色（一定有爷爷结点，且是黑色，因为父亲是红色)，也一定有叔叔结点（空叶子也算），叔叔如果是红色，<code>父亲和叔叔染黑</code>, <code>爷爷染红</code>-&gt;染红会出现问题，因此把爷爷看作新插入的结点，循环向上插入</li>
-<li>4 插入是子，父亲是红色（一定有爷爷结点)，也一定有叔叔结点（空叶子也算），叔叔如果是黑色，<br>如果父亲P的大小在新插入的N和爷爷G之间（插入的位置和父亲一样，比如父亲是左子树，插入的也是左子树；父亲是右子树，插入的也是右子树），则对G旋转，左边重(插入子左子树)，<code>就右旋</code>，右边重（插入在右子树），<code>就左旋</code> （裙子形），并互换颜色，<code>G和P颜色互换</code><blockquote>
-<p>右旋：把爷爷作为父亲的右孩子结点<br>左旋：把爷爷作为父亲的左孩子结点</p>
-</blockquote>
-</li>
-<li>5 插入有子，父亲是红色（一定有爷爷结点)，也一定有叔叔结点（空叶子也算），叔叔如果是黑色，但是新插入的N和父亲的位置相反。旋转P，之前是旋转G。如果父亲是左子树，则左旋P；如果父亲是右子树，则右旋P，现在回到情况4，使用情况4的方法就行；父亲在右边，N在左边，以父节点进行右旋，这是父亲和N都在右边，在进行上述情况4同右操作即可</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>插入节点为根节点，变为黑色</li>
-<li>父节点为黑色，直接插入</li>
-<li>父节点和叔叔节点均为红色，父节点和叔叔节点均变为黑色，祖父节点变红，把祖父节点当作要插入节点，递归执行。</li>
-<li>父节点和插入节点在同一边，父节点变黑，祖父节点变红，同左右旋，同右左旋。这里是对祖父结点进行的</li>
-<li>父节点为红色，叔叔节点为黑色，如果不在同一边，转换为同一边（N在右边以父节点左旋；N在左边，以父节点右旋），然后执行步骤四。</li>
-</ul>
-<p><img src="/images/red-black-tree.png"></p>
-]]></content>
-      <tags>
-        <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>英语句子</title>
     <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
     <content><![CDATA[<blockquote>
@@ -2754,30 +2963,21 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>过拟合和欠拟合</title>
-    <url>/2022/05/22/%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88/</url>
-    <content><![CDATA[<p><img src="/images/overfit.png"> </p>
-]]></content>
-      <tags>
-        <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>进程和线程</title>
-    <url>/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<p>做个简单的比喻：进程&#x3D;火车，线程&#x3D;车厢线程在进程下行进（<br>单纯的车厢无法运行）一个进程可以包含多个线程（一辆火车可以有多个车厢）<br>不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）<br>同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）<br>进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）<br>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）<br>进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）<br>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－”互斥锁”进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”</p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>线性插值</title>
     <url>/2022/08/20/%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/</url>
     <content><![CDATA[<p><img src="/images/2022-08-28-19-14-47.png"></p>
 ]]></content>
       <tags>
         <tag>ShiftGCN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>过拟合和欠拟合</title>
+    <url>/2022/05/22/%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88/</url>
+    <content><![CDATA[<p><img src="/images/overfit.png"> </p>
+]]></content>
+      <tags>
+        <tag>machine</tag>
       </tags>
   </entry>
   <entry>
@@ -2797,63 +2997,6 @@ int main()
 <h2 id="delete-也可以这样写多个版本，对应new-参数版本。"><a href="#delete-也可以这样写多个版本，对应new-参数版本。" class="headerlink" title="delete()也可以这样写多个版本，对应new()参数版本。"></a>delete()也可以这样写多个版本，对应new()参数版本。</h2>]]></content>
       <tags>
         <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>限制性和非限制性</title>
-    <url>/2022/09/24/%E9%99%90%E5%88%B6%E6%80%A7%E5%92%8C%E9%9D%9E%E9%99%90%E5%88%B6%E6%80%A7/</url>
-    <content><![CDATA[<p>限制性定语从句限制所修饰名词或代词的意义，一般说来如把从句去掉句子意思就不清楚，甚至失去意义。而非限制性定语从句主句(句子的其他部分)关系不太紧密，对所修饰名词或代词的意思没有太大影响，把它们拿掉，句子依然很完整，它们可以说是附加上去的东西，而且通常都有逗号把它们和句子的其他部分分开。具体说来，限制性定语从句与非限制性定语从句有以下几个方面的区别： </p>
-<ul>
-<li><ol>
-<li>形式不同限定性定语从句主句和从句之间不用逗号隔开，口语中使用时也不停顿；而非限定性定语从句与主句之间通常有逗号隔开，口语中使用时有停顿。</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>作用不同限定性定语从句用于对先行词的意义进行修饰、限制和识别，如果去掉，就会造成句意不完整或概念不清；而非限定性定语从句用于对先行词起补充说明作用，如果省略，句意仍然清楚、完整： People who take physical exercise live longer.<br>进行体育锻炼的人活得长些。(若把从句去掉句子就失去意义)</li>
-</ol>
-</li>
-</ul>
-<blockquote>
-<p>His daughter, who is in Boston now, is coming home next week. 他女儿现在波士顿，下星期回来。(若把从句去句子意义仍然完整)</p>
-</blockquote>
-<ul>
-<li><ol start="3">
-<li>翻译不同在翻译定语从句时，一般把限定性定语从句翻译在它所修饰的先行词之前，而把非限定性定语从句与主句分开：He is the man whose car was stolen. 他就是汽车被窃的那个人。</li>
-</ol>
-</li>
-</ul>
-<blockquote>
-<p>I’ve invited Jim, who lives in the next flat. 我请了吉姆，他就住在隔壁。</p>
-</blockquote>
-<p>我请了吉姆，他就住在隔壁。</p>
-<ul>
-<li><ol start="4">
-<li>含义不同比较：I have a sister who is a doctor. 我有一个当医生的姐姐。(姐姐不止一个)<blockquote>
-<p>I have a sister ,who is a doctor. 我有一个姐姐，她是当医生的。(只有一个姐姐)</p>
-</blockquote>
-</li>
-</ol>
-</li>
-<li><ol start="5">
-<li>先行词不同限定性定语从句的先行词只能是名词或代词，而非限定性定语从句的先行词则可以是名词或代词，也可以是短语或句子；另外，当先行词为专有名词或其他具有独一无二性的:</li>
-</ol>
-</li>
-</ul>
-<blockquote>
-<p>Peter drove too fast, which was dangerous. 彼得开车很快，这是很危险的。(which指drive too fast)He changed his mind, which made me very angry. 他改变了主意，这使我很生气。(which指整个主句)Mr. Smith, who is our boss, will leave for Japan 我们的老板史密斯先生下周要去日本。(先行词为专有名词，要用非限制性定语从句修饰)</p>
-</blockquote>
-<blockquote>
-<p>Her father, who has a lot of money, wishes her to study abroad. 她父亲很有钱，希望她出国学习。(先行词为表独一无二意义的普通名词，要用非限制性定语从句修饰)</p>
-</blockquote>
-<ul>
-<li><ol start="6">
-<li>关系词不同关系词that和why可用于限制性定语从句中，通常不用于非限制性定语从句；另外，在限制性定语从句中，关系词有时可以省略，而在非限制性定语从句中关系词一律不省略。</li>
-</ol>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -2917,6 +3060,15 @@ int main(int argc, const char * argv[]) &#123;
 <h2 id="遇到这些问题记得先画递归树"><a href="#遇到这些问题记得先画递归树" class="headerlink" title="遇到这些问题记得先画递归树"></a>遇到这些问题记得先画递归树</h2>]]></content>
       <tags>
         <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程和线程</title>
+    <url>/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
+    <content><![CDATA[<p>做个简单的比喻：进程&#x3D;火车，线程&#x3D;车厢线程在进程下行进（<br>单纯的车厢无法运行）一个进程可以包含多个线程（一辆火车可以有多个车厢）<br>不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）<br>同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）<br>进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）<br>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）<br>进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）<br>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－”互斥锁”进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -3253,9 +3405,182 @@ by decades 几十年
 <hr>
 <p><img src="/images/2022-11-08-12-27-53.png"></p>
 <p><img src="/images/2022-11-08-12-30-38.png"></p>
+<hr>
+<p><img src="/images/2022-11-19-00-26-22.png"></p>
+<ul>
+<li>refrain from doing 抑制做什么</li>
+<li>sweeping 彻底的</li>
+<li></li>
+</ul>
 ]]></content>
       <tags>
         <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>限制性和非限制性</title>
+    <url>/2022/09/24/%E9%99%90%E5%88%B6%E6%80%A7%E5%92%8C%E9%9D%9E%E9%99%90%E5%88%B6%E6%80%A7/</url>
+    <content><![CDATA[<p>限制性定语从句限制所修饰名词或代词的意义，一般说来如把从句去掉句子意思就不清楚，甚至失去意义。而非限制性定语从句主句(句子的其他部分)关系不太紧密，对所修饰名词或代词的意思没有太大影响，把它们拿掉，句子依然很完整，它们可以说是附加上去的东西，而且通常都有逗号把它们和句子的其他部分分开。具体说来，限制性定语从句与非限制性定语从句有以下几个方面的区别： </p>
+<ul>
+<li><ol>
+<li>形式不同限定性定语从句主句和从句之间不用逗号隔开，口语中使用时也不停顿；而非限定性定语从句与主句之间通常有逗号隔开，口语中使用时有停顿。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>作用不同限定性定语从句用于对先行词的意义进行修饰、限制和识别，如果去掉，就会造成句意不完整或概念不清；而非限定性定语从句用于对先行词起补充说明作用，如果省略，句意仍然清楚、完整： People who take physical exercise live longer.<br>进行体育锻炼的人活得长些。(若把从句去掉句子就失去意义)</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>His daughter, who is in Boston now, is coming home next week. 他女儿现在波士顿，下星期回来。(若把从句去句子意义仍然完整)</p>
+</blockquote>
+<ul>
+<li><ol start="3">
+<li>翻译不同在翻译定语从句时，一般把限定性定语从句翻译在它所修饰的先行词之前，而把非限定性定语从句与主句分开：He is the man whose car was stolen. 他就是汽车被窃的那个人。</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>I’ve invited Jim, who lives in the next flat. 我请了吉姆，他就住在隔壁。</p>
+</blockquote>
+<p>我请了吉姆，他就住在隔壁。</p>
+<ul>
+<li><ol start="4">
+<li>含义不同比较：I have a sister who is a doctor. 我有一个当医生的姐姐。(姐姐不止一个)<blockquote>
+<p>I have a sister ,who is a doctor. 我有一个姐姐，她是当医生的。(只有一个姐姐)</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>先行词不同限定性定语从句的先行词只能是名词或代词，而非限定性定语从句的先行词则可以是名词或代词，也可以是短语或句子；另外，当先行词为专有名词或其他具有独一无二性的:</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>Peter drove too fast, which was dangerous. 彼得开车很快，这是很危险的。(which指drive too fast)He changed his mind, which made me very angry. 他改变了主意，这使我很生气。(which指整个主句)Mr. Smith, who is our boss, will leave for Japan 我们的老板史密斯先生下周要去日本。(先行词为专有名词，要用非限制性定语从句修饰)</p>
+</blockquote>
+<blockquote>
+<p>Her father, who has a lot of money, wishes her to study abroad. 她父亲很有钱，希望她出国学习。(先行词为表独一无二意义的普通名词，要用非限制性定语从句修饰)</p>
+</blockquote>
+<ul>
+<li><ol start="6">
+<li>关系词不同关系词that和why可用于限制性定语从句中，通常不用于非限制性定语从句；另外，在限制性定语从句中，关系词有时可以省略，而在非限制性定语从句中关系词一律不省略。</li>
+</ol>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>模版内的友元</title>
+    <url>/2022/06/18/%E6%A8%A1%E7%89%88%E5%86%85%E7%9A%84%E5%8F%8B%E5%85%83/</url>
+    <content><![CDATA[<h1 id="模板类使用友元模板函数"><a href="#模板类使用友元模板函数" class="headerlink" title="模板类使用友元模板函数"></a>模板类使用友元模板函数</h1><p>在类模板中可以出现三种友元声明：<br>（1）普通非模板类或函数的友元声明，将友元关系授予明确指定的类或函数。<br>（2）类模板或函数模板的友元声明，授予对友元所有实例的访问权。<br>（3）只授予对类模板或函数模板的特定实例的访问权的友元声明。</p>
+<p>（1）普通友元：</p>
+<pre><code>template&lt;class T&gt;
+
+class A&#123;
+
+   friend void fun();
+
+//...
+
+&#125;;
+此例中fun可访问A任意类实例中的私有和保护成员
+</code></pre>
+<p>（2）一般模板友元关系</p>
+<pre><code>template&lt;class type&gt;
+
+class A&#123;
+
+  template&lt;classT&gt;
+
+   friend void fun(T u);
+
+//...
+
+&#125;;
+
+这时友元使用与类不同的模板形参，T可以是任意合法标志符，友元函数可以访问A类的任何类实例的数据，即不论A的形参是int，double或其他都可以。
+</code></pre>
+<p>（3）特定的模板友元关系</p>
+<pre><code>template &lt;class T&gt; void fun(T,u);//对与特定的模板友元关系，这里的声明是必须的
+
+template&lt;class T&gt;
+
+class A&#123;
+
+   friend voidfun&lt;T&gt;(T u);//这里也可以是friend void fun&lt;char&gt;(char u);
+
+//...
+
+&#125;;
+
+此时fun只有访问类中特定实例的数据。换句话说，此时具有相同模板实参的fun函数与A类才是友元关系。即假如调用fun时其模板实参为int，则它只具有A&lt;int&gt;的访问权限。当然friendvoid fun&lt;T&gt;(Tu);中&lt;&gt;中的T可以是任意类型，比如int，double等
+
+ 
+
+ 
+
+ 
+
+对类建立友元函数很容易。但是迁移到模板上却容易出现让人摸不着头脑的连接错误。
+层次不够，不做分析，单纯介绍两种为类模板定义友元函数的方法
+</code></pre>
+<pre><code>　　１　封闭型
+
+template&lt; typename T &gt;
+class MyClass
+&#123;
+    friend void function( MyClass&lt; T &gt; &amp;arg )
+    &#123;
+        
+     &#125;
+ &#125;;　　要点：友元函数定义在模板体内。
+
+       ２　开放型
+template&lt; typename T &gt;
+class MyClass
+&#123;
+    template&lt; typename C &gt;
+    friend void function( MyClass&lt; C &gt; &amp;arg );
+ &#125;;
+
+template&lt; typename C &gt;
+void function( MyClass&lt; C &gt; &amp;arg )
+&#123;
+    
+ &#125;　　要点：模板体内要另建模板。 
+　　
+　　3 告诉编译器声明的设个是模板
+#include &lt;iostream&gt;
+using namespace std;
+
+template &lt; typename T &gt;
+class A
+&#123;
+    friend ostream &amp;operator&lt;&lt; &lt; T &gt;( ostream &amp;, const A&lt; T &gt; &amp; );
+ &#125;;
+
+template &lt; typename T &gt;
+ostream &amp;operator&lt;&lt; ( ostream &amp;output, const A&lt; T &gt; &amp;a )
+&#123;
+    output &lt;&lt; &quot;重载成功&quot; &lt;&lt; endl;
+    return output;
+ &#125;
+
+int main()
+&#123;
+    A&lt; int &gt; a;
+    cout &lt;&lt; a;
+ &#125;要点：显示地在重载的运算符或者函数后面加上模板声明&lt; T&gt;，告诉编译器友元函数是一个类型一致的模板。
+</code></pre>
+<p> 建议：<br>            如果希望使用函数与模板特化的类型相对应，则使用方法3（模板显示声明）<br>            如果希望使用函数与模板特化的类型相独立，则使用方法2（二重模板）<br>            简短的内联函数使用方法1</p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
