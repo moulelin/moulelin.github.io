@@ -343,7 +343,7 @@
 <p><img src="/images/2022-11-28-13-48-47.png"></p>
 <p>这个其实很简单我们利用高中学的三角几何就可以轻松解决。从上图可以发现不变量是黑色的那个线段的长度。而这个长度我们是可以根据黑色点相对红色坐标系下的坐标($x_{red}$, $x_{red}$ )算出来的。黑色线段长度为$r&#x3D;\sqrt {x_{red}^2+y_{red}^2}$</p>
 <p>然后我们可以根据紫色那个三角形计算出黑色点相对蓝色坐标系下的坐标 (x_{blue},y_{blue})</p>
-<p>根据高中学的三角几何我们可以知道：<br>$${x_{blue}&#x3D;r<em>cos(\alpha+\theta)\<br>y_{blue}&#x3D;r</em>sin(\alpha+\theta) \tag{1}} \label{eq1} $$<br>$\alpha$我们是不知道的。但是我们能找到一个关于它的线索。<br>$$<br>x_{red}&#x3D;r<em>cos(\alpha)\ y_{red}&#x3D;r</em>sin(\alpha)<br>$$<br>展开</p>
+<p>根据高中学的三角几何我们可以知道：<br>$${x_{blue}&#x3D;r<em>cos(\alpha+\theta)\<br>y_{blue}&#x3D;r</em>sin(\alpha+\theta) \tag{1}} \label{eq1} $$<br>$\alpha$我们是不知道的。但是我们能找到一个关于它的线索。<br>$$<br>x_{red}&#x3D;r<em>cos(\alpha)\ y_{red}&#x3D;r</em>sin(\alpha)<br>$$<br>展开（1），可以得到如下：<br>$$<br>x_{blue}&#x3D;r∗cos(α+θ)&#x3D;r∗(cos(α)∗cos(θ)−sin(α)∗sin(θ))&#x3D;x_{red}∗cos(θ)−y_{red}∗sin(θ)\<br>y_{blue}&#x3D;r∗sin(α+θ)&#x3D;r∗(sin(α)∗cos(θ)+cos(α)∗sin(θ))&#x3D;y_{red}∗cos(θ)+x_{red}∗sin(θ)<br>$$</p>
 
             </div>
             <hr/>
