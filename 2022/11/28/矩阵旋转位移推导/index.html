@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Cplusplus, Moujoy">
+    <meta name="keywords" content="矩阵旋转位移推导, Moujoy">
     <meta name="description" content="Do not let social standards conform you">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Cplusplus | Moujoy</title>
+    <title>矩阵旋转位移推导 | Moujoy</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -179,12 +179,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Cplusplus</h1>
+                    <h1 class="description center-align post-title">矩阵旋转位移推导</h1>
                 </div>
             </div>
         </div>
@@ -301,8 +301,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/C/">
-                                <span class="chip bg-color">C++</span>
+                            <a href="/tags/robotics/">
+                                <span class="chip bg-color">-robotics</span>
                             </a>
                         
                     </div>
@@ -317,7 +317,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2023-11-26
+                    2022-11-28
                 </div>
                 
 
@@ -338,31 +338,12 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <ol>
-<li><p>main 函数的参数</p>
-<ul>
-<li><p>argc 是 argument count的缩写，表示传入main函数的参数个数；</p>
-</li>
-<li><p>argv 是 argument vector的缩写，表示传入main函数的参数序列或指针，并且第一个参数argv[0]一定是程序的名称，并且包含了程序所在的完整路径，所以确切的说需要我们输入的main函数的参数个数应该是argc-1个；</p>
-</li>
-</ul>
-<pre><code>#include &lt;iostream&gt;
-
-using namespace std;
-
-void main(int argc,char *argv[])
-&#123;
-    for(int i=0;i&lt;argc;i++)
-    &#123;
-        cout&lt;&lt;&quot;argument[&quot;&lt;&lt;i&lt;&lt;&quot;] is: &quot;&lt;&lt;argv[i]&lt;&lt;endl;
-    &#125;
-    system(&quot;pause&quot;);
-&#125;
-</code></pre>
-</li>
-</ol>
-<hr>
-<p>2. </p>
+                <h2 id="1-怎么推导坐标位移和旋转"><a href="#1-怎么推导坐标位移和旋转" class="headerlink" title="1. 怎么推导坐标位移和旋转"></a>1. 怎么推导坐标位移和旋转</h2><p>二维坐标的旋转可以通过三角公式推导</p>
+<p>我们在做几何变换的时候经常需要把某个坐标系上的所有点都进行一个旋转，这个操作就叫做刚体旋转（所有的点相对位置不变的发生旋转）。下图是一个典型的二维坐标系下刚体旋转。我们把蓝色的坐标系旋转了θ度，新坐标系就是红色的坐标系。我们现在已知一个点相对红色那个坐标系的坐标($x_{red}$, $x_{red}$ )，和已知旋转角度θ，然后我们想求得该点相对于蓝色那个坐标系的坐标($x_{blue}$,$y_{blue}$)</p>
+<p><img src="/images/2022-11-28-13-48-47.png"></p>
+<p>这个其实很简单我们利用高中学的三角几何就可以轻松解决。从上图可以发现不变量是黑色的那个线段的长度。而这个长度我们是可以根据黑色点相对红色坐标系下的坐标($x_{red}$, $x_{red}$ )算出来的。黑色线段长度为$r&#x3D;\sqrt {x_{red}^2+y_{red}^2}$</p>
+<p>然后我们可以根据紫色那个三角形计算出黑色点相对蓝色坐标系下的坐标 (x_{blue},y_{blue})</p>
+<p>根据高中学的三角几何我们可以知道：<br>$${x_{blue}&#x3D;r<em>cos(\alpha+\theta)\<br>y_{blue}&#x3D;r</em>sin(\alpha+\theta) \tag{1}} \label{eq1} $$<br>$\alpha$我们是不知道的。但是我们能找到一个关于它的线索。<br>$$<br>x_{red}&#x3D;r<em>cos(\alpha)\ y_{red}&#x3D;r</em>sin(\alpha)<br>$$<br>展开</p>
 
             </div>
             <hr/>
@@ -388,7 +369,7 @@ void main(int argc,char *argv[])
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://moulelin.github.io/2023/11/26/Cplusplus/">https://moulelin.github.io/2023/11/26/Cplusplus/</a>
+                    <a href="https://moulelin.github.io/2022/11/28/%E7%9F%A9%E9%98%B5%E6%97%8B%E8%BD%AC%E4%BD%8D%E7%A7%BB%E6%8E%A8%E5%AF%BC/">https://moulelin.github.io/2022/11/28/%E7%9F%A9%E9%98%B5%E6%97%8B%E8%BD%AC%E4%BD%8D%E7%A7%BB%E6%8E%A8%E5%AF%BC/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -426,8 +407,8 @@ void main(int argc,char *argv[])
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/C/">
-                                    <span class="chip bg-color">C++</span>
+                                <a href="/tags/robotics/">
+                                    <span class="chip bg-color">-robotics</span>
                                 </a>
                             
                         </div>
@@ -595,10 +576,9 @@ void main(int argc,char *argv[])
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
                 <a href="/2023/11/26/Cplusplus/">
                     <div class="card-image">
@@ -616,9 +596,9 @@ void main(int argc,char *argv[])
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-11-26
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-11-26
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -627,7 +607,6 @@ void main(int argc,char *argv[])
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -646,13 +625,13 @@ void main(int argc,char *argv[])
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/11/28/%E7%9F%A9%E9%98%B5%E6%97%8B%E8%BD%AC%E4%BD%8D%E7%A7%BB%E6%8E%A8%E5%AF%BC/">
+                <a href="/2022/11/26/cmake/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="矩阵旋转位移推导">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="cmake">
                         
-                        <span class="card-title">矩阵旋转位移推导</span>
+                        <span class="card-title">cmake</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -663,7 +642,7 @@ void main(int argc,char *argv[])
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-26
                             </span>
                         <span class="publish-author">
                             
@@ -676,8 +655,8 @@ void main(int argc,char *argv[])
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/robotics/">
-                        <span class="chip bg-color">-robotics</span>
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
