@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>BPR推荐算法</title>
-    <url>/2021/11/16/BPR/</url>
-    <content><![CDATA[<p><img src="/images/BPR.png"> </p>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
+    <title>3D-python</title>
+    <url>/2021/11/02/3D-python/</url>
+    <content><![CDATA[<h1 id="plot-3D-by-python"><a href="#plot-3D-by-python" class="headerlink" title="plot 3D by python"></a>plot 3D by python</h1>]]></content>
       <tags>
-        <tag>BRP推荐算法</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -27,100 +23,6 @@
 ]]></content>
       <tags>
         <tag>3D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++</title>
-    <url>/2022/01/13/C/</url>
-    <content><![CDATA[<blockquote>
-<p>静态函数不能访问非静态变量<br>static method cannot access non-static variables<br>静态函数不会被实例化（不存在对象），就像是写在类外部的函数一样</p>
-</blockquote>
-<pre><code>static void Print(classname e)&#123;
-
-    std::cout&lt;&lt;e.x &lt;&lt; std::endl;
-&#125;
-&#39;&#39;&#39;
-&gt;临时变量作为非const的引用进行参数传递引发的编译错误_mlove编程-程序员宝宝
-技术标签： QT  qt  string  linux  
-
-1.错误原因即解决办法
-Linux环境运行，使用g++编译，观察如下代码，会出现： invalid initialization of non-const reference of type ‘std::string&amp;’ from a temporary of type ‘std::string’的错误。
-
-其中文意思为临时变量无法为非const的引用初始化。也就是在参数传递的过程中，出现错误。出错的代码如下
-</code></pre>
-<p>void print(string&amp; str)<br>{<br>    cout&lt;&lt;str&lt;&lt;endl;<br>}<br>&#x2F;&#x2F;如此调用会报上面描述的错误</p>
-<pre><code>print(&quot;hello world&quot;);
-
-
-出错的原因是编译器根据字符串”hello world”构造一个string类型的临时对象，这个临时对象具有const属性。当这个临时对象传递给非const的string&amp;引用类型时，因为非const引用绑定对象时，要求该对象也是非const对象。而在这时，因为string类型的临时对象是const对象，所以就出现错误。因此，解决办法就是将print()函数的参数改为常引用。代码修改如下，可顺利通过编译。
-
-void print(const string&amp; str)
-&#123;
-    cout&lt;&lt;str&lt;&lt;endl;
-&#125;
-//顺利通过编译
-print(&quot;hello world&quot;);
-通过以上代码，也可以看出Effective C++中倡导的一个C++的编程原则，即尽可能的使用const。因为这样可以使代码更为健壮，将错误暴露于编译阶段。
-
-2.所有的临时对象都是const对象吗
-为什么临时对象作为引用参数传递时，必须是常量引用呢？很多人对此的解释是临时对象是常量，不允许赋值改动，所以作为非常量引用传递时，编译器就会报错。这个解释在关于理解临时对象不能作为非const引用参数这个问题上是可以的，但不够准确。更有甚者，认为所有的临时对象均是const对象，因此，对于网上的观点和资源我们应该持着谨慎怀疑的态度去接受学习，应该坚持鲁迅先生倡导的”拿来主义”，应该批判参考和借鉴。
-
-事实上，临时变量是可以被作为左值(LValue) 并被赋值的，请看下面的代码：
-
-class IntClass&#123;
-private:
-    int x;
-public:
-    IntClass(int value):x(value)&#123;
-    &#125;
-
-    friend  ostream&amp; operator&lt;&lt;( ostream &amp;os, const IntClass &amp;intc);
-&#125;;
-
-//重载输出operator&lt;&lt;
-ostream&amp; operator&lt;&lt;( ostream &amp;os, const IntClass &amp;intc)
-&#123;
-    os&lt;&lt;intc.x;
-    return os;
-&#125;
-
-//打印函数
-void print(IntClass &amp; intc)
-&#123;
-    cout&lt;&lt;intc&lt;&lt;endl;
-    //通过引用修改这个临时对象
-    intc=8;
-    cout&lt;&lt;intc&lt;&lt;endl;
-&#125;
-
-int main(int argc,char* argv[])
-&#123;
-    print(IntClass(6));
-&#125;
-程序输出：
-6
-8
-
-以上代正确编译运行，没有错误。IntClass(6)表示生成一个无名的临时对象，传递给非const引用，在print函数中通过引用修改了这个临时对象。这说明了并非所有的临时对象都是const对象。
-
-那哪些临时对象是const对象，哪些临时对象不是const对象呢？这里贴上摘自网上的一句话：“内置类型产生的临时变量具有常性，而自定义类型产生的临时变量不具有常性”，我想这句话能解释你所谓的临时变量为什么能作为左值的原因。
-
-int* const a = new int;
-这个不能修改指针a, 如 a = &amp;b; 报错
-const int* a = new int; int const* a = new int; 这两个相同，看const的位置
-这个不能修改指针a指向的内容， *a = 2; 报错 
-</code></pre>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>3D-python</title>
-    <url>/2021/11/02/3D-python/</url>
-    <content><![CDATA[<h1 id="plot-3D-by-python"><a href="#plot-3D-by-python" class="headerlink" title="plot 3D by python"></a>plot 3D by python</h1>]]></content>
-      <tags>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -188,12 +90,63 @@ I will try figure out by myself, then i will ask sometjiogn  -->
       </tags>
   </entry>
   <entry>
+    <title>BPR推荐算法</title>
+    <url>/2021/11/16/BPR/</url>
+    <content><![CDATA[<p><img src="/images/BPR.png"> </p>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>BRP推荐算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DP</title>
     <url>/2022/03/18/DP/</url>
     <content><![CDATA[<p><img src="/images/DP.png">  </p>
 ]]></content>
       <tags>
         <tag>RL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DBSCAN</title>
+    <url>/2022/01/06/DBSCAN/</url>
+    <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
+]]></content>
+      <tags>
+        <tag>DBSCAN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Cplusplusnotes</title>
+    <url>/2022/05/01/Cplusplusnotes/</url>
+    <content><![CDATA[<blockquote>
+<p>静态函数只能访问静态数据</p>
+</blockquote>
+<blockquote>
+<p>为什么static成员变量一定要在类外初始化?</p>
+</blockquote>
+<pre><code>static变量属于类，非对象，如果在类内初始了，该类再一次创建对象将变成初始值，会修改其他对象对该静态变量操作的意图可能发生意外
+但是
+static const int a = 1;
+这个可以在类内初始化，因为const说明这个变量是不变的，因此对于每个对象来说，static内存块的的数据就是一样的
+</code></pre>
+<h2 id="为什么静态成员不能在类内初始化？"><a href="#为什么静态成员不能在类内初始化？" class="headerlink" title="为什么静态成员不能在类内初始化？"></a>为什么静态成员不能在类内初始化？</h2><p>在C++中，类的静态成员（static member）必须在类内声明，在类外初始化，像下面这样。</p>
+<p>class A<br>{<br>private:<br>static int count ; &#x2F;&#x2F; 类内声明<br>};</p>
+<ul>
+<li><p>类外定义并初始化，不必再加static关键字<br>int A::count &#x3D; 0 ;<br>或者只进行定义不赋初始值，但是默认值是否是0，可能会与具体的编译器有关吧？</p>
+</li>
+<li><p>只进行定义不赋初始值，但默认值视编译器而定<br>int A::count;<br>为什么？</p>
+</li>
+<li><p>因为静态成员属于整个类，而不属于某个对象，如果在类内初始化，会导致每个对象都包含该静态成员，这是矛盾的。</p>
+</li>
+</ul>
+<p>如果不增加int A::count &#x3D; 0 ; &#x2F;&#x2F;变量定义，在编译的时候将会报出：‘A::count’未定义的引用”错误。这是因为静态成员变量count未定义，也就是还没有分配内存，显然是不可以访问的。</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -211,6 +164,15 @@ I will try figure out by myself, then i will ask sometjiogn  -->
 ]]></content>
       <tags>
         <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FLOPs</title>
+    <url>/2022/06/26/FLOPs/</url>
+    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
+]]></content>
+      <tags>
+        <tag>FLOPs</tag>
       </tags>
   </entry>
   <entry>
@@ -237,6 +199,15 @@ I will try figure out by myself, then i will ask sometjiogn  -->
       </categories>
       <tags>
         <tag>GA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Homogeneous</title>
+    <url>/2022/01/26/Homogeneous/</url>
+    <content><![CDATA[<p><img src="/images/homogeneous.png"> </p>
+]]></content>
+      <tags>
+        <tag>3D</tag>
       </tags>
   </entry>
   <entry>
@@ -273,12 +244,199 @@ void main(int argc,char *argv[])
       </tags>
   </entry>
   <entry>
-    <title>DBSCAN</title>
-    <url>/2022/01/06/DBSCAN/</url>
-    <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
+    <title>Likelihood2</title>
+    <url>/2022/02/24/Likelihood2/</url>
+    <content><![CDATA[<blockquote>
+<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为&#x3D;》最大概率处l&#x3D;0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>DBSCAN</tag>
+        <tag>Likelihood</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MATI-Regression</title>
+    <url>/2021/11/02/MATI-Regression/</url>
+    <content><![CDATA[
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+
+<h1 id="L1-amp-L2-regularization"><a href="#L1-amp-L2-regularization" class="headerlink" title="L1 &amp; L2 regularization"></a>L1 &amp; L2 regularization</h1>
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+      <tags>
+        <tag>MTAI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MC</title>
+    <url>/2022/03/19/MC/</url>
+    <content><![CDATA[<p><img src="/images/MC.png">  </p>
+]]></content>
+      <tags>
+        <tag>RL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>KalmanFilter</title>
+    <url>/2022/09/29/KalmanFilter/</url>
+    <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3>
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/kalman.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+
+]]></content>
+      <tags>
+        <tag>kalman</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RL3ways</title>
+    <url>/2022/03/20/RL3ways/</url>
+    <content><![CDATA[
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/RL3.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+      <tags>
+        <tag>RL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ShiftGCN</title>
+    <url>/2022/08/17/ShiftGCN/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>GCN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Monte</title>
+    <url>/2022/03/17/Monte/</url>
+    <content><![CDATA[<blockquote>
+<p>引入概率密度函数的蒙特卡洛公式推导，是把p(x) 看作前面分数的密度概率函数，也就是对前面分数求期望，而期望可以通过对p（x）采样并平均得到<br><img src="/images/MCMC.png">  </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TF-IDF</title>
+    <url>/2022/01/04/TF-IDF/</url>
+    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ShiftCNN</title>
+    <url>/2022/08/16/ShiftCNN/</url>
+    <content><![CDATA[<h2 id="ShiftCNN-shifts-the-channels-based-on-the-shift-matrix-kernel"><a href="#ShiftCNN-shifts-the-channels-based-on-the-shift-matrix-kernel" class="headerlink" title="ShiftCNN shifts the channels based on the shift matrix(kernel)"></a>ShiftCNN shifts the channels based on the shift matrix(kernel)</h2><blockquote>
+<p><strong>这里有疑问，因为代码里面好像用的都是一个移动方向，只是对于不同通道进行了固定的移动，不管用多少次这个ShiftConv层，移动都是固定的(相同channel数据移动位置是相同的)</strong></p>
+</blockquote>
+<ul>
+<li><a href="#Shift">Shift</a></li>
+<li><a href="#%E6%96%87%E7%AB%A0">文章</a></li>
+</ul>
+<h1 id="Shift"><a href="#Shift" class="headerlink" title="Shift"></a>Shift</h1><blockquote>
+<p>这个操作就是移动不同通道（移动方向是固定的，对于channel相同的数据来说）<br><img src="/images/image.png.png"></p>
+</blockquote>
+<h1 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h1><blockquote>
+<p>To reduce the state space, we use a simple heuristic: di- vide the M channels evenly into DK2 groups, where each group of ⌊M&#x2F;DK2 ⌋ channels adopts one shift<br>(划分M和通道到M&#x2F;D^2中。每M&#x2F;D^2个通道共享一个shift的方向)</p>
+</blockquote>
+<blockquote>
+<p>I.e.和e.g.都是拉丁语缩写，i.e.代表id est，意为“也就是说，即”（that is），e.g.代表exempli gratia，意思是“举个例子”（for example）<br>However, finding the optimal permutation, <strong>i.e</strong>., how to map each channel-m to a shift group, requires searching a <strong>combinatorially(组合地)</strong> large search space.</p>
+</blockquote>
+<blockquote>
+<p>we introduce a <strong>modification(限制)</strong> to the shift operation that makes input and output invariant to channel order:  We denote a shift operation with channel permutation π as Kπ(<strong>这里不是很明白，K代表的是通道置换</strong>),</p>
+</blockquote>
+<blockquote>
+<p>G ̃&#x3D;Pπ2(Kπ(Pπ1(F)))<br>wherePπi are permutation operators and◦ denotes operator composition(<strong>这里不明白，Pπ代表的是置换算子，但是Pπ(K)Pπ结合起来是整个Shift操作</strong>)</p>
+</blockquote>
+<blockquote>
+<p><strong>因为shift是离散的，因此加入point-wise convolution P1(F)来进行参数更新，离散的不好进行权重更新，同时shift matrix也不会更新</strong></p>
+</blockquote>
+<blockquote>
+<p>So long as the shift operation is sandwiched between two point-wise convolutions, different permutations of shifts are equivalent. Thus, we can choose an arbitrary permutation for the shift kernel, after fixing the number of channels for each shift direction.<br>(说Shift夹入两个PW中就，对于channel顺序就不影响了，事实上肯定会影响的)</p>
+</blockquote>
+<blockquote>
+<p>This convolution <strong>comprises(包含)</strong> ..</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Shift</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VCDimension</title>
+    <url>/2022/02/10/VCDimension/</url>
+    <content><![CDATA[<blockquote>
+<p>注意这里的VC维度指的是只要存在一个不可分的点，比如四个点，一条直线存在无法分割的情况，那就VC维度就不是4，应该从3来看<br><img src="/images/CVDim.png"> </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>apriori</title>
+    <url>/2022/01/06/apriori/</url>
+    <content><![CDATA[<p><img src="/images/apriori.png"> </p>
+]]></content>
+      <tags>
+        <tag>apriori</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STL</title>
+    <url>/2022/07/06/STL/</url>
+    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
+<blockquote>
+<p>stack和queue不提供iterator</p>
+</blockquote>
+<blockquote>
+<p>set&#x2F;multiset<br>multiset是基于红黑树实现的</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Theory</title>
+    <url>/2021/12/01/Theory/</url>
+    <content><![CDATA[<h1 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h1>
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/probability.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+      <tags>
+        <tag>probability</tag>
       </tags>
   </entry>
   <entry>
@@ -432,329 +590,6 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>Hierarchical</title>
-    <url>/2021/12/02/Hierarchical/</url>
-    <content><![CDATA[<blockquote>
-<p>层次聚类算法 各种linkage</p>
-</blockquote>
-<p>基本工作原理<br>给定要聚类的N的对象以及N*N的距离矩阵(或者是相似性矩阵), 层次式聚类方法的基本步骤(参看S.C. Johnson in 1967)如下:</p>
-<ol>
-<li><pre><code>将每个对象归为一类, 共得到N类, 每类仅包含一个对象. 类与类之间的距离就是它们所包含的对象之间的距离.
-</code></pre>
-</li>
-<li><pre><code>找到最接近的两个类并合并成一类, 于是总的类数少了一个.
-</code></pre>
-</li>
-<li><pre><code>重新计算新的类与所有旧类之间的距离.
-</code></pre>
-</li>
-<li><pre><code>重复第2步和第3步, 直到最后合并成一个类为止(此类包含了N个对象).
-</code></pre>
-<p>根据步骤3的不同, 可将层次式聚类方法分为几类: single-linkage, complete-linkage 以及 average-linkage 聚类方法等.</p>
-</li>
-</ol>
-<p>single-linkage 聚类法(也称 connectedness 或 minimum 方法)：</p>
-<p>类间距离等于两类对象之间的最小距离，若用相似度衡量，则是各类中的任一对象与另一类中任一对象的最大相似度。</p>
-<p>complete-linkage 聚类法 (也称 diameter 或 maximum 方法)：</p>
-<p>组间距离等于两组对象之间的最大距离。</p>
-<p>average-linkage 聚类法：</p>
-<p>组间距离等于两组对象之间的平均距离。</p>
-<p>average-link 聚类的一个变种是R. D’Andrade (1978) 的UCLUS方法, 它使用的是median距离, 在受异常数据对象的影响方面, 它要比平均距离表现更佳一些.</p>
-<p>这种层次聚类称为“凝聚”法，由于它迭代合并所有分类。也有一种“划分”层次聚类法，与“凝聚”相反，它先将所有对象放在同一类中，并不断划分成更小的类，划分法一般很少使用。</p>
-<p>整个聚类过程其实是建立了一棵树，在建立的过程中，可以通过在第二步上设置一个阈值，当最近的两个类的距离大于这个阈值，则认为迭代可以终止。另外关键的一步就是第三步，如何判断两个类之间的相似度有不少种方法。这里介绍一下三种：</p>
-<p>SingleLinkage：又叫做 nearest-neighbor ，就是取两个类中距离最近的两个样本的距离作为这两个集合的距离，也就是说，最近两个样本之间的距离越小，这两个类之间的相似度就越大。容易造成一种叫做 Chaining 的效果，两个 cluster 明明从“大局”上离得比较远，但是由于其中个别的点距离比较近就被合并了，并且这样合并之后 Chaining 效应会进一步扩大，最后会得到比较松散的 cluster 。</p>
-<p>CompleteLinkage：这个则完全是 Single Linkage 的反面极端，取两个集合中距离最远的两个点的距离作为两个集合的距离。其效果也是刚好相反的，限制非常大，两个 cluster 即使已经很接近了，但是只要有不配合的点存在，就顽固到底，老死不相合并，也是不太好的办法。这两种相似度的定义方法的共同问题就是指考虑了某个有特点的数据，而没有考虑类内数据的整体特点。</p>
-<p>Average-linkage：这种方法就是把两个集合中的点两两的距离全部放在一起求一个平均值，相对也能得到合适一点的结果。</p>
-<p>average-linkage的一个变种就是取两两距离的中值，与取均值相比更加能够解除个别偏离样本对结果的干扰。</p>
-
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/cluster.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>culster</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Cplusplusnotes</title>
-    <url>/2022/05/01/Cplusplusnotes/</url>
-    <content><![CDATA[<blockquote>
-<p>静态函数只能访问静态数据</p>
-</blockquote>
-<blockquote>
-<p>为什么static成员变量一定要在类外初始化?</p>
-</blockquote>
-<pre><code>static变量属于类，非对象，如果在类内初始了，该类再一次创建对象将变成初始值，会修改其他对象对该静态变量操作的意图可能发生意外
-但是
-static const int a = 1;
-这个可以在类内初始化，因为const说明这个变量是不变的，因此对于每个对象来说，static内存块的的数据就是一样的
-</code></pre>
-<h2 id="为什么静态成员不能在类内初始化？"><a href="#为什么静态成员不能在类内初始化？" class="headerlink" title="为什么静态成员不能在类内初始化？"></a>为什么静态成员不能在类内初始化？</h2><p>在C++中，类的静态成员（static member）必须在类内声明，在类外初始化，像下面这样。</p>
-<p>class A<br>{<br>private:<br>static int count ; &#x2F;&#x2F; 类内声明<br>};</p>
-<ul>
-<li><p>类外定义并初始化，不必再加static关键字<br>int A::count &#x3D; 0 ;<br>或者只进行定义不赋初始值，但是默认值是否是0，可能会与具体的编译器有关吧？</p>
-</li>
-<li><p>只进行定义不赋初始值，但默认值视编译器而定<br>int A::count;<br>为什么？</p>
-</li>
-<li><p>因为静态成员属于整个类，而不属于某个对象，如果在类内初始化，会导致每个对象都包含该静态成员，这是矛盾的。</p>
-</li>
-</ul>
-<p>如果不增加int A::count &#x3D; 0 ; &#x2F;&#x2F;变量定义，在编译的时候将会报出：‘A::count’未定义的引用”错误。这是因为静态成员变量count未定义，也就是还没有分配内存，显然是不可以访问的。</p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MC</title>
-    <url>/2022/03/19/MC/</url>
-    <content><![CDATA[<p><img src="/images/MC.png">  </p>
-]]></content>
-      <tags>
-        <tag>RL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>FLOPs</title>
-    <url>/2022/06/26/FLOPs/</url>
-    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
-]]></content>
-      <tags>
-        <tag>FLOPs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Likelihood2</title>
-    <url>/2022/02/24/Likelihood2/</url>
-    <content><![CDATA[<blockquote>
-<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为&#x3D;》最大概率处l&#x3D;0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Likelihood</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RL3ways</title>
-    <url>/2022/03/20/RL3ways/</url>
-    <content><![CDATA[
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/RL3.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>RL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MATI-Regression</title>
-    <url>/2021/11/02/MATI-Regression/</url>
-    <content><![CDATA[
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-
-<h1 id="L1-amp-L2-regularization"><a href="#L1-amp-L2-regularization" class="headerlink" title="L1 &amp; L2 regularization"></a>L1 &amp; L2 regularization</h1>
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>MTAI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Homogeneous</title>
-    <url>/2022/01/26/Homogeneous/</url>
-    <content><![CDATA[<p><img src="/images/homogeneous.png"> </p>
-]]></content>
-      <tags>
-        <tag>3D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Monte</title>
-    <url>/2022/03/17/Monte/</url>
-    <content><![CDATA[<blockquote>
-<p>引入概率密度函数的蒙特卡洛公式推导，是把p(x) 看作前面分数的密度概率函数，也就是对前面分数求期望，而期望可以通过对p（x）采样并平均得到<br><img src="/images/MCMC.png">  </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>KalmanFilter</title>
-    <url>/2022/09/29/KalmanFilter/</url>
-    <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3>
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/kalman.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-
-]]></content>
-      <tags>
-        <tag>kalman</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STL</title>
-    <url>/2022/07/06/STL/</url>
-    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
-<blockquote>
-<p>stack和queue不提供iterator</p>
-</blockquote>
-<blockquote>
-<p>set&#x2F;multiset<br>multiset是基于红黑树实现的</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>TF-IDF</title>
-    <url>/2022/01/04/TF-IDF/</url>
-    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Theory</title>
-    <url>/2021/12/01/Theory/</url>
-    <content><![CDATA[<h1 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h1>
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/probability.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>probability</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ShiftGCN</title>
-    <url>/2022/08/17/ShiftGCN/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>GCN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>apriori</title>
-    <url>/2022/01/06/apriori/</url>
-    <content><![CDATA[<p><img src="/images/apriori.png"> </p>
-]]></content>
-      <tags>
-        <tag>apriori</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>across_loss</title>
-    <url>/2022/03/29/across-loss/</url>
-    <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
-]]></content>
-      <tags>
-        <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ShiftCNN</title>
-    <url>/2022/08/16/ShiftCNN/</url>
-    <content><![CDATA[<h2 id="ShiftCNN-shifts-the-channels-based-on-the-shift-matrix-kernel"><a href="#ShiftCNN-shifts-the-channels-based-on-the-shift-matrix-kernel" class="headerlink" title="ShiftCNN shifts the channels based on the shift matrix(kernel)"></a>ShiftCNN shifts the channels based on the shift matrix(kernel)</h2><blockquote>
-<p><strong>这里有疑问，因为代码里面好像用的都是一个移动方向，只是对于不同通道进行了固定的移动，不管用多少次这个ShiftConv层，移动都是固定的(相同channel数据移动位置是相同的)</strong></p>
-</blockquote>
-<ul>
-<li><a href="#Shift">Shift</a></li>
-<li><a href="#%E6%96%87%E7%AB%A0">文章</a></li>
-</ul>
-<h1 id="Shift"><a href="#Shift" class="headerlink" title="Shift"></a>Shift</h1><blockquote>
-<p>这个操作就是移动不同通道（移动方向是固定的，对于channel相同的数据来说）<br><img src="/images/image.png.png"></p>
-</blockquote>
-<h1 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h1><blockquote>
-<p>To reduce the state space, we use a simple heuristic: di- vide the M channels evenly into DK2 groups, where each group of ⌊M&#x2F;DK2 ⌋ channels adopts one shift<br>(划分M和通道到M&#x2F;D^2中。每M&#x2F;D^2个通道共享一个shift的方向)</p>
-</blockquote>
-<blockquote>
-<p>I.e.和e.g.都是拉丁语缩写，i.e.代表id est，意为“也就是说，即”（that is），e.g.代表exempli gratia，意思是“举个例子”（for example）<br>However, finding the optimal permutation, <strong>i.e</strong>., how to map each channel-m to a shift group, requires searching a <strong>combinatorially(组合地)</strong> large search space.</p>
-</blockquote>
-<blockquote>
-<p>we introduce a <strong>modification(限制)</strong> to the shift operation that makes input and output invariant to channel order:  We denote a shift operation with channel permutation π as Kπ(<strong>这里不是很明白，K代表的是通道置换</strong>),</p>
-</blockquote>
-<blockquote>
-<p>G ̃&#x3D;Pπ2(Kπ(Pπ1(F)))<br>wherePπi are permutation operators and◦ denotes operator composition(<strong>这里不明白，Pπ代表的是置换算子，但是Pπ(K)Pπ结合起来是整个Shift操作</strong>)</p>
-</blockquote>
-<blockquote>
-<p><strong>因为shift是离散的，因此加入point-wise convolution P1(F)来进行参数更新，离散的不好进行权重更新，同时shift matrix也不会更新</strong></p>
-</blockquote>
-<blockquote>
-<p>So long as the shift operation is sandwiched between two point-wise convolutions, different permutations of shifts are equivalent. Thus, we can choose an arbitrary permutation for the shift kernel, after fixing the number of channels for each shift direction.<br>(说Shift夹入两个PW中就，对于channel顺序就不影响了，事实上肯定会影响的)</p>
-</blockquote>
-<blockquote>
-<p>This convolution <strong>comprises(包含)</strong> ..</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Shift</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VCDimension</title>
-    <url>/2022/02/10/VCDimension/</url>
-    <content><![CDATA[<blockquote>
-<p>注意这里的VC维度指的是只要存在一个不可分的点，比如四个点，一条直线存在无法分割的情况，那就VC维度就不是4，应该从3来看<br><img src="/images/CVDim.png"> </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>copyC</title>
-    <url>/2022/03/13/copyC/</url>
-    <content><![CDATA[<p>浅拷贝和深拷贝<br>指针浅拷贝导致堆区的数据重复释放<br>问题：近期在做算法实验的时候碰到一个关于类指针赋值的问题，简单的指针之间的赋值只是把两个指针指向同一个地址，而我需要把每次算法执行完的类指针push_back进vector储存每次算法迭代的结果，如果每次都是存入同一个指针，就会出现vector中的类指针都指向同一个地址，这就让我想到了能不能进行类指针之间的赋值，两个类指针之间内容相同，但是指针指向的地址都不同，就是两个不同的指针。</p>
-<p>定义</p>
-<p>浅拷贝：按照我的理解就是，两类之间发生数据成员的赋值，如果只是简单数据类型之间的赋值，浅拷贝完全能够胜任，但是碰到有指针的时候，两个类之间浅拷贝，那么两个对象中的指针会指向同一个地址，那么析构函数执行的时候就会发生错误（同一指针释放了两次）。</p>
-<p>深拷贝：在浅拷贝的基础上对指针拷贝进行处理，让两个类指针中的指针指向不同的区域，这样两个类指针虽然内容想到，但是是存储在内存的不同区域。<br>‘’’<br>class rect<br>{<br>public:</p>
-<pre><code>rect();
-rect(const rect *r);
-~rect();
-</code></pre>
-<p>private:<br>    int width, height;<br>    int *p;<br>};<br>rect::rect(const rect *r)<br>{<br>    width &#x3D; r-&gt;width;<br>    height &#x3D; r-&gt;height;<br>    p &#x3D; new int;<br>    *p &#x3D; *(r-&gt;p);<br>}</p>
-<p>rect::rect()<br>{<br>    p &#x3D; new int(100);<br>}</p>
-<p>rect::~rect()<br>{<br>    if (p !&#x3D; NULL)<br>        delete p;<br>}<br>int _tmain(int argc, _TCHAR* argv[])<br>{<br>    rect *rect1;<br>    rect *rect2;<br>    rect1 &#x3D; new rect;<br>    rect2 &#x3D; new rect(rect1);</p>
-<pre><code>return 0;
-</code></pre>
-<p>}<br>‘’’<br>类指针和类内成员p指针都指向了不同的地址</p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>交叉熵损失函数详解</title>
     <url>/2020/11/02/crossentropy/</url>
     <content><![CDATA[<h1 id="交叉熵的数学原理—pytorch中的CrossEntropyLoss-函数"><a href="#交叉熵的数学原理—pytorch中的CrossEntropyLoss-函数" class="headerlink" title="交叉熵的数学原理—pytorch中的CrossEntropyLoss()函数"></a>交叉熵的数学原理—pytorch中的CrossEntropyLoss()函数</h1><p>对于二分类来说，我们使用的是Binary Cross Entropy Loss,公式如下：<br> <img src="/images/1_1.png"><br>因为ln后的数为负数，所以加负号，保证我们是优化最小（不然就要往最大值优化了）；<br>如当l&#x3D;1时（标签为正样本），此时Loss &#x3D; -logp, 我们要使p的值尽量大，loss才会尽量小，最好能到1，就代表分类正确了</p>
@@ -866,12 +701,473 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
       </tags>
   </entry>
   <entry>
+    <title>C++</title>
+    <url>/2022/01/13/C/</url>
+    <content><![CDATA[<blockquote>
+<p>静态函数不能访问非静态变量<br>static method cannot access non-static variables<br>静态函数不会被实例化（不存在对象），就像是写在类外部的函数一样</p>
+</blockquote>
+<pre><code>static void Print(classname e)&#123;
+
+    std::cout&lt;&lt;e.x &lt;&lt; std::endl;
+&#125;
+&#39;&#39;&#39;
+&gt;临时变量作为非const的引用进行参数传递引发的编译错误_mlove编程-程序员宝宝
+技术标签： QT  qt  string  linux  
+
+1.错误原因即解决办法
+Linux环境运行，使用g++编译，观察如下代码，会出现： invalid initialization of non-const reference of type ‘std::string&amp;’ from a temporary of type ‘std::string’的错误。
+
+其中文意思为临时变量无法为非const的引用初始化。也就是在参数传递的过程中，出现错误。出错的代码如下
+</code></pre>
+<p>void print(string&amp; str)<br>{<br>    cout&lt;&lt;str&lt;&lt;endl;<br>}<br>&#x2F;&#x2F;如此调用会报上面描述的错误</p>
+<pre><code>print(&quot;hello world&quot;);
+
+
+出错的原因是编译器根据字符串”hello world”构造一个string类型的临时对象，这个临时对象具有const属性。当这个临时对象传递给非const的string&amp;引用类型时，因为非const引用绑定对象时，要求该对象也是非const对象。而在这时，因为string类型的临时对象是const对象，所以就出现错误。因此，解决办法就是将print()函数的参数改为常引用。代码修改如下，可顺利通过编译。
+
+void print(const string&amp; str)
+&#123;
+    cout&lt;&lt;str&lt;&lt;endl;
+&#125;
+//顺利通过编译
+print(&quot;hello world&quot;);
+通过以上代码，也可以看出Effective C++中倡导的一个C++的编程原则，即尽可能的使用const。因为这样可以使代码更为健壮，将错误暴露于编译阶段。
+
+2.所有的临时对象都是const对象吗
+为什么临时对象作为引用参数传递时，必须是常量引用呢？很多人对此的解释是临时对象是常量，不允许赋值改动，所以作为非常量引用传递时，编译器就会报错。这个解释在关于理解临时对象不能作为非const引用参数这个问题上是可以的，但不够准确。更有甚者，认为所有的临时对象均是const对象，因此，对于网上的观点和资源我们应该持着谨慎怀疑的态度去接受学习，应该坚持鲁迅先生倡导的”拿来主义”，应该批判参考和借鉴。
+
+事实上，临时变量是可以被作为左值(LValue) 并被赋值的，请看下面的代码：
+
+class IntClass&#123;
+private:
+    int x;
+public:
+    IntClass(int value):x(value)&#123;
+    &#125;
+
+    friend  ostream&amp; operator&lt;&lt;( ostream &amp;os, const IntClass &amp;intc);
+&#125;;
+
+//重载输出operator&lt;&lt;
+ostream&amp; operator&lt;&lt;( ostream &amp;os, const IntClass &amp;intc)
+&#123;
+    os&lt;&lt;intc.x;
+    return os;
+&#125;
+
+//打印函数
+void print(IntClass &amp; intc)
+&#123;
+    cout&lt;&lt;intc&lt;&lt;endl;
+    //通过引用修改这个临时对象
+    intc=8;
+    cout&lt;&lt;intc&lt;&lt;endl;
+&#125;
+
+int main(int argc,char* argv[])
+&#123;
+    print(IntClass(6));
+&#125;
+程序输出：
+6
+8
+
+以上代正确编译运行，没有错误。IntClass(6)表示生成一个无名的临时对象，传递给非const引用，在print函数中通过引用修改了这个临时对象。这说明了并非所有的临时对象都是const对象。
+
+那哪些临时对象是const对象，哪些临时对象不是const对象呢？这里贴上摘自网上的一句话：“内置类型产生的临时变量具有常性，而自定义类型产生的临时变量不具有常性”，我想这句话能解释你所谓的临时变量为什么能作为左值的原因。
+
+int* const a = new int;
+这个不能修改指针a, 如 a = &amp;b; 报错
+const int* a = new int; int const* a = new int; 这两个相同，看const的位置
+这个不能修改指针a指向的内容， *a = 2; 报错 
+</code></pre>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>as从句</title>
     <url>/2022/09/24/as%E4%BB%8E%E5%8F%A5/</url>
     <content><![CDATA[<p><img src="/images/as.jpeg"></p>
 ]]></content>
       <tags>
         <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hierarchical</title>
+    <url>/2021/12/02/Hierarchical/</url>
+    <content><![CDATA[<blockquote>
+<p>层次聚类算法 各种linkage</p>
+</blockquote>
+<p>基本工作原理<br>给定要聚类的N的对象以及N*N的距离矩阵(或者是相似性矩阵), 层次式聚类方法的基本步骤(参看S.C. Johnson in 1967)如下:</p>
+<ol>
+<li><pre><code>将每个对象归为一类, 共得到N类, 每类仅包含一个对象. 类与类之间的距离就是它们所包含的对象之间的距离.
+</code></pre>
+</li>
+<li><pre><code>找到最接近的两个类并合并成一类, 于是总的类数少了一个.
+</code></pre>
+</li>
+<li><pre><code>重新计算新的类与所有旧类之间的距离.
+</code></pre>
+</li>
+<li><pre><code>重复第2步和第3步, 直到最后合并成一个类为止(此类包含了N个对象).
+</code></pre>
+<p>根据步骤3的不同, 可将层次式聚类方法分为几类: single-linkage, complete-linkage 以及 average-linkage 聚类方法等.</p>
+</li>
+</ol>
+<p>single-linkage 聚类法(也称 connectedness 或 minimum 方法)：</p>
+<p>类间距离等于两类对象之间的最小距离，若用相似度衡量，则是各类中的任一对象与另一类中任一对象的最大相似度。</p>
+<p>complete-linkage 聚类法 (也称 diameter 或 maximum 方法)：</p>
+<p>组间距离等于两组对象之间的最大距离。</p>
+<p>average-linkage 聚类法：</p>
+<p>组间距离等于两组对象之间的平均距离。</p>
+<p>average-link 聚类的一个变种是R. D’Andrade (1978) 的UCLUS方法, 它使用的是median距离, 在受异常数据对象的影响方面, 它要比平均距离表现更佳一些.</p>
+<p>这种层次聚类称为“凝聚”法，由于它迭代合并所有分类。也有一种“划分”层次聚类法，与“凝聚”相反，它先将所有对象放在同一类中，并不断划分成更小的类，划分法一般很少使用。</p>
+<p>整个聚类过程其实是建立了一棵树，在建立的过程中，可以通过在第二步上设置一个阈值，当最近的两个类的距离大于这个阈值，则认为迭代可以终止。另外关键的一步就是第三步，如何判断两个类之间的相似度有不少种方法。这里介绍一下三种：</p>
+<p>SingleLinkage：又叫做 nearest-neighbor ，就是取两个类中距离最近的两个样本的距离作为这两个集合的距离，也就是说，最近两个样本之间的距离越小，这两个类之间的相似度就越大。容易造成一种叫做 Chaining 的效果，两个 cluster 明明从“大局”上离得比较远，但是由于其中个别的点距离比较近就被合并了，并且这样合并之后 Chaining 效应会进一步扩大，最后会得到比较松散的 cluster 。</p>
+<p>CompleteLinkage：这个则完全是 Single Linkage 的反面极端，取两个集合中距离最远的两个点的距离作为两个集合的距离。其效果也是刚好相反的，限制非常大，两个 cluster 即使已经很接近了，但是只要有不配合的点存在，就顽固到底，老死不相合并，也是不太好的办法。这两种相似度的定义方法的共同问题就是指考虑了某个有特点的数据，而没有考虑类内数据的整体特点。</p>
+<p>Average-linkage：这种方法就是把两个集合中的点两两的距离全部放在一起求一个平均值，相对也能得到合适一点的结果。</p>
+<p>average-linkage的一个变种就是取两两距离的中值，与取均值相比更加能够解除个别偏离样本对结果的干扰。</p>
+
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/cluster.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+      <tags>
+        <tag>culster</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cudaMemPitch</title>
+    <url>/2022/06/28/cudaMemPitch/</url>
+    <content><![CDATA[<h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
+<p>cudaMallocPitch ( void** devPtr, size_t* pitch, size_t width, size_t height )<br>devPtr - Pointer to allocated pitched device memory<br>pitch - Pitch for allocation<br>width - Requested pitched allocation width (in bytes)<br>height - Requested pitched allocation height</p>
+</blockquote>
+<blockquote>
+<p>cudaError_t cudaMemcpy2D	(	void * 	dst,<br>size_t 	dpitch,<br>const void * 	src,<br>size_t 	spitch,<br>size_t 	width,<br>size_t 	height,<br>enum cudaMemcpyKind 	kind	<br>)	</p>
+</blockquote>
+<blockquote>
+<p>Parameters:<br>dst 	- Destination memory address<br>dpitch 	- Pitch of destination memory<br>src 	- Source memory address<br>spitch 	- Pitch of source memory<br>width 	- Width of matrix transfer (columns in bytes)<br>height 	- Height of matrix transfer (rows)<br>kind 	- Type of transfer</p>
+</blockquote>
+<pre><code>`The spitch is different when cudaMemcpyKind is different`
+
+#include&lt;stdio.h&gt;
+#include&lt;cuda.h&gt;
+#include&lt;cuda_runtime.h&gt;
+#include&lt;device_launch_parameters.h&gt;
+#include&lt;conio.h&gt;
+
+#define BLOCKSIZE_x 16
+#define BLOCKSIZE_y 16
+
+#define Nrows 3
+#define Ncols 5
+
+/*****************/
+/* CUDA MEMCHECK */
+/*****************/
+#define gpuErrchk(ans) &#123; gpuAssert((ans), __FILE__, __LINE__); &#125;
+
+inline void gpuAssert(cudaError_t code, char *file, int line, bool abort = true)
+&#123;
+    if (code != cudaSuccess)
+    &#123;
+        fprintf(stderr, &quot;GPUassert: %s %s %dn&quot;, cudaGetErrorString(code), file, line);
+        if (abort) &#123; getch(); exit(code); &#125;
+    &#125;
+&#125;
+
+/*******************/
+/* iDivUp FUNCTION */
+/*******************/
+int iDivUp(int hostPtr, int b)&#123; return ((hostPtr % b) != 0) ? (hostPtr / b + 1) : (hostPtr / b); &#125;
+
+/******************/
+/* TEST KERNEL 2D */
+/******************/
+__global__ void test_kernel_2D(float *devPtr, size_t pitch)
+&#123;
+    int    tidx = blockIdx.x*blockDim.x + threadIdx.x;
+    int    tidy = blockIdx.y*blockDim.y + threadIdx.y;
+
+    if ((tidx &lt; Ncols) &amp;&amp; (tidy &lt; Nrows))
+    &#123;
+        float *row_a = (float *)((char*)devPtr + tidy * pitch);
+        row_a[tidx] = row_a[tidx] * tidx * tidy;
+    &#125;
+&#125;
+
+/********/
+/* MAIN */
+/********/
+int main()
+&#123;
+    float hostPtr[Nrows][Ncols];
+    float *devPtr;
+    size_t pitch;
+
+    for (int i = 0; i &lt; Nrows; i++)
+        for (int j = 0; j &lt; Ncols; j++) &#123;
+            hostPtr[i][j] = 1.f;
+            //printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
+        &#125;
+
+    // --- 2D pitched allocation and host-&gt;device memcopy
+    gpuErrchk(cudaMallocPitch(&amp;devPtr, &amp;pitch, Ncols * sizeof(float), Nrows));
+    gpuErrchk(cudaMemcpy2D(devPtr, pitch, hostPtr, Ncols*sizeof(float), Ncols*sizeof(float), Nrows, cudaMemcpyHostToDevice));
+
+    dim3 gridSize(iDivUp(Ncols, BLOCKSIZE_x), iDivUp(Nrows, BLOCKSIZE_y));
+    dim3 blockSize(BLOCKSIZE_y, BLOCKSIZE_x);
+
+    test_kernel_2D &lt;&lt; &lt;gridSize, blockSize &gt;&gt; &gt;(devPtr, pitch);
+    gpuErrchk(cudaPeekAtLastError());
+    gpuErrchk(cudaDeviceSynchronize());
+
+    gpuErrchk(cudaMemcpy2D(hostPtr, Ncols * sizeof(float), devPtr, pitch, Ncols * sizeof(float), Nrows, cudaMemcpyDeviceToHost));
+
+    for (int i = 0; i &lt; Nrows; i++) 
+        for (int j = 0; j &lt; Ncols; j++) 
+            printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
+
+    return 0;    
+&#125;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>across_loss</title>
+    <url>/2022/03/29/across-loss/</url>
+    <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
+]]></content>
+      <tags>
+        <tag>machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cout重载全局函数</title>
+    <url>/2022/06/17/cout%E9%87%8D%E8%BD%BD%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="为什么c-中重载流操作符要用友元函数"><a href="#为什么c-中重载流操作符要用友元函数" class="headerlink" title="为什么c++中重载流操作符要用友元函数"></a>为什么c++中重载流操作符要用友元函数</h1><h2 id="作为成员函数的话，左操作数非得是自己不可"><a href="#作为成员函数的话，左操作数非得是自己不可" class="headerlink" title="作为成员函数的话，左操作数非得是自己不可"></a>作为成员函数的话，左操作数非得是自己不可</h2><blockquote>
+<p>cout &lt;&lt; XXX 这种情况是cout在调用operator&lt;&lt;而不是XXX在调用operator&lt;&lt; 。<br>如果你要把operator&lt;&lt;设为成员函数就只能用 XXX &lt;&lt; cout 这种形式。</p>
+</blockquote>
+<p><strong>所以这样也是可以的，就是有违常理</strong></p>
+<pre><code>struct point
+&#123;
+    int x;
+    int y;
+
+    point (int _x, int _y)
+        : x(_x), y(_y)
+    &#123;&#125;
+
+    std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os) const
+    &#123;
+        os &lt;&lt; &quot;(&quot; &lt;&lt; x &lt;&lt; &quot;, &quot; &lt;&lt; y &lt;&lt; &quot;)&quot;;
+        return os;
+    &#125;
+&#125;;
+
+int main(int argc, const char* argv[])
+&#123;
+    point p1(1, 2);
+
+    p1 &lt;&lt; std::cout; // 写法同p1.operator&lt;&lt;(std::cout);
+
+    return 0;
+&#125;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>copyC</title>
+    <url>/2022/03/13/copyC/</url>
+    <content><![CDATA[<p>浅拷贝和深拷贝<br>指针浅拷贝导致堆区的数据重复释放<br>问题：近期在做算法实验的时候碰到一个关于类指针赋值的问题，简单的指针之间的赋值只是把两个指针指向同一个地址，而我需要把每次算法执行完的类指针push_back进vector储存每次算法迭代的结果，如果每次都是存入同一个指针，就会出现vector中的类指针都指向同一个地址，这就让我想到了能不能进行类指针之间的赋值，两个类指针之间内容相同，但是指针指向的地址都不同，就是两个不同的指针。</p>
+<p>定义</p>
+<p>浅拷贝：按照我的理解就是，两类之间发生数据成员的赋值，如果只是简单数据类型之间的赋值，浅拷贝完全能够胜任，但是碰到有指针的时候，两个类之间浅拷贝，那么两个对象中的指针会指向同一个地址，那么析构函数执行的时候就会发生错误（同一指针释放了两次）。</p>
+<p>深拷贝：在浅拷贝的基础上对指针拷贝进行处理，让两个类指针中的指针指向不同的区域，这样两个类指针虽然内容想到，但是是存储在内存的不同区域。<br>‘’’<br>class rect<br>{<br>public:</p>
+<pre><code>rect();
+rect(const rect *r);
+~rect();
+</code></pre>
+<p>private:<br>    int width, height;<br>    int *p;<br>};<br>rect::rect(const rect *r)<br>{<br>    width &#x3D; r-&gt;width;<br>    height &#x3D; r-&gt;height;<br>    p &#x3D; new int;<br>    *p &#x3D; *(r-&gt;p);<br>}</p>
+<p>rect::rect()<br>{<br>    p &#x3D; new int(100);<br>}</p>
+<p>rect::~rect()<br>{<br>    if (p !&#x3D; NULL)<br>        delete p;<br>}<br>int _tmain(int argc, _TCHAR* argv[])<br>{<br>    rect *rect1;<br>    rect *rect2;<br>    rect1 &#x3D; new rect;<br>    rect2 &#x3D; new rect(rect1);</p>
+<pre><code>return 0;
+</code></pre>
+<p>}<br>‘’’<br>类指针和类内成员p指针都指向了不同的地址</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>equilibria</title>
+    <url>/2022/02/08/equilibria/</url>
+    <content><![CDATA[<p><img src="/images/game01.png"> </p>
+<p>举个例子吧如图所示：首先固定1<br>1选择C–&gt; 2最好选择C(-5&gt;-15)，<br>画上蓝色线条<br>1选择N–&gt; 2最好选择C(0&gt;-1)，画上蓝色线条<br>接下来固定2<br>2选择C–&gt; 1最好选择C(-5&gt;-15)，画上红色线条<br>2选择N–&gt; 1最好选择C(0&gt;-1)，画上红色线条得纯策略纳什均衡(-5,-5)</p>
+]]></content>
+      <tags>
+        <tag>game</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>p18-function-like-class</title>
+    <url>/2022/06/16/function-like-class/</url>
+    <content><![CDATA[<ul>
+<li><a href="#%E4%B8%B4%E6%97%B6%E5%87%BD%E6%95%B0">临时函数</a></li>
+</ul>
+<h1 id="临时函数"><a href="#临时函数" class="headerlink" title="临时函数"></a>临时函数</h1><pre><code>#include&lt;iostream&gt;
+
+class temporary&#123;
+public:
+    temporary()&#123;
+            std::cout &lt;&lt; &quot;temporary ctor&quot; &lt;&lt;std::endl;
+    &#125;
+    ~temporary()&#123;
+        std::cout &lt;&lt; &quot;destory&quot;  &lt;&lt;std::endl;
+    &#125;
+    void fun()&#123;
+        std::cout &lt;&lt; &quot;This is function output&quot;  &lt;&lt;std::endl;
+    &#125;
+
+&#125;;
+int main()&#123;
+    
+    temporary ().fun();
+    return 0;
+&#125;
+</code></pre>
+<p><strong>output</strong>:</p>
+<pre><code>temporary ctor
+This is function output
+destory
+</code></pre>
+<ul>
+<li>建立一个没有命名的非堆（non-heap）对象，也就是无名对象时，会产生临时对象</li>
+</ul>
+<pre><code>Integer inte= Integer(5); //用无名临时对象初始化一个对象
+</code></pre>
+<ul>
+<li>构造函数作为隐式类型转换函数时，会创建临时对象，用作实参传递给函数。</li>
+</ul>
+<pre><code>class Integer
+&#123;
+public:
+    Integer(int i):m_val(i)&#123;&#125;
+    ~Integer()&#123;&#125;
+private:
+    int m_val;
+&#125;;
+ 
+void testFunc(Integer itgr)
+&#123;
+    //do something
+&#125;
+
+int  i = 10;
+testFunc(i);
+
+会产生一个临时对象，作为实参传递到 testFunc 函数中。
+</code></pre>
+<ul>
+<li>函数返回一个对象时，会产生临时对象。以返回的对象作为拷贝构造函数的实参构造一个临时对象。</li>
+</ul>
+<pre><code>Integer Func()
+&#123;
+    Integer itgr;
+    return itgr;
+&#125;
+ 
+int main()
+&#123;
+    Integer in;
+    in = Func();
+&#125;
+</code></pre>
+<h1 id="Why-we-need-function-like-class"><a href="#Why-we-need-function-like-class" class="headerlink" title="Why we need function-like class?"></a>Why we need function-like class?</h1><ul>
+<li>让类实例化之后的对象可以作为一个参数进行传递（可以随时修改这个类，但是不影响其他类或者函数）</li>
+</ul>
+<p><img src="/images/function-like-class.png"></p>
+<ul>
+<li>标准库中存在很多仿函数，并且会继承很多奇特的base classes</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>-c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>for和of</title>
+    <url>/2022/09/29/for%E5%92%8Cof/</url>
+    <content><![CDATA[<h3 id="for-和-of"><a href="#for-和-of" class="headerlink" title="for 和 of"></a>for 和 of</h3><blockquote>
+<p>先来概括一下分别应该在哪些情况下使用介词 “for” 或者 “of”。<strong>“For” 通常用来说明某动作的对象、目的或原因</strong>，<strong>而 “of” 则常用来提示事物相关的信息</strong>。比如，“of” 可以用来说明事物之间的属性或从属关系。另外，介词 “for” 和 “of” 都可以用来谈论时间，但它们的用法却不同。</p>
+</blockquote>
+<blockquote>
+<p>先来听第一组例句，两句话都在谈论一条项链，分别使用了介词 “for” 和 “of”，但句子的含义却完全不同。</p>
+</blockquote>
+<p>(对象)</p>
+<ul>
+<li><p>Was this necklace made for me?<br>（这条项链是为我做的吗？）</p>
+</li>
+<li><p>Is this necklace made of gold?<br>（这条项链是金子做的吗？）</p>
+</li>
+</ul>
+<p>(目的)</p>
+<ul>
+<li><p>How many grams of soybeans do we need to make tofu? We need thirty grams for tofu.<br>（做豆腐需要多少克大豆？做豆腐需要30克大豆。）</p>
+</li>
+<li><p>We need thirty grams of tofu.<br>（需要30克豆腐。）</p>
+</li>
+</ul>
+<p>在第一个例句中，“We need thirty grams for tofu.” 表示 “我们需要30克的大豆来做豆腐”。这里，介词 “for” 用来说明目的。在第二个例句中：“We need thirty grams of tofu.” 表示 “我们需要30克的豆腐”，介词 “of” 在这里的用法和目的无关，它用来说明被测量的事物名称。</p>
+<ul>
+<li><p>This is the house for our clients.<br>（这是为我们客户准备的房子。） 介词 “for” 提示了房子的用途或目的</p>
+</li>
+<li><p>This is the house of our clients.<br>（这是我们客户的房子。）这里，介词 “of” 提示从属关系。</p>
+</li>
+</ul>
+<p>（原因）</p>
+<ul>
+<li><p>She won an award for her brilliant performance.<br>（由于表演十分精彩，她获得了一个奖项。）</p>
+</li>
+<li><p>She won an award of £1000.<br>（她获得了一笔1000英镑的奖金。）</p>
+</li>
+</ul>
+<h3 id="介词-“for”-和-“of”-都可以用来谈论时间，但它们的用法是有区别的。在谈论时间时，“for”-多用来说明一件事情发生的时间长短，而-“of”-则往往用来引出持续一段时间的动作是什么。来听第五组例句。"><a href="#介词-“for”-和-“of”-都可以用来谈论时间，但它们的用法是有区别的。在谈论时间时，“for”-多用来说明一件事情发生的时间长短，而-“of”-则往往用来引出持续一段时间的动作是什么。来听第五组例句。" class="headerlink" title="介词 “for” 和 “of” 都可以用来谈论时间，但它们的用法是有区别的。在谈论时间时，“for” 多用来说明一件事情发生的时间长短，而 “of” 则往往用来引出持续一段时间的动作是什么。来听第五组例句。"></a>介词 “for” 和 “of” 都可以用来谈论时间，但它们的用法是有区别的。在谈论时间时，“for” 多用来说明一件事情发生的时间长短，而 “of” 则往往用来引出持续一段时间的动作是什么。来听第五组例句。</h3><ul>
+<li><p>I had to listen to him for two hours!<br>（我不得不听他说了两个小时！）</p>
+</li>
+<li><p>I had to listen to two hours of him speaking!<br>（我不得不听他说了两个小时！）</p>
+</li>
+</ul>
+<blockquote>
+<p>这两句话的意思都是 “我不得不听他说两个小时”，却分别使用了介词 “for” 和 “of”。在第一句话中：“listen to him for two hours 听他说了两个小时”，介词 “for” 用来说明 “听” 这个动作延续的时长。第二句话中，“listen to two hours of him speaking”，介词 “of” 在这里引出了 “我听了两个小时” 的具体内容。</p>
+</blockquote>
+<h2 id="notes"><a href="#notes" class="headerlink" title="notes"></a>notes</h2><blockquote>
+<p>通常情况下，介词 “for” 用来说明某动作的对象、目的或原因；而介词 “of” 用来提示事物相关的信息。比如，事物之间的属性或从属关系。在谈论时间的时候，介词 “for” 多用来说明动作延续的时长，而 “of” 则可以用来解释动作的具体内容。建议大家重听例句，巩固对两个词用法的理解。</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>likeihood</title>
+    <url>/2021/12/17/likeihood/</url>
+    <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
+]]></content>
+      <tags>
+        <tag>likelihood</tag>
       </tags>
   </entry>
   <entry>
@@ -1160,153 +1456,6 @@ git is master, 0e1f110
       </tags>
   </entry>
   <entry>
-    <title>equilibria</title>
-    <url>/2022/02/08/equilibria/</url>
-    <content><![CDATA[<p><img src="/images/game01.png"> </p>
-<p>举个例子吧如图所示：首先固定1<br>1选择C–&gt; 2最好选择C(-5&gt;-15)，<br>画上蓝色线条<br>1选择N–&gt; 2最好选择C(0&gt;-1)，画上蓝色线条<br>接下来固定2<br>2选择C–&gt; 1最好选择C(-5&gt;-15)，画上红色线条<br>2选择N–&gt; 1最好选择C(0&gt;-1)，画上红色线条得纯策略纳什均衡(-5,-5)</p>
-]]></content>
-      <tags>
-        <tag>game</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cudaMemPitch</title>
-    <url>/2022/06/28/cudaMemPitch/</url>
-    <content><![CDATA[<h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
-<p>cudaMallocPitch ( void** devPtr, size_t* pitch, size_t width, size_t height )<br>devPtr - Pointer to allocated pitched device memory<br>pitch - Pitch for allocation<br>width - Requested pitched allocation width (in bytes)<br>height - Requested pitched allocation height</p>
-</blockquote>
-<blockquote>
-<p>cudaError_t cudaMemcpy2D	(	void * 	dst,<br>size_t 	dpitch,<br>const void * 	src,<br>size_t 	spitch,<br>size_t 	width,<br>size_t 	height,<br>enum cudaMemcpyKind 	kind	<br>)	</p>
-</blockquote>
-<blockquote>
-<p>Parameters:<br>dst 	- Destination memory address<br>dpitch 	- Pitch of destination memory<br>src 	- Source memory address<br>spitch 	- Pitch of source memory<br>width 	- Width of matrix transfer (columns in bytes)<br>height 	- Height of matrix transfer (rows)<br>kind 	- Type of transfer</p>
-</blockquote>
-<pre><code>`The spitch is different when cudaMemcpyKind is different`
-
-#include&lt;stdio.h&gt;
-#include&lt;cuda.h&gt;
-#include&lt;cuda_runtime.h&gt;
-#include&lt;device_launch_parameters.h&gt;
-#include&lt;conio.h&gt;
-
-#define BLOCKSIZE_x 16
-#define BLOCKSIZE_y 16
-
-#define Nrows 3
-#define Ncols 5
-
-/*****************/
-/* CUDA MEMCHECK */
-/*****************/
-#define gpuErrchk(ans) &#123; gpuAssert((ans), __FILE__, __LINE__); &#125;
-
-inline void gpuAssert(cudaError_t code, char *file, int line, bool abort = true)
-&#123;
-    if (code != cudaSuccess)
-    &#123;
-        fprintf(stderr, &quot;GPUassert: %s %s %dn&quot;, cudaGetErrorString(code), file, line);
-        if (abort) &#123; getch(); exit(code); &#125;
-    &#125;
-&#125;
-
-/*******************/
-/* iDivUp FUNCTION */
-/*******************/
-int iDivUp(int hostPtr, int b)&#123; return ((hostPtr % b) != 0) ? (hostPtr / b + 1) : (hostPtr / b); &#125;
-
-/******************/
-/* TEST KERNEL 2D */
-/******************/
-__global__ void test_kernel_2D(float *devPtr, size_t pitch)
-&#123;
-    int    tidx = blockIdx.x*blockDim.x + threadIdx.x;
-    int    tidy = blockIdx.y*blockDim.y + threadIdx.y;
-
-    if ((tidx &lt; Ncols) &amp;&amp; (tidy &lt; Nrows))
-    &#123;
-        float *row_a = (float *)((char*)devPtr + tidy * pitch);
-        row_a[tidx] = row_a[tidx] * tidx * tidy;
-    &#125;
-&#125;
-
-/********/
-/* MAIN */
-/********/
-int main()
-&#123;
-    float hostPtr[Nrows][Ncols];
-    float *devPtr;
-    size_t pitch;
-
-    for (int i = 0; i &lt; Nrows; i++)
-        for (int j = 0; j &lt; Ncols; j++) &#123;
-            hostPtr[i][j] = 1.f;
-            //printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
-        &#125;
-
-    // --- 2D pitched allocation and host-&gt;device memcopy
-    gpuErrchk(cudaMallocPitch(&amp;devPtr, &amp;pitch, Ncols * sizeof(float), Nrows));
-    gpuErrchk(cudaMemcpy2D(devPtr, pitch, hostPtr, Ncols*sizeof(float), Ncols*sizeof(float), Nrows, cudaMemcpyHostToDevice));
-
-    dim3 gridSize(iDivUp(Ncols, BLOCKSIZE_x), iDivUp(Nrows, BLOCKSIZE_y));
-    dim3 blockSize(BLOCKSIZE_y, BLOCKSIZE_x);
-
-    test_kernel_2D &lt;&lt; &lt;gridSize, blockSize &gt;&gt; &gt;(devPtr, pitch);
-    gpuErrchk(cudaPeekAtLastError());
-    gpuErrchk(cudaDeviceSynchronize());
-
-    gpuErrchk(cudaMemcpy2D(hostPtr, Ncols * sizeof(float), devPtr, pitch, Ncols * sizeof(float), Nrows, cudaMemcpyDeviceToHost));
-
-    for (int i = 0; i &lt; Nrows; i++) 
-        for (int j = 0; j &lt; Ncols; j++) 
-            printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
-
-    return 0;    
-&#125;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>cuda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cout重载全局函数</title>
-    <url>/2022/06/17/cout%E9%87%8D%E8%BD%BD%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="为什么c-中重载流操作符要用友元函数"><a href="#为什么c-中重载流操作符要用友元函数" class="headerlink" title="为什么c++中重载流操作符要用友元函数"></a>为什么c++中重载流操作符要用友元函数</h1><h2 id="作为成员函数的话，左操作数非得是自己不可"><a href="#作为成员函数的话，左操作数非得是自己不可" class="headerlink" title="作为成员函数的话，左操作数非得是自己不可"></a>作为成员函数的话，左操作数非得是自己不可</h2><blockquote>
-<p>cout &lt;&lt; XXX 这种情况是cout在调用operator&lt;&lt;而不是XXX在调用operator&lt;&lt; 。<br>如果你要把operator&lt;&lt;设为成员函数就只能用 XXX &lt;&lt; cout 这种形式。</p>
-</blockquote>
-<p><strong>所以这样也是可以的，就是有违常理</strong></p>
-<pre><code>struct point
-&#123;
-    int x;
-    int y;
-
-    point (int _x, int _y)
-        : x(_x), y(_y)
-    &#123;&#125;
-
-    std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os) const
-    &#123;
-        os &lt;&lt; &quot;(&quot; &lt;&lt; x &lt;&lt; &quot;, &quot; &lt;&lt; y &lt;&lt; &quot;)&quot;;
-        return os;
-    &#125;
-&#125;;
-
-int main(int argc, const char* argv[])
-&#123;
-    point p1(1, 2);
-
-    p1 &lt;&lt; std::cout; // 写法同p1.operator&lt;&lt;(std::cout);
-
-    return 0;
-&#125;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>emotion_behind_your_money_habits</title>
     <url>/2021/12/24/emotion-behind-your-money-habits/</url>
     <content><![CDATA[<blockquote>
@@ -1319,166 +1468,19 @@ int main(int argc, const char* argv[])
       </tags>
   </entry>
   <entry>
-    <title>for和of</title>
-    <url>/2022/09/29/for%E5%92%8Cof/</url>
-    <content><![CDATA[<h3 id="for-和-of"><a href="#for-和-of" class="headerlink" title="for 和 of"></a>for 和 of</h3><blockquote>
-<p>先来概括一下分别应该在哪些情况下使用介词 “for” 或者 “of”。<strong>“For” 通常用来说明某动作的对象、目的或原因</strong>，<strong>而 “of” 则常用来提示事物相关的信息</strong>。比如，“of” 可以用来说明事物之间的属性或从属关系。另外，介词 “for” 和 “of” 都可以用来谈论时间，但它们的用法却不同。</p>
-</blockquote>
-<blockquote>
-<p>先来听第一组例句，两句话都在谈论一条项链，分别使用了介词 “for” 和 “of”，但句子的含义却完全不同。</p>
-</blockquote>
-<p>(对象)</p>
+    <title>list必须用自己的sort</title>
+    <url>/2022/09/06/list%E5%BF%85%E9%A1%BB%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84sort/</url>
+    <content><![CDATA[<h2 id="list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定"><a href="#list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定" class="headerlink" title="list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定"></a>list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定</h2><p><img src="/images/2022-09-06-14-01-14.png"></p>
 <ul>
-<li><p>Was this necklace made for me?<br>（这条项链是为我做的吗？）</p>
-</li>
-<li><p>Is this necklace made of gold?<br>（这条项链是金子做的吗？）</p>
-</li>
+<li>list因为链表结构，不能随机访问，因此不能使用全局的sort，全局sort涉及到对iterator的随机访问</li>
 </ul>
-<p>(目的)</p>
-<ul>
-<li><p>How many grams of soybeans do we need to make tofu? We need thirty grams for tofu.<br>（做豆腐需要多少克大豆？做豆腐需要30克大豆。）</p>
-</li>
-<li><p>We need thirty grams of tofu.<br>（需要30克豆腐。）</p>
-</li>
+<h2 id="函数模板流程，先判断是stone，之后调用stone的重载符号-gt"><a href="#函数模板流程，先判断是stone，之后调用stone的重载符号-gt" class="headerlink" title="函数模板流程，先判断是stone，之后调用stone的重载符号&gt;"></a>函数模板流程，先判断是stone，之后调用stone的重载符号&gt;</h2><ul>
+<li>作用在左边的变量中，这里就是 b._weight &gt; rsh(a)._weight</li>
 </ul>
-<p>在第一个例句中，“We need thirty grams for tofu.” 表示 “我们需要30克的大豆来做豆腐”。这里，介词 “for” 用来说明目的。在第二个例句中：“We need thirty grams of tofu.” 表示 “我们需要30克的豆腐”，介词 “of” 在这里的用法和目的无关，它用来说明被测量的事物名称。</p>
-<ul>
-<li><p>This is the house for our clients.<br>（这是为我们客户准备的房子。） 介词 “for” 提示了房子的用途或目的</p>
-</li>
-<li><p>This is the house of our clients.<br>（这是我们客户的房子。）这里，介词 “of” 提示从属关系。</p>
-</li>
-</ul>
-<p>（原因）</p>
-<ul>
-<li><p>She won an award for her brilliant performance.<br>（由于表演十分精彩，她获得了一个奖项。）</p>
-</li>
-<li><p>She won an award of £1000.<br>（她获得了一笔1000英镑的奖金。）</p>
-</li>
-</ul>
-<h3 id="介词-“for”-和-“of”-都可以用来谈论时间，但它们的用法是有区别的。在谈论时间时，“for”-多用来说明一件事情发生的时间长短，而-“of”-则往往用来引出持续一段时间的动作是什么。来听第五组例句。"><a href="#介词-“for”-和-“of”-都可以用来谈论时间，但它们的用法是有区别的。在谈论时间时，“for”-多用来说明一件事情发生的时间长短，而-“of”-则往往用来引出持续一段时间的动作是什么。来听第五组例句。" class="headerlink" title="介词 “for” 和 “of” 都可以用来谈论时间，但它们的用法是有区别的。在谈论时间时，“for” 多用来说明一件事情发生的时间长短，而 “of” 则往往用来引出持续一段时间的动作是什么。来听第五组例句。"></a>介词 “for” 和 “of” 都可以用来谈论时间，但它们的用法是有区别的。在谈论时间时，“for” 多用来说明一件事情发生的时间长短，而 “of” 则往往用来引出持续一段时间的动作是什么。来听第五组例句。</h3><ul>
-<li><p>I had to listen to him for two hours!<br>（我不得不听他说了两个小时！）</p>
-</li>
-<li><p>I had to listen to two hours of him speaking!<br>（我不得不听他说了两个小时！）</p>
-</li>
-</ul>
-<blockquote>
-<p>这两句话的意思都是 “我不得不听他说两个小时”，却分别使用了介词 “for” 和 “of”。在第一句话中：“listen to him for two hours 听他说了两个小时”，介词 “for” 用来说明 “听” 这个动作延续的时长。第二句话中，“listen to two hours of him speaking”，介词 “of” 在这里引出了 “我听了两个小时” 的具体内容。</p>
-</blockquote>
-<h2 id="notes"><a href="#notes" class="headerlink" title="notes"></a>notes</h2><blockquote>
-<p>通常情况下，介词 “for” 用来说明某动作的对象、目的或原因；而介词 “of” 用来提示事物相关的信息。比如，事物之间的属性或从属关系。在谈论时间的时候，介词 “for” 多用来说明动作延续的时长，而 “of” 则可以用来解释动作的具体内容。建议大家重听例句，巩固对两个词用法的理解。</p>
-</blockquote>
+<p><img src="/images/2022-09-06-14-17-28.png"></p>
 ]]></content>
       <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>p18-function-like-class</title>
-    <url>/2022/06/16/function-like-class/</url>
-    <content><![CDATA[<ul>
-<li><a href="#%E4%B8%B4%E6%97%B6%E5%87%BD%E6%95%B0">临时函数</a></li>
-</ul>
-<h1 id="临时函数"><a href="#临时函数" class="headerlink" title="临时函数"></a>临时函数</h1><pre><code>#include&lt;iostream&gt;
-
-class temporary&#123;
-public:
-    temporary()&#123;
-            std::cout &lt;&lt; &quot;temporary ctor&quot; &lt;&lt;std::endl;
-    &#125;
-    ~temporary()&#123;
-        std::cout &lt;&lt; &quot;destory&quot;  &lt;&lt;std::endl;
-    &#125;
-    void fun()&#123;
-        std::cout &lt;&lt; &quot;This is function output&quot;  &lt;&lt;std::endl;
-    &#125;
-
-&#125;;
-int main()&#123;
-    
-    temporary ().fun();
-    return 0;
-&#125;
-</code></pre>
-<p><strong>output</strong>:</p>
-<pre><code>temporary ctor
-This is function output
-destory
-</code></pre>
-<ul>
-<li>建立一个没有命名的非堆（non-heap）对象，也就是无名对象时，会产生临时对象</li>
-</ul>
-<pre><code>Integer inte= Integer(5); //用无名临时对象初始化一个对象
-</code></pre>
-<ul>
-<li>构造函数作为隐式类型转换函数时，会创建临时对象，用作实参传递给函数。</li>
-</ul>
-<pre><code>class Integer
-&#123;
-public:
-    Integer(int i):m_val(i)&#123;&#125;
-    ~Integer()&#123;&#125;
-private:
-    int m_val;
-&#125;;
- 
-void testFunc(Integer itgr)
-&#123;
-    //do something
-&#125;
-
-int  i = 10;
-testFunc(i);
-
-会产生一个临时对象，作为实参传递到 testFunc 函数中。
-</code></pre>
-<ul>
-<li>函数返回一个对象时，会产生临时对象。以返回的对象作为拷贝构造函数的实参构造一个临时对象。</li>
-</ul>
-<pre><code>Integer Func()
-&#123;
-    Integer itgr;
-    return itgr;
-&#125;
- 
-int main()
-&#123;
-    Integer in;
-    in = Func();
-&#125;
-</code></pre>
-<h1 id="Why-we-need-function-like-class"><a href="#Why-we-need-function-like-class" class="headerlink" title="Why we need function-like class?"></a>Why we need function-like class?</h1><ul>
-<li>让类实例化之后的对象可以作为一个参数进行传递（可以随时修改这个类，但是不影响其他类或者函数）</li>
-</ul>
-<p><img src="/images/function-like-class.png"></p>
-<ul>
-<li>标准库中存在很多仿函数，并且会继承很多奇特的base classes</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>-c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>likeihood</title>
-    <url>/2021/12/17/likeihood/</url>
-    <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
-]]></content>
-      <tags>
-        <tag>likelihood</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>forandrecursion</title>
-    <url>/2022/04/21/forandrecursion/</url>
-    <content><![CDATA[<blockquote>
-<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
-</blockquote>
-<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
-<p>比如全排列问题</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>-algorithm</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1505,21 +1507,21 @@ hello world
       </tags>
   </entry>
   <entry>
+    <title>multiset</title>
+    <url>/2022/09/05/mutiset/</url>
+    <content><![CDATA[<p><img src="/images/2022-09-05-22-49-24.png"></p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>n-gram</title>
     <url>/2022/01/04/n-gram/</url>
     <content><![CDATA[<p><img src="/images/n-gram.png"> </p>
 ]]></content>
       <tags>
         <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>p19-namespace</title>
-    <url>/2022/06/16/namespace/</url>
-    <content><![CDATA[<h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1542,29 +1544,9 @@ hello world
       </tags>
   </entry>
   <entry>
-    <title>operator赋值为什么返回引用</title>
-    <url>/2022/03/13/operator%E8%B5%8B%E5%80%BC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%94%E5%9B%9E%E5%BC%95%E7%94%A8/</url>
-    <content><![CDATA[<p>一个自定义类，如果没有重载其&#x3D;运算符，那么编译器将自动生成一个。但是此编译器自动生成的重载函数可能不安全。这是因为它采用了所谓的“浅拷贝”，也就是对于指针而言，它拷贝的是指针的值，而不是其指向的内存空间。那么这个内存空间就有了两个指针指向它，且类对象要析构两次，但是内存空间只能被释放一次，那么第二次就会出现访问错误。</p>
-<p>　　要避免这种“浅拷贝”问题，就需要重载&#x3D;运算符。这是一个二元运算符，函数名和参数比较容易确定，重点是其返回类型。一般来说，要返回一个类的引用类型。这是因为要能实现所谓的“链式编程”。我存在过的疑问是，为什么要返回一个引用，才能实现所谓的“链式编程”呢？这里从代码出发，进行思考与总结。</p>
-<p>复制代码<br>class Student<br>{<br>public:<br>    Student(const char* name);~Student();<br>    Student&amp; operator&#x3D;(const Student &amp;student);private:<br>    char *m_name;<br>};<br>复制代码<br>复制代码<br>&#x2F;&#x2F;测试代码<br>Student s1(“Lee”);<br>Student s2(“Diwen”);<br>Student s3(“Tom”);</p>
-<p>&#x2F;&#x2F;先执行s2 &#x3D; s1, 即执行 s2.operator&#x3D;(s1), 返回的是s2的引用<br>&#x2F;&#x2F;然后执行s3 &#x3D; s2, 即执行 s3.operator&#x3D;(s2)<br>s3 &#x3D; s2 &#x3D; s1;<br>复制代码<br>　　&#x3D;的链式编程执行顺序是从右向左的。因此右边需要返回一个Student类型的对象，是肯定的。那么问题是，为何要返回一个引用呢？</p>
-<p>　　观察一下重载&#x3D;运算符的函数，参数类型是一个常量引用，也即是说传进去的实参必须是一个左值。而如果返回类型是Student，那么返回的就是一个匿名对象（右值），作为链式编程，此返回值（右值）又要作为实参传进去，那么显然不行(不加const不行，加了是可以的)。<br>const引用可以绑定到右值，而重载的赋值运算符返回一个引用当然是为了避免没有意义的拷贝了。</p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>list必须用自己的sort</title>
-    <url>/2022/09/06/list%E5%BF%85%E9%A1%BB%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84sort/</url>
-    <content><![CDATA[<h2 id="list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定"><a href="#list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定" class="headerlink" title="list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定"></a>list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定</h2><p><img src="/images/2022-09-06-14-01-14.png"></p>
-<ul>
-<li>list因为链表结构，不能随机访问，因此不能使用全局的sort，全局sort涉及到对iterator的随机访问</li>
-</ul>
-<h2 id="函数模板流程，先判断是stone，之后调用stone的重载符号-gt"><a href="#函数模板流程，先判断是stone，之后调用stone的重载符号-gt" class="headerlink" title="函数模板流程，先判断是stone，之后调用stone的重载符号&gt;"></a>函数模板流程，先判断是stone，之后调用stone的重载符号&gt;</h2><ul>
-<li>作用在左边的变量中，这里就是 b._weight &gt; rsh(a)._weight</li>
-</ul>
-<p><img src="/images/2022-09-06-14-17-28.png"></p>
+    <title>p19-namespace</title>
+    <url>/2022/06/16/namespace/</url>
+    <content><![CDATA[<h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -1583,21 +1565,16 @@ hello world
       </tags>
   </entry>
   <entry>
-    <title>multiset</title>
-    <url>/2022/09/05/mutiset/</url>
-    <content><![CDATA[<p><img src="/images/2022-09-05-22-49-24.png"></p>
+    <title>operator赋值为什么返回引用</title>
+    <url>/2022/03/13/operator%E8%B5%8B%E5%80%BC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%94%E5%9B%9E%E5%BC%95%E7%94%A8/</url>
+    <content><![CDATA[<p>一个自定义类，如果没有重载其&#x3D;运算符，那么编译器将自动生成一个。但是此编译器自动生成的重载函数可能不安全。这是因为它采用了所谓的“浅拷贝”，也就是对于指针而言，它拷贝的是指针的值，而不是其指向的内存空间。那么这个内存空间就有了两个指针指向它，且类对象要析构两次，但是内存空间只能被释放一次，那么第二次就会出现访问错误。</p>
+<p>　　要避免这种“浅拷贝”问题，就需要重载&#x3D;运算符。这是一个二元运算符，函数名和参数比较容易确定，重点是其返回类型。一般来说，要返回一个类的引用类型。这是因为要能实现所谓的“链式编程”。我存在过的疑问是，为什么要返回一个引用，才能实现所谓的“链式编程”呢？这里从代码出发，进行思考与总结。</p>
+<p>复制代码<br>class Student<br>{<br>public:<br>    Student(const char* name);~Student();<br>    Student&amp; operator&#x3D;(const Student &amp;student);private:<br>    char *m_name;<br>};<br>复制代码<br>复制代码<br>&#x2F;&#x2F;测试代码<br>Student s1(“Lee”);<br>Student s2(“Diwen”);<br>Student s3(“Tom”);</p>
+<p>&#x2F;&#x2F;先执行s2 &#x3D; s1, 即执行 s2.operator&#x3D;(s1), 返回的是s2的引用<br>&#x2F;&#x2F;然后执行s3 &#x3D; s2, 即执行 s3.operator&#x3D;(s2)<br>s3 &#x3D; s2 &#x3D; s1;<br>复制代码<br>　　&#x3D;的链式编程执行顺序是从右向左的。因此右边需要返回一个Student类型的对象，是肯定的。那么问题是，为何要返回一个引用呢？</p>
+<p>　　观察一下重载&#x3D;运算符的函数，参数类型是一个常量引用，也即是说传进去的实参必须是一个左值。而如果返回类型是Student，那么返回的就是一个匿名对象（右值），作为链式编程，此返回值（右值）又要作为实参传进去，那么显然不行(不加const不行，加了是可以的)。<br>const引用可以绑定到右值，而重载的赋值运算符返回一个引用当然是为了避免没有意义的拷贝了。</p>
 ]]></content>
       <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>oral_practices</title>
-    <url>/2021/11/01/oral-practices/</url>
-    <content><![CDATA[<p>a new way to get personalized, relevant ideas, delivered right to your inbox.</p>
-]]></content>
-      <tags>
-        <tag>English</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -1630,6 +1607,49 @@ hello world
 <p>Some people build while others destroy. 有些人建设而另一些人则破坏。</p>
 <p>注：该结构也可说成some…some。如：</p>
 <p>Some of us agree, some disagree. 我们有些人同意，有些人不同意。</p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>p22Member-Template</title>
+    <url>/2022/06/17/p22Member-Template/</url>
+    <content><![CDATA[<h2 id="模版内还有模版，一般用于构造函数中，"><a href="#模版内还有模版，一般用于构造函数中，" class="headerlink" title="模版内还有模版，一般用于构造函数中，"></a>模版内还有模版，一般用于构造函数中，</h2><ul>
+<li>把草鱼和麻雀用于对鱼类和鸟类的初始化（作为构造函数传入）</li>
+<li>这里的T1 first 能成功，是因为first是草鱼，是继承了鱼这个类的,也叫up-cast</li>
+</ul>
+<pre><code>// for smart pointer
+template&lt;class _Tp&gt;
+class shared_pte:public _shared_ptr&lt;_Tp&gt;&#123;
+
+    ...
+    template&lt;class _Tp1&gt;
+    explicit shared_ptr(const _Tp1* _p):_shared_ptr&lt;_Tp&gt;(_p)&#123;&#125;
+&#125;
+shared_ptr&lt;Base1&gt;sptr(new Derived1);
+</code></pre>
+<ul>
+<li>为了让构造函数更有弹性<br><img src="/images/member-template.png"></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>oral_practices</title>
+    <url>/2021/11/01/oral-practices/</url>
+    <content><![CDATA[<p>a new way to get personalized, relevant ideas, delivered right to your inbox.</p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>p33const</title>
+    <url>/2022/06/19/p33const/</url>
+    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -1684,31 +1704,6 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>p22Member-Template</title>
-    <url>/2022/06/17/p22Member-Template/</url>
-    <content><![CDATA[<h2 id="模版内还有模版，一般用于构造函数中，"><a href="#模版内还有模版，一般用于构造函数中，" class="headerlink" title="模版内还有模版，一般用于构造函数中，"></a>模版内还有模版，一般用于构造函数中，</h2><ul>
-<li>把草鱼和麻雀用于对鱼类和鸟类的初始化（作为构造函数传入）</li>
-<li>这里的T1 first 能成功，是因为first是草鱼，是继承了鱼这个类的,也叫up-cast</li>
-</ul>
-<pre><code>// for smart pointer
-template&lt;class _Tp&gt;
-class shared_pte:public _shared_ptr&lt;_Tp&gt;&#123;
-
-    ...
-    template&lt;class _Tp1&gt;
-    explicit shared_ptr(const _Tp1* _p):_shared_ptr&lt;_Tp&gt;(_p)&#123;&#125;
-&#125;
-shared_ptr&lt;Base1&gt;sptr(new Derived1);
-</code></pre>
-<ul>
-<li>为了让构造函数更有弹性<br><img src="/images/member-template.png"></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>probability</title>
     <url>/2022/06/22/probability/</url>
     <content><![CDATA[<h2 id="68-95-99"><a href="#68-95-99" class="headerlink" title="68-95-99"></a>68-95-99</h2><ul>
@@ -1722,23 +1717,21 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
-    <title>p33const</title>
-    <url>/2022/06/19/p33const/</url>
-    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
+    <title>remote</title>
+    <url>/2022/09/27/remote/</url>
+    <content><![CDATA[<h2 id="season-change"><a href="#season-change" class="headerlink" title="season change"></a>season change</h2><p>Dear Professor.<br>Hoping this email finds you well.</p>
+<p>- </p>
 ]]></content>
       <tags>
-        <tag>c++</tag>
+        <tag>remote</tag>
       </tags>
   </entry>
   <entry>
-    <title>shardptrCirculate</title>
-    <url>/2022/03/04/shardptrCirculate/</url>
-    <content><![CDATA[<blockquote>
-<p>定义对象用强智能指针，引用对象的时候用弱智能指针<br><img src="/images/shardptrcirculate.png">  </p>
-</blockquote>
-]]></content>
+    <title>robotics</title>
+    <url>/2022/10/10/robotics/</url>
+    <content><![CDATA[]]></content>
       <tags>
-        <tag>C++</tag>
+        <tag>robotics</tag>
       </tags>
   </entry>
   <entry>
@@ -1846,14 +1839,6 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
-    <title>robotics</title>
-    <url>/2022/10/10/robotics/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>robotics</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>smartpointer</title>
     <url>/2022/03/04/smartpointer/</url>
     <content><![CDATA[<p><img src="/images/smartPointer.png"> </p>
@@ -1863,19 +1848,17 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
-    <title>pronounce</title>
-    <url>/2021/11/06/pronounce/</url>
-    <content><![CDATA[
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/pronounce.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
+    <title>forandrecursion</title>
+    <url>/2022/04/21/forandrecursion/</url>
+    <content><![CDATA[<blockquote>
+<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
+</blockquote>
+<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
+<p>比如全排列问题</p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>pronounce</tag>
+        <tag>-algorithm</tag>
       </tags>
   </entry>
   <entry>
@@ -1888,13 +1871,27 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
-    <title>remote</title>
-    <url>/2022/09/27/remote/</url>
-    <content><![CDATA[<h2 id="season-change"><a href="#season-change" class="headerlink" title="season change"></a>season change</h2><p>Dear Professor.<br>Hoping this email finds you well.</p>
-<p>- </p>
+    <title>shardptrCirculate</title>
+    <url>/2022/03/04/shardptrCirculate/</url>
+    <content><![CDATA[<blockquote>
+<p>定义对象用强智能指针，引用对象的时候用弱智能指针<br><img src="/images/shardptrcirculate.png">  </p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>remote</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sparse</title>
+    <url>/2022/07/02/sparse/</url>
+    <content><![CDATA[<h1 id="How-to-prune-in-MLP"><a href="#How-to-prune-in-MLP" class="headerlink" title="How to prune in MLP?"></a>How to prune in MLP?</h1><p><img src="/images/2022-07-04-01-57-10.png"></p>
+<ul>
+<li>sets the connection weight whose lower than threshold as 0<br><img src="/images/2022-07-04-02-03-25.png"></li>
+</ul>
+<h1 id="Prune-for-CNN"><a href="#Prune-for-CNN" class="headerlink" title="Prune for CNN"></a>Prune for CNN</h1><p><img src="/images/2022-07-04-02-16-55.png"></p>
+]]></content>
+      <tags>
+        <tag>sparse</tag>
       </tags>
   </entry>
   <entry>
@@ -1911,12 +1908,19 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
-    <title>silhouette</title>
-    <url>/2021/12/04/silhouette/</url>
-    <content><![CDATA[<p><img src="/images/silhouette.png"> </p>
+    <title>pronounce</title>
+    <url>/2021/11/06/pronounce/</url>
+    <content><![CDATA[
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/pronounce.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
 ]]></content>
       <tags>
-        <tag>intr</tag>
+        <tag>pronounce</tag>
       </tags>
   </entry>
   <entry>
@@ -2045,77 +2049,12 @@ A&lt;string*&gt; b;
       </tags>
   </entry>
   <entry>
-    <title>sparse</title>
-    <url>/2022/07/02/sparse/</url>
-    <content><![CDATA[<h1 id="How-to-prune-in-MLP"><a href="#How-to-prune-in-MLP" class="headerlink" title="How to prune in MLP?"></a>How to prune in MLP?</h1><p><img src="/images/2022-07-04-01-57-10.png"></p>
-<ul>
-<li>sets the connection weight whose lower than threshold as 0<br><img src="/images/2022-07-04-02-03-25.png"></li>
-</ul>
-<h1 id="Prune-for-CNN"><a href="#Prune-for-CNN" class="headerlink" title="Prune for CNN"></a>Prune for CNN</h1><p><img src="/images/2022-07-04-02-16-55.png"></p>
-]]></content>
-      <tags>
-        <tag>sparse</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>t5-假设检验</title>
     <url>/2022/06/22/t5%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/</url>
     <content><![CDATA[<p><img src="/images/p5.png"></p>
 ]]></content>
       <tags>
         <tag>probability</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>to+do+or+doing</title>
-    <url>/2021/12/12/to-do-or-doing/</url>
-    <content><![CDATA[<p><img src="/images/todo.png"> </p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>transition-based</title>
-    <url>/2022/01/04/transition-based/</url>
-    <content><![CDATA[<p><img src="/images/transition.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>transformer</title>
-    <url>/2022/01/02/transformer/</url>
-    <content><![CDATA[<p><img src="/images/transformer.png"> </p>
-]]></content>
-      <tags>
-        <tag>transformer</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>subjunctive</title>
-    <url>/2022/03/06/subjunctive/</url>
-    <content><![CDATA[<h2 id="The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy"><a href="#The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy" class="headerlink" title="The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy."></a>The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy.</h2><blockquote>
-<p>wouldn’t have done 表示不会做某事，但是实际上做了。文章中的意思是本来不会降低美国的油气价格。</p>
-</blockquote>
-<p>would have done</p>
-<p>是一个固定虚拟语气的用法。</p>
-<p>表示对过去事情的假设，意为“本来想做、要做但没做”，使用时大多会给出导致没做成或会这样做的条件。<br>英汉例句1：</p>
-<p>If I had a chance，I would have set off on a journey round the world.<br>要是有机会，我早就环游世界了。（也可译为对现在的虚拟“要是有机会，我会环游世界”）</p>
-<p>英汉例句2：</p>
-<p>I would have told you the story about him, but you were not home.</p>
-<p>我本来可以告诉你关于他的故事，但是你不在家。（由于：你不在家”这样的条件下，没有告诉关于他的的故事。）</p>
-<p>5.would have done与if连用</p>
-<p>例句：If I hadn’t been busy that day, I would have gone there with them.</p>
-<p>如果那天我不忙，我会和他们一起去那儿。（事实上表示没有由于忙，而没有去。）</p>
-<p>在这里也可以不用if</p>
-<p>如：I was busy that day. Otherwise I would have gone there with them. </p>
-<p>我那天很忙，否则，我就和他们一起去那儿了。</p>
-<p>6.文章中lower 在这里作为动词，“降低”的意思。<br><img src="/images/subjunctive.png"> </p>
-]]></content>
-      <tags>
-        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -2128,28 +2067,6 @@ A&lt;string*&gt; b;
 </li>
 <li>jj01::test_array() &#x3D; 这个就是命名空间</li>
 </ul>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vector二维数组</title>
-    <url>/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
-<li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
-<p>这里的row,col代表二维vector的两个轴方向的大小</p>
-</blockquote>
-</li>
-<li>第二种通过resize确定大小，之后循环赋值</li>
-</ul>
-<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
-vec1.resize(row);
-for(int i=0;i&lt;vec1.size();i++)
-    vec1[i].resize(col);
-for(int i=0;i&lt;row;i++)
-    for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
-</code></pre>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -2247,61 +2164,55 @@ private:
       </tags>
   </entry>
   <entry>
-    <title>whom</title>
-    <url>/2022/06/15/whom/</url>
-    <content><![CDATA[<h2 id="What’s-different-between-who-and-whom"><a href="#What’s-different-between-who-and-whom" class="headerlink" title="What’s different between who and whom"></a>What’s different between who and whom</h2><blockquote>
-<p>Put simply, use whom—which is a pronoun(代词)—when it is the object of a sentence. If you can replace the word with “her,” “him,” or “them” for example, use “whom.” You’ll know when to use “whom” if the pronoun is used in the objective case, or action is being done to the pronoun. Take the sentence:</p>
-</blockquote>
-<blockquote>
-<p>Whom do you believe?</p>
-</blockquote>
-<blockquote>
-<p>The sentence may sound pretentious, even snobbish. But it is correct because “whom” is the subject of the infinitive “to,” as well as the object of the sentence as a whole.</p>
-</blockquote>
-<blockquote>
-<p>Many people thus propose that governments need to tackle this issue by controlling the media, whom they see as responsible for inciting this violence through films and television<br>(这里的whom是做宾语)</p>
-</blockquote>
-<blockquote>
-<p>My father is a doctor whom people trusted.</p>
-</blockquote>
-<blockquote>
-<p>Who&#x2F;Whom are you going to invite to your party?<br>(这里you是主语)<br>你要邀请谁参加你的聚会？</p>
-</blockquote>
-<blockquote>
-<p>Who&#x2F;Whom can we turn to in case of an emergence?</p>
-</blockquote>
-<p>万一出现什么情况，我们可以求助于谁？</p>
-<blockquote>
-<p>We have no idea who&#x2F;whom the president will choose to be the new manager.</p>
-</blockquote>
-<ul>
-<li><p>无论是引导限制性定语从句还是非限制性定语从句，当先行词指人的时候，如果不是直接用于介词后作宾语，都可以用 who（非正式）或 whom（较正式）：</p>
-</li>
-<li><p>This aspect is discussed further by Crane, who &#x2F; whom I mentioned earlier. 我前面提到过的克雷恩对这方面作了进一步的论述。</p>
-</li>
-<li><p>In that year he met Rachel, who &#x2F; whom he was later to marry. 那年他遇到了雷切尔，后来和她结了婚。</p>
-</li>
-</ul>
-<p>注意：直接用于介词后作宾语，只能用 whom：</p>
-<ul>
-<li>I met a man with whom I used to work.  我碰见了个过去曾一起工作的人。</li>
-</ul>
-<p>顺便说一句，引导特殊疑问句时也是如此。如：</p>
-<p>Whom &#x2F; Who are you writing to? 你在给谁写信?</p>
-<p>Whom &#x2F; Who do you like best? 你最喜欢谁?</p>
-<p>若是紧跟在介词之后用作宾语，则只能用 whom，但这类表达通常只见于较正式的文体中。如：</p>
-<p>With whom did you go? 你跟谁一起去的?</p>
-<p><img src="/images/whom.png"> </p>
-<h2 id="whom是作为宾语"><a href="#whom是作为宾语" class="headerlink" title="whom是作为宾语"></a>whom是作为宾语</h2><p>1.Who is at the door?</p>
-<p>2.Whom did you see at the door?</p>
-<p>你知道为什么第一句要用who，而第二句用whom吗?答案是，who永远在句子或从句中作为主语使用，而whom永远作为宾语。</p>
-<p>在上面的第一句话中who是主语。第二局中，you才是主语，而whom是直接宾语。</p>
-<p>1.whom did you recommend for the job?</p>
-<p>2.Are there any people whom you would recommend?</p>
-<p>注意，在上面的两句中，you是主语。whom是动词“推荐”的宾语。</p>
+    <title>silhouette</title>
+    <url>/2021/12/04/silhouette/</url>
+    <content><![CDATA[<p><img src="/images/silhouette.png"> </p>
+]]></content>
+      <tags>
+        <tag>intr</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>to+do+or+doing</title>
+    <url>/2021/12/12/to-do-or-doing/</url>
+    <content><![CDATA[<p><img src="/images/todo.png"> </p>
 ]]></content>
       <tags>
         <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>subjunctive</title>
+    <url>/2022/03/06/subjunctive/</url>
+    <content><![CDATA[<h2 id="The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy"><a href="#The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy" class="headerlink" title="The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy."></a>The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy.</h2><blockquote>
+<p>wouldn’t have done 表示不会做某事，但是实际上做了。文章中的意思是本来不会降低美国的油气价格。</p>
+</blockquote>
+<p>would have done</p>
+<p>是一个固定虚拟语气的用法。</p>
+<p>表示对过去事情的假设，意为“本来想做、要做但没做”，使用时大多会给出导致没做成或会这样做的条件。<br>英汉例句1：</p>
+<p>If I had a chance，I would have set off on a journey round the world.<br>要是有机会，我早就环游世界了。（也可译为对现在的虚拟“要是有机会，我会环游世界”）</p>
+<p>英汉例句2：</p>
+<p>I would have told you the story about him, but you were not home.</p>
+<p>我本来可以告诉你关于他的故事，但是你不在家。（由于：你不在家”这样的条件下，没有告诉关于他的的故事。）</p>
+<p>5.would have done与if连用</p>
+<p>例句：If I hadn’t been busy that day, I would have gone there with them.</p>
+<p>如果那天我不忙，我会和他们一起去那儿。（事实上表示没有由于忙，而没有去。）</p>
+<p>在这里也可以不用if</p>
+<p>如：I was busy that day. Otherwise I would have gone there with them. </p>
+<p>我那天很忙，否则，我就和他们一起去那儿了。</p>
+<p>6.文章中lower 在这里作为动词，“降低”的意思。<br><img src="/images/subjunctive.png"> </p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>transition-based</title>
+    <url>/2022/01/04/transition-based/</url>
+    <content><![CDATA[<p><img src="/images/transition.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
       </tags>
   </entry>
   <entry>
@@ -2402,6 +2313,15 @@ private:
       </tags>
   </entry>
   <entry>
+    <title>transformer</title>
+    <url>/2022/01/02/transformer/</url>
+    <content><![CDATA[<p><img src="/images/transformer.png"> </p>
+]]></content>
+      <tags>
+        <tag>transformer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vector用于cuda核函数中</title>
     <url>/2022/06/30/vector%E7%94%A8%E4%BA%8Ecuda%E6%A0%B8%E5%87%BD%E6%95%B0%E4%B8%AD/</url>
     <content><![CDATA[<blockquote>
@@ -2445,167 +2365,22 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
       </tags>
   </entry>
   <entry>
-    <title>warp函数</title>
-    <url>/2022/07/11/warp%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="any-sync用于一个warp之间线程的数据的交换-广播（broadcast）"><a href="#any-sync用于一个warp之间线程的数据的交换-广播（broadcast）" class="headerlink" title="__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）"></a>__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）</h1><h2 id="这里必须注意srcLane是束内w的编号"><a href="#这里必须注意srcLane是束内w的编号" class="headerlink" title="这里必须注意srcLane是束内w的编号"></a>这里必须注意srcLane是束内w的编号</h2><blockquote>
-<p>int value &#x3D; __any_sync(mask,v,srcLane,w)<br>把srcLane的线程中变量v的值广播给其他线程，其中广播的线程由mask的二进制决定</p>
+    <title>vector二维数组</title>
+    <url>/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
+<li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
+<p>这里的row,col代表二维vector的两个轴方向的大小</p>
 </blockquote>
-<pre><code>int value = __any_sync(mask,tid,2,w);
-// 这里把线程2的tid值（也是2），也就是说所有线程走到这里之后的value都是2；如果tid表示是其他含义，那么其余每个线程就是用的对应的值
-输出为： `shfl:  2  2  2  2  2  2  2  2 10 10 10 10 10 10 10 10`
-这里的10是因为其实他现在的tid是10，但是在束编号中，他的下标是2
-</code></pre>
-<p><img src="/images/2022-07-11-00-37-51.png"></p>
-<blockquote>
-<p>__shfl_xor_sync(FULL_MASK, tid, laneMask, WIDTH);<br>按位异或，这里可以把laneMask设置为1，就是将相邻的两个线程的tid变量的值进行交换</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>cuda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>分治法</title>
-    <url>/2022/09/03/%E5%88%86%E6%B2%BB%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"><a href="#分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解" class="headerlink" title="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"></a>分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解</h1><pre><code>//
-//  main.cpp
-//  两个数组调整为一样的最小距离
-//
-//  Created by moule on 2022/9/3.
-//
-
-#include &lt;iostream&gt;
-#include &lt;vector&gt;
-using namespace std;
-int minimal_distance(vector&lt;int&gt;&amp; num1, vector&lt;int&gt;&amp; num2, int idx1, int idx2)&#123;
-    
-    if(idx1 == num1.size() &amp;&amp; idx2 == num2.size())&#123;
-        return 0;
-    &#125;
-    if(idx1==num1.size() &amp;&amp; idx2 != num2.size())&#123;
-       // cout &lt;&lt; idx2 &lt;&lt; endl;
-        int k = num2[idx2] + minimal_distance(num1, num2, idx1, idx2+1);
-        return k;
-    &#125;
-    if(idx2==num2.size() &amp;&amp; idx1 != num1.size())&#123;
-       // cout &lt;&lt; idx2 &lt;&lt; endl;
-        return num1[idx1] + minimal_distance(num1, num2, idx1+1, idx2);
-        
-    &#125;
-    // delete num1[idx1]
-    
-    int p1 = num1[idx1] + minimal_distance(num1, num2, idx1+1, idx2);
- //   cout &lt;&lt; p1;
-    // delete num2[idx2]
-    int p2 = num2[idx2] + minimal_distance(num1, num2, idx1, idx2+1);
-   // cout &lt;&lt; p2;
-//    // num1[idx1] - num2[idx2]
-    int p3 = abs(num1[idx1]-num2[idx2]) + minimal_distance(num1, num2, idx1+1, idx2+1);
-   
-    
-    return min((p1,p2),p3);
-&#125;
-int main(int argc, const char * argv[]) &#123;
-    // insert code here...
-    vector&lt;int&gt; num1 = &#123;2,3&#125;;
-    vector&lt;int&gt; num2 = &#123;2,3,5&#125;;
-    cout &lt;&lt; minimal_distance(num1, num2, 0, 0) &lt;&lt; endl;
-    std::cout &lt;&lt; &quot;Hello, World!\n&quot;;
-    return 0;
-&#125;
-</code></pre>
-<h2 id="比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解"><a href="#比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解" class="headerlink" title="比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解"></a>比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解</h2><p><img src="/images/2022-09-03-21-56-00.png"><br><img src="/images/2022-09-03-21-56-18.png"><br><img src="/images/2022-09-03-21-56-31.png"></p>
-<blockquote>
-<p>汉诺塔的子问题如下：</p>
-</blockquote>
-<pre><code>- 1）把 N-1个盘子 移到中转柱
-- 2）把第N个盘子移动到 目标柱
-- 3）把中转柱上面的N-1个盘子借助目前空闲的柱子 移动到 目标柱。
-</code></pre>
-<blockquote>
-<p>两个数组变为一样的子问题</p>
-</blockquote>
-<pre><code>- 1）第一个数组的下标数删掉
-- 2）第二个数组的下标数删掉
-- 3）删掉两个数组对应下标数值的差
-合：找到三个子解代价最小的
-</code></pre>
-]]></content>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>单词</title>
-    <url>/2022/10/08/%E5%8D%95%E8%AF%8D/</url>
-    <content><![CDATA[<ul>
-<li>right after 一会，短暂的</li>
-<li>right along 持久的</li>
-<li>long-lasting effects</li>
+</li>
+<li>第二种通过resize确定大小，之后循环赋值</li>
 </ul>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>原反补码</title>
-    <url>/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/</url>
-    <content><![CDATA[<p><img src="/images/coding.png"></p>
-]]></content>
-      <tags>
-        <tag>coding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>卡尔曼滤波详解</title>
-    <url>/2022/09/29/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/</url>
-    <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3><ul>
-<li>对于一个高斯分布，方差越小，越接近期望值（这里的期望值是0），越小，图越尖</li>
-</ul>
-<h4 id="1-数据融合（data-fusion）"><a href="#1-数据融合（data-fusion）" class="headerlink" title="1.数据融合（data fusion）"></a>1.数据融合（data fusion）</h4><p><img src="/images/2022-09-30-14-51-08.png"></p>
-<p><img src="/images/2022-09-30-14-52-55.png"></p>
-<h3 id="2-协方差矩阵-（covariance-matrix）"><a href="#2-协方差矩阵-（covariance-matrix）" class="headerlink" title="2.协方差矩阵 （covariance matrix）"></a>2.协方差矩阵 （covariance matrix）</h3><blockquote>
-<p>方差协方差在一个矩阵中表现出来</p>
-</blockquote>
-<p><img src="/images/2022-09-30-19-52-40.png"></p>
-<ul>
-<li>快速计算方法</li>
-</ul>
-<p><img src="/images/2022-09-30-19-54-59.png"></p>
-<h3 id="3-状态空间表示（state-space-representation）"><a href="#3-状态空间表示（state-space-representation）" class="headerlink" title="3.状态空间表示（state space representation）"></a>3.状态空间表示（state space representation）</h3><p><img src="/images/2022-10-02-18-30-07.png"></p>
-<h3 id="4-公式推导"><a href="#4-公式推导" class="headerlink" title="4.公式推导"></a>4.公式推导</h3><p><img src="/images/2022-10-02-19-11-53.png"><br><img src="/images/2022-10-02-19-11-17.png"><br><img src="/images/2022-10-02-19-12-57.png"><br><img src="/images/2022-10-02-19-14-35.png"></p>
-]]></content>
-      <tags>
-        <tag>kalman</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>字节对齐</title>
-    <url>/2022/08/25/%E5%AD%97%E8%8A%82%E5%AF%B9%E9%BD%90/</url>
-    <content><![CDATA[<ul>
-<li>结构体变量的首地址能够被其最宽基本类型成员的大小所整除；</li>
-<li>结构体每个成员相对于结构体首地址的偏移量（offset）都是成员大小的整数倍，如有需要编译器会在成员之间加上填充字节（internal padding）；</li>
-<li>结构体的总大小为结构体最宽基本类型成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节（trailing padding）</li>
-</ul>
-<p>比如</p>
-<pre><code>struct student
-&#123;
-    char name[5];
-    int num;
-    short score;
-&#125;
+<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
+vec1.resize(row);
+for(int i=0;i&lt;vec1.size();i++)
+    vec1[i].resize(col);
+for(int i=0;i&lt;row;i++)
+    for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
 </code></pre>
-<p>|char|char|char|char|<br>|char|—-|—-|—-|<br>|——–int——–|<br>|–short–|—-|—-|</p>
-<p>本来只用了11bytes（5+4+2）的空间，但是由于int型默认4字节对齐，存放在地址能被4整除的起始位置，即：如果name[5]从0开始存放，它占5bytes，而num则从第8(<strong>因为int是4，开始存的位置必须要可以整除4</strong>)（偏移量）个字节开始存放。所以sizeof(student)&#x3D;16。于是中间空出几个字节闲置着。但这样便于计算机快速读写数据，是一种以空间换取时间的方式。其数据对齐如下图：</p>
-<pre><code>struct student
-&#123;
-    int num;
-    char name[5];
-    short score;
-&#125;
-</code></pre>
-<p>num从0开始存放，而name从第4（偏移量）个字节开始存放，连续5个字节，score从第10（偏移量）开始存放，故sizeof(student)&#x3D;12。其数据对齐如下图：<br>|——–int——–|<br>|char|char|char|char|<br>|char|—-|–short–|</p>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -2683,6 +2458,129 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
+    <title>whom</title>
+    <url>/2022/06/15/whom/</url>
+    <content><![CDATA[<h2 id="What’s-different-between-who-and-whom"><a href="#What’s-different-between-who-and-whom" class="headerlink" title="What’s different between who and whom"></a>What’s different between who and whom</h2><blockquote>
+<p>Put simply, use whom—which is a pronoun(代词)—when it is the object of a sentence. If you can replace the word with “her,” “him,” or “them” for example, use “whom.” You’ll know when to use “whom” if the pronoun is used in the objective case, or action is being done to the pronoun. Take the sentence:</p>
+</blockquote>
+<blockquote>
+<p>Whom do you believe?</p>
+</blockquote>
+<blockquote>
+<p>The sentence may sound pretentious, even snobbish. But it is correct because “whom” is the subject of the infinitive “to,” as well as the object of the sentence as a whole.</p>
+</blockquote>
+<blockquote>
+<p>Many people thus propose that governments need to tackle this issue by controlling the media, whom they see as responsible for inciting this violence through films and television<br>(这里的whom是做宾语)</p>
+</blockquote>
+<blockquote>
+<p>My father is a doctor whom people trusted.</p>
+</blockquote>
+<blockquote>
+<p>Who&#x2F;Whom are you going to invite to your party?<br>(这里you是主语)<br>你要邀请谁参加你的聚会？</p>
+</blockquote>
+<blockquote>
+<p>Who&#x2F;Whom can we turn to in case of an emergence?</p>
+</blockquote>
+<p>万一出现什么情况，我们可以求助于谁？</p>
+<blockquote>
+<p>We have no idea who&#x2F;whom the president will choose to be the new manager.</p>
+</blockquote>
+<ul>
+<li><p>无论是引导限制性定语从句还是非限制性定语从句，当先行词指人的时候，如果不是直接用于介词后作宾语，都可以用 who（非正式）或 whom（较正式）：</p>
+</li>
+<li><p>This aspect is discussed further by Crane, who &#x2F; whom I mentioned earlier. 我前面提到过的克雷恩对这方面作了进一步的论述。</p>
+</li>
+<li><p>In that year he met Rachel, who &#x2F; whom he was later to marry. 那年他遇到了雷切尔，后来和她结了婚。</p>
+</li>
+</ul>
+<p>注意：直接用于介词后作宾语，只能用 whom：</p>
+<ul>
+<li>I met a man with whom I used to work.  我碰见了个过去曾一起工作的人。</li>
+</ul>
+<p>顺便说一句，引导特殊疑问句时也是如此。如：</p>
+<p>Whom &#x2F; Who are you writing to? 你在给谁写信?</p>
+<p>Whom &#x2F; Who do you like best? 你最喜欢谁?</p>
+<p>若是紧跟在介词之后用作宾语，则只能用 whom，但这类表达通常只见于较正式的文体中。如：</p>
+<p>With whom did you go? 你跟谁一起去的?</p>
+<p><img src="/images/whom.png"> </p>
+<h2 id="whom是作为宾语"><a href="#whom是作为宾语" class="headerlink" title="whom是作为宾语"></a>whom是作为宾语</h2><p>1.Who is at the door?</p>
+<p>2.Whom did you see at the door?</p>
+<p>你知道为什么第一句要用who，而第二句用whom吗?答案是，who永远在句子或从句中作为主语使用，而whom永远作为宾语。</p>
+<p>在上面的第一句话中who是主语。第二局中，you才是主语，而whom是直接宾语。</p>
+<p>1.whom did you recommend for the job?</p>
+<p>2.Are there any people whom you would recommend?</p>
+<p>注意，在上面的两句中，you是主语。whom是动词“推荐”的宾语。</p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>单词</title>
+    <url>/2022/10/08/%E5%8D%95%E8%AF%8D/</url>
+    <content><![CDATA[<ul>
+<li>right after 一会，短暂的</li>
+<li>right along 持久的</li>
+<li>long-lasting effects</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>warp函数</title>
+    <url>/2022/07/11/warp%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="any-sync用于一个warp之间线程的数据的交换-广播（broadcast）"><a href="#any-sync用于一个warp之间线程的数据的交换-广播（broadcast）" class="headerlink" title="__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）"></a>__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）</h1><h2 id="这里必须注意srcLane是束内w的编号"><a href="#这里必须注意srcLane是束内w的编号" class="headerlink" title="这里必须注意srcLane是束内w的编号"></a>这里必须注意srcLane是束内w的编号</h2><blockquote>
+<p>int value &#x3D; __any_sync(mask,v,srcLane,w)<br>把srcLane的线程中变量v的值广播给其他线程，其中广播的线程由mask的二进制决定</p>
+</blockquote>
+<pre><code>int value = __any_sync(mask,tid,2,w);
+// 这里把线程2的tid值（也是2），也就是说所有线程走到这里之后的value都是2；如果tid表示是其他含义，那么其余每个线程就是用的对应的值
+输出为： `shfl:  2  2  2  2  2  2  2  2 10 10 10 10 10 10 10 10`
+这里的10是因为其实他现在的tid是10，但是在束编号中，他的下标是2
+</code></pre>
+<p><img src="/images/2022-07-11-00-37-51.png"></p>
+<blockquote>
+<p>__shfl_xor_sync(FULL_MASK, tid, laneMask, WIDTH);<br>按位异或，这里可以把laneMask设置为1，就是将相邻的两个线程的tid变量的值进行交换</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>cuda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>原反补码</title>
+    <url>/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/</url>
+    <content><![CDATA[<p><img src="/images/coding.png"></p>
+]]></content>
+      <tags>
+        <tag>coding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>卡尔曼滤波详解</title>
+    <url>/2022/09/29/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/</url>
+    <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3><ul>
+<li>对于一个高斯分布，方差越小，越接近期望值（这里的期望值是0），越小，图越尖</li>
+</ul>
+<h4 id="1-数据融合（data-fusion）"><a href="#1-数据融合（data-fusion）" class="headerlink" title="1.数据融合（data fusion）"></a>1.数据融合（data fusion）</h4><p><img src="/images/2022-09-30-14-51-08.png"></p>
+<p><img src="/images/2022-09-30-14-52-55.png"></p>
+<h3 id="2-协方差矩阵-（covariance-matrix）"><a href="#2-协方差矩阵-（covariance-matrix）" class="headerlink" title="2.协方差矩阵 （covariance matrix）"></a>2.协方差矩阵 （covariance matrix）</h3><blockquote>
+<p>方差协方差在一个矩阵中表现出来</p>
+</blockquote>
+<p><img src="/images/2022-09-30-19-52-40.png"></p>
+<ul>
+<li>快速计算方法</li>
+</ul>
+<p><img src="/images/2022-09-30-19-54-59.png"></p>
+<h3 id="3-状态空间表示（state-space-representation）"><a href="#3-状态空间表示（state-space-representation）" class="headerlink" title="3.状态空间表示（state space representation）"></a>3.状态空间表示（state space representation）</h3><p><img src="/images/2022-10-02-18-30-07.png"></p>
+<h3 id="4-公式推导"><a href="#4-公式推导" class="headerlink" title="4.公式推导"></a>4.公式推导</h3><p><img src="/images/2022-10-02-19-11-53.png"><br><img src="/images/2022-10-02-19-11-17.png"><br><img src="/images/2022-10-02-19-12-57.png"><br><img src="/images/2022-10-02-19-14-35.png"></p>
+]]></content>
+      <tags>
+        <tag>kalman</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>定语从句省略</title>
     <url>/2022/08/21/%E5%AE%9A%E8%AF%AD%E4%BB%8E%E5%8F%A5%E7%9C%81%E7%95%A5/</url>
     <content><![CDATA[<ul>
@@ -2741,6 +2639,143 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
+    <title>宾语补足语</title>
+    <url>/2022/08/22/%E5%AE%BE%E8%AF%AD%E8%A1%A5%E8%B6%B3%E8%AF%AD/</url>
+    <content><![CDATA[<h1 id="有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语"><a href="#有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语" class="headerlink" title="有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语"></a>有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语</h1><ul>
+<li>本质上来说后面的名词也是修饰前面的名词的<ul>
+<li>名词做宾补<blockquote>
+<p>eg: I think the job a great honor. 我认为这份工作是一份荣誉</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>均方误差分解</title>
+    <url>/2022/05/21/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE%E5%88%86%E8%A7%A3/</url>
+    <content><![CDATA[<p><img src="/images/biasAndvariance.png"> </p>
+]]></content>
+      <tags>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>期望和方差</title>
+    <url>/2022/05/21/%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE/</url>
+    <content><![CDATA[<p><img src="/images/expectAndvariance.png"> </p>
+]]></content>
+      <tags>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>分治法</title>
+    <url>/2022/09/03/%E5%88%86%E6%B2%BB%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"><a href="#分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解" class="headerlink" title="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"></a>分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解</h1><pre><code>//
+//  main.cpp
+//  两个数组调整为一样的最小距离
+//
+//  Created by moule on 2022/9/3.
+//
+
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+int minimal_distance(vector&lt;int&gt;&amp; num1, vector&lt;int&gt;&amp; num2, int idx1, int idx2)&#123;
+    
+    if(idx1 == num1.size() &amp;&amp; idx2 == num2.size())&#123;
+        return 0;
+    &#125;
+    if(idx1==num1.size() &amp;&amp; idx2 != num2.size())&#123;
+       // cout &lt;&lt; idx2 &lt;&lt; endl;
+        int k = num2[idx2] + minimal_distance(num1, num2, idx1, idx2+1);
+        return k;
+    &#125;
+    if(idx2==num2.size() &amp;&amp; idx1 != num1.size())&#123;
+       // cout &lt;&lt; idx2 &lt;&lt; endl;
+        return num1[idx1] + minimal_distance(num1, num2, idx1+1, idx2);
+        
+    &#125;
+    // delete num1[idx1]
+    
+    int p1 = num1[idx1] + minimal_distance(num1, num2, idx1+1, idx2);
+ //   cout &lt;&lt; p1;
+    // delete num2[idx2]
+    int p2 = num2[idx2] + minimal_distance(num1, num2, idx1, idx2+1);
+   // cout &lt;&lt; p2;
+//    // num1[idx1] - num2[idx2]
+    int p3 = abs(num1[idx1]-num2[idx2]) + minimal_distance(num1, num2, idx1+1, idx2+1);
+   
+    
+    return min((p1,p2),p3);
+&#125;
+int main(int argc, const char * argv[]) &#123;
+    // insert code here...
+    vector&lt;int&gt; num1 = &#123;2,3&#125;;
+    vector&lt;int&gt; num2 = &#123;2,3,5&#125;;
+    cout &lt;&lt; minimal_distance(num1, num2, 0, 0) &lt;&lt; endl;
+    std::cout &lt;&lt; &quot;Hello, World!\n&quot;;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解"><a href="#比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解" class="headerlink" title="比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解"></a>比如汉诺塔问题，汉诺塔问题就是子问题，不需要结合子解，全部的子解就是整个问题的解</h2><p><img src="/images/2022-09-03-21-56-00.png"><br><img src="/images/2022-09-03-21-56-18.png"><br><img src="/images/2022-09-03-21-56-31.png"></p>
+<blockquote>
+<p>汉诺塔的子问题如下：</p>
+</blockquote>
+<pre><code>- 1）把 N-1个盘子 移到中转柱
+- 2）把第N个盘子移动到 目标柱
+- 3）把中转柱上面的N-1个盘子借助目前空闲的柱子 移动到 目标柱。
+</code></pre>
+<blockquote>
+<p>两个数组变为一样的子问题</p>
+</blockquote>
+<pre><code>- 1）第一个数组的下标数删掉
+- 2）第二个数组的下标数删掉
+- 3）删掉两个数组对应下标数值的差
+合：找到三个子解代价最小的
+</code></pre>
+]]></content>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>字节对齐</title>
+    <url>/2022/08/25/%E5%AD%97%E8%8A%82%E5%AF%B9%E9%BD%90/</url>
+    <content><![CDATA[<ul>
+<li>结构体变量的首地址能够被其最宽基本类型成员的大小所整除；</li>
+<li>结构体每个成员相对于结构体首地址的偏移量（offset）都是成员大小的整数倍，如有需要编译器会在成员之间加上填充字节（internal padding）；</li>
+<li>结构体的总大小为结构体最宽基本类型成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节（trailing padding）</li>
+</ul>
+<p>比如</p>
+<pre><code>struct student
+&#123;
+    char name[5];
+    int num;
+    short score;
+&#125;
+</code></pre>
+<p>|char|char|char|char|<br>|char|—-|—-|—-|<br>|——–int——–|<br>|–short–|—-|—-|</p>
+<p>本来只用了11bytes（5+4+2）的空间，但是由于int型默认4字节对齐，存放在地址能被4整除的起始位置，即：如果name[5]从0开始存放，它占5bytes，而num则从第8(<strong>因为int是4，开始存的位置必须要可以整除4</strong>)（偏移量）个字节开始存放。所以sizeof(student)&#x3D;16。于是中间空出几个字节闲置着。但这样便于计算机快速读写数据，是一种以空间换取时间的方式。其数据对齐如下图：</p>
+<pre><code>struct student
+&#123;
+    int num;
+    char name[5];
+    short score;
+&#125;
+</code></pre>
+<p>num从0开始存放，而name从第4（偏移量）个字节开始存放，连续5个字节，score从第10（偏移量）开始存放，故sizeof(student)&#x3D;12。其数据对齐如下图：<br>|——–int——–|<br>|char|char|char|char|<br>|char|—-|–short–|</p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>按位与替换取余操作</title>
     <url>/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<blockquote>
@@ -2761,172 +2796,6 @@ int main(int argc, const char * argv[]) &#123;
 ]]></content>
       <tags>
         <tag>mathematics</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>均方误差分解</title>
-    <url>/2022/05/21/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE%E5%88%86%E8%A7%A3/</url>
-    <content><![CDATA[<p><img src="/images/biasAndvariance.png"> </p>
-]]></content>
-      <tags>
-        <tag>math</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>宾语从句</title>
-    <url>/2022/08/21/%E5%AE%BE%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
-    <content><![CDATA[<h1 id="宾语从句（objective-clause）"><a href="#宾语从句（objective-clause）" class="headerlink" title="宾语从句（objective clause）"></a>宾语从句（objective clause）</h1><p>that引导的宾语从句作动词或某些形容词的宾语时，that在口语和非正式文体中可以省略，并且是经常省略。<br><img src="/images/2022-08-21-17-29-44.png"></p>
-<h2 id="下面这些情况下that是不能省略的"><a href="#下面这些情况下that是不能省略的" class="headerlink" title="下面这些情况下that是不能省略的"></a>下面这些情况下that是不能省略的</h2><ol>
-<li><p>that引导的宾语从句作动词的宾语时，如果动词的后面有几个并列that引导的宾语从句，这时只有紧挨着动词的第一个that可以省略，其他的that都不可以省略。比如：<br><img src="/images/2022-08-21-17-30-29.png"></p>
-</li>
-<li><p>当为了强调把that引导的宾语从句可位于句首时，that不能省略。如：</p>
-<ul>
-<li><blockquote>
-<p>That she is a good girl I know. 她是一个好姑娘，我是知道的。</p>
-</blockquote>
-</li>
-<li><blockquote>
-<p>That he ever said such a thing I simply don’t believe. 我简直不相信他曾说过这样的话。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>当that从句与动词被其他词或从句隔开时，that一般不宜省略，以免造成语义混乱。如：</p>
-<ul>
-<li><blockquote>
-<p>They told us once again that the situation was serious.他们又一次告诉我们说形势是严重的。</p>
-</blockquote>
-</li>
-<li><blockquote>
-<p>The dealer told me how much he was prepared to pay for my car and that I could have the money without delay. 那个商人告诉我他准备出多少钱买我的汽车，并说我会立即收到款。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>动词后面如果接的是复合宾语，即宾语+宾补的结构，宾语是一个由that引导的宾语从句，这时候要用it做形式宾语来替代宾语从句，而把这个宾语从句放在句子后面，这时候that不能省略。比如：<br><img src="/images/2022-08-21-17-38-41.png"></p>
-</li>
-<li><p>that引导的宾语从句作一些介词的宾语，这些介词有：except、but、 in，that不能省略。这里需要知道的是除了这几个介词，that引导的宾语从句一般不作介词的宾语。比如：<br><img src="/images/2022-08-21-17-39-00.png"></p>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>期望和方差</title>
-    <url>/2022/05/21/%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE/</url>
-    <content><![CDATA[<p><img src="/images/expectAndvariance.png"> </p>
-]]></content>
-      <tags>
-        <tag>math</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>矩阵左乘行变化右列</title>
-    <url>/2022/12/02/%E7%9F%A9%E9%98%B5%E5%B7%A6%E4%B9%98%E8%A1%8C%E5%8F%98%E5%8C%96%E5%8F%B3%E5%88%97/</url>
-    <content><![CDATA[<h2 id="为什么矩阵左乘是行变换，右乘是列变换"><a href="#为什么矩阵左乘是行变换，右乘是列变换" class="headerlink" title="为什么矩阵左乘是行变换，右乘是列变换"></a>为什么矩阵左乘是行变换，右乘是列变换</h2><p>矩阵乘积AB&#x3D;C，<strong>C的行是B的行的线性组合</strong><br>同理，<strong>C的列是A的列的线性组合</strong>，因此右乘B相当于对A做了列变换。<br><img src="/images/2022-12-02-14-06-40.png"></p>
-<blockquote>
-<p><strong>AB&#x3D;C</strong></p>
-</blockquote>
-<ul>
-<li><p>A可以看作系数矩阵，B就是行矩阵</p>
-</li>
-<li><p><strong>A的第一行</strong>就是<strong>C的第一行的参数</strong><br> 如下图所示：<br> <img src="/images/2022-12-02-14-13-06.png"></p>
-<p> 这里的A是参数矩阵，也就是对B就行行变化的参数<br> <img src="/images/2022-12-02-14-13-42.png"></p>
-</li>
-<li><p>把B看作系数矩阵，A就是列矩阵（C的每一列都是A的列的线性组合）</p>
-</li>
-<li><p><strong>B的第一列</strong>就是<strong>C的第一列的参数</strong><br>  如下图所示：<br>  <img src="/images/2022-12-02-14-15-05.png"><br>  <img src="/images/2022-12-02-14-16-23.png"></p>
-</li>
-</ul>
-<p>总图：<br><img src="/images/2022-12-02-14-16-45.png"></p>
-]]></content>
-      <tags>
-        <tag>矩阵</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>矩阵旋转位移推导</title>
-    <url>/2022/11/28/%E7%9F%A9%E9%98%B5%E6%97%8B%E8%BD%AC%E4%BD%8D%E7%A7%BB%E6%8E%A8%E5%AF%BC/</url>
-    <content><![CDATA[<h2 id="1-怎么推导坐标位移和旋转"><a href="#1-怎么推导坐标位移和旋转" class="headerlink" title="1. 怎么推导坐标位移和旋转"></a>1. 怎么推导坐标位移和旋转</h2><p>二维坐标的旋转可以通过三角公式推导</p>
-<p>我们在做几何变换的时候经常需要把某个坐标系上的所有点都进行一个旋转，这个操作就叫做刚体旋转（所有的点相对位置不变的发生旋转）。下图是一个典型的二维坐标系下刚体旋转。我们把蓝色的坐标系旋转了θ度，新坐标系就是红色的坐标系。我们现在已知一个点相对红色那个坐标系的坐标($x_{red}$, $x_{red}$ )，和已知旋转角度θ，然后我们想求得该点相对于蓝色那个坐标系的坐标($x_{blue}$,$y_{blue}$)</p>
-<p><img src="/images/2022-11-28-13-48-47.png"></p>
-<p>这个其实很简单我们利用高中学的三角几何就可以轻松解决。从上图可以发现不变量是黑色的那个线段的长度。而这个长度我们是可以根据黑色点相对红色坐标系下的坐标($x_{red}$, $x_{red}$ )算出来的。黑色线段长度为$r&#x3D;\sqrt {x_{red}^2+y_{red}^2}$</p>
-<p>然后我们可以根据紫色那个三角形计算出黑色点相对蓝色坐标系下的坐标 ($x_{blue},y_{blue}$)</p>
-<p>根据高中学的三角几何我们可以知道：<br>$<br>x_{blue}&#x3D;r*cos(\alpha+\theta) \tag{1}<br>$</p>
-<p>$<br>y_{blue}&#x3D;r*sin(\alpha+\theta) \tag{2}<br>$</p>
-<p>$\alpha$我们是不知道的。但是我们能找到一个关于它的线索。</p>
-<p>$$<br>x_{red}&#x3D;r*cos(\alpha)\\<br>y_{red}&#x3D;r*sin(\alpha)<br>$$</p>
-<p>展开（1）和 （2），可以得到如下：</p>
-<p>$$<br>\begin{align}<br>x_{blue}&amp;&#x3D;r∗cos(α+θ)&#x3D;r∗(cos(α)∗cos(θ)−sin(α)∗sin(θ))&#x3D;x_{red}∗cos(θ)−y_{red}∗sin(θ)\\<br>y_{blue}&amp;&#x3D;r∗sin(α+θ)&#x3D;r∗(sin(α)∗cos(θ)+cos(α)∗sin(θ))&#x3D;y_{red}∗cos(θ)+x_{red}∗sin(θ)<br>\end{align}<br>$$</p>
-<p><img src="/images/2022-12-02-13-39-50.png"></p>
-]]></content>
-      <tags>
-        <tag>-robotics</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>状语从句</title>
-    <url>/2022/08/20/%E7%8A%B6%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
-    <content><![CDATA[<h1 id="状语从句主谓成分的省略，须遵循下面原则："><a href="#状语从句主谓成分的省略，须遵循下面原则：" class="headerlink" title="状语从句主谓成分的省略，须遵循下面原则："></a>状语从句主谓成分的省略，须遵循下面原则：</h1><ol>
-<li><p>当从句的主语与主句的主语一致时，从句可以省略主语，从句的谓语动词采用其V-ing结构。例如：</p>
-<ul>
-<li><p>Although working very hard, he failed in the final exam. (Although he worked very hard）</p>
-</li>
-<li><p>After taking the medicine, she felt much better. (After she took the medicine)</p>
-</li>
-<li><p>If going there by air, we’ll have to pay twice the fare. (If we go there by air)</p>
-</li>
-</ul>
-</li>
-<li><p>当从句的主语和主句的主语一致时，若从句的谓语动词是系动词be或包含be的某种形式，此时从句的主语和be动词通常可以一同省略</p>
-<ul>
-<li>Whenever (she is) free, she often goes shopping.她有空就去逛商店。</li>
-<li>Work hard when (you are) young, or you’ll regret.少壮不努力,老大徒伤悲。</li>
-<li>While (he was) a young boy, he was always ready to help others. 他在孩提时代就乐于助人。<br> <img src="/images/2022-08-22-11-59-37.png"><br> <img src="/images/2022-08-22-11-59-56.png"></li>
-</ul>
-</li>
-<li><p>若从句的主语和主句的主语不一致，但和主句的宾语一致时，从句中的主语和be动词亦常可省略。例如：</p>
-<ul>
-<li>Father advised me not to say anything until (I was) asked.</li>
-</ul>
-</li>
-<li><p>当从句的主语是it, 且谓语动词是be或包含be的某种形式时, it和be常可同时省略。例如:</p>
-<ul>
-<li><p>If (it is) possible, he will help you out of the difficulty.如果可能的话,他会帮你摆脱困境。</p>
-</li>
-<li><p>You must attend the meeting unless (it is) inconvenient to you.除非情况对你来说不方便,否则你必须出席这次会议。</p>
-</li>
-</ul>
-</li>
-</ol>
-<p><img src="/images/2022-08-22-12-05-52.png"></p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>类内声明和定义</title>
-    <url>/2022/03/10/%E7%B1%BB%E5%86%85%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89/</url>
-    <content><![CDATA[<p>1.类内定义</p>
-<pre><code>    类内定义的概念：成员函数的函数体（实现）是在类的内部完成的。这种实现方式c++隐式为内联函数。
-
-   A.h
-</code></pre>
-<p>class A<br>{<br>public:<br>    A(void);<br>    virtual ~A(void);<br>    int test(){return 1;};<br>    int test1();<br>};<br>         可以看到类A中成员函数test()的定义在类的内部，隐式为内联函数（inline的原理，是用空间换取时间的做法，是以代码复制为代价，仅仅省去了函数调用的开销，从而提高函数的执行效率。如果执行函数体内代码的时间，相比于函数调用的开销较大，那么效率的收获会很少。所以，如果函数体代码过长或者函数体重有循环语句，if语句或switch语句或递归时，不宜用内联）。</p>
-<p>2.类外定义</p>
-<pre><code>   类外定义的概念:成员函数的定义是在类的外部实现的就像类A中的成员函数test1()，在类中只有声明。
-
-   A.h
-</code></pre>
-<p>class A<br>{<br>public:<br>    A(void);<br>    virtual ~A(void);<br>    int test(){return 1;};<br>    int test1();<br>};<br>      A.cpp</p>
-<p>#include “A.h”</p>
-<p>A::A(void)<br>{<br>}<br>A::~A(void)<br>{<br>}<br>int A::test1()<br>{<br>    return 1;<br>}<br>     这种类外定义的方式属于分文件类外定义，声明和定义不在同一文件中，还有一种类外定义方式为同文件类外定义，声明和定义在同一个.cpp文件中。</p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -3039,31 +2908,23 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>宾语补足语</title>
-    <url>/2022/08/22/%E5%AE%BE%E8%AF%AD%E8%A1%A5%E8%B6%B3%E8%AF%AD/</url>
-    <content><![CDATA[<h1 id="有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语"><a href="#有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语" class="headerlink" title="有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语"></a>有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语</h1><ul>
-<li>本质上来说后面的名词也是修饰前面的名词的<ul>
-<li>名词做宾补<blockquote>
-<p>eg: I think the job a great honor. 我认为这份工作是一份荣誉</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
+    <title>矩阵旋转位移推导</title>
+    <url>/2022/11/28/%E7%9F%A9%E9%98%B5%E6%97%8B%E8%BD%AC%E4%BD%8D%E7%A7%BB%E6%8E%A8%E5%AF%BC/</url>
+    <content><![CDATA[<h2 id="1-怎么推导坐标位移和旋转"><a href="#1-怎么推导坐标位移和旋转" class="headerlink" title="1. 怎么推导坐标位移和旋转"></a>1. 怎么推导坐标位移和旋转</h2><p>二维坐标的旋转可以通过三角公式推导</p>
+<p>我们在做几何变换的时候经常需要把某个坐标系上的所有点都进行一个旋转，这个操作就叫做刚体旋转（所有的点相对位置不变的发生旋转）。下图是一个典型的二维坐标系下刚体旋转。我们把蓝色的坐标系旋转了θ度，新坐标系就是红色的坐标系。我们现在已知一个点相对红色那个坐标系的坐标($x_{red}$, $x_{red}$ )，和已知旋转角度θ，然后我们想求得该点相对于蓝色那个坐标系的坐标($x_{blue}$,$y_{blue}$)</p>
+<p><img src="/images/2022-11-28-13-48-47.png"></p>
+<p>这个其实很简单我们利用高中学的三角几何就可以轻松解决。从上图可以发现不变量是黑色的那个线段的长度。而这个长度我们是可以根据黑色点相对红色坐标系下的坐标($x_{red}$, $x_{red}$ )算出来的。黑色线段长度为$r&#x3D;\sqrt {x_{red}^2+y_{red}^2}$</p>
+<p>然后我们可以根据紫色那个三角形计算出黑色点相对蓝色坐标系下的坐标 ($x_{blue},y_{blue}$)</p>
+<p>根据高中学的三角几何我们可以知道：<br>$<br>x_{blue}&#x3D;r*cos(\alpha+\theta) \tag{1}<br>$</p>
+<p>$<br>y_{blue}&#x3D;r*sin(\alpha+\theta) \tag{2}<br>$</p>
+<p>$\alpha$我们是不知道的。但是我们能找到一个关于它的线索。</p>
+<p>$$<br>x_{red}&#x3D;r*cos(\alpha)\\<br>y_{red}&#x3D;r*sin(\alpha)<br>$$</p>
+<p>展开（1）和 （2），可以得到如下：</p>
+<p>$$<br>\begin{align}<br>x_{blue}&amp;&#x3D;r∗cos(α+θ)&#x3D;r∗(cos(α)∗cos(θ)−sin(α)∗sin(θ))&#x3D;x_{red}∗cos(θ)−y_{red}∗sin(θ)\\<br>y_{blue}&amp;&#x3D;r∗sin(α+θ)&#x3D;r∗(sin(α)∗cos(θ)+cos(α)∗sin(θ))&#x3D;y_{red}∗cos(θ)+x_{red}∗sin(θ)<br>\end{align}<br>$$</p>
+<p><img src="/images/2022-12-02-13-39-50.png"></p>
 ]]></content>
       <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>英语句子</title>
-    <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
-    <content><![CDATA[<blockquote>
-<p>commence—Many people have wondered why the end of someone’s school days should be celebrated by Commencement Exercises, which, ordinarily, refer to a beginning</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>English</tag>
+        <tag>-robotics</tag>
       </tags>
   </entry>
   <entry>
@@ -3107,6 +2968,47 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>宾语从句</title>
+    <url>/2022/08/21/%E5%AE%BE%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
+    <content><![CDATA[<h1 id="宾语从句（objective-clause）"><a href="#宾语从句（objective-clause）" class="headerlink" title="宾语从句（objective clause）"></a>宾语从句（objective clause）</h1><p>that引导的宾语从句作动词或某些形容词的宾语时，that在口语和非正式文体中可以省略，并且是经常省略。<br><img src="/images/2022-08-21-17-29-44.png"></p>
+<h2 id="下面这些情况下that是不能省略的"><a href="#下面这些情况下that是不能省略的" class="headerlink" title="下面这些情况下that是不能省略的"></a>下面这些情况下that是不能省略的</h2><ol>
+<li><p>that引导的宾语从句作动词的宾语时，如果动词的后面有几个并列that引导的宾语从句，这时只有紧挨着动词的第一个that可以省略，其他的that都不可以省略。比如：<br><img src="/images/2022-08-21-17-30-29.png"></p>
+</li>
+<li><p>当为了强调把that引导的宾语从句可位于句首时，that不能省略。如：</p>
+<ul>
+<li><blockquote>
+<p>That she is a good girl I know. 她是一个好姑娘，我是知道的。</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>That he ever said such a thing I simply don’t believe. 我简直不相信他曾说过这样的话。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>当that从句与动词被其他词或从句隔开时，that一般不宜省略，以免造成语义混乱。如：</p>
+<ul>
+<li><blockquote>
+<p>They told us once again that the situation was serious.他们又一次告诉我们说形势是严重的。</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>The dealer told me how much he was prepared to pay for my car and that I could have the money without delay. 那个商人告诉我他准备出多少钱买我的汽车，并说我会立即收到款。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>动词后面如果接的是复合宾语，即宾语+宾补的结构，宾语是一个由that引导的宾语从句，这时候要用it做形式宾语来替代宾语从句，而把这个宾语从句放在句子后面，这时候that不能省略。比如：<br><img src="/images/2022-08-21-17-38-41.png"></p>
+</li>
+<li><p>that引导的宾语从句作一些介词的宾语，这些介词有：except、but、 in，that不能省略。这里需要知道的是除了这几个介词，that引导的宾语从句一般不作介词的宾语。比如：<br><img src="/images/2022-08-21-17-39-00.png"></p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>过去式</title>
     <url>/2021/12/25/%E8%BF%87%E5%8E%BB%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="过去式变化规则"><a href="#过去式变化规则" class="headerlink" title="过去式变化规则"></a>过去式变化规则</h1><p>1）动词过去式变化规则分为规则变化和不规则变化两种，一般情况下，动词原形词尾加-ed，以不发音的-e结尾动词，动词词尾加-d，以辅音字母+y结尾的动词，把-y变为-i 再加-ed<br>2）以一个元音+一个辅音字母结尾的重读闭音节动词，双写词尾辅音字母，否则就加ed<br>preFER-&gt;preFERRed<br>VISit-&gt;VISited<br>3）不满足一个元音+一个辅音结尾 + ed<br>start-&gt;started 两个辅音结尾<br>need-&gt;needed<br>3) 一个元音+y +ed<br>stay-&gt;stayed</p>
@@ -3116,112 +3018,101 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>线性插值</title>
-    <url>/2022/08/20/%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/</url>
-    <content><![CDATA[<p><img src="/images/2022-08-28-19-14-47.png"></p>
+    <title>状语从句</title>
+    <url>/2022/08/20/%E7%8A%B6%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
+    <content><![CDATA[<h1 id="状语从句主谓成分的省略，须遵循下面原则："><a href="#状语从句主谓成分的省略，须遵循下面原则：" class="headerlink" title="状语从句主谓成分的省略，须遵循下面原则："></a>状语从句主谓成分的省略，须遵循下面原则：</h1><ol>
+<li><p>当从句的主语与主句的主语一致时，从句可以省略主语，从句的谓语动词采用其V-ing结构。例如：</p>
+<ul>
+<li><p>Although working very hard, he failed in the final exam. (Although he worked very hard）</p>
+</li>
+<li><p>After taking the medicine, she felt much better. (After she took the medicine)</p>
+</li>
+<li><p>If going there by air, we’ll have to pay twice the fare. (If we go there by air)</p>
+</li>
+</ul>
+</li>
+<li><p>当从句的主语和主句的主语一致时，若从句的谓语动词是系动词be或包含be的某种形式，此时从句的主语和be动词通常可以一同省略</p>
+<ul>
+<li>Whenever (she is) free, she often goes shopping.她有空就去逛商店。</li>
+<li>Work hard when (you are) young, or you’ll regret.少壮不努力,老大徒伤悲。</li>
+<li>While (he was) a young boy, he was always ready to help others. 他在孩提时代就乐于助人。<br> <img src="/images/2022-08-22-11-59-37.png"><br> <img src="/images/2022-08-22-11-59-56.png"></li>
+</ul>
+</li>
+<li><p>若从句的主语和主句的主语不一致，但和主句的宾语一致时，从句中的主语和be动词亦常可省略。例如：</p>
+<ul>
+<li>Father advised me not to say anything until (I was) asked.</li>
+</ul>
+</li>
+<li><p>当从句的主语是it, 且谓语动词是be或包含be的某种形式时, it和be常可同时省略。例如:</p>
+<ul>
+<li><p>If (it is) possible, he will help you out of the difficulty.如果可能的话,他会帮你摆脱困境。</p>
+</li>
+<li><p>You must attend the meeting unless (it is) inconvenient to you.除非情况对你来说不方便,否则你必须出席这次会议。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><img src="/images/2022-08-22-12-05-52.png"></p>
 ]]></content>
       <tags>
-        <tag>ShiftGCN</tag>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
-    <title>进程和线程</title>
-    <url>/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<p>做个简单的比喻：进程&#x3D;火车，线程&#x3D;车厢线程在进程下行进（<br>单纯的车厢无法运行）一个进程可以包含多个线程（一辆火车可以有多个车厢）<br>不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）<br>同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）<br>进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）<br>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）<br>进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）<br>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－”互斥锁”进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”</p>
+    <title>矩阵左乘行变化右列</title>
+    <url>/2022/12/02/%E7%9F%A9%E9%98%B5%E5%B7%A6%E4%B9%98%E8%A1%8C%E5%8F%98%E5%8C%96%E5%8F%B3%E5%88%97/</url>
+    <content><![CDATA[<h2 id="为什么矩阵左乘是行变换，右乘是列变换"><a href="#为什么矩阵左乘是行变换，右乘是列变换" class="headerlink" title="为什么矩阵左乘是行变换，右乘是列变换"></a>为什么矩阵左乘是行变换，右乘是列变换</h2><p>矩阵乘积AB&#x3D;C，<strong>C的行是B的行的线性组合</strong><br>同理，<strong>C的列是A的列的线性组合</strong>，因此右乘B相当于对A做了列变换。<br><img src="/images/2022-12-02-14-06-40.png"></p>
+<blockquote>
+<p><strong>AB&#x3D;C</strong></p>
+</blockquote>
+<ul>
+<li><p>A可以看作系数矩阵，B就是行矩阵</p>
+</li>
+<li><p><strong>A的第一行</strong>就是<strong>C的第一行的参数</strong><br> 如下图所示：<br> <img src="/images/2022-12-02-14-13-06.png"></p>
+<p> 这里的A是参数矩阵，也就是对B就行行变化的参数<br> <img src="/images/2022-12-02-14-13-42.png"></p>
+</li>
+<li><p>把B看作系数矩阵，A就是列矩阵（C的每一列都是A的列的线性组合）</p>
+</li>
+<li><p><strong>B的第一列</strong>就是<strong>C的第一列的参数</strong><br>  如下图所示：<br>  <img src="/images/2022-12-02-14-15-05.png"><br>  <img src="/images/2022-12-02-14-16-23.png"></p>
+</li>
+</ul>
+<p>总图：<br><img src="/images/2022-12-02-14-16-45.png"></p>
+]]></content>
+      <tags>
+        <tag>矩阵</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>类内声明和定义</title>
+    <url>/2022/03/10/%E7%B1%BB%E5%86%85%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89/</url>
+    <content><![CDATA[<p>1.类内定义</p>
+<pre><code>    类内定义的概念：成员函数的函数体（实现）是在类的内部完成的。这种实现方式c++隐式为内联函数。
+
+   A.h
+</code></pre>
+<p>class A<br>{<br>public:<br>    A(void);<br>    virtual ~A(void);<br>    int test(){return 1;};<br>    int test1();<br>};<br>         可以看到类A中成员函数test()的定义在类的内部，隐式为内联函数（inline的原理，是用空间换取时间的做法，是以代码复制为代价，仅仅省去了函数调用的开销，从而提高函数的执行效率。如果执行函数体内代码的时间，相比于函数调用的开销较大，那么效率的收获会很少。所以，如果函数体代码过长或者函数体重有循环语句，if语句或switch语句或递归时，不宜用内联）。</p>
+<p>2.类外定义</p>
+<pre><code>   类外定义的概念:成员函数的定义是在类的外部实现的就像类A中的成员函数test1()，在类中只有声明。
+
+   A.h
+</code></pre>
+<p>class A<br>{<br>public:<br>    A(void);<br>    virtual ~A(void);<br>    int test(){return 1;};<br>    int test1();<br>};<br>      A.cpp</p>
+<p>#include “A.h”</p>
+<p>A::A(void)<br>{<br>}<br>A::~A(void)<br>{<br>}<br>int A::test1()<br>{<br>    return 1;<br>}<br>     这种类外定义的方式属于分文件类外定义，声明和定义不在同一文件中，还有一种类外定义方式为同文件类外定义，声明和定义在同一个.cpp文件中。</p>
 ]]></content>
       <tags>
         <tag>C++</tag>
       </tags>
   </entry>
   <entry>
-    <title>过拟合和欠拟合</title>
-    <url>/2022/05/22/%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88/</url>
-    <content><![CDATA[<p><img src="/images/overfit.png"> </p>
+    <title>英语句子</title>
+    <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
+    <content><![CDATA[<blockquote>
+<p>commence—Many people have wondered why the end of someone’s school days should be celebrated by Commencement Exercises, which, ordinarily, refer to a beginning</p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>重载new()</title>
-    <url>/2022/06/21/%E9%87%8D%E8%BD%BD/</url>
-    <content><![CDATA[<h2 id="可以重载new，同时也可以重载new"><a href="#可以重载new，同时也可以重载new" class="headerlink" title="可以重载new，同时也可以重载new()"></a>可以重载new，同时也可以重载new()</h2><p>Foo* p &#x3D; new(300,”a”) Foo;</p>
-<blockquote>
-<p>new()里面的参数就是可以加在重载函数的参数中的<br>注意第一个参数必须是size_t</p>
-</blockquote>
-<pre><code>void* operator new(size_t size, int a, char c)&#123;
-.....
-&#125;
-</code></pre>
-<blockquote>
-<p>这样就可以写错多个版本的new重载</p>
-</blockquote>
-<h2 id="delete-也可以这样写多个版本，对应new-参数版本。"><a href="#delete-也可以这样写多个版本，对应new-参数版本。" class="headerlink" title="delete()也可以这样写多个版本，对应new()参数版本。"></a>delete()也可以这样写多个版本，对应new()参数版本。</h2>]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>递归回溯</title>
-    <url>/2022/08/17/%E9%80%92%E5%BD%92%E5%9B%9E%E6%BA%AF/</url>
-    <content><![CDATA[<h1 id="当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树"><a href="#当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树" class="headerlink" title="当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树"></a>当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助<strong>递归树</strong></h1><p><img src="/images/2022-08-17-15-00-21.png"></p>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;vector&gt;
-using namespace std;
-void recursion(vector&lt;int&gt;&amp; nums,vector&lt;int&gt;&amp; temp,int target, int sum,int count,int&amp; len,int current)&#123;
-    //递归三部曲
-    //- 确定参数和返回值
-    //- 确定终止条件
-    //- 单层递归逻辑
-    
-    if(sum&gt;=target)&#123;
-        //这里只有递归的时候才会调用
-        len = min(len, count);
-        return;
-    &#125;
-    for(int i=current;i&lt;nums.size();i++)&#123;
-        //原本是4，先回溯到4，for循环结束
-        //开始第二个回溯，i=3(这个时候sum和count还有temp都减掉了i=3和i=4的情况)，经过for之后i=4
-        // 然后sum加上了i=4的情况，忽略i=3
-        //之后再回溯到i=2,经过for之后i=3(这里又开始叠加两层递归（i=3和i=4），
-        //并且对于i=3来说，i=2的值是没有的因为被回溯来，对于i=4来说，这个是i=3的孩子结点)
-        //通过递归树来分析所有的递归流程
-        count++;
-        sum += nums[i];
-        temp.push_back(nums[i]);
-        recursion(nums, temp,target,sum,count,len,i+1);
-        //这里开始回溯，sum和count还有temp都回溯了，但是注意i没有
-        sum -= nums[i];
-        temp.pop_back();
-        count--;    
-    &#125;
-&#125;
-int minSubArrayLen(int s, vector&lt;int&gt;&amp; nums) &#123;  
-    int len=999;
-    vector&lt;int&gt; temp;
-    recursion(nums,temp,s,0,0,len,0);
-    if (len==999)
-        return 0;
-    return len;
-&#125;
-int main(int argc, const char * argv[]) &#123;
-    // insert code here...
-    vector&lt;int&gt; nums=&#123;1,2,3,4,5&#125;;
-    int len = minSubArrayLen(15,nums);
-    cout &lt;&lt; len&lt;&lt;endl;
-    return 0;
-&#125;
-</code></pre>
-<h2 id="以下这些都可以用递归回溯来解决"><a href="#以下这些都可以用递归回溯来解决" class="headerlink" title="以下这些都可以用递归回溯来解决"></a>以下这些都可以用递归回溯来解决</h2><ul>
-<li>组合问题</li>
-<li>子集问题</li>
-<li>分割问题</li>
-<li>排列组合问题</li>
-<li>棋盘问题<br><img src="/images/2022-08-17-15-13-18.png"></li>
-</ul>
-<h2 id="遇到这些问题记得先画递归树"><a href="#遇到这些问题记得先画递归树" class="headerlink" title="遇到这些问题记得先画递归树"></a>遇到这些问题记得先画递归树</h2>]]></content>
-      <tags>
-        <tag>递归</tag>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -3571,6 +3462,202 @@ by decades 几十年
       </tags>
   </entry>
   <entry>
+    <title>重载new()</title>
+    <url>/2022/06/21/%E9%87%8D%E8%BD%BD/</url>
+    <content><![CDATA[<h2 id="可以重载new，同时也可以重载new"><a href="#可以重载new，同时也可以重载new" class="headerlink" title="可以重载new，同时也可以重载new()"></a>可以重载new，同时也可以重载new()</h2><p>Foo* p &#x3D; new(300,”a”) Foo;</p>
+<blockquote>
+<p>new()里面的参数就是可以加在重载函数的参数中的<br>注意第一个参数必须是size_t</p>
+</blockquote>
+<pre><code>void* operator new(size_t size, int a, char c)&#123;
+.....
+&#125;
+</code></pre>
+<blockquote>
+<p>这样就可以写错多个版本的new重载</p>
+</blockquote>
+<h2 id="delete-也可以这样写多个版本，对应new-参数版本。"><a href="#delete-也可以这样写多个版本，对应new-参数版本。" class="headerlink" title="delete()也可以这样写多个版本，对应new()参数版本。"></a>delete()也可以这样写多个版本，对应new()参数版本。</h2>]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>线性插值</title>
+    <url>/2022/08/20/%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/</url>
+    <content><![CDATA[<p><img src="/images/2022-08-28-19-14-47.png"></p>
+]]></content>
+      <tags>
+        <tag>ShiftGCN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>虚拟语气</title>
+    <url>/2022/12/18/%E8%99%9A%E6%8B%9F%E8%AF%AD%E6%B0%94/</url>
+    <content><![CDATA[<ol>
+<li>与现在事实相反的虚拟：</li>
+</ol>
+<p>If + did &#x2F; were + …, … would&#x2F; should&#x2F; could&#x2F; might + do （动词原形）</p>
+<p>If I were you, I would go abroad at once. (I am not you.)</p>
+<p>If he knew it now, he could help me. (He doesn’t know it now.)</p>
+<ol start="2">
+<li>与过去事实相反的虚拟：</li>
+</ol>
+<p>If + had done + …, … would (might) have done …</p>
+<p>If I had known your telephone number yesterday, I would have phoned you. (I didn’t know your telephone number.)</p>
+<p>If you had come here a little earlier just now, you might have met her. (You didn’t come here earlier.)</p>
+<ol start="3">
+<li>与将来事实相反的虚拟：</li>
+</ol>
+<p>(1) If + should + v., … would + v. （可能性很小）（译作“万一”）</p>
+<p>If it should rain tomorrow, you could stay at home.</p>
+<p>If I should fail, what should Ido?</p>
+<p>(2) If + did &#x2F; were to + v …, would + v. （完全不可能）</p>
+<p>If the sun were to rise in the west, I would lend you the money.</p>
+<p>If you finished it in 3 minutes, I would give you my car.</p>
+<ol start="4">
+<li>特殊重点</li>
+</ol>
+<p>［简单联想记忆］：</p>
+<p>● 下列动词后的“宾语从句”中需要用虚拟形式，即should + 动词原形，shoud在美国英语中要省略（TOEFL语法考点）。此类常见的动词有：order, ask, decide, demand, require, recommend, suggest（建议）, insist（坚决要求）, advise, etc.</p>
+<p>He suggested that we (should) help them with English.</p>
+<p>The teacher ordered that the homework (should) be finished within half an hour.</p>
+<p>● 下列名词后的同位语从句中要用“should + 动词原形”（should可省去）的虚拟。此类常见的名词有：suggestion, order, request, demand, importance, proposal.</p>
+<p>He made a suggestion that we (should) have a fancy dress party.</p>
+<p>I think it is a thing of importance that it (should) be done soon.</p>
+<p>● It is &#x2F; was important &#x2F; necessary &#x2F; natural &#x2F; essential &#x2F; advisable &#x2F; strange &#x2F; surprising, ect. + that +主语+ should + v.</p>
+<p>It is strange that you should say such a thing.</p>
+<p>It was important that you should tell me all the information.</p>
+<p>● wish后的宾语从句中，as if 后的状语从句中，须用下列的虚拟形式：</p>
+<p>主 + wish+ (that) + 主 + did &#x2F; were（指现在）</p>
+<p>had done（指过去）</p>
+<p>would+ v.（指将来）</p>
+<p>I wish that I met my uncle now.</p>
+<p>I wish I had met my uncle yesterday.</p>
+<p>I wish I could meet my uncle tomorrow.</p>
+<p>● It is (high) time that … + did &#x2F; were …</p>
+<p>It is time that you went to bed.</p>
+<p>● would rather that … + did &#x2F; were …</p>
+<p>I would rather that you were not here now.</p>
+<p>● would sooner that … + did &#x2F; were …</p>
+<p>I would sooner that you got up earlier.</p>
+<p>I would sooner that you were not my brother.</p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>过拟合和欠拟合</title>
+    <url>/2022/05/22/%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88/</url>
+    <content><![CDATA[<p><img src="/images/overfit.png"> </p>
+]]></content>
+      <tags>
+        <tag>machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>递归回溯</title>
+    <url>/2022/08/17/%E9%80%92%E5%BD%92%E5%9B%9E%E6%BA%AF/</url>
+    <content><![CDATA[<h1 id="当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树"><a href="#当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树" class="headerlink" title="当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树"></a>当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助<strong>递归树</strong></h1><p><img src="/images/2022-08-17-15-00-21.png"></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+void recursion(vector&lt;int&gt;&amp; nums,vector&lt;int&gt;&amp; temp,int target, int sum,int count,int&amp; len,int current)&#123;
+    //递归三部曲
+    //- 确定参数和返回值
+    //- 确定终止条件
+    //- 单层递归逻辑
+    
+    if(sum&gt;=target)&#123;
+        //这里只有递归的时候才会调用
+        len = min(len, count);
+        return;
+    &#125;
+    for(int i=current;i&lt;nums.size();i++)&#123;
+        //原本是4，先回溯到4，for循环结束
+        //开始第二个回溯，i=3(这个时候sum和count还有temp都减掉了i=3和i=4的情况)，经过for之后i=4
+        // 然后sum加上了i=4的情况，忽略i=3
+        //之后再回溯到i=2,经过for之后i=3(这里又开始叠加两层递归（i=3和i=4），
+        //并且对于i=3来说，i=2的值是没有的因为被回溯来，对于i=4来说，这个是i=3的孩子结点)
+        //通过递归树来分析所有的递归流程
+        count++;
+        sum += nums[i];
+        temp.push_back(nums[i]);
+        recursion(nums, temp,target,sum,count,len,i+1);
+        //这里开始回溯，sum和count还有temp都回溯了，但是注意i没有
+        sum -= nums[i];
+        temp.pop_back();
+        count--;    
+    &#125;
+&#125;
+int minSubArrayLen(int s, vector&lt;int&gt;&amp; nums) &#123;  
+    int len=999;
+    vector&lt;int&gt; temp;
+    recursion(nums,temp,s,0,0,len,0);
+    if (len==999)
+        return 0;
+    return len;
+&#125;
+int main(int argc, const char * argv[]) &#123;
+    // insert code here...
+    vector&lt;int&gt; nums=&#123;1,2,3,4,5&#125;;
+    int len = minSubArrayLen(15,nums);
+    cout &lt;&lt; len&lt;&lt;endl;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="以下这些都可以用递归回溯来解决"><a href="#以下这些都可以用递归回溯来解决" class="headerlink" title="以下这些都可以用递归回溯来解决"></a>以下这些都可以用递归回溯来解决</h2><ul>
+<li>组合问题</li>
+<li>子集问题</li>
+<li>分割问题</li>
+<li>排列组合问题</li>
+<li>棋盘问题<br><img src="/images/2022-08-17-15-13-18.png"></li>
+</ul>
+<h2 id="遇到这些问题记得先画递归树"><a href="#遇到这些问题记得先画递归树" class="headerlink" title="遇到这些问题记得先画递归树"></a>遇到这些问题记得先画递归树</h2>]]></content>
+      <tags>
+        <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>kubenetes</title>
+    <url>/2022/09/25/k8s/kubenetes/</url>
+    <content><![CDATA[<h4 id="minicube是用dockerm模拟一个工作的node"><a href="#minicube是用dockerm模拟一个工作的node" class="headerlink" title="minicube是用dockerm模拟一个工作的node"></a>minicube是用dockerm模拟一个工作的node</h4><ul>
+<li><p>启动集群<br>minikube start</p>
+</li>
+<li><p>查看节点。kubectl 是一个用来跟 K8S 集群进行交互的命令行工具<br>kubectl get node</p>
+</li>
+<li><p>停止集群<br>minikube stop</p>
+</li>
+<li><p>清空集群<br>minikube delete –all</p>
+</li>
+<li><p>安装集群可视化 Web UI 控制台<br>minikube dashboard</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Kubenetes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker</title>
+    <url>/2022/09/22/docker/docker/</url>
+    <content><![CDATA[<h4 id="1-Docker-一些基本操作"><a href="#1-Docker-一些基本操作" class="headerlink" title="1.Docker 一些基本操作"></a>1.Docker 一些基本操作</h4><ul>
+<li><p><a href="../docker-compose">一次docker-compose配置多个镜像，如Wordpress+mysql</a></p>
+</li>
+<li><p><a href="../dockerfile">DockerFile</a></p>
+</li>
+<li><p><a href="../network">Communicate containers</a></p>
+</li>
+<li><p><a href="../image">upload your images</a></p>
+</li>
+<li><p><a href="../backup">容器数据的备份与恢复</a></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>限制性和非限制性</title>
     <url>/2022/09/24/%E9%99%90%E5%88%B6%E6%80%A7%E5%92%8C%E9%9D%9E%E9%99%90%E5%88%B6%E6%80%A7/</url>
     <content><![CDATA[<p>限制性定语从句限制所修饰名词或代词的意义，一般说来如把从句去掉句子意思就不清楚，甚至失去意义。而非限制性定语从句主句(句子的其他部分)关系不太紧密，对所修饰名词或代词的意思没有太大影响，把它们拿掉，句子依然很完整，它们可以说是附加上去的东西，而且通常都有逗号把它们和句子的其他部分分开。具体说来，限制性定语从句与非限制性定语从句有以下几个方面的区别： </p>
@@ -3628,43 +3715,12 @@ by decades 几十年
       </tags>
   </entry>
   <entry>
-    <title>docker</title>
-    <url>/2022/09/22/docker/docker/</url>
-    <content><![CDATA[<h4 id="1-Docker-一些基本操作"><a href="#1-Docker-一些基本操作" class="headerlink" title="1.Docker 一些基本操作"></a>1.Docker 一些基本操作</h4><ul>
-<li><p><a href="../docker-compose">一次docker-compose配置多个镜像，如Wordpress+mysql</a></p>
-</li>
-<li><p><a href="../dockerfile">DockerFile</a></p>
-</li>
-<li><p><a href="../network">Communicate containers</a></p>
-</li>
-<li><p><a href="../image">upload your images</a></p>
-</li>
-<li><p><a href="../backup">容器数据的备份与恢复</a></p>
-</li>
-</ul>
+    <title>进程和线程</title>
+    <url>/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
+    <content><![CDATA[<p>做个简单的比喻：进程&#x3D;火车，线程&#x3D;车厢线程在进程下行进（<br>单纯的车厢无法运行）一个进程可以包含多个线程（一辆火车可以有多个车厢）<br>不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）<br>同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）<br>进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）<br>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）<br>进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）<br>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－”互斥锁”进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”</p>
 ]]></content>
       <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>kubenetes</title>
-    <url>/2022/09/25/k8s/kubenetes/</url>
-    <content><![CDATA[<h4 id="minicube是用dockerm模拟一个工作的node"><a href="#minicube是用dockerm模拟一个工作的node" class="headerlink" title="minicube是用dockerm模拟一个工作的node"></a>minicube是用dockerm模拟一个工作的node</h4><ul>
-<li><p>启动集群<br>minikube start</p>
-</li>
-<li><p>查看节点。kubectl 是一个用来跟 K8S 集群进行交互的命令行工具<br>kubectl get node</p>
-</li>
-<li><p>停止集群<br>minikube stop</p>
-</li>
-<li><p>清空集群<br>minikube delete –all</p>
-</li>
-<li><p>安装集群可视化 Web UI 控制台<br>minikube dashboard</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Kubenetes</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
 </search>
