@@ -9,90 +9,6 @@
       </tags>
   </entry>
   <entry>
-    <title>AI_robotics</title>
-    <url>/2022/10/10/AI-robotics/</url>
-    <content><![CDATA[<h3 id="rotation-matrix"><a href="#rotation-matrix" class="headerlink" title="rotation matrix"></a>rotation matrix</h3><p><img src="/images/2022-10-10-12-29-05.png"></p>
-<p><img src="/images/2022-10-10-12-34-54.png"></p>
-<ul>
-<li>S(ab), a is fixed frame and b is orientation frame.</li>
-</ul>
-<p><img src="/images/2022-10-10-12-52-07.png"></p>
-<p><img src="/images/2022-10-10-12-54-01.png"></p>
-<hr>
-<h3 id="rotation-R-sb-b-rotate-by-s"><a href="#rotation-R-sb-b-rotate-by-s" class="headerlink" title="rotation R(sb), b rotate by s."></a>rotation R(sb), b rotate by s.</h3><p><img src="/images/2022-10-10-13-09-31.png"></p>
-]]></content>
-      <tags>
-        <tag>3D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>BPR推荐算法</title>
-    <url>/2021/11/16/BPR/</url>
-    <content><![CDATA[<p><img src="/images/BPR.png"> </p>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>BRP推荐算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>3D</title>
-    <url>/2021/11/05/3D/</url>
-    <content><![CDATA[<!-- Do you need some help for 3D?
-I skipped some lectures, so first of all I need to rewatch that. After that, I will ask some help, thanks 
-aassigments
-I will try figure out by myself, then i will ask sometjiogn  -->
-<blockquote>
-<p>trangulation<br>tip: e2（第二个图像的极点是第一个图片的focal（焦点）在第二个坐标系下的投影），e2 &#x3D; K’[R T][0,0,0,1]T([0,0,0,1]是第一个图片的坐标原点（世界坐标系的原点）)<br>问题一：为什么要进行相机标定？<br>相机标定的目的是：建立相机成像几何模型并矫正透镜畸变。这句话有点拗口，下面分别对其中两个关键部分进行解释。</p>
-</blockquote>
-<blockquote>
-<p>建立相机成像几何模型：计算机视觉的首要任务就是要通过拍摄到的图像信息获取到物体在真实三维世界里相对应的信息，于是，建立物体从三维世界映射到相机成像平面这一过程中的几何模型就显得尤为重要，而这一过程最关键的部分就是要得到相机的内参和外参（后续文有具体解释）。</p>
-</blockquote>
-<blockquote>
-<p>矫正透镜畸变：我们最开始接触到的成像方面的知识应该是有关小孔成像的，但是由于这种成像方式只有小孔部分能透过光线就会导致物体的成像亮度很低，于是聪明的人类发明了透镜。虽然亮度问题解决了，但是新的问题又来了：由于透镜的制造工艺，会使成像产生多种形式的畸变，于是为了去除畸变（使成像后的图像与真实世界的景象保持一致），人们计算并利用畸变系数来矫正这种像差。虽然理论上可以设计出不产生畸变的透镜，但其制造工艺相对于球面透镜会复杂很多，所以相对于复杂且高成本的制造工艺，人们更喜欢用数学来解决问题。</p>
-</blockquote>
-<p>相机成像模型<br>前面已经说过，相机标定的目的之一是为了建立物体从三维世界到成像平面上各坐标点的对应关系，所以首先我们需要定义这样几个坐标系来为整个过程做好铺垫：</p>
-<blockquote>
-<p>世界坐标系(world coordinate system)：用户定义的三维世界的坐标系，为了描述目标物在真实世界里的位置而被引入。单位为m。</p>
-</blockquote>
-<blockquote>
-<p>相机坐标系(camera coordinate system)：在相机上建立的坐标系，为了从相机的角度描述物体位置而定义，作为沟通世界坐标系和图像&#x2F;像素坐标系的中间一环。单位为m。</p>
-</blockquote>
-<blockquote>
-<p>图像坐标系(image coordinate system)：为了描述成像过程中物体从相机坐标系到图像坐标系的投影透射关系而引入，方便进一步得到像素坐标系下的坐标。 单位为m。</p>
-</blockquote>
-<blockquote>
-<p>像素坐标系(pixel coordinate system)：为了描述物体成像后的像点在数字图像上（相片）的坐标而引入，是我们真正从相机内读取到的信息所在的坐标系。单位为个（像素数目）。</p>
-</blockquote>
-<p>一下子定义出来四个坐标系可能有点晕，下图可以更清晰地表达这四个坐标系之间的关系：<br><img src="/images/3D-1.jpeg"></p>
-<h2 id="世界坐标系：Xw、Yw、Zw。相机坐标系：-Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。"><a href="#世界坐标系：Xw、Yw、Zw。相机坐标系：-Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。" class="headerlink" title="世界坐标系：Xw、Yw、Zw。相机坐标系： Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。"></a>世界坐标系：Xw、Yw、Zw。相机坐标系： Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。</h2><blockquote>
-<p>其中，相机坐标系的z轴与光轴重合，且垂直于图像坐标系平面并通过图像坐标系的原点，相机坐标系与图像坐标系之间的距离为焦距f（也即图像坐标系原点与焦点重合）。像素坐标系平面u-v和图像坐标系平面x-y重合，但像素坐标系原点位于图中左上角（之所以这么定义，目的是从存储信息的首地址开始读写）。<br><img src="/images/3D-2.jpeg"><br>下面将依次对刚体进行一系列变换，使之从世界坐标系进行仿射变换、投影透射，最终得到像素坐标系下的离散图像点，过程中会逐步引入各参数矩阵。</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>3D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Conv-MPN</title>
-    <url>/2022/06/17/Conv-MPN/</url>
-    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
-<li><a href="#">corner_detection</a><blockquote>
-<p>concatenate</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
-<p>mask_rcnn extracts corner points.</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++</title>
     <url>/2022/01/13/C/</url>
     <content><![CDATA[<blockquote>
@@ -179,6 +95,105 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
       </tags>
   </entry>
   <entry>
+    <title>Context-Aware Attentional Graph U-Net for Hyperspectral Image Classification</title>
+    <url>/2021/03/31/CAGU/</url>
+    <content><![CDATA[<p><img src="/images/2_author.jpg"> </p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">Hyperspectral Image (HSI) registers hundreds of spectral bands, whose intraclass variability and interclass similarity are resourceful information to be mined. Intraclass variability reflects the non-uniform and redundancy of the spatial and semantic features extracted from HSI. Interclass similarity represents the inherent relationship between adjacent features and snapshots. Existing models extract the superficial correlation representation for HSI to tackle the classification task but fail to embed the interclass and intraclass correlations due to these models intrinsic bottlenecks. Confronting the challenges of capturing interrelation for complex data in practice, we propose a Context-Aware Attentional Graph U-Net (CAGU) to improve these two modes of representation, which is more flexible in feature enhancement. In this method, attentional Graph U-Net is capable of extracting the intraclass embeddings within a non-Euclidean space by combining similar distributing feature vertices. The Gated Recurrent Unit (GRU) is another critical component of our model to capture the context-aware dynamic interclass embeddings. Extensive experiments demonstrate that our model can efficiently outperform state-of-the-art methods across-the-board on five wide-adopted public datasets, namely Pavia University, Indian Pines, Salinas Scene-show, Houston 2013 and Houston 2018, on a par with the same scale of model parameters.
+</blockquote>
+<h1 id="CAGU-Architecture"><a href="#CAGU-Architecture" class="headerlink" title="CAGU Architecture :"></a>CAGU Architecture :</h1><p> <img src="/images/2_2.jpg"> </p>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/2_3.jpg"> </p>
+<h1 id="Classification-maps"><a href="#Classification-maps" class="headerlink" title="Classification maps :"></a>Classification maps :</h1><p> <img src="/images/2_5.jpg"> </p>
+<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black"> CAGU considers the intrinsic relationship in feature space, and promotes high cohesion of features through the graph network. CAGU can explore deeper spectral information in the image than the state-of-the-art methods, which enhances the cohesion of features and provides clear data for subsequent modules. Therefore, CAGU outperforms all the compared methods, and it can be universally employed in most models for feature enhancement, not restricted in U-Net. What’s more, GCN and GRU will not increase the parameters of the model due to the reduction in depth of U-Net.
+</blockquote>
+<hr>
+<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Journal-IEEE-Geoscience-and-Remote-Sensing-Letters"><a href="#Journal-IEEE-Geoscience-and-Remote-Sensing-Letters" class="headerlink" title="Journal : IEEE Geoscience and Remote Sensing Letters"></a>Journal : IEEE Geoscience and Remote Sensing Letters</h3><h3 id="Impact-factor-3-833"><a href="#Impact-factor-3-833" class="headerlink" title="Impact factor : 3.833"></a>Impact factor : 3.833</h3><h3 id="State-Accepted-28-Mar-2021"><a href="#State-Accepted-28-Mar-2021" class="headerlink" title="State : Accepted (28-Mar-2021)"></a>State : Accepted (28-Mar-2021)</h3><p><img src="/images/2_4.jpg"> </p>
+<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> When the paper is published, we will open source the code.<br>
+<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>CAGU</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AI_robotics</title>
+    <url>/2022/10/10/AI-robotics/</url>
+    <content><![CDATA[<h3 id="rotation-matrix"><a href="#rotation-matrix" class="headerlink" title="rotation matrix"></a>rotation matrix</h3><p><img src="/images/2022-10-10-12-29-05.png"></p>
+<p><img src="/images/2022-10-10-12-34-54.png"></p>
+<ul>
+<li>S(ab), a is fixed frame and b is orientation frame.</li>
+</ul>
+<p><img src="/images/2022-10-10-12-52-07.png"></p>
+<p><img src="/images/2022-10-10-12-54-01.png"></p>
+<hr>
+<h3 id="rotation-R-sb-b-rotate-by-s"><a href="#rotation-R-sb-b-rotate-by-s" class="headerlink" title="rotation R(sb), b rotate by s."></a>rotation R(sb), b rotate by s.</h3><p><img src="/images/2022-10-10-13-09-31.png"></p>
+]]></content>
+      <tags>
+        <tag>3D</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>BPR推荐算法</title>
+    <url>/2021/11/16/BPR/</url>
+    <content><![CDATA[<p><img src="/images/BPR.png"> </p>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>BRP推荐算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DBSCAN</title>
+    <url>/2022/01/06/DBSCAN/</url>
+    <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
+]]></content>
+      <tags>
+        <tag>DBSCAN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Conv-MPN</title>
+    <url>/2022/06/17/Conv-MPN/</url>
+    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
+<li><a href="#">corner_detection</a><blockquote>
+<p>concatenate</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
+<p>mask_rcnn extracts corner points.</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DP</title>
+    <url>/2022/03/18/DP/</url>
+    <content><![CDATA[<p><img src="/images/DP.png">  </p>
+]]></content>
+      <tags>
+        <tag>RL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FLOPs</title>
+    <url>/2022/06/26/FLOPs/</url>
+    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
+]]></content>
+      <tags>
+        <tag>FLOPs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Cplusplus</title>
     <url>/2023/11/26/Cplusplus/</url>
     <content><![CDATA[<ol>
@@ -212,77 +227,140 @@ void main(int argc,char *argv[])
       </tags>
   </entry>
   <entry>
-    <title>Cplusplusnotes</title>
-    <url>/2022/05/01/Cplusplusnotes/</url>
-    <content><![CDATA[<blockquote>
-<p>静态函数只能访问静态数据</p>
+    <title>3D</title>
+    <url>/2021/11/05/3D/</url>
+    <content><![CDATA[<!-- Do you need some help for 3D?
+I skipped some lectures, so first of all I need to rewatch that. After that, I will ask some help, thanks 
+aassigments
+I will try figure out by myself, then i will ask sometjiogn  -->
+<blockquote>
+<p>trangulation<br>tip: e2（第二个图像的极点是第一个图片的focal（焦点）在第二个坐标系下的投影），e2 &#x3D; K’[R T][0,0,0,1]T([0,0,0,1]是第一个图片的坐标原点（世界坐标系的原点）)<br>问题一：为什么要进行相机标定？<br>相机标定的目的是：建立相机成像几何模型并矫正透镜畸变。这句话有点拗口，下面分别对其中两个关键部分进行解释。</p>
 </blockquote>
 <blockquote>
-<p>为什么static成员变量一定要在类外初始化?</p>
+<p>建立相机成像几何模型：计算机视觉的首要任务就是要通过拍摄到的图像信息获取到物体在真实三维世界里相对应的信息，于是，建立物体从三维世界映射到相机成像平面这一过程中的几何模型就显得尤为重要，而这一过程最关键的部分就是要得到相机的内参和外参（后续文有具体解释）。</p>
 </blockquote>
-<pre><code>static变量属于类，非对象，如果在类内初始了，该类再一次创建对象将变成初始值，会修改其他对象对该静态变量操作的意图可能发生意外
-但是
-static const int a = 1;
-这个可以在类内初始化，因为const说明这个变量是不变的，因此对于每个对象来说，static内存块的的数据就是一样的
-</code></pre>
-<h2 id="为什么静态成员不能在类内初始化？"><a href="#为什么静态成员不能在类内初始化？" class="headerlink" title="为什么静态成员不能在类内初始化？"></a>为什么静态成员不能在类内初始化？</h2><p>在C++中，类的静态成员（static member）必须在类内声明，在类外初始化，像下面这样。</p>
-<p>class A<br>{<br>private:<br>static int count ; &#x2F;&#x2F; 类内声明<br>};</p>
-<ul>
-<li><p>类外定义并初始化，不必再加static关键字<br>int A::count &#x3D; 0 ;<br>或者只进行定义不赋初始值，但是默认值是否是0，可能会与具体的编译器有关吧？</p>
-</li>
-<li><p>只进行定义不赋初始值，但默认值视编译器而定<br>int A::count;<br>为什么？</p>
-</li>
-<li><p>因为静态成员属于整个类，而不属于某个对象，如果在类内初始化，会导致每个对象都包含该静态成员，这是矛盾的。</p>
-</li>
-</ul>
-<p>如果不增加int A::count &#x3D; 0 ; &#x2F;&#x2F;变量定义，在编译的时候将会报出：‘A::count’未定义的引用”错误。这是因为静态成员变量count未定义，也就是还没有分配内存，显然是不可以访问的。</p>
+<blockquote>
+<p>矫正透镜畸变：我们最开始接触到的成像方面的知识应该是有关小孔成像的，但是由于这种成像方式只有小孔部分能透过光线就会导致物体的成像亮度很低，于是聪明的人类发明了透镜。虽然亮度问题解决了，但是新的问题又来了：由于透镜的制造工艺，会使成像产生多种形式的畸变，于是为了去除畸变（使成像后的图像与真实世界的景象保持一致），人们计算并利用畸变系数来矫正这种像差。虽然理论上可以设计出不产生畸变的透镜，但其制造工艺相对于球面透镜会复杂很多，所以相对于复杂且高成本的制造工艺，人们更喜欢用数学来解决问题。</p>
+</blockquote>
+<p>相机成像模型<br>前面已经说过，相机标定的目的之一是为了建立物体从三维世界到成像平面上各坐标点的对应关系，所以首先我们需要定义这样几个坐标系来为整个过程做好铺垫：</p>
+<blockquote>
+<p>世界坐标系(world coordinate system)：用户定义的三维世界的坐标系，为了描述目标物在真实世界里的位置而被引入。单位为m。</p>
+</blockquote>
+<blockquote>
+<p>相机坐标系(camera coordinate system)：在相机上建立的坐标系，为了从相机的角度描述物体位置而定义，作为沟通世界坐标系和图像&#x2F;像素坐标系的中间一环。单位为m。</p>
+</blockquote>
+<blockquote>
+<p>图像坐标系(image coordinate system)：为了描述成像过程中物体从相机坐标系到图像坐标系的投影透射关系而引入，方便进一步得到像素坐标系下的坐标。 单位为m。</p>
+</blockquote>
+<blockquote>
+<p>像素坐标系(pixel coordinate system)：为了描述物体成像后的像点在数字图像上（相片）的坐标而引入，是我们真正从相机内读取到的信息所在的坐标系。单位为个（像素数目）。</p>
+</blockquote>
+<p>一下子定义出来四个坐标系可能有点晕，下图可以更清晰地表达这四个坐标系之间的关系：<br><img src="/images/3D-1.jpeg"></p>
+<h2 id="世界坐标系：Xw、Yw、Zw。相机坐标系：-Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。"><a href="#世界坐标系：Xw、Yw、Zw。相机坐标系：-Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。" class="headerlink" title="世界坐标系：Xw、Yw、Zw。相机坐标系： Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。"></a>世界坐标系：Xw、Yw、Zw。相机坐标系： Xc、Yc、Zc。图像坐标系：x、y。像素坐标系：u、v。</h2><blockquote>
+<p>其中，相机坐标系的z轴与光轴重合，且垂直于图像坐标系平面并通过图像坐标系的原点，相机坐标系与图像坐标系之间的距离为焦距f（也即图像坐标系原点与焦点重合）。像素坐标系平面u-v和图像坐标系平面x-y重合，但像素坐标系原点位于图中左上角（之所以这么定义，目的是从存储信息的首地址开始读写）。<br><img src="/images/3D-2.jpeg"><br>下面将依次对刚体进行一系列变换，使之从世界坐标系进行仿射变换、投影透射，最终得到像素坐标系下的离散图像点，过程中会逐步引入各参数矩阵。</p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>C++</tag>
+        <tag>3D</tag>
       </tags>
   </entry>
   <entry>
-    <title>Context-Aware Attentional Graph U-Net for Hyperspectral Image Classification</title>
-    <url>/2021/03/31/CAGU/</url>
-    <content><![CDATA[<p><img src="/images/2_author.jpg"> </p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">Hyperspectral Image (HSI) registers hundreds of spectral bands, whose intraclass variability and interclass similarity are resourceful information to be mined. Intraclass variability reflects the non-uniform and redundancy of the spatial and semantic features extracted from HSI. Interclass similarity represents the inherent relationship between adjacent features and snapshots. Existing models extract the superficial correlation representation for HSI to tackle the classification task but fail to embed the interclass and intraclass correlations due to these models intrinsic bottlenecks. Confronting the challenges of capturing interrelation for complex data in practice, we propose a Context-Aware Attentional Graph U-Net (CAGU) to improve these two modes of representation, which is more flexible in feature enhancement. In this method, attentional Graph U-Net is capable of extracting the intraclass embeddings within a non-Euclidean space by combining similar distributing feature vertices. The Gated Recurrent Unit (GRU) is another critical component of our model to capture the context-aware dynamic interclass embeddings. Extensive experiments demonstrate that our model can efficiently outperform state-of-the-art methods across-the-board on five wide-adopted public datasets, namely Pavia University, Indian Pines, Salinas Scene-show, Houston 2013 and Houston 2018, on a par with the same scale of model parameters.
+    <title>Hierarchical</title>
+    <url>/2021/12/02/Hierarchical/</url>
+    <content><![CDATA[<blockquote>
+<p>层次聚类算法 各种linkage</p>
 </blockquote>
-<h1 id="CAGU-Architecture"><a href="#CAGU-Architecture" class="headerlink" title="CAGU Architecture :"></a>CAGU Architecture :</h1><p> <img src="/images/2_2.jpg"> </p>
-<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/2_3.jpg"> </p>
-<h1 id="Classification-maps"><a href="#Classification-maps" class="headerlink" title="Classification maps :"></a>Classification maps :</h1><p> <img src="/images/2_5.jpg"> </p>
+<p>基本工作原理<br>给定要聚类的N的对象以及N*N的距离矩阵(或者是相似性矩阵), 层次式聚类方法的基本步骤(参看S.C. Johnson in 1967)如下:</p>
+<ol>
+<li><pre><code>将每个对象归为一类, 共得到N类, 每类仅包含一个对象. 类与类之间的距离就是它们所包含的对象之间的距离.
+</code></pre>
+</li>
+<li><pre><code>找到最接近的两个类并合并成一类, 于是总的类数少了一个.
+</code></pre>
+</li>
+<li><pre><code>重新计算新的类与所有旧类之间的距离.
+</code></pre>
+</li>
+<li><pre><code>重复第2步和第3步, 直到最后合并成一个类为止(此类包含了N个对象).
+</code></pre>
+<p>根据步骤3的不同, 可将层次式聚类方法分为几类: single-linkage, complete-linkage 以及 average-linkage 聚类方法等.</p>
+</li>
+</ol>
+<p>single-linkage 聚类法(也称 connectedness 或 minimum 方法)：</p>
+<p>类间距离等于两类对象之间的最小距离，若用相似度衡量，则是各类中的任一对象与另一类中任一对象的最大相似度。</p>
+<p>complete-linkage 聚类法 (也称 diameter 或 maximum 方法)：</p>
+<p>组间距离等于两组对象之间的最大距离。</p>
+<p>average-linkage 聚类法：</p>
+<p>组间距离等于两组对象之间的平均距离。</p>
+<p>average-link 聚类的一个变种是R. D’Andrade (1978) 的UCLUS方法, 它使用的是median距离, 在受异常数据对象的影响方面, 它要比平均距离表现更佳一些.</p>
+<p>这种层次聚类称为“凝聚”法，由于它迭代合并所有分类。也有一种“划分”层次聚类法，与“凝聚”相反，它先将所有对象放在同一类中，并不断划分成更小的类，划分法一般很少使用。</p>
+<p>整个聚类过程其实是建立了一棵树，在建立的过程中，可以通过在第二步上设置一个阈值，当最近的两个类的距离大于这个阈值，则认为迭代可以终止。另外关键的一步就是第三步，如何判断两个类之间的相似度有不少种方法。这里介绍一下三种：</p>
+<p>SingleLinkage：又叫做 nearest-neighbor ，就是取两个类中距离最近的两个样本的距离作为这两个集合的距离，也就是说，最近两个样本之间的距离越小，这两个类之间的相似度就越大。容易造成一种叫做 Chaining 的效果，两个 cluster 明明从“大局”上离得比较远，但是由于其中个别的点距离比较近就被合并了，并且这样合并之后 Chaining 效应会进一步扩大，最后会得到比较松散的 cluster 。</p>
+<p>CompleteLinkage：这个则完全是 Single Linkage 的反面极端，取两个集合中距离最远的两个点的距离作为两个集合的距离。其效果也是刚好相反的，限制非常大，两个 cluster 即使已经很接近了，但是只要有不配合的点存在，就顽固到底，老死不相合并，也是不太好的办法。这两种相似度的定义方法的共同问题就是指考虑了某个有特点的数据，而没有考虑类内数据的整体特点。</p>
+<p>Average-linkage：这种方法就是把两个集合中的点两两的距离全部放在一起求一个平均值，相对也能得到合适一点的结果。</p>
+<p>average-linkage的一个变种就是取两两距离的中值，与取均值相比更加能够解除个别偏离样本对结果的干扰。</p>
+
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/cluster.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+      <tags>
+        <tag>culster</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Short-term prediction of stock market price based on GA optimization LSTM neurons</title>
+    <url>/2021/04/01/GA/</url>
+    <content><![CDATA[<p><img src="/images/3_1.jpg"> </p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">Long-Short Term Memory Network stands out from the financial sector due to its long-term memory predictability, however, the speed of subsequent operations is extremely slow, and the timeliness of the inability to meet market changes has been criticized. In this paper. Aiming at the shortcomings of the slow running of three gates in each neuron of LSTM in back propagation, we1 propose to use GA to optimize the internal weights of LSTM neurons to optimize the defect. In this experiment, GA optimization could not change the accuracy of the model, but it achieved better results than the original LSTM in terms of speed, and satisfied the demand of the future business field for rapid response to market changes in terms of timeliness.
+</blockquote>
+<h1 id="LSTM-Architecture"><a href="#LSTM-Architecture" class="headerlink" title="LSTM Architecture :"></a>LSTM Architecture :</h1><p>  <img src="/images/3_2.jpg"> </p>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/3_3.jpg"> </p>
 <h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black"> CAGU considers the intrinsic relationship in feature space, and promotes high cohesion of features through the graph network. CAGU can explore deeper spectral information in the image than the state-of-the-art methods, which enhances the cohesion of features and provides clear data for subsequent modules. Therefore, CAGU outperforms all the compared methods, and it can be universally employed in most models for feature enhancement, not restricted in U-Net. What’s more, GCN and GRU will not increase the parameters of the model due to the reduction in depth of U-Net.
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">This paper proposes a GA optimization method for LSTM neurons. By comparing the running time of predecessor models, it is possible to overcome the shortcomings of slow operation of LSTM to a certain extent by optimizing the internal weight of neurons through GA update.
+<p style="text-align:justify; text-justify:inter-ideograph; color:black"> In addition, this article does not discuss the generalization ability of the network and other parameters of the network at the same time. The research purpose is too single. However, for the short-term prediction of financial markets, the importance of research on the timeliness and advancing of the model is much higher than that of the generalized network model
 </blockquote>
 <hr>
-<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Journal-IEEE-Geoscience-and-Remote-Sensing-Letters"><a href="#Journal-IEEE-Geoscience-and-Remote-Sensing-Letters" class="headerlink" title="Journal : IEEE Geoscience and Remote Sensing Letters"></a>Journal : IEEE Geoscience and Remote Sensing Letters</h3><h3 id="Impact-factor-3-833"><a href="#Impact-factor-3-833" class="headerlink" title="Impact factor : 3.833"></a>Impact factor : 3.833</h3><h3 id="State-Accepted-28-Mar-2021"><a href="#State-Accepted-28-Mar-2021" class="headerlink" title="State : Accepted (28-Mar-2021)"></a>State : Accepted (28-Mar-2021)</h3><p><img src="/images/2_4.jpg"> </p>
+<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2018 2nd International Conference on Deep Learning Technologies"></a>Conference : 2018 2nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/3_4.jpg"> </p>
 <h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> When the paper is published, we will open source the code.<br>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> This paper was published a long time ago, and it is not perfect from my current point of view.<br>
 <p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
 ]]></content>
       <categories>
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>CAGU</tag>
+        <tag>GA</tag>
       </tags>
   </entry>
   <entry>
-    <title>DBSCAN</title>
-    <url>/2022/01/06/DBSCAN/</url>
-    <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
+    <title>MATI-Regression</title>
+    <url>/2021/11/02/MATI-Regression/</url>
+    <content><![CDATA[
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+
+<h1 id="L1-amp-L2-regularization"><a href="#L1-amp-L2-regularization" class="headerlink" title="L1 &amp; L2 regularization"></a>L1 &amp; L2 regularization</h1>
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
 ]]></content>
       <tags>
-        <tag>DBSCAN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DP</title>
-    <url>/2022/03/18/DP/</url>
-    <content><![CDATA[<p><img src="/images/DP.png">  </p>
-]]></content>
-      <tags>
-        <tag>RL</tag>
+        <tag>MTAI</tag>
       </tags>
   </entry>
   <entry>
@@ -436,86 +514,14 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>Short-term prediction of stock market price based on GA optimization LSTM neurons</title>
-    <url>/2021/04/01/GA/</url>
-    <content><![CDATA[<p><img src="/images/3_1.jpg"> </p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">Long-Short Term Memory Network stands out from the financial sector due to its long-term memory predictability, however, the speed of subsequent operations is extremely slow, and the timeliness of the inability to meet market changes has been criticized. In this paper. Aiming at the shortcomings of the slow running of three gates in each neuron of LSTM in back propagation, we1 propose to use GA to optimize the internal weights of LSTM neurons to optimize the defect. In this experiment, GA optimization could not change the accuracy of the model, but it achieved better results than the original LSTM in terms of speed, and satisfied the demand of the future business field for rapid response to market changes in terms of timeliness.
-</blockquote>
-<h1 id="LSTM-Architecture"><a href="#LSTM-Architecture" class="headerlink" title="LSTM Architecture :"></a>LSTM Architecture :</h1><p>  <img src="/images/3_2.jpg"> </p>
-<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/3_3.jpg"> </p>
-<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">This paper proposes a GA optimization method for LSTM neurons. By comparing the running time of predecessor models, it is possible to overcome the shortcomings of slow operation of LSTM to a certain extent by optimizing the internal weight of neurons through GA update.
-<p style="text-align:justify; text-justify:inter-ideograph; color:black"> In addition, this article does not discuss the generalization ability of the network and other parameters of the network at the same time. The research purpose is too single. However, for the short-term prediction of financial markets, the importance of research on the timeliness and advancing of the model is much higher than that of the generalized network model
-</blockquote>
-<hr>
-<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2018 2nd International Conference on Deep Learning Technologies"></a>Conference : 2018 2nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/3_4.jpg"> </p>
-<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> This paper was published a long time ago, and it is not perfect from my current point of view.<br>
-<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>GA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hierarchical</title>
-    <url>/2021/12/02/Hierarchical/</url>
+    <title>Monte</title>
+    <url>/2022/03/17/Monte/</url>
     <content><![CDATA[<blockquote>
-<p>层次聚类算法 各种linkage</p>
+<p>引入概率密度函数的蒙特卡洛公式推导，是把p(x) 看作前面分数的密度概率函数，也就是对前面分数求期望，而期望可以通过对p（x）采样并平均得到<br><img src="/images/MCMC.png">  </p>
 </blockquote>
-<p>基本工作原理<br>给定要聚类的N的对象以及N*N的距离矩阵(或者是相似性矩阵), 层次式聚类方法的基本步骤(参看S.C. Johnson in 1967)如下:</p>
-<ol>
-<li><pre><code>将每个对象归为一类, 共得到N类, 每类仅包含一个对象. 类与类之间的距离就是它们所包含的对象之间的距离.
-</code></pre>
-</li>
-<li><pre><code>找到最接近的两个类并合并成一类, 于是总的类数少了一个.
-</code></pre>
-</li>
-<li><pre><code>重新计算新的类与所有旧类之间的距离.
-</code></pre>
-</li>
-<li><pre><code>重复第2步和第3步, 直到最后合并成一个类为止(此类包含了N个对象).
-</code></pre>
-<p>根据步骤3的不同, 可将层次式聚类方法分为几类: single-linkage, complete-linkage 以及 average-linkage 聚类方法等.</p>
-</li>
-</ol>
-<p>single-linkage 聚类法(也称 connectedness 或 minimum 方法)：</p>
-<p>类间距离等于两类对象之间的最小距离，若用相似度衡量，则是各类中的任一对象与另一类中任一对象的最大相似度。</p>
-<p>complete-linkage 聚类法 (也称 diameter 或 maximum 方法)：</p>
-<p>组间距离等于两组对象之间的最大距离。</p>
-<p>average-linkage 聚类法：</p>
-<p>组间距离等于两组对象之间的平均距离。</p>
-<p>average-link 聚类的一个变种是R. D’Andrade (1978) 的UCLUS方法, 它使用的是median距离, 在受异常数据对象的影响方面, 它要比平均距离表现更佳一些.</p>
-<p>这种层次聚类称为“凝聚”法，由于它迭代合并所有分类。也有一种“划分”层次聚类法，与“凝聚”相反，它先将所有对象放在同一类中，并不断划分成更小的类，划分法一般很少使用。</p>
-<p>整个聚类过程其实是建立了一棵树，在建立的过程中，可以通过在第二步上设置一个阈值，当最近的两个类的距离大于这个阈值，则认为迭代可以终止。另外关键的一步就是第三步，如何判断两个类之间的相似度有不少种方法。这里介绍一下三种：</p>
-<p>SingleLinkage：又叫做 nearest-neighbor ，就是取两个类中距离最近的两个样本的距离作为这两个集合的距离，也就是说，最近两个样本之间的距离越小，这两个类之间的相似度就越大。容易造成一种叫做 Chaining 的效果，两个 cluster 明明从“大局”上离得比较远，但是由于其中个别的点距离比较近就被合并了，并且这样合并之后 Chaining 效应会进一步扩大，最后会得到比较松散的 cluster 。</p>
-<p>CompleteLinkage：这个则完全是 Single Linkage 的反面极端，取两个集合中距离最远的两个点的距离作为两个集合的距离。其效果也是刚好相反的，限制非常大，两个 cluster 即使已经很接近了，但是只要有不配合的点存在，就顽固到底，老死不相合并，也是不太好的办法。这两种相似度的定义方法的共同问题就是指考虑了某个有特点的数据，而没有考虑类内数据的整体特点。</p>
-<p>Average-linkage：这种方法就是把两个集合中的点两两的距离全部放在一起求一个平均值，相对也能得到合适一点的结果。</p>
-<p>average-linkage的一个变种就是取两两距离的中值，与取均值相比更加能够解除个别偏离样本对结果的干扰。</p>
-
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/cluster.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
 ]]></content>
       <tags>
-        <tag>culster</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>FLOPs</title>
-    <url>/2022/06/26/FLOPs/</url>
-    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
-]]></content>
-      <tags>
-        <tag>FLOPs</tag>
+        <tag>machine</tag>
       </tags>
   </entry>
   <entry>
@@ -525,6 +531,149 @@ concorn
 ]]></content>
       <tags>
         <tag>3D</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MC</title>
+    <url>/2022/03/19/MC/</url>
+    <content><![CDATA[<p><img src="/images/MC.png">  </p>
+]]></content>
+      <tags>
+        <tag>RL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RL3ways</title>
+    <url>/2022/03/20/RL3ways/</url>
+    <content><![CDATA[
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/RL3.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+      <tags>
+        <tag>RL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STL</title>
+    <url>/2022/07/06/STL/</url>
+    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
+<blockquote>
+<p>stack和queue不提供iterator</p>
+</blockquote>
+<blockquote>
+<p>set&#x2F;multiset<br>multiset是基于红黑树实现的</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Likelihood2</title>
+    <url>/2022/02/24/Likelihood2/</url>
+    <content><![CDATA[<blockquote>
+<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为&#x3D;》最大概率处l&#x3D;0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Likelihood</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Cplusplusnotes</title>
+    <url>/2022/05/01/Cplusplusnotes/</url>
+    <content><![CDATA[<blockquote>
+<p>静态函数只能访问静态数据</p>
+</blockquote>
+<blockquote>
+<p>为什么static成员变量一定要在类外初始化?</p>
+</blockquote>
+<pre><code>static变量属于类，非对象，如果在类内初始了，该类再一次创建对象将变成初始值，会修改其他对象对该静态变量操作的意图可能发生意外
+但是
+static const int a = 1;
+这个可以在类内初始化，因为const说明这个变量是不变的，因此对于每个对象来说，static内存块的的数据就是一样的
+</code></pre>
+<h2 id="为什么静态成员不能在类内初始化？"><a href="#为什么静态成员不能在类内初始化？" class="headerlink" title="为什么静态成员不能在类内初始化？"></a>为什么静态成员不能在类内初始化？</h2><p>在C++中，类的静态成员（static member）必须在类内声明，在类外初始化，像下面这样。</p>
+<p>class A<br>{<br>private:<br>static int count ; &#x2F;&#x2F; 类内声明<br>};</p>
+<ul>
+<li><p>类外定义并初始化，不必再加static关键字<br>int A::count &#x3D; 0 ;<br>或者只进行定义不赋初始值，但是默认值是否是0，可能会与具体的编译器有关吧？</p>
+</li>
+<li><p>只进行定义不赋初始值，但默认值视编译器而定<br>int A::count;<br>为什么？</p>
+</li>
+<li><p>因为静态成员属于整个类，而不属于某个对象，如果在类内初始化，会导致每个对象都包含该静态成员，这是矛盾的。</p>
+</li>
+</ul>
+<p>如果不增加int A::count &#x3D; 0 ; &#x2F;&#x2F;变量定义，在编译的时候将会报出：‘A::count’未定义的引用”错误。这是因为静态成员变量count未定义，也就是还没有分配内存，显然是不可以访问的。</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TF-IDF</title>
+    <url>/2022/01/04/TF-IDF/</url>
+    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Theory</title>
+    <url>/2021/12/01/Theory/</url>
+    <content><![CDATA[<h1 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h1>
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/probability.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+      <tags>
+        <tag>probability</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ShiftGCN</title>
+    <url>/2022/08/17/ShiftGCN/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>GCN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VCDimension</title>
+    <url>/2022/02/10/VCDimension/</url>
+    <content><![CDATA[<blockquote>
+<p>注意这里的VC维度指的是只要存在一个不可分的点，比如四个点，一条直线存在无法分割的情况，那就VC维度就不是4，应该从3来看<br><img src="/images/CVDim.png"> </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>apriori</title>
+    <url>/2022/01/06/apriori/</url>
+    <content><![CDATA[<p><img src="/images/apriori.png"> </p>
+]]></content>
+      <tags>
+        <tag>apriori</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>across_loss</title>
+    <url>/2022/03/29/across-loss/</url>
+    <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
+]]></content>
+      <tags>
+        <tag>machine</tag>
       </tags>
   </entry>
   <entry>
@@ -542,78 +691,6 @@ concorn
 ]]></content>
       <tags>
         <tag>kalman</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MATI-Regression</title>
-    <url>/2021/11/02/MATI-Regression/</url>
-    <content><![CDATA[
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-
-<h1 id="L1-amp-L2-regularization"><a href="#L1-amp-L2-regularization" class="headerlink" title="L1 &amp; L2 regularization"></a>L1 &amp; L2 regularization</h1>
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>MTAI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Likelihood2</title>
-    <url>/2022/02/24/Likelihood2/</url>
-    <content><![CDATA[<blockquote>
-<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为&#x3D;》最大概率处l&#x3D;0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Likelihood</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MC</title>
-    <url>/2022/03/19/MC/</url>
-    <content><![CDATA[<p><img src="/images/MC.png">  </p>
-]]></content>
-      <tags>
-        <tag>RL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Monte</title>
-    <url>/2022/03/17/Monte/</url>
-    <content><![CDATA[<blockquote>
-<p>引入概率密度函数的蒙特卡洛公式推导，是把p(x) 看作前面分数的密度概率函数，也就是对前面分数求期望，而期望可以通过对p（x）采样并平均得到<br><img src="/images/MCMC.png">  </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RL3ways</title>
-    <url>/2022/03/20/RL3ways/</url>
-    <content><![CDATA[
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/RL3.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>RL</tag>
       </tags>
   </entry>
   <entry>
@@ -656,83 +733,6 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>TF-IDF</title>
-    <url>/2022/01/04/TF-IDF/</url>
-    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STL</title>
-    <url>/2022/07/06/STL/</url>
-    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
-<blockquote>
-<p>stack和queue不提供iterator</p>
-</blockquote>
-<blockquote>
-<p>set&#x2F;multiset<br>multiset是基于红黑树实现的</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Theory</title>
-    <url>/2021/12/01/Theory/</url>
-    <content><![CDATA[<h1 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h1>
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/probability.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>probability</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ShiftGCN</title>
-    <url>/2022/08/17/ShiftGCN/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>GCN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VCDimension</title>
-    <url>/2022/02/10/VCDimension/</url>
-    <content><![CDATA[<blockquote>
-<p>注意这里的VC维度指的是只要存在一个不可分的点，比如四个点，一条直线存在无法分割的情况，那就VC维度就不是4，应该从3来看<br><img src="/images/CVDim.png"> </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>across_loss</title>
-    <url>/2022/03/29/across-loss/</url>
-    <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
-]]></content>
-      <tags>
-        <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>apriori</title>
-    <url>/2022/01/06/apriori/</url>
-    <content><![CDATA[<p><img src="/images/apriori.png"> </p>
-]]></content>
-      <tags>
-        <tag>apriori</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>as从句</title>
     <url>/2022/09/24/as%E4%BB%8E%E5%8F%A5/</url>
     <content><![CDATA[<p><img src="/images/as.jpeg"></p>
@@ -742,40 +742,25 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>cout重载全局函数</title>
-    <url>/2022/06/17/cout%E9%87%8D%E8%BD%BD%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="为什么c-中重载流操作符要用友元函数"><a href="#为什么c-中重载流操作符要用友元函数" class="headerlink" title="为什么c++中重载流操作符要用友元函数"></a>为什么c++中重载流操作符要用友元函数</h1><h2 id="作为成员函数的话，左操作数非得是自己不可"><a href="#作为成员函数的话，左操作数非得是自己不可" class="headerlink" title="作为成员函数的话，左操作数非得是自己不可"></a>作为成员函数的话，左操作数非得是自己不可</h2><blockquote>
-<p>cout &lt;&lt; XXX 这种情况是cout在调用operator&lt;&lt;而不是XXX在调用operator&lt;&lt; 。<br>如果你要把operator&lt;&lt;设为成员函数就只能用 XXX &lt;&lt; cout 这种形式。</p>
-</blockquote>
-<p><strong>所以这样也是可以的，就是有违常理</strong></p>
-<pre><code>struct point
-&#123;
-    int x;
-    int y;
-
-    point (int _x, int _y)
-        : x(_x), y(_y)
-    &#123;&#125;
-
-    std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os) const
-    &#123;
-        os &lt;&lt; &quot;(&quot; &lt;&lt; x &lt;&lt; &quot;, &quot; &lt;&lt; y &lt;&lt; &quot;)&quot;;
-        return os;
-    &#125;
-&#125;;
-
-int main(int argc, const char* argv[])
-&#123;
-    point p1(1, 2);
-
-    p1 &lt;&lt; std::cout; // 写法同p1.operator&lt;&lt;(std::cout);
-
-    return 0;
-&#125;
+    <title>copyC</title>
+    <url>/2022/03/13/copyC/</url>
+    <content><![CDATA[<p>浅拷贝和深拷贝<br>指针浅拷贝导致堆区的数据重复释放<br>问题：近期在做算法实验的时候碰到一个关于类指针赋值的问题，简单的指针之间的赋值只是把两个指针指向同一个地址，而我需要把每次算法执行完的类指针push_back进vector储存每次算法迭代的结果，如果每次都是存入同一个指针，就会出现vector中的类指针都指向同一个地址，这就让我想到了能不能进行类指针之间的赋值，两个类指针之间内容相同，但是指针指向的地址都不同，就是两个不同的指针。</p>
+<p>定义</p>
+<p>浅拷贝：按照我的理解就是，两类之间发生数据成员的赋值，如果只是简单数据类型之间的赋值，浅拷贝完全能够胜任，但是碰到有指针的时候，两个类之间浅拷贝，那么两个对象中的指针会指向同一个地址，那么析构函数执行的时候就会发生错误（同一指针释放了两次）。</p>
+<p>深拷贝：在浅拷贝的基础上对指针拷贝进行处理，让两个类指针中的指针指向不同的区域，这样两个类指针虽然内容想到，但是是存储在内存的不同区域。<br>‘’’<br>class rect<br>{<br>public:</p>
+<pre><code>rect();
+rect(const rect *r);
+~rect();
 </code></pre>
+<p>private:<br>    int width, height;<br>    int *p;<br>};<br>rect::rect(const rect *r)<br>{<br>    width &#x3D; r-&gt;width;<br>    height &#x3D; r-&gt;height;<br>    p &#x3D; new int;<br>    *p &#x3D; *(r-&gt;p);<br>}</p>
+<p>rect::rect()<br>{<br>    p &#x3D; new int(100);<br>}</p>
+<p>rect::~rect()<br>{<br>    if (p !&#x3D; NULL)<br>        delete p;<br>}<br>int _tmain(int argc, _TCHAR* argv[])<br>{<br>    rect *rect1;<br>    rect *rect2;<br>    rect1 &#x3D; new rect;<br>    rect2 &#x3D; new rect(rect1);</p>
+<pre><code>return 0;
+</code></pre>
+<p>}<br>‘’’<br>类指针和类内成员p指针都指向了不同的地址</p>
 ]]></content>
       <tags>
-        <tag>c++</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -1064,25 +1049,12 @@ git is master, 0e1f110
       </tags>
   </entry>
   <entry>
-    <title>copyC</title>
-    <url>/2022/03/13/copyC/</url>
-    <content><![CDATA[<p>浅拷贝和深拷贝<br>指针浅拷贝导致堆区的数据重复释放<br>问题：近期在做算法实验的时候碰到一个关于类指针赋值的问题，简单的指针之间的赋值只是把两个指针指向同一个地址，而我需要把每次算法执行完的类指针push_back进vector储存每次算法迭代的结果，如果每次都是存入同一个指针，就会出现vector中的类指针都指向同一个地址，这就让我想到了能不能进行类指针之间的赋值，两个类指针之间内容相同，但是指针指向的地址都不同，就是两个不同的指针。</p>
-<p>定义</p>
-<p>浅拷贝：按照我的理解就是，两类之间发生数据成员的赋值，如果只是简单数据类型之间的赋值，浅拷贝完全能够胜任，但是碰到有指针的时候，两个类之间浅拷贝，那么两个对象中的指针会指向同一个地址，那么析构函数执行的时候就会发生错误（同一指针释放了两次）。</p>
-<p>深拷贝：在浅拷贝的基础上对指针拷贝进行处理，让两个类指针中的指针指向不同的区域，这样两个类指针虽然内容想到，但是是存储在内存的不同区域。<br>‘’’<br>class rect<br>{<br>public:</p>
-<pre><code>rect();
-rect(const rect *r);
-~rect();
-</code></pre>
-<p>private:<br>    int width, height;<br>    int *p;<br>};<br>rect::rect(const rect *r)<br>{<br>    width &#x3D; r-&gt;width;<br>    height &#x3D; r-&gt;height;<br>    p &#x3D; new int;<br>    *p &#x3D; *(r-&gt;p);<br>}</p>
-<p>rect::rect()<br>{<br>    p &#x3D; new int(100);<br>}</p>
-<p>rect::~rect()<br>{<br>    if (p !&#x3D; NULL)<br>        delete p;<br>}<br>int _tmain(int argc, _TCHAR* argv[])<br>{<br>    rect *rect1;<br>    rect *rect2;<br>    rect1 &#x3D; new rect;<br>    rect2 &#x3D; new rect(rect1);</p>
-<pre><code>return 0;
-</code></pre>
-<p>}<br>‘’’<br>类指针和类内成员p指针都指向了不同的地址</p>
+    <title>as用法</title>
+    <url>/2023/01/06/as%E7%94%A8%E6%B3%95/</url>
+    <content><![CDATA[<p><img src="/images/as%E7%94%A8%E6%B3%95.png"></p>
 ]]></content>
       <tags>
-        <tag>C++</tag>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -1194,6 +1166,53 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
       </categories>
       <tags>
         <tag>损失函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>equilibria</title>
+    <url>/2022/02/08/equilibria/</url>
+    <content><![CDATA[<p><img src="/images/game01.png"> </p>
+<p>举个例子吧如图所示：首先固定1<br>1选择C–&gt; 2最好选择C(-5&gt;-15)，<br>画上蓝色线条<br>1选择N–&gt; 2最好选择C(0&gt;-1)，画上蓝色线条<br>接下来固定2<br>2选择C–&gt; 1最好选择C(-5&gt;-15)，画上红色线条<br>2选择N–&gt; 1最好选择C(0&gt;-1)，画上红色线条得纯策略纳什均衡(-5,-5)</p>
+]]></content>
+      <tags>
+        <tag>game</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cout重载全局函数</title>
+    <url>/2022/06/17/cout%E9%87%8D%E8%BD%BD%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="为什么c-中重载流操作符要用友元函数"><a href="#为什么c-中重载流操作符要用友元函数" class="headerlink" title="为什么c++中重载流操作符要用友元函数"></a>为什么c++中重载流操作符要用友元函数</h1><h2 id="作为成员函数的话，左操作数非得是自己不可"><a href="#作为成员函数的话，左操作数非得是自己不可" class="headerlink" title="作为成员函数的话，左操作数非得是自己不可"></a>作为成员函数的话，左操作数非得是自己不可</h2><blockquote>
+<p>cout &lt;&lt; XXX 这种情况是cout在调用operator&lt;&lt;而不是XXX在调用operator&lt;&lt; 。<br>如果你要把operator&lt;&lt;设为成员函数就只能用 XXX &lt;&lt; cout 这种形式。</p>
+</blockquote>
+<p><strong>所以这样也是可以的，就是有违常理</strong></p>
+<pre><code>struct point
+&#123;
+    int x;
+    int y;
+
+    point (int _x, int _y)
+        : x(_x), y(_y)
+    &#123;&#125;
+
+    std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os) const
+    &#123;
+        os &lt;&lt; &quot;(&quot; &lt;&lt; x &lt;&lt; &quot;, &quot; &lt;&lt; y &lt;&lt; &quot;)&quot;;
+        return os;
+    &#125;
+&#125;;
+
+int main(int argc, const char* argv[])
+&#123;
+    point p1(1, 2);
+
+    p1 &lt;&lt; std::cout; // 写法同p1.operator&lt;&lt;(std::cout);
+
+    return 0;
+&#125;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1309,17 +1328,57 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>forandrecursion</title>
-    <url>/2022/04/21/forandrecursion/</url>
-    <content><![CDATA[<blockquote>
-<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
+    <title>for和of</title>
+    <url>/2022/09/29/for%E5%92%8Cof/</url>
+    <content><![CDATA[<h3 id="for-和-of"><a href="#for-和-of" class="headerlink" title="for 和 of"></a>for 和 of</h3><blockquote>
+<p>先来概括一下分别应该在哪些情况下使用介词 “for” 或者 “of”。<strong>“For” 通常用来说明某动作的对象、目的或原因</strong>，<strong>而 “of” 则常用来提示事物相关的信息</strong>。比如，“of” 可以用来说明事物之间的属性或从属关系。另外，介词 “for” 和 “of” 都可以用来谈论时间，但它们的用法却不同。</p>
 </blockquote>
-<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
-<p>比如全排列问题</p>
+<blockquote>
+<p>先来听第一组例句，两句话都在谈论一条项链，分别使用了介词 “for” 和 “of”，但句子的含义却完全不同。</p>
+</blockquote>
+<p>(对象)</p>
+<ul>
+<li><p>Was this necklace made for me?<br>（这条项链是为我做的吗？）</p>
+</li>
+<li><p>Is this necklace made of gold?<br>（这条项链是金子做的吗？）</p>
+</li>
+</ul>
+<p>(目的)</p>
+<ul>
+<li><p>How many grams of soybeans do we need to make tofu? We need thirty grams for tofu.<br>（做豆腐需要多少克大豆？做豆腐需要30克大豆。）</p>
+</li>
+<li><p>We need thirty grams of tofu.<br>（需要30克豆腐。）</p>
+</li>
+</ul>
+<p>在第一个例句中，“We need thirty grams for tofu.” 表示 “我们需要30克的大豆来做豆腐”。这里，介词 “for” 用来说明目的。在第二个例句中：“We need thirty grams of tofu.” 表示 “我们需要30克的豆腐”，介词 “of” 在这里的用法和目的无关，它用来说明被测量的事物名称。</p>
+<ul>
+<li><p>This is the house for our clients.<br>（这是为我们客户准备的房子。） 介词 “for” 提示了房子的用途或目的</p>
+</li>
+<li><p>This is the house of our clients.<br>（这是我们客户的房子。）这里，介词 “of” 提示从属关系。</p>
+</li>
+</ul>
+<p>（原因）</p>
+<ul>
+<li><p>She won an award for her brilliant performance.<br>（由于表演十分精彩，她获得了一个奖项。）</p>
+</li>
+<li><p>She won an award of £1000.<br>（她获得了一笔1000英镑的奖金。）</p>
+</li>
+</ul>
+<h3 id="介词-“for”-和-“of”-都可以用来谈论时间，但它们的用法是有区别的。在谈论时间时，“for”-多用来说明一件事情发生的时间长短，而-“of”-则往往用来引出持续一段时间的动作是什么。来听第五组例句。"><a href="#介词-“for”-和-“of”-都可以用来谈论时间，但它们的用法是有区别的。在谈论时间时，“for”-多用来说明一件事情发生的时间长短，而-“of”-则往往用来引出持续一段时间的动作是什么。来听第五组例句。" class="headerlink" title="介词 “for” 和 “of” 都可以用来谈论时间，但它们的用法是有区别的。在谈论时间时，“for” 多用来说明一件事情发生的时间长短，而 “of” 则往往用来引出持续一段时间的动作是什么。来听第五组例句。"></a>介词 “for” 和 “of” 都可以用来谈论时间，但它们的用法是有区别的。在谈论时间时，“for” 多用来说明一件事情发生的时间长短，而 “of” 则往往用来引出持续一段时间的动作是什么。来听第五组例句。</h3><ul>
+<li><p>I had to listen to him for two hours!<br>（我不得不听他说了两个小时！）</p>
+</li>
+<li><p>I had to listen to two hours of him speaking!<br>（我不得不听他说了两个小时！）</p>
+</li>
+</ul>
+<blockquote>
+<p>这两句话的意思都是 “我不得不听他说两个小时”，却分别使用了介词 “for” 和 “of”。在第一句话中：“listen to him for two hours 听他说了两个小时”，介词 “for” 用来说明 “听” 这个动作延续的时长。第二句话中，“listen to two hours of him speaking”，介词 “of” 在这里引出了 “我听了两个小时” 的具体内容。</p>
+</blockquote>
+<h2 id="notes"><a href="#notes" class="headerlink" title="notes"></a>notes</h2><blockquote>
+<p>通常情况下，介词 “for” 用来说明某动作的对象、目的或原因；而介词 “of” 用来提示事物相关的信息。比如，事物之间的属性或从属关系。在谈论时间的时候，介词 “for” 多用来说明动作延续的时长，而 “of” 则可以用来解释动作的具体内容。建议大家重听例句，巩固对两个词用法的理解。</p>
 </blockquote>
 ]]></content>
       <tags>
-        <tag>-algorithm</tag>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -1418,92 +1477,101 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>for和of</title>
-    <url>/2022/09/29/for%E5%92%8Cof/</url>
-    <content><![CDATA[<h3 id="for-和-of"><a href="#for-和-of" class="headerlink" title="for 和 of"></a>for 和 of</h3><blockquote>
-<p>先来概括一下分别应该在哪些情况下使用介词 “for” 或者 “of”。<strong>“For” 通常用来说明某动作的对象、目的或原因</strong>，<strong>而 “of” 则常用来提示事物相关的信息</strong>。比如，“of” 可以用来说明事物之间的属性或从属关系。另外，介词 “for” 和 “of” 都可以用来谈论时间，但它们的用法却不同。</p>
-</blockquote>
-<blockquote>
-<p>先来听第一组例句，两句话都在谈论一条项链，分别使用了介词 “for” 和 “of”，但句子的含义却完全不同。</p>
-</blockquote>
-<p>(对象)</p>
+    <title>lltm梯度</title>
+    <url>/2023/02/01/lltm%E6%A2%AF%E5%BA%A6/</url>
+    <content><![CDATA[<ul>
+<li>前向传播</li>
+</ul>
+<pre><code>#include &lt;vector&gt;
+
+std::vector&lt;at::Tensor&gt; lltm_forward(
+    torch::Tensor input,
+    torch::Tensor weights,
+    torch::Tensor bias,
+    torch::Tensor old_h,
+    torch::Tensor old_cell) &#123;
+  auto X = torch::cat(&#123;old_h, input&#125;, /*dim=*/1);
+
+  auto gate_weights = torch::addmm(bias, X, weights.transpose(0, 1));
+  auto gates = gate_weights.chunk(3, /*dim=*/1);
+
+  auto input_gate = torch::sigmoid(gates[0]);
+  auto output_gate = torch::sigmoid(gates[1]);
+  auto candidate_cell = torch::elu(gates[2], /*alpha=*/1.0);
+
+  auto new_cell = old_cell + candidate_cell * input_gate;
+  auto new_h = torch::tanh(new_cell) * output_gate;
+
+  return &#123;new_h,
+          new_cell,
+          input_gate,
+          output_gate,
+          candidate_cell,
+          X,
+          gate_weights&#125;;
+&#125;
+</code></pre>
 <ul>
-<li><p>Was this necklace made for me?<br>（这条项链是为我做的吗？）</p>
+<li>反向传播</li>
+</ul>
+<pre><code>// tanh&#39;(z) = 1 - tanh^2(z)
+torch::Tensor d_tanh(torch::Tensor z) &#123;
+  return 1 - z.tanh().pow(2);
+&#125;
+
+// elu&#39;(z) = relu&#39;(z) + &#123; alpha * exp(z) if (alpha * (exp(z) - 1)) &lt; 0, else 0&#125;
+torch::Tensor d_elu(torch::Tensor z, torch::Scalar alpha = 1.0) &#123;
+  auto e = z.exp();
+  auto mask = (alpha * (e - 1)) &lt; 0;
+  return (z &gt; 0).type_as(z) + mask.type_as(z) * (alpha * e);
+&#125;
+
+std::vector&lt;torch::Tensor&gt; lltm_backward(
+    torch::Tensor grad_h,
+    torch::Tensor grad_cell,
+    torch::Tensor new_cell,
+    torch::Tensor input_gate,
+    torch::Tensor output_gate,
+    torch::Tensor candidate_cell,
+    torch::Tensor X,
+    torch::Tensor gate_weights,
+    torch::Tensor weights) &#123;
+  auto d_output_gate = torch::tanh(new_cell) * grad_h;
+  auto d_tanh_new_cell = output_gate * grad_h;
+  auto d_new_cell = d_tanh(new_cell) * d_tanh_new_cell + grad_cell;
+
+  auto d_old_cell = d_new_cell;
+  auto d_candidate_cell = input_gate * d_new_cell;
+  auto d_input_gate = candidate_cell * d_new_cell;
+
+  auto gates = gate_weights.chunk(3, /*dim=*/1);
+  d_input_gate *= d_sigmoid(gates[0]);
+  d_output_gate *= d_sigmoid(gates[1]);
+  d_candidate_cell *= d_elu(gates[2]);
+
+  auto d_gates =
+      torch::cat(&#123;d_input_gate, d_output_gate, d_candidate_cell&#125;, /*dim=*/1);
+
+  auto d_weights = d_gates.t().mm(X);
+  auto d_bias = d_gates.sum(/*dim=*/0, /*keepdim=*/true);
+
+  auto d_X = d_gates.mm(weights);
+  const auto state_size = grad_h.size(1);
+  auto d_old_h = d_X.slice(/*dim=*/1, 0, state_size);
+  auto d_input = d_X.slice(/*dim=*/1, state_size);
+
+  return &#123;d_old_h, d_input, d_weights, d_bias, d_old_cell&#125;;
+&#125;
+</code></pre>
+<h3 id="关于如何计算得到d-output-gate（output-gate梯度），d-new-cell（new-cell梯度）"><a href="#关于如何计算得到d-output-gate（output-gate梯度），d-new-cell（new-cell梯度）" class="headerlink" title="关于如何计算得到d_output_gate（output_gate梯度），d_new_cell（new_cell梯度）"></a>关于如何计算得到d_output_gate（output_gate梯度），d_new_cell（new_cell梯度）</h3><ul>
+<li><p>链式求导法则，对于d_output_gate，假设L是loss<br>前向传播公式为：<br>  auto new_h &#x3D; torch::tanh(new_cell) * output_gate;<br>反向传播则为：<br>  d(L)&#x2F;d(new_h) * d(new_h)&#x2F;d(output_gate) &#x3D; grad_h*torch::tanh(new_cell)</p>
 </li>
-<li><p>Is this necklace made of gold?<br>（这条项链是金子做的吗？）</p>
+<li><p>同理，对于d_new_cell，<br>前向传播为<br>  auto new_cell &#x3D; old_cell + candidate_cell * input_gate;<br>  auto new_h &#x3D; torch::tanh(new_cell) * output_gate;<br>反向传播则为：<br>  d(L)&#x2F;d(new_h)*d(new_h)&#x2F;d(new_cell) &#x3D; grad_h *（d_tanh(new_cell)*output_gate）<br>  这里为什么 加上 grad_cell ，我还不知道</p>
 </li>
 </ul>
-<p>(目的)</p>
-<ul>
-<li><p>How many grams of soybeans do we need to make tofu? We need thirty grams for tofu.<br>（做豆腐需要多少克大豆？做豆腐需要30克大豆。）</p>
-</li>
-<li><p>We need thirty grams of tofu.<br>（需要30克豆腐。）</p>
-</li>
-</ul>
-<p>在第一个例句中，“We need thirty grams for tofu.” 表示 “我们需要30克的大豆来做豆腐”。这里，介词 “for” 用来说明目的。在第二个例句中：“We need thirty grams of tofu.” 表示 “我们需要30克的豆腐”，介词 “of” 在这里的用法和目的无关，它用来说明被测量的事物名称。</p>
-<ul>
-<li><p>This is the house for our clients.<br>（这是为我们客户准备的房子。） 介词 “for” 提示了房子的用途或目的</p>
-</li>
-<li><p>This is the house of our clients.<br>（这是我们客户的房子。）这里，介词 “of” 提示从属关系。</p>
-</li>
-</ul>
-<p>（原因）</p>
-<ul>
-<li><p>She won an award for her brilliant performance.<br>（由于表演十分精彩，她获得了一个奖项。）</p>
-</li>
-<li><p>She won an award of £1000.<br>（她获得了一笔1000英镑的奖金。）</p>
-</li>
-</ul>
-<h3 id="介词-“for”-和-“of”-都可以用来谈论时间，但它们的用法是有区别的。在谈论时间时，“for”-多用来说明一件事情发生的时间长短，而-“of”-则往往用来引出持续一段时间的动作是什么。来听第五组例句。"><a href="#介词-“for”-和-“of”-都可以用来谈论时间，但它们的用法是有区别的。在谈论时间时，“for”-多用来说明一件事情发生的时间长短，而-“of”-则往往用来引出持续一段时间的动作是什么。来听第五组例句。" class="headerlink" title="介词 “for” 和 “of” 都可以用来谈论时间，但它们的用法是有区别的。在谈论时间时，“for” 多用来说明一件事情发生的时间长短，而 “of” 则往往用来引出持续一段时间的动作是什么。来听第五组例句。"></a>介词 “for” 和 “of” 都可以用来谈论时间，但它们的用法是有区别的。在谈论时间时，“for” 多用来说明一件事情发生的时间长短，而 “of” 则往往用来引出持续一段时间的动作是什么。来听第五组例句。</h3><ul>
-<li><p>I had to listen to him for two hours!<br>（我不得不听他说了两个小时！）</p>
-</li>
-<li><p>I had to listen to two hours of him speaking!<br>（我不得不听他说了两个小时！）</p>
-</li>
-</ul>
-<blockquote>
-<p>这两句话的意思都是 “我不得不听他说两个小时”，却分别使用了介词 “for” 和 “of”。在第一句话中：“listen to him for two hours 听他说了两个小时”，介词 “for” 用来说明 “听” 这个动作延续的时长。第二句话中，“listen to two hours of him speaking”，介词 “of” 在这里引出了 “我听了两个小时” 的具体内容。</p>
-</blockquote>
-<h2 id="notes"><a href="#notes" class="headerlink" title="notes"></a>notes</h2><blockquote>
-<p>通常情况下，介词 “for” 用来说明某动作的对象、目的或原因；而介词 “of” 用来提示事物相关的信息。比如，事物之间的属性或从属关系。在谈论时间的时候，介词 “for” 多用来说明动作延续的时长，而 “of” 则可以用来解释动作的具体内容。建议大家重听例句，巩固对两个词用法的理解。</p>
-</blockquote>
 ]]></content>
       <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>equilibria</title>
-    <url>/2022/02/08/equilibria/</url>
-    <content><![CDATA[<p><img src="/images/game01.png"> </p>
-<p>举个例子吧如图所示：首先固定1<br>1选择C–&gt; 2最好选择C(-5&gt;-15)，<br>画上蓝色线条<br>1选择N–&gt; 2最好选择C(0&gt;-1)，画上蓝色线条<br>接下来固定2<br>2选择C–&gt; 1最好选择C(-5&gt;-15)，画上红色线条<br>2选择N–&gt; 1最好选择C(0&gt;-1)，画上红色线条得纯策略纳什均衡(-5,-5)</p>
-]]></content>
-      <tags>
-        <tag>game</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>list必须用自己的sort</title>
-    <url>/2022/09/06/list%E5%BF%85%E9%A1%BB%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84sort/</url>
-    <content><![CDATA[<h2 id="list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定"><a href="#list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定" class="headerlink" title="list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定"></a>list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定</h2><p><img src="/images/2022-09-06-14-01-14.png"></p>
-<ul>
-<li>list因为链表结构，不能随机访问，因此不能使用全局的sort，全局sort涉及到对iterator的随机访问</li>
-</ul>
-<h2 id="函数模板流程，先判断是stone，之后调用stone的重载符号-gt"><a href="#函数模板流程，先判断是stone，之后调用stone的重载符号-gt" class="headerlink" title="函数模板流程，先判断是stone，之后调用stone的重载符号&gt;"></a>函数模板流程，先判断是stone，之后调用stone的重载符号&gt;</h2><ul>
-<li>作用在左边的变量中，这里就是 b._weight &gt; rsh(a)._weight</li>
-</ul>
-<p><img src="/images/2022-09-06-14-17-28.png"></p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>multiset</title>
-    <url>/2022/09/05/mutiset/</url>
-    <content><![CDATA[<p><img src="/images/2022-09-05-22-49-24.png"></p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
+        <tag>cuda</tag>
       </tags>
   </entry>
   <entry>
@@ -1516,21 +1584,23 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>p19-namespace</title>
-    <url>/2022/06/16/namespace/</url>
-    <content><![CDATA[<h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
+    <title>forandrecursion</title>
+    <url>/2022/04/21/forandrecursion/</url>
+    <content><![CDATA[<blockquote>
+<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
+</blockquote>
+<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
+<p>比如全排列问题</p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>c++</tag>
+        <tag>-algorithm</tag>
       </tags>
   </entry>
   <entry>
-    <title>note</title>
-    <url>/2022/08/17/note/</url>
-    <content><![CDATA[<p>所有通道像素的组合排列决定了这个像素的属性。同时这个像素点与周围像素也存在联系，通常来说，如果相邻两个像素点所有通道的欧式距离之差不小于某个阈值，可以认为是属于一类的<br>对通道进行卷积操作，</p>
-<blockquote>
-<p>想法：双重推理，首先构建一个建筑语义分割的算法来获得建筑（0-1），之后通过图生成算法，输入为用户指定出的点和分割出来的图片</p>
-</blockquote>
+    <title>p19-namespace</title>
+    <url>/2022/06/16/namespace/</url>
+    <content><![CDATA[<h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -1560,6 +1630,41 @@ hello world
       </tags>
   </entry>
   <entry>
+    <title>Object detection algorithm based AdaBoost residual correction Fast R-CNN on network</title>
+    <url>/2021/04/01/odfr/</url>
+    <content><![CDATA[<p><img src="/images/4_1.jpg"> </p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">The rapid development of computer hardware has promoted the prosperity of computer vision. Target object detection is widely used in various industrial and commercial fields, and contour detection is the core of target object detection. In order to realize the object target contour recognition method based on computer vision with high accuracy, this paper takes the cattle face position determination as an example, Fast R-CNN as the object contour detection algorithm, and uses AdaBoost as the residual detector to improve the accuracy of the results. In the experiment, the LabelImg tool marks the positional coordinates of the facial contours of 1000 cows, and at the same time, SURF algorithm was used to extract image features. The AdaBoost cascade classifier trained 900 positive images and 100 negative images. Fast R-CNN used the original images and the labeled images as training sets respectively. The results show that in the image set with resolution of 866*652 (pixels), the target detection accuracy of using Fast R-CNN is 91.6%, and AdaBoost as the residual detector will improve the accuracy to 96.76%. Meanwhile, by comparing the two training data sets of Fast r-cnn, the image labeled by LabelImg is used as the Fast r-cnn training set to obtain the optimal accuracy of 96.9% and the optimal recognition time of single picture of 0.35s.
+</blockquote>
+<h1 id="Image-Label"><a href="#Image-Label" class="headerlink" title="Image Label :"></a>Image Label :</h1><p>  <img src="/images/4_2.jpg"> </p>
+<h1 id="Reslut"><a href="#Reslut" class="headerlink" title="Reslut :"></a>Reslut :</h1><p>  <img src="/images/4_3.jpg">  </p>
+<hr>
+<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2019-3nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2019-3nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2019 3nd International Conference on Deep Learning Technologies"></a>Conference : 2019 3nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/4_4.jpg"> </p>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>Detect</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>list必须用自己的sort</title>
+    <url>/2022/09/06/list%E5%BF%85%E9%A1%BB%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84sort/</url>
+    <content><![CDATA[<h2 id="list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定"><a href="#list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定" class="headerlink" title="list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定"></a>list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定</h2><p><img src="/images/2022-09-06-14-01-14.png"></p>
+<ul>
+<li>list因为链表结构，不能随机访问，因此不能使用全局的sort，全局sort涉及到对iterator的随机访问</li>
+</ul>
+<h2 id="函数模板流程，先判断是stone，之后调用stone的重载符号-gt"><a href="#函数模板流程，先判断是stone，之后调用stone的重载符号-gt" class="headerlink" title="函数模板流程，先判断是stone，之后调用stone的重载符号&gt;"></a>函数模板流程，先判断是stone，之后调用stone的重载符号&gt;</h2><ul>
+<li>作用在左边的变量中，这里就是 b._weight &gt; rsh(a)._weight</li>
+</ul>
+<p><img src="/images/2022-09-06-14-17-28.png"></p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>operator赋值为什么返回引用</title>
     <url>/2022/03/13/operator%E8%B5%8B%E5%80%BC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%94%E5%9B%9E%E5%BC%95%E7%94%A8/</url>
     <content><![CDATA[<p>一个自定义类，如果没有重载其&#x3D;运算符，那么编译器将自动生成一个。但是此编译器自动生成的重载函数可能不安全。这是因为它采用了所谓的“浅拷贝”，也就是对于指针而言，它拷贝的是指针的值，而不是其指向的内存空间。那么这个内存空间就有了两个指针指向它，且类对象要析构两次，但是内存空间只能被释放一次，那么第二次就会出现访问错误。</p>
@@ -1570,6 +1675,36 @@ hello world
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>multiset</title>
+    <url>/2022/09/05/mutiset/</url>
+    <content><![CDATA[<p><img src="/images/2022-09-05-22-49-24.png"></p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>note</title>
+    <url>/2022/08/17/note/</url>
+    <content><![CDATA[<p>所有通道像素的组合排列决定了这个像素的属性。同时这个像素点与周围像素也存在联系，通常来说，如果相邻两个像素点所有通道的欧式距离之差不小于某个阈值，可以认为是属于一类的<br>对通道进行卷积操作，</p>
+<blockquote>
+<p>想法：双重推理，首先构建一个建筑语义分割的算法来获得建筑（0-1），之后通过图生成算法，输入为用户指定出的点和分割出来的图片</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>oral_practices</title>
+    <url>/2021/11/01/oral-practices/</url>
+    <content><![CDATA[<p>a new way to get personalized, relevant ideas, delivered right to your inbox.</p>
+]]></content>
+      <tags>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -1681,22 +1816,12 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
-    <title>Object detection algorithm based AdaBoost residual correction Fast R-CNN on network</title>
-    <url>/2021/04/01/odfr/</url>
-    <content><![CDATA[<p><img src="/images/4_1.jpg"> </p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">The rapid development of computer hardware has promoted the prosperity of computer vision. Target object detection is widely used in various industrial and commercial fields, and contour detection is the core of target object detection. In order to realize the object target contour recognition method based on computer vision with high accuracy, this paper takes the cattle face position determination as an example, Fast R-CNN as the object contour detection algorithm, and uses AdaBoost as the residual detector to improve the accuracy of the results. In the experiment, the LabelImg tool marks the positional coordinates of the facial contours of 1000 cows, and at the same time, SURF algorithm was used to extract image features. The AdaBoost cascade classifier trained 900 positive images and 100 negative images. Fast R-CNN used the original images and the labeled images as training sets respectively. The results show that in the image set with resolution of 866*652 (pixels), the target detection accuracy of using Fast R-CNN is 91.6%, and AdaBoost as the residual detector will improve the accuracy to 96.76%. Meanwhile, by comparing the two training data sets of Fast r-cnn, the image labeled by LabelImg is used as the Fast r-cnn training set to obtain the optimal accuracy of 96.9% and the optimal recognition time of single picture of 0.35s.
-</blockquote>
-<h1 id="Image-Label"><a href="#Image-Label" class="headerlink" title="Image Label :"></a>Image Label :</h1><p>  <img src="/images/4_2.jpg"> </p>
-<h1 id="Reslut"><a href="#Reslut" class="headerlink" title="Reslut :"></a>Reslut :</h1><p>  <img src="/images/4_3.jpg">  </p>
-<hr>
-<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2019-3nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2019-3nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2019 3nd International Conference on Deep Learning Technologies"></a>Conference : 2019 3nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/4_4.jpg"> </p>
+    <title>p33const</title>
+    <url>/2022/06/19/p33const/</url>
+    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
 ]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
       <tags>
-        <tag>Detect</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1713,6 +1838,14 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
+    <title>robotics</title>
+    <url>/2022/10/10/robotics/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>robotics</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>pronounce</title>
     <url>/2021/11/06/pronounce/</url>
     <content><![CDATA[
@@ -1726,34 +1859,6 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
 ]]></content>
       <tags>
         <tag>pronounce</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>oral_practices</title>
-    <url>/2021/11/01/oral-practices/</url>
-    <content><![CDATA[<p>a new way to get personalized, relevant ideas, delivered right to your inbox.</p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>p33const</title>
-    <url>/2022/06/19/p33const/</url>
-    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>remote</title>
-    <url>/2022/09/27/remote/</url>
-    <content><![CDATA[<h2 id="season-change"><a href="#season-change" class="headerlink" title="season change"></a>season change</h2><p>Dear Professor.<br>Hoping this email finds you well.</p>
-<p>- </p>
-]]></content>
-      <tags>
-        <tag>remote</tag>
       </tags>
   </entry>
   <entry>
@@ -1861,38 +1966,6 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
-    <title>scrapy</title>
-    <url>/2021/10/31/scrapy/</url>
-    <content><![CDATA[<h2 id="span如果中间夹了其他的span。比如"><a href="#span如果中间夹了其他的span。比如" class="headerlink" title="span如果中间夹了其他的span。比如"></a>span如果中间夹了其他的span。比如</h2><pre><code>&lt;span&gt; &lt;span&gt;aa &lt;/span&gt; &lt;span&gt;bb &lt;/span&gt;cc&lt;/span&gt;
-</code></pre>
-<blockquote>
-<p>adpote [-1] to acquire “cc” if I want to get it instead of text() directly<br>amount4 &#x3D; ingredient.xpath(‘span[@class&#x3D;”recipe__list-qty”]&#x2F;text()’)[-1].get()</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>spacpy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>shardptrCirculate</title>
-    <url>/2022/03/04/shardptrCirculate/</url>
-    <content><![CDATA[<blockquote>
-<p>定义对象用强智能指针，引用对象的时候用弱智能指针<br><img src="/images/shardptrcirculate.png">  </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>robotics</title>
-    <url>/2022/10/10/robotics/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>robotics</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>silhouette</title>
     <url>/2021/12/04/silhouette/</url>
     <content><![CDATA[<p><img src="/images/silhouette.png"> </p>
@@ -1902,21 +1975,21 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
-    <title>self-attention</title>
-    <url>/2022/01/02/self-attention/</url>
-    <content><![CDATA[<p><img src="/images/attention.png"> </p>
-]]></content>
-      <tags>
-        <tag>attention</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>smartpointer</title>
     <url>/2022/03/04/smartpointer/</url>
     <content><![CDATA[<p><img src="/images/smartPointer.png"> </p>
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>self-attention</title>
+    <url>/2022/01/02/self-attention/</url>
+    <content><![CDATA[<p><img src="/images/attention.png"> </p>
+]]></content>
+      <tags>
+        <tag>attention</tag>
       </tags>
   </entry>
   <entry>
@@ -1933,43 +2006,24 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
-    <title>stl全局</title>
-    <url>/2022/06/29/stl%E5%85%A8%E5%B1%80/</url>
-    <content><![CDATA[<h1 id="C-函数或者命名空间前面加"><a href="#C-函数或者命名空间前面加" class="headerlink" title="C++函数或者命名空间前面加::"></a>C++函数或者命名空间前面加::</h1><ul>
-<li>函数前面 ::find() 表示这个是全局的函数，不是这个作用域下的函数<br><img src="/images/2022-06-29-16-13-57.png"><blockquote>
-<p>比如这里的 ::find()。这个是STL的algorithm中的函数，虽然这里如果不用:: , 编译器没有找到find也会到全局，但是加入会让代码更清晰</p>
-</blockquote>
-</li>
-<li>jj01::test_array() &#x3D; 这个就是命名空间</li>
-</ul>
+    <title>remote</title>
+    <url>/2022/09/27/remote/</url>
+    <content><![CDATA[<h2 id="season-change"><a href="#season-change" class="headerlink" title="season change"></a>season change</h2><p>Dear Professor.<br>Hoping this email finds you well.</p>
+<p>- </p>
 ]]></content>
       <tags>
-        <tag>c++</tag>
+        <tag>remote</tag>
       </tags>
   </entry>
   <entry>
-    <title>subjunctive</title>
-    <url>/2022/03/06/subjunctive/</url>
-    <content><![CDATA[<h2 id="The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy"><a href="#The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy" class="headerlink" title="The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy."></a>The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy.</h2><blockquote>
-<p>wouldn’t have done 表示不会做某事，但是实际上做了。文章中的意思是本来不会降低美国的油气价格。</p>
+    <title>shardptrCirculate</title>
+    <url>/2022/03/04/shardptrCirculate/</url>
+    <content><![CDATA[<blockquote>
+<p>定义对象用强智能指针，引用对象的时候用弱智能指针<br><img src="/images/shardptrcirculate.png">  </p>
 </blockquote>
-<p>would have done</p>
-<p>是一个固定虚拟语气的用法。</p>
-<p>表示对过去事情的假设，意为“本来想做、要做但没做”，使用时大多会给出导致没做成或会这样做的条件。<br>英汉例句1：</p>
-<p>If I had a chance，I would have set off on a journey round the world.<br>要是有机会，我早就环游世界了。（也可译为对现在的虚拟“要是有机会，我会环游世界”）</p>
-<p>英汉例句2：</p>
-<p>I would have told you the story about him, but you were not home.</p>
-<p>我本来可以告诉你关于他的故事，但是你不在家。（由于：你不在家”这样的条件下，没有告诉关于他的的故事。）</p>
-<p>5.would have done与if连用</p>
-<p>例句：If I hadn’t been busy that day, I would have gone there with them.</p>
-<p>如果那天我不忙，我会和他们一起去那儿。（事实上表示没有由于忙，而没有去。）</p>
-<p>在这里也可以不用if</p>
-<p>如：I was busy that day. Otherwise I would have gone there with them. </p>
-<p>我那天很忙，否则，我就和他们一起去那儿了。</p>
-<p>6.文章中lower 在这里作为动词，“降低”的意思。<br><img src="/images/subjunctive.png"> </p>
 ]]></content>
       <tags>
-        <tag>English</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -2098,12 +2152,34 @@ A&lt;string*&gt; b;
       </tags>
   </entry>
   <entry>
+    <title>scrapy</title>
+    <url>/2021/10/31/scrapy/</url>
+    <content><![CDATA[<h2 id="span如果中间夹了其他的span。比如"><a href="#span如果中间夹了其他的span。比如" class="headerlink" title="span如果中间夹了其他的span。比如"></a>span如果中间夹了其他的span。比如</h2><pre><code>&lt;span&gt; &lt;span&gt;aa &lt;/span&gt; &lt;span&gt;bb &lt;/span&gt;cc&lt;/span&gt;
+</code></pre>
+<blockquote>
+<p>adpote [-1] to acquire “cc” if I want to get it instead of text() directly<br>amount4 &#x3D; ingredient.xpath(‘span[@class&#x3D;”recipe__list-qty”]&#x2F;text()’)[-1].get()</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>spacpy</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>t5-假设检验</title>
     <url>/2022/06/22/t5%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/</url>
     <content><![CDATA[<p><img src="/images/p5.png"></p>
 ]]></content>
       <tags>
         <tag>probability</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>to+do+or+doing</title>
+    <url>/2021/12/12/to-do-or-doing/</url>
+    <content><![CDATA[<p><img src="/images/todo.png"> </p>
+]]></content>
+      <tags>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -2198,21 +2274,132 @@ private:
       </tags>
   </entry>
   <entry>
-    <title>to+do+or+doing</title>
-    <url>/2021/12/12/to-do-or-doing/</url>
-    <content><![CDATA[<p><img src="/images/todo.png"> </p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>transformer</title>
     <url>/2022/01/02/transformer/</url>
     <content><![CDATA[<p><img src="/images/transformer.png"> </p>
 ]]></content>
       <tags>
         <tag>transformer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>transition-based</title>
+    <url>/2022/01/04/transition-based/</url>
+    <content><![CDATA[<p><img src="/images/transition.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>stl全局</title>
+    <url>/2022/06/29/stl%E5%85%A8%E5%B1%80/</url>
+    <content><![CDATA[<h1 id="C-函数或者命名空间前面加"><a href="#C-函数或者命名空间前面加" class="headerlink" title="C++函数或者命名空间前面加::"></a>C++函数或者命名空间前面加::</h1><ul>
+<li>函数前面 ::find() 表示这个是全局的函数，不是这个作用域下的函数<br><img src="/images/2022-06-29-16-13-57.png"><blockquote>
+<p>比如这里的 ::find()。这个是STL的algorithm中的函数，虽然这里如果不用:: , 编译器没有找到find也会到全局，但是加入会让代码更清晰</p>
+</blockquote>
+</li>
+<li>jj01::test_array() &#x3D; 这个就是命名空间</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vector二维数组</title>
+    <url>/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
+<li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
+<p>这里的row,col代表二维vector的两个轴方向的大小</p>
+</blockquote>
+</li>
+<li>第二种通过resize确定大小，之后循环赋值</li>
+</ul>
+<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
+vec1.resize(row);
+for(int i=0;i&lt;vec1.size();i++)
+    vec1[i].resize(col);
+for(int i=0;i&lt;row;i++)
+    for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>subjunctive</title>
+    <url>/2022/03/06/subjunctive/</url>
+    <content><![CDATA[<h2 id="The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy"><a href="#The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy" class="headerlink" title="The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy."></a>The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy.</h2><blockquote>
+<p>wouldn’t have done 表示不会做某事，但是实际上做了。文章中的意思是本来不会降低美国的油气价格。</p>
+</blockquote>
+<p>would have done</p>
+<p>是一个固定虚拟语气的用法。</p>
+<p>表示对过去事情的假设，意为“本来想做、要做但没做”，使用时大多会给出导致没做成或会这样做的条件。<br>英汉例句1：</p>
+<p>If I had a chance，I would have set off on a journey round the world.<br>要是有机会，我早就环游世界了。（也可译为对现在的虚拟“要是有机会，我会环游世界”）</p>
+<p>英汉例句2：</p>
+<p>I would have told you the story about him, but you were not home.</p>
+<p>我本来可以告诉你关于他的故事，但是你不在家。（由于：你不在家”这样的条件下，没有告诉关于他的的故事。）</p>
+<p>5.would have done与if连用</p>
+<p>例句：If I hadn’t been busy that day, I would have gone there with them.</p>
+<p>如果那天我不忙，我会和他们一起去那儿。（事实上表示没有由于忙，而没有去。）</p>
+<p>在这里也可以不用if</p>
+<p>如：I was busy that day. Otherwise I would have gone there with them. </p>
+<p>我那天很忙，否则，我就和他们一起去那儿了。</p>
+<p>6.文章中lower 在这里作为动词，“降低”的意思。<br><img src="/images/subjunctive.png"> </p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>word2vec</title>
+    <url>/2022/01/04/word2vec/</url>
+    <content><![CDATA[<p><img src="/images/word2vec.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vocabulary</title>
+    <url>/2023/02/03/vocabulary/</url>
+    <content><![CDATA[<h2 id="26"><a href="#26" class="headerlink" title="26"></a>26</h2><p><img src="/images/2023-02-03-18-32-43.png"></p>
+<pre><code>- in time 及时  
+</code></pre>
+<p><img src="/images/2023-02-03-18-36-18.png"></p>
+<pre><code>- a special bond between us
+</code></pre>
+<p><img src="/images/2023-02-03-18-45-49.png"></p>
+<p><img src="/images/2023-02-03-18-53-32.png"></p>
+<p><img src="/images/2023-02-03-18-56-07.png"></p>
+<p>fragment<br>fragile</p>
+<p>fragrant: the air is fragrant with flowers<br>fragrance: the fragrance of flowers is filled the room </p>
+<p>button<br>buttom</p>
+<p>the tea tastes rather bitter</p>
+<p>infant<br>orphan</p>
+<p>clever<br>bright<br>brilliant<br>smart<br>intelligent</p>
+<p>on welfare reform</p>
+<p>mayor<br>proclaim 主语一般人群<br>declare 主语一般是个人</p>
+<p>chief: One of the cheif causes of cirme today is drugs<br>chef: He’s a master chef</p>
+<p>in chorus 一致，一齐</p>
+<p>curse v.&#x2F;n<br>accuse v<br>excuse v原谅，借口</p>
+<p>account n 账户，描述<br>an account of 描述</p>
+<p>at a discount<br> a steep road</p>
+<p>diploma<br>diplomat n 外交官<br>He started his official carreer as a diplomat</p>
+<p>deed n<br>indeed adv 确实<br>A friend in need is a friend indeed</p>
+<p>dusk 自然世界黄昏<br>twilight 引申到人，twilight love 黄昏恋，twilight year暮年<br>The dusk was coming early</p>
+<p>delicate a 精美的，易碎的</p>
+<p>The delicate ecological balance of the rainforest<br>delicious<br>热带雨林极易碎的生态平衡<br>dedicate vt. 致力；献身；题献</p>
+<p>ease v 减轻，n容易 （be at ease）<br>Everyone wants to be at easz<br>She felt completely at ease with me<br>He’ll give you something to ease the pain</p>
+<p>far: A be far from B，就是指两个地方很远<br>farther 更远的 现实距离的远<br> Which is farther <code>away</code> from here，Shanghai or Tibet?<br> 加 away, 从基准点，很远，<br>farthest 最远的</p>
+<p> further 抽象的远<br> Visit our website for further details<br> furthest</p>
+<p> Jack’s book has probably gone furthest in explaining these events</p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+        <tag>vocabulary</tag>
       </tags>
   </entry>
   <entry>
@@ -2347,28 +2534,6 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
       </tags>
   </entry>
   <entry>
-    <title>vector二维数组</title>
-    <url>/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
-<li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
-<p>这里的row,col代表二维vector的两个轴方向的大小</p>
-</blockquote>
-</li>
-<li>第二种通过resize确定大小，之后循环赋值</li>
-</ul>
-<pre><code>vector&lt;vector&lt;char&gt; &gt;vec1;
-vec1.resize(row);
-for(int i=0;i&lt;vec1.size();i++)
-    vec1[i].resize(col);
-for(int i=0;i&lt;row;i++)
-    for(int j=0;j&lt;col;j++)  vec1[i][j]=&#39;#&#39;;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>warp函数</title>
     <url>/2022/07/11/warp%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h1 id="any-sync用于一个warp之间线程的数据的交换-广播（broadcast）"><a href="#any-sync用于一个warp之间线程的数据的交换-广播（broadcast）" class="headerlink" title="__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）"></a>__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）</h1><h2 id="这里必须注意srcLane是束内w的编号"><a href="#这里必须注意srcLane是束内w的编号" class="headerlink" title="这里必须注意srcLane是束内w的编号"></a>这里必须注意srcLane是束内w的编号</h2><blockquote>
@@ -2386,24 +2551,6 @@ for(int i=0;i&lt;row;i++)
 ]]></content>
       <tags>
         <tag>cuda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>transition-based</title>
-    <url>/2022/01/04/transition-based/</url>
-    <content><![CDATA[<p><img src="/images/transition.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>word2vec</title>
-    <url>/2022/01/04/word2vec/</url>
-    <content><![CDATA[<p><img src="/images/word2vec.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
       </tags>
   </entry>
   <entry>
@@ -2536,6 +2683,215 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
+    <title>单词</title>
+    <url>/2022/10/08/%E5%8D%95%E8%AF%8D/</url>
+    <content><![CDATA[<ul>
+<li>right after 一会，短暂的</li>
+<li>right along 持久的</li>
+<li>long-lasting effects</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>回溯的变量变化</title>
+    <url>/2023/02/11/%E5%9B%9E%E6%BA%AF%E7%9A%84%E5%8F%98%E9%87%8F%E5%8F%98%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="递归回溯涉及到的变量变化"><a href="#递归回溯涉及到的变量变化" class="headerlink" title="递归回溯涉及到的变量变化"></a>递归回溯涉及到的变量变化</h2><pre><code>def parse_xml_to_dict(self, xml):
+
+        if len(xml) == 0:  # 遍历到底层，直接返回tag对应的信息
+            return &#123;xml.tag: xml.text&#125;
+
+        result = &#123;&#125;
+        print(&quot;bbb&quot;)
+        for child in xml:
+            print(&quot;aaa&quot;)
+            child_result = parse_xml_to_dict(child)  # 递归遍历标签信息
+            print(result)
+            
+            # if child.tag != &#39;object&#39;:
+            result[child.tag] = child_result[child.tag]
+            print(result)
+            # else:
+            #     if child.tag not in result:  # 因为object可能有多个，所以需要放入列表里
+            #         result[child.tag] = []
+            #     result[child.tag].append(child_result[child.tag])
+        return &#123;xml.tag: result&#125;
+</code></pre>
+<p>输入数据：</p>
+<pre><code>&lt;annotation&gt;
+    &lt;folder&gt;VOC2007&lt;/folder&gt;
+    &lt;filename&gt;000001.jpg&lt;/filename&gt;
+    &lt;source&gt;
+        &lt;database&gt;The VOC2007 Database&lt;/database&gt;
+        &lt;annotation&gt;PASCAL VOC2007&lt;/annotation&gt;
+        &lt;image&gt;flickr&lt;/image&gt;
+        &lt;flickrid&gt;341012865&lt;/flickrid&gt;
+    &lt;/source&gt;
+    &lt;owner&gt;
+        &lt;flickrid&gt;Fried Camels&lt;/flickrid&gt;
+        &lt;name&gt;Jinky the Fruit Bat&lt;/name&gt;
+    &lt;/owner&gt;
+    &lt;size&gt;
+        &lt;width&gt;353&lt;/width&gt;
+        &lt;height&gt;500&lt;/height&gt;
+        &lt;depth&gt;3&lt;/depth&gt;
+    &lt;/size&gt;
+    &lt;segmented&gt;0&lt;/segmented&gt;
+    &lt;object&gt;
+        &lt;name&gt;dog&lt;/name&gt;
+        &lt;pose&gt;Left&lt;/pose&gt;
+        &lt;truncated&gt;1&lt;/truncated&gt;
+        &lt;difficult&gt;0&lt;/difficult&gt;
+        &lt;bndbox&gt;
+            &lt;xmin&gt;48&lt;/xmin&gt;
+            &lt;ymin&gt;240&lt;/ymin&gt;
+            &lt;xmax&gt;195&lt;/xmax&gt;
+            &lt;ymax&gt;371&lt;/ymax&gt;
+        &lt;/bndbox&gt;
+    &lt;/object&gt;
+    &lt;object&gt;
+        &lt;name&gt;person&lt;/name&gt;
+        &lt;pose&gt;Left&lt;/pose&gt;
+        &lt;truncated&gt;1&lt;/truncated&gt;
+        &lt;difficult&gt;0&lt;/difficult&gt;
+        &lt;bndbox&gt;
+            &lt;xmin&gt;8&lt;/xmin&gt;
+            &lt;ymin&gt;12&lt;/ymin&gt;
+            &lt;xmax&gt;352&lt;/xmax&gt;
+            &lt;ymax&gt;498&lt;/ymax&gt;
+        &lt;/bndbox&gt;
+    &lt;/object&gt;
+&lt;/annotation&gt;
+</code></pre>
+<p>输出如下：</p>
+<pre><code>bbb
+aaa
+&#123;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;&#125;
+aaa
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;&#125;
+aaa
+bbb
+aaa
+&#123;&#125;
+&#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;&#125;
+aaa
+&#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;&#125;
+&#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;&#125;
+aaa
+&#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;&#125;
+&#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;&#125;
+aaa
+&#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;&#125;
+&#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;&#125;
+aaa
+bbb
+aaa
+&#123;&#125;
+&#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;&#125;
+aaa
+&#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;&#125;
+&#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;&#125;
+aaa
+bbb
+aaa
+&#123;&#125;
+&#123;&#39;width&#39;: &#39;353&#39;&#125;
+aaa
+&#123;&#39;width&#39;: &#39;353&#39;&#125;
+&#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;&#125;
+aaa
+&#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;&#125;
+&#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;, &#39;size&#39;: &#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;&#125;
+aaa
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;, &#39;size&#39;: &#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;, &#39;size&#39;: &#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;, &#39;segmented&#39;: &#39;0&#39;&#125;
+aaa
+bbb
+aaa
+&#123;&#125;
+&#123;&#39;name&#39;: &#39;dog&#39;&#125;
+aaa
+&#123;&#39;name&#39;: &#39;dog&#39;&#125;
+&#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;&#125;
+aaa
+&#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;&#125;
+&#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;&#125;
+aaa
+&#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;&#125;
+&#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;&#125;
+aaa
+bbb
+aaa
+&#123;&#125;
+&#123;&#39;xmin&#39;: &#39;48&#39;&#125;
+aaa
+&#123;&#39;xmin&#39;: &#39;48&#39;&#125;
+&#123;&#39;xmin&#39;: &#39;48&#39;, &#39;ymin&#39;: &#39;240&#39;&#125;
+aaa
+&#123;&#39;xmin&#39;: &#39;48&#39;, &#39;ymin&#39;: &#39;240&#39;&#125;
+&#123;&#39;xmin&#39;: &#39;48&#39;, &#39;ymin&#39;: &#39;240&#39;, &#39;xmax&#39;: &#39;195&#39;&#125;
+aaa
+&#123;&#39;xmin&#39;: &#39;48&#39;, &#39;ymin&#39;: &#39;240&#39;, &#39;xmax&#39;: &#39;195&#39;&#125;
+&#123;&#39;xmin&#39;: &#39;48&#39;, &#39;ymin&#39;: &#39;240&#39;, &#39;xmax&#39;: &#39;195&#39;, &#39;ymax&#39;: &#39;371&#39;&#125;
+&#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;&#125;
+&#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;, &#39;bndbox&#39;: &#123;&#39;xmin&#39;: &#39;48&#39;, &#39;ymin&#39;: &#39;240&#39;, &#39;xmax&#39;: &#39;195&#39;, &#39;ymax&#39;: &#39;371&#39;&#125;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;, &#39;size&#39;: &#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;, &#39;segmented&#39;: &#39;0&#39;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;, &#39;size&#39;: &#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;, &#39;segmented&#39;: &#39;0&#39;, &#39;object&#39;: &#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;, &#39;bndbox&#39;: &#123;&#39;xmin&#39;: &#39;48&#39;, &#39;ymin&#39;: &#39;240&#39;, &#39;xmax&#39;: &#39;195&#39;, &#39;ymax&#39;: &#39;371&#39;&#125;&#125;&#125;
+aaa
+bbb
+aaa
+&#123;&#125;
+&#123;&#39;name&#39;: &#39;person&#39;&#125;
+aaa
+&#123;&#39;name&#39;: &#39;person&#39;&#125;
+&#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;&#125;
+aaa
+&#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;&#125;
+&#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;&#125;
+aaa
+&#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;&#125;
+&#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;&#125;
+aaa
+bbb
+aaa
+&#123;&#125;
+&#123;&#39;xmin&#39;: &#39;8&#39;&#125;
+aaa
+&#123;&#39;xmin&#39;: &#39;8&#39;&#125;
+&#123;&#39;xmin&#39;: &#39;8&#39;, &#39;ymin&#39;: &#39;12&#39;&#125;
+aaa
+&#123;&#39;xmin&#39;: &#39;8&#39;, &#39;ymin&#39;: &#39;12&#39;&#125;
+&#123;&#39;xmin&#39;: &#39;8&#39;, &#39;ymin&#39;: &#39;12&#39;, &#39;xmax&#39;: &#39;352&#39;&#125;
+aaa
+&#123;&#39;xmin&#39;: &#39;8&#39;, &#39;ymin&#39;: &#39;12&#39;, &#39;xmax&#39;: &#39;352&#39;&#125;
+&#123;&#39;xmin&#39;: &#39;8&#39;, &#39;ymin&#39;: &#39;12&#39;, &#39;xmax&#39;: &#39;352&#39;, &#39;ymax&#39;: &#39;498&#39;&#125;
+&#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;&#125;
+&#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;, &#39;bndbox&#39;: &#123;&#39;xmin&#39;: &#39;8&#39;, &#39;ymin&#39;: &#39;12&#39;, &#39;xmax&#39;: &#39;352&#39;, &#39;ymax&#39;: &#39;498&#39;&#125;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;, &#39;size&#39;: &#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;, &#39;segmented&#39;: &#39;0&#39;, &#39;object&#39;: &#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;, &#39;bndbox&#39;: &#123;&#39;xmin&#39;: &#39;48&#39;, &#39;ymin&#39;: &#39;240&#39;, &#39;xmax&#39;: &#39;195&#39;, &#39;ymax&#39;: &#39;371&#39;&#125;&#125;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;, &#39;size&#39;: &#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;, &#39;segmented&#39;: &#39;0&#39;, &#39;object&#39;: &#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;, &#39;bndbox&#39;: &#123;&#39;xmin&#39;: &#39;8&#39;, &#39;ymin&#39;: &#39;12&#39;, &#39;xmax&#39;: &#39;352&#39;, &#39;ymax&#39;: &#39;498&#39;&#125;&#125;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;, &#39;size&#39;: &#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;, &#39;segmented&#39;: &#39;0&#39;, &#39;object&#39;: &#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;, &#39;bndbox&#39;: &#123;&#39;xmin&#39;: &#39;8&#39;, &#39;ymin&#39;: &#39;12&#39;, &#39;xmax&#39;: &#39;352&#39;, &#39;ymax&#39;: &#39;498&#39;&#125;&#125;&#125;
+</code></pre>
+<h3 id="注意，for循环相当于遍历同一层节点，比如这里就是：，，，等"><a href="#注意，for循环相当于遍历同一层节点，比如这里就是：，，，等" class="headerlink" title="注意，for循环相当于遍历同一层节点，比如这里就是：，，，等"></a>注意，for循环相当于遍历同一层节点，比如这里就是：<folder>，<filename>，<source>，<owner>等</h3><pre><code>- 当&lt;folder&gt;遍历完之后，没有孩子节点了，因此回溯，注意此时是回溯到for循环下面（print(&quot;aaa&quot;)的地方），此时result是&lt;folder&gt;遍历完之后的值，因为result是在for循环外面定义的，同理&lt;filename&gt;也是
+- 当走到&lt;source&gt;的时候，他有子孩子，这个时候就会递归调用function，这个时候result就为空了，当这个for循环执行完之后，有一个return，他会把result返回到&lt;source&gt;入口处，就是子孩子的result作为返回值给了父节点&lt;source&gt;，
+- child_result = parse_xml_to_dict(child)  # 递归遍历标签信息
+- child_result就存了子孩子的result
+</code></pre>
+]]></content>
+      <tags>
+        <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>主语从句</title>
     <url>/2022/08/24/%E4%B8%BB%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
     <content><![CDATA[<h2 id="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"><a href="#主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾" class="headerlink" title="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"></a>主语从句：<strong>在句子中担当主语的是一个从句</strong>，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾</h2><blockquote>
@@ -2607,79 +2963,12 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
-    <title>单词</title>
-    <url>/2022/10/08/%E5%8D%95%E8%AF%8D/</url>
-    <content><![CDATA[<ul>
-<li>right after 一会，短暂的</li>
-<li>right along 持久的</li>
-<li>long-lasting effects</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>原反补码</title>
     <url>/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/</url>
     <content><![CDATA[<p><img src="/images/coding.png"></p>
 ]]></content>
       <tags>
         <tag>coding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>卡尔曼滤波详解</title>
-    <url>/2022/09/29/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/</url>
-    <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3><ul>
-<li>对于一个高斯分布，方差越小，越接近期望值（这里的期望值是0），越小，图越尖</li>
-</ul>
-<h4 id="1-数据融合（data-fusion）"><a href="#1-数据融合（data-fusion）" class="headerlink" title="1.数据融合（data fusion）"></a>1.数据融合（data fusion）</h4><p><img src="/images/2022-09-30-14-51-08.png"></p>
-<p><img src="/images/2022-09-30-14-52-55.png"></p>
-<h3 id="2-协方差矩阵-（covariance-matrix）"><a href="#2-协方差矩阵-（covariance-matrix）" class="headerlink" title="2.协方差矩阵 （covariance matrix）"></a>2.协方差矩阵 （covariance matrix）</h3><blockquote>
-<p>方差协方差在一个矩阵中表现出来</p>
-</blockquote>
-<p><img src="/images/2022-09-30-19-52-40.png"></p>
-<ul>
-<li>快速计算方法</li>
-</ul>
-<p><img src="/images/2022-09-30-19-54-59.png"></p>
-<h3 id="3-状态空间表示（state-space-representation）"><a href="#3-状态空间表示（state-space-representation）" class="headerlink" title="3.状态空间表示（state space representation）"></a>3.状态空间表示（state space representation）</h3><p><img src="/images/2022-10-02-18-30-07.png"></p>
-<h3 id="4-公式推导"><a href="#4-公式推导" class="headerlink" title="4.公式推导"></a>4.公式推导</h3><p><img src="/images/2022-10-02-19-11-53.png"><br><img src="/images/2022-10-02-19-11-17.png"><br><img src="/images/2022-10-02-19-12-57.png"><br><img src="/images/2022-10-02-19-14-35.png"></p>
-]]></content>
-      <tags>
-        <tag>kalman</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>字节对齐</title>
-    <url>/2022/08/25/%E5%AD%97%E8%8A%82%E5%AF%B9%E9%BD%90/</url>
-    <content><![CDATA[<ul>
-<li>结构体变量的首地址能够被其最宽基本类型成员的大小所整除；</li>
-<li>结构体每个成员相对于结构体首地址的偏移量（offset）都是成员大小的整数倍，如有需要编译器会在成员之间加上填充字节（internal padding）；</li>
-<li>结构体的总大小为结构体最宽基本类型成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节（trailing padding）</li>
-</ul>
-<p>比如</p>
-<pre><code>struct student
-&#123;
-    char name[5];
-    int num;
-    short score;
-&#125;
-</code></pre>
-<p>|char|char|char|char|<br>|char|—-|—-|—-|<br>|——–int——–|<br>|–short–|—-|—-|</p>
-<p>本来只用了11bytes（5+4+2）的空间，但是由于int型默认4字节对齐，存放在地址能被4整除的起始位置，即：如果name[5]从0开始存放，它占5bytes，而num则从第8(<strong>因为int是4，开始存的位置必须要可以整除4</strong>)（偏移量）个字节开始存放。所以sizeof(student)&#x3D;16。于是中间空出几个字节闲置着。但这样便于计算机快速读写数据，是一种以空间换取时间的方式。其数据对齐如下图：</p>
-<pre><code>struct student
-&#123;
-    int num;
-    char name[5];
-    short score;
-&#125;
-</code></pre>
-<p>num从0开始存放，而name从第4（偏移量）个字节开始存放，连续5个字节，score从第10（偏移量）开始存放，故sizeof(student)&#x3D;12。其数据对齐如下图：<br>|——–int——–|<br>|char|char|char|char|<br>|char|—-|–short–|</p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -2750,6 +3039,52 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
+    <title>按位与替换取余操作</title>
+    <url>/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<blockquote>
+<p>由于我们知道位运算比较高效，在某些情况下，当b为2的n次方时，有如下替换公式：</p>
+</blockquote>
+<blockquote>
+<p><code>a % b = a &amp; (b-1)</code></p>
+</blockquote>
+<h2 id="notes"><a href="#notes" class="headerlink" title="notes:"></a>notes:</h2><ul>
+<li>b必须为2的整数倍<blockquote>
+<p>因为可以保证b始终只有最高位为1，其他二进制位全部为0，减去1，之后，可以把高位1消除，其他位都为1。<br><code>减一之后，最高位为0，之后都为1（b,b剩下的数就是需要的余数的最高值），就相当于计算低位与原数的与</code></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>例如：14%8，取余数，相当于取出低位，而余数最大为7，14二进制为1110，8的二进制1000，8-1 &#x3D; 7的二进制为0111，由于现在低位全为1，让其跟14做&amp;运算，正好取出的是其低位上的余数 </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mathematics</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>卡尔曼滤波详解</title>
+    <url>/2022/09/29/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/</url>
+    <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3><ul>
+<li>对于一个高斯分布，方差越小，越接近期望值（这里的期望值是0），越小，图越尖</li>
+</ul>
+<h4 id="1-数据融合（data-fusion）"><a href="#1-数据融合（data-fusion）" class="headerlink" title="1.数据融合（data fusion）"></a>1.数据融合（data fusion）</h4><p><img src="/images/2022-09-30-14-51-08.png"></p>
+<p><img src="/images/2022-09-30-14-52-55.png"></p>
+<h3 id="2-协方差矩阵-（covariance-matrix）"><a href="#2-协方差矩阵-（covariance-matrix）" class="headerlink" title="2.协方差矩阵 （covariance matrix）"></a>2.协方差矩阵 （covariance matrix）</h3><blockquote>
+<p>方差协方差在一个矩阵中表现出来</p>
+</blockquote>
+<p><img src="/images/2022-09-30-19-52-40.png"></p>
+<ul>
+<li>快速计算方法</li>
+</ul>
+<p><img src="/images/2022-09-30-19-54-59.png"></p>
+<h3 id="3-状态空间表示（state-space-representation）"><a href="#3-状态空间表示（state-space-representation）" class="headerlink" title="3.状态空间表示（state space representation）"></a>3.状态空间表示（state space representation）</h3><p><img src="/images/2022-10-02-18-30-07.png"></p>
+<h3 id="4-公式推导"><a href="#4-公式推导" class="headerlink" title="4.公式推导"></a>4.公式推导</h3><p><img src="/images/2022-10-02-19-11-53.png"><br><img src="/images/2022-10-02-19-11-17.png"><br><img src="/images/2022-10-02-19-12-57.png"><br><img src="/images/2022-10-02-19-14-35.png"></p>
+]]></content>
+      <tags>
+        <tag>kalman</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>宾语从句</title>
     <url>/2022/08/21/%E5%AE%BE%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
     <content><![CDATA[<h1 id="宾语从句（objective-clause）"><a href="#宾语从句（objective-clause）" class="headerlink" title="宾语从句（objective clause）"></a>宾语从句（objective clause）</h1><p>that引导的宾语从句作动词或某些形容词的宾语时，that在口语和非正式文体中可以省略，并且是经常省略。<br><img src="/images/2022-08-21-17-29-44.png"></p>
@@ -2791,52 +3126,112 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
-    <title>宾语补足语</title>
-    <url>/2022/08/22/%E5%AE%BE%E8%AF%AD%E8%A1%A5%E8%B6%B3%E8%AF%AD/</url>
-    <content><![CDATA[<h1 id="有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语"><a href="#有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语" class="headerlink" title="有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语"></a>有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语</h1><ul>
-<li>本质上来说后面的名词也是修饰前面的名词的<ul>
-<li>名词做宾补<blockquote>
-<p>eg: I think the job a great honor. 我认为这份工作是一份荣誉</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>按位与替换取余操作</title>
-    <url>/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<blockquote>
-<p>由于我们知道位运算比较高效，在某些情况下，当b为2的n次方时，有如下替换公式：</p>
-</blockquote>
-<blockquote>
-<p><code>a % b = a &amp; (b-1)</code></p>
-</blockquote>
-<h2 id="notes"><a href="#notes" class="headerlink" title="notes:"></a>notes:</h2><ul>
-<li>b必须为2的整数倍<blockquote>
-<p>因为可以保证b始终只有最高位为1，其他二进制位全部为0，减去1，之后，可以把高位1消除，其他位都为1。<br><code>减一之后，最高位为0，之后都为1（b,b剩下的数就是需要的余数的最高值），就相当于计算低位与原数的与</code></p>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p>例如：14%8，取余数，相当于取出低位，而余数最大为7，14二进制为1110，8的二进制1000，8-1 &#x3D; 7的二进制为0111，由于现在低位全为1，让其跟14做&amp;运算，正好取出的是其低位上的余数 </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>mathematics</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>期望和方差</title>
     <url>/2022/05/21/%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE/</url>
     <content><![CDATA[<p><img src="/images/expectAndvariance.png"> </p>
 ]]></content>
       <tags>
         <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>正向先行断言</title>
+    <url>/2023/01/03/%E6%AD%A3%E5%90%91%E5%85%88%E8%A1%8C%E6%96%AD%E8%A8%80/</url>
+    <content><![CDATA[<h3 id="x3D-A-Z-x3D-a-z-x3D-amp"><a href="#x3D-A-Z-x3D-a-z-x3D-amp" class="headerlink" title="(?&#x3D;.?[A-Z]+)(?&#x3D;.?[a-z])(?&#x3D;.[!@#$%^&amp;?()])"></a>(?&#x3D;.<em>?[A-Z]+)(?&#x3D;.</em>?[a-z])(?&#x3D;.<em>[!@#$%^&amp;</em>?()])</h3><blockquote>
+<p>判断包含至少一个大写字母，一个小写，一个特殊</p>
+</blockquote>
+<h4 id="首先-x3D-A-Z"><a href="#首先-x3D-A-Z" class="headerlink" title="首先(?&#x3D;.*?[A-Z]+)"></a>首先(?&#x3D;.*?[A-Z]+)</h4><p><img src="/images/2023-01-03-08-40-01.png"></p>
+<p>这里前面是<strong>空白符</strong>，因此会匹配出所有满足(?&#x3D;.*?[A-Z]+)的空白符</p>
+<h4 id="x3D-A-Z-x3D-a-z"><a href="#x3D-A-Z-x3D-a-z" class="headerlink" title="(?&#x3D;.?[A-Z]+)(?&#x3D;.?[a-z])"></a>(?&#x3D;.<em>?[A-Z]+)(?&#x3D;.</em>?[a-z])</h4><p><img src="/images/2023-01-03-08-40-12.png"></p>
+<p>这里是用已经满足第一个条件的空白符继续匹配满足(?&#x3D;.*?[a-z])的空白符</p>
+<h4 id="x3D-A-Z-x3D-a-z-x3D-amp-1"><a href="#x3D-A-Z-x3D-a-z-x3D-amp-1" class="headerlink" title="(?&#x3D;.?[A-Z]+)(?&#x3D;.?[a-z])(?&#x3D;.[!@#$%^&amp;?()])"></a>(?&#x3D;.<em>?[A-Z]+)(?&#x3D;.</em>?[a-z])(?&#x3D;.<em>[!@#$%^&amp;</em>?()])</h4><p><img src="/images/2023-01-03-08-41-20.png"></p>
+<p>同理</p>
+<h3 id="x3D-6-16-x3D-d-x3D-A-Z-2-x3D-a-z-2-x3D-amp"><a href="#x3D-6-16-x3D-d-x3D-A-Z-2-x3D-a-z-2-x3D-amp" class="headerlink" title="^.(?&#x3D;.{6,16})(?&#x3D;.\d)(?&#x3D;.[A-Z]{2,})(?&#x3D;.[a-z]{2,})(?&#x3D;.[!@#$%^&amp;?()]).*$"></a>^.<em>(?&#x3D;.{6,16})(?&#x3D;.<em>\d)(?&#x3D;.</em>[A-Z]{2,})(?&#x3D;.</em>[a-z]{2,})(?&#x3D;.<em>[!@#$%^&amp;</em>?()]).*$</h3><h3 id="反向正行断言"><a href="#反向正行断言" class="headerlink" title="反向正行断言"></a>反向正行断言</h3><blockquote>
+<p>(?!)</p>
+</blockquote>
+<h3 id="正向反行断言-：-右到左"><a href="#正向反行断言-：-右到左" class="headerlink" title="正向反行断言 ： 右到左"></a>正向反行断言 ： 右到左</h3><blockquote>
+<p>(?&lt;&#x3D;)</p>
+</blockquote>
+<h3 id="反向反行断言"><a href="#反向反行断言" class="headerlink" title="反向反行断言"></a>反向反行断言</h3><blockquote>
+<p>(?&lt;!)</p>
+</blockquote>
+<p><img src="/images/2023-01-03-09-39-21.png"></p>
+<p><img src="/images/2023-01-03-09-38-43.png"></p>
+]]></content>
+      <tags>
+        <tag>正则表达式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>字节对齐</title>
+    <url>/2022/08/25/%E5%AD%97%E8%8A%82%E5%AF%B9%E9%BD%90/</url>
+    <content><![CDATA[<ul>
+<li>结构体变量的首地址能够被其最宽基本类型成员的大小所整除；</li>
+<li>结构体每个成员相对于结构体首地址的偏移量（offset）都是成员大小的整数倍，如有需要编译器会在成员之间加上填充字节（internal padding）；</li>
+<li>结构体的总大小为结构体最宽基本类型成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节（trailing padding）</li>
+</ul>
+<p>比如</p>
+<pre><code>struct student
+&#123;
+    char name[5];
+    int num;
+    short score;
+&#125;
+</code></pre>
+<p>|char|char|char|char|<br>|char|—-|—-|—-|<br>|——–int——–|<br>|–short–|—-|—-|</p>
+<p>本来只用了11bytes（5+4+2）的空间，但是由于int型默认4字节对齐，存放在地址能被4整除的起始位置，即：如果name[5]从0开始存放，它占5bytes，而num则从第8(<strong>因为int是4，开始存的位置必须要可以整除4</strong>)（偏移量）个字节开始存放。所以sizeof(student)&#x3D;16。于是中间空出几个字节闲置着。但这样便于计算机快速读写数据，是一种以空间换取时间的方式。其数据对齐如下图：</p>
+<pre><code>struct student
+&#123;
+    int num;
+    char name[5];
+    short score;
+&#125;
+</code></pre>
+<p>num从0开始存放，而name从第4（偏移量）个字节开始存放，连续5个字节，score从第10（偏移量）开始存放，故sizeof(student)&#x3D;12。其数据对齐如下图：<br>|——–int——–|<br>|char|char|char|char|<br>|char|—-|–short–|</p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>状语从句</title>
+    <url>/2022/08/20/%E7%8A%B6%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
+    <content><![CDATA[<h1 id="状语从句主谓成分的省略，须遵循下面原则："><a href="#状语从句主谓成分的省略，须遵循下面原则：" class="headerlink" title="状语从句主谓成分的省略，须遵循下面原则："></a>状语从句主谓成分的省略，须遵循下面原则：</h1><ol>
+<li><p>当从句的主语与主句的主语一致时，从句可以省略主语，从句的谓语动词采用其V-ing结构。例如：</p>
+<ul>
+<li><p>Although working very hard, he failed in the final exam. (Although he worked very hard）</p>
+</li>
+<li><p>After taking the medicine, she felt much better. (After she took the medicine)</p>
+</li>
+<li><p>If going there by air, we’ll have to pay twice the fare. (If we go there by air)</p>
+</li>
+</ul>
+</li>
+<li><p>当从句的主语和主句的主语一致时，若从句的谓语动词是系动词be或包含be的某种形式，此时从句的主语和be动词通常可以一同省略</p>
+<ul>
+<li>Whenever (she is) free, she often goes shopping.她有空就去逛商店。</li>
+<li>Work hard when (you are) young, or you’ll regret.少壮不努力,老大徒伤悲。</li>
+<li>While (he was) a young boy, he was always ready to help others. 他在孩提时代就乐于助人。<br> <img src="/images/2022-08-22-11-59-37.png"><br> <img src="/images/2022-08-22-11-59-56.png"></li>
+</ul>
+</li>
+<li><p>若从句的主语和主句的主语不一致，但和主句的宾语一致时，从句中的主语和be动词亦常可省略。例如：</p>
+<ul>
+<li>Father advised me not to say anything until (I was) asked.</li>
+</ul>
+</li>
+<li><p>当从句的主语是it, 且谓语动词是be或包含be的某种形式时, it和be常可同时省略。例如:</p>
+<ul>
+<li><p>If (it is) possible, he will help you out of the difficulty.如果可能的话,他会帮你摆脱困境。</p>
+</li>
+<li><p>You must attend the meeting unless (it is) inconvenient to you.除非情况对你来说不方便,否则你必须出席这次会议。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><img src="/images/2022-08-22-12-05-52.png"></p>
+]]></content>
+      <tags>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -2949,95 +3344,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>状语从句</title>
-    <url>/2022/08/20/%E7%8A%B6%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
-    <content><![CDATA[<h1 id="状语从句主谓成分的省略，须遵循下面原则："><a href="#状语从句主谓成分的省略，须遵循下面原则：" class="headerlink" title="状语从句主谓成分的省略，须遵循下面原则："></a>状语从句主谓成分的省略，须遵循下面原则：</h1><ol>
-<li><p>当从句的主语与主句的主语一致时，从句可以省略主语，从句的谓语动词采用其V-ing结构。例如：</p>
-<ul>
-<li><p>Although working very hard, he failed in the final exam. (Although he worked very hard）</p>
-</li>
-<li><p>After taking the medicine, she felt much better. (After she took the medicine)</p>
-</li>
-<li><p>If going there by air, we’ll have to pay twice the fare. (If we go there by air)</p>
-</li>
-</ul>
-</li>
-<li><p>当从句的主语和主句的主语一致时，若从句的谓语动词是系动词be或包含be的某种形式，此时从句的主语和be动词通常可以一同省略</p>
-<ul>
-<li>Whenever (she is) free, she often goes shopping.她有空就去逛商店。</li>
-<li>Work hard when (you are) young, or you’ll regret.少壮不努力,老大徒伤悲。</li>
-<li>While (he was) a young boy, he was always ready to help others. 他在孩提时代就乐于助人。<br> <img src="/images/2022-08-22-11-59-37.png"><br> <img src="/images/2022-08-22-11-59-56.png"></li>
-</ul>
-</li>
-<li><p>若从句的主语和主句的主语不一致，但和主句的宾语一致时，从句中的主语和be动词亦常可省略。例如：</p>
-<ul>
-<li>Father advised me not to say anything until (I was) asked.</li>
-</ul>
-</li>
-<li><p>当从句的主语是it, 且谓语动词是be或包含be的某种形式时, it和be常可同时省略。例如:</p>
-<ul>
-<li><p>If (it is) possible, he will help you out of the difficulty.如果可能的话,他会帮你摆脱困境。</p>
-</li>
-<li><p>You must attend the meeting unless (it is) inconvenient to you.除非情况对你来说不方便,否则你必须出席这次会议。</p>
-</li>
-</ul>
-</li>
-</ol>
-<p><img src="/images/2022-08-22-12-05-52.png"></p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>正向先行断言</title>
-    <url>/2023/01/03/%E6%AD%A3%E5%90%91%E5%85%88%E8%A1%8C%E6%96%AD%E8%A8%80/</url>
-    <content><![CDATA[<h3 id="x3D-A-Z-x3D-a-z-x3D-amp"><a href="#x3D-A-Z-x3D-a-z-x3D-amp" class="headerlink" title="(?&#x3D;.?[A-Z]+)(?&#x3D;.?[a-z])(?&#x3D;.[!@#$%^&amp;?()])"></a>(?&#x3D;.<em>?[A-Z]+)(?&#x3D;.</em>?[a-z])(?&#x3D;.<em>[!@#$%^&amp;</em>?()])</h3><blockquote>
-<p>判断包含至少一个大写字母，一个小写，一个特殊</p>
-</blockquote>
-<h4 id="首先-x3D-A-Z"><a href="#首先-x3D-A-Z" class="headerlink" title="首先(?&#x3D;.*?[A-Z]+)"></a>首先(?&#x3D;.*?[A-Z]+)</h4><p><img src="/images/2023-01-03-08-40-01.png"></p>
-<p>这里前面是<strong>空白符</strong>，因此会匹配出所有满足(?&#x3D;.*?[A-Z]+)的空白符</p>
-<h4 id="x3D-A-Z-x3D-a-z"><a href="#x3D-A-Z-x3D-a-z" class="headerlink" title="(?&#x3D;.?[A-Z]+)(?&#x3D;.?[a-z])"></a>(?&#x3D;.<em>?[A-Z]+)(?&#x3D;.</em>?[a-z])</h4><p><img src="/images/2023-01-03-08-40-12.png"></p>
-<p>这里是用已经满足第一个条件的空白符继续匹配满足(?&#x3D;.*?[a-z])的空白符</p>
-<h4 id="x3D-A-Z-x3D-a-z-x3D-amp-1"><a href="#x3D-A-Z-x3D-a-z-x3D-amp-1" class="headerlink" title="(?&#x3D;.?[A-Z]+)(?&#x3D;.?[a-z])(?&#x3D;.[!@#$%^&amp;?()])"></a>(?&#x3D;.<em>?[A-Z]+)(?&#x3D;.</em>?[a-z])(?&#x3D;.<em>[!@#$%^&amp;</em>?()])</h4><p><img src="/images/2023-01-03-08-41-20.png"></p>
-<p>同理</p>
-<h3 id="x3D-6-16-x3D-d-x3D-A-Z-2-x3D-a-z-2-x3D-amp"><a href="#x3D-6-16-x3D-d-x3D-A-Z-2-x3D-a-z-2-x3D-amp" class="headerlink" title="^.(?&#x3D;.{6,16})(?&#x3D;.\d)(?&#x3D;.[A-Z]{2,})(?&#x3D;.[a-z]{2,})(?&#x3D;.[!@#$%^&amp;?()]).*$"></a>^.<em>(?&#x3D;.{6,16})(?&#x3D;.<em>\d)(?&#x3D;.</em>[A-Z]{2,})(?&#x3D;.</em>[a-z]{2,})(?&#x3D;.<em>[!@#$%^&amp;</em>?()]).*$</h3><h3 id="反向正行断言"><a href="#反向正行断言" class="headerlink" title="反向正行断言"></a>反向正行断言</h3><blockquote>
-<p>(?!)</p>
-</blockquote>
-<h3 id="正向反行断言-：-右到左"><a href="#正向反行断言-：-右到左" class="headerlink" title="正向反行断言 ： 右到左"></a>正向反行断言 ： 右到左</h3><blockquote>
-<p>(?&lt;&#x3D;)</p>
-</blockquote>
-<h3 id="反向反行断言"><a href="#反向反行断言" class="headerlink" title="反向反行断言"></a>反向反行断言</h3><blockquote>
-<p>(?&lt;!)</p>
-</blockquote>
-<p><img src="/images/2023-01-03-09-39-21.png"></p>
-<p><img src="/images/2023-01-03-09-38-43.png"></p>
-]]></content>
-      <tags>
-        <tag>正则表达式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>矩阵旋转位移推导</title>
-    <url>/2022/11/28/%E7%9F%A9%E9%98%B5%E6%97%8B%E8%BD%AC%E4%BD%8D%E7%A7%BB%E6%8E%A8%E5%AF%BC/</url>
-    <content><![CDATA[<h2 id="1-怎么推导坐标位移和旋转"><a href="#1-怎么推导坐标位移和旋转" class="headerlink" title="1. 怎么推导坐标位移和旋转"></a>1. 怎么推导坐标位移和旋转</h2><p>二维坐标的旋转可以通过三角公式推导</p>
-<p>我们在做几何变换的时候经常需要把某个坐标系上的所有点都进行一个旋转，这个操作就叫做刚体旋转（所有的点相对位置不变的发生旋转）。下图是一个典型的二维坐标系下刚体旋转。我们把蓝色的坐标系旋转了θ度，新坐标系就是红色的坐标系。我们现在已知一个点相对红色那个坐标系的坐标($x_{red}$, $x_{red}$ )，和已知旋转角度θ，然后我们想求得该点相对于蓝色那个坐标系的坐标($x_{blue}$,$y_{blue}$)</p>
-<p><img src="/images/2022-11-28-13-48-47.png"></p>
-<p>这个其实很简单我们利用高中学的三角几何就可以轻松解决。从上图可以发现不变量是黑色的那个线段的长度。而这个长度我们是可以根据黑色点相对红色坐标系下的坐标($x_{red}$, $x_{red}$ )算出来的。黑色线段长度为$r&#x3D;\sqrt {x_{red}^2+y_{red}^2}$</p>
-<p>然后我们可以根据紫色那个三角形计算出黑色点相对蓝色坐标系下的坐标 ($x_{blue},y_{blue}$)</p>
-<p>根据高中学的三角几何我们可以知道：<br>$<br>x_{blue}&#x3D;r*cos(\alpha+\theta) \tag{1}<br>$</p>
-<p>$<br>y_{blue}&#x3D;r*sin(\alpha+\theta) \tag{2}<br>$</p>
-<p>$\alpha$我们是不知道的。但是我们能找到一个关于它的线索。</p>
-<p>$$<br>x_{red}&#x3D;r*cos(\alpha)\\<br>y_{red}&#x3D;r*sin(\alpha)<br>$$</p>
-<p>展开（1）和 （2），可以得到如下：</p>
-<p>$$<br>\begin{align}<br>x_{blue}&amp;&#x3D;r∗cos(α+θ)&#x3D;r∗(cos(α)∗cos(θ)−sin(α)∗sin(θ))&#x3D;x_{red}∗cos(θ)−y_{red}∗sin(θ)\\<br>y_{blue}&amp;&#x3D;r∗sin(α+θ)&#x3D;r∗(sin(α)∗cos(θ)+cos(α)∗sin(θ))&#x3D;y_{red}∗cos(θ)+x_{red}∗sin(θ)<br>\end{align}<br>$$</p>
-<p><img src="/images/2022-12-02-13-39-50.png"></p>
-]]></content>
-      <tags>
-        <tag>-robotics</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>类内声明和定义</title>
     <url>/2022/03/10/%E7%B1%BB%E5%86%85%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89/</url>
     <content><![CDATA[<p>1.类内定义</p>
@@ -3124,12 +3430,60 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>线性插值</title>
-    <url>/2022/08/20/%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/</url>
-    <content><![CDATA[<p><img src="/images/2022-08-28-19-14-47.png"></p>
+    <title>英语句子</title>
+    <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
+    <content><![CDATA[<blockquote>
+<p>commence—Many people have wondered why the end of someone’s school days should be celebrated by Commencement Exercises, which, ordinarily, refer to a beginning</p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>ShiftGCN</tag>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>矩阵旋转位移推导</title>
+    <url>/2022/11/28/%E7%9F%A9%E9%98%B5%E6%97%8B%E8%BD%AC%E4%BD%8D%E7%A7%BB%E6%8E%A8%E5%AF%BC/</url>
+    <content><![CDATA[<h2 id="1-怎么推导坐标位移和旋转"><a href="#1-怎么推导坐标位移和旋转" class="headerlink" title="1. 怎么推导坐标位移和旋转"></a>1. 怎么推导坐标位移和旋转</h2><p>二维坐标的旋转可以通过三角公式推导</p>
+<p>我们在做几何变换的时候经常需要把某个坐标系上的所有点都进行一个旋转，这个操作就叫做刚体旋转（所有的点相对位置不变的发生旋转）。下图是一个典型的二维坐标系下刚体旋转。我们把蓝色的坐标系旋转了θ度，新坐标系就是红色的坐标系。我们现在已知一个点相对红色那个坐标系的坐标($x_{red}$, $x_{red}$ )，和已知旋转角度θ，然后我们想求得该点相对于蓝色那个坐标系的坐标($x_{blue}$,$y_{blue}$)</p>
+<p><img src="/images/2022-11-28-13-48-47.png"></p>
+<p>这个其实很简单我们利用高中学的三角几何就可以轻松解决。从上图可以发现不变量是黑色的那个线段的长度。而这个长度我们是可以根据黑色点相对红色坐标系下的坐标($x_{red}$, $x_{red}$ )算出来的。黑色线段长度为$r&#x3D;\sqrt {x_{red}^2+y_{red}^2}$</p>
+<p>然后我们可以根据紫色那个三角形计算出黑色点相对蓝色坐标系下的坐标 ($x_{blue},y_{blue}$)</p>
+<p>根据高中学的三角几何我们可以知道：<br>$<br>x_{blue}&#x3D;r*cos(\alpha+\theta) \tag{1}<br>$</p>
+<p>$<br>y_{blue}&#x3D;r*sin(\alpha+\theta) \tag{2}<br>$</p>
+<p>$\alpha$我们是不知道的。但是我们能找到一个关于它的线索。</p>
+<p>$$<br>x_{red}&#x3D;r*cos(\alpha)\\<br>y_{red}&#x3D;r*sin(\alpha)<br>$$</p>
+<p>展开（1）和 （2），可以得到如下：</p>
+<p>$$<br>\begin{align}<br>x_{blue}&amp;&#x3D;r∗cos(α+θ)&#x3D;r∗(cos(α)∗cos(θ)−sin(α)∗sin(θ))&#x3D;x_{red}∗cos(θ)−y_{red}∗sin(θ)\\<br>y_{blue}&amp;&#x3D;r∗sin(α+θ)&#x3D;r∗(sin(α)∗cos(θ)+cos(α)∗sin(θ))&#x3D;y_{red}∗cos(θ)+x_{red}∗sin(θ)<br>\end{align}<br>$$</p>
+<p><img src="/images/2022-12-02-13-39-50.png"></p>
+]]></content>
+      <tags>
+        <tag>-robotics</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>宾语补足语</title>
+    <url>/2022/08/22/%E5%AE%BE%E8%AF%AD%E8%A1%A5%E8%B6%B3%E8%AF%AD/</url>
+    <content><![CDATA[<h1 id="有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语"><a href="#有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语" class="headerlink" title="有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语"></a>有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语</h1><ul>
+<li>本质上来说后面的名词也是修饰前面的名词的<ul>
+<li>名词做宾补<blockquote>
+<p>eg: I think the job a great honor. 我认为这份工作是一份荣誉</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>过拟合和欠拟合</title>
+    <url>/2022/05/22/%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88/</url>
+    <content><![CDATA[<p><img src="/images/overfit.png"> </p>
+]]></content>
+      <tags>
+        <tag>machine</tag>
       </tags>
   </entry>
   <entry>
@@ -3189,123 +3543,12 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>英语句子</title>
-    <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
-    <content><![CDATA[<blockquote>
-<p>commence—Many people have wondered why the end of someone’s school days should be celebrated by Commencement Exercises, which, ordinarily, refer to a beginning</p>
-</blockquote>
+    <title>线性插值</title>
+    <url>/2022/08/20/%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/</url>
+    <content><![CDATA[<p><img src="/images/2022-08-28-19-14-47.png"></p>
 ]]></content>
       <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>过去式</title>
-    <url>/2021/12/25/%E8%BF%87%E5%8E%BB%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="过去式变化规则"><a href="#过去式变化规则" class="headerlink" title="过去式变化规则"></a>过去式变化规则</h1><p>1）动词过去式变化规则分为规则变化和不规则变化两种，一般情况下，动词原形词尾加-ed，以不发音的-e结尾动词，动词词尾加-d，以辅音字母+y结尾的动词，把-y变为-i 再加-ed<br>2）以一个元音+一个辅音字母结尾的重读闭音节动词，双写词尾辅音字母，否则就加ed<br>preFER-&gt;preFERRed<br>VISit-&gt;VISited<br>3）不满足一个元音+一个辅音结尾 + ed<br>start-&gt;started 两个辅音结尾<br>need-&gt;needed<br>3) 一个元音+y +ed<br>stay-&gt;stayed</p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>过拟合和欠拟合</title>
-    <url>/2022/05/22/%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88/</url>
-    <content><![CDATA[<p><img src="/images/overfit.png"> </p>
-]]></content>
-      <tags>
-        <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>计算机网络</title>
-    <url>/2022/12/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<h1 id="Computer-Network-Notes"><a href="#Computer-Network-Notes" class="headerlink" title="Computer Network Notes"></a>Computer Network Notes</h1><h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><p><img src="/images/2022-12-20-01-42-46.png"><br>    由路由算法计算得到路由表，并决定发往哪个输出链路</p>
-<p><img src="/images/2022-12-20-02-59-16.png"><br>    应用于无线</p>
-<blockquote>
-<p>分组传输时间计算的例子<br><img src="/images/2022-12-20-03-45-33.png"><br>解<br><img src="/images/2022-12-20-03-46-22.png"></p>
-</blockquote>
-<h2 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h2><p><img src="/images/2022-12-23-04-55-32.png"></p>
-<blockquote>
-<p>每个层之间进行数据封装</p>
-</blockquote>
-<p><img src="/images/2022-12-23-04-59-00.png"><br><img src="/images/2022-12-23-05-02-52.png"></p>
-<p><img src="/images/2022-12-25-23-46-48.png"></p>
-]]></content>
-      <tags>
-        <tag>计算机</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>进程和线程</title>
-    <url>/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<p>做个简单的比喻：进程&#x3D;火车，线程&#x3D;车厢线程在进程下行进（<br>单纯的车厢无法运行）一个进程可以包含多个线程（一辆火车可以有多个车厢）<br>不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）<br>同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）<br>进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）<br>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）<br>进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）<br>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－”互斥锁”进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”</p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>递归回溯</title>
-    <url>/2022/08/17/%E9%80%92%E5%BD%92%E5%9B%9E%E6%BA%AF/</url>
-    <content><![CDATA[<h1 id="当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树"><a href="#当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树" class="headerlink" title="当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树"></a>当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助<strong>递归树</strong></h1><p><img src="/images/2022-08-17-15-00-21.png"></p>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;vector&gt;
-using namespace std;
-void recursion(vector&lt;int&gt;&amp; nums,vector&lt;int&gt;&amp; temp,int target, int sum,int count,int&amp; len,int current)&#123;
-    //递归三部曲
-    //- 确定参数和返回值
-    //- 确定终止条件
-    //- 单层递归逻辑
-    
-    if(sum&gt;=target)&#123;
-        //这里只有递归的时候才会调用
-        len = min(len, count);
-        return;
-    &#125;
-    for(int i=current;i&lt;nums.size();i++)&#123;
-        //原本是4，先回溯到4，for循环结束
-        //开始第二个回溯，i=3(这个时候sum和count还有temp都减掉了i=3和i=4的情况)，经过for之后i=4
-        // 然后sum加上了i=4的情况，忽略i=3
-        //之后再回溯到i=2,经过for之后i=3(这里又开始叠加两层递归（i=3和i=4），
-        //并且对于i=3来说，i=2的值是没有的因为被回溯来，对于i=4来说，这个是i=3的孩子结点)
-        //通过递归树来分析所有的递归流程
-        count++;
-        sum += nums[i];
-        temp.push_back(nums[i]);
-        recursion(nums, temp,target,sum,count,len,i+1);
-        //这里开始回溯，sum和count还有temp都回溯了，但是注意i没有
-        sum -= nums[i];
-        temp.pop_back();
-        count--;    
-    &#125;
-&#125;
-int minSubArrayLen(int s, vector&lt;int&gt;&amp; nums) &#123;  
-    int len=999;
-    vector&lt;int&gt; temp;
-    recursion(nums,temp,s,0,0,len,0);
-    if (len==999)
-        return 0;
-    return len;
-&#125;
-int main(int argc, const char * argv[]) &#123;
-    // insert code here...
-    vector&lt;int&gt; nums=&#123;1,2,3,4,5&#125;;
-    int len = minSubArrayLen(15,nums);
-    cout &lt;&lt; len&lt;&lt;endl;
-    return 0;
-&#125;
-</code></pre>
-<h2 id="以下这些都可以用递归回溯来解决"><a href="#以下这些都可以用递归回溯来解决" class="headerlink" title="以下这些都可以用递归回溯来解决"></a>以下这些都可以用递归回溯来解决</h2><ul>
-<li>组合问题</li>
-<li>子集问题</li>
-<li>分割问题</li>
-<li>排列组合问题</li>
-<li>棋盘问题<br><img src="/images/2022-08-17-15-13-18.png"></li>
-</ul>
-<h2 id="遇到这些问题记得先画递归树"><a href="#遇到这些问题记得先画递归树" class="headerlink" title="遇到这些问题记得先画递归树"></a>遇到这些问题记得先画递归树</h2>]]></content>
-      <tags>
-        <tag>递归</tag>
+        <tag>ShiftGCN</tag>
       </tags>
   </entry>
   <entry>
@@ -3325,6 +3568,25 @@ int main(int argc, const char * argv[]) &#123;
 <h2 id="delete-也可以这样写多个版本，对应new-参数版本。"><a href="#delete-也可以这样写多个版本，对应new-参数版本。" class="headerlink" title="delete()也可以这样写多个版本，对应new()参数版本。"></a>delete()也可以这样写多个版本，对应new()参数版本。</h2>]]></content>
       <tags>
         <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机网络</title>
+    <url>/2022/12/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<h1 id="Computer-Network-Notes"><a href="#Computer-Network-Notes" class="headerlink" title="Computer Network Notes"></a>Computer Network Notes</h1><h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><p><img src="/images/2022-12-20-01-42-46.png"><br>    由路由算法计算得到路由表，并决定发往哪个输出链路</p>
+<p><img src="/images/2022-12-20-02-59-16.png"><br>    应用于无线</p>
+<blockquote>
+<p>分组传输时间计算的例子<br><img src="/images/2022-12-20-03-45-33.png"><br>解<br><img src="/images/2022-12-20-03-46-22.png"></p>
+</blockquote>
+<h2 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h2><p><img src="/images/2022-12-23-04-55-32.png"></p>
+<blockquote>
+<p>每个层之间进行数据封装</p>
+</blockquote>
+<p><img src="/images/2022-12-23-04-59-00.png"><br><img src="/images/2022-12-23-05-02-52.png"></p>
+<p><img src="/images/2022-12-25-23-46-48.png"></p>
+]]></content>
+      <tags>
+        <tag>计算机</tag>
       </tags>
   </entry>
   <entry>
@@ -3674,6 +3936,15 @@ by decades 几十年
       </tags>
   </entry>
   <entry>
+    <title>进程和线程</title>
+    <url>/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
+    <content><![CDATA[<p>做个简单的比喻：进程&#x3D;火车，线程&#x3D;车厢线程在进程下行进（<br>单纯的车厢无法运行）一个进程可以包含多个线程（一辆火车可以有多个车厢）<br>不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）<br>同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）<br>进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）<br>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）<br>进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）<br>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－”互斥锁”进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>限制性和非限制性</title>
     <url>/2022/09/24/%E9%99%90%E5%88%B6%E6%80%A7%E5%92%8C%E9%9D%9E%E9%99%90%E5%88%B6%E6%80%A7/</url>
     <content><![CDATA[<p>限制性定语从句限制所修饰名词或代词的意义，一般说来如把从句去掉句子意思就不清楚，甚至失去意义。而非限制性定语从句主句(句子的其他部分)关系不太紧密，对所修饰名词或代词的意思没有太大影响，把它们拿掉，句子依然很完整，它们可以说是附加上去的东西，而且通常都有逗号把它们和句子的其他部分分开。具体说来，限制性定语从句与非限制性定语从句有以下几个方面的区别： </p>
@@ -3771,9 +4042,72 @@ by decades 几十年
       </tags>
   </entry>
   <entry>
-    <title>as用法</title>
-    <url>/2023/01/06/as%E7%94%A8%E6%B3%95/</url>
-    <content><![CDATA[<p><img src="/images/as%E7%94%A8%E6%B3%95.png"></p>
+    <title>递归回溯</title>
+    <url>/2022/08/17/%E9%80%92%E5%BD%92%E5%9B%9E%E6%BA%AF/</url>
+    <content><![CDATA[<h1 id="当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树"><a href="#当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树" class="headerlink" title="当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助递归树"></a>当有多重递归的时候，人脑无法模拟出递归过程，因此需要借助<strong>递归树</strong></h1><p><img src="/images/2022-08-17-15-00-21.png"></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+void recursion(vector&lt;int&gt;&amp; nums,vector&lt;int&gt;&amp; temp,int target, int sum,int count,int&amp; len,int current)&#123;
+    //递归三部曲
+    //- 确定参数和返回值
+    //- 确定终止条件
+    //- 单层递归逻辑
+    
+    if(sum&gt;=target)&#123;
+        //这里只有递归的时候才会调用
+        len = min(len, count);
+        return;
+    &#125;
+    for(int i=current;i&lt;nums.size();i++)&#123;
+        //原本是4，先回溯到4，for循环结束
+        //开始第二个回溯，i=3(这个时候sum和count还有temp都减掉了i=3和i=4的情况)，经过for之后i=4
+        // 然后sum加上了i=4的情况，忽略i=3
+        //之后再回溯到i=2,经过for之后i=3(这里又开始叠加两层递归（i=3和i=4），
+        //并且对于i=3来说，i=2的值是没有的因为被回溯来，对于i=4来说，这个是i=3的孩子结点)
+        //通过递归树来分析所有的递归流程
+        count++;
+        sum += nums[i];
+        temp.push_back(nums[i]);
+        recursion(nums, temp,target,sum,count,len,i+1);
+        //这里开始回溯，sum和count还有temp都回溯了，但是注意i没有
+        sum -= nums[i];
+        temp.pop_back();
+        count--;    
+    &#125;
+&#125;
+int minSubArrayLen(int s, vector&lt;int&gt;&amp; nums) &#123;  
+    int len=999;
+    vector&lt;int&gt; temp;
+    recursion(nums,temp,s,0,0,len,0);
+    if (len==999)
+        return 0;
+    return len;
+&#125;
+int main(int argc, const char * argv[]) &#123;
+    // insert code here...
+    vector&lt;int&gt; nums=&#123;1,2,3,4,5&#125;;
+    int len = minSubArrayLen(15,nums);
+    cout &lt;&lt; len&lt;&lt;endl;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="以下这些都可以用递归回溯来解决"><a href="#以下这些都可以用递归回溯来解决" class="headerlink" title="以下这些都可以用递归回溯来解决"></a>以下这些都可以用递归回溯来解决</h2><ul>
+<li>组合问题</li>
+<li>子集问题</li>
+<li>分割问题</li>
+<li>排列组合问题</li>
+<li>棋盘问题<br><img src="/images/2022-08-17-15-13-18.png"></li>
+</ul>
+<h2 id="遇到这些问题记得先画递归树"><a href="#遇到这些问题记得先画递归树" class="headerlink" title="遇到这些问题记得先画递归树"></a>遇到这些问题记得先画递归树</h2>]]></content>
+      <tags>
+        <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>过去式</title>
+    <url>/2021/12/25/%E8%BF%87%E5%8E%BB%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="过去式变化规则"><a href="#过去式变化规则" class="headerlink" title="过去式变化规则"></a>过去式变化规则</h1><p>1）动词过去式变化规则分为规则变化和不规则变化两种，一般情况下，动词原形词尾加-ed，以不发音的-e结尾动词，动词词尾加-d，以辅音字母+y结尾的动词，把-y变为-i 再加-ed<br>2）以一个元音+一个辅音字母结尾的重读闭音节动词，双写词尾辅音字母，否则就加ed<br>preFER-&gt;preFERRed<br>VISit-&gt;VISited<br>3）不满足一个元音+一个辅音结尾 + ed<br>start-&gt;started 两个辅音结尾<br>need-&gt;needed<br>3) 一个元音+y +ed<br>stay-&gt;stayed</p>
 ]]></content>
       <tags>
         <tag>English</tag>
