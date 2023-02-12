@@ -286,160 +286,6 @@ static const int a = 1;
       </tags>
   </entry>
   <entry>
-    <title>FLOPs</title>
-    <url>/2022/06/26/FLOPs/</url>
-    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
-]]></content>
-      <tags>
-        <tag>FLOPs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Short-term prediction of stock market price based on GA optimization LSTM neurons</title>
-    <url>/2021/04/01/GA/</url>
-    <content><![CDATA[<p><img src="/images/3_1.jpg"> </p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">Long-Short Term Memory Network stands out from the financial sector due to its long-term memory predictability, however, the speed of subsequent operations is extremely slow, and the timeliness of the inability to meet market changes has been criticized. In this paper. Aiming at the shortcomings of the slow running of three gates in each neuron of LSTM in back propagation, we1 propose to use GA to optimize the internal weights of LSTM neurons to optimize the defect. In this experiment, GA optimization could not change the accuracy of the model, but it achieved better results than the original LSTM in terms of speed, and satisfied the demand of the future business field for rapid response to market changes in terms of timeliness.
-</blockquote>
-<h1 id="LSTM-Architecture"><a href="#LSTM-Architecture" class="headerlink" title="LSTM Architecture :"></a>LSTM Architecture :</h1><p>  <img src="/images/3_2.jpg"> </p>
-<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/3_3.jpg"> </p>
-<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph; color:black">This paper proposes a GA optimization method for LSTM neurons. By comparing the running time of predecessor models, it is possible to overcome the shortcomings of slow operation of LSTM to a certain extent by optimizing the internal weight of neurons through GA update.
-<p style="text-align:justify; text-justify:inter-ideograph; color:black"> In addition, this article does not discuss the generalization ability of the network and other parameters of the network at the same time. The research purpose is too single. However, for the short-term prediction of financial markets, the importance of research on the timeliness and advancing of the model is much higher than that of the generalized network model
-</blockquote>
-<hr>
-<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2018 2nd International Conference on Deep Learning Technologies"></a>Conference : 2018 2nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/3_4.jpg"> </p>
-<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
-<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> This paper was published a long time ago, and it is not perfect from my current point of view.<br>
-<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
-]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>GA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Homogeneous</title>
-    <url>/2022/01/26/Homogeneous/</url>
-    <content><![CDATA[<p><img src="/images/homogeneous.png"> </p>
-]]></content>
-      <tags>
-        <tag>3D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hierarchical</title>
-    <url>/2021/12/02/Hierarchical/</url>
-    <content><![CDATA[<blockquote>
-<p>层次聚类算法 各种linkage</p>
-</blockquote>
-<p>基本工作原理<br>给定要聚类的N的对象以及N*N的距离矩阵(或者是相似性矩阵), 层次式聚类方法的基本步骤(参看S.C. Johnson in 1967)如下:</p>
-<ol>
-<li><pre><code>将每个对象归为一类, 共得到N类, 每类仅包含一个对象. 类与类之间的距离就是它们所包含的对象之间的距离.
-</code></pre>
-</li>
-<li><pre><code>找到最接近的两个类并合并成一类, 于是总的类数少了一个.
-</code></pre>
-</li>
-<li><pre><code>重新计算新的类与所有旧类之间的距离.
-</code></pre>
-</li>
-<li><pre><code>重复第2步和第3步, 直到最后合并成一个类为止(此类包含了N个对象).
-</code></pre>
-<p>根据步骤3的不同, 可将层次式聚类方法分为几类: single-linkage, complete-linkage 以及 average-linkage 聚类方法等.</p>
-</li>
-</ol>
-<p>single-linkage 聚类法(也称 connectedness 或 minimum 方法)：</p>
-<p>类间距离等于两类对象之间的最小距离，若用相似度衡量，则是各类中的任一对象与另一类中任一对象的最大相似度。</p>
-<p>complete-linkage 聚类法 (也称 diameter 或 maximum 方法)：</p>
-<p>组间距离等于两组对象之间的最大距离。</p>
-<p>average-linkage 聚类法：</p>
-<p>组间距离等于两组对象之间的平均距离。</p>
-<p>average-link 聚类的一个变种是R. D’Andrade (1978) 的UCLUS方法, 它使用的是median距离, 在受异常数据对象的影响方面, 它要比平均距离表现更佳一些.</p>
-<p>这种层次聚类称为“凝聚”法，由于它迭代合并所有分类。也有一种“划分”层次聚类法，与“凝聚”相反，它先将所有对象放在同一类中，并不断划分成更小的类，划分法一般很少使用。</p>
-<p>整个聚类过程其实是建立了一棵树，在建立的过程中，可以通过在第二步上设置一个阈值，当最近的两个类的距离大于这个阈值，则认为迭代可以终止。另外关键的一步就是第三步，如何判断两个类之间的相似度有不少种方法。这里介绍一下三种：</p>
-<p>SingleLinkage：又叫做 nearest-neighbor ，就是取两个类中距离最近的两个样本的距离作为这两个集合的距离，也就是说，最近两个样本之间的距离越小，这两个类之间的相似度就越大。容易造成一种叫做 Chaining 的效果，两个 cluster 明明从“大局”上离得比较远，但是由于其中个别的点距离比较近就被合并了，并且这样合并之后 Chaining 效应会进一步扩大，最后会得到比较松散的 cluster 。</p>
-<p>CompleteLinkage：这个则完全是 Single Linkage 的反面极端，取两个集合中距离最远的两个点的距离作为两个集合的距离。其效果也是刚好相反的，限制非常大，两个 cluster 即使已经很接近了，但是只要有不配合的点存在，就顽固到底，老死不相合并，也是不太好的办法。这两种相似度的定义方法的共同问题就是指考虑了某个有特点的数据，而没有考虑类内数据的整体特点。</p>
-<p>Average-linkage：这种方法就是把两个集合中的点两两的距离全部放在一起求一个平均值，相对也能得到合适一点的结果。</p>
-<p>average-linkage的一个变种就是取两两距离的中值，与取均值相比更加能够解除个别偏离样本对结果的干扰。</p>
-
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/cluster.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>culster</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>KalmanFilter</title>
-    <url>/2022/09/29/KalmanFilter/</url>
-    <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3>
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/kalman.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-
-]]></content>
-      <tags>
-        <tag>kalman</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MATI-Regression</title>
-    <url>/2021/11/02/MATI-Regression/</url>
-    <content><![CDATA[
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-
-<h1 id="L1-amp-L2-regularization"><a href="#L1-amp-L2-regularization" class="headerlink" title="L1 &amp; L2 regularization"></a>L1 &amp; L2 regularization</h1>
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>MTAI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Likelihood2</title>
-    <url>/2022/02/24/Likelihood2/</url>
-    <content><![CDATA[<blockquote>
-<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为&#x3D;》最大概率处l&#x3D;0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Likelihood</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MC</title>
-    <url>/2022/03/19/MC/</url>
-    <content><![CDATA[<p><img src="/images/MC.png">  </p>
-]]></content>
-      <tags>
-        <tag>RL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>English-Sentences</title>
     <url>/2021/11/01/English-Sentences/</url>
     <content><![CDATA[<h1 id="Some-sentences-autumn-break"><a href="#Some-sentences-autumn-break" class="headerlink" title="Some sentences autumn break"></a>Some sentences autumn break</h1><pre><code>We&#39;ll take a look some
@@ -590,6 +436,188 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>FLOPs</title>
+    <url>/2022/06/26/FLOPs/</url>
+    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
+]]></content>
+      <tags>
+        <tag>FLOPs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Short-term prediction of stock market price based on GA optimization LSTM neurons</title>
+    <url>/2021/04/01/GA/</url>
+    <content><![CDATA[<p><img src="/images/3_1.jpg"> </p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">Long-Short Term Memory Network stands out from the financial sector due to its long-term memory predictability, however, the speed of subsequent operations is extremely slow, and the timeliness of the inability to meet market changes has been criticized. In this paper. Aiming at the shortcomings of the slow running of three gates in each neuron of LSTM in back propagation, we1 propose to use GA to optimize the internal weights of LSTM neurons to optimize the defect. In this experiment, GA optimization could not change the accuracy of the model, but it achieved better results than the original LSTM in terms of speed, and satisfied the demand of the future business field for rapid response to market changes in terms of timeliness.
+</blockquote>
+<h1 id="LSTM-Architecture"><a href="#LSTM-Architecture" class="headerlink" title="LSTM Architecture :"></a>LSTM Architecture :</h1><p>  <img src="/images/3_2.jpg"> </p>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results :"></a>Results :</h1><p> <img src="/images/3_3.jpg"> </p>
+<h1 id="Innovation"><a href="#Innovation" class="headerlink" title="Innovation :"></a>Innovation :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph; color:black">This paper proposes a GA optimization method for LSTM neurons. By comparing the running time of predecessor models, it is possible to overcome the shortcomings of slow operation of LSTM to a certain extent by optimizing the internal weight of neurons through GA update.
+<p style="text-align:justify; text-justify:inter-ideograph; color:black"> In addition, this article does not discuss the generalization ability of the network and other parameters of the network at the same time. The research purpose is too single. However, for the short-term prediction of financial markets, the importance of research on the timeliness and advancing of the model is much higher than that of the generalized network model
+</blockquote>
+<hr>
+<h1 id="Publish"><a href="#Publish" class="headerlink" title="Publish :"></a>Publish :</h1><h3 id="Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies"><a href="#Conference-2018-2nd-International-Conference-on-Deep-Learning-Technologies" class="headerlink" title="Conference : 2018 2nd International Conference on Deep Learning Technologies"></a>Conference : 2018 2nd International Conference on Deep Learning Technologies</h3><h3 id="Index-EI-Compendex-Scopus"><a href="#Index-EI-Compendex-Scopus" class="headerlink" title="Index : EI Compendex, Scopus"></a>Index : EI Compendex, Scopus</h3><p><img src="/images/3_4.jpg"> </p>
+<h1 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration :"></a>Declaration :</h1><blockquote>
+<p style="text-align:justify; text-justify:inter-ideograph;color:black;font-size:20px"> This paper was published a long time ago, and it is not perfect from my current point of view.<br>
+<p style="text-align:right;color:black;font-size:20px"> --&nbsp;Moule Lin </blockquote>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>GA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GeneralizedRCNNResize</title>
+    <url>/2023/02/13/GeneralizedRCNNResize/</url>
+    <content><![CDATA[<h1 id="GenerlizedRCNN"><a href="#GenerlizedRCNN" class="headerlink" title="GenerlizedRCNN"></a>GenerlizedRCNN</h1><ul>
+<li><p>[:, None, None] : Shape [3] -&gt; [3, 1, 1] </p>
+</li>
+<li><p>Numpy中的*运算符表示元素积（element-wise product，对应位置相乘） </p>
+<ul>
+<li>a &#x3D; np.array([1,2,3]) </li>
+<li>b &#x3D; np.array([2,2,2]) </li>
+<li>a * b </li>
+<li>array([ 2., 4., 6.])</li>
+</ul>
+</li>
+<li><p>两个矩阵a、b，将它们的维度从后往进行比较，如果所有维度满足以下条件之一才能进行广播。 </p>
+<ul>
+<li><p>相等 </p>
+</li>
+<li><p>其中有一个为1</p>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>RCNN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hierarchical</title>
+    <url>/2021/12/02/Hierarchical/</url>
+    <content><![CDATA[<blockquote>
+<p>层次聚类算法 各种linkage</p>
+</blockquote>
+<p>基本工作原理<br>给定要聚类的N的对象以及N*N的距离矩阵(或者是相似性矩阵), 层次式聚类方法的基本步骤(参看S.C. Johnson in 1967)如下:</p>
+<ol>
+<li><pre><code>将每个对象归为一类, 共得到N类, 每类仅包含一个对象. 类与类之间的距离就是它们所包含的对象之间的距离.
+</code></pre>
+</li>
+<li><pre><code>找到最接近的两个类并合并成一类, 于是总的类数少了一个.
+</code></pre>
+</li>
+<li><pre><code>重新计算新的类与所有旧类之间的距离.
+</code></pre>
+</li>
+<li><pre><code>重复第2步和第3步, 直到最后合并成一个类为止(此类包含了N个对象).
+</code></pre>
+<p>根据步骤3的不同, 可将层次式聚类方法分为几类: single-linkage, complete-linkage 以及 average-linkage 聚类方法等.</p>
+</li>
+</ol>
+<p>single-linkage 聚类法(也称 connectedness 或 minimum 方法)：</p>
+<p>类间距离等于两类对象之间的最小距离，若用相似度衡量，则是各类中的任一对象与另一类中任一对象的最大相似度。</p>
+<p>complete-linkage 聚类法 (也称 diameter 或 maximum 方法)：</p>
+<p>组间距离等于两组对象之间的最大距离。</p>
+<p>average-linkage 聚类法：</p>
+<p>组间距离等于两组对象之间的平均距离。</p>
+<p>average-link 聚类的一个变种是R. D’Andrade (1978) 的UCLUS方法, 它使用的是median距离, 在受异常数据对象的影响方面, 它要比平均距离表现更佳一些.</p>
+<p>这种层次聚类称为“凝聚”法，由于它迭代合并所有分类。也有一种“划分”层次聚类法，与“凝聚”相反，它先将所有对象放在同一类中，并不断划分成更小的类，划分法一般很少使用。</p>
+<p>整个聚类过程其实是建立了一棵树，在建立的过程中，可以通过在第二步上设置一个阈值，当最近的两个类的距离大于这个阈值，则认为迭代可以终止。另外关键的一步就是第三步，如何判断两个类之间的相似度有不少种方法。这里介绍一下三种：</p>
+<p>SingleLinkage：又叫做 nearest-neighbor ，就是取两个类中距离最近的两个样本的距离作为这两个集合的距离，也就是说，最近两个样本之间的距离越小，这两个类之间的相似度就越大。容易造成一种叫做 Chaining 的效果，两个 cluster 明明从“大局”上离得比较远，但是由于其中个别的点距离比较近就被合并了，并且这样合并之后 Chaining 效应会进一步扩大，最后会得到比较松散的 cluster 。</p>
+<p>CompleteLinkage：这个则完全是 Single Linkage 的反面极端，取两个集合中距离最远的两个点的距离作为两个集合的距离。其效果也是刚好相反的，限制非常大，两个 cluster 即使已经很接近了，但是只要有不配合的点存在，就顽固到底，老死不相合并，也是不太好的办法。这两种相似度的定义方法的共同问题就是指考虑了某个有特点的数据，而没有考虑类内数据的整体特点。</p>
+<p>Average-linkage：这种方法就是把两个集合中的点两两的距离全部放在一起求一个平均值，相对也能得到合适一点的结果。</p>
+<p>average-linkage的一个变种就是取两两距离的中值，与取均值相比更加能够解除个别偏离样本对结果的干扰。</p>
+
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/cluster.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+      <tags>
+        <tag>culster</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Homogeneous</title>
+    <url>/2022/01/26/Homogeneous/</url>
+    <content><![CDATA[<p><img src="/images/homogeneous.png"> </p>
+]]></content>
+      <tags>
+        <tag>3D</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>KalmanFilter</title>
+    <url>/2022/09/29/KalmanFilter/</url>
+    <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3>
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/kalman.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+
+]]></content>
+      <tags>
+        <tag>kalman</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Likelihood2</title>
+    <url>/2022/02/24/Likelihood2/</url>
+    <content><![CDATA[<blockquote>
+<p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为&#x3D;》最大概率处l&#x3D;0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Likelihood</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MATI-Regression</title>
+    <url>/2021/11/02/MATI-Regression/</url>
+    <content><![CDATA[
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+
+<h1 id="L1-amp-L2-regularization"><a href="#L1-amp-L2-regularization" class="headerlink" title="L1 &amp; L2 regularization"></a>L1 &amp; L2 regularization</h1>
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/MATI-Regression.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+      <tags>
+        <tag>MTAI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MC</title>
+    <url>/2022/03/19/MC/</url>
+    <content><![CDATA[<p><img src="/images/MC.png">  </p>
+]]></content>
+      <tags>
+        <tag>RL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Monte</title>
     <url>/2022/03/17/Monte/</url>
     <content><![CDATA[<blockquote>
@@ -679,41 +707,12 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>VCDimension</title>
-    <url>/2022/02/10/VCDimension/</url>
-    <content><![CDATA[<blockquote>
-<p>注意这里的VC维度指的是只要存在一个不可分的点，比如四个点，一条直线存在无法分割的情况，那就VC维度就不是4，应该从3来看<br><img src="/images/CVDim.png"> </p>
-</blockquote>
+    <title>TF-IDF</title>
+    <url>/2022/01/04/TF-IDF/</url>
+    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
 ]]></content>
       <tags>
-        <tag>Machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>apriori</title>
-    <url>/2022/01/06/apriori/</url>
-    <content><![CDATA[<p><img src="/images/apriori.png"> </p>
-]]></content>
-      <tags>
-        <tag>apriori</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>across_loss</title>
-    <url>/2022/03/29/across-loss/</url>
-    <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
-]]></content>
-      <tags>
-        <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>as用法</title>
-    <url>/2023/01/06/as%E7%94%A8%E6%B3%95/</url>
-    <content><![CDATA[<p><img src="/images/as%E7%94%A8%E6%B3%95.png"></p>
-]]></content>
-      <tags>
-        <tag>English</tag>
+        <tag>NLP</tag>
       </tags>
   </entry>
   <entry>
@@ -733,12 +732,50 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>TF-IDF</title>
-    <url>/2022/01/04/TF-IDF/</url>
-    <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
+    <title>VCDimension</title>
+    <url>/2022/02/10/VCDimension/</url>
+    <content><![CDATA[<blockquote>
+<p>注意这里的VC维度指的是只要存在一个不可分的点，比如四个点，一条直线存在无法分割的情况，那就VC维度就不是4，应该从3来看<br><img src="/images/CVDim.png"> </p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>NLP</tag>
+        <tag>Machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>across_loss</title>
+    <url>/2022/03/29/across-loss/</url>
+    <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
+]]></content>
+      <tags>
+        <tag>machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>apriori</title>
+    <url>/2022/01/06/apriori/</url>
+    <content><![CDATA[<p><img src="/images/apriori.png"> </p>
+]]></content>
+      <tags>
+        <tag>apriori</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>as从句</title>
+    <url>/2022/09/24/as%E4%BB%8E%E5%8F%A5/</url>
+    <content><![CDATA[<p><img src="/images/as.jpeg"></p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>as用法</title>
+    <url>/2023/01/06/as%E7%94%A8%E6%B3%95/</url>
+    <content><![CDATA[<p><img src="/images/as%E7%94%A8%E6%B3%95.png"></p>
+]]></content>
+      <tags>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -1027,15 +1064,6 @@ git is master, 0e1f110
       </tags>
   </entry>
   <entry>
-    <title>as从句</title>
-    <url>/2022/09/24/as%E4%BB%8E%E5%8F%A5/</url>
-    <content><![CDATA[<p><img src="/images/as.jpeg"></p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>copyC</title>
     <url>/2022/03/13/copyC/</url>
     <content><![CDATA[<p>浅拷贝和深拷贝<br>指针浅拷贝导致堆区的数据重复释放<br>问题：近期在做算法实验的时候碰到一个关于类指针赋值的问题，简单的指针之间的赋值只是把两个指针指向同一个地址，而我需要把每次算法执行完的类指针push_back进vector储存每次算法迭代的结果，如果每次都是存入同一个指针，就会出现vector中的类指针都指向同一个地址，这就让我想到了能不能进行类指针之间的赋值，两个类指针之间内容相同，但是指针指向的地址都不同，就是两个不同的指针。</p>
@@ -1092,6 +1120,117 @@ int main(int argc, const char* argv[])
 ]]></content>
       <tags>
         <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>交叉熵损失函数详解</title>
+    <url>/2020/11/02/crossentropy/</url>
+    <content><![CDATA[<h1 id="交叉熵的数学原理—pytorch中的CrossEntropyLoss-函数"><a href="#交叉熵的数学原理—pytorch中的CrossEntropyLoss-函数" class="headerlink" title="交叉熵的数学原理—pytorch中的CrossEntropyLoss()函数"></a>交叉熵的数学原理—pytorch中的CrossEntropyLoss()函数</h1><p>对于二分类来说，我们使用的是Binary Cross Entropy Loss,公式如下：<br> <img src="/images/1_1.png"><br>因为ln后的数为负数，所以加负号，保证我们是优化最小（不然就要往最大值优化了）；<br>如当l&#x3D;1时（标签为正样本），此时Loss &#x3D; -logp, 我们要使p的值尽量大，loss才会尽量小，最好能到1，就代表分类正确了</p>
+<h2 id="多分类"><a href="#多分类" class="headerlink" title="多分类"></a>多分类</h2><p><img src="/images/1_2.png"><br>这里的label会被展开为<strong>one-hot</strong>编码<br><strong>主要讨论图像像素级的分类</strong></p>
+<pre><code># -*- coding: utf-8 -*-
+&#39;&#39;&#39;
+@File  : 多分类.py
+@Author: Moule Lin
+@Date  : 2020/11/1 17:53
+@Github: https://github.com/moulelin
+&#39;&#39;&#39;
+
+&#39;&#39;&#39;
+CrossEntropy 的原理
+Pytorch中CrossEntropyLoss()函数的主要是将softmax-log-NLLLoss合并到一块得到的结果。
+
+1、Softmax后的数值都在0~1之间，所以ln之后值域是负无穷到0。
+
+2、然后将Softmax之后的结果取log，将乘法改成加法减少计算量，同时保障函数的单调性 。
+
+3、NLLLoss的结果就是把上面的输出与Label对应的那个值拿出来(下面例子中就是：
+将log_output\logsoftmax_output中与y_target对应的值拿出来)，去掉负号，再求均值。 
+    
+    Tip: CrossEntropyLoss() 会把Label变成ont-hot形式
+
+&#39;&#39;&#39;
+import torch
+import torch.nn as nn
+
+
+loss = nn.CrossEntropyLoss()# 使用默认参数
+input_data = torch.randn(1,3,2,2,requires_grad=True) # 第一维度对应channel，CrossEntropy是针对channel进行的
+target = torch.tensor([[0, 1],[2, 0]],dtype=torch.long).unsqueeze(0) # 对应2*2大小的矩阵，每个点都存在一个类别
+
+
+print(input_data)
+
+print(target.shape)
+print(input_data.shape)
+loss_item = loss(input_data,target)
+print(loss_item)
+# 上面是直接通过Cross Entropy，下面一步步实现
+
+
+softmax_func=nn.Softmax(dim=1) # 将channel维度进行压缩到0-1
+softmax_out = softmax_func(input_data)
+
+print(&quot;经过softmax如下所示：&quot;)
+print(softmax_out)
+print(&quot;经过log如下所示：&quot;)
+log_output=torch.log(softmax_out) # 取对数
+print(log_output)
+
+print(&quot;经过NLLLoss如下所示：&quot;)
+nllloss_func=nn.NLLLoss()
+nlloss_output=nllloss_func(log_output,target)
+print(nlloss_output)
+
+# import math
+# loss = nn.CrossEntropyLoss()
+# data = torch.randn(1,3,1,5,requires_grad=True)
+# label = torch.empty((1,1,5),dtype=torch.long).random_(5)
+# out = loss(data,label)
+# print(data.shape)
+# print(label.shape)
+# print(out)
+</code></pre>
+<h3 id="输出如下："><a href="#输出如下：" class="headerlink" title="输出如下："></a>输出如下：</h3><pre><code>tensor([[[[-0.2493, -0.9333],
+          [ 0.0676,  1.2035]],
+
+         [[ 0.2987, -0.6044],
+          [-0.1341,  0.0938]],
+
+         [[-1.3529, -0.2693],
+          [-0.3259, -0.7915]]]], requires_grad=True)
+torch.Size([1, 2, 2])
+torch.Size([1, 3, 2, 2])
+tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
+经过softmax如下所示：
+tensor([[[[0.3266, 0.2308],
+          [0.4013, 0.6823]],
+
+         [[0.5650, 0.3207],
+          [0.3280, 0.2249]],
+
+         [[0.1083, 0.4484],
+          [0.2707, 0.0928]]]], grad_fn=&lt;SoftmaxBackward&gt;)
+经过log如下所示：
+tensor([[[[-1.1189, -1.4660],
+          [-0.9131, -0.3823]],
+
+         [[-0.5709, -1.1371],
+          [-1.1148, -1.4921]],
+
+         [[-2.2225, -0.8020],
+          [-1.3066, -2.3773]]]], grad_fn=&lt;LogBackward&gt;)
+经过NLLLoss如下所示：
+tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
+</code></pre>
+<blockquote>
+<p>这里一共有四个像素点,分别是[[0, 1],[2, 0]]，对于第一个像素点来说，它的分类结果是0，输出为3类，即分为三类，所以会被展开为[1,0,0]<br>代表第一个元素的第0个通道上的数值是我想取出来的，这里就是-1.1189，同理，对于第二个像素点来说展开为[0，1，0]，取得-1.1371，第三个[0,0,1],取得-1.3066，第四个[1,0,0],取得-0.3823， 将这四个数取绝对值相加再除4，（1.1189+1.1371+1.3066+0.3823）&#x2F;4 &#x3D; 0.9862<br>所以说，对于一个图像来说，输入维度为B,C,W,H，label对应的维度就是B,1,W,H就可以</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Machine learning</category>
+      </categories>
+      <tags>
+        <tag>损失函数</tag>
       </tags>
   </entry>
   <entry>
@@ -1207,117 +1346,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>交叉熵损失函数详解</title>
-    <url>/2020/11/02/crossentropy/</url>
-    <content><![CDATA[<h1 id="交叉熵的数学原理—pytorch中的CrossEntropyLoss-函数"><a href="#交叉熵的数学原理—pytorch中的CrossEntropyLoss-函数" class="headerlink" title="交叉熵的数学原理—pytorch中的CrossEntropyLoss()函数"></a>交叉熵的数学原理—pytorch中的CrossEntropyLoss()函数</h1><p>对于二分类来说，我们使用的是Binary Cross Entropy Loss,公式如下：<br> <img src="/images/1_1.png"><br>因为ln后的数为负数，所以加负号，保证我们是优化最小（不然就要往最大值优化了）；<br>如当l&#x3D;1时（标签为正样本），此时Loss &#x3D; -logp, 我们要使p的值尽量大，loss才会尽量小，最好能到1，就代表分类正确了</p>
-<h2 id="多分类"><a href="#多分类" class="headerlink" title="多分类"></a>多分类</h2><p><img src="/images/1_2.png"><br>这里的label会被展开为<strong>one-hot</strong>编码<br><strong>主要讨论图像像素级的分类</strong></p>
-<pre><code># -*- coding: utf-8 -*-
-&#39;&#39;&#39;
-@File  : 多分类.py
-@Author: Moule Lin
-@Date  : 2020/11/1 17:53
-@Github: https://github.com/moulelin
-&#39;&#39;&#39;
-
-&#39;&#39;&#39;
-CrossEntropy 的原理
-Pytorch中CrossEntropyLoss()函数的主要是将softmax-log-NLLLoss合并到一块得到的结果。
-
-1、Softmax后的数值都在0~1之间，所以ln之后值域是负无穷到0。
-
-2、然后将Softmax之后的结果取log，将乘法改成加法减少计算量，同时保障函数的单调性 。
-
-3、NLLLoss的结果就是把上面的输出与Label对应的那个值拿出来(下面例子中就是：
-将log_output\logsoftmax_output中与y_target对应的值拿出来)，去掉负号，再求均值。 
-    
-    Tip: CrossEntropyLoss() 会把Label变成ont-hot形式
-
-&#39;&#39;&#39;
-import torch
-import torch.nn as nn
-
-
-loss = nn.CrossEntropyLoss()# 使用默认参数
-input_data = torch.randn(1,3,2,2,requires_grad=True) # 第一维度对应channel，CrossEntropy是针对channel进行的
-target = torch.tensor([[0, 1],[2, 0]],dtype=torch.long).unsqueeze(0) # 对应2*2大小的矩阵，每个点都存在一个类别
-
-
-print(input_data)
-
-print(target.shape)
-print(input_data.shape)
-loss_item = loss(input_data,target)
-print(loss_item)
-# 上面是直接通过Cross Entropy，下面一步步实现
-
-
-softmax_func=nn.Softmax(dim=1) # 将channel维度进行压缩到0-1
-softmax_out = softmax_func(input_data)
-
-print(&quot;经过softmax如下所示：&quot;)
-print(softmax_out)
-print(&quot;经过log如下所示：&quot;)
-log_output=torch.log(softmax_out) # 取对数
-print(log_output)
-
-print(&quot;经过NLLLoss如下所示：&quot;)
-nllloss_func=nn.NLLLoss()
-nlloss_output=nllloss_func(log_output,target)
-print(nlloss_output)
-
-# import math
-# loss = nn.CrossEntropyLoss()
-# data = torch.randn(1,3,1,5,requires_grad=True)
-# label = torch.empty((1,1,5),dtype=torch.long).random_(5)
-# out = loss(data,label)
-# print(data.shape)
-# print(label.shape)
-# print(out)
-</code></pre>
-<h3 id="输出如下："><a href="#输出如下：" class="headerlink" title="输出如下："></a>输出如下：</h3><pre><code>tensor([[[[-0.2493, -0.9333],
-          [ 0.0676,  1.2035]],
-
-         [[ 0.2987, -0.6044],
-          [-0.1341,  0.0938]],
-
-         [[-1.3529, -0.2693],
-          [-0.3259, -0.7915]]]], requires_grad=True)
-torch.Size([1, 2, 2])
-torch.Size([1, 3, 2, 2])
-tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
-经过softmax如下所示：
-tensor([[[[0.3266, 0.2308],
-          [0.4013, 0.6823]],
-
-         [[0.5650, 0.3207],
-          [0.3280, 0.2249]],
-
-         [[0.1083, 0.4484],
-          [0.2707, 0.0928]]]], grad_fn=&lt;SoftmaxBackward&gt;)
-经过log如下所示：
-tensor([[[[-1.1189, -1.4660],
-          [-0.9131, -0.3823]],
-
-         [[-0.5709, -1.1371],
-          [-1.1148, -1.4921]],
-
-         [[-2.2225, -0.8020],
-          [-1.3066, -2.3773]]]], grad_fn=&lt;LogBackward&gt;)
-经过NLLLoss如下所示：
-tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
-</code></pre>
-<blockquote>
-<p>这里一共有四个像素点,分别是[[0, 1],[2, 0]]，对于第一个像素点来说，它的分类结果是0，输出为3类，即分为三类，所以会被展开为[1,0,0]<br>代表第一个元素的第0个通道上的数值是我想取出来的，这里就是-1.1189，同理，对于第二个像素点来说展开为[0，1，0]，取得-1.1371，第三个[0,0,1],取得-1.3066，第四个[1,0,0],取得-0.3823， 将这四个数取绝对值相加再除4，（1.1189+1.1371+1.3066+0.3823）&#x2F;4 &#x3D; 0.9862<br>所以说，对于一个图像来说，输入维度为B,C,W,H，label对应的维度就是B,1,W,H就可以</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Machine learning</category>
-      </categories>
-      <tags>
-        <tag>损失函数</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>equilibria</title>
     <url>/2022/02/08/equilibria/</url>
     <content><![CDATA[<p><img src="/images/game01.png"> </p>
@@ -1325,6 +1353,20 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
 ]]></content>
       <tags>
         <tag>game</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>forandrecursion</title>
+    <url>/2022/04/21/forandrecursion/</url>
+    <content><![CDATA[<blockquote>
+<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
+</blockquote>
+<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
+<p>比如全排列问题</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>-algorithm</tag>
       </tags>
   </entry>
   <entry>
@@ -1493,47 +1535,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>makefile</title>
-    <url>/2022/07/26/makefile/</url>
-    <content><![CDATA[<h1 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h1><p>目标: 依赖<br>tab  命令</p>
-<pre><code>a:b c
-    @echo &quot;hello world&quot;
-b:
-    @echo &quot;hello b&quot;
-c:
-    @echo &quot;hello c&quot;
-</code></pre>
-<blockquote>
-<p>output</p>
-</blockquote>
-<pre><code>hello b
-hello c
-hello world
-</code></pre>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>multiset</title>
-    <url>/2022/09/05/mutiset/</url>
-    <content><![CDATA[<p><img src="/images/2022-09-05-22-49-24.png"></p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>n-gram</title>
-    <url>/2022/01/04/n-gram/</url>
-    <content><![CDATA[<p><img src="/images/n-gram.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>lltm梯度</title>
     <url>/2023/02/01/lltm%E6%A2%AF%E5%BA%A6/</url>
     <content><![CDATA[<ul>
@@ -1634,6 +1635,47 @@ std::vector&lt;torch::Tensor&gt; lltm_backward(
       </tags>
   </entry>
   <entry>
+    <title>makefile</title>
+    <url>/2022/07/26/makefile/</url>
+    <content><![CDATA[<h1 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h1><p>目标: 依赖<br>tab  命令</p>
+<pre><code>a:b c
+    @echo &quot;hello world&quot;
+b:
+    @echo &quot;hello b&quot;
+c:
+    @echo &quot;hello c&quot;
+</code></pre>
+<blockquote>
+<p>output</p>
+</blockquote>
+<pre><code>hello b
+hello c
+hello world
+</code></pre>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>multiset</title>
+    <url>/2022/09/05/mutiset/</url>
+    <content><![CDATA[<p><img src="/images/2022-09-05-22-49-24.png"></p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>n-gram</title>
+    <url>/2022/01/04/n-gram/</url>
+    <content><![CDATA[<p><img src="/images/n-gram.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>p19-namespace</title>
     <url>/2022/06/16/namespace/</url>
     <content><![CDATA[<h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
@@ -1674,20 +1716,6 @@ std::vector&lt;torch::Tensor&gt; lltm_backward(
       </tags>
   </entry>
   <entry>
-    <title>forandrecursion</title>
-    <url>/2022/04/21/forandrecursion/</url>
-    <content><![CDATA[<blockquote>
-<p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
-</blockquote>
-<h1 id="Answer：当子任务是被划分为-多层的子任务"><a href="#Answer：当子任务是被划分为-多层的子任务" class="headerlink" title="Answer：当子任务是被划分为  多层的子任务"></a>Answer：当子任务是被划分为  多层的子任务</h1><blockquote>
-<p>比如全排列问题</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>-algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>operator赋值为什么返回引用</title>
     <url>/2022/03/13/operator%E8%B5%8B%E5%80%BC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%94%E5%9B%9E%E5%BC%95%E7%94%A8/</url>
     <content><![CDATA[<p>一个自定义类，如果没有重载其&#x3D;运算符，那么编译器将自动生成一个。但是此编译器自动生成的重载函数可能不安全。这是因为它采用了所谓的“浅拷贝”，也就是对于指针而言，它拷贝的是指针的值，而不是其指向的内存空间。那么这个内存空间就有了两个指针指向它，且类对象要析构两次，但是内存空间只能被释放一次，那么第二次就会出现访问错误。</p>
@@ -1707,66 +1735,6 @@ std::vector&lt;torch::Tensor&gt; lltm_backward(
 ]]></content>
       <tags>
         <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>other和others</title>
-    <url>/2022/06/21/other%E5%92%8Cothers/</url>
-    <content><![CDATA[<h2 id="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-x3D-other-复数名词。others通常为代词"><a href="#other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-x3D-other-复数名词。others通常为代词" class="headerlink" title="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others&#x3D;other+复数名词。others通常为代词"></a>other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others&#x3D;other+复数名词。others通常为代词</h2><blockquote>
-<p>He never thinks of <code>others</code>. 他从来不为别人着想。</p>
-</blockquote>
-<blockquote>
-<p>I don’t like these books. Show me some others. 我不喜欢这些书，再拿一些给我看。</p>
-</blockquote>
-<p>第一句中的others&#x3D;other people，意为“其他人”“别人”，泛指其他所有人；第二句中的others&#x3D;other books，意为“其他的书”。</p>
-<p>但是，若要表示确指意义，我们就在other和others前面使用定冠词，同样地，other后可以修饰名词，而others后不能再接名词，两者的关系仍然存在the others&#x3D;the other+复数名词。如：</p>
-<blockquote>
-<p>I started last in the race but I soon caught up with the others. 我在赛跑中最后一个起跑，但不久就赶上了其他人。</p>
-</blockquote>
-<p>句中的the others&#x3D;the other people，意为“其他人”，其中的定冠词特指参加赛跑的所有其他人。</p>
-<blockquote>
-<p>注意：the other后除接复数名词外，还可以接单数名词，此时不能用the others代替。如：</p>
-</blockquote>
-<p>This seat is free; the other seat is taken. 这个座位空着，那个座位有人。</p>
-<h2 id="常用惯用表达"><a href="#常用惯用表达" class="headerlink" title="常用惯用表达"></a>常用惯用表达</h2><p>①<code>one...the other</code>表示“(两者中的)一个……另一个……”。如：</p>
-<p>What I say goes in at one ear and out at the other. 我说话他是一只耳朵进，另一只耳朵出。</p>
-<p>②<code>one...the others</code>表示“(好几个中的)一个……其余都……”。如：</p>
-<p>Of their five children, one is in China and the others are abroad. 他们有五个小孩，一个在中国，其余的都在国外。</p>
-<p>注：若为三者，想要表示“一个……另一个……剩下的一个……”，可用one…another…the other [the third…]；若为四者，可用one…another…another [a third]…the other [the fourth, the last]。</p>
-<p>③<code>some...the others</code>表示“一些……其他一些的……”。如：</p>
-<p>The search party was divided into two groups. Some went to the right, the others went to the left. 搜寻小组一分为二，一部分向右，另一部分人向左。</p>
-<p>④<code>some…others</code>表示“有的……有的……”。如：</p>
-<p>Some people build while others destroy. 有些人建设而另一些人则破坏。</p>
-<p>注：该结构也可说成some…some。如：</p>
-<p>Some of us agree, some disagree. 我们有些人同意，有些人不同意。</p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>p22Member-Template</title>
-    <url>/2022/06/17/p22Member-Template/</url>
-    <content><![CDATA[<h2 id="模版内还有模版，一般用于构造函数中，"><a href="#模版内还有模版，一般用于构造函数中，" class="headerlink" title="模版内还有模版，一般用于构造函数中，"></a>模版内还有模版，一般用于构造函数中，</h2><ul>
-<li>把草鱼和麻雀用于对鱼类和鸟类的初始化（作为构造函数传入）</li>
-<li>这里的T1 first 能成功，是因为first是草鱼，是继承了鱼这个类的,也叫up-cast</li>
-</ul>
-<pre><code>// for smart pointer
-template&lt;class _Tp&gt;
-class shared_pte:public _shared_ptr&lt;_Tp&gt;&#123;
-
-    ...
-    template&lt;class _Tp1&gt;
-    explicit shared_ptr(const _Tp1* _p):_shared_ptr&lt;_Tp&gt;(_p)&#123;&#125;
-&#125;
-shared_ptr&lt;Base1&gt;sptr(new Derived1);
-</code></pre>
-<ul>
-<li>为了让构造函数更有弹性<br><img src="/images/member-template.png"></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1818,16 +1786,63 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>probability</title>
-    <url>/2022/06/22/probability/</url>
-    <content><![CDATA[<h2 id="68-95-99"><a href="#68-95-99" class="headerlink" title="68-95-99"></a>68-95-99</h2><ul>
-<li>During one standard, it has 68% probability in it.</li>
-<li>During tow standards, it has 95% probability in it.</li>
-<li>During three standards, it has 99% probability in it.</li>
+    <title>p22Member-Template</title>
+    <url>/2022/06/17/p22Member-Template/</url>
+    <content><![CDATA[<h2 id="模版内还有模版，一般用于构造函数中，"><a href="#模版内还有模版，一般用于构造函数中，" class="headerlink" title="模版内还有模版，一般用于构造函数中，"></a>模版内还有模版，一般用于构造函数中，</h2><ul>
+<li>把草鱼和麻雀用于对鱼类和鸟类的初始化（作为构造函数传入）</li>
+<li>这里的T1 first 能成功，是因为first是草鱼，是继承了鱼这个类的,也叫up-cast</li>
+</ul>
+<pre><code>// for smart pointer
+template&lt;class _Tp&gt;
+class shared_pte:public _shared_ptr&lt;_Tp&gt;&#123;
+
+    ...
+    template&lt;class _Tp1&gt;
+    explicit shared_ptr(const _Tp1* _p):_shared_ptr&lt;_Tp&gt;(_p)&#123;&#125;
+&#125;
+shared_ptr&lt;Base1&gt;sptr(new Derived1);
+</code></pre>
+<ul>
+<li>为了让构造函数更有弹性<br><img src="/images/member-template.png"></li>
 </ul>
 ]]></content>
       <tags>
-        <tag>probability</tag>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>other和others</title>
+    <url>/2022/06/21/other%E5%92%8Cothers/</url>
+    <content><![CDATA[<h2 id="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-x3D-other-复数名词。others通常为代词"><a href="#other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-x3D-other-复数名词。others通常为代词" class="headerlink" title="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others&#x3D;other+复数名词。others通常为代词"></a>other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others&#x3D;other+复数名词。others通常为代词</h2><blockquote>
+<p>He never thinks of <code>others</code>. 他从来不为别人着想。</p>
+</blockquote>
+<blockquote>
+<p>I don’t like these books. Show me some others. 我不喜欢这些书，再拿一些给我看。</p>
+</blockquote>
+<p>第一句中的others&#x3D;other people，意为“其他人”“别人”，泛指其他所有人；第二句中的others&#x3D;other books，意为“其他的书”。</p>
+<p>但是，若要表示确指意义，我们就在other和others前面使用定冠词，同样地，other后可以修饰名词，而others后不能再接名词，两者的关系仍然存在the others&#x3D;the other+复数名词。如：</p>
+<blockquote>
+<p>I started last in the race but I soon caught up with the others. 我在赛跑中最后一个起跑，但不久就赶上了其他人。</p>
+</blockquote>
+<p>句中的the others&#x3D;the other people，意为“其他人”，其中的定冠词特指参加赛跑的所有其他人。</p>
+<blockquote>
+<p>注意：the other后除接复数名词外，还可以接单数名词，此时不能用the others代替。如：</p>
+</blockquote>
+<p>This seat is free; the other seat is taken. 这个座位空着，那个座位有人。</p>
+<h2 id="常用惯用表达"><a href="#常用惯用表达" class="headerlink" title="常用惯用表达"></a>常用惯用表达</h2><p>①<code>one...the other</code>表示“(两者中的)一个……另一个……”。如：</p>
+<p>What I say goes in at one ear and out at the other. 我说话他是一只耳朵进，另一只耳朵出。</p>
+<p>②<code>one...the others</code>表示“(好几个中的)一个……其余都……”。如：</p>
+<p>Of their five children, one is in China and the others are abroad. 他们有五个小孩，一个在中国，其余的都在国外。</p>
+<p>注：若为三者，想要表示“一个……另一个……剩下的一个……”，可用one…another…the other [the third…]；若为四者，可用one…another…another [a third]…the other [the fourth, the last]。</p>
+<p>③<code>some...the others</code>表示“一些……其他一些的……”。如：</p>
+<p>The search party was divided into two groups. Some went to the right, the others went to the left. 搜寻小组一分为二，一部分向右，另一部分人向左。</p>
+<p>④<code>some…others</code>表示“有的……有的……”。如：</p>
+<p>Some people build while others destroy. 有些人建设而另一些人则破坏。</p>
+<p>注：该结构也可说成some…some。如：</p>
+<p>Some of us agree, some disagree. 我们有些人同意，有些人不同意。</p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1844,6 +1859,16 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
 ]]></content>
       <tags>
         <tag>pronounce</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>remote</title>
+    <url>/2022/09/27/remote/</url>
+    <content><![CDATA[<h2 id="season-change"><a href="#season-change" class="headerlink" title="season change"></a>season change</h2><p>Dear Professor.<br>Hoping this email finds you well.</p>
+<p>- </p>
+]]></content>
+      <tags>
+        <tag>remote</tag>
       </tags>
   </entry>
   <entry>
@@ -1951,13 +1976,16 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>remote</title>
-    <url>/2022/09/27/remote/</url>
-    <content><![CDATA[<h2 id="season-change"><a href="#season-change" class="headerlink" title="season change"></a>season change</h2><p>Dear Professor.<br>Hoping this email finds you well.</p>
-<p>- </p>
+    <title>scrapy</title>
+    <url>/2021/10/31/scrapy/</url>
+    <content><![CDATA[<h2 id="span如果中间夹了其他的span。比如"><a href="#span如果中间夹了其他的span。比如" class="headerlink" title="span如果中间夹了其他的span。比如"></a>span如果中间夹了其他的span。比如</h2><pre><code>&lt;span&gt; &lt;span&gt;aa &lt;/span&gt; &lt;span&gt;bb &lt;/span&gt;cc&lt;/span&gt;
+</code></pre>
+<blockquote>
+<p>adpote [-1] to acquire “cc” if I want to get it instead of text() directly<br>amount4 &#x3D; ingredient.xpath(‘span[@class&#x3D;”recipe__list-qty”]&#x2F;text()’)[-1].get()</p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>remote</tag>
+        <tag>spacpy</tag>
       </tags>
   </entry>
   <entry>
@@ -1978,16 +2006,16 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>scrapy</title>
-    <url>/2021/10/31/scrapy/</url>
-    <content><![CDATA[<h2 id="span如果中间夹了其他的span。比如"><a href="#span如果中间夹了其他的span。比如" class="headerlink" title="span如果中间夹了其他的span。比如"></a>span如果中间夹了其他的span。比如</h2><pre><code>&lt;span&gt; &lt;span&gt;aa &lt;/span&gt; &lt;span&gt;bb &lt;/span&gt;cc&lt;/span&gt;
-</code></pre>
-<blockquote>
-<p>adpote [-1] to acquire “cc” if I want to get it instead of text() directly<br>amount4 &#x3D; ingredient.xpath(‘span[@class&#x3D;”recipe__list-qty”]&#x2F;text()’)[-1].get()</p>
-</blockquote>
+    <title>probability</title>
+    <url>/2022/06/22/probability/</url>
+    <content><![CDATA[<h2 id="68-95-99"><a href="#68-95-99" class="headerlink" title="68-95-99"></a>68-95-99</h2><ul>
+<li>During one standard, it has 68% probability in it.</li>
+<li>During tow standards, it has 95% probability in it.</li>
+<li>During three standards, it has 99% probability in it.</li>
+</ul>
 ]]></content>
       <tags>
-        <tag>spacpy</tag>
+        <tag>probability</tag>
       </tags>
   </entry>
   <entry>
@@ -2011,15 +2039,6 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>smartpointer</title>
-    <url>/2022/03/04/smartpointer/</url>
-    <content><![CDATA[<p><img src="/images/smartPointer.png"> </p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sparse</title>
     <url>/2022/07/02/sparse/</url>
     <content><![CDATA[<h1 id="How-to-prune-in-MLP"><a href="#How-to-prune-in-MLP" class="headerlink" title="How to prune in MLP?"></a>How to prune in MLP?</h1><p><img src="/images/2022-07-04-01-57-10.png"></p>
@@ -2030,6 +2049,15 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
 ]]></content>
       <tags>
         <tag>sparse</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>smartpointer</title>
+    <url>/2022/03/04/smartpointer/</url>
+    <content><![CDATA[<p><img src="/images/smartPointer.png"> </p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -2182,15 +2210,6 @@ A&lt;string*&gt; b;
       </tags>
   </entry>
   <entry>
-    <title>t5-假设检验</title>
-    <url>/2022/06/22/t5%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/</url>
-    <content><![CDATA[<p><img src="/images/p5.png"></p>
-]]></content>
-      <tags>
-        <tag>probability</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>subjunctive</title>
     <url>/2022/03/06/subjunctive/</url>
     <content><![CDATA[<h2 id="The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy"><a href="#The-president-flanked-by-Secretary-of-State-John-Kerry-and-vice-President-Joe-Biden-down-played-the-claimed-economic-benefits-of-the-pipeline-arguing-it-wouldn’t-have-lowered-U-S-gas-prices-created-long-term-jobs-or-reduced-U-S-dependency-on-foreign-energy" class="headerlink" title="The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy."></a>The president, flanked by Secretary of State John Kerry and vice President Joe Biden, down played the claimed economic benefits of the pipeline, arguing it wouldn’t have lowered U.S. gas prices, created long-term jobs or reduced U.S. dependency on foreign energy.</h2><blockquote>
@@ -2214,6 +2233,111 @@ A&lt;string*&gt; b;
       <tags>
         <tag>English</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>t5-假设检验</title>
+    <url>/2022/06/22/t5%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/</url>
+    <content><![CDATA[<p><img src="/images/p5.png"></p>
+]]></content>
+      <tags>
+        <tag>probability</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>template-template-paramenter</title>
+    <url>/2022/06/17/template-template-paramenter/</url>
+    <content><![CDATA[<h1 id="模版参数中包含模版"><a href="#模版参数中包含模版" class="headerlink" title="模版参数中包含模版"></a>模版参数中包含模版</h1><ul>
+<li>允许模板参数本身也是一个类模板，这可能会很有用。我们将继续以stack类模板作为例子</li>
+</ul>
+<pre><code>template &lt;class T1, template&lt;class T2&gt; 
+class Container&gt;
+
+class XCls&#123;
+
+    private:
+    Container&lt;T&gt; c;
+    public:
+    ...
+&#125;
+template&lt;class T&gt;
+using Lst = List&lt;T,allocator&lt;T&gt;&gt;;
+
+
+XCls&lt;string, Lst&gt; mylst;
+</code></pre>
+<blockquote>
+<p>由于Stack类模板的声明中第二个参数是一个类型（typename Container），所以我们通过Stack&lt;int, std::deque<int>&gt;定义一个具体的栈类型时，第二个参数传递std::deque<int>，而不能是std::deque。上述定义中我们一共把int写了两遍，而这种重复是一种必然的重复。</p>
+</blockquote>
+<p>为了避免上述重复，我们可以让Stack的第二个参数直接是一个模板，而不再是一个具体类型。</p>
+<pre><code>template&lt;typename T,
+         template&lt;typename&gt; class Container = std::vector&gt;
+struct Stack
+&#123;
+    void push(const T&amp; elem)
+    &#123;
+        elems.push_back(elem);
+    &#125;
+
+    T pop()
+    &#123;
+        if(empty()) throw std::out_of_range(&quot;Stack&lt;&gt;::pop: empty!&quot;);
+
+        auto elem = elems.back();
+        elems.pop_back();
+        return elem;
+    &#125;
+
+    bool empty() const
+    &#123;
+        return elems.empty();
+    &#125;
+
+private:
+    Container&lt;T&gt; elems;
+&#125;;
+</code></pre>
+<blockquote>
+<p>如上Stack类模板的第二个参数变为template<typename> class Container，它的名字仍旧是Container，但是类型变为一个模板，这个模板具有一个类型参数。由于Container自身的模板形参名字没有被使用，所以我们可以省略。按照标准这里声明Container前的关键字只能是class，不能是typename。最后，模板的模板参数也可以有默认值，这里我们设置为std::vector。</p>
+</blockquote>
+<p>有了上面的定义，我们期望可以这样使用Stack：Stack&lt;int, std::deque&gt; intStack，但编译器却给了我们一个教训。</p>
+<p>std::deque类模板在stl库中的定义有两个类型参数，第一个参数是元素类型，第二个参数是分配器allocator的类型。虽然std::deque的第二个类型参数有默认值，但是当编译器使用std::deque替换Container时却会严格匹配参数，默认值被忽略了。</p>
+<p>我们修改Stack的定义如下：</p>
+<pre><code>template&lt;typename T,
+         template&lt;typename Elem, typename Allocator = std::allocator&lt;Elem&gt;&gt; class Container = std::vector&gt;
+struct Stack
+&#123;
+    void push(const T&amp; elem)
+    &#123;
+        elems.push_back(elem);
+    &#125;
+
+    T pop()
+    &#123;
+        if(empty()) throw std::out_of_range(&quot;Stack&lt;&gt;::pop: empty!&quot;);
+
+        auto elem = elems.back();
+        elems.pop_back();
+        return elem;
+    &#125;
+
+    bool empty() const
+    &#123;
+        return elems.empty();
+    &#125;
+
+private:
+    Container&lt;T&gt; elems;
+&#125;;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2023/02/12/test/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>to+do+or+doing</title>
@@ -2240,6 +2364,94 @@ A&lt;string*&gt; b;
 ]]></content>
       <tags>
         <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>transitions</title>
+    <url>/2022/06/11/transitions/</url>
+    <content><![CDATA[<h2 id="It’s-about-advance-transitions-in-English-writing"><a href="#It’s-about-advance-transitions-in-English-writing" class="headerlink" title="It’s about advance transitions in English writing."></a>It’s about advance transitions in English writing.</h2><p>object clause（宾语从句）</p>
+<h2 id="Sections"><a href="#Sections" class="headerlink" title="Sections"></a>Sections</h2><ul>
+<li><a href="#Thereby">Thereby</a></li>
+<li><a href="#Therein">Therein</a></li>
+<li><a href="#Thereof">Thereof</a></li>
+<li><a href="#Therefore">Therefore</a></li>
+<li><a href="#Thereafter">Thereafter</a></li>
+<li><a href="#Wherein">Wherein</a></li>
+<li><a href="#Whereby">Whereby</a></li>
+<li><a href="#Hereby">Hereby</a></li>
+<li><a href="#Semicolon">Semicolon</a><br>so as to 为的是</li>
+</ul>
+<h2 id="Thereby"><a href="#Thereby" class="headerlink" title="Thereby:"></a>Thereby:</h2><blockquote>
+<p>The team lost the final game of the season, thereby <strong>missing</strong> the playoffs<br>(thereby : through the reason)</p>
+</blockquote>
+<blockquote>
+<p>Due to the team lost the final game of the season, they missed the palyoffs</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Lisa studied for three straight weeks and (Lisa) was <strong>thereby</strong> able to pass her test<br>(Because the reason of the last sentence and have result of the next sentence)</p>
+</blockquote>
+<blockquote>
+<p>(Reproduce) : The ability to compound the spatial information of the CNN model exists some intractable bottlenecks and are thereby limiting the development of the AI</p>
+</blockquote>
+<hr>
+<h2 id="Therein"><a href="#Therein" class="headerlink" title="Therein"></a>Therein</h2><p>(在其中)</p>
+<blockquote>
+<p>Therein lies the rub.───难就难在这里</p>
+</blockquote>
+<blockquote>
+<p>The contract does not allow for extended maternity leave; therein lies the problem for the union, 60% of whose membership is young women<br>(合同不允许延长产假； 这就是工会的问题所在，60% 的会员是年轻女性)</p>
+</blockquote>
+<blockquote>
+<p>The tomb, and all the contents therein(在坟墓的内容), were photographed before analysis could begin &#x3D;&#x3D; The tomb and and all the contents were photographed before analysis could begin.<br>(加therein显得更academic)</p>
+</blockquote>
+<p>（这里的were代表前面是多个东西，需要保持consensus,所以需要加and，这里也是两个东西，用and连接; before这个介词比较特殊，后面可以加句子，比如：Please come to my house before you leave.<br>）</p>
+<h2 id="Thereof"><a href="#Thereof" class="headerlink" title="Thereof"></a>Thereof</h2><p>thereof&#x3D;of that thing mentioned earlier</p>
+<blockquote>
+<p>Fine wines, and a knowledge thereof (of wines) are a luxury few can afford</p>
+</blockquote>
+<p>（这是主语从句，一句话做主语的句子英语？<br>What he did made US surprised，这个句子就是一个主语从句做主语的例子<br>The bag i bought is too big.<br>What you see is what you get. 所见即所得。）</p>
+<blockquote>
+<p>We will focus on China, espeically its history and culture thereof (&#x3D;of China).</p>
+</blockquote>
+<blockquote>
+<p>Both parties had their sights foused on the northern regions, especially the demographics thereof, and were preparing for an ad wars</p>
+</blockquote>
+<h2 id="Therefore"><a href="#Therefore" class="headerlink" title="Therefore"></a>Therefore</h2><p>I am well-prepared, there is no reason, therefore, that I should stumble<br>(I am well-prepared. Therefore there is no reason that I should stumble)</p>
+<h2 id="Thereafter"><a href="#Thereafter" class="headerlink" title="Thereafter"></a>Thereafter</h2><p>He worked at the university until he retired; thereafter, he took on sporadic work as a consultant.</p>
+<h2 id="Wherein"><a href="#Wherein" class="headerlink" title="Wherein"></a>Wherein</h2><p>Wherein(in which); wherein&#x3D;in which part</p>
+<blockquote>
+<p>It is not specified wherein (in which part) he violated the law.</p>
+</blockquote>
+<p>The affidavit did not implictly outline wherein Mr.Smith had broken any laws.</p>
+<h2 id="Whereby"><a href="#Whereby" class="headerlink" title="Whereby"></a>Whereby</h2><p>whereby&#x3D; by means of which&#x2F;according to which</p>
+<blockquote>
+<p>a proposal whereby (according to the proposal) everyone has to learn Chinesea </p>
+</blockquote>
+<blockquote>
+<p>a system whereby (by means of the system) you can learn Chinese everywhere</p>
+</blockquote>
+<blockquote>
+<p>The company introduced a new incentive program whereby all employees were given an equal shot at the bonuses.</p>
+</blockquote>
+<h2 id="Hereby"><a href="#Hereby" class="headerlink" title="Hereby"></a>Hereby</h2><p> &#x3D; caused by this (document)</p>
+<blockquote>
+<p>I hereby (affected by this situation) agree&#x2F;submit…</p>
+</blockquote>
+<blockquote>
+<p>Given the present circumstances, I hereby resign my post as CEO</p>
+</blockquote>
+<h2 id="Semicolon"><a href="#Semicolon" class="headerlink" title="Semicolon"></a>Semicolon</h2><blockquote>
+<p>英文写作中如何使用分号(Semicolon)<br>在分隔两个独立的概念(两个独立的从句)时，我们使用分号，但前提是这两个句子是有相关性的。当陈列复杂的概念或短语，并且句中包含逗号时，适合使用分号来分隔。分号拥有逗号的功能，但包含更多意思，亦有冒号的功能，但在使用起来更加灵活。<br>在句中加入两个或多个概念，而这些概念互为平等时：</p>
+</blockquote>
+<p>The universe has always called to human beings; there could be no more final frontier than space.</p>
+<blockquote>
+<p>加入两个用连接副词或转折片语连接的独立从句：</p>
+</blockquote>
+<p>Sam thought David was inviting him to the picnic to enjoy a nice day out; as it turned out, David was planning a surprise birthday party.</p>
+]]></content>
+      <tags>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -2353,94 +2565,6 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
       </tags>
   </entry>
   <entry>
-    <title>transitions</title>
-    <url>/2022/06/11/transitions/</url>
-    <content><![CDATA[<h2 id="It’s-about-advance-transitions-in-English-writing"><a href="#It’s-about-advance-transitions-in-English-writing" class="headerlink" title="It’s about advance transitions in English writing."></a>It’s about advance transitions in English writing.</h2><p>object clause（宾语从句）</p>
-<h2 id="Sections"><a href="#Sections" class="headerlink" title="Sections"></a>Sections</h2><ul>
-<li><a href="#Thereby">Thereby</a></li>
-<li><a href="#Therein">Therein</a></li>
-<li><a href="#Thereof">Thereof</a></li>
-<li><a href="#Therefore">Therefore</a></li>
-<li><a href="#Thereafter">Thereafter</a></li>
-<li><a href="#Wherein">Wherein</a></li>
-<li><a href="#Whereby">Whereby</a></li>
-<li><a href="#Hereby">Hereby</a></li>
-<li><a href="#Semicolon">Semicolon</a><br>so as to 为的是</li>
-</ul>
-<h2 id="Thereby"><a href="#Thereby" class="headerlink" title="Thereby:"></a>Thereby:</h2><blockquote>
-<p>The team lost the final game of the season, thereby <strong>missing</strong> the playoffs<br>(thereby : through the reason)</p>
-</blockquote>
-<blockquote>
-<p>Due to the team lost the final game of the season, they missed the palyoffs</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>Lisa studied for three straight weeks and (Lisa) was <strong>thereby</strong> able to pass her test<br>(Because the reason of the last sentence and have result of the next sentence)</p>
-</blockquote>
-<blockquote>
-<p>(Reproduce) : The ability to compound the spatial information of the CNN model exists some intractable bottlenecks and are thereby limiting the development of the AI</p>
-</blockquote>
-<hr>
-<h2 id="Therein"><a href="#Therein" class="headerlink" title="Therein"></a>Therein</h2><p>(在其中)</p>
-<blockquote>
-<p>Therein lies the rub.───难就难在这里</p>
-</blockquote>
-<blockquote>
-<p>The contract does not allow for extended maternity leave; therein lies the problem for the union, 60% of whose membership is young women<br>(合同不允许延长产假； 这就是工会的问题所在，60% 的会员是年轻女性)</p>
-</blockquote>
-<blockquote>
-<p>The tomb, and all the contents therein(在坟墓的内容), were photographed before analysis could begin &#x3D;&#x3D; The tomb and and all the contents were photographed before analysis could begin.<br>(加therein显得更academic)</p>
-</blockquote>
-<p>（这里的were代表前面是多个东西，需要保持consensus,所以需要加and，这里也是两个东西，用and连接; before这个介词比较特殊，后面可以加句子，比如：Please come to my house before you leave.<br>）</p>
-<h2 id="Thereof"><a href="#Thereof" class="headerlink" title="Thereof"></a>Thereof</h2><p>thereof&#x3D;of that thing mentioned earlier</p>
-<blockquote>
-<p>Fine wines, and a knowledge thereof (of wines) are a luxury few can afford</p>
-</blockquote>
-<p>（这是主语从句，一句话做主语的句子英语？<br>What he did made US surprised，这个句子就是一个主语从句做主语的例子<br>The bag i bought is too big.<br>What you see is what you get. 所见即所得。）</p>
-<blockquote>
-<p>We will focus on China, espeically its history and culture thereof (&#x3D;of China).</p>
-</blockquote>
-<blockquote>
-<p>Both parties had their sights foused on the northern regions, especially the demographics thereof, and were preparing for an ad wars</p>
-</blockquote>
-<h2 id="Therefore"><a href="#Therefore" class="headerlink" title="Therefore"></a>Therefore</h2><p>I am well-prepared, there is no reason, therefore, that I should stumble<br>(I am well-prepared. Therefore there is no reason that I should stumble)</p>
-<h2 id="Thereafter"><a href="#Thereafter" class="headerlink" title="Thereafter"></a>Thereafter</h2><p>He worked at the university until he retired; thereafter, he took on sporadic work as a consultant.</p>
-<h2 id="Wherein"><a href="#Wherein" class="headerlink" title="Wherein"></a>Wherein</h2><p>Wherein(in which); wherein&#x3D;in which part</p>
-<blockquote>
-<p>It is not specified wherein (in which part) he violated the law.</p>
-</blockquote>
-<p>The affidavit did not implictly outline wherein Mr.Smith had broken any laws.</p>
-<h2 id="Whereby"><a href="#Whereby" class="headerlink" title="Whereby"></a>Whereby</h2><p>whereby&#x3D; by means of which&#x2F;according to which</p>
-<blockquote>
-<p>a proposal whereby (according to the proposal) everyone has to learn Chinesea </p>
-</blockquote>
-<blockquote>
-<p>a system whereby (by means of the system) you can learn Chinese everywhere</p>
-</blockquote>
-<blockquote>
-<p>The company introduced a new incentive program whereby all employees were given an equal shot at the bonuses.</p>
-</blockquote>
-<h2 id="Hereby"><a href="#Hereby" class="headerlink" title="Hereby"></a>Hereby</h2><p> &#x3D; caused by this (document)</p>
-<blockquote>
-<p>I hereby (affected by this situation) agree&#x2F;submit…</p>
-</blockquote>
-<blockquote>
-<p>Given the present circumstances, I hereby resign my post as CEO</p>
-</blockquote>
-<h2 id="Semicolon"><a href="#Semicolon" class="headerlink" title="Semicolon"></a>Semicolon</h2><blockquote>
-<p>英文写作中如何使用分号(Semicolon)<br>在分隔两个独立的概念(两个独立的从句)时，我们使用分号，但前提是这两个句子是有相关性的。当陈列复杂的概念或短语，并且句中包含逗号时，适合使用分号来分隔。分号拥有逗号的功能，但包含更多意思，亦有冒号的功能，但在使用起来更加灵活。<br>在句中加入两个或多个概念，而这些概念互为平等时：</p>
-</blockquote>
-<p>The universe has always called to human beings; there could be no more final frontier than space.</p>
-<blockquote>
-<p>加入两个用连接副词或转折片语连接的独立从句：</p>
-</blockquote>
-<p>Sam thought David was inviting him to the picnic to enjoy a nice day out; as it turned out, David was planning a surprise birthday party.</p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>warp函数</title>
     <url>/2022/07/11/warp%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h1 id="any-sync用于一个warp之间线程的数据的交换-广播（broadcast）"><a href="#any-sync用于一个warp之间线程的数据的交换-广播（broadcast）" class="headerlink" title="__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）"></a>__any_sync用于一个warp之间线程的数据的交换-广播（broadcast）</h1><h2 id="这里必须注意srcLane是束内w的编号"><a href="#这里必须注意srcLane是束内w的编号" class="headerlink" title="这里必须注意srcLane是束内w的编号"></a>这里必须注意srcLane是束内w的编号</h2><blockquote>
@@ -2458,97 +2582,6 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
 ]]></content>
       <tags>
         <tag>cuda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>template-template-paramenter</title>
-    <url>/2022/06/17/template-template-paramenter/</url>
-    <content><![CDATA[<h1 id="模版参数中包含模版"><a href="#模版参数中包含模版" class="headerlink" title="模版参数中包含模版"></a>模版参数中包含模版</h1><ul>
-<li>允许模板参数本身也是一个类模板，这可能会很有用。我们将继续以stack类模板作为例子</li>
-</ul>
-<pre><code>template &lt;class T1, template&lt;class T2&gt; 
-class Container&gt;
-
-class XCls&#123;
-
-    private:
-    Container&lt;T&gt; c;
-    public:
-    ...
-&#125;
-template&lt;class T&gt;
-using Lst = List&lt;T,allocator&lt;T&gt;&gt;;
-
-
-XCls&lt;string, Lst&gt; mylst;
-</code></pre>
-<blockquote>
-<p>由于Stack类模板的声明中第二个参数是一个类型（typename Container），所以我们通过Stack&lt;int, std::deque<int>&gt;定义一个具体的栈类型时，第二个参数传递std::deque<int>，而不能是std::deque。上述定义中我们一共把int写了两遍，而这种重复是一种必然的重复。</p>
-</blockquote>
-<p>为了避免上述重复，我们可以让Stack的第二个参数直接是一个模板，而不再是一个具体类型。</p>
-<pre><code>template&lt;typename T,
-         template&lt;typename&gt; class Container = std::vector&gt;
-struct Stack
-&#123;
-    void push(const T&amp; elem)
-    &#123;
-        elems.push_back(elem);
-    &#125;
-
-    T pop()
-    &#123;
-        if(empty()) throw std::out_of_range(&quot;Stack&lt;&gt;::pop: empty!&quot;);
-
-        auto elem = elems.back();
-        elems.pop_back();
-        return elem;
-    &#125;
-
-    bool empty() const
-    &#123;
-        return elems.empty();
-    &#125;
-
-private:
-    Container&lt;T&gt; elems;
-&#125;;
-</code></pre>
-<blockquote>
-<p>如上Stack类模板的第二个参数变为template<typename> class Container，它的名字仍旧是Container，但是类型变为一个模板，这个模板具有一个类型参数。由于Container自身的模板形参名字没有被使用，所以我们可以省略。按照标准这里声明Container前的关键字只能是class，不能是typename。最后，模板的模板参数也可以有默认值，这里我们设置为std::vector。</p>
-</blockquote>
-<p>有了上面的定义，我们期望可以这样使用Stack：Stack&lt;int, std::deque&gt; intStack，但编译器却给了我们一个教训。</p>
-<p>std::deque类模板在stl库中的定义有两个类型参数，第一个参数是元素类型，第二个参数是分配器allocator的类型。虽然std::deque的第二个类型参数有默认值，但是当编译器使用std::deque替换Container时却会严格匹配参数，默认值被忽略了。</p>
-<p>我们修改Stack的定义如下：</p>
-<pre><code>template&lt;typename T,
-         template&lt;typename Elem, typename Allocator = std::allocator&lt;Elem&gt;&gt; class Container = std::vector&gt;
-struct Stack
-&#123;
-    void push(const T&amp; elem)
-    &#123;
-        elems.push_back(elem);
-    &#125;
-
-    T pop()
-    &#123;
-        if(empty()) throw std::out_of_range(&quot;Stack&lt;&gt;::pop: empty!&quot;);
-
-        auto elem = elems.back();
-        elems.pop_back();
-        return elem;
-    &#125;
-
-    bool empty() const
-    &#123;
-        return elems.empty();
-    &#125;
-
-private:
-    Container&lt;T&gt; elems;
-&#125;;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -2774,15 +2807,6 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
-    <title>原反补码</title>
-    <url>/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/</url>
-    <content><![CDATA[<p><img src="/images/coding.png"></p>
-]]></content>
-      <tags>
-        <tag>coding</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>卡尔曼滤波详解</title>
     <url>/2022/09/29/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/</url>
     <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3><ul>
@@ -2803,6 +2827,15 @@ int main(int argc, const char * argv[]) &#123;
 ]]></content>
       <tags>
         <tag>kalman</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>原反补码</title>
+    <url>/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/</url>
+    <content><![CDATA[<p><img src="/images/coding.png"></p>
+]]></content>
+      <tags>
+        <tag>coding</tag>
       </tags>
   </entry>
   <entry>
@@ -3147,12 +3180,20 @@ aaa
       </tags>
   </entry>
   <entry>
-    <title>期望和方差</title>
-    <url>/2022/05/21/%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE/</url>
-    <content><![CDATA[<p><img src="/images/expectAndvariance.png"> </p>
+    <title>宾语补足语</title>
+    <url>/2022/08/22/%E5%AE%BE%E8%AF%AD%E8%A1%A5%E8%B6%B3%E8%AF%AD/</url>
+    <content><![CDATA[<h1 id="有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语"><a href="#有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语" class="headerlink" title="有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语"></a>有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语</h1><ul>
+<li>本质上来说后面的名词也是修饰前面的名词的<ul>
+<li>名词做宾补<blockquote>
+<p>eg: I think the job a great honor. 我认为这份工作是一份荣誉</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <tags>
-        <tag>math</tag>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -3176,6 +3217,15 @@ aaa
 ]]></content>
       <tags>
         <tag>mathematics</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>期望和方差</title>
+    <url>/2022/05/21/%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE/</url>
+    <content><![CDATA[<p><img src="/images/expectAndvariance.png"> </p>
+]]></content>
+      <tags>
+        <tag>math</tag>
       </tags>
   </entry>
   <entry>
@@ -3316,6 +3366,47 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>状语从句</title>
+    <url>/2022/08/20/%E7%8A%B6%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
+    <content><![CDATA[<h1 id="状语从句主谓成分的省略，须遵循下面原则："><a href="#状语从句主谓成分的省略，须遵循下面原则：" class="headerlink" title="状语从句主谓成分的省略，须遵循下面原则："></a>状语从句主谓成分的省略，须遵循下面原则：</h1><ol>
+<li><p>当从句的主语与主句的主语一致时，从句可以省略主语，从句的谓语动词采用其V-ing结构。例如：</p>
+<ul>
+<li><p>Although working very hard, he failed in the final exam. (Although he worked very hard）</p>
+</li>
+<li><p>After taking the medicine, she felt much better. (After she took the medicine)</p>
+</li>
+<li><p>If going there by air, we’ll have to pay twice the fare. (If we go there by air)</p>
+</li>
+</ul>
+</li>
+<li><p>当从句的主语和主句的主语一致时，若从句的谓语动词是系动词be或包含be的某种形式，此时从句的主语和be动词通常可以一同省略</p>
+<ul>
+<li>Whenever (she is) free, she often goes shopping.她有空就去逛商店。</li>
+<li>Work hard when (you are) young, or you’ll regret.少壮不努力,老大徒伤悲。</li>
+<li>While (he was) a young boy, he was always ready to help others. 他在孩提时代就乐于助人。<br> <img src="/images/2022-08-22-11-59-37.png"><br> <img src="/images/2022-08-22-11-59-56.png"></li>
+</ul>
+</li>
+<li><p>若从句的主语和主句的主语不一致，但和主句的宾语一致时，从句中的主语和be动词亦常可省略。例如：</p>
+<ul>
+<li>Father advised me not to say anything until (I was) asked.</li>
+</ul>
+</li>
+<li><p>当从句的主语是it, 且谓语动词是be或包含be的某种形式时, it和be常可同时省略。例如:</p>
+<ul>
+<li><p>If (it is) possible, he will help you out of the difficulty.如果可能的话,他会帮你摆脱困境。</p>
+</li>
+<li><p>You must attend the meeting unless (it is) inconvenient to you.除非情况对你来说不方便,否则你必须出席这次会议。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><img src="/images/2022-08-22-12-05-52.png"></p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>矩阵左乘行变化右列</title>
     <url>/2022/12/02/%E7%9F%A9%E9%98%B5%E5%B7%A6%E4%B9%98%E8%A1%8C%E5%8F%98%E5%8C%96%E5%8F%B3%E5%88%97/</url>
     <content><![CDATA[<h2 id="为什么矩阵左乘是行变换，右乘是列变换"><a href="#为什么矩阵左乘是行变换，右乘是列变换" class="headerlink" title="为什么矩阵左乘是行变换，右乘是列变换"></a>为什么矩阵左乘是行变换，右乘是列变换</h2><p>矩阵乘积AB&#x3D;C，<strong>C的行是B的行的线性组合</strong><br>同理，<strong>C的列是A的列的线性组合</strong>，因此右乘B相当于对A做了列变换。<br><img src="/images/2022-12-02-14-06-40.png"></p>
@@ -3340,20 +3431,23 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>宾语补足语</title>
-    <url>/2022/08/22/%E5%AE%BE%E8%AF%AD%E8%A1%A5%E8%B6%B3%E8%AF%AD/</url>
-    <content><![CDATA[<h1 id="有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语"><a href="#有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语" class="headerlink" title="有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语"></a>有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语</h1><ul>
-<li>本质上来说后面的名词也是修饰前面的名词的<ul>
-<li>名词做宾补<blockquote>
-<p>eg: I think the job a great honor. 我认为这份工作是一份荣誉</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
+    <title>矩阵旋转位移推导</title>
+    <url>/2022/11/28/%E7%9F%A9%E9%98%B5%E6%97%8B%E8%BD%AC%E4%BD%8D%E7%A7%BB%E6%8E%A8%E5%AF%BC/</url>
+    <content><![CDATA[<h2 id="1-怎么推导坐标位移和旋转"><a href="#1-怎么推导坐标位移和旋转" class="headerlink" title="1. 怎么推导坐标位移和旋转"></a>1. 怎么推导坐标位移和旋转</h2><p>二维坐标的旋转可以通过三角公式推导</p>
+<p>我们在做几何变换的时候经常需要把某个坐标系上的所有点都进行一个旋转，这个操作就叫做刚体旋转（所有的点相对位置不变的发生旋转）。下图是一个典型的二维坐标系下刚体旋转。我们把蓝色的坐标系旋转了θ度，新坐标系就是红色的坐标系。我们现在已知一个点相对红色那个坐标系的坐标($x_{red}$, $x_{red}$ )，和已知旋转角度θ，然后我们想求得该点相对于蓝色那个坐标系的坐标($x_{blue}$,$y_{blue}$)</p>
+<p><img src="/images/2022-11-28-13-48-47.png"></p>
+<p>这个其实很简单我们利用高中学的三角几何就可以轻松解决。从上图可以发现不变量是黑色的那个线段的长度。而这个长度我们是可以根据黑色点相对红色坐标系下的坐标($x_{red}$, $x_{red}$ )算出来的。黑色线段长度为$r&#x3D;\sqrt {x_{red}^2+y_{red}^2}$</p>
+<p>然后我们可以根据紫色那个三角形计算出黑色点相对蓝色坐标系下的坐标 ($x_{blue},y_{blue}$)</p>
+<p>根据高中学的三角几何我们可以知道：<br>$<br>x_{blue}&#x3D;r*cos(\alpha+\theta) \tag{1}<br>$</p>
+<p>$<br>y_{blue}&#x3D;r*sin(\alpha+\theta) \tag{2}<br>$</p>
+<p>$\alpha$我们是不知道的。但是我们能找到一个关于它的线索。</p>
+<p>$$<br>x_{red}&#x3D;r*cos(\alpha)\\<br>y_{red}&#x3D;r*sin(\alpha)<br>$$</p>
+<p>展开（1）和 （2），可以得到如下：</p>
+<p>$$<br>\begin{align}<br>x_{blue}&amp;&#x3D;r∗cos(α+θ)&#x3D;r∗(cos(α)∗cos(θ)−sin(α)∗sin(θ))&#x3D;x_{red}∗cos(θ)−y_{red}∗sin(θ)\\<br>y_{blue}&amp;&#x3D;r∗sin(α+θ)&#x3D;r∗(sin(α)∗cos(θ)+cos(α)∗sin(θ))&#x3D;y_{red}∗cos(θ)+x_{red}∗sin(θ)<br>\end{align}<br>$$</p>
+<p><img src="/images/2022-12-02-13-39-50.png"></p>
 ]]></content>
       <tags>
-        <tag>English</tag>
+        <tag>-robotics</tag>
       </tags>
   </entry>
   <entry>
@@ -3428,17 +3522,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>英语句子</title>
-    <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
-    <content><![CDATA[<blockquote>
-<p>commence—Many people have wondered why the end of someone’s school days should be celebrated by Commencement Exercises, which, ordinarily, refer to a beginning</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>虚拟语气</title>
     <url>/2022/12/18/%E8%99%9A%E6%8B%9F%E8%AF%AD%E6%B0%94/</url>
     <content><![CDATA[<ol>
@@ -3495,44 +3578,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>过去式</title>
-    <url>/2021/12/25/%E8%BF%87%E5%8E%BB%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="过去式变化规则"><a href="#过去式变化规则" class="headerlink" title="过去式变化规则"></a>过去式变化规则</h1><p>1）动词过去式变化规则分为规则变化和不规则变化两种，一般情况下，动词原形词尾加-ed，以不发音的-e结尾动词，动词词尾加-d，以辅音字母+y结尾的动词，把-y变为-i 再加-ed<br>2）以一个元音+一个辅音字母结尾的重读闭音节动词，双写词尾辅音字母，否则就加ed<br>preFER-&gt;preFERRed<br>VISit-&gt;VISited<br>3）不满足一个元音+一个辅音结尾 + ed<br>start-&gt;started 两个辅音结尾<br>need-&gt;needed<br>3) 一个元音+y +ed<br>stay-&gt;stayed</p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>进程和线程</title>
-    <url>/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<p>做个简单的比喻：进程&#x3D;火车，线程&#x3D;车厢线程在进程下行进（<br>单纯的车厢无法运行）一个进程可以包含多个线程（一辆火车可以有多个车厢）<br>不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）<br>同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）<br>进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）<br>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）<br>进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）<br>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－”互斥锁”进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”</p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>矩阵旋转位移推导</title>
-    <url>/2022/11/28/%E7%9F%A9%E9%98%B5%E6%97%8B%E8%BD%AC%E4%BD%8D%E7%A7%BB%E6%8E%A8%E5%AF%BC/</url>
-    <content><![CDATA[<h2 id="1-怎么推导坐标位移和旋转"><a href="#1-怎么推导坐标位移和旋转" class="headerlink" title="1. 怎么推导坐标位移和旋转"></a>1. 怎么推导坐标位移和旋转</h2><p>二维坐标的旋转可以通过三角公式推导</p>
-<p>我们在做几何变换的时候经常需要把某个坐标系上的所有点都进行一个旋转，这个操作就叫做刚体旋转（所有的点相对位置不变的发生旋转）。下图是一个典型的二维坐标系下刚体旋转。我们把蓝色的坐标系旋转了θ度，新坐标系就是红色的坐标系。我们现在已知一个点相对红色那个坐标系的坐标($x_{red}$, $x_{red}$ )，和已知旋转角度θ，然后我们想求得该点相对于蓝色那个坐标系的坐标($x_{blue}$,$y_{blue}$)</p>
-<p><img src="/images/2022-11-28-13-48-47.png"></p>
-<p>这个其实很简单我们利用高中学的三角几何就可以轻松解决。从上图可以发现不变量是黑色的那个线段的长度。而这个长度我们是可以根据黑色点相对红色坐标系下的坐标($x_{red}$, $x_{red}$ )算出来的。黑色线段长度为$r&#x3D;\sqrt {x_{red}^2+y_{red}^2}$</p>
-<p>然后我们可以根据紫色那个三角形计算出黑色点相对蓝色坐标系下的坐标 ($x_{blue},y_{blue}$)</p>
-<p>根据高中学的三角几何我们可以知道：<br>$<br>x_{blue}&#x3D;r*cos(\alpha+\theta) \tag{1}<br>$</p>
-<p>$<br>y_{blue}&#x3D;r*sin(\alpha+\theta) \tag{2}<br>$</p>
-<p>$\alpha$我们是不知道的。但是我们能找到一个关于它的线索。</p>
-<p>$$<br>x_{red}&#x3D;r*cos(\alpha)\\<br>y_{red}&#x3D;r*sin(\alpha)<br>$$</p>
-<p>展开（1）和 （2），可以得到如下：</p>
-<p>$$<br>\begin{align}<br>x_{blue}&amp;&#x3D;r∗cos(α+θ)&#x3D;r∗(cos(α)∗cos(θ)−sin(α)∗sin(θ))&#x3D;x_{red}∗cos(θ)−y_{red}∗sin(θ)\\<br>y_{blue}&amp;&#x3D;r∗sin(α+θ)&#x3D;r∗(sin(α)∗cos(θ)+cos(α)∗sin(θ))&#x3D;y_{red}∗cos(θ)+x_{red}∗sin(θ)<br>\end{align}<br>$$</p>
-<p><img src="/images/2022-12-02-13-39-50.png"></p>
-]]></content>
-      <tags>
-        <tag>-robotics</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>计算机网络</title>
     <url>/2022/12/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
     <content><![CDATA[<h1 id="Computer-Network-Notes"><a href="#Computer-Network-Notes" class="headerlink" title="Computer Network Notes"></a>Computer Network Notes</h1><h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><p><img src="/images/2022-12-20-01-42-46.png"><br>    由路由算法计算得到路由表，并决定发往哪个输出链路</p>
@@ -3549,6 +3594,44 @@ int main()
 ]]></content>
       <tags>
         <tag>计算机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>过去式</title>
+    <url>/2021/12/25/%E8%BF%87%E5%8E%BB%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="过去式变化规则"><a href="#过去式变化规则" class="headerlink" title="过去式变化规则"></a>过去式变化规则</h1><p>1）动词过去式变化规则分为规则变化和不规则变化两种，一般情况下，动词原形词尾加-ed，以不发音的-e结尾动词，动词词尾加-d，以辅音字母+y结尾的动词，把-y变为-i 再加-ed<br>2）以一个元音+一个辅音字母结尾的重读闭音节动词，双写词尾辅音字母，否则就加ed<br>preFER-&gt;preFERRed<br>VISit-&gt;VISited<br>3）不满足一个元音+一个辅音结尾 + ed<br>start-&gt;started 两个辅音结尾<br>need-&gt;needed<br>3) 一个元音+y +ed<br>stay-&gt;stayed</p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>过拟合和欠拟合</title>
+    <url>/2022/05/22/%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88/</url>
+    <content><![CDATA[<p><img src="/images/overfit.png"> </p>
+]]></content>
+      <tags>
+        <tag>machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>英语句子</title>
+    <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
+    <content><![CDATA[<blockquote>
+<p>commence—Many people have wondered why the end of someone’s school days should be celebrated by Commencement Exercises, which, ordinarily, refer to a beginning</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程和线程</title>
+    <url>/2022/03/12/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
+    <content><![CDATA[<p>做个简单的比喻：进程&#x3D;火车，线程&#x3D;车厢线程在进程下行进（<br>单纯的车厢无法运行）一个进程可以包含多个线程（一辆火车可以有多个车厢）<br>不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）<br>同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）<br>进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）<br>进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）<br>进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）<br>进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－”互斥锁”进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -3615,47 +3698,6 @@ int main(int argc, const char * argv[]) &#123;
       </tags>
   </entry>
   <entry>
-    <title>状语从句</title>
-    <url>/2022/08/20/%E7%8A%B6%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
-    <content><![CDATA[<h1 id="状语从句主谓成分的省略，须遵循下面原则："><a href="#状语从句主谓成分的省略，须遵循下面原则：" class="headerlink" title="状语从句主谓成分的省略，须遵循下面原则："></a>状语从句主谓成分的省略，须遵循下面原则：</h1><ol>
-<li><p>当从句的主语与主句的主语一致时，从句可以省略主语，从句的谓语动词采用其V-ing结构。例如：</p>
-<ul>
-<li><p>Although working very hard, he failed in the final exam. (Although he worked very hard）</p>
-</li>
-<li><p>After taking the medicine, she felt much better. (After she took the medicine)</p>
-</li>
-<li><p>If going there by air, we’ll have to pay twice the fare. (If we go there by air)</p>
-</li>
-</ul>
-</li>
-<li><p>当从句的主语和主句的主语一致时，若从句的谓语动词是系动词be或包含be的某种形式，此时从句的主语和be动词通常可以一同省略</p>
-<ul>
-<li>Whenever (she is) free, she often goes shopping.她有空就去逛商店。</li>
-<li>Work hard when (you are) young, or you’ll regret.少壮不努力,老大徒伤悲。</li>
-<li>While (he was) a young boy, he was always ready to help others. 他在孩提时代就乐于助人。<br> <img src="/images/2022-08-22-11-59-37.png"><br> <img src="/images/2022-08-22-11-59-56.png"></li>
-</ul>
-</li>
-<li><p>若从句的主语和主句的主语不一致，但和主句的宾语一致时，从句中的主语和be动词亦常可省略。例如：</p>
-<ul>
-<li>Father advised me not to say anything until (I was) asked.</li>
-</ul>
-</li>
-<li><p>当从句的主语是it, 且谓语动词是be或包含be的某种形式时, it和be常可同时省略。例如:</p>
-<ul>
-<li><p>If (it is) possible, he will help you out of the difficulty.如果可能的话,他会帮你摆脱困境。</p>
-</li>
-<li><p>You must attend the meeting unless (it is) inconvenient to you.除非情况对你来说不方便,否则你必须出席这次会议。</p>
-</li>
-</ul>
-</li>
-</ol>
-<p><img src="/images/2022-08-22-12-05-52.png"></p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>重载new()</title>
     <url>/2022/06/21/%E9%87%8D%E8%BD%BD/</url>
     <content><![CDATA[<h2 id="可以重载new，同时也可以重载new"><a href="#可以重载new，同时也可以重载new" class="headerlink" title="可以重载new，同时也可以重载new()"></a>可以重载new，同时也可以重载new()</h2><p>Foo* p &#x3D; new(300,”a”) Foo;</p>
@@ -3672,55 +3714,6 @@ int main(int argc, const char * argv[]) &#123;
 <h2 id="delete-也可以这样写多个版本，对应new-参数版本。"><a href="#delete-也可以这样写多个版本，对应new-参数版本。" class="headerlink" title="delete()也可以这样写多个版本，对应new()参数版本。"></a>delete()也可以这样写多个版本，对应new()参数版本。</h2>]]></content>
       <tags>
         <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>过拟合和欠拟合</title>
-    <url>/2022/05/22/%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88/</url>
-    <content><![CDATA[<p><img src="/images/overfit.png"> </p>
-]]></content>
-      <tags>
-        <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>kubenetes</title>
-    <url>/2022/09/25/k8s/kubenetes/</url>
-    <content><![CDATA[<h4 id="minicube是用dockerm模拟一个工作的node"><a href="#minicube是用dockerm模拟一个工作的node" class="headerlink" title="minicube是用dockerm模拟一个工作的node"></a>minicube是用dockerm模拟一个工作的node</h4><ul>
-<li><p>启动集群<br>minikube start</p>
-</li>
-<li><p>查看节点。kubectl 是一个用来跟 K8S 集群进行交互的命令行工具<br>kubectl get node</p>
-</li>
-<li><p>停止集群<br>minikube stop</p>
-</li>
-<li><p>清空集群<br>minikube delete –all</p>
-</li>
-<li><p>安装集群可视化 Web UI 控制台<br>minikube dashboard</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Kubenetes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker</title>
-    <url>/2022/09/22/docker/docker/</url>
-    <content><![CDATA[<h4 id="1-Docker-一些基本操作"><a href="#1-Docker-一些基本操作" class="headerlink" title="1.Docker 一些基本操作"></a>1.Docker 一些基本操作</h4><ul>
-<li><p><a href="../docker-compose">一次docker-compose配置多个镜像，如Wordpress+mysql</a></p>
-</li>
-<li><p><a href="../dockerfile">DockerFile</a></p>
-</li>
-<li><p><a href="../network">Communicate containers</a></p>
-</li>
-<li><p><a href="../image">upload your images</a></p>
-</li>
-<li><p><a href="../backup">容器数据的备份与恢复</a></p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -4124,6 +4117,46 @@ by decades 几十年
 ]]></content>
       <tags>
         <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker</title>
+    <url>/2022/09/22/docker/docker/</url>
+    <content><![CDATA[<h4 id="1-Docker-一些基本操作"><a href="#1-Docker-一些基本操作" class="headerlink" title="1.Docker 一些基本操作"></a>1.Docker 一些基本操作</h4><ul>
+<li><p><a href="../docker-compose">一次docker-compose配置多个镜像，如Wordpress+mysql</a></p>
+</li>
+<li><p><a href="../dockerfile">DockerFile</a></p>
+</li>
+<li><p><a href="../network">Communicate containers</a></p>
+</li>
+<li><p><a href="../image">upload your images</a></p>
+</li>
+<li><p><a href="../backup">容器数据的备份与恢复</a></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>kubenetes</title>
+    <url>/2022/09/25/k8s/kubenetes/</url>
+    <content><![CDATA[<h4 id="minicube是用dockerm模拟一个工作的node"><a href="#minicube是用dockerm模拟一个工作的node" class="headerlink" title="minicube是用dockerm模拟一个工作的node"></a>minicube是用dockerm模拟一个工作的node</h4><ul>
+<li><p>启动集群<br>minikube start</p>
+</li>
+<li><p>查看节点。kubectl 是一个用来跟 K8S 集群进行交互的命令行工具<br>kubectl get node</p>
+</li>
+<li><p>停止集群<br>minikube stop</p>
+</li>
+<li><p>清空集群<br>minikube delete –all</p>
+</li>
+<li><p>安装集群可视化 Web UI 控制台<br>minikube dashboard</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Kubenetes</tag>
       </tags>
   </entry>
 </search>
