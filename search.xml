@@ -189,7 +189,7 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
   </entry>
   <entry>
     <title>Cplusplus</title>
-    <url>/2023/11/26/Cplusplus/</url>
+    <url>/2022/07/26/Cplusplus/</url>
     <content><![CDATA[<ol>
 <li><p>main 函数的参数</p>
 <ul>
