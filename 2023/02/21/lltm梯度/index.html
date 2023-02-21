@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Cplusplus, Moujoy">
+    <meta name="keywords" content="lltm梯度, Moujoy">
     <meta name="description" content="Do not let social standards conform you">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Cplusplus | Moujoy</title>
+    <title>lltm梯度 | Moujoy</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -179,12 +179,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Cplusplus</h1>
+                    <h1 class="description center-align post-title">lltm梯度</h1>
                 </div>
             </div>
         </div>
@@ -301,8 +301,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/C/">
-                                <span class="chip bg-color">C++</span>
+                            <a href="/tags/cuda/">
+                                <span class="chip bg-color">cuda</span>
                             </a>
                         
                     </div>
@@ -317,7 +317,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2023-11-26
+                    2023-02-21
                 </div>
                 
 
@@ -338,31 +338,98 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <ol>
-<li><p>main 函数的参数</p>
-<ul>
-<li><p>argc 是 argument count的缩写，表示传入main函数的参数个数；</p>
-</li>
-<li><p>argv 是 argument vector的缩写，表示传入main函数的参数序列或指针，并且第一个参数argv[0]一定是程序的名称，并且包含了程序所在的完整路径，所以确切的说需要我们输入的main函数的参数个数应该是argc-1个；</p>
-</li>
+                <ul>
+<li>前向传播</li>
 </ul>
-<pre><code>#include &lt;iostream&gt;
+<pre><code>#include &lt;vector&gt;
 
-using namespace std;
+std::vector&lt;at::Tensor&gt; lltm_forward(
+    torch::Tensor input,
+    torch::Tensor weights,
+    torch::Tensor bias,
+    torch::Tensor old_h,
+    torch::Tensor old_cell) &#123;
+  auto X = torch::cat(&#123;old_h, input&#125;, /*dim=*/1);
 
-void main(int argc,char *argv[])
-&#123;
-    for(int i=0;i&lt;argc;i++)
-    &#123;
-        cout&lt;&lt;&quot;argument[&quot;&lt;&lt;i&lt;&lt;&quot;] is: &quot;&lt;&lt;argv[i]&lt;&lt;endl;
-    &#125;
-    system(&quot;pause&quot;);
+  auto gate_weights = torch::addmm(bias, X, weights.transpose(0, 1));
+  auto gates = gate_weights.chunk(3, /*dim=*/1);
+
+  auto input_gate = torch::sigmoid(gates[0]);
+  auto output_gate = torch::sigmoid(gates[1]);
+  auto candidate_cell = torch::elu(gates[2], /*alpha=*/1.0);
+
+  auto new_cell = old_cell + candidate_cell * input_gate;
+  auto new_h = torch::tanh(new_cell) * output_gate;
+
+  return &#123;new_h,
+          new_cell,
+          input_gate,
+          output_gate,
+          candidate_cell,
+          X,
+          gate_weights&#125;;
 &#125;
 </code></pre>
+<ul>
+<li>反向传播</li>
+</ul>
+<pre><code>// tanh&#39;(z) = 1 - tanh^2(z)
+torch::Tensor d_tanh(torch::Tensor z) &#123;
+  return 1 - z.tanh().pow(2);
+&#125;
+
+// elu&#39;(z) = relu&#39;(z) + &#123; alpha * exp(z) if (alpha * (exp(z) - 1)) &lt; 0, else 0&#125;
+torch::Tensor d_elu(torch::Tensor z, torch::Scalar alpha = 1.0) &#123;
+  auto e = z.exp();
+  auto mask = (alpha * (e - 1)) &lt; 0;
+  return (z &gt; 0).type_as(z) + mask.type_as(z) * (alpha * e);
+&#125;
+
+std::vector&lt;torch::Tensor&gt; lltm_backward(
+    torch::Tensor grad_h,
+    torch::Tensor grad_cell,
+    torch::Tensor new_cell,
+    torch::Tensor input_gate,
+    torch::Tensor output_gate,
+    torch::Tensor candidate_cell,
+    torch::Tensor X,
+    torch::Tensor gate_weights,
+    torch::Tensor weights) &#123;
+  auto d_output_gate = torch::tanh(new_cell) * grad_h;
+  auto d_tanh_new_cell = output_gate * grad_h;
+  auto d_new_cell = d_tanh(new_cell) * d_tanh_new_cell + grad_cell;
+
+  auto d_old_cell = d_new_cell;
+  auto d_candidate_cell = input_gate * d_new_cell;
+  auto d_input_gate = candidate_cell * d_new_cell;
+
+  auto gates = gate_weights.chunk(3, /*dim=*/1);
+  d_input_gate *= d_sigmoid(gates[0]);
+  d_output_gate *= d_sigmoid(gates[1]);
+  d_candidate_cell *= d_elu(gates[2]);
+
+  auto d_gates =
+      torch::cat(&#123;d_input_gate, d_output_gate, d_candidate_cell&#125;, /*dim=*/1);
+
+  auto d_weights = d_gates.t().mm(X);
+  # d_gates是根据当前cell的操作，如sigmoid计算得到的梯度，这个梯度梯度乘当前的输入就是完整权重矩阵的梯度
+  auto d_bias = d_gates.sum(/*dim=*/0, /*keepdim=*/true);
+
+  auto d_X = d_gates.mm(weights);
+  # d_X 是X的梯度
+  const auto state_size = grad_h.size(1);
+  auto d_old_h = d_X.slice(/*dim=*/1, 0, state_size);
+  auto d_input = d_X.slice(/*dim=*/1, state_size);
+
+  return &#123;d_old_h, d_input, d_weights, d_bias, d_old_cell&#125;;
+&#125;
+</code></pre>
+<h3 id="关于如何计算得到d-output-gate（output-gate梯度），d-new-cell（new-cell梯度）"><a href="#关于如何计算得到d-output-gate（output-gate梯度），d-new-cell（new-cell梯度）" class="headerlink" title="关于如何计算得到d_output_gate（output_gate梯度），d_new_cell（new_cell梯度）"></a>关于如何计算得到d_output_gate（output_gate梯度），d_new_cell（new_cell梯度）</h3><ul>
+<li><p>链式求导法则，对于d_output_gate，假设L是loss<br>前向传播公式为：<br>  auto new_h &#x3D; torch::tanh(new_cell) * output_gate;<br>反向传播则为：<br>  d(L)&#x2F;d(new_h) * d(new_h)&#x2F;d(output_gate) &#x3D; grad_h*torch::tanh(new_cell)</p>
 </li>
-</ol>
-<hr>
-<p>2. </p>
+<li><p>同理，对于d_new_cell，<br>前向传播为<br>  auto new_cell &#x3D; old_cell + candidate_cell * input_gate;<br>  auto new_h &#x3D; torch::tanh(new_cell) * output_gate;<br>反向传播则为：<br>  d(L)&#x2F;d(new_h)*d(new_h)&#x2F;d(new_cell) &#x3D; grad_h *（d_tanh(new_cell)*output_gate）<br>  这里为什么 加上 grad_cell ，我还不知道,<br>  个人理解是new_cell 用到了old_cell, 也可以看作，把new_cell带入torch::tanh(new_cell)中，</p>
+</li>
+</ul>
 
             </div>
             <hr/>
@@ -388,7 +455,7 @@ void main(int argc,char *argv[])
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://moulelin.github.io/2023/11/26/Cplusplus/">https://moulelin.github.io/2023/11/26/Cplusplus/</a>
+                    <a href="https://moulelin.github.io/2023/02/21/lltm%E6%A2%AF%E5%BA%A6/">https://moulelin.github.io/2023/02/21/lltm%E6%A2%AF%E5%BA%A6/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -426,8 +493,8 @@ void main(int argc,char *argv[])
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/C/">
-                                    <span class="chip bg-color">C++</span>
+                                <a href="/tags/cuda/">
+                                    <span class="chip bg-color">cuda</span>
                                 </a>
                             
                         </div>
@@ -595,10 +662,9 @@ void main(int argc,char *argv[])
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
                 <a href="/2023/11/26/Cplusplus/">
                     <div class="card-image">
@@ -616,9 +682,9 @@ void main(int argc,char *argv[])
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-11-26
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-11-26
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -627,7 +693,6 @@ void main(int argc,char *argv[])
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -646,13 +711,13 @@ void main(int argc,char *argv[])
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/02/21/lltm%E6%A2%AF%E5%BA%A6/">
+                <a href="/2023/02/21/docker/docker/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="lltm梯度">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="docker">
                         
-                        <span class="card-title">lltm梯度</span>
+                        <span class="card-title">docker</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -676,8 +741,8 @@ void main(int argc,char *argv[])
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/cuda/">
-                        <span class="chip bg-color">cuda</span>
+                    <a href="/tags/docker/">
+                        <span class="chip bg-color">docker</span>
                     </a>
                     
                 </div>

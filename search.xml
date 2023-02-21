@@ -188,23 +188,6 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
       </tags>
   </entry>
   <entry>
-    <title>Conv-MPN</title>
-    <url>/2022/06/17/Conv-MPN/</url>
-    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
-<li><a href="#">corner_detection</a><blockquote>
-<p>concatenate</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
-<p>mask_rcnn extracts corner points.</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Cplusplus</title>
     <url>/2023/11/26/Cplusplus/</url>
     <content><![CDATA[<ol>
@@ -268,12 +251,20 @@ static const int a = 1;
       </tags>
   </entry>
   <entry>
-    <title>DBSCAN</title>
-    <url>/2022/01/06/DBSCAN/</url>
-    <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
+    <title>Conv-MPN</title>
+    <url>/2022/06/17/Conv-MPN/</url>
+    <content><![CDATA[<h2 id="This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”"><a href="#This-is-my-notes-for-paper-“Conv-MPN-Convolutional-Message-Passing-Neural-Network-for-Structured-Outdoor-Architecture-Reconstruction-”" class="headerlink" title="This is my notes for paper “Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”"></a>This is my notes for paper <strong>“Conv-MPN: Convolutional Message Passing Neural Network for Structured Outdoor Architecture Reconstruction.”</strong></h2><ul>
+<li><a href="#">corner_detection</a><blockquote>
+<p>concatenate</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="corner-detection"><a href="#corner-detection" class="headerlink" title="corner_detection"></a>corner_detection</h1><blockquote>
+<p>mask_rcnn extracts corner points.</p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>DBSCAN</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -436,12 +427,12 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>FLOPs</title>
-    <url>/2022/06/26/FLOPs/</url>
-    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
+    <title>DBSCAN</title>
+    <url>/2022/01/06/DBSCAN/</url>
+    <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
 ]]></content>
       <tags>
-        <tag>FLOPs</tag>
+        <tag>DBSCAN</tag>
       </tags>
   </entry>
   <entry>
@@ -547,29 +538,12 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>Homogeneous</title>
-    <url>/2022/01/26/Homogeneous/</url>
-    <content><![CDATA[<p><img src="/images/homogeneous.png"> </p>
+    <title>FLOPs</title>
+    <url>/2022/06/26/FLOPs/</url>
+    <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
 ]]></content>
       <tags>
-        <tag>3D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>KalmanFilter</title>
-    <url>/2022/09/29/KalmanFilter/</url>
-    <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3>
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/kalman.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-
-]]></content>
-      <tags>
-        <tag>kalman</tag>
+        <tag>FLOPs</tag>
       </tags>
   </entry>
   <entry>
@@ -581,6 +555,26 @@ concorn
 ]]></content>
       <tags>
         <tag>Likelihood</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Homogeneous</title>
+    <url>/2022/01/26/Homogeneous/</url>
+    <content><![CDATA[<p><img src="/images/homogeneous.png"> </p>
+]]></content>
+      <tags>
+        <tag>3D</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Monte</title>
+    <url>/2022/03/17/Monte/</url>
+    <content><![CDATA[<blockquote>
+<p>引入概率密度函数的蒙特卡洛公式推导，是把p(x) 看作前面分数的密度概率函数，也就是对前面分数求期望，而期望可以通过对p（x）采样并平均得到<br><img src="/images/MCMC.png">  </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>machine</tag>
       </tags>
   </entry>
   <entry>
@@ -609,23 +603,35 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>MC</title>
-    <url>/2022/03/19/MC/</url>
-    <content><![CDATA[<p><img src="/images/MC.png">  </p>
+    <title>KalmanFilter</title>
+    <url>/2022/09/29/KalmanFilter/</url>
+    <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3>
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/kalman.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+
 ]]></content>
       <tags>
-        <tag>RL</tag>
+        <tag>kalman</tag>
       </tags>
   </entry>
   <entry>
-    <title>Monte</title>
-    <url>/2022/03/17/Monte/</url>
-    <content><![CDATA[<blockquote>
-<p>引入概率密度函数的蒙特卡洛公式推导，是把p(x) 看作前面分数的密度概率函数，也就是对前面分数求期望，而期望可以通过对p（x）采样并平均得到<br><img src="/images/MCMC.png">  </p>
+    <title>STL</title>
+    <url>/2022/07/06/STL/</url>
+    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
+<blockquote>
+<p>stack和queue不提供iterator</p>
+</blockquote>
+<blockquote>
+<p>set&#x2F;multiset<br>multiset是基于红黑树实现的</p>
 </blockquote>
 ]]></content>
       <tags>
-        <tag>machine</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -642,21 +648,6 @@ concorn
 ]]></content>
       <tags>
         <tag>RL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STL</title>
-    <url>/2022/07/06/STL/</url>
-    <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
-<blockquote>
-<p>stack和queue不提供iterator</p>
-</blockquote>
-<blockquote>
-<p>set&#x2F;multiset<br>multiset是基于红黑树实现的</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -699,6 +690,15 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>MC</title>
+    <url>/2022/03/19/MC/</url>
+    <content><![CDATA[<p><img src="/images/MC.png">  </p>
+]]></content>
+      <tags>
+        <tag>RL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ShiftGCN</title>
     <url>/2022/08/17/ShiftGCN/</url>
     <content><![CDATA[]]></content>
@@ -732,6 +732,15 @@ concorn
       </tags>
   </entry>
   <entry>
+    <title>across_loss</title>
+    <url>/2022/03/29/across-loss/</url>
+    <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
+]]></content>
+      <tags>
+        <tag>machine</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>VCDimension</title>
     <url>/2022/02/10/VCDimension/</url>
     <content><![CDATA[<blockquote>
@@ -743,30 +752,12 @@ concorn
       </tags>
   </entry>
   <entry>
-    <title>across_loss</title>
-    <url>/2022/03/29/across-loss/</url>
-    <content><![CDATA[<p><img src="/images/cross_derivate.png"> </p>
-]]></content>
-      <tags>
-        <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>apriori</title>
     <url>/2022/01/06/apriori/</url>
     <content><![CDATA[<p><img src="/images/apriori.png"> </p>
 ]]></content>
       <tags>
         <tag>apriori</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>as从句</title>
-    <url>/2022/09/24/as%E4%BB%8E%E5%8F%A5/</url>
-    <content><![CDATA[<p><img src="/images/as.jpeg"></p>
-]]></content>
-      <tags>
-        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -1064,6 +1055,15 @@ git is master, 0e1f110
       </tags>
   </entry>
   <entry>
+    <title>as从句</title>
+    <url>/2022/09/24/as%E4%BB%8E%E5%8F%A5/</url>
+    <content><![CDATA[<p><img src="/images/as.jpeg"></p>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>copyC</title>
     <url>/2022/03/13/copyC/</url>
     <content><![CDATA[<p>浅拷贝和深拷贝<br>指针浅拷贝导致堆区的数据重复释放<br>问题：近期在做算法实验的时候碰到一个关于类指针赋值的问题，简单的指针之间的赋值只是把两个指针指向同一个地址，而我需要把每次算法执行完的类指针push_back进vector储存每次算法迭代的结果，如果每次都是存入同一个指针，就会出现vector中的类指针都指向同一个地址，这就让我想到了能不能进行类指针之间的赋值，两个类指针之间内容相同，但是指针指向的地址都不同，就是两个不同的指针。</p>
@@ -1083,6 +1083,106 @@ rect(const rect *r);
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cudaMemPitch</title>
+    <url>/2022/06/28/cudaMemPitch/</url>
+    <content><![CDATA[<h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
+<p>cudaMallocPitch ( void** devPtr, size_t* pitch, size_t width, size_t height )<br>devPtr - Pointer to allocated pitched device memory<br>pitch - Pitch for allocation<br>width - Requested pitched allocation width (in bytes)<br>height - Requested pitched allocation height</p>
+</blockquote>
+<blockquote>
+<p>cudaError_t cudaMemcpy2D	(	void * 	dst,<br>size_t 	dpitch,<br>const void * 	src,<br>size_t 	spitch,<br>size_t 	width,<br>size_t 	height,<br>enum cudaMemcpyKind 	kind	<br>)	</p>
+</blockquote>
+<blockquote>
+<p>Parameters:<br>dst 	- Destination memory address<br>dpitch 	- Pitch of destination memory<br>src 	- Source memory address<br>spitch 	- Pitch of source memory<br>width 	- Width of matrix transfer (columns in bytes)<br>height 	- Height of matrix transfer (rows)<br>kind 	- Type of transfer</p>
+</blockquote>
+<pre><code>`The spitch is different when cudaMemcpyKind is different`
+
+#include&lt;stdio.h&gt;
+#include&lt;cuda.h&gt;
+#include&lt;cuda_runtime.h&gt;
+#include&lt;device_launch_parameters.h&gt;
+#include&lt;conio.h&gt;
+
+#define BLOCKSIZE_x 16
+#define BLOCKSIZE_y 16
+
+#define Nrows 3
+#define Ncols 5
+
+/*****************/
+/* CUDA MEMCHECK */
+/*****************/
+#define gpuErrchk(ans) &#123; gpuAssert((ans), __FILE__, __LINE__); &#125;
+
+inline void gpuAssert(cudaError_t code, char *file, int line, bool abort = true)
+&#123;
+    if (code != cudaSuccess)
+    &#123;
+        fprintf(stderr, &quot;GPUassert: %s %s %dn&quot;, cudaGetErrorString(code), file, line);
+        if (abort) &#123; getch(); exit(code); &#125;
+    &#125;
+&#125;
+
+/*******************/
+/* iDivUp FUNCTION */
+/*******************/
+int iDivUp(int hostPtr, int b)&#123; return ((hostPtr % b) != 0) ? (hostPtr / b + 1) : (hostPtr / b); &#125;
+
+/******************/
+/* TEST KERNEL 2D */
+/******************/
+__global__ void test_kernel_2D(float *devPtr, size_t pitch)
+&#123;
+    int    tidx = blockIdx.x*blockDim.x + threadIdx.x;
+    int    tidy = blockIdx.y*blockDim.y + threadIdx.y;
+
+    if ((tidx &lt; Ncols) &amp;&amp; (tidy &lt; Nrows))
+    &#123;
+        float *row_a = (float *)((char*)devPtr + tidy * pitch);
+        row_a[tidx] = row_a[tidx] * tidx * tidy;
+    &#125;
+&#125;
+
+/********/
+/* MAIN */
+/********/
+int main()
+&#123;
+    float hostPtr[Nrows][Ncols];
+    float *devPtr;
+    size_t pitch;
+
+    for (int i = 0; i &lt; Nrows; i++)
+        for (int j = 0; j &lt; Ncols; j++) &#123;
+            hostPtr[i][j] = 1.f;
+            //printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
+        &#125;
+
+    // --- 2D pitched allocation and host-&gt;device memcopy
+    gpuErrchk(cudaMallocPitch(&amp;devPtr, &amp;pitch, Ncols * sizeof(float), Nrows));
+    gpuErrchk(cudaMemcpy2D(devPtr, pitch, hostPtr, Ncols*sizeof(float), Ncols*sizeof(float), Nrows, cudaMemcpyHostToDevice));
+
+    dim3 gridSize(iDivUp(Ncols, BLOCKSIZE_x), iDivUp(Nrows, BLOCKSIZE_y));
+    dim3 blockSize(BLOCKSIZE_y, BLOCKSIZE_x);
+
+    test_kernel_2D &lt;&lt; &lt;gridSize, blockSize &gt;&gt; &gt;(devPtr, pitch);
+    gpuErrchk(cudaPeekAtLastError());
+    gpuErrchk(cudaDeviceSynchronize());
+
+    gpuErrchk(cudaMemcpy2D(hostPtr, Ncols * sizeof(float), devPtr, pitch, Ncols * sizeof(float), Nrows, cudaMemcpyDeviceToHost));
+
+    for (int i = 0; i &lt; Nrows; i++) 
+        for (int j = 0; j &lt; Ncols; j++) 
+            printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
+
+    return 0;    
+&#125;
+</code></pre>
+]]></content>
+      <tags>
+        <tag>cuda</tag>
       </tags>
   </entry>
   <entry>
@@ -1234,106 +1334,6 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
       </tags>
   </entry>
   <entry>
-    <title>cudaMemPitch</title>
-    <url>/2022/06/28/cudaMemPitch/</url>
-    <content><![CDATA[<h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
-<p>cudaMallocPitch ( void** devPtr, size_t* pitch, size_t width, size_t height )<br>devPtr - Pointer to allocated pitched device memory<br>pitch - Pitch for allocation<br>width - Requested pitched allocation width (in bytes)<br>height - Requested pitched allocation height</p>
-</blockquote>
-<blockquote>
-<p>cudaError_t cudaMemcpy2D	(	void * 	dst,<br>size_t 	dpitch,<br>const void * 	src,<br>size_t 	spitch,<br>size_t 	width,<br>size_t 	height,<br>enum cudaMemcpyKind 	kind	<br>)	</p>
-</blockquote>
-<blockquote>
-<p>Parameters:<br>dst 	- Destination memory address<br>dpitch 	- Pitch of destination memory<br>src 	- Source memory address<br>spitch 	- Pitch of source memory<br>width 	- Width of matrix transfer (columns in bytes)<br>height 	- Height of matrix transfer (rows)<br>kind 	- Type of transfer</p>
-</blockquote>
-<pre><code>`The spitch is different when cudaMemcpyKind is different`
-
-#include&lt;stdio.h&gt;
-#include&lt;cuda.h&gt;
-#include&lt;cuda_runtime.h&gt;
-#include&lt;device_launch_parameters.h&gt;
-#include&lt;conio.h&gt;
-
-#define BLOCKSIZE_x 16
-#define BLOCKSIZE_y 16
-
-#define Nrows 3
-#define Ncols 5
-
-/*****************/
-/* CUDA MEMCHECK */
-/*****************/
-#define gpuErrchk(ans) &#123; gpuAssert((ans), __FILE__, __LINE__); &#125;
-
-inline void gpuAssert(cudaError_t code, char *file, int line, bool abort = true)
-&#123;
-    if (code != cudaSuccess)
-    &#123;
-        fprintf(stderr, &quot;GPUassert: %s %s %dn&quot;, cudaGetErrorString(code), file, line);
-        if (abort) &#123; getch(); exit(code); &#125;
-    &#125;
-&#125;
-
-/*******************/
-/* iDivUp FUNCTION */
-/*******************/
-int iDivUp(int hostPtr, int b)&#123; return ((hostPtr % b) != 0) ? (hostPtr / b + 1) : (hostPtr / b); &#125;
-
-/******************/
-/* TEST KERNEL 2D */
-/******************/
-__global__ void test_kernel_2D(float *devPtr, size_t pitch)
-&#123;
-    int    tidx = blockIdx.x*blockDim.x + threadIdx.x;
-    int    tidy = blockIdx.y*blockDim.y + threadIdx.y;
-
-    if ((tidx &lt; Ncols) &amp;&amp; (tidy &lt; Nrows))
-    &#123;
-        float *row_a = (float *)((char*)devPtr + tidy * pitch);
-        row_a[tidx] = row_a[tidx] * tidx * tidy;
-    &#125;
-&#125;
-
-/********/
-/* MAIN */
-/********/
-int main()
-&#123;
-    float hostPtr[Nrows][Ncols];
-    float *devPtr;
-    size_t pitch;
-
-    for (int i = 0; i &lt; Nrows; i++)
-        for (int j = 0; j &lt; Ncols; j++) &#123;
-            hostPtr[i][j] = 1.f;
-            //printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
-        &#125;
-
-    // --- 2D pitched allocation and host-&gt;device memcopy
-    gpuErrchk(cudaMallocPitch(&amp;devPtr, &amp;pitch, Ncols * sizeof(float), Nrows));
-    gpuErrchk(cudaMemcpy2D(devPtr, pitch, hostPtr, Ncols*sizeof(float), Ncols*sizeof(float), Nrows, cudaMemcpyHostToDevice));
-
-    dim3 gridSize(iDivUp(Ncols, BLOCKSIZE_x), iDivUp(Nrows, BLOCKSIZE_y));
-    dim3 blockSize(BLOCKSIZE_y, BLOCKSIZE_x);
-
-    test_kernel_2D &lt;&lt; &lt;gridSize, blockSize &gt;&gt; &gt;(devPtr, pitch);
-    gpuErrchk(cudaPeekAtLastError());
-    gpuErrchk(cudaDeviceSynchronize());
-
-    gpuErrchk(cudaMemcpy2D(hostPtr, Ncols * sizeof(float), devPtr, pitch, Ncols * sizeof(float), Nrows, cudaMemcpyDeviceToHost));
-
-    for (int i = 0; i &lt; Nrows; i++) 
-        for (int j = 0; j &lt; Ncols; j++) 
-            printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
-
-    return 0;    
-&#125;
-</code></pre>
-]]></content>
-      <tags>
-        <tag>cuda</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>emotion_behind_your_money_habits</title>
     <url>/2021/12/24/emotion-behind-your-money-habits/</url>
     <content><![CDATA[<blockquote>
@@ -1343,16 +1343,6 @@ int main()
 ]]></content>
       <tags>
         <tag>ted</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>equilibria</title>
-    <url>/2022/02/08/equilibria/</url>
-    <content><![CDATA[<p><img src="/images/game01.png"> </p>
-<p>举个例子吧如图所示：首先固定1<br>1选择C–&gt; 2最好选择C(-5&gt;-15)，<br>画上蓝色线条<br>1选择N–&gt; 2最好选择C(0&gt;-1)，画上蓝色线条<br>接下来固定2<br>2选择C–&gt; 1最好选择C(-5&gt;-15)，画上红色线条<br>2选择N–&gt; 1最好选择C(0&gt;-1)，画上红色线条得纯策略纳什均衡(-5,-5)</p>
-]]></content>
-      <tags>
-        <tag>game</tag>
       </tags>
   </entry>
   <entry>
@@ -1367,6 +1357,16 @@ int main()
 ]]></content>
       <tags>
         <tag>-algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>equilibria</title>
+    <url>/2022/02/08/equilibria/</url>
+    <content><![CDATA[<p><img src="/images/game01.png"> </p>
+<p>举个例子吧如图所示：首先固定1<br>1选择C–&gt; 2最好选择C(-5&gt;-15)，<br>画上蓝色线条<br>1选择N–&gt; 2最好选择C(0&gt;-1)，画上蓝色线条<br>接下来固定2<br>2选择C–&gt; 1最好选择C(-5&gt;-15)，画上红色线条<br>2选择N–&gt; 1最好选择C(0&gt;-1)，画上红色线条得纯策略纳什均衡(-5,-5)</p>
+]]></content>
+      <tags>
+        <tag>game</tag>
       </tags>
   </entry>
   <entry>
@@ -1421,6 +1421,15 @@ int main()
 ]]></content>
       <tags>
         <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>likeihood</title>
+    <url>/2021/12/17/likeihood/</url>
+    <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
+]]></content>
+      <tags>
+        <tag>likelihood</tag>
       </tags>
   </entry>
   <entry>
@@ -1510,33 +1519,8 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>likeihood</title>
-    <url>/2021/12/17/likeihood/</url>
-    <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
-]]></content>
-      <tags>
-        <tag>likelihood</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>list必须用自己的sort</title>
-    <url>/2022/09/06/list%E5%BF%85%E9%A1%BB%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84sort/</url>
-    <content><![CDATA[<h2 id="list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定"><a href="#list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定" class="headerlink" title="list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定"></a>list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定</h2><p><img src="/images/2022-09-06-14-01-14.png"></p>
-<ul>
-<li>list因为链表结构，不能随机访问，因此不能使用全局的sort，全局sort涉及到对iterator的随机访问</li>
-</ul>
-<h2 id="函数模板流程，先判断是stone，之后调用stone的重载符号-gt"><a href="#函数模板流程，先判断是stone，之后调用stone的重载符号-gt" class="headerlink" title="函数模板流程，先判断是stone，之后调用stone的重载符号&gt;"></a>函数模板流程，先判断是stone，之后调用stone的重载符号&gt;</h2><ul>
-<li>作用在左边的变量中，这里就是 b._weight &gt; rsh(a)._weight</li>
-</ul>
-<p><img src="/images/2022-09-06-14-17-28.png"></p>
-]]></content>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>lltm梯度</title>
-    <url>/2023/02/01/lltm%E6%A2%AF%E5%BA%A6/</url>
+    <url>/2023/02/21/lltm%E6%A2%AF%E5%BA%A6/</url>
     <content><![CDATA[<ul>
 <li>前向传播</li>
 </ul>
@@ -1635,23 +1619,16 @@ std::vector&lt;torch::Tensor&gt; lltm_backward(
       </tags>
   </entry>
   <entry>
-    <title>makefile</title>
-    <url>/2022/07/26/makefile/</url>
-    <content><![CDATA[<h1 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h1><p>目标: 依赖<br>tab  命令</p>
-<pre><code>a:b c
-    @echo &quot;hello world&quot;
-b:
-    @echo &quot;hello b&quot;
-c:
-    @echo &quot;hello c&quot;
-</code></pre>
-<blockquote>
-<p>output</p>
-</blockquote>
-<pre><code>hello b
-hello c
-hello world
-</code></pre>
+    <title>list必须用自己的sort</title>
+    <url>/2022/09/06/list%E5%BF%85%E9%A1%BB%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84sort/</url>
+    <content><![CDATA[<h2 id="list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定"><a href="#list-是object-orientated-programming-的典范，把数据（data）和-方法（method）绑定" class="headerlink" title="list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定"></a>list 是object orientated programming 的典范，把数据（data）和 方法（method）绑定</h2><p><img src="/images/2022-09-06-14-01-14.png"></p>
+<ul>
+<li>list因为链表结构，不能随机访问，因此不能使用全局的sort，全局sort涉及到对iterator的随机访问</li>
+</ul>
+<h2 id="函数模板流程，先判断是stone，之后调用stone的重载符号-gt"><a href="#函数模板流程，先判断是stone，之后调用stone的重载符号-gt" class="headerlink" title="函数模板流程，先判断是stone，之后调用stone的重载符号&gt;"></a>函数模板流程，先判断是stone，之后调用stone的重载符号&gt;</h2><ul>
+<li>作用在左边的变量中，这里就是 b._weight &gt; rsh(a)._weight</li>
+</ul>
+<p><img src="/images/2022-09-06-14-17-28.png"></p>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -1676,9 +1653,23 @@ hello world
       </tags>
   </entry>
   <entry>
-    <title>p19-namespace</title>
-    <url>/2022/06/16/namespace/</url>
-    <content><![CDATA[<h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
+    <title>makefile</title>
+    <url>/2022/07/26/makefile/</url>
+    <content><![CDATA[<h1 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h1><p>目标: 依赖<br>tab  命令</p>
+<pre><code>a:b c
+    @echo &quot;hello world&quot;
+b:
+    @echo &quot;hello b&quot;
+c:
+    @echo &quot;hello c&quot;
+</code></pre>
+<blockquote>
+<p>output</p>
+</blockquote>
+<pre><code>hello b
+hello c
+hello world
+</code></pre>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -1691,6 +1682,15 @@ hello world
 <blockquote>
 <p>想法：双重推理，首先构建一个建筑语义分割的算法来获得建筑（0-1），之后通过图生成算法，输入为用户指定出的点和分割出来的图片</p>
 </blockquote>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>p19-namespace</title>
+    <url>/2022/06/16/namespace/</url>
+    <content><![CDATA[<h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
 ]]></content>
       <tags>
         <tag>c++</tag>
@@ -1735,6 +1735,66 @@ hello world
 ]]></content>
       <tags>
         <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>other和others</title>
+    <url>/2022/06/21/other%E5%92%8Cothers/</url>
+    <content><![CDATA[<h2 id="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-x3D-other-复数名词。others通常为代词"><a href="#other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-x3D-other-复数名词。others通常为代词" class="headerlink" title="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others&#x3D;other+复数名词。others通常为代词"></a>other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others&#x3D;other+复数名词。others通常为代词</h2><blockquote>
+<p>He never thinks of <code>others</code>. 他从来不为别人着想。</p>
+</blockquote>
+<blockquote>
+<p>I don’t like these books. Show me some others. 我不喜欢这些书，再拿一些给我看。</p>
+</blockquote>
+<p>第一句中的others&#x3D;other people，意为“其他人”“别人”，泛指其他所有人；第二句中的others&#x3D;other books，意为“其他的书”。</p>
+<p>但是，若要表示确指意义，我们就在other和others前面使用定冠词，同样地，other后可以修饰名词，而others后不能再接名词，两者的关系仍然存在the others&#x3D;the other+复数名词。如：</p>
+<blockquote>
+<p>I started last in the race but I soon caught up with the others. 我在赛跑中最后一个起跑，但不久就赶上了其他人。</p>
+</blockquote>
+<p>句中的the others&#x3D;the other people，意为“其他人”，其中的定冠词特指参加赛跑的所有其他人。</p>
+<blockquote>
+<p>注意：the other后除接复数名词外，还可以接单数名词，此时不能用the others代替。如：</p>
+</blockquote>
+<p>This seat is free; the other seat is taken. 这个座位空着，那个座位有人。</p>
+<h2 id="常用惯用表达"><a href="#常用惯用表达" class="headerlink" title="常用惯用表达"></a>常用惯用表达</h2><p>①<code>one...the other</code>表示“(两者中的)一个……另一个……”。如：</p>
+<p>What I say goes in at one ear and out at the other. 我说话他是一只耳朵进，另一只耳朵出。</p>
+<p>②<code>one...the others</code>表示“(好几个中的)一个……其余都……”。如：</p>
+<p>Of their five children, one is in China and the others are abroad. 他们有五个小孩，一个在中国，其余的都在国外。</p>
+<p>注：若为三者，想要表示“一个……另一个……剩下的一个……”，可用one…another…the other [the third…]；若为四者，可用one…another…another [a third]…the other [the fourth, the last]。</p>
+<p>③<code>some...the others</code>表示“一些……其他一些的……”。如：</p>
+<p>The search party was divided into two groups. Some went to the right, the others went to the left. 搜寻小组一分为二，一部分向右，另一部分人向左。</p>
+<p>④<code>some…others</code>表示“有的……有的……”。如：</p>
+<p>Some people build while others destroy. 有些人建设而另一些人则破坏。</p>
+<p>注：该结构也可说成some…some。如：</p>
+<p>Some of us agree, some disagree. 我们有些人同意，有些人不同意。</p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>p22Member-Template</title>
+    <url>/2022/06/17/p22Member-Template/</url>
+    <content><![CDATA[<h2 id="模版内还有模版，一般用于构造函数中，"><a href="#模版内还有模版，一般用于构造函数中，" class="headerlink" title="模版内还有模版，一般用于构造函数中，"></a>模版内还有模版，一般用于构造函数中，</h2><ul>
+<li>把草鱼和麻雀用于对鱼类和鸟类的初始化（作为构造函数传入）</li>
+<li>这里的T1 first 能成功，是因为first是草鱼，是继承了鱼这个类的,也叫up-cast</li>
+</ul>
+<pre><code>// for smart pointer
+template&lt;class _Tp&gt;
+class shared_pte:public _shared_ptr&lt;_Tp&gt;&#123;
+
+    ...
+    template&lt;class _Tp1&gt;
+    explicit shared_ptr(const _Tp1* _p):_shared_ptr&lt;_Tp&gt;(_p)&#123;&#125;
+&#125;
+shared_ptr&lt;Base1&gt;sptr(new Derived1);
+</code></pre>
+<ul>
+<li>为了让构造函数更有弹性<br><img src="/images/member-template.png"></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1786,89 +1846,25 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
       </tags>
   </entry>
   <entry>
-    <title>p22Member-Template</title>
-    <url>/2022/06/17/p22Member-Template/</url>
-    <content><![CDATA[<h2 id="模版内还有模版，一般用于构造函数中，"><a href="#模版内还有模版，一般用于构造函数中，" class="headerlink" title="模版内还有模版，一般用于构造函数中，"></a>模版内还有模版，一般用于构造函数中，</h2><ul>
-<li>把草鱼和麻雀用于对鱼类和鸟类的初始化（作为构造函数传入）</li>
-<li>这里的T1 first 能成功，是因为first是草鱼，是继承了鱼这个类的,也叫up-cast</li>
-</ul>
-<pre><code>// for smart pointer
-template&lt;class _Tp&gt;
-class shared_pte:public _shared_ptr&lt;_Tp&gt;&#123;
-
-    ...
-    template&lt;class _Tp1&gt;
-    explicit shared_ptr(const _Tp1* _p):_shared_ptr&lt;_Tp&gt;(_p)&#123;&#125;
-&#125;
-shared_ptr&lt;Base1&gt;sptr(new Derived1);
-</code></pre>
-<ul>
-<li>为了让构造函数更有弹性<br><img src="/images/member-template.png"></li>
-</ul>
+    <title>p33const</title>
+    <url>/2022/06/19/p33const/</url>
+    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
 ]]></content>
       <tags>
         <tag>c++</tag>
       </tags>
   </entry>
   <entry>
-    <title>other和others</title>
-    <url>/2022/06/21/other%E5%92%8Cothers/</url>
-    <content><![CDATA[<h2 id="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-x3D-other-复数名词。others通常为代词"><a href="#other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others-x3D-other-复数名词。others通常为代词" class="headerlink" title="other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others&#x3D;other+复数名词。others通常为代词"></a>other和others均表示不确指意义，其中other后可以修饰名词，而others后不能再接名词，两者的关系可描述为：others&#x3D;other+复数名词。others通常为代词</h2><blockquote>
-<p>He never thinks of <code>others</code>. 他从来不为别人着想。</p>
-</blockquote>
-<blockquote>
-<p>I don’t like these books. Show me some others. 我不喜欢这些书，再拿一些给我看。</p>
-</blockquote>
-<p>第一句中的others&#x3D;other people，意为“其他人”“别人”，泛指其他所有人；第二句中的others&#x3D;other books，意为“其他的书”。</p>
-<p>但是，若要表示确指意义，我们就在other和others前面使用定冠词，同样地，other后可以修饰名词，而others后不能再接名词，两者的关系仍然存在the others&#x3D;the other+复数名词。如：</p>
-<blockquote>
-<p>I started last in the race but I soon caught up with the others. 我在赛跑中最后一个起跑，但不久就赶上了其他人。</p>
-</blockquote>
-<p>句中的the others&#x3D;the other people，意为“其他人”，其中的定冠词特指参加赛跑的所有其他人。</p>
-<blockquote>
-<p>注意：the other后除接复数名词外，还可以接单数名词，此时不能用the others代替。如：</p>
-</blockquote>
-<p>This seat is free; the other seat is taken. 这个座位空着，那个座位有人。</p>
-<h2 id="常用惯用表达"><a href="#常用惯用表达" class="headerlink" title="常用惯用表达"></a>常用惯用表达</h2><p>①<code>one...the other</code>表示“(两者中的)一个……另一个……”。如：</p>
-<p>What I say goes in at one ear and out at the other. 我说话他是一只耳朵进，另一只耳朵出。</p>
-<p>②<code>one...the others</code>表示“(好几个中的)一个……其余都……”。如：</p>
-<p>Of their five children, one is in China and the others are abroad. 他们有五个小孩，一个在中国，其余的都在国外。</p>
-<p>注：若为三者，想要表示“一个……另一个……剩下的一个……”，可用one…another…the other [the third…]；若为四者，可用one…another…another [a third]…the other [the fourth, the last]。</p>
-<p>③<code>some...the others</code>表示“一些……其他一些的……”。如：</p>
-<p>The search party was divided into two groups. Some went to the right, the others went to the left. 搜寻小组一分为二，一部分向右，另一部分人向左。</p>
-<p>④<code>some…others</code>表示“有的……有的……”。如：</p>
-<p>Some people build while others destroy. 有些人建设而另一些人则破坏。</p>
-<p>注：该结构也可说成some…some。如：</p>
-<p>Some of us agree, some disagree. 我们有些人同意，有些人不同意。</p>
+    <title>probability</title>
+    <url>/2022/06/22/probability/</url>
+    <content><![CDATA[<h2 id="68-95-99"><a href="#68-95-99" class="headerlink" title="68-95-99"></a>68-95-99</h2><ul>
+<li>During one standard, it has 68% probability in it.</li>
+<li>During tow standards, it has 95% probability in it.</li>
+<li>During three standards, it has 99% probability in it.</li>
+</ul>
 ]]></content>
       <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>pronounce</title>
-    <url>/2021/11/06/pronounce/</url>
-    <content><![CDATA[
-
-	<div class="row">
-    <embed src="https://moulelin.github.io/pdf/pronounce.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-]]></content>
-      <tags>
-        <tag>pronounce</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>remote</title>
-    <url>/2022/09/27/remote/</url>
-    <content><![CDATA[<h2 id="season-change"><a href="#season-change" class="headerlink" title="season change"></a>season change</h2><p>Dear Professor.<br>Hoping this email finds you well.</p>
-<p>- </p>
-]]></content>
-      <tags>
-        <tag>remote</tag>
+        <tag>probability</tag>
       </tags>
   </entry>
   <entry>
@@ -1976,6 +1972,39 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
+    <title>robotics</title>
+    <url>/2022/10/10/robotics/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>robotics</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pronounce</title>
+    <url>/2021/11/06/pronounce/</url>
+    <content><![CDATA[
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/pronounce.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+]]></content>
+      <tags>
+        <tag>pronounce</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>self-attention</title>
+    <url>/2022/01/02/self-attention/</url>
+    <content><![CDATA[<p><img src="/images/attention.png"> </p>
+]]></content>
+      <tags>
+        <tag>attention</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>scrapy</title>
     <url>/2021/10/31/scrapy/</url>
     <content><![CDATA[<h2 id="span如果中间夹了其他的span。比如"><a href="#span如果中间夹了其他的span。比如" class="headerlink" title="span如果中间夹了其他的span。比如"></a>span如果中间夹了其他的span。比如</h2><pre><code>&lt;span&gt; &lt;span&gt;aa &lt;/span&gt; &lt;span&gt;bb &lt;/span&gt;cc&lt;/span&gt;
@@ -1989,44 +2018,13 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
-    <title>robotics</title>
-    <url>/2022/10/10/robotics/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>robotics</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>self-attention</title>
-    <url>/2022/01/02/self-attention/</url>
-    <content><![CDATA[<p><img src="/images/attention.png"> </p>
+    <title>remote</title>
+    <url>/2022/09/27/remote/</url>
+    <content><![CDATA[<h2 id="season-change"><a href="#season-change" class="headerlink" title="season change"></a>season change</h2><p>Dear Professor.<br>Hoping this email finds you well.</p>
+<p>- </p>
 ]]></content>
       <tags>
-        <tag>attention</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>probability</title>
-    <url>/2022/06/22/probability/</url>
-    <content><![CDATA[<h2 id="68-95-99"><a href="#68-95-99" class="headerlink" title="68-95-99"></a>68-95-99</h2><ul>
-<li>During one standard, it has 68% probability in it.</li>
-<li>During tow standards, it has 95% probability in it.</li>
-<li>During three standards, it has 99% probability in it.</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>probability</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>shardptrCirculate</title>
-    <url>/2022/03/04/shardptrCirculate/</url>
-    <content><![CDATA[<blockquote>
-<p>定义对象用强智能指针，引用对象的时候用弱智能指针<br><img src="/images/shardptrcirculate.png">  </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>C++</tag>
+        <tag>remote</tag>
       </tags>
   </entry>
   <entry>
@@ -2039,19 +2037,6 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
-    <title>sparse</title>
-    <url>/2022/07/02/sparse/</url>
-    <content><![CDATA[<h1 id="How-to-prune-in-MLP"><a href="#How-to-prune-in-MLP" class="headerlink" title="How to prune in MLP?"></a>How to prune in MLP?</h1><p><img src="/images/2022-07-04-01-57-10.png"></p>
-<ul>
-<li>sets the connection weight whose lower than threshold as 0<br><img src="/images/2022-07-04-02-03-25.png"></li>
-</ul>
-<h1 id="Prune-for-CNN"><a href="#Prune-for-CNN" class="headerlink" title="Prune for CNN"></a>Prune for CNN</h1><p><img src="/images/2022-07-04-02-16-55.png"></p>
-]]></content>
-      <tags>
-        <tag>sparse</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>smartpointer</title>
     <url>/2022/03/04/smartpointer/</url>
     <content><![CDATA[<p><img src="/images/smartPointer.png"> </p>
@@ -2061,12 +2046,14 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
       </tags>
   </entry>
   <entry>
-    <title>p33const</title>
-    <url>/2022/06/19/p33const/</url>
-    <content><![CDATA[<h1 id="const-规则"><a href="#const-规则" class="headerlink" title="const 规则"></a>const 规则</h1><p><img src="/images/const.png"></p>
+    <title>shardptrCirculate</title>
+    <url>/2022/03/04/shardptrCirculate/</url>
+    <content><![CDATA[<blockquote>
+<p>定义对象用强智能指针，引用对象的时候用弱智能指针<br><img src="/images/shardptrcirculate.png">  </p>
+</blockquote>
 ]]></content>
       <tags>
-        <tag>c++</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -2192,6 +2179,19 @@ A&lt;string*&gt; b;
 ]]></content>
       <tags>
         <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sparse</title>
+    <url>/2022/07/02/sparse/</url>
+    <content><![CDATA[<h1 id="How-to-prune-in-MLP"><a href="#How-to-prune-in-MLP" class="headerlink" title="How to prune in MLP?"></a>How to prune in MLP?</h1><p><img src="/images/2022-07-04-01-57-10.png"></p>
+<ul>
+<li>sets the connection weight whose lower than threshold as 0<br><img src="/images/2022-07-04-02-03-25.png"></li>
+</ul>
+<h1 id="Prune-for-CNN"><a href="#Prune-for-CNN" class="headerlink" title="Prune for CNN"></a>Prune for CNN</h1><p><img src="/images/2022-07-04-02-16-55.png"></p>
+]]></content>
+      <tags>
+        <tag>sparse</tag>
       </tags>
   </entry>
   <entry>
@@ -2335,21 +2335,21 @@ private:
       </tags>
   </entry>
   <entry>
-    <title>to+do+or+doing</title>
-    <url>/2021/12/12/to-do-or-doing/</url>
-    <content><![CDATA[<p><img src="/images/todo.png"> </p>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>transformer</title>
     <url>/2022/01/02/transformer/</url>
     <content><![CDATA[<p><img src="/images/transformer.png"> </p>
 ]]></content>
       <tags>
         <tag>transformer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>to+do+or+doing</title>
+    <url>/2021/12/12/to-do-or-doing/</url>
+    <content><![CDATA[<p><img src="/images/todo.png"> </p>
+]]></content>
+      <tags>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -2580,6 +2580,15 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
       </tags>
   </entry>
   <entry>
+    <title>word2vec</title>
+    <url>/2022/01/04/word2vec/</url>
+    <content><![CDATA[<p><img src="/images/word2vec.png"> </p>
+]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>whom</title>
     <url>/2022/06/15/whom/</url>
     <content><![CDATA[<h2 id="What’s-different-between-who-and-whom"><a href="#What’s-different-between-who-and-whom" class="headerlink" title="What’s different between who and whom"></a>What’s different between who and whom</h2><blockquote>
@@ -2635,86 +2644,6 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
 ]]></content>
       <tags>
         <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>word2vec</title>
-    <url>/2022/01/04/word2vec/</url>
-    <content><![CDATA[<p><img src="/images/word2vec.png"> </p>
-]]></content>
-      <tags>
-        <tag>NLP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>主语从句</title>
-    <url>/2022/08/24/%E4%B8%BB%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
-    <content><![CDATA[<h2 id="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"><a href="#主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾" class="headerlink" title="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"></a>主语从句：<strong>在句子中担当主语的是一个从句</strong>，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾</h2><blockquote>
-<p>主语从句使用陈述语序，其通常结构为“引导词 + 主语 + 谓语 + 其他成分”；</p>
-</blockquote>
-<ol>
-<li><p>that</p>
-<ul>
-<li>That you are coming to London is the best news(定从，做从句宾语可以省略) I have heard this long time.<blockquote>
-<p>一般来说会用形式主语it来代替主语，真正的主语放后面</p>
-</blockquote>
-</li>
-<li>It is the best news I have heard this long time that you are coming to London</li>
-</ul>
-</li>
-<li><p>whether引导</p>
-<ul>
-<li>Whether they would support us was a problem</li>
-<li>However, whether such a sense of fairness evolved independently in capuchins and humans, or whether it stems from the common ancestor that the species had 35 million years ago, is, as yet, an unanswered question<ul>
-<li>whether引导的两个并列主语从句做is的主语</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>连接代词引导</p>
-<blockquote>
-<p>例句：Whoever is top from wins the game when two matched players meet. 两强相争勇者胜。</p>
-</blockquote>
-</li>
-<li><p>连接副词引导</p>
-<blockquote>
-<p>例句：How this happended is not clear to anyone. 这件事怎样发生的，谁也不清楚。</p>
-</blockquote>
-</li>
-<li><p>关系代词型what引导</p>
-<blockquote>
-<p>例句：What struck me was that they have all suffered a lot. 给我很深印象的是他们都受过很多苦。</p>
-</blockquote>
-</li>
-</ol>
-<h2 id="二、主语从句与形式主语it"><a href="#二、主语从句与形式主语it" class="headerlink" title="二、主语从句与形式主语it"></a>二、主语从句与形式主语it</h2><ol>
-<li>对于以连词that引导的主语从句，通常用形式主语代主语从句：</li>
-</ol>
-<p>例句：That they should refuse to sign the petition required great courage. 他们拒绝在请愿书上签字这是需要很大勇气的。</p>
-<ol start="2">
-<li>对于以连接代词(副词)引导的主语从句，可以使用形式主语代主语从句，也可直接在句首使用主语从句：</li>
-</ol>
-<p>例句：Whether they would support us was a problem. 他们是否会支持我们还是一个问题。</p>
-<ol start="3">
-<li>对关系代词型what引导的主语从句，通常直接将主语从句放在句首。</li>
-</ol>
-<p>例句：What I want to know is this. 我想知道的就是这一点。</p>
-<p>有时也可将助用形式主语。</p>
-<p>例句：It is clear enough what he meant. 他是什么意思很清楚。</p>
-<ol start="4">
-<li>如果句子是疑问句，则必须用带形式主语it的结构：</li>
-</ol>
-<p>例句：Is it true that he is the girl’s father? 他是那女孩的父亲，是真的吗?</p>
-<h2 id="三、连词that的省略问题"><a href="#三、连词that的省略问题" class="headerlink" title="三、连词that的省略问题"></a>三、连词that的省略问题</h2><blockquote>
-<p>引导主语从句的连词that 有时可省，有时不能省，其原则是：若that引导的主语从句直接位于句首，则that不能省略；若that引导的主语从句位于句末，而在句首使用了形式主语it，则that可以省略：</p>
-</blockquote>
-<pre><code>&gt; 例句：That you didn’t go to the talk was a pity. 很遗憾你没去听报告。(that不可省)
-
-&gt; 例句：It was a pity (that) you didn’t go to the talk. 很遗憾你没去听报告。(that可省)
-</code></pre>
-]]></content>
-      <tags>
-        <tag>Enlish</tag>
       </tags>
   </entry>
   <entry>
@@ -2799,6 +2728,77 @@ int main(int argc, const char * argv[]) &#123;
 ]]></content>
       <tags>
         <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>主语从句</title>
+    <url>/2022/08/24/%E4%B8%BB%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
+    <content><![CDATA[<h2 id="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"><a href="#主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾" class="headerlink" title="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"></a>主语从句：<strong>在句子中担当主语的是一个从句</strong>，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾</h2><blockquote>
+<p>主语从句使用陈述语序，其通常结构为“引导词 + 主语 + 谓语 + 其他成分”；</p>
+</blockquote>
+<ol>
+<li><p>that</p>
+<ul>
+<li>That you are coming to London is the best news(定从，做从句宾语可以省略) I have heard this long time.<blockquote>
+<p>一般来说会用形式主语it来代替主语，真正的主语放后面</p>
+</blockquote>
+</li>
+<li>It is the best news I have heard this long time that you are coming to London</li>
+</ul>
+</li>
+<li><p>whether引导</p>
+<ul>
+<li>Whether they would support us was a problem</li>
+<li>However, whether such a sense of fairness evolved independently in capuchins and humans, or whether it stems from the common ancestor that the species had 35 million years ago, is, as yet, an unanswered question<ul>
+<li>whether引导的两个并列主语从句做is的主语</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>连接代词引导</p>
+<blockquote>
+<p>例句：Whoever is top from wins the game when two matched players meet. 两强相争勇者胜。</p>
+</blockquote>
+</li>
+<li><p>连接副词引导</p>
+<blockquote>
+<p>例句：How this happended is not clear to anyone. 这件事怎样发生的，谁也不清楚。</p>
+</blockquote>
+</li>
+<li><p>关系代词型what引导</p>
+<blockquote>
+<p>例句：What struck me was that they have all suffered a lot. 给我很深印象的是他们都受过很多苦。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="二、主语从句与形式主语it"><a href="#二、主语从句与形式主语it" class="headerlink" title="二、主语从句与形式主语it"></a>二、主语从句与形式主语it</h2><ol>
+<li>对于以连词that引导的主语从句，通常用形式主语代主语从句：</li>
+</ol>
+<p>例句：That they should refuse to sign the petition required great courage. 他们拒绝在请愿书上签字这是需要很大勇气的。</p>
+<ol start="2">
+<li>对于以连接代词(副词)引导的主语从句，可以使用形式主语代主语从句，也可直接在句首使用主语从句：</li>
+</ol>
+<p>例句：Whether they would support us was a problem. 他们是否会支持我们还是一个问题。</p>
+<ol start="3">
+<li>对关系代词型what引导的主语从句，通常直接将主语从句放在句首。</li>
+</ol>
+<p>例句：What I want to know is this. 我想知道的就是这一点。</p>
+<p>有时也可将助用形式主语。</p>
+<p>例句：It is clear enough what he meant. 他是什么意思很清楚。</p>
+<ol start="4">
+<li>如果句子是疑问句，则必须用带形式主语it的结构：</li>
+</ol>
+<p>例句：Is it true that he is the girl’s father? 他是那女孩的父亲，是真的吗?</p>
+<h2 id="三、连词that的省略问题"><a href="#三、连词that的省略问题" class="headerlink" title="三、连词that的省略问题"></a>三、连词that的省略问题</h2><blockquote>
+<p>引导主语从句的连词that 有时可省，有时不能省，其原则是：若that引导的主语从句直接位于句首，则that不能省略；若that引导的主语从句位于句末，而在句首使用了形式主语it，则that可以省略：</p>
+</blockquote>
+<pre><code>&gt; 例句：That you didn’t go to the talk was a pity. 很遗憾你没去听报告。(that不可省)
+
+&gt; 例句：It was a pity (that) you didn’t go to the talk. 很遗憾你没去听报告。(that可省)
+</code></pre>
+]]></content>
+      <tags>
+        <tag>Enlish</tag>
       </tags>
   </entry>
   <entry>
@@ -3076,6 +3076,70 @@ aaa
       </tags>
   </entry>
   <entry>
+    <title>宾语从句</title>
+    <url>/2022/08/21/%E5%AE%BE%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
+    <content><![CDATA[<h1 id="宾语从句（objective-clause）"><a href="#宾语从句（objective-clause）" class="headerlink" title="宾语从句（objective clause）"></a>宾语从句（objective clause）</h1><p>that引导的宾语从句作动词或某些形容词的宾语时，that在口语和非正式文体中可以省略，并且是经常省略。<br><img src="/images/2022-08-21-17-29-44.png"></p>
+<h2 id="下面这些情况下that是不能省略的"><a href="#下面这些情况下that是不能省略的" class="headerlink" title="下面这些情况下that是不能省略的"></a>下面这些情况下that是不能省略的</h2><ol>
+<li><p>that引导的宾语从句作动词的宾语时，如果动词的后面有几个并列that引导的宾语从句，这时只有紧挨着动词的第一个that可以省略，其他的that都不可以省略。比如：<br><img src="/images/2022-08-21-17-30-29.png"></p>
+</li>
+<li><p>当为了强调把that引导的宾语从句可位于句首时，that不能省略。如：</p>
+<ul>
+<li><blockquote>
+<p>That she is a good girl I know. 她是一个好姑娘，我是知道的。</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>That he ever said such a thing I simply don’t believe. 我简直不相信他曾说过这样的话。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>当that从句与动词被其他词或从句隔开时，that一般不宜省略，以免造成语义混乱。如：</p>
+<ul>
+<li><blockquote>
+<p>They told us once again that the situation was serious.他们又一次告诉我们说形势是严重的。</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>The dealer told me how much he was prepared to pay for my car and that I could have the money without delay. 那个商人告诉我他准备出多少钱买我的汽车，并说我会立即收到款。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>动词后面如果接的是复合宾语，即宾语+宾补的结构，宾语是一个由that引导的宾语从句，这时候要用it做形式宾语来替代宾语从句，而把这个宾语从句放在句子后面，这时候that不能省略。比如：<br><img src="/images/2022-08-21-17-38-41.png"></p>
+</li>
+<li><p>that引导的宾语从句作一些介词的宾语，这些介词有：except、but、 in，that不能省略。这里需要知道的是除了这几个介词，that引导的宾语从句一般不作介词的宾语。比如：<br><img src="/images/2022-08-21-17-39-00.png"></p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>按位与替换取余操作</title>
+    <url>/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<blockquote>
+<p>由于我们知道位运算比较高效，在某些情况下，当b为2的n次方时，有如下替换公式：</p>
+</blockquote>
+<blockquote>
+<p><code>a % b = a &amp; (b-1)</code></p>
+</blockquote>
+<h2 id="notes"><a href="#notes" class="headerlink" title="notes:"></a>notes:</h2><ul>
+<li>b必须为2的整数倍<blockquote>
+<p>因为可以保证b始终只有最高位为1，其他二进制位全部为0，减去1，之后，可以把高位1消除，其他位都为1。<br><code>减一之后，最高位为0，之后都为1（b,b剩下的数就是需要的余数的最高值），就相当于计算低位与原数的与</code></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>例如：14%8，取余数，相当于取出低位，而余数最大为7，14二进制为1110，8的二进制1000，8-1 &#x3D; 7的二进制为0111，由于现在低位全为1，让其跟14做&amp;运算，正好取出的是其低位上的余数 </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>mathematics</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>定语从句省略</title>
     <url>/2022/08/21/%E5%AE%9A%E8%AF%AD%E4%BB%8E%E5%8F%A5%E7%9C%81%E7%95%A5/</url>
     <content><![CDATA[<ul>
@@ -3134,47 +3198,6 @@ aaa
       </tags>
   </entry>
   <entry>
-    <title>宾语从句</title>
-    <url>/2022/08/21/%E5%AE%BE%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
-    <content><![CDATA[<h1 id="宾语从句（objective-clause）"><a href="#宾语从句（objective-clause）" class="headerlink" title="宾语从句（objective clause）"></a>宾语从句（objective clause）</h1><p>that引导的宾语从句作动词或某些形容词的宾语时，that在口语和非正式文体中可以省略，并且是经常省略。<br><img src="/images/2022-08-21-17-29-44.png"></p>
-<h2 id="下面这些情况下that是不能省略的"><a href="#下面这些情况下that是不能省略的" class="headerlink" title="下面这些情况下that是不能省略的"></a>下面这些情况下that是不能省略的</h2><ol>
-<li><p>that引导的宾语从句作动词的宾语时，如果动词的后面有几个并列that引导的宾语从句，这时只有紧挨着动词的第一个that可以省略，其他的that都不可以省略。比如：<br><img src="/images/2022-08-21-17-30-29.png"></p>
-</li>
-<li><p>当为了强调把that引导的宾语从句可位于句首时，that不能省略。如：</p>
-<ul>
-<li><blockquote>
-<p>That she is a good girl I know. 她是一个好姑娘，我是知道的。</p>
-</blockquote>
-</li>
-<li><blockquote>
-<p>That he ever said such a thing I simply don’t believe. 我简直不相信他曾说过这样的话。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>当that从句与动词被其他词或从句隔开时，that一般不宜省略，以免造成语义混乱。如：</p>
-<ul>
-<li><blockquote>
-<p>They told us once again that the situation was serious.他们又一次告诉我们说形势是严重的。</p>
-</blockquote>
-</li>
-<li><blockquote>
-<p>The dealer told me how much he was prepared to pay for my car and that I could have the money without delay. 那个商人告诉我他准备出多少钱买我的汽车，并说我会立即收到款。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>动词后面如果接的是复合宾语，即宾语+宾补的结构，宾语是一个由that引导的宾语从句，这时候要用it做形式宾语来替代宾语从句，而把这个宾语从句放在句子后面，这时候that不能省略。比如：<br><img src="/images/2022-08-21-17-38-41.png"></p>
-</li>
-<li><p>that引导的宾语从句作一些介词的宾语，这些介词有：except、but、 in，that不能省略。这里需要知道的是除了这几个介词，that引导的宾语从句一般不作介词的宾语。比如：<br><img src="/images/2022-08-21-17-39-00.png"></p>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>宾语补足语</title>
     <url>/2022/08/22/%E5%AE%BE%E8%AF%AD%E8%A1%A5%E8%B6%B3%E8%AF%AD/</url>
     <content><![CDATA[<h1 id="有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语"><a href="#有时候动词后面会跟着多个名词或其他词，尤其是动-名-名不太好理解，这里就是宾语补足语" class="headerlink" title="有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语"></a>有时候动词后面会跟着多个名词或其他词，尤其是动+名+名不太好理解，这里就是宾语补足语</h1><ul>
@@ -3189,38 +3212,6 @@ aaa
 ]]></content>
       <tags>
         <tag>English</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>按位与替换取余操作</title>
-    <url>/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<blockquote>
-<p>由于我们知道位运算比较高效，在某些情况下，当b为2的n次方时，有如下替换公式：</p>
-</blockquote>
-<blockquote>
-<p><code>a % b = a &amp; (b-1)</code></p>
-</blockquote>
-<h2 id="notes"><a href="#notes" class="headerlink" title="notes:"></a>notes:</h2><ul>
-<li>b必须为2的整数倍<blockquote>
-<p>因为可以保证b始终只有最高位为1，其他二进制位全部为0，减去1，之后，可以把高位1消除，其他位都为1。<br><code>减一之后，最高位为0，之后都为1（b,b剩下的数就是需要的余数的最高值），就相当于计算低位与原数的与</code></p>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p>例如：14%8，取余数，相当于取出低位，而余数最大为7，14二进制为1110，8的二进制1000，8-1 &#x3D; 7的二进制为0111，由于现在低位全为1，让其跟14做&amp;运算，正好取出的是其低位上的余数 </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>mathematics</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>期望和方差</title>
-    <url>/2022/05/21/%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE/</url>
-    <content><![CDATA[<p><img src="/images/expectAndvariance.png"> </p>
-]]></content>
-      <tags>
-        <tag>math</tag>
       </tags>
   </entry>
   <entry>
@@ -3333,6 +3324,15 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>期望和方差</title>
+    <url>/2022/05/21/%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE/</url>
+    <content><![CDATA[<p><img src="/images/expectAndvariance.png"> </p>
+]]></content>
+      <tags>
+        <tag>math</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>正向先行断言</title>
     <url>/2023/01/03/%E6%AD%A3%E5%90%91%E5%85%88%E8%A1%8C%E6%96%AD%E8%A8%80/</url>
     <content><![CDATA[<h3 id="x3D-A-Z-x3D-a-z-x3D-amp"><a href="#x3D-A-Z-x3D-a-z-x3D-amp" class="headerlink" title="(?&#x3D;.?[A-Z]+)(?&#x3D;.?[a-z])(?&#x3D;.[!@#$%^&amp;?()])"></a>(?&#x3D;.<em>?[A-Z]+)(?&#x3D;.</em>?[a-z])(?&#x3D;.<em>[!@#$%^&amp;</em>?()])</h3><blockquote>
@@ -3426,26 +3426,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>矩阵旋转位移推导</title>
-    <url>/2022/11/28/%E7%9F%A9%E9%98%B5%E6%97%8B%E8%BD%AC%E4%BD%8D%E7%A7%BB%E6%8E%A8%E5%AF%BC/</url>
-    <content><![CDATA[<h2 id="1-怎么推导坐标位移和旋转"><a href="#1-怎么推导坐标位移和旋转" class="headerlink" title="1. 怎么推导坐标位移和旋转"></a>1. 怎么推导坐标位移和旋转</h2><p>二维坐标的旋转可以通过三角公式推导</p>
-<p>我们在做几何变换的时候经常需要把某个坐标系上的所有点都进行一个旋转，这个操作就叫做刚体旋转（所有的点相对位置不变的发生旋转）。下图是一个典型的二维坐标系下刚体旋转。我们把蓝色的坐标系旋转了θ度，新坐标系就是红色的坐标系。我们现在已知一个点相对红色那个坐标系的坐标($x_{red}$, $x_{red}$ )，和已知旋转角度θ，然后我们想求得该点相对于蓝色那个坐标系的坐标($x_{blue}$,$y_{blue}$)</p>
-<p><img src="/images/2022-11-28-13-48-47.png"></p>
-<p>这个其实很简单我们利用高中学的三角几何就可以轻松解决。从上图可以发现不变量是黑色的那个线段的长度。而这个长度我们是可以根据黑色点相对红色坐标系下的坐标($x_{red}$, $x_{red}$ )算出来的。黑色线段长度为$r&#x3D;\sqrt {x_{red}^2+y_{red}^2}$</p>
-<p>然后我们可以根据紫色那个三角形计算出黑色点相对蓝色坐标系下的坐标 ($x_{blue},y_{blue}$)</p>
-<p>根据高中学的三角几何我们可以知道：<br>$<br>x_{blue}&#x3D;r*cos(\alpha+\theta) \tag{1}<br>$</p>
-<p>$<br>y_{blue}&#x3D;r*sin(\alpha+\theta) \tag{2}<br>$</p>
-<p>$\alpha$我们是不知道的。但是我们能找到一个关于它的线索。</p>
-<p>$$<br>x_{red}&#x3D;r*cos(\alpha)\\<br>y_{red}&#x3D;r*sin(\alpha)<br>$$</p>
-<p>展开（1）和 （2），可以得到如下：</p>
-<p>$$<br>\begin{align}<br>x_{blue}&amp;&#x3D;r∗cos(α+θ)&#x3D;r∗(cos(α)∗cos(θ)−sin(α)∗sin(θ))&#x3D;x_{red}∗cos(θ)−y_{red}∗sin(θ)\\<br>y_{blue}&amp;&#x3D;r∗sin(α+θ)&#x3D;r∗(sin(α)∗cos(θ)+cos(α)∗sin(θ))&#x3D;y_{red}∗cos(θ)+x_{red}∗sin(θ)<br>\end{align}<br>$$</p>
-<p><img src="/images/2022-12-02-13-39-50.png"></p>
-]]></content>
-      <tags>
-        <tag>-robotics</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>类内声明和定义</title>
     <url>/2022/03/10/%E7%B1%BB%E5%86%85%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89/</url>
     <content><![CDATA[<p>1.类内定义</p>
@@ -3465,6 +3445,26 @@ int main()
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>矩阵旋转位移推导</title>
+    <url>/2022/11/28/%E7%9F%A9%E9%98%B5%E6%97%8B%E8%BD%AC%E4%BD%8D%E7%A7%BB%E6%8E%A8%E5%AF%BC/</url>
+    <content><![CDATA[<h2 id="1-怎么推导坐标位移和旋转"><a href="#1-怎么推导坐标位移和旋转" class="headerlink" title="1. 怎么推导坐标位移和旋转"></a>1. 怎么推导坐标位移和旋转</h2><p>二维坐标的旋转可以通过三角公式推导</p>
+<p>我们在做几何变换的时候经常需要把某个坐标系上的所有点都进行一个旋转，这个操作就叫做刚体旋转（所有的点相对位置不变的发生旋转）。下图是一个典型的二维坐标系下刚体旋转。我们把蓝色的坐标系旋转了θ度，新坐标系就是红色的坐标系。我们现在已知一个点相对红色那个坐标系的坐标($x_{red}$, $x_{red}$ )，和已知旋转角度θ，然后我们想求得该点相对于蓝色那个坐标系的坐标($x_{blue}$,$y_{blue}$)</p>
+<p><img src="/images/2022-11-28-13-48-47.png"></p>
+<p>这个其实很简单我们利用高中学的三角几何就可以轻松解决。从上图可以发现不变量是黑色的那个线段的长度。而这个长度我们是可以根据黑色点相对红色坐标系下的坐标($x_{red}$, $x_{red}$ )算出来的。黑色线段长度为$r&#x3D;\sqrt {x_{red}^2+y_{red}^2}$</p>
+<p>然后我们可以根据紫色那个三角形计算出黑色点相对蓝色坐标系下的坐标 ($x_{blue},y_{blue}$)</p>
+<p>根据高中学的三角几何我们可以知道：<br>$<br>x_{blue}&#x3D;r*cos(\alpha+\theta) \tag{1}<br>$</p>
+<p>$<br>y_{blue}&#x3D;r*sin(\alpha+\theta) \tag{2}<br>$</p>
+<p>$\alpha$我们是不知道的。但是我们能找到一个关于它的线索。</p>
+<p>$$<br>x_{red}&#x3D;r*cos(\alpha)\\<br>y_{red}&#x3D;r*sin(\alpha)<br>$$</p>
+<p>展开（1）和 （2），可以得到如下：</p>
+<p>$$<br>\begin{align}<br>x_{blue}&amp;&#x3D;r∗cos(α+θ)&#x3D;r∗(cos(α)∗cos(θ)−sin(α)∗sin(θ))&#x3D;x_{red}∗cos(θ)−y_{red}∗sin(θ)\\<br>y_{blue}&amp;&#x3D;r∗sin(α+θ)&#x3D;r∗(sin(α)∗cos(θ)+cos(α)∗sin(θ))&#x3D;y_{red}∗cos(θ)+x_{red}∗sin(θ)<br>\end{align}<br>$$</p>
+<p><img src="/images/2022-12-02-13-39-50.png"></p>
+]]></content>
+      <tags>
+        <tag>-robotics</tag>
       </tags>
   </entry>
   <entry>
@@ -3505,15 +3505,6 @@ int main()
 ]]></content>
       <tags>
         <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>线性插值</title>
-    <url>/2022/08/20/%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/</url>
-    <content><![CDATA[<p><img src="/images/2022-08-28-19-14-47.png"></p>
-]]></content>
-      <tags>
-        <tag>ShiftGCN</tag>
       </tags>
   </entry>
   <entry>
@@ -3592,9 +3583,20 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>过去式</title>
-    <url>/2021/12/25/%E8%BF%87%E5%8E%BB%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="过去式变化规则"><a href="#过去式变化规则" class="headerlink" title="过去式变化规则"></a>过去式变化规则</h1><p>1）动词过去式变化规则分为规则变化和不规则变化两种，一般情况下，动词原形词尾加-ed，以不发音的-e结尾动词，动词词尾加-d，以辅音字母+y结尾的动词，把-y变为-i 再加-ed<br>2）以一个元音+一个辅音字母结尾的重读闭音节动词，双写词尾辅音字母，否则就加ed<br>preFER-&gt;preFERRed<br>VISit-&gt;VISited<br>3）不满足一个元音+一个辅音结尾 + ed<br>start-&gt;started 两个辅音结尾<br>need-&gt;needed<br>3) 一个元音+y +ed<br>stay-&gt;stayed</p>
+    <title>线性插值</title>
+    <url>/2022/08/20/%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/</url>
+    <content><![CDATA[<p><img src="/images/2022-08-28-19-14-47.png"></p>
+]]></content>
+      <tags>
+        <tag>ShiftGCN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>英语句子</title>
+    <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
+    <content><![CDATA[<blockquote>
+<p>commence—Many people have wondered why the end of someone’s school days should be celebrated by Commencement Exercises, which, ordinarily, refer to a beginning</p>
+</blockquote>
 ]]></content>
       <tags>
         <tag>English</tag>
@@ -3607,17 +3609,6 @@ int main()
 ]]></content>
       <tags>
         <tag>machine</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>英语句子</title>
-    <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
-    <content><![CDATA[<blockquote>
-<p>commence—Many people have wondered why the end of someone’s school days should be celebrated by Commencement Exercises, which, ordinarily, refer to a beginning</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -3690,6 +3681,15 @@ int main(int argc, const char * argv[]) &#123;
 <h2 id="遇到这些问题记得先画递归树"><a href="#遇到这些问题记得先画递归树" class="headerlink" title="遇到这些问题记得先画递归树"></a>遇到这些问题记得先画递归树</h2>]]></content>
       <tags>
         <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>过去式</title>
+    <url>/2021/12/25/%E8%BF%87%E5%8E%BB%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="过去式变化规则"><a href="#过去式变化规则" class="headerlink" title="过去式变化规则"></a>过去式变化规则</h1><p>1）动词过去式变化规则分为规则变化和不规则变化两种，一般情况下，动词原形词尾加-ed，以不发音的-e结尾动词，动词词尾加-d，以辅音字母+y结尾的动词，把-y变为-i 再加-ed<br>2）以一个元音+一个辅音字母结尾的重读闭音节动词，双写词尾辅音字母，否则就加ed<br>preFER-&gt;preFERRed<br>VISit-&gt;VISited<br>3）不满足一个元音+一个辅音结尾 + ed<br>start-&gt;started 两个辅音结尾<br>need-&gt;needed<br>3) 一个元音+y +ed<br>stay-&gt;stayed</p>
+]]></content>
+      <tags>
+        <tag>English</tag>
       </tags>
   </entry>
   <entry>
@@ -4116,7 +4116,7 @@ by decades 几十年
   </entry>
   <entry>
     <title>docker</title>
-    <url>/2022/09/22/docker/docker/</url>
+    <url>/2023/02/21/docker/docker/</url>
     <content><![CDATA[<h4 id="1-Docker-一些基本操作"><a href="#1-Docker-一些基本操作" class="headerlink" title="1.Docker 一些基本操作"></a>1.Docker 一些基本操作</h4><ul>
 <li><p><a href="../docker-compose">一次docker-compose配置多个镜像，如Wordpress+mysql</a></p>
 </li>

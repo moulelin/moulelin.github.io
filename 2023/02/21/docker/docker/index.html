@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Cplusplus, Moujoy">
+    <meta name="keywords" content="docker, Moujoy">
     <meta name="description" content="Do not let social standards conform you">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Cplusplus | Moujoy</title>
+    <title>docker | Moujoy</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -179,12 +179,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Cplusplus</h1>
+                    <h1 class="description center-align post-title">docker</h1>
                 </div>
             </div>
         </div>
@@ -301,8 +301,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/C/">
-                                <span class="chip bg-color">C++</span>
+                            <a href="/tags/docker/">
+                                <span class="chip bg-color">docker</span>
                             </a>
                         
                     </div>
@@ -317,7 +317,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2023-11-26
+                    2023-02-21
                 </div>
                 
 
@@ -338,31 +338,18 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <ol>
-<li><p>main 函数的参数</p>
-<ul>
-<li><p>argc 是 argument count的缩写，表示传入main函数的参数个数；</p>
+                <h4 id="1-Docker-一些基本操作"><a href="#1-Docker-一些基本操作" class="headerlink" title="1.Docker 一些基本操作"></a>1.Docker 一些基本操作</h4><ul>
+<li><p><a href="../docker-compose">一次docker-compose配置多个镜像，如Wordpress+mysql</a></p>
 </li>
-<li><p>argv 是 argument vector的缩写，表示传入main函数的参数序列或指针，并且第一个参数argv[0]一定是程序的名称，并且包含了程序所在的完整路径，所以确切的说需要我们输入的main函数的参数个数应该是argc-1个；</p>
+<li><p><a href="../dockerfile">DockerFile</a></p>
+</li>
+<li><p><a href="../network">Communicate containers</a></p>
+</li>
+<li><p><a href="../image">upload your images</a></p>
+</li>
+<li><p><a href="../backup">容器数据的备份与恢复</a></p>
 </li>
 </ul>
-<pre><code>#include &lt;iostream&gt;
-
-using namespace std;
-
-void main(int argc,char *argv[])
-&#123;
-    for(int i=0;i&lt;argc;i++)
-    &#123;
-        cout&lt;&lt;&quot;argument[&quot;&lt;&lt;i&lt;&lt;&quot;] is: &quot;&lt;&lt;argv[i]&lt;&lt;endl;
-    &#125;
-    system(&quot;pause&quot;);
-&#125;
-</code></pre>
-</li>
-</ol>
-<hr>
-<p>2. </p>
 
             </div>
             <hr/>
@@ -388,7 +375,7 @@ void main(int argc,char *argv[])
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://moulelin.github.io/2023/11/26/Cplusplus/">https://moulelin.github.io/2023/11/26/Cplusplus/</a>
+                    <a href="https://moulelin.github.io/2023/02/21/docker/docker/">https://moulelin.github.io/2023/02/21/docker/docker/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -426,8 +413,8 @@ void main(int argc,char *argv[])
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/C/">
-                                    <span class="chip bg-color">C++</span>
+                                <a href="/tags/docker/">
+                                    <span class="chip bg-color">docker</span>
                                 </a>
                             
                         </div>
@@ -595,56 +582,9 @@ void main(int argc,char *argv[])
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
-            <div class="card">
-                <a href="/2023/11/26/Cplusplus/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Cplusplus">
-                        
-                        <span class="card-title">Cplusplus</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                             
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-11-26
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Moule Lin
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C++</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
                 <a href="/2023/02/21/lltm%E6%A2%AF%E5%BA%A6/">
                     <div class="card-image">
@@ -662,9 +602,9 @@ void main(int argc,char *argv[])
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-21
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-21
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -678,6 +618,51 @@ void main(int argc,char *argv[])
                     
                     <a href="/tags/cuda/">
                         <span class="chip bg-color">cuda</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/02/13/GeneralizedRCNNResize/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="GeneralizedRCNNResize">
+                        
+                        <span class="card-title">GeneralizedRCNNResize</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                             
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Moule Lin
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/RCNN/">
+                        <span class="chip bg-color">RCNN</span>
                     </a>
                     
                 </div>
