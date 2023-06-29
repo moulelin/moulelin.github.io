@@ -358,6 +358,17 @@
 </ul>
 </li>
 </ul>
+<hr>
+<p>boxes1 # shape[N,4]<br>boxes2 # shape[M,4]</p>
+<pre><code>    lt = torch.max(boxes1[:, None, :2], boxes2[:, :2])  # left-top [N,M,2]
+    rb = torch.min(boxes1[:, None, 2:], boxes2[:, 2:])  # right-bottom [N,M,2]
+</code></pre>
+<ul>
+<li>这里把第一个boxes1的第二个维度加一个，变成[N,1,4], 这样遇到第二个boxes就会自动广播为[N,M,4]:把每一行进行了复制M可以看出行，这样boxes1的[:,M,4]每一列都是相同的比如[1,2,3]-&gt;[[1,2,3],[1,2,3]]</li>
+<li>再次广播，boxes2遇到boxes1，后面两个维度完全一样了，这样就是boxes2变成了[N,M,4],相当于把boxes2整个进行了N次复制</li>
+<li>这样boxes1的[:,M,4]其实只是一个box的[xmin,ymin,xmax,ymax]重复M次，本质只有一个坐标</li>
+<li>boxes2的[0,:,:]相当于原始的boxes2,这样就相当于拿boxes1的第一个box坐标（行）和boxes2的所有坐标进行了对比（计算）</li>
+</ul>
 
             </div>
             <hr/>
