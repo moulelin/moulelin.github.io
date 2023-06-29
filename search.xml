@@ -2030,6 +2030,7 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
     <title>self-attention</title>
     <url>/2022/01/02/self-attention/</url>
     <content><![CDATA[<p><img src="/images/attention.png"> </p>
+<p><img src="/images/2023-06-30-00-49-15.png"></p>
 ]]></content>
       <tags>
         <tag>attention</tag>
