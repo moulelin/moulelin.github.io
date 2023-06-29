@@ -2059,14 +2059,13 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
   </entry>
   <entry>
     <title>seqModel</title>
-    <url>/2023/03/01/seqModel/</url>
-    <content><![CDATA[<h2 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src="/images/2023-06-29-23-44-06.png"></h2><h2 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="/images/2023-06-29-23-44-58.png"></h2><p><img src="/images/2023-06-29-23-47-04.png"></p>
-<h2 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h2><h2 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="/images/2023-06-29-23-53-01.png"></h2><h2 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="/images/2023-06-29-23-54-20.png"></h2><p><img src="/images/2023-06-29-23-56-58.png"></p>
-<h3 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h3><h2 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="/images/2023-06-30-00-13-07.png"></h2><p><img src="/images/2023-06-30-00-13-21.png"></p>
+    <url>/2023/02/26/seqModel/</url>
+    <content><![CDATA[<h2 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src="/images/2023-06-30-00-18-27.png"></h2><h2 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="/images/2023-06-29-23-44-06.png"></h2><h2 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="/images/2023-06-29-23-44-58.png"></h2><p><img src="/images/2023-06-29-23-47-04.png"></p>
+<h2 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h2><h2 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="/images/2023-06-30-00-20-42.png"></h2><h2 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="/images/2023-06-30-00-19-17.png"></h2><h2 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="/images/2023-06-29-23-53-01.png"></h2><h2 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="/images/2023-06-29-23-54-20.png"></h2><p><img src="/images/2023-06-29-23-56-58.png"></p>
+<h3 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h3><h2 id="-7"><a href="#-7" class="headerlink" title=""></a><img src="/images/2023-06-30-00-18-57.png"></h2><h2 id="-8"><a href="#-8" class="headerlink" title=""></a><img src="/images/2023-06-30-00-13-07.png"></h2><h2 id="-9"><a href="#-9" class="headerlink" title=""></a><img src="/images/2023-06-30-00-13-21.png"></h2><p><img src="/images/2023-06-30-00-17-18.png"></p>
 ]]></content>
       <tags>
-        <tag>RNN</tag>
-        <tag>LSTM</tag>
+        <tag>seq</tag>
       </tags>
   </entry>
   <entry>
@@ -2860,6 +2859,9 @@ int main(int argc, const char * argv[]) &#123;
     <title>单调队列</title>
     <url>/2023/05/17/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/</url>
     <content><![CDATA[]]></content>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
   </entry>
   <entry>
     <title>均方误差分解</title>
