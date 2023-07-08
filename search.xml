@@ -4333,4 +4333,14 @@ by decades 几十年
         <tag>Kubenetes</tag>
       </tags>
   </entry>
+  <entry>
+    <title>sharpening</title>
+    <url>/2023/07/07/sharpening/</url>
+    <content><![CDATA[<h2 id="Sharpening-function"><a href="#Sharpening-function" class="headerlink" title="Sharpening function"></a>Sharpening function</h2><p>f(x)&#x3D;((1)&#x2F;(1+ℯ^(-10 (x-0.5))))+((1)&#x2F;(1+ℯ^(-10 (-x-0.5))))</p>
+<p><img src="/images/2023-07-07-23-56-24.png"></p>
+]]></content>
+      <tags>
+        <tag>paper</tag>
+      </tags>
+  </entry>
 </search>

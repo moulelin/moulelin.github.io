@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="回溯备忘录, Moujoy">
+    <meta name="keywords" content="sharpening, Moujoy">
     <meta name="description" content="Do not let social standards conform you">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>回溯备忘录 | Moujoy</title>
+    <title>sharpening | Moujoy</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -179,12 +179,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">回溯备忘录</h1>
+                    <h1 class="description center-align post-title">sharpening</h1>
                 </div>
             </div>
         </div>
@@ -301,8 +301,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/c/">
-                                <span class="chip bg-color">c++</span>
+                            <a href="/tags/paper/">
+                                <span class="chip bg-color">paper</span>
                             </a>
                         
                     </div>
@@ -317,7 +317,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2023-06-02
+                    2023-07-07
                 </div>
                 
 
@@ -338,146 +338,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="大部分的回溯都有一部分的重复搜索，可以通过一个备忘录记录之前搜索的结果，在找到这个节点的时候直接return就行"><a href="#大部分的回溯都有一部分的重复搜索，可以通过一个备忘录记录之前搜索的结果，在找到这个节点的时候直接return就行" class="headerlink" title="大部分的回溯都有一部分的重复搜索，可以通过一个备忘录记录之前搜索的结果，在找到这个节点的时候直接return就行"></a>大部分的回溯都有一部分的重复搜索，可以通过一个备忘录记录之前搜索的结果，在找到这个节点的时候直接return就行</h2><h3 id="idx是一个很重要的指标，它的左边是-idx-1-n-1-i-x3D-idx-1-idx-2…-n-1"><a href="#idx是一个很重要的指标，它的左边是-idx-1-n-1-i-x3D-idx-1-idx-2…-n-1" class="headerlink" title="idx是一个很重要的指标，它的左边是 idx + 1 ~ n-1(i &#x3D; idx + 1, idx + 2….n-1)"></a>idx是一个很重要的指标，它的左边是 idx + 1 ~ n-1(i &#x3D; idx + 1, idx + 2….n-1)</h3><h3 id="同时idx的子树对应的i也是-idx-1-n-1-i-x3D-idx-1-idx-2…-n-1"><a href="#同时idx的子树对应的i也是-idx-1-n-1-i-x3D-idx-1-idx-2…-n-1" class="headerlink" title="同时idx的子树对应的i也是 idx + 1 ~ n-1(i &#x3D; idx + 1, idx + 2….n-1)"></a>同时idx的子树对应的i也是 idx + 1 ~ n-1(i &#x3D; idx + 1, idx + 2….n-1)</h3><ul>
-<li>因此，使用idx和深度作为备忘录的key可以很好的保存这个节点</li>
-</ul>
-<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><pre><code>link : https://leetcode.com/problems/combinations/description/
-
-class Solution &#123;
-public:
-     vector&lt;vector&lt;int&gt;&gt; memo[21][21];
-    vector&lt;vector&lt;int&gt;&gt; combine(int n, int k, int cur=1) &#123;
-        if(k == 0) return &#123;&#123;&#125;&#125;;
-       
-        if(!memo[k][cur].empty()) &#123;
-           cout &lt;&lt; k &lt;&lt; &quot;memo&quot;&lt;&lt;cur;
-            return memo[k][cur];
-            &#125;
-        
-        vector&lt;vector&lt;int&gt;&gt; ans;
-        for(int i=cur; i&lt;=n; i++)&#123;
-            cout &lt;&lt; &quot;before idx= &quot;&lt;&lt; cur &lt;&lt;&quot; before i=&quot; &lt;&lt;i+1 &lt;&lt; &quot; k = &quot;&lt;&lt;k-1&lt;&lt; &quot; ;&quot;;
-            vector&lt;vector&lt;int&gt;&gt; temp = combine(n, k-1, i+1);
-            for(auto v: temp)&#123;
-                v.push_back(i);
-                ans.push_back(v);
-            &#125;
-            cout &lt;&lt; endl;
-            cout &lt;&lt; &quot;back idx= &quot;&lt;&lt; cur &lt;&lt;&quot; back i=&quot;&lt;&lt;i&lt;&lt; &quot; k = &quot;&lt;&lt;k&lt;&lt; endl;
-        &#125;
-        cout &lt;&lt; &quot;end&quot; &lt;&lt; endl;
-        cout &lt;&lt; endl;
-        for (auto a:ans)&#123;
-            cout &lt;&lt; &quot;[&quot;;
-            for (auto b:a) &#123;
-                cout &lt;&lt; b&lt;&lt;&quot; &quot;;
-            &#125;
-             cout &lt;&lt; &quot;]&quot;;
-        &#125;
-        cout &lt;&lt; endl;
-
-        cout &lt;&lt; &quot;k=&quot; &lt;&lt; k &lt;&lt; &quot; idx = &quot; &lt;&lt; cur &lt;&lt; endl;
-        // cout &lt;&lt; cur &lt;&lt; endl;
-        return memo[k][cur] = ans;
-    &#125;
-&#125;;
-</code></pre>
-<p>out : </p>
-<pre><code>before idx= 1 before i=2 k = 2 ;before idx= 2 before i=3 k = 1 ;before idx= 3 before i=4 k = 0 ;
-back idx= 3 back i=3 k = 1
-before idx= 3 before i=5 k = 0 ;
-back idx= 3 back i=4 k = 1
-before idx= 3 before i=6 k = 0 ;
-back idx= 3 back i=5 k = 1
-end
-
-[3 ][4 ][5 ]
-k=1 idx = 3
-
-back idx= 2 back i=2 k = 2
-before idx= 2 before i=4 k = 1 ;before idx= 4 before i=5 k = 0 ;
-back idx= 4 back i=4 k = 1
-before idx= 4 before i=6 k = 0 ;
-back idx= 4 back i=5 k = 1
-end
-
-[4 ][5 ]
-k=1 idx = 4
-
-back idx= 2 back i=3 k = 2
-before idx= 2 before i=5 k = 1 ;before idx= 5 before i=6 k = 0 ;
-back idx= 5 back i=5 k = 1
-end
-
-[5 ]
-k=1 idx = 5
-
-back idx= 2 back i=4 k = 2
-before idx= 2 before i=6 k = 1 ;end
-
-
-k=1 idx = 6
-
-back idx= 2 back i=5 k = 2
-end
-
-[3 2 ][4 2 ][5 2 ][4 3 ][5 3 ][5 4 ]
-k=2 idx = 2
-
-back idx= 1 back i=1 k = 3
-before idx= 1 before i=3 k = 2 ;before idx= 3 before i=4 k = 1 ;1memo4
-back idx= 3 back i=3 k = 2
-before idx= 3 before i=5 k = 1 ;1memo5
-back idx= 3 back i=4 k = 2
-before idx= 3 before i=6 k = 1 ;end
-
-
-k=1 idx = 6
-
-back idx= 3 back i=5 k = 2
-end
-
-[4 3 ][5 3 ][5 4 ]
-k=2 idx = 3
-
-back idx= 1 back i=2 k = 3
-before idx= 1 before i=4 k = 2 ;before idx= 4 before i=5 k = 1 ;1memo5
-back idx= 4 back i=4 k = 2
-before idx= 4 before i=6 k = 1 ;end
-
-
-k=1 idx = 6
-
-back idx= 4 back i=5 k = 2
-end
-
-[5 4 ]
-k=2 idx = 4
-
-back idx= 1 back i=3 k = 3
-before idx= 1 before i=5 k = 2 ;before idx= 5 before i=6 k = 1 ;end
-
-
-k=1 idx = 6
-
-back idx= 5 back i=5 k = 2
-end
-
-
-k=2 idx = 5
-
-back idx= 1 back i=4 k = 3
-before idx= 1 before i=6 k = 2 ;end
-
-
-k=2 idx = 6
-
-back idx= 1 back i=5 k = 3
-end
-
-[3 2 1 ][4 2 1 ][5 2 1 ][4 3 1 ][5 3 1 ][5 4 1 ][4 3 2 ][5 3 2 ][5 4 2 ][5 4 3 ]
-k=3 idx = 1
-</code></pre>
+                <h2 id="Sharpening-function"><a href="#Sharpening-function" class="headerlink" title="Sharpening function"></a>Sharpening function</h2><p>f(x)&#x3D;((1)&#x2F;(1+ℯ^(-10 (x-0.5))))+((1)&#x2F;(1+ℯ^(-10 (-x-0.5))))</p>
+<p><img src="/images/2023-07-07-23-56-24.png"></p>
 
             </div>
             <hr/>
@@ -503,7 +365,7 @@ k=3 idx = 1
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://moulelin.github.io/2023/06/02/%E5%9B%9E%E6%BA%AF%E5%A4%87%E5%BF%98%E5%BD%95/">https://moulelin.github.io/2023/06/02/%E5%9B%9E%E6%BA%AF%E5%A4%87%E5%BF%98%E5%BD%95/</a>
+                    <a href="https://moulelin.github.io/2023/07/07/sharpening/">https://moulelin.github.io/2023/07/07/sharpening/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -541,8 +403,8 @@ k=3 idx = 1
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/c/">
-                                    <span class="chip bg-color">c++</span>
+                                <a href="/tags/paper/">
+                                    <span class="chip bg-color">paper</span>
                                 </a>
                             
                         </div>
@@ -710,9 +572,10 @@ k=3 idx = 1
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2023/07/07/sharpening/">
                     <div class="card-image">
@@ -730,9 +593,9 @@ k=3 idx = 1
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-07-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -741,6 +604,7 @@ k=3 idx = 1
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -759,24 +623,24 @@ k=3 idx = 1
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/05/17/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/">
+                <a href="/2023/06/02/%E5%9B%9E%E6%BA%AF%E5%A4%87%E5%BF%98%E5%BD%95/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="单调队列">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="回溯备忘录">
                         
-                        <span class="card-title">单调队列</span>
+                        <span class="card-title">回溯备忘录</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                             
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-02
                             </span>
                         <span class="publish-author">
                             
@@ -789,8 +653,8 @@ k=3 idx = 1
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/leetcode/">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/c/">
+                        <span class="chip bg-color">c++</span>
                     </a>
                     
                 </div>
