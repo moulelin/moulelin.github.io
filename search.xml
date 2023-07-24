@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>3D-python</title>
-    <url>/2021/11/02/3D-python/</url>
+    <url>/2021/11/03/3D-python/</url>
     <content><![CDATA[<h1 id="plot-3D-by-python"><a href="#plot-3D-by-python" class="headerlink" title="plot 3D by python"></a>plot 3D by python</h1>]]></content>
       <tags>
         <tag>python</tag>
@@ -48,7 +48,7 @@ I will try figure out by myself, then i will ask sometjiogn  -->
   </entry>
   <entry>
     <title>BPR推荐算法</title>
-    <url>/2021/11/16/BPR/</url>
+    <url>/2021/11/17/BPR/</url>
     <content><![CDATA[<p><img src="/images/BPR.png"> </p>
 ]]></content>
       <categories>
@@ -60,7 +60,7 @@ I will try figure out by myself, then i will ask sometjiogn  -->
   </entry>
   <entry>
     <title>Cplusplus</title>
-    <url>/2022/07/26/Cplusplus/</url>
+    <url>/2022/07/27/Cplusplus/</url>
     <content><![CDATA[<ol>
 <li><p>main 函数的参数</p>
 <ul>
@@ -179,7 +179,7 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
   </entry>
   <entry>
     <title>DBSCAN</title>
-    <url>/2022/01/06/DBSCAN/</url>
+    <url>/2022/01/07/DBSCAN/</url>
     <content><![CDATA[<p><img src="/images/DBSCAN.png"> </p>
 ]]></content>
       <tags>
@@ -188,7 +188,7 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
   </entry>
   <entry>
     <title>DP</title>
-    <url>/2022/03/18/DP/</url>
+    <url>/2022/03/19/DP/</url>
     <content><![CDATA[<p><img src="/images/DP.png">  </p>
 ]]></content>
       <tags>
@@ -214,7 +214,7 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
   </entry>
   <entry>
     <title>Context-Aware Attentional Graph U-Net for Hyperspectral Image Classification</title>
-    <url>/2021/03/31/CAGU/</url>
+    <url>/2021/04/01/CAGU/</url>
     <content><![CDATA[<p><img src="/images/2_author.jpg"> </p>
 <h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract :"></a>Abstract :</h1><blockquote>
 <p style="text-align:justify; text-justify:inter-ideograph; color:black">Hyperspectral Image (HSI) registers hundreds of spectral bands, whose intraclass variability and interclass similarity are resourceful information to be mined. Intraclass variability reflects the non-uniform and redundancy of the spatial and semantic features extracted from HSI. Interclass similarity represents the inherent relationship between adjacent features and snapshots. Existing models extract the superficial correlation representation for HSI to tackle the classification task but fail to embed the interclass and intraclass correlations due to these models intrinsic bottlenecks. Confronting the challenges of capturing interrelation for complex data in practice, we propose a Context-Aware Attentional Graph U-Net (CAGU) to improve these two modes of representation, which is more flexible in feature enhancement. In this method, attentional Graph U-Net is capable of extracting the intraclass embeddings within a non-Euclidean space by combining similar distributing feature vertices. The Gated Recurrent Unit (GRU) is another critical component of our model to capture the context-aware dynamic interclass embeddings. Extensive experiments demonstrate that our model can efficiently outperform state-of-the-art methods across-the-board on five wide-adopted public datasets, namely Pavia University, Indian Pines, Salinas Scene-show, Houston 2013 and Houston 2018, on a par with the same scale of model parameters.
@@ -240,7 +240,7 @@ const int* a = new int; int const* a = new int; 这两个相同，看const的位
   </entry>
   <entry>
     <title>FLOPs</title>
-    <url>/2022/06/26/FLOPs/</url>
+    <url>/2022/06/27/FLOPs/</url>
     <content><![CDATA[<p><img src="/images/FLOPs.png"></p>
 ]]></content>
       <tags>
@@ -473,7 +473,7 @@ concorn
   </entry>
   <entry>
     <title>Homogeneous</title>
-    <url>/2022/01/26/Homogeneous/</url>
+    <url>/2022/01/27/Homogeneous/</url>
     <content><![CDATA[<p><img src="/images/homogeneous.png"> </p>
 ]]></content>
       <tags>
@@ -530,7 +530,7 @@ concorn
   </entry>
   <entry>
     <title>Likelihood2</title>
-    <url>/2022/02/24/Likelihood2/</url>
+    <url>/2022/02/25/Likelihood2/</url>
     <content><![CDATA[<blockquote>
 <p>注意：高斯分布图x轴坐标是变量X的取值，纵坐标是概率<br>因此，这里得到误差l（打不了误差符号），最大误差的密度概率是因为&#x3D;》最大概率处l&#x3D;0， 同时我们追求的也是误差最小，无限接近0，所以这里要对误差l的PDF取最大值，因此，每个样本的最大概率（最大似然）累乘就是我们需要优化的结果。<br><img src="/images/max.png"> </p>
 </blockquote>
@@ -552,7 +552,7 @@ concorn
   </entry>
   <entry>
     <title>KalmanFilter</title>
-    <url>/2022/09/29/KalmanFilter/</url>
+    <url>/2022/09/30/KalmanFilter/</url>
     <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3>
 
 	<div class="row">
@@ -569,7 +569,7 @@ concorn
   </entry>
   <entry>
     <title>RL3ways</title>
-    <url>/2022/03/20/RL3ways/</url>
+    <url>/2022/03/21/RL3ways/</url>
     <content><![CDATA[
 
 	<div class="row">
@@ -632,7 +632,7 @@ static const int a = 1;
   </entry>
   <entry>
     <title>STL</title>
-    <url>/2022/07/06/STL/</url>
+    <url>/2022/07/07/STL/</url>
     <content><![CDATA[<h1 id="STL六大部件"><a href="#STL六大部件" class="headerlink" title="STL六大部件"></a>STL六大部件</h1><p><img src="/images/2022-07-06-18-35-07.png"><br><img src="/images/2022-07-06-18-35-33.png"><br><img src="/images/2022-07-06-18-36-02.png"></p>
 <blockquote>
 <p>stack和queue不提供iterator</p>
@@ -658,7 +658,7 @@ static const int a = 1;
   </entry>
   <entry>
     <title>TF-IDF</title>
-    <url>/2022/01/04/TF-IDF/</url>
+    <url>/2022/01/05/TF-IDF/</url>
     <content><![CDATA[<p><img src="/images/TF-IDF.png"> </p>
 ]]></content>
       <tags>
@@ -667,7 +667,7 @@ static const int a = 1;
   </entry>
   <entry>
     <title>MATI-Regression</title>
-    <url>/2021/11/02/MATI-Regression/</url>
+    <url>/2021/11/03/MATI-Regression/</url>
     <content><![CDATA[
 
 	<div class="row">
@@ -717,7 +717,7 @@ static const int a = 1;
   </entry>
   <entry>
     <title>apriori</title>
-    <url>/2022/01/06/apriori/</url>
+    <url>/2022/01/07/apriori/</url>
     <content><![CDATA[<p><img src="/images/apriori.png"> </p>
 ]]></content>
       <tags>
@@ -735,7 +735,7 @@ static const int a = 1;
   </entry>
   <entry>
     <title>copyC</title>
-    <url>/2022/03/13/copyC/</url>
+    <url>/2022/03/14/copyC/</url>
     <content><![CDATA[<p>浅拷贝和深拷贝<br>指针浅拷贝导致堆区的数据重复释放<br>问题：近期在做算法实验的时候碰到一个关于类指针赋值的问题，简单的指针之间的赋值只是把两个指针指向同一个地址，而我需要把每次算法执行完的类指针push_back进vector储存每次算法迭代的结果，如果每次都是存入同一个指针，就会出现vector中的类指针都指向同一个地址，这就让我想到了能不能进行类指针之间的赋值，两个类指针之间内容相同，但是指针指向的地址都不同，就是两个不同的指针。</p>
 <p>定义</p>
 <p>浅拷贝：按照我的理解就是，两类之间发生数据成员的赋值，如果只是简单数据类型之间的赋值，浅拷贝完全能够胜任，但是碰到有指针的时候，两个类之间浅拷贝，那么两个对象中的指针会指向同一个地址，那么析构函数执行的时候就会发生错误（同一指针释放了两次）。</p>
@@ -757,7 +757,7 @@ rect(const rect *r);
   </entry>
   <entry>
     <title>交叉熵损失函数详解</title>
-    <url>/2020/11/02/crossentropy/</url>
+    <url>/2020/11/03/crossentropy/</url>
     <content><![CDATA[<h1 id="交叉熵的数学原理—pytorch中的CrossEntropyLoss-函数"><a href="#交叉熵的数学原理—pytorch中的CrossEntropyLoss-函数" class="headerlink" title="交叉熵的数学原理—pytorch中的CrossEntropyLoss()函数"></a>交叉熵的数学原理—pytorch中的CrossEntropyLoss()函数</h1><p>对于二分类来说，我们使用的是Binary Cross Entropy Loss,公式如下：<br> <img src="/images/1_1.png"><br>因为ln后的数为负数，所以加负号，保证我们是优化最小（不然就要往最大值优化了）；<br>如当l&#x3D;1时（标签为正样本），此时Loss &#x3D; -logp, 我们要使p的值尽量大，loss才会尽量小，最好能到1，就代表分类正确了</p>
 <h2 id="多分类"><a href="#多分类" class="headerlink" title="多分类"></a>多分类</h2><p><img src="/images/1_2.png"><br>这里的label会被展开为<strong>one-hot</strong>编码<br><strong>主要讨论图像像素级的分类</strong></p>
 <pre><code># -*- coding: utf-8 -*-
@@ -868,7 +868,7 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
   </entry>
   <entry>
     <title>ShiftGCN</title>
-    <url>/2022/08/17/ShiftGCN/</url>
+    <url>/2022/08/18/ShiftGCN/</url>
     <content><![CDATA[]]></content>
       <tags>
         <tag>GCN</tag>
@@ -876,7 +876,7 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
   </entry>
   <entry>
     <title>equilibria</title>
-    <url>/2022/02/08/equilibria/</url>
+    <url>/2022/02/09/equilibria/</url>
     <content><![CDATA[<p><img src="/images/game01.png"> </p>
 <p>举个例子吧如图所示：首先固定1<br>1选择C–&gt; 2最好选择C(-5&gt;-15)，<br>画上蓝色线条<br>1选择N–&gt; 2最好选择C(0&gt;-1)，画上蓝色线条<br>接下来固定2<br>2选择C–&gt; 1最好选择C(-5&gt;-15)，画上红色线条<br>2选择N–&gt; 1最好选择C(0&gt;-1)，画上红色线条得纯策略纳什均衡(-5,-5)</p>
 ]]></content>
@@ -979,7 +979,7 @@ tensor(0.9862, grad_fn=&lt;NllLoss2DBackward&gt;)
   </entry>
   <entry>
     <title>cmake</title>
-    <url>/2022/11/26/cmake/</url>
+    <url>/2022/11/27/cmake/</url>
     <content><![CDATA[<p><a href="https://github.com/moulelin/Cmake">cmake仓库</a>存放了一些学习的例子</p>
 <h2 id="1-为什么要cmake"><a href="#1-为什么要cmake" class="headerlink" title="1. 为什么要cmake?"></a>1. 为什么要cmake?</h2><blockquote>
 <p>有很多的Make 工具，例如 GNU Make ，QT 的 qmake ，微软的 MS nmake，BSD Make（pmake），Makepp，等等。这些 Make 工具遵循着不同的规范和标准，所执行的 Makefile 格式也千差万别。这样就带来了一个严峻的问题：如果软件想跨平台，必须要保证能够在不同平台编译。而如果使用上面的 Make 工具，就得为每一种标准写一次 Makefile ，这将是一件让人抓狂的工作。CMake 就是针对上面问题所设计的工具：它首先允许开发者编写一种平台无关的 CMakeList.txt 文件来定制整个编译流程，然后再根据目标用户的平台进一步生成所需的本地化 Makefile 和工程文件</p>
@@ -1362,7 +1362,7 @@ int main()
   </entry>
   <entry>
     <title>multiset</title>
-    <url>/2022/09/05/mutiset/</url>
+    <url>/2022/09/06/mutiset/</url>
     <content><![CDATA[<p><img src="/images/2022-09-05-22-49-24.png"></p>
 ]]></content>
       <tags>
@@ -1471,7 +1471,7 @@ int main()
   </entry>
   <entry>
     <title>n-gram</title>
-    <url>/2022/01/04/n-gram/</url>
+    <url>/2022/01/05/n-gram/</url>
     <content><![CDATA[<p><img src="/images/n-gram.png"> </p>
 ]]></content>
       <tags>
@@ -1480,7 +1480,7 @@ int main()
   </entry>
   <entry>
     <title>lltm Gradient</title>
-    <url>/2023/02/21/lltm%E6%A2%AF%E5%BA%A6/</url>
+    <url>/2023/02/22/lltm%E6%A2%AF%E5%BA%A6/</url>
     <content><![CDATA[<ul>
 <li>前向传播</li>
 </ul>
@@ -1580,7 +1580,7 @@ std::vector&lt;torch::Tensor&gt; lltm_backward(
   </entry>
   <entry>
     <title>likeihood</title>
-    <url>/2021/12/17/likeihood/</url>
+    <url>/2021/12/18/likeihood/</url>
     <content><![CDATA[<p><img src="/images/likelihood.png"> </p>
 ]]></content>
       <tags>
@@ -1598,7 +1598,7 @@ std::vector&lt;torch::Tensor&gt; lltm_backward(
   </entry>
   <entry>
     <title>cout重载全局函数</title>
-    <url>/2022/06/17/cout%E9%87%8D%E8%BD%BD%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/</url>
+    <url>/2022/06/18/cout%E9%87%8D%E8%BD%BD%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h1 id="为什么c-中重载流操作符要用友元函数"><a href="#为什么c-中重载流操作符要用友元函数" class="headerlink" title="为什么c++中重载流操作符要用友元函数"></a>为什么c++中重载流操作符要用友元函数</h1><h2 id="作为成员函数的话，左操作数非得是自己不可"><a href="#作为成员函数的话，左操作数非得是自己不可" class="headerlink" title="作为成员函数的话，左操作数非得是自己不可"></a>作为成员函数的话，左操作数非得是自己不可</h2><blockquote>
 <p>cout &lt;&lt; XXX 这种情况是cout在调用operator&lt;&lt;而不是XXX在调用operator&lt;&lt; 。<br>如果你要把operator&lt;&lt;设为成员函数就只能用 XXX &lt;&lt; cout 这种形式。</p>
 </blockquote>
@@ -1670,7 +1670,7 @@ int main(int argc, const char* argv[])
   </entry>
   <entry>
     <title>forandrecursion</title>
-    <url>/2022/04/21/forandrecursion/</url>
+    <url>/2022/04/22/forandrecursion/</url>
     <content><![CDATA[<blockquote>
 <p>为什么要用for循环调用递归呢?<br>什么时候递归需要加一层for循环呢？</p>
 </blockquote>
@@ -1684,7 +1684,7 @@ int main(int argc, const char* argv[])
   </entry>
   <entry>
     <title>operator赋值为什么返回引用</title>
-    <url>/2022/03/13/operator%E8%B5%8B%E5%80%BC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%94%E5%9B%9E%E5%BC%95%E7%94%A8/</url>
+    <url>/2022/03/14/operator%E8%B5%8B%E5%80%BC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%94%E5%9B%9E%E5%BC%95%E7%94%A8/</url>
     <content><![CDATA[<p>一个自定义类，如果没有重载其&#x3D;运算符，那么编译器将自动生成一个。但是此编译器自动生成的重载函数可能不安全。这是因为它采用了所谓的“浅拷贝”，也就是对于指针而言，它拷贝的是指针的值，而不是其指向的内存空间。那么这个内存空间就有了两个指针指向它，且类对象要析构两次，但是内存空间只能被释放一次，那么第二次就会出现访问错误。</p>
 <p>　　要避免这种“浅拷贝”问题，就需要重载&#x3D;运算符。这是一个二元运算符，函数名和参数比较容易确定，重点是其返回类型。一般来说，要返回一个类的引用类型。这是因为要能实现所谓的“链式编程”。我存在过的疑问是，为什么要返回一个引用，才能实现所谓的“链式编程”呢？这里从代码出发，进行思考与总结。</p>
 <p>复制代码<br>class Student<br>{<br>public:<br>    Student(const char* name);~Student();<br>    Student&amp; operator&#x3D;(const Student &amp;student);private:<br>    char *m_name;<br>};<br>复制代码<br>复制代码<br>&#x2F;&#x2F;测试代码<br>Student s1(“Lee”);<br>Student s2(“Diwen”);<br>Student s3(“Tom”);</p>
@@ -1697,7 +1697,7 @@ int main(int argc, const char* argv[])
   </entry>
   <entry>
     <title>p19-namespace</title>
-    <url>/2022/06/16/namespace/</url>
+    <url>/2022/06/17/namespace/</url>
     <content><![CDATA[<h1 id="不同开发团队取的类名冲突"><a href="#不同开发团队取的类名冲突" class="headerlink" title="不同开发团队取的类名冲突"></a>不同开发团队取的类名冲突</h1><p><img src="/images/namespace.png"></p>
 ]]></content>
       <tags>
@@ -1706,7 +1706,7 @@ int main(int argc, const char* argv[])
   </entry>
   <entry>
     <title>note</title>
-    <url>/2022/08/17/note/</url>
+    <url>/2022/08/18/note/</url>
     <content><![CDATA[<p>所有通道像素的组合排列决定了这个像素的属性。同时这个像素点与周围像素也存在联系，通常来说，如果相邻两个像素点所有通道的欧式距离之差不小于某个阈值，可以认为是属于一类的<br>对通道进行卷积操作，</p>
 <blockquote>
 <p>想法：双重推理，首先构建一个建筑语义分割的算法来获得建筑（0-1），之后通过图生成算法，输入为用户指定出的点和分割出来的图片</p>
@@ -1766,7 +1766,7 @@ shared_ptr&lt;Base1&gt;sptr(new Derived1);
   </entry>
   <entry>
     <title>p27variadic-template</title>
-    <url>/2022/06/18/p27variadic-template/</url>
+    <url>/2022/06/19/p27variadic-template/</url>
     <content><![CDATA[<h1 id="不定模版参数"><a href="#不定模版参数" class="headerlink" title="不定模版参数"></a>不定模版参数</h1><pre><code>template &lt;class T1, class... args&gt;
 void test(T1 t, args&amp;... arg)&#123;
 
@@ -1814,7 +1814,7 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
   </entry>
   <entry>
     <title>oral_practices</title>
-    <url>/2021/11/01/oral-practices/</url>
+    <url>/2021/11/02/oral-practices/</url>
     <content><![CDATA[<p>a new way to get personalized, relevant ideas, delivered right to your inbox.</p>
 ]]></content>
       <tags>
@@ -1979,7 +1979,7 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
   </entry>
   <entry>
     <title>probability</title>
-    <url>/2022/06/22/probability/</url>
+    <url>/2022/06/23/probability/</url>
     <content><![CDATA[<h2 id="68-95-99"><a href="#68-95-99" class="headerlink" title="68-95-99"></a>68-95-99</h2><ul>
 <li>During one standard, it has 68% probability in it.</li>
 <li>During tow standards, it has 95% probability in it.</li>
@@ -2003,7 +2003,7 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
   </entry>
   <entry>
     <title>silhouette</title>
-    <url>/2021/12/04/silhouette/</url>
+    <url>/2021/12/05/silhouette/</url>
     <content><![CDATA[<p><img src="/images/silhouette.png"> </p>
 ]]></content>
       <tags>
@@ -2012,7 +2012,7 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
   </entry>
   <entry>
     <title>pronounce</title>
-    <url>/2021/11/06/pronounce/</url>
+    <url>/2021/11/07/pronounce/</url>
     <content><![CDATA[
 
 	<div class="row">
@@ -2060,7 +2060,7 @@ for (int i:&#123;1,2,3,4,5&#125;)&#123;
   </entry>
   <entry>
     <title>seqModel</title>
-    <url>/2023/02/26/seqModel/</url>
+    <url>/2023/02/27/seqModel/</url>
     <content><![CDATA[<h2 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src="/images/2023-06-30-00-18-27.png"></h2><h2 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="/images/2023-06-29-23-44-06.png"></h2><h2 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="/images/2023-06-29-23-44-58.png"></h2><p><img src="/images/2023-06-29-23-47-04.png"></p>
 <h2 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h2><h2 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="/images/2023-06-30-00-20-42.png"></h2><h2 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="/images/2023-06-30-00-19-17.png"></h2><h2 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="/images/2023-06-29-23-53-01.png"></h2><h2 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="/images/2023-06-29-23-54-20.png"></h2><p><img src="/images/2023-06-29-23-56-58.png"></p>
 <h3 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h3><h2 id="-7"><a href="#-7" class="headerlink" title=""></a><img src="/images/2023-06-30-00-18-57.png"></h2><h2 id="-8"><a href="#-8" class="headerlink" title=""></a><img src="/images/2023-06-30-00-13-07.png"></h2><h2 id="-9"><a href="#-9" class="headerlink" title=""></a><img src="/images/2023-06-30-00-13-21.png"></h2><p><img src="/images/2023-06-30-00-17-18.png"></p>
@@ -2219,7 +2219,7 @@ A&lt;string*&gt; b;
   </entry>
   <entry>
     <title>to+do+or+doing</title>
-    <url>/2021/12/12/to-do-or-doing/</url>
+    <url>/2021/12/13/to-do-or-doing/</url>
     <content><![CDATA[<p><img src="/images/todo.png"> </p>
 ]]></content>
       <tags>
@@ -2237,7 +2237,7 @@ A&lt;string*&gt; b;
   </entry>
   <entry>
     <title>vector二维数组</title>
-    <url>/2022/06/30/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
+    <url>/2022/07/01/vector%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/</url>
     <content><![CDATA[<h1 id="vector二维数组的初始化方式"><a href="#vector二维数组的初始化方式" class="headerlink" title="vector二维数组的初始化方式"></a>vector二维数组的初始化方式</h1><ul>
 <li>vector&lt;vector<char> &gt;vec(row,vector<char>(col,’#’));<blockquote>
 <p>这里的row,col代表二维vector的两个轴方向的大小</p>
@@ -2284,7 +2284,7 @@ for(int i=0;i&lt;row;i++)
   </entry>
   <entry>
     <title>t5-假设检验</title>
-    <url>/2022/06/22/t5%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/</url>
+    <url>/2022/06/23/t5%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/</url>
     <content><![CDATA[<p><img src="/images/p5.png"></p>
 ]]></content>
       <tags>
@@ -2308,7 +2308,7 @@ for(int i=0;i&lt;row;i++)
   </entry>
   <entry>
     <title>vector用于cuda核函数中</title>
-    <url>/2022/06/30/vector%E7%94%A8%E4%BA%8Ecuda%E6%A0%B8%E5%87%BD%E6%95%B0%E4%B8%AD/</url>
+    <url>/2022/07/01/vector%E7%94%A8%E4%BA%8Ecuda%E6%A0%B8%E5%87%BD%E6%95%B0%E4%B8%AD/</url>
     <content><![CDATA[<blockquote>
 <p>cuda中，是不支持在核函数中直接使用vector的。所以通常情况下是要使用动态数组将vector的数据提取，然后进行计算。</p>
 </blockquote>
@@ -2439,7 +2439,7 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
   </entry>
   <entry>
     <title>word2vec</title>
-    <url>/2022/01/04/word2vec/</url>
+    <url>/2022/01/05/word2vec/</url>
     <content><![CDATA[<p><img src="/images/word2vec.png"> </p>
 ]]></content>
       <tags>
@@ -2526,7 +2526,7 @@ cudaMemcpy2D(a_2d_cu, pitch, a_2d, d[0].size()*sizeof(int), d[0].size()*sizeof(i
   </entry>
   <entry>
     <title>template-template-paramenter</title>
-    <url>/2022/06/17/template-template-paramenter/</url>
+    <url>/2022/06/18/template-template-paramenter/</url>
     <content><![CDATA[<h1 id="模版参数中包含模版"><a href="#模版参数中包含模版" class="headerlink" title="模版参数中包含模版"></a>模版参数中包含模版</h1><ul>
 <li>允许模板参数本身也是一个类模板，这可能会很有用。我们将继续以stack类模板作为例子</li>
 </ul>
@@ -2617,7 +2617,7 @@ private:
   </entry>
   <entry>
     <title>主语从句</title>
-    <url>/2022/08/24/%E4%B8%BB%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
+    <url>/2022/08/25/%E4%B8%BB%E8%AF%AD%E4%BB%8E%E5%8F%A5/</url>
     <content><![CDATA[<h2 id="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"><a href="#主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾" class="headerlink" title="主语从句：在句子中担当主语的是一个从句，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾"></a>主语从句：<strong>在句子中担当主语的是一个从句</strong>，这个从句就叫做主语从句，通常放在主句谓语动词之前或由形式主语it代替，而本身放在句子末尾</h2><blockquote>
 <p>主语从句使用陈述语序，其通常结构为“引导词 + 主语 + 谓语 + 其他成分”；</p>
 </blockquote>
@@ -2688,7 +2688,7 @@ private:
   </entry>
   <entry>
     <title>分治法</title>
-    <url>/2022/09/03/%E5%88%86%E6%B2%BB%E6%B3%95/</url>
+    <url>/2022/09/04/%E5%88%86%E6%B2%BB%E6%B3%95/</url>
     <content><![CDATA[<h1 id="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"><a href="#分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解" class="headerlink" title="分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解"></a>分治法：找子解，最后结合子解，比如需要找子解的最小值或最大值作为原问题的解</h1><pre><code>//
 //  main.cpp
 //  两个数组调整为一样的最小距离
@@ -2772,7 +2772,7 @@ int main(int argc, const char * argv[]) &#123;
   </entry>
   <entry>
     <title>原反补码</title>
-    <url>/2022/06/26/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/</url>
+    <url>/2022/06/27/%E5%8E%9F%E5%8F%8D%E8%A1%A5%E7%A0%81/</url>
     <content><![CDATA[<p><img src="/images/coding.png"></p>
 ]]></content>
       <tags>
@@ -2781,7 +2781,7 @@ int main(int argc, const char * argv[]) &#123;
   </entry>
   <entry>
     <title>transition-based</title>
-    <url>/2022/01/04/transition-based/</url>
+    <url>/2022/01/05/transition-based/</url>
     <content><![CDATA[<p><img src="/images/transition.png"> </p>
 ]]></content>
       <tags>
@@ -2790,7 +2790,7 @@ int main(int argc, const char * argv[]) &#123;
   </entry>
   <entry>
     <title>vocabulary</title>
-    <url>/2023/02/03/vocabulary/</url>
+    <url>/2023/02/04/vocabulary/</url>
     <content><![CDATA[<h2 id="26"><a href="#26" class="headerlink" title="26"></a>26</h2><p><img src="/images/2023-02-03-18-32-43.png"></p>
 <pre><code>- in time 及时  
 </code></pre>
@@ -2835,7 +2835,7 @@ int main(int argc, const char * argv[]) &#123;
   </entry>
   <entry>
     <title>卡尔曼滤波详解</title>
-    <url>/2022/09/29/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/</url>
+    <url>/2022/09/30/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/</url>
     <content><![CDATA[<h3 id="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"><a href="#卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法" class="headerlink" title="卡尔曼滤波实际上就是把传感器测得的值和根据数学模型推导出来的值融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法"></a>卡尔曼滤波实际上就是把<strong>传感器测得的值</strong>和根据<strong>数学模型推导出来的值</strong>融合以逼近实际值的过程，因此卡尔曼滤波也经常被称作传感器融合算法</h3><ul>
 <li>对于一个高斯分布，方差越小，越接近期望值（这里的期望值是0），越小，图越尖</li>
 </ul>
@@ -2866,7 +2866,7 @@ int main(int argc, const char * argv[]) &#123;
   </entry>
   <entry>
     <title>均方误差分解</title>
-    <url>/2022/05/21/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE%E5%88%86%E8%A7%A3/</url>
+    <url>/2022/05/22/%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE%E5%88%86%E8%A7%A3/</url>
     <content><![CDATA[<p><img src="/images/biasAndvariance.png"> </p>
 ]]></content>
       <tags>
@@ -2933,7 +2933,7 @@ int main(int argc, const char * argv[]) &#123;
   </entry>
   <entry>
     <title>回溯的变量变化</title>
-    <url>/2023/02/11/%E5%9B%9E%E6%BA%AF%E7%9A%84%E5%8F%98%E9%87%8F%E5%8F%98%E5%8C%96/</url>
+    <url>/2023/02/12/%E5%9B%9E%E6%BA%AF%E7%9A%84%E5%8F%98%E9%87%8F%E5%8F%98%E5%8C%96/</url>
     <content><![CDATA[<h2 id="递归回溯涉及到的变量变化"><a href="#递归回溯涉及到的变量变化" class="headerlink" title="递归回溯涉及到的变量变化"></a>递归回溯涉及到的变量变化</h2><pre><code>def parse_xml_to_dict(self, xml):
 
         if len(xml) == 0:  # 遍历到底层，直接返回tag对应的信息
@@ -3135,7 +3135,7 @@ aaa
   </entry>
   <entry>
     <title>回溯备忘录</title>
-    <url>/2023/06/02/%E5%9B%9E%E6%BA%AF%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+    <url>/2023/06/03/%E5%9B%9E%E6%BA%AF%E5%A4%87%E5%BF%98%E5%BD%95/</url>
     <content><![CDATA[<h2 id="大部分的回溯都有一部分的重复搜索，可以通过一个备忘录记录之前搜索的结果，在找到这个节点的时候直接return就行"><a href="#大部分的回溯都有一部分的重复搜索，可以通过一个备忘录记录之前搜索的结果，在找到这个节点的时候直接return就行" class="headerlink" title="大部分的回溯都有一部分的重复搜索，可以通过一个备忘录记录之前搜索的结果，在找到这个节点的时候直接return就行"></a>大部分的回溯都有一部分的重复搜索，可以通过一个备忘录记录之前搜索的结果，在找到这个节点的时候直接return就行</h2><h3 id="idx是一个很重要的指标，它的左边是-idx-1-n-1-i-x3D-idx-1-idx-2…-n-1"><a href="#idx是一个很重要的指标，它的左边是-idx-1-n-1-i-x3D-idx-1-idx-2…-n-1" class="headerlink" title="idx是一个很重要的指标，它的左边是 idx + 1 ~ n-1(i &#x3D; idx + 1, idx + 2….n-1)"></a>idx是一个很重要的指标，它的左边是 idx + 1 ~ n-1(i &#x3D; idx + 1, idx + 2….n-1)</h3><h3 id="同时idx的子树对应的i也是-idx-1-n-1-i-x3D-idx-1-idx-2…-n-1"><a href="#同时idx的子树对应的i也是-idx-1-n-1-i-x3D-idx-1-idx-2…-n-1" class="headerlink" title="同时idx的子树对应的i也是 idx + 1 ~ n-1(i &#x3D; idx + 1, idx + 2….n-1)"></a>同时idx的子树对应的i也是 idx + 1 ~ n-1(i &#x3D; idx + 1, idx + 2….n-1)</h3><ul>
 <li>因此，使用idx和深度作为备忘录的key可以很好的保存这个节点</li>
 </ul>
@@ -3283,7 +3283,7 @@ k=3 idx = 1
   </entry>
   <entry>
     <title>按位与替换取余操作</title>
-    <url>/2022/07/06/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</url>
+    <url>/2022/07/07/%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%8F%96%E4%BD%99%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<blockquote>
 <p>由于我们知道位运算比较高效，在某些情况下，当b为2的n次方时，有如下替换公式：</p>
 </blockquote>
@@ -3347,7 +3347,7 @@ k=3 idx = 1
   </entry>
   <entry>
     <title>期望和方差</title>
-    <url>/2022/05/21/%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE/</url>
+    <url>/2022/05/22/%E6%9C%9F%E6%9C%9B%E5%92%8C%E6%96%B9%E5%B7%AE/</url>
     <content><![CDATA[<p><img src="/images/expectAndvariance.png"> </p>
 ]]></content>
       <tags>
@@ -3465,7 +3465,7 @@ int main()
   </entry>
   <entry>
     <title>字节对齐</title>
-    <url>/2022/08/25/%E5%AD%97%E8%8A%82%E5%AF%B9%E9%BD%90/</url>
+    <url>/2022/08/26/%E5%AD%97%E8%8A%82%E5%AF%B9%E9%BD%90/</url>
     <content><![CDATA[<ul>
 <li>结构体变量的首地址能够被其最宽基本类型成员的大小所整除；</li>
 <li>结构体每个成员相对于结构体首地址的偏移量（offset）都是成员大小的整数倍，如有需要编译器会在成员之间加上填充字节（internal padding）；</li>
@@ -3626,7 +3626,7 @@ int main()
   </entry>
   <entry>
     <title>虚拟语气</title>
-    <url>/2022/12/18/%E8%99%9A%E6%8B%9F%E8%AF%AD%E6%B0%94/</url>
+    <url>/2022/12/19/%E8%99%9A%E6%8B%9F%E8%AF%AD%E6%B0%94/</url>
     <content><![CDATA[<ol>
 <li>与现在事实相反的虚拟：</li>
 </ol>
@@ -3704,7 +3704,7 @@ int main()
   </entry>
   <entry>
     <title>线性插值</title>
-    <url>/2022/08/20/%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/</url>
+    <url>/2022/08/21/%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC/</url>
     <content><![CDATA[<p><img src="/images/2022-08-28-19-14-47.png"></p>
 ]]></content>
       <tags>
@@ -3731,7 +3731,7 @@ int main()
   </entry>
   <entry>
     <title>红黑树</title>
-    <url>/2022/06/28/%E7%BA%A2%E9%BB%91%E6%A0%91/</url>
+    <url>/2022/06/29/%E7%BA%A2%E9%BB%91%E6%A0%91/</url>
     <content><![CDATA[<h1 id="红黑树五大特性"><a href="#红黑树五大特性" class="headerlink" title="红黑树五大特性"></a>红黑树五大特性</h1><ul>
 <li>节点是红&#x2F;黑</li>
 <li>根结点是黑</li>
@@ -3790,7 +3790,7 @@ int main()
   </entry>
   <entry>
     <title>英语句子</title>
-    <url>/2021/12/22/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
+    <url>/2021/12/23/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90/</url>
     <content><![CDATA[<blockquote>
 <p>commence—Many people have wondered why the end of someone’s school days should be celebrated by Commencement Exercises, which, ordinarily, refer to a beginning</p>
 </blockquote>
@@ -4276,7 +4276,7 @@ by decades 几十年
   </entry>
   <entry>
     <title>重载new()</title>
-    <url>/2022/06/21/%E9%87%8D%E8%BD%BD/</url>
+    <url>/2022/06/22/%E9%87%8D%E8%BD%BD/</url>
     <content><![CDATA[<h2 id="可以重载new，同时也可以重载new"><a href="#可以重载new，同时也可以重载new" class="headerlink" title="可以重载new，同时也可以重载new()"></a>可以重载new，同时也可以重载new()</h2><p>Foo* p &#x3D; new(300,”a”) Foo;</p>
 <blockquote>
 <p>new()里面的参数就是可以加在重载函数的参数中的<br>注意第一个参数必须是size_t</p>
@@ -4335,7 +4335,7 @@ by decades 几十年
   </entry>
   <entry>
     <title>sharpening</title>
-    <url>/2023/07/07/sharpening/</url>
+    <url>/2023/07/08/sharpening/</url>
     <content><![CDATA[<h2 id="Sharpening-function"><a href="#Sharpening-function" class="headerlink" title="Sharpening function"></a>Sharpening function</h2><p>f(x)&#x3D;((1)&#x2F;(1+ℯ^(-10 (x-0.5))))+((1)&#x2F;(1+ℯ^(-10 (-x-0.5))))</p>
 <p><img src="/images/2023-07-07-23-56-24.png"></p>
 ]]></content>
@@ -4411,17 +4411,60 @@ Lessen
 </code></pre>
 <h1 id="饼状图"><a href="#饼状图" class="headerlink" title="饼状图"></a>饼状图</h1><h1 id="小作文柱状图-1"><a href="#小作文柱状图-1" class="headerlink" title="小作文柱状图"></a>小作文柱状图</h1><h2 id="第一段-1"><a href="#第一段-1" class="headerlink" title="第一段"></a>第一段</h2><h3 id="重点，and-the-侧面点-thereof-时间，is-illustrated-the-distribution-of-data-subject-in-specific-context-or-time-frame"><a href="#重点，and-the-侧面点-thereof-时间，is-illustrated-the-distribution-of-data-subject-in-specific-context-or-time-frame" class="headerlink" title="重点，and the 侧面点 thereof, 时间，is illustrated the distribution of (data subject) in (specific context or time frame)."></a>重点，and the 侧面点 thereof, 时间，is illustrated the distribution of (data subject) in (specific context or time frame).</h3><h2 id="第二段-1"><a href="#第二段-1" class="headerlink" title="第二段"></a>第二段</h2><h2 id="第二段-2"><a href="#第二段-2" class="headerlink" title="第二段"></a>第二段</h2><pre><code>- 描述最高大最小
 </code></pre>
-<h3 id="Upon-closer-examination-data-the-pie-chart-reveals-a-strikingly-dominant-presence-of-category-A-occupying-a-substantial-majority-of-portion-approximately-具体百分比-significantly-outweighing-all-other-segments-in-the-distribution-Following-behind-category-A-category-B-secures-the-second-most-substantial-share-in-the-distribution-accounting-for-approximately-具体百分比-In-contrast-to-the-striking-prevalence-of-category-A-and-V-category-c-also-plays-a-noteworthy-role-with-a-considerable-albeit-relatively-smaller-portion-of-approximately-百分比-of-the-entire-distribution-With-a-minimal-presence-category-X-is-the-least-significant-segment-making-up-just-percentage-x2F-portion-of-the-entire-pie"><a href="#Upon-closer-examination-data-the-pie-chart-reveals-a-strikingly-dominant-presence-of-category-A-occupying-a-substantial-majority-of-portion-approximately-具体百分比-significantly-outweighing-all-other-segments-in-the-distribution-Following-behind-category-A-category-B-secures-the-second-most-substantial-share-in-the-distribution-accounting-for-approximately-具体百分比-In-contrast-to-the-striking-prevalence-of-category-A-and-V-category-c-also-plays-a-noteworthy-role-with-a-considerable-albeit-relatively-smaller-portion-of-approximately-百分比-of-the-entire-distribution-With-a-minimal-presence-category-X-is-the-least-significant-segment-making-up-just-percentage-x2F-portion-of-the-entire-pie" class="headerlink" title="Upon closer examination data, the pie chart reveals a strikingly dominant presence of (category A), occupying a substantial majority of portion, approximately (具体百分比), significantly outweighing all other segments in the distribution. Following behind (category A), (category B) secures the second most substantial share in the distribution, accounting for approximately (具体百分比). In contrast to the striking prevalence of (category A and V), (category c) also plays a noteworthy role with a considerable, albeit relatively smaller, portion of approximately (百分比) of the entire distribution. With a minimal presence, (category X) is the least significant segment, making up just (percentage&#x2F;portion) of the entire pie."></a>Upon closer examination data, the pie chart reveals a strikingly dominant presence of (category A), occupying a substantial majority of portion, approximately (具体百分比), significantly outweighing all other segments in the distribution. Following behind (category A), (category B) secures the second most substantial share in the distribution, accounting for approximately (具体百分比). In contrast to the striking prevalence of (category A and V), (category c) also plays a noteworthy role with a considerable, albeit relatively smaller, portion of approximately (百分比) of the entire distribution. With a minimal presence, (category X) is the least significant segment, making up just (percentage&#x2F;portion) of the entire pie.</h3><h2 id="第三段-1"><a href="#第三段-1" class="headerlink" title="第三段"></a>第三段</h2><h3 id="The-most-intriguing-segment-in-the-pie-chart-is-category-Y-capturing-attention-with-its-relatively-modest-size-of-around-percentage-x2F-portion-but-contributing-to-the-overall-diversity-in-a-noteworthy-manner-”"><a href="#The-most-intriguing-segment-in-the-pie-chart-is-category-Y-capturing-attention-with-its-relatively-modest-size-of-around-percentage-x2F-portion-but-contributing-to-the-overall-diversity-in-a-noteworthy-manner-”" class="headerlink" title="The most intriguing segment in the pie chart is (category Y), capturing attention with its relatively modest size of around (percentage&#x2F;portion), but contributing to the overall diversity in a noteworthy manner.”"></a>The most intriguing segment in the pie chart is (category Y), capturing attention with its relatively modest size of around (percentage&#x2F;portion), but contributing to the overall diversity in a noteworthy manner.”</h3><h2 id="结尾段-1"><a href="#结尾段-1" class="headerlink" title="结尾段"></a>结尾段</h2><h3 id="In-conclusion，the-overall-trend-is-upward-The-data-presented-in-the-chart-x2F-graph-x2F-table-provides-valuable-insights-into-data-subject-and-may-have-implications-for-relevant-field-or-context-”-1"><a href="#In-conclusion，the-overall-trend-is-upward-The-data-presented-in-the-chart-x2F-graph-x2F-table-provides-valuable-insights-into-data-subject-and-may-have-implications-for-relevant-field-or-context-”-1" class="headerlink" title="In conclusion，the overall trend is upward. The data presented in the (chart&#x2F;graph&#x2F;table) provides valuable insights into (data subject) and may have implications for (relevant field or context).”"></a>In conclusion，the overall trend is upward. The data presented in the (chart&#x2F;graph&#x2F;table) provides valuable insights into (data subject) and may have implications for (relevant field or context).”</h3><h1 id="大作文"><a href="#大作文" class="headerlink" title="大作文"></a>大作文</h1><h2 id="第一段-2"><a href="#第一段-2" class="headerlink" title="第一段"></a>第一段</h2><h3 id="In-an-ever-evolving-modern-epoch-the-pervasive-influence-of-话题-has-became-a-compelling-subject-of-discourse-capturing-the-attention-of-people-from-all-walks-of-life"><a href="#In-an-ever-evolving-modern-epoch-the-pervasive-influence-of-话题-has-became-a-compelling-subject-of-discourse-capturing-the-attention-of-people-from-all-walks-of-life" class="headerlink" title="In an ever-evolving modern epoch, the pervasive influence of [话题] has became a compelling subject of discourse, capturing the attention of people from all walks of life."></a>In an ever-evolving modern epoch, the pervasive influence of [话题] has became a compelling subject of discourse, capturing the attention of people from all walks of life.</h3><h3 id="观点：With-some-proponents-firmly-championing-观点1-，-while-others-harbor-reservations-and-perfer-not-观点2"><a href="#观点：With-some-proponents-firmly-championing-观点1-，-while-others-harbor-reservations-and-perfer-not-观点2" class="headerlink" title="观点：With some proponents firmly championing [观点1]， while others harbor reservations and perfer not [观点2]."></a>观点：With some proponents firmly championing [观点1]， while others harbor reservations and perfer not [观点2].</h3><h3 id="现象：-In-recent-times，改写题目numerous"><a href="#现象：-In-recent-times，改写题目numerous" class="headerlink" title="现象： In recent times，改写题目numerous"></a>现象： In recent times，改写题目numerous</h3><h3 id="我的观点：-While-acknowledging-the-value-of-某一方观点-my-endorsement-lies-with-表达你同意的观点-which-exhibits-a-higher-degree-of-coherence-and-practicality-in-addressing-the-complexities-of-the-matter-at-hand"><a href="#我的观点：-While-acknowledging-the-value-of-某一方观点-my-endorsement-lies-with-表达你同意的观点-which-exhibits-a-higher-degree-of-coherence-and-practicality-in-addressing-the-complexities-of-the-matter-at-hand" class="headerlink" title="我的观点： While acknowledging the value of [某一方观点], my endorsement lies with [表达你同意的观点], which exhibits a higher degree of coherence and practicality in addressing the complexities of the matter at hand."></a>我的观点： While acknowledging the value of [某一方观点], my endorsement lies with [表达你同意的观点], which exhibits a higher degree of coherence and practicality in addressing the complexities of the matter at hand.</h3><h3 id="任务类：this-essay-aims-to-delve-into-the-analysis-of-the-causes-and-potential-influences-behind-the-phenomenon"><a href="#任务类：this-essay-aims-to-delve-into-the-analysis-of-the-causes-and-potential-influences-behind-the-phenomenon" class="headerlink" title="任务类：this essay aims to delve into the analysis of the causes and potential influences behind the phenomenon."></a>任务类：this essay aims to delve into the analysis of the causes and potential influences behind the phenomenon.</h3><h2 id="第二段-3"><a href="#第二段-3" class="headerlink" title="第二段"></a>第二段</h2><h3 id="indispensable"><a href="#indispensable" class="headerlink" title="indispensable"></a>indispensable</h3><h3 id="主题句，解释句（细化主题句）facing-themselves-in-the-mirror，literally-and-figuratively-for-表达你同意的观点-it-has-wealthy-empirical-evidence-to-support-its-validity-As-a-case-in-point-a-recent-research-in-a-relevant-area-brought-to-light-that-“Many-xx-in-China-have-benefited-a-lot-through-xxx-and-an-increasing-number-of-others-are-trying-to-do-so-”-fueling-extensive-public-fascination-and-argument"><a href="#主题句，解释句（细化主题句）facing-themselves-in-the-mirror，literally-and-figuratively-for-表达你同意的观点-it-has-wealthy-empirical-evidence-to-support-its-validity-As-a-case-in-point-a-recent-research-in-a-relevant-area-brought-to-light-that-“Many-xx-in-China-have-benefited-a-lot-through-xxx-and-an-increasing-number-of-others-are-trying-to-do-so-”-fueling-extensive-public-fascination-and-argument" class="headerlink" title="主题句，解释句（细化主题句）facing themselves in the mirror，literally and figuratively. for [表达你同意的观点], it has wealthy empirical evidence to support its validity. As a case in point, a recent research in a relevant area brought to light that “Many xx in China have benefited a lot through xxx, and an increasing number of others are trying to do so.”, fueling extensive public fascination and argument."></a>主题句，解释句（细化主题句）facing themselves in the mirror，literally and figuratively. for [表达你同意的观点], it has wealthy empirical evidence to support its validity. As a case in point, a recent research in a relevant area brought to light that “Many xx in China have benefited a lot through xxx, and an increasing number of others are trying to do so.”, fueling extensive public fascination and argument.</h3><h3 id="宽泛案例：Many-xx-in-China-have-benefited-a-lot-through-xxx-and-an-increasing-number-of-others-are-trying-to-do-so"><a href="#宽泛案例：Many-xx-in-China-have-benefited-a-lot-through-xxx-and-an-increasing-number-of-others-are-trying-to-do-so" class="headerlink" title="宽泛案例：Many xx in China have benefited a lot through xxx, and an increasing number of others are trying to do so."></a>宽泛案例：Many xx in China have benefited a lot through xxx, and an increasing number of others are trying to do so.</h3><h2 id="第三段-2"><a href="#第三段-2" class="headerlink" title="第三段"></a>第三段</h2><h3 id="Despite-the-apparent-benefits-of-观点-there-are-also-potential-drawbacks-that-need-to-be-considered-主旨句，细化句-举例-The-success-of-Finland’s-education-system-known-for-its-emphasis-on-creativity-and-personalized-learning-has-inspired-educators-from-around-the-world-to-study-its-methodologies-As-a-result-an-boosting-number-of-schools-globally-are-adopting-elements-of-the-Finnish-model-aiming-to-create-more-effective-and-inclusive-learning-environments-for-their-students"><a href="#Despite-the-apparent-benefits-of-观点-there-are-also-potential-drawbacks-that-need-to-be-considered-主旨句，细化句-举例-The-success-of-Finland’s-education-system-known-for-its-emphasis-on-creativity-and-personalized-learning-has-inspired-educators-from-around-the-world-to-study-its-methodologies-As-a-result-an-boosting-number-of-schools-globally-are-adopting-elements-of-the-Finnish-model-aiming-to-create-more-effective-and-inclusive-learning-environments-for-their-students" class="headerlink" title="Despite the apparent benefits of [观点], there are also potential drawbacks that need to be considered. 主旨句，细化句. 举例 The success of Finland’s education system, known for its emphasis on creativity and personalized learning, has inspired educators from around the world to study its methodologies. As a result, an boosting number of schools globally are adopting elements of the Finnish model, aiming to create more effective and inclusive learning environments for their students."></a>Despite the apparent benefits of [观点], there are also potential drawbacks that need to be considered. 主旨句，细化句. 举例 The success of Finland’s education system, known for its emphasis on creativity and personalized learning, has inspired educators from around the world to study its methodologies. As a result, an boosting number of schools globally are adopting elements of the Finnish model, aiming to create more effective and inclusive learning environments for their students.</h3><h3 id="Provided-that-条件-观点-is-more-likely-to-be-justified-and-effective-事件-x2F-政策-has-led-to-a-myriad-of-consequences-impacting-相关领域-in-both-positive-and-negative-ways"><a href="#Provided-that-条件-观点-is-more-likely-to-be-justified-and-effective-事件-x2F-政策-has-led-to-a-myriad-of-consequences-impacting-相关领域-in-both-positive-and-negative-ways" class="headerlink" title="Provided that [条件], [观点] is more likely to be justified and effective. [事件&#x2F;政策] has led to a myriad of consequences, impacting [相关领域] in both positive and negative ways."></a>Provided that [条件], [观点] is more likely to be justified and effective. [事件&#x2F;政策] has led to a myriad of consequences, impacting [相关领域] in both positive and negative ways.</h3><h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><h2 id="agree-or-not"><a href="#agree-or-not" class="headerlink" title="agree or not"></a>agree or not</h2><h3 id="In-conclusion-I-remain-unwavering-in-my-conviction-that-XXX-While-potential-pitfalls-lurk-in-the-backdrop-the-arugments-I-have-elucidated-above-robustly-vindicated-my-stance"><a href="#In-conclusion-I-remain-unwavering-in-my-conviction-that-XXX-While-potential-pitfalls-lurk-in-the-backdrop-the-arugments-I-have-elucidated-above-robustly-vindicated-my-stance" class="headerlink" title="In conclusion, I remain unwavering in my conviction that XXX. While potential pitfalls lurk in the backdrop, the arugments I have elucidated above robustly vindicated my stance."></a>In conclusion, I remain unwavering in my conviction that XXX. While potential pitfalls lurk in the backdrop, the arugments I have elucidated above robustly vindicated my stance.</h3><h2 id="优or缺"><a href="#优or缺" class="headerlink" title="优or缺"></a>优or缺</h2><h3 id="In-conclusion-I-remain-unwavering-in-my-conviction-that-XXX-While-potential-pitfalls-lurk-in-the-backdrop-the-arugments-I-have-elucidated-above-robustly-vindicated-my-stance-Emphasizing-both-aspects-of-the-equation-will-undoubtedly-yield-multifaceted-benefits-for-individuals-and-society-as-a-whole"><a href="#In-conclusion-I-remain-unwavering-in-my-conviction-that-XXX-While-potential-pitfalls-lurk-in-the-backdrop-the-arugments-I-have-elucidated-above-robustly-vindicated-my-stance-Emphasizing-both-aspects-of-the-equation-will-undoubtedly-yield-multifaceted-benefits-for-individuals-and-society-as-a-whole" class="headerlink" title="In conclusion, I remain unwavering in my conviction that XXX. While potential pitfalls lurk in the backdrop, the arugments I have elucidated above robustly vindicated my stance. Emphasizing both aspects of the equation will undoubtedly yield multifaceted benefits for individuals and society as a whole"></a>In conclusion, I remain unwavering in my conviction that XXX. While potential pitfalls lurk in the backdrop, the arugments I have elucidated above robustly vindicated my stance. Emphasizing both aspects of the equation will undoubtedly yield multifaceted benefits for individuals and society as a whole</h3><h3 id="优和缺"><a href="#优和缺" class="headerlink" title="优和缺"></a>优和缺</h3><h3 id="In-conclusion，-the-dilemma-of-xxx-is-multifaceted-and-intricate-issue-with-an-array-of-underlying-reasons-and-wide-ranging-consequences-It-is-imperative-to-acknowledge-that-it-is-caused-by-xxx-and-may-bring-the-effects-of-XXX"><a href="#In-conclusion，-the-dilemma-of-xxx-is-multifaceted-and-intricate-issue-with-an-array-of-underlying-reasons-and-wide-ranging-consequences-It-is-imperative-to-acknowledge-that-it-is-caused-by-xxx-and-may-bring-the-effects-of-XXX" class="headerlink" title="In conclusion， the dilemma of xxx is multifaceted and intricate issue with an array of underlying reasons and wide-ranging consequences. It is imperative to acknowledge that it is caused by xxx and may bring the effects of XXX."></a>In conclusion， the dilemma of xxx is multifaceted and intricate issue with an array of underlying reasons and wide-ranging consequences. It is imperative to acknowledge that it is caused by xxx and may bring the effects of XXX.</h3><h3 id="In-conclusion-the-issue-of-xxx-is-of-multiplicity-It-is-imperative-to-acknowledge-that-it-is-may-bring-the-merit-that-xxxx-and-the-shortcoming-that-xxx-should-never-be-ignored-either"><a href="#In-conclusion-the-issue-of-xxx-is-of-multiplicity-It-is-imperative-to-acknowledge-that-it-is-may-bring-the-merit-that-xxxx-and-the-shortcoming-that-xxx-should-never-be-ignored-either" class="headerlink" title="In conclusion, the issue of xxx is of multiplicity. It is imperative to acknowledge that it is may bring the merit that xxxx, and the shortcoming that xxx should never be ignored either."></a>In conclusion, the issue of xxx is of multiplicity. It is imperative to acknowledge that it is may bring the merit that xxxx, and the shortcoming that xxx should never be ignored either.</h3><h3 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h3><h3 id="In-conclusion-while-the-dilemma-of-xxx-is-incontrovertibly-and-multi-dimensional-it-is-imperative-to-acknowledge-that-it-is-caused-by-xxx-and-may-be-solved-through-xxxx"><a href="#In-conclusion-while-the-dilemma-of-xxx-is-incontrovertibly-and-multi-dimensional-it-is-imperative-to-acknowledge-that-it-is-caused-by-xxx-and-may-be-solved-through-xxxx" class="headerlink" title="In conclusion, while the dilemma of xxx is incontrovertibly and multi-dimensional, it is imperative to acknowledge that it is caused by xxx and may be solved through xxxx."></a>In conclusion, while the dilemma of xxx is incontrovertibly and multi-dimensional, it is imperative to acknowledge that it is caused by xxx and may be solved through xxxx.</h3><pre><code>In an ever-evolving modern epoch, the pervasive influence of the competitive spirit has become a compelling subject of discourse, capturing the attention of people from all walks of life. Some proponents champion the idea that the government should allocate more financial support for major competitions, such as the Olympic Games or football World Cup. However, others harbor reservations and prefer directing this budget towards cultivating sports interest among children from an early age. While acknowledging the merits and drawbacks of both sides, my endorsement lies with striking a well-balanced approach in this matter.
-
-Clearly, competitions can, to a certain extent, reflect a country&#39;s economic situation, especially considering the recent fallout from the virus. Therefore, sufficient funds in sports preparation are indispensable. There is ample empirical evidence to support this argument. For instance, a recent research about the football World Cup, held in Saudi Arabia this year, shed light on how it not only benefited the improvement of international reputation but also boosted the domestic economy, fueling extensive international public fascination and debate.
-
-Despite the immediate benefits linked to investing money in major competitions, it is also crucial to consider the foundation of the sports pyramid - children. The relationship between the root and branch is inseparable, just like the connection between childhood and adulthood. Taking the education systems of Germany and France as examples, they are renowned for emphasizing encouraging children to develop a sports spirit and allocating substantial financial support to sports education, such as building new stadiums, inviting famous coaches as teachers, and even providing free special training for kids interested in sports.
-
-In conclusion, I remain unwavering in my conviction that the investment in preparing participants for major competitions and in cultivating children to participate in sports from a young age should be well-balanced. The arguments I have elucidated above robustly vindicate my stance.
-</code></pre>
+<h3 id="Upon-closer-examination-data-the-pie-chart-reveals-a-strikingly-dominant-presence-of-category-A-occupying-a-substantial-majority-of-portion-approximately-具体百分比-significantly-outweighing-all-other-segments-in-the-distribution-Following-behind-category-A-category-B-secures-the-second-most-substantial-share-in-the-distribution-accounting-for-approximately-具体百分比-In-contrast-to-the-striking-prevalence-of-category-A-and-V-category-c-also-plays-a-noteworthy-role-with-a-considerable-albeit-relatively-smaller-portion-of-approximately-百分比-of-the-entire-distribution-With-a-minimal-presence-category-X-is-the-least-significant-segment-making-up-just-percentage-x2F-portion-of-the-entire-pie"><a href="#Upon-closer-examination-data-the-pie-chart-reveals-a-strikingly-dominant-presence-of-category-A-occupying-a-substantial-majority-of-portion-approximately-具体百分比-significantly-outweighing-all-other-segments-in-the-distribution-Following-behind-category-A-category-B-secures-the-second-most-substantial-share-in-the-distribution-accounting-for-approximately-具体百分比-In-contrast-to-the-striking-prevalence-of-category-A-and-V-category-c-also-plays-a-noteworthy-role-with-a-considerable-albeit-relatively-smaller-portion-of-approximately-百分比-of-the-entire-distribution-With-a-minimal-presence-category-X-is-the-least-significant-segment-making-up-just-percentage-x2F-portion-of-the-entire-pie" class="headerlink" title="Upon closer examination data, the pie chart reveals a strikingly dominant presence of (category A), occupying a substantial majority of portion, approximately (具体百分比), significantly outweighing all other segments in the distribution. Following behind (category A), (category B) secures the second most substantial share in the distribution, accounting for approximately (具体百分比). In contrast to the striking prevalence of (category A and V), (category c) also plays a noteworthy role with a considerable, albeit relatively smaller, portion of approximately (百分比) of the entire distribution. With a minimal presence, (category X) is the least significant segment, making up just (percentage&#x2F;portion) of the entire pie."></a>Upon closer examination data, the pie chart reveals a strikingly dominant presence of (category A), occupying a substantial majority of portion, approximately (具体百分比), significantly outweighing all other segments in the distribution. Following behind (category A), (category B) secures the second most substantial share in the distribution, accounting for approximately (具体百分比). In contrast to the striking prevalence of (category A and V), (category c) also plays a noteworthy role with a considerable, albeit relatively smaller, portion of approximately (百分比) of the entire distribution. With a minimal presence, (category X) is the least significant segment, making up just (percentage&#x2F;portion) of the entire pie.</h3><h2 id="第三段-1"><a href="#第三段-1" class="headerlink" title="第三段"></a>第三段</h2><h3 id="The-most-intriguing-segment-in-the-pie-chart-is-category-Y-capturing-attention-with-its-relatively-modest-size-of-around-percentage-x2F-portion-but-contributing-to-the-overall-diversity-in-a-noteworthy-manner-”"><a href="#The-most-intriguing-segment-in-the-pie-chart-is-category-Y-capturing-attention-with-its-relatively-modest-size-of-around-percentage-x2F-portion-but-contributing-to-the-overall-diversity-in-a-noteworthy-manner-”" class="headerlink" title="The most intriguing segment in the pie chart is (category Y), capturing attention with its relatively modest size of around (percentage&#x2F;portion), but contributing to the overall diversity in a noteworthy manner.”"></a>The most intriguing segment in the pie chart is (category Y), capturing attention with its relatively modest size of around (percentage&#x2F;portion), but contributing to the overall diversity in a noteworthy manner.”</h3><h2 id="结尾段-1"><a href="#结尾段-1" class="headerlink" title="结尾段"></a>结尾段</h2><h3 id="In-conclusion，the-overall-trend-is-upward-The-data-presented-in-the-chart-x2F-graph-x2F-table-provides-valuable-insights-into-data-subject-and-may-have-implications-for-relevant-field-or-context-”-1"><a href="#In-conclusion，the-overall-trend-is-upward-The-data-presented-in-the-chart-x2F-graph-x2F-table-provides-valuable-insights-into-data-subject-and-may-have-implications-for-relevant-field-or-context-”-1" class="headerlink" title="In conclusion，the overall trend is upward. The data presented in the (chart&#x2F;graph&#x2F;table) provides valuable insights into (data subject) and may have implications for (relevant field or context).”"></a>In conclusion，the overall trend is upward. The data presented in the (chart&#x2F;graph&#x2F;table) provides valuable insights into (data subject) and may have implications for (relevant field or context).”</h3><h1 id="大作文"><a href="#大作文" class="headerlink" title="大作文"></a>大作文</h1><h2 id="第一段-2"><a href="#第一段-2" class="headerlink" title="第一段"></a>第一段</h2><h3 id="In-an-ever-evolving-modern-epoch-the-pervasive-influence-of-话题-has-became-a-compelling-subject-of-discourse-capturing-the-attention-of-people-from-all-walks-of-life"><a href="#In-an-ever-evolving-modern-epoch-the-pervasive-influence-of-话题-has-became-a-compelling-subject-of-discourse-capturing-the-attention-of-people-from-all-walks-of-life" class="headerlink" title="In an ever-evolving modern epoch, the pervasive influence of [话题] has became a compelling subject of discourse, capturing the attention of people from all walks of life."></a>In an ever-evolving modern epoch, the pervasive influence of [话题] has became a compelling subject of discourse, capturing the attention of people from all walks of life.</h3><h3 id="观点：With-some-proponents-firmly-championing-观点1-，-while-others-harbor-reservations-and-perfer-not-观点2"><a href="#观点：With-some-proponents-firmly-championing-观点1-，-while-others-harbor-reservations-and-perfer-not-观点2" class="headerlink" title="观点：With some proponents firmly championing [观点1]， while others harbor reservations and perfer not [观点2]."></a>观点：With some proponents firmly championing [观点1]， while others harbor reservations and perfer not [观点2].</h3><h3 id="现象：-In-recent-times，改写题目numerous"><a href="#现象：-In-recent-times，改写题目numerous" class="headerlink" title="现象： In recent times，改写题目numerous"></a>现象： In recent times，改写题目numerous</h3><h3 id="我的观点：-While-acknowledging-the-value-of-某一方观点-my-endorsement-lies-with-表达你同意的观点-which-exhibits-a-higher-degree-of-coherence-and-practicality-in-addressing-the-complexities-of-the-matter-at-hand"><a href="#我的观点：-While-acknowledging-the-value-of-某一方观点-my-endorsement-lies-with-表达你同意的观点-which-exhibits-a-higher-degree-of-coherence-and-practicality-in-addressing-the-complexities-of-the-matter-at-hand" class="headerlink" title="我的观点： While acknowledging the value of [某一方观点], my endorsement lies with [表达你同意的观点], which exhibits a higher degree of coherence and practicality in addressing the complexities of the matter at hand."></a>我的观点： While acknowledging the value of [某一方观点], my endorsement lies with [表达你同意的观点], which exhibits a higher degree of coherence and practicality in addressing the complexities of the matter at hand.</h3><h3 id="任务类：this-essay-aims-to-delve-into-the-analysis-of-the-causes-and-potential-influences-behind-the-phenomenon"><a href="#任务类：this-essay-aims-to-delve-into-the-analysis-of-the-causes-and-potential-influences-behind-the-phenomenon" class="headerlink" title="任务类：this essay aims to delve into the analysis of the causes and potential influences behind the phenomenon."></a>任务类：this essay aims to delve into the analysis of the causes and potential influences behind the phenomenon.</h3><h2 id="第二段-3"><a href="#第二段-3" class="headerlink" title="第二段"></a>第二段</h2><h3 id="indispensable"><a href="#indispensable" class="headerlink" title="indispensable"></a>indispensable</h3><h3 id="主题句，解释句（细化主题句）facing-themselves-in-the-mirror，literally-and-figuratively-for-表达你同意的观点-it-has-wealthy-empirical-evidence-to-support-its-validity-As-a-case-in-point-a-recent-research-in-a-relevant-area-brought-to-light-that-“Many-xx-in-China-have-benefited-a-lot-through-xxx-and-an-increasing-number-of-others-are-trying-to-do-so-”-fueling-extensive-public-fascination-and-argument"><a href="#主题句，解释句（细化主题句）facing-themselves-in-the-mirror，literally-and-figuratively-for-表达你同意的观点-it-has-wealthy-empirical-evidence-to-support-its-validity-As-a-case-in-point-a-recent-research-in-a-relevant-area-brought-to-light-that-“Many-xx-in-China-have-benefited-a-lot-through-xxx-and-an-increasing-number-of-others-are-trying-to-do-so-”-fueling-extensive-public-fascination-and-argument" class="headerlink" title="主题句，解释句（细化主题句）facing themselves in the mirror，literally and figuratively. for [表达你同意的观点], it has wealthy empirical evidence to support its validity. As a case in point, a recent research in a relevant area brought to light that “Many xx in China have benefited a lot through xxx, and an increasing number of others are trying to do so.”, fueling extensive public fascination and argument."></a>主题句，解释句（细化主题句）facing themselves in the mirror，literally and figuratively. for [表达你同意的观点], it has wealthy empirical evidence to support its validity. As a case in point, a recent research in a relevant area brought to light that “Many xx in China have benefited a lot through xxx, and an increasing number of others are trying to do so.”, fueling extensive public fascination and argument.</h3><h3 id="宽泛案例：Many-xx-in-China-have-benefited-a-lot-through-xxx-and-an-increasing-number-of-others-are-trying-to-do-so"><a href="#宽泛案例：Many-xx-in-China-have-benefited-a-lot-through-xxx-and-an-increasing-number-of-others-are-trying-to-do-so" class="headerlink" title="宽泛案例：Many xx in China have benefited a lot through xxx, and an increasing number of others are trying to do so."></a>宽泛案例：Many xx in China have benefited a lot through xxx, and an increasing number of others are trying to do so.</h3><h2 id="第三段-2"><a href="#第三段-2" class="headerlink" title="第三段"></a>第三段</h2><h3 id="Despite-the-apparent-benefits-of-观点-there-are-also-potential-drawbacks-that-need-to-be-considered-主旨句，细化句-举例-The-success-of-Finland’s-education-system-known-for-its-emphasis-on-creativity-and-personalized-learning-has-inspired-educators-from-around-the-world-to-study-its-methodologies-As-a-result-an-boosting-number-of-schools-globally-are-adopting-elements-of-the-Finnish-model-aiming-to-create-more-effective-and-inclusive-learning-environments-for-their-students"><a href="#Despite-the-apparent-benefits-of-观点-there-are-also-potential-drawbacks-that-need-to-be-considered-主旨句，细化句-举例-The-success-of-Finland’s-education-system-known-for-its-emphasis-on-creativity-and-personalized-learning-has-inspired-educators-from-around-the-world-to-study-its-methodologies-As-a-result-an-boosting-number-of-schools-globally-are-adopting-elements-of-the-Finnish-model-aiming-to-create-more-effective-and-inclusive-learning-environments-for-their-students" class="headerlink" title="Despite the apparent benefits of [观点], there are also potential drawbacks that need to be considered. 主旨句，细化句. 举例 The success of Finland’s education system, known for its emphasis on creativity and personalized learning, has inspired educators from around the world to study its methodologies. As a result, an boosting number of schools globally are adopting elements of the Finnish model, aiming to create more effective and inclusive learning environments for their students."></a>Despite the apparent benefits of [观点], there are also potential drawbacks that need to be considered. 主旨句，细化句. 举例 The success of Finland’s education system, known for its emphasis on creativity and personalized learning, has inspired educators from around the world to study its methodologies. As a result, an boosting number of schools globally are adopting elements of the Finnish model, aiming to create more effective and inclusive learning environments for their students.</h3><h3 id="Provided-that-条件-观点-is-more-likely-to-be-justified-and-effective-事件-x2F-政策-has-led-to-a-myriad-of-consequences-impacting-相关领域-in-both-positive-and-negative-ways"><a href="#Provided-that-条件-观点-is-more-likely-to-be-justified-and-effective-事件-x2F-政策-has-led-to-a-myriad-of-consequences-impacting-相关领域-in-both-positive-and-negative-ways" class="headerlink" title="Provided that [条件], [观点] is more likely to be justified and effective. [事件&#x2F;政策] has led to a myriad of consequences, impacting [相关领域] in both positive and negative ways."></a>Provided that [条件], [观点] is more likely to be justified and effective. [事件&#x2F;政策] has led to a myriad of consequences, impacting [相关领域] in both positive and negative ways.</h3><h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><h2 id="agree-or-not"><a href="#agree-or-not" class="headerlink" title="agree or not"></a>agree or not</h2><h3 id="In-conclusion-I-remain-unwavering-in-my-conviction-that-XXX-While-potential-pitfalls-lurk-in-the-backdrop-the-arugments-I-have-elucidated-above-robustly-vindicated-my-stance"><a href="#In-conclusion-I-remain-unwavering-in-my-conviction-that-XXX-While-potential-pitfalls-lurk-in-the-backdrop-the-arugments-I-have-elucidated-above-robustly-vindicated-my-stance" class="headerlink" title="In conclusion, I remain unwavering in my conviction that XXX. While potential pitfalls lurk in the backdrop, the arugments I have elucidated above robustly vindicated my stance."></a>In conclusion, I remain unwavering in my conviction that XXX. While potential pitfalls lurk in the backdrop, the arugments I have elucidated above robustly vindicated my stance.</h3><h2 id="优or缺"><a href="#优or缺" class="headerlink" title="优or缺"></a>优or缺</h2><h3 id="In-conclusion-I-remain-unwavering-in-my-conviction-that-XXX-While-potential-pitfalls-lurk-in-the-backdrop-the-arugments-I-have-elucidated-above-robustly-vindicated-my-stance-Emphasizing-both-aspects-of-the-equation-will-undoubtedly-yield-multifaceted-benefits-for-individuals-and-society-as-a-whole"><a href="#In-conclusion-I-remain-unwavering-in-my-conviction-that-XXX-While-potential-pitfalls-lurk-in-the-backdrop-the-arugments-I-have-elucidated-above-robustly-vindicated-my-stance-Emphasizing-both-aspects-of-the-equation-will-undoubtedly-yield-multifaceted-benefits-for-individuals-and-society-as-a-whole" class="headerlink" title="In conclusion, I remain unwavering in my conviction that XXX. While potential pitfalls lurk in the backdrop, the arugments I have elucidated above robustly vindicated my stance. Emphasizing both aspects of the equation will undoubtedly yield multifaceted benefits for individuals and society as a whole"></a>In conclusion, I remain unwavering in my conviction that XXX. While potential pitfalls lurk in the backdrop, the arugments I have elucidated above robustly vindicated my stance. Emphasizing both aspects of the equation will undoubtedly yield multifaceted benefits for individuals and society as a whole</h3><h3 id="优和缺"><a href="#优和缺" class="headerlink" title="优和缺"></a>优和缺</h3><h3 id="In-conclusion，-the-dilemma-of-xxx-is-multifaceted-and-intricate-issue-with-an-array-of-underlying-reasons-and-wide-ranging-consequences-It-is-imperative-to-acknowledge-that-it-is-caused-by-xxx-and-may-bring-the-effects-of-XXX"><a href="#In-conclusion，-the-dilemma-of-xxx-is-multifaceted-and-intricate-issue-with-an-array-of-underlying-reasons-and-wide-ranging-consequences-It-is-imperative-to-acknowledge-that-it-is-caused-by-xxx-and-may-bring-the-effects-of-XXX" class="headerlink" title="In conclusion， the dilemma of xxx is multifaceted and intricate issue with an array of underlying reasons and wide-ranging consequences. It is imperative to acknowledge that it is caused by xxx and may bring the effects of XXX."></a>In conclusion， the dilemma of xxx is multifaceted and intricate issue with an array of underlying reasons and wide-ranging consequences. It is imperative to acknowledge that it is caused by xxx and may bring the effects of XXX.</h3><h3 id="In-conclusion-the-issue-of-xxx-is-of-multiplicity-It-is-imperative-to-acknowledge-that-it-is-may-bring-the-merit-that-xxxx-and-the-shortcoming-that-xxx-should-never-be-ignored-either"><a href="#In-conclusion-the-issue-of-xxx-is-of-multiplicity-It-is-imperative-to-acknowledge-that-it-is-may-bring-the-merit-that-xxxx-and-the-shortcoming-that-xxx-should-never-be-ignored-either" class="headerlink" title="In conclusion, the issue of xxx is of multiplicity. It is imperative to acknowledge that it is may bring the merit that xxxx, and the shortcoming that xxx should never be ignored either."></a>In conclusion, the issue of xxx is of multiplicity. It is imperative to acknowledge that it is may bring the merit that xxxx, and the shortcoming that xxx should never be ignored either.</h3><h3 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h3><h3 id="In-conclusion-while-the-dilemma-of-xxx-is-incontrovertibly-and-multi-dimensional-it-is-imperative-to-acknowledge-that-it-is-caused-by-xxx-and-may-be-solved-through-xxxx"><a href="#In-conclusion-while-the-dilemma-of-xxx-is-incontrovertibly-and-multi-dimensional-it-is-imperative-to-acknowledge-that-it-is-caused-by-xxx-and-may-be-solved-through-xxxx" class="headerlink" title="In conclusion, while the dilemma of xxx is incontrovertibly and multi-dimensional, it is imperative to acknowledge that it is caused by xxx and may be solved through xxxx."></a>In conclusion, while the dilemma of xxx is incontrovertibly and multi-dimensional, it is imperative to acknowledge that it is caused by xxx and may be solved through xxxx.</h3><ul>
+<li><p>In an ever-evolving modern epoch, the pervasive influence of the competitive spirit has become a compelling subject of discourse, capturing the attention of people from all walks of life. Some proponents champion the idea that the government should allocate more financial support for major competitions, such as the Olympic Games or football World Cup. However, others harbor reservations and prefer directing this budget towards cultivating sports interest among children from an early age. While acknowledging the merits and drawbacks of both sides, my endorsement lies with striking a well-balanced approach in this matter.</p>
+</li>
+<li><p>Clearly, competitions can, to a certain extent, reflect a country’s economic situation, especially considering the recent fallout from the virus. Therefore, sufficient funds in sports preparation are indispensable. There is ample empirical evidence to support this argument. For instance, a recent research about the football World Cup, held in Saudi Arabia this year, shed light on how it not only benefited the improvement of international reputation but also boosted the domestic economy, fueling extensive international public fascination and debate.</p>
+</li>
+<li><p>Despite the immediate benefits linked to investing money in major competitions, it is also crucial to consider the foundation of the sports pyramid - children. The relationship between the root and branch is inseparable, just like the connection between childhood and adulthood. Taking the education systems of Germany and France as examples, they are renowned for emphasizing encouraging children to develop a sports spirit and allocating substantial financial support to sports education, such as building new stadiums, inviting famous coaches as teachers, and even providing free special training for kids interested in sports.</p>
+</li>
+<li><p>In conclusion, I remain unwavering in my conviction that the investment in preparing participants for major competitions and in cultivating children to participate in sports from a young age should be well-balanced. The arguments I have elucidated above robustly vindicate my stance.</p>
+</li>
+</ul>
 ]]></content>
       <tags>
         <tag>English</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DecisionTreeID3</title>
+    <url>/2023/07/24/DecisionTreeID3/</url>
+    <content><![CDATA[<h3 id="How-to-make-a-decision-tree-ID3"><a href="#How-to-make-a-decision-tree-ID3" class="headerlink" title="How to make a decision tree (ID3)"></a>How to make a decision tree (ID3)</h3><pre><code># core code, recur to generate a decision in which based on recursion knowledge
+
+def createTree(dataSet, labels)
+    classList = dataset[:,-1]
+    if classList.count(classList[0]) == len(classList):
+        return classList[0] # return the category label 
+    if len(dataSet[0] == 1) # only one feature remain
+        return majorityCnt(classList) # return the most percentage of categories
+    bestFeat = chooseBestFeatureToSplit(dataSet)
+    bestFeatLabel = labels[bestFeat]
+    myTree = &#123;bestFeatLabel:&#123;&#125;&#125;
+    del(labels[bestFeat])
+    featValue = dataSet[bestFeat]
+    uniqueVals = set(featValue) 
+    for value in uniquesVals: # considere the making process of binary tree in data structure
+        myTree[bestFeatLabel][value] = createTree(splitDataSet(dataSet, bestFeat, value), labels)
+    return myTree
+</code></pre>
+<h4 id="classification-function"><a href="#classification-function" class="headerlink" title="classification function"></a>classification function</h4><pre><code>
+def classify(inputTree, featLabels, testVec):
+    # obtain first node key of tree
+    firstStr = next(iter(inputTree))
+    # value of the corresponding node&#39;s key
+    secondDict = inputTree[firstStr]
+    featIndex = featLabels.index(firstStr)
+    for key in secondDict.keys():
+        if testVec[featIndex] == key:
+            if type(secondDict[key]).__name__ == &#39;dict&#39;:
+                classLabel = classify(secondDict[key], featLabels, testVec)
+            else:
+                classLabel = secondDict[key]
+    return classLabel
+</code></pre>
+]]></content>
+      <tags>
+        <tag>machine learning</tag>
       </tags>
   </entry>
 </search>
