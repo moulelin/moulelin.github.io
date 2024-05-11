@@ -19,6 +19,33 @@
 </head>
 
 <body>
+	<audio id="audioPlayer" autoplay>
+        <!-- 无控制组件，但自动播放 -->
+        <source src="music/Canon.mp3" type="audio/mp3">
+        您的浏览器不支持 audio 标签。
+    </audio>
+
+    <script>
+        // 这里列出你的music文件夹中的音乐文件
+        const musicList = [
+			'music/Canon.mp3',
+            'music/night3.mp4',
+            // 可以继续添加更多音乐文件
+        ];
+
+		let musicIndex = 0; // 始终从列表的第一首歌曲beginning播放
+        const audioPlayer = document.getElementById('audioPlayer');
+        audioPlayer.src = musicList[musicIndex]; // 设置播放源
+
+        // 监听音乐播放close事件，自动切换到下一首歌
+        audioPlayer.addEventListener('ended', playNextSong);
+
+        function playNextSong() {
+            musicIndex = (musicIndex + 1) % musicList.length; // 更新音乐索引，循环播放列表
+            audioPlayer.src = musicList[musicIndex]; // 更改音乐源
+            audioPlayer.play(); // 自动播放下一首
+        }
+    </script>
 <!-- <embed src="http://p3qhnc0eg.bkt.clouddn.com/U%20are%20so%20beautiful.mp3" width="0" height="0" loop="-1" autostart="true"> </embed> -->
 <embed src="http://other.web.ri01.sycdn.kuwo.cn/resource/n3/19/68/2405391895.mp3" width="0" height="0" loop="-1" autostart="true"> </embed>
 
