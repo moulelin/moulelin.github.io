@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -6,8 +6,8 @@
 
 <style type="text/css">
 @font-face {
-	font-family: digit;
-	src: url('digital-7_mono.ttf') format("truetype");
+    font-family: digit;
+    src: url('digital-7_mono.ttf') format("truetype");
 }
 </style>
 
@@ -16,24 +16,19 @@
 <script type="text/javascript" src="js/garden.js"></script>
 <script type="text/javascript" src="js/functions.js"></script>
 <style>
-	#loveHeart {
-	
-		background-image: url('background.jpg'); /* 设置背景图像 */
-	
-
-	}
-	#messages{
-		text-shadow: 2px 2px 8px #000; /* X偏移, Y偏移, 阴影模糊半径, 阴影颜色 */
-		color: white; /* 白色文字 */
-		font-size: 30px;
-	}
-	
+    #loveHeart {
+        background-image: url('background.jpg'); /* 设置背景图像 */
+    }
+    #messages {
+        text-shadow: 2px 2px 8px #000; /* X偏移, Y偏移, 阴影模糊半径, 阴影颜色 */
+        color: white; /* 白色文字 */
+        font-size: 30px;
+    }
 </style>
 </head>
 
 <body>
-	<audio id="audioPlayer" autoplay>
-        <!-- 无控制组件，但自动播放 -->
+    <audio id="audioPlayer" autoplay>
         <source src="music/lover.mp3" type="audio/mp3">
         您的浏览器不支持 audio 标签。
     </audio>
@@ -41,16 +36,23 @@
     <script>
         // 这里列出你的music文件夹中的音乐文件
         const musicList = [
-			'music/lover.mp3',
-			'music/Canon.mp3',
+            'music/lover.mp3',
+            'music/Canon.mp3',
+            'music/love.mp3',
             'music/night.mp3'
-			
-            // 可以继续添加更多音乐文件
         ];
 
-		let musicIndex = 0; // 始终从列表的第一首歌曲beginning播放
+        let musicIndex = 0; // 始终从列表的第一首歌曲beginning播放
         const audioPlayer = document.getElementById('audioPlayer');
         audioPlayer.src = musicList[musicIndex]; // 设置播放源
+
+        // 静音播放然后取消静音
+        audioPlayer.muted = true;
+        audioPlayer.play().then(() => {
+            audioPlayer.muted = false;
+        }).catch((error) => {
+            console.log("自动播放被阻止，等待用户交互", error);
+        });
 
         // 监听音乐播放close事件，自动切换到下一首歌
         audioPlayer.addEventListener('ended', playNextSong);
@@ -60,92 +62,89 @@
             audioPlayer.src = musicList[musicIndex]; // 更改音乐源
             audioPlayer.play(); // 自动播放下一首
         }
+
+        // 用户交互事件处理
+        document.body.addEventListener('click', function() {
+            audioPlayer.play().catch((error) => {
+                console.log("播放失败", error);
+            });
+        });
     </script>
-<!-- <embed src="http://p3qhnc0eg.bkt.clouddn.com/U%20are%20so%20beautiful.mp3" width="0" height="0" loop="-1" autostart="true"> </embed> -->
-<embed src="http://other.web.ri01.sycdn.kuwo.cn/resource/n3/19/68/2405391895.mp3" width="0" height="0" loop="-1" autostart="true"> </embed>
+
+    <div id="mainDiv">
+        <div id="content">
+            <div id="code">
+                我的Fancy<br />
+                很想和你说<br />
+                每一个清晨，都是我对你思念的开始！<br />
+                <span class="keyword">在这个世界上</span><br /><br />
+                你的笑容是我心中最美的风景<br />
+                你的温柔是我灵魂最深的滋润。<br />
+                <span class="keyword">和你的相遇</span><br /><br />
+				让我明白了幸福的意义<br />
+                真的很幸运<br />
+                <span class="keyword">拥有你是我一生最大的幸运！</span><br /><br />
+                <br />
+                <span class="keyword">你是我心中永远的向往，在我生命中闪耀着无尽的光芒</span><br /><br />
+                <hr />
+                <span class="keyword">I want to say:</span><br />
+                Mrs.Fancy<br />
+                <span class="keyword"> I love you! </span><br />
+                -- Moral<br />
+            </div>
+            <div id="loveHeart">
+                <canvas id="garden"></canvas>
+                <div id="words">
+                    <div id="messages">
+                        永恒的爱，不言而喻...
+                        <div id="elapseClock"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-<div id="mainDiv">
-	<div id="content">
-		<div id="code">
-        	范洁心<br />
-			很想和你说<br />
-            你是我在这个浩瀚的世界中最惊艳的遇见！</span><br />
-            <span class="keyword">在这个宇宙中</span><br /><br />
-
-            恒星与星尘相撞<br />
-            造就了浩瀚的银河。<br />
-            <span class="keyword">和你的相遇</span><br /><br />
-
-            造就了我的全宇宙<br />
-            真的很幸运<br />
-             <span class="keyword">可以遇到你！</span><br /><br />
-
-			 <br />
-            <span class="keyword">你是我生命中最美的标点符号，在我心中书写着无尽的情诗</span><br /><br />
-
-             <hr />
-   			<span class="keyword">I want to say:</span><br />
-			Mrs.Fancy<br />
-            <span class="keyword"> I love you! </span><br />
-            -- Moral<br />
 
 
-		</div>
-		<div id="loveHeart">
-			<canvas id="garden"></canvas>
-			<div id="words">
-				<div id="messages">
-					相遇，相识，相恋...
-					<div id="elapseClock"></div>
-				</div>
-<!--			<div id="loveu">
-					<br/>
-					<div class="signature">- 钟先森</div>
-				</div>
--->
-			</div>
-		</div>
-	</div>
-</div>
+	
+    <script type="text/javascript">
+        var offsetX = $("#loveHeart").width() / 2;
+        var offsetY = $("#loveHeart").height() / 2 - 55;
+        var together = new Date();
 
-<script type="text/javascript">
-var offsetX = $("#loveHeart").width() / 2;
-var offsetY = $("#loveHeart").height() / 2 - 55;
-var together = new Date();
+        together.setFullYear(2024, 3, 1);
+        together.setHours(12);
+        together.setMinutes(0);
+        together.setSeconds(0);
+        together.setMilliseconds(0);
 
-together.setFullYear(2024, 3, 1);//1.23；3.29
-together.setHours(12);
-together.setMinutes(0);
-together.setSeconds(0);
-together.setMilliseconds(0);
+        if (!document.createElement('canvas').getContext) {
+            var msg = document.createElement("div");
+            msg.id = "errorMsg";
+            msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+";
+            document.body.appendChild(msg);
+            $("#code").css("display", "none")
+            $("#copyright").css("position", "absolute");
+            $("#copyright").css("bottom", "10px");
+            document.execCommand("stop");
+        } else {
+            setTimeout(function () {
+                startHeartAnimation();
+            }, 5000);
 
-if (!document.createElement('canvas').getContext) {
-	var msg = document.createElement("div");
-	msg.id = "errorMsg";
-	msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+";
-	document.body.appendChild(msg);
-	$("#code").css("display", "none")
-	$("#copyright").css("position", "absolute");
-	$("#copyright").css("bottom", "10px");
-	document.execCommand("stop");
-} else {
-	setTimeout(function () {
-		startHeartAnimation();
-	}, 5000);
+            timeElapse(together);
+            setInterval(function () {
+                timeElapse(together);
+            }, 500);
 
-	timeElapse(together);
-	setInterval(function () {
-		timeElapse(together);
-	}, 500);
-
-	adjustCodePosition();
-	$("#code").typewriter();
-}
-</script>
-<div style="text-align:center;clear:both">
-<p>Made for Mrs.Fancy, made by <a href="https://github.com/moulelin" target="_blank">Moral<a /></p>
-<p>Copyright © 2024 - 2025. All Rights Reserved. Designed by <a href="https://github.com/moulelin" target="_blank">Moral<a /> </p>
-</div>
+            adjustCodePosition();
+            $("#code").typewriter();
+        }
+    </script>
+    <div style="text-align:center;clear:both">
+        <p>Made for Mrs.Fancy, made by <a href="https://github.com/moulelin" target="_blank">Moral</a></p>
+        <p>Copyright © 2024 - 2025. All Rights Reserved. Designed by <a href="https://github.com/moulelin" target="_blank">Moral</a></p>
+    </div>
 </body>
 </html>
