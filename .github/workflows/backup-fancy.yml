@@ -1,0 +1,74 @@
+# Daily backup of the Fancy page progress (Firebase -> fancy/progress-backup.json).
+# The page reads this file as a fallback, so progress survives even if Firebase loses it.
+name: Backup Fancy progress
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Merge Firebase state into the backup file
+        run: |
+          python3 - <<'EOF'
+          import json, os, urllib.request
+
+          URL = "https://fancy-9e6a8-default-rtdb.europe-west1.firebasedatabase.app/fancy/state.json"
+          PATH = "fancy/progress-backup.json"
+
+          with urllib.request.urlopen(URL, timeout=30) as r:
+              remote = json.load(r)
+          if not isinstance(remote, dict) or "gacha" not in remote:
+              print("Firebase returned no state; keeping the existing backup untouched.")
+              raise SystemExit(0)
+
+          old = {}
+          if os.path.exists(PATH):
+              with open(PATH, encoding="utf-8") as f:
+                  old = json.load(f)
+
+          # Merge so that nothing is ever lost: union of unlocked whispers, max of counters,
+          # and hunger/mood from whichever side is newer.
+          newer, other = (remote, old) if remote.get("updatedAt", 0) >= old.get("updatedAt", 0) else (old, remote)
+          np, op = newer.get("pet", {}), other.get("pet", {})
+          ng, og = newer.get("gacha", {}), other.get("gacha", {})
+          merged = {
+              "pet": {
+                  "hunger": np.get("hunger", op.get("hunger", 70)),
+                  "mood": np.get("mood", op.get("mood", 80)),
+                  **{k: max(np.get(k, 0), op.get(k, 0)) for k in ("fed", "pet", "hit")},
+              },
+              "gacha": {
+                  "earned": max(ng.get("earned", 0), og.get("earned", 0)),
+                  "spent": max(ng.get("spent", 0), og.get("spent", 0)),
+                  "got": sorted(set(ng.get("got", [])) | set(og.get("got", []))),
+                  "lastDay": max(ng.get("lastDay", ""), og.get("lastDay", "")),
+                  "voucher": ng.get("voucher") or og.get("voucher"),
+              },
+              "updatedAt": max(remote.get("updatedAt", 0), old.get("updatedAt", 0)),
+          }
+          with open(PATH, "w", encoding="utf-8") as f:
+              json.dump(merged, f, ensure_ascii=False, indent=2)
+              f.write("\n")
+          print("Backup:", json.dumps(merged["gacha"]))
+          EOF
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- fancy/progress-backup.json && git ls-files --error-unmatch fancy/progress-backup.json >/dev/null 2>&1; then
+            echo "No changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add fancy/progress-backup.json
+          git commit -m "Back up Fancy progress"
+          git push
