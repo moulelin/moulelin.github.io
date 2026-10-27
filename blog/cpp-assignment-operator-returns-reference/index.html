@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Why the Assignment Operator Returns a Reference · Moule Lin</title>
+  <meta name="description" content="Explains shallow copy, overloading operator= in C++, and why it returns a reference to support chained assignment.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>Why the Assignment Operator Returns a Reference</h1>
+    <div class="post-meta"><time datetime="2022-03-13">March 13, 2022</time><span class="chip">C++</span></div>
+  </header>
+  <article class="prose">
+<p>If a user-defined class does not overload its = operator, the compiler generates one automatically. However, this compiler-generated overload may be unsafe, because it performs a so-called “shallow copy”: for a pointer, it copies the pointer's value rather than the memory it points to. The memory then has two pointers pointing to it, and the class objects are destructed twice, but the memory can only be freed once, so the second free causes an access error.</p>
+<p>　　To avoid this “shallow copy” problem, you need to overload the = operator. It is a binary operator, so the function name and parameters are easy to determine; the key point is its return type. Generally, it should return a reference to the class type, so that so-called “chained assignment” works. The question I once had was: why must it return a reference to enable “chaining”? Here I think it through and summarise, starting from the code.</p>
+<p>Copy code<br>class Student<br>{<br>public:<br>    Student(const char* name);~Student();<br>    Student&amp; operator=(const Student &amp;student);private:<br>    char *m_name;<br>};<br>Copy code<br>Copy code<br>//Test code<br>Student s1(“Lee”);<br>Student s2(“Diwen”);<br>Student s3(“Tom”);</p>
+<p>//First s2 = s1 is executed, i.e. s2.operator=(s1), which returns a reference to s2<br>//Then s3 = s2 is executed, i.e. s3.operator=(s2)<br>s3 = s2 = s1;<br>Copy code<br>　　Chained = is evaluated from right to left. So the right-hand side certainly has to return an object of type Student. The question is: why return a reference?</p>
+<p>　　Look at the function that overloads the = operator: its parameter type is a const reference, meaning the argument passed in must be an lvalue. If the return type were Student, it would return an anonymous object (an rvalue); in chained assignment this return value (an rvalue) must in turn be passed in as an argument, which obviously would not work (it doesn't work without const, but does with const).<br>A const reference can bind to an rvalue, and the overloaded assignment operator returns a reference, of course, to avoid a pointless copy.</p>
+  </article>
+  <nav class="post-nav"><a href="/blog/processes-and-threads/"><span>← Older</span>Processes and Threads</a><a class="next" href="/blog/cpp-shallow-deep-copy/"><span>Newer →</span>Shallow and Deep Copy in C++</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

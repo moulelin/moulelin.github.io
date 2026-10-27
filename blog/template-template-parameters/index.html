@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Template Template Parameters · Moule Lin</title>
+  <meta name="description" content="How C++ template template parameters let a Stack take a container template directly, and why default allocator parameters must be declared.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>Template Template Parameters</h1>
+    <div class="post-meta"><time datetime="2022-06-17">June 17, 2022</time><span class="chip">C++</span><span class="chip">Templates</span></div>
+  </header>
+  <article class="prose">
+<h1 id="Templates-as-template-parameters"><a href="#Templates-as-template-parameters" class="headerlink" title="Templates as template parameters"></a>Templates as template parameters</h1><ul>
+<li>It can be useful to allow a template parameter to be a class template itself. We will continue to use the Stack class template as our example.</li>
+</ul>
+<pre><code>template &lt;class T1, template&lt;class T2&gt; 
+class Container&gt;
+
+class XCls&#123;
+
+    private:
+    Container&lt;T&gt; c;
+    public:
+    ...
+&#125;
+template&lt;class T&gt;
+using Lst = List&lt;T,allocator&lt;T&gt;&gt;;
+
+
+XCls&lt;string, Lst&gt; mylst;
+</code></pre>
+<blockquote>
+<p>Because the second parameter in the declaration of the Stack class template is a type (typename Container), when we define a concrete stack type with Stack&lt;int, std::deque<int>&gt;, the second argument must be std::deque<int>, not std::deque. In this definition we write int twice, and the repetition is unavoidable.</p>
+</blockquote>
+<p>To avoid this repetition, we can make the second parameter of Stack a template itself rather than a concrete type.</p>
+<pre><code>template&lt;typename T,
+         template&lt;typename&gt; class Container = std::vector&gt;
+struct Stack
+&#123;
+    void push(const T&amp; elem)
+    &#123;
+        elems.push_back(elem);
+    &#125;
+
+    T pop()
+    &#123;
+        if(empty()) throw std::out_of_range(&quot;Stack&lt;&gt;::pop: empty!&quot;);
+
+        auto elem = elems.back();
+        elems.pop_back();
+        return elem;
+    &#125;
+
+    bool empty() const
+    &#123;
+        return elems.empty();
+    &#125;
+
+private:
+    Container&lt;T&gt; elems;
+&#125;;
+</code></pre>
+<blockquote>
+<p>As shown above, the second parameter of the Stack class template becomes template<typename> class Container. It is still named Container, but it is now a template that takes one type parameter. Since the name of Container's own template parameter is never used, we can omit it. According to the standard, the keyword before Container here must be class, not typename. Finally, a template template parameter can also have a default value; here we set it to std::vector.</p>
+</blockquote>
+<p>With this definition, we would expect to use Stack like this: Stack&lt;int, std::deque&gt; intStack, but the compiler teaches us a lesson.</p>
+<p>In the STL, the std::deque class template is defined with two type parameters: the first is the element type and the second is the allocator type. Although std::deque's second type parameter has a default value, when the compiler substitutes std::deque for Container it matches the parameters strictly and ignores the default value.</p>
+<p>So we change the definition of Stack as follows:</p>
+<pre><code>template&lt;typename T,
+         template&lt;typename Elem, typename Allocator = std::allocator&lt;Elem&gt;&gt; class Container = std::vector&gt;
+struct Stack
+&#123;
+    void push(const T&amp; elem)
+    &#123;
+        elems.push_back(elem);
+    &#125;
+
+    T pop()
+    &#123;
+        if(empty()) throw std::out_of_range(&quot;Stack&lt;&gt;::pop: empty!&quot;);
+
+        auto elem = elems.back();
+        elems.pop_back();
+        return elem;
+    &#125;
+
+    bool empty() const
+    &#123;
+        return elems.empty();
+    &#125;
+
+private:
+    Container&lt;T&gt; elems;
+&#125;;
+</code></pre>
+  </article>
+  <nav class="post-nav"><a href="/blog/paper-reviews/"><span>← Older</span>Paper Reviews</a><a class="next" href="/blog/cpp-friends-in-templates/"><span>Newer →</span>Friends in Class Templates</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

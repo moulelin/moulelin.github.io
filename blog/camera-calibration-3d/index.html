@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3D · Moule Lin</title>
+  <meta name="description" content="Notes on camera calibration: why it is needed, lens distortion, and the world, camera, image and pixel coordinate systems.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>3D</h1>
+    <div class="post-meta"><time datetime="2021-11-05">November 5, 2021</time><span class="chip">3D</span><span class="chip">Pronunciation</span><span class="chip">Machine Learning</span></div>
+  </header>
+  <article class="prose">
+<!-- Do you need some help for 3D?
+I skipped some lectures, so first of all I need to rewatch that. After that, I will ask some help, thanks 
+aassigments
+I will try figure out by myself, then i will ask sometjiogn  -->
+<blockquote>
+<p>triangulation<br>tip: e2 (the epipole of the second image is the projection of the first image’s focal point (camera centre) into the second camera’s coordinate system), e2 = K’[R T][0,0,0,1]T ([0,0,0,1] is the coordinate origin of the first image (the origin of the world coordinate system))<br>Question 1: Why do we need camera calibration?<br>The purpose of camera calibration is to build a geometric model of camera imaging and to correct lens distortion. That sentence is a bit of a mouthful, so its two key parts are explained separately below.</p>
+</blockquote>
+<blockquote>
+<p>Building the geometric model of camera imaging: the primary task of computer vision is to recover information about objects in the real 3D world from captured images. It is therefore essential to build a geometric model of how objects are mapped from the 3D world onto the camera’s imaging plane, and the most critical part of this is obtaining the camera’s intrinsic and extrinsic parameters (explained in detail later).</p>
+</blockquote>
+<blockquote>
+<p>Correcting lens distortion: the first thing we learn about imaging is probably the pinhole camera. However, because light can only pass through the tiny hole, the image is very dim, so clever humans invented the lens. That solved the brightness problem, but introduced a new one: owing to the lens manufacturing process, the image suffers from various forms of distortion. To remove the distortion (so that the captured image matches the real-world scene), people compute distortion coefficients and use them to correct these aberrations. Although it is theoretically possible to design lenses that produce no distortion, they are much more complicated to manufacture than spherical lenses, so rather than a complex and costly manufacturing process, people prefer to solve the problem with mathematics.</p>
+</blockquote>
+<p>Camera imaging model<br>As mentioned above, one goal of camera calibration is to establish the correspondence between objects in the 3D world and the coordinate points on the imaging plane, so we first need to define the following coordinate systems to lay the groundwork for the whole process:</p>
+<blockquote>
+<p>World coordinate system: a user-defined coordinate system of the 3D world, introduced to describe the position of the target object in the real world. Unit: m.</p>
+</blockquote>
+<blockquote>
+<p>Camera coordinate system: a coordinate system attached to the camera, defined to describe object positions from the camera’s point of view; it is the intermediate link between the world coordinate system and the image/pixel coordinate systems. Unit: m.</p>
+</blockquote>
+<blockquote>
+<p>Image coordinate system: introduced to describe the perspective projection of objects from the camera coordinate system to the image coordinate system during imaging, which makes it easy to then obtain coordinates in the pixel coordinate system. Unit: m.</p>
+</blockquote>
+<blockquote>
+<p>Pixel coordinate system: introduced to describe the coordinates of image points on the digital image (photo) after imaging; it is the coordinate system of the information we actually read out of the camera. Unit: pixels (count).</p>
+</blockquote>
+<p>Defining four coordinate systems at once may be a little confusing; the figure below shows the relationships between them more clearly:<br><img src="/images/3D-1.jpeg"></p>
+<h2 id="World-coordinate-system-Xw-Yw-Zw-Camera-coordinate-system-Xc-Yc-Zc-Image-coordinate-system-x-y-Pixel-coordinate-system-u-v"><a href="#World-coordinate-system-Xw-Yw-Zw-Camera-coordinate-system-Xc-Yc-Zc-Image-coordinate-system-x-y-Pixel-coordinate-system-u-v" class="headerlink" title="World coordinate system: Xw, Yw, Zw. Camera coordinate system: Xc, Yc, Zc. Image coordinate system: x, y. Pixel coordinate system: u, v."></a>World coordinate system: Xw, Yw, Zw. Camera coordinate system: Xc, Yc, Zc. Image coordinate system: x, y. Pixel coordinate system: u, v.</h2><blockquote>
+<p>Here, the z-axis of the camera coordinate system coincides with the optical axis, is perpendicular to the image plane and passes through the origin of the image coordinate system; the distance between the camera coordinate system and the image coordinate system is the focal length f (i.e. the origin of the image coordinate system coincides with the focal point). The pixel plane u-v coincides with the image plane x-y, but the origin of the pixel coordinate system is at the top-left corner of the image (defined this way so that reading and writing start from the first address of the stored data).<br><img src="/images/3D-2.jpeg"><br>Next, we apply a series of transformations to the rigid body: an affine transformation from the world coordinate system, then perspective projection, finally obtaining discrete image points in the pixel coordinate system, introducing each parameter matrix step by step along the way.</p>
+</blockquote>
+
+  </article>
+  <nav class="post-nav"><a href="/blog/plot-3d-python/"><span>← Older</span>3D Plotting in Python</a><a class="next" href="/blog/english-pronunciation/"><span>Newer →</span>English Pronunciation Notes</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

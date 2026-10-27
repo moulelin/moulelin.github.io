@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ShiftCNN · Moule Lin</title>
+  <meta name="description" content="Reading notes and open questions on ShiftCNN, which shifts channels in fixed directions between two point-wise convolutions.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>ShiftCNN</h1>
+    <div class="post-meta"><time datetime="2022-08-16">August 16, 2022</time><span class="chip">Shift</span><span class="chip">Recursion</span><span class="chip">C++</span></div>
+  </header>
+  <article class="prose">
+<h2 id="ShiftCNN-shifts-the-channels-based-on-the-shift-matrix-kernel"><a href="#ShiftCNN-shifts-the-channels-based-on-the-shift-matrix-kernel" class="headerlink" title="ShiftCNN shifts the channels based on the shift matrix(kernel)"></a>ShiftCNN shifts the channels based on the shift matrix(kernel)</h2><blockquote>
+<p><strong>I have a question here: the code seems to use a single fixed shift pattern, simply applying a fixed shift to each channel. No matter how many times this ShiftConv layer is used, the shifts are always the same (data in the same channel is always shifted to the same position)</strong></p>
+</blockquote>
+<ul>
+<li><a href="#Shift">Shift</a></li>
+<li><a href="#Paper">Paper</a></li>
+</ul>
+<h1 id="Shift"><a href="#Shift" class="headerlink" title="Shift"></a>Shift</h1><blockquote>
+<p>This operation shifts different channels (the shift direction is fixed for data in the same channel)<br><img src="/images/image.png.png"></p>
+</blockquote>
+<h1 id="Paper"><a href="#Paper" class="headerlink" title="Paper"></a>Paper</h1><blockquote>
+<p>To reduce the state space, we use a simple heuristic: divide the M channels evenly into DK2 groups, where each group of ⌊M/DK2 ⌋ channels adopts one shift<br>(Divide the M channels into groups of M/D^2; every M/D^2 channels share one shift direction)</p>
+</blockquote>
+<blockquote>
+<p>I.e. and e.g. are both Latin abbreviations: i.e. stands for id est, meaning “that is”, and e.g. stands for exempli gratia, meaning “for example”<br>However, finding the optimal permutation, <strong>i.e</strong>., how to map each channel-m to a shift group, requires searching a <strong>combinatorially(in a combinatorial way)</strong> large search space.</p>
+</blockquote>
+<blockquote>
+<p>we introduce a <strong>modification(restriction)</strong> to the shift operation that makes input and output invariant to channel order:  We denote a shift operation with channel permutation π as Kπ(<strong>I don't fully understand this part; K denotes the channel permutation</strong>),</p>
+</blockquote>
+<blockquote>
+<p>G ̃=Pπ2(Kπ(Pπ1(F)))<br>wherePπi are permutation operators and◦ denotes operator composition(<strong>I don't understand this: Pπ denotes a permutation operator, but Pπ(K)Pπ combined makes up the whole Shift operation</strong>)</p>
+</blockquote>
+<blockquote>
+<p><strong>Because shift is discrete, a point-wise convolution P1(F) is added to handle parameter updates, since weights are hard to update through a discrete operation; the shift matrix itself is not updated either</strong></p>
+</blockquote>
+<blockquote>
+<p>So long as the shift operation is sandwiched between two point-wise convolutions, different permutations of shifts are equivalent. Thus, we can choose an arbitrary permutation for the shift kernel, after fixing the number of channels for each shift direction.<br>(This says that once Shift is sandwiched between two PW convolutions, channel order no longer matters; in practice it certainly does have an effect)</p>
+</blockquote>
+<blockquote>
+<p>This convolution <strong>comprises(contains)</strong> ..</p>
+</blockquote>
+  </article>
+  <nav class="post-nav"><a href="/blog/makefile-basics/"><span>← Older</span>Makefile</a><a class="next" href="/blog/pixel-segmentation-idea/"><span>Newer →</span>Note</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

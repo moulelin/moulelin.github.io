@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Friends in Class Templates · Moule Lin</title>
+  <meta name="description" content="Covers the three kinds of friend declarations in C++ class templates and three ways to define template friend functions.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>Friends in Class Templates</h1>
+    <div class="post-meta"><time datetime="2022-06-18">June 18, 2022</time><span class="chip">C++</span></div>
+  </header>
+  <article class="prose">
+<h1 id="friend-template-functions-in-class-templates"><a href="#friend-template-functions-in-class-templates" class="headerlink" title="Friend Template Functions in Class Templates"></a>Friend Template Functions in Class Templates</h1><p>Three kinds of friend declarations can appear in a class template:<br>(1) A friend declaration of an ordinary non-template class or function, which grants friendship to that specific class or function.<br>(2) A friend declaration of a class template or function template, which grants access to all instances of the friend.<br>(3) A friend declaration that grants access only to a specific instance of a class template or function template.</p>
+<p>(1) Ordinary friend:</p>
+<pre><code>template&lt;class T&gt;
+
+class A&#123;
+
+   friend void fun();
+
+//...
+
+&#125;;
+In this example, fun can access the private and protected members of any instance of A
+</code></pre>
+<p>(2) General template friendship</p>
+<pre><code>template&lt;class type&gt;
+
+class A&#123;
+
+  template&lt;classT&gt;
+
+   friend void fun(T u);
+
+//...
+
+&#125;;
+
+Here the friend uses a template parameter different from the class’s; T can be any valid identifier. The friend function can access the data of any instance of A, whether A’s parameter is int, double or anything else.
+</code></pre>
+<p>(3) Specific template friendship</p>
+<pre><code>template &lt;class T&gt; void fun(T,u);//for a specific template friendship, this declaration is required
+
+template&lt;class T&gt;
+
+class A&#123;
+
+   friend voidfun&lt;T&gt;(T u);//this could also be friend void fun&lt;char&gt;(char u);
+
+//...
+
+&#125;;
+
+Now fun can only access the data of a specific instance of the class. In other words, only a fun and an A with the same template argument are friends: if fun is called with template argument int, it only has access to A&lt;int&gt;. Of course, the T inside &lt;&gt; in friendvoid fun&lt;T&gt;(Tu); can be any type, such as int, double, etc.
+
+ 
+
+ 
+
+ 
+
+Creating friend functions for a class is easy, but moving to templates tends to produce baffling linker errors.
+I am not experienced enough to analyse this, so I will simply introduce two ways to define friend functions for class templates
+</code></pre>
+<pre><code>　　１　Closed form
+
+template&lt; typename T &gt;
+class MyClass
+&#123;
+    friend void function( MyClass&lt; T &gt; &amp;arg )
+    &#123;
+        
+     &#125;
+ &#125;;　　Key point: the friend function is defined inside the template body.
+
+       ２　Open form
+template&lt; typename T &gt;
+class MyClass
+&#123;
+    template&lt; typename C &gt;
+    friend void function( MyClass&lt; C &gt; &amp;arg );
+ &#125;;
+
+template&lt; typename C &gt;
+void function( MyClass&lt; C &gt; &amp;arg )
+&#123;
+    
+ &#125;　　Key point: a separate template is declared inside the template body. 
+　　
+　　3 Tell the compiler that the declared function is a template
+#include &lt;iostream&gt;
+using namespace std;
+
+template &lt; typename T &gt;
+class A
+&#123;
+    friend ostream &amp;operator&lt;&lt; &lt; T &gt;( ostream &amp;, const A&lt; T &gt; &amp; );
+ &#125;;
+
+template &lt; typename T &gt;
+ostream &amp;operator&lt;&lt; ( ostream &amp;output, const A&lt; T &gt; &amp;a )
+&#123;
+    output &lt;&lt; &quot;overload succeeded&quot; &lt;&lt; endl;
+    return output;
+ &#125;
+
+int main()
+&#123;
+    A&lt; int &gt; a;
+    cout &lt;&lt; a;
+ &#125;Key point: explicitly add the template declaration &lt; T&gt; after the overloaded operator or function name, telling the compiler that the friend function is a template with a matching type.
+</code></pre>
+<p> Recommendations:<br>            If the function should correspond to the type the template is specialized with, use method 3 (explicit template declaration)<br>            If the function should be independent of the template’s specialized type, use method 2 (nested template)<br>            For short inline functions, use method 1</p>
+  </article>
+  <nav class="post-nav"><a href="/blog/template-template-parameters/"><span>← Older</span>Template Template Parameters</a><a class="next" href="/blog/cpp-variadic-templates-auto-range-for/"><span>Newer →</span>Variadic Templates, auto and Range-Based for in C++</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

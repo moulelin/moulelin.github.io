@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CUDA Matrix Multiplication · Moule Lin</title>
+  <meta name="description" content="Walkthrough of a tiled CUDA matrix multiplication kernel using shared memory, explaining how patches of A and B are indexed.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>CUDA Matrix Multiplication</h1>
+    <div class="post-meta"><time datetime="2023-11-27">November 27, 2023</time><span class="chip">CUDA</span></div>
+  </header>
+  <article class="prose">
+<p><img src="/images/2023-11-27-23-20-29.png"></p>
+<ul>
+<li>Tiled matrix multiplication</li>
+<li>Here each thread is responsible for one row of A and one column of B, but it processes that row and column in batches inside the for loop, because shared memory is used</li>
+<li>When i&#x3D;0, the first patch is processed; note that tx is the column and ty is the row</li>
+</ul>
+<pre><code>if (i*BLOCK_SIZE + tx &lt; numAColumns &amp;&amp; row &lt; numARows)
+    sharedM[ty][tx] = A[row*numAColumns + i * BLOCK_SIZE + tx];
+else
+    sharedM[ty][tx] = 0.0;
+
+if (i*BLOCK_SIZE + ty &lt; numBRows &amp;&amp; col &lt; numBColumns)
+    sharedN[ty][tx] = B[(i*BLOCK_SIZE + ty)*numBColumns + col];
+else
+    sharedN[ty][tx] = 0.0;
+__syncthreads();
+</code></pre>
+<ul>
+<li><p>For example, for the first block of matrix C, at i&#x3D;0 the threads reach __syncthreads() once the first patches of A and B have been loaded into shared memory; then sharedM and sharedN are multiplied and accumulated, and i&#x3D;1 is processed next. <strong>Note: this is still the first block. One thread handles one row of A and one column of B, and it is now processing the second patch of that row and column; sharedM and sharedN are refilled, and this is the shared memory of the same block</strong> </p>
+</li>
+<li><p>Patches are divided along the columns of A, because the number of rows of B equals the number of columns of A</p>
+</li>
+<li><p>A[row*numAColumns + i * BLOCK_SIZE + tx] fetches the value from the corresponding patch of A; here i indexes the columns of A, i.e. which patch along the columns</p>
+</li>
+<li><p>B[(i*BLOCK_SIZE + ty)*numBColumns + col] is different because here i indexes the rows of matrix B, i.e. which patch along the rows</p>
+</li>
+</ul>
+<pre><code>__global__ void matrixMultiplyShared(float *A, float *B, float *C,
+    int numARows, int numAColumns, int numBRows, int numBColumns, int numCRows, int numCColumns)
+&#123;
+    //@@ Insert code to implement matrix multiplication here
+    //@@ You have to use shared memory for this MP
+
+    __shared__ float sharedM[BLOCK_SIZE][BLOCK_SIZE];
+    __shared__ float sharedN[BLOCK_SIZE][BLOCK_SIZE];
+
+    int bx = blockIdx.x;
+    int by = blockIdx.y;
+    int tx = threadIdx.x;
+    int ty = threadIdx.y;
+
+
+    int row = by * BLOCK_SIZE + ty;
+    int col = bx * BLOCK_SIZE + tx;
+
+
+    float Csub = 0.0;
+
+    for (int i = 0; i &lt; (int)(ceil((float)numAColumns / BLOCK_SIZE)); i++)
+    &#123;
+        //printf(&quot;block.x=%d,block.y=%d,threadIdx.x=%d,threadIdx.y=%d,row=%d,col=%d,sharedM[%d][%d]=A[%d],value of A: %f,sharedN[%d][%d]=B[%d],value of B: %f\n&quot;,
+        //	blockIdx.x, blockIdx.y, threadIdx.x, threadIdx.y, row, col,
+        //	threadIdx.y, threadIdx.x, row*numAColumns + i * BLOCK_SIZE + tx, A[row*numAColumns + i * BLOCK_SIZE + tx],
+        //	threadIdx.y, threadIdx.x, (i*BLOCK_SIZE + ty)*numBColumns + col, B[(i*BLOCK_SIZE + ty)*numBColumns + col]);
+
+        if (i*BLOCK_SIZE + tx &lt; numAColumns &amp;&amp; row &lt; numARows)
+            sharedM[ty][tx] = A[row*numAColumns + i * BLOCK_SIZE + tx];
+        else
+            sharedM[ty][tx] = 0.0;
+
+        if (i*BLOCK_SIZE + ty &lt; numBRows &amp;&amp; col &lt; numBColumns)
+            sharedN[ty][tx] = B[(i*BLOCK_SIZE + ty)*numBColumns + col];
+        else
+            sharedN[ty][tx] = 0.0;
+        __syncthreads();
+
+
+        for (int j = 0; j &lt; BLOCK_SIZE; j++)
+            Csub += sharedM[ty][j] * sharedN[j][tx];
+        __syncthreads();
+    &#125;
+
+
+    if (row &lt; numCRows &amp;&amp; col &lt; numCColumns)
+        C[row*numCColumns + col] = Csub;
+
+&#125;
+</code></pre>
+  </article>
+  <nav class="post-nav"><a href="/blog/english-sentences/"><span>← Older</span>Sentences</a><div></div></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>C++ · Moule Lin</title>
+  <meta name="description" content="C++ notes on static methods, why temporaries cannot bind to non-const references, which temporaries are const, and const pointer syntax.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>C++</h1>
+    <div class="post-meta"><time datetime="2022-01-13">January 13, 2022</time><span class="chip">C++</span><span class="chip">3D</span><span class="chip">Apriori</span></div>
+  </header>
+  <article class="prose">
+<blockquote>
+<p>A static function cannot access non-static variables<br>static method cannot access non-static variables<br>A static function is not tied to an instance (there is no object); it is like a function written outside the class</p>
+</blockquote>
+<pre><code>static void Print(classname e)&#123;
+
+    std::cout&lt;&lt;e.x &lt;&lt; std::endl;
+&#125;
+&#39;&#39;&#39;
+&gt;Compile error when passing a temporary as a non-const reference argument - mlove Programming (Programmer Baobao)
+Tags: QT  qt  string  linux
+
+1. Cause of the error and how to fix it
+When running on Linux and compiling with g++, the code below produces the error: invalid initialization of non-const reference of type ‘std::string&amp;’ from a temporary of type ‘std::string’.
+
+In other words, a non-const reference cannot be initialized from a temporary. That is, the error occurs during argument passing. The offending code is as follows
+</code></pre>
+<p>void print(string&amp; str)<br>{<br>    cout&lt;&lt;str&lt;&lt;endl;<br>}<br>//Calling it like this triggers the error described above</p>
+<pre><code>print(&quot;hello world&quot;);
+
+
+The cause of the error is that the compiler constructs a temporary string object from the string ”hello world”, and this temporary object is const. When the temporary is passed to a non-const string&amp; reference, the error occurs because binding a non-const reference requires the object to be non-const as well, while here the temporary string object is a const object. The fix, therefore, is to change the parameter of print() to a const reference. With the code modified as follows, it compiles successfully.
+
+void print(const string&amp; str)
+&#123;
+    cout&lt;&lt;str&lt;&lt;endl;
+&#125;
+//Compiles successfully
+print(&quot;hello world&quot;);
+This code also illustrates a C++ programming principle advocated in Effective C++: use const whenever possible. Doing so makes code more robust and exposes errors at compile time.
+
+2. Are all temporary objects const?
+Why must a temporary object be passed as a const reference when used as a reference argument? Many people explain that temporaries are constants that cannot be assigned or modified, so the compiler reports an error when they are passed as non-const references. This explanation works for understanding why temporaries cannot be non-const reference arguments, but it is not precise. Some even go further and claim that all temporary objects are const. So we should approach opinions and resources found online with caution and healthy scepticism, following the &quot;take what is useful&quot; approach advocated by Lu Xun: refer to them and learn from them critically.
+
+In fact, a temporary can be used as an lvalue (LValue) and assigned to; look at the following code:
+
+class IntClass&#123;
+private:
+    int x;
+public:
+    IntClass(int value):x(value)&#123;
+    &#125;
+
+    friend  ostream&amp; operator&lt;&lt;( ostream &amp;os, const IntClass &amp;intc);
+&#125;;
+
+//Overload the output operator&lt;&lt;
+ostream&amp; operator&lt;&lt;( ostream &amp;os, const IntClass &amp;intc)
+&#123;
+    os&lt;&lt;intc.x;
+    return os;
+&#125;
+
+//Print function
+void print(IntClass &amp; intc)
+&#123;
+    cout&lt;&lt;intc&lt;&lt;endl;
+    //Modify this temporary object through the reference
+    intc=8;
+    cout&lt;&lt;intc&lt;&lt;endl;
+&#125;
+
+int main(int argc,char* argv[])
+&#123;
+    print(IntClass(6));
+&#125;
+Program output:
+6
+8
+
+The code above compiles and runs correctly without errors. IntClass(6) creates an unnamed temporary object, which is passed to a non-const reference, and the print function modifies this temporary through the reference. This shows that not all temporary objects are const.
+
+So which temporaries are const and which are not? Here is a quote found online: &quot;Temporaries of built-in types are const, whereas temporaries of user-defined types are not.&quot; I think this explains why the temporary in question can be used as an lvalue.
+
+int* const a = new int;
+Here the pointer a itself cannot be modified, e.g. a = &amp;b; is an error
+const int* a = new int; int const* a = new int; These two are the same; look at where const is placed
+Here the content pointed to by a cannot be modified, e.g. *a = 2; is an error
+</code></pre>
+  </article>
+  <nav class="post-nav"><a href="/blog/dbscan/"><span>← Older</span>DBSCAN Clustering</a><a class="next" href="/blog/homogeneous-coordinates/"><span>Newer →</span>Homogeneous Coordinates</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

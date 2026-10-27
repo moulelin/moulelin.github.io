@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shallow and Deep Copy in C++ · Moule Lin</title>
+  <meta name="description" content="Explains shallow versus deep copying of classes with pointer members in C++, with a copy-constructor example.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>Shallow and Deep Copy in C++</h1>
+    <div class="post-meta"><time datetime="2022-03-13">March 13, 2022</time><span class="chip">C++</span></div>
+  </header>
+  <article class="prose">
+<p>Shallow copy and deep copy<br>Shallow-copying a pointer causes heap data to be freed twice<br>Problem: While running algorithm experiments recently, I ran into a problem with assigning class pointers. A simple assignment between pointers just makes both point to the same address, but I needed to push_back the class pointer after each run of the algorithm into a vector to store the result of every iteration. If the same pointer were stored every time, all the class pointers in the vector would point to the same address. This made me wonder whether class pointers could be assigned so that the two have the same contents but point to different addresses, i.e. they are two distinct pointers.</p>
+<p>Definitions</p>
+<p>Shallow copy: as I understand it, data members are assigned from one object to another. For simple data types a shallow copy is perfectly adequate, but when there are pointers, a shallow copy between two objects makes their pointers point to the same address, and an error occurs when the destructors run (the same pointer is freed twice).</p>
+<p>Deep copy: builds on the shallow copy but handles the pointer copying so that the pointers inside the two objects point to different regions; the two objects have the same contents but are stored in different areas of memory.<br>‘’’<br>class rect<br>{<br>public:</p>
+<pre><code>rect();
+rect(const rect *r);
+~rect();
+</code></pre>
+<p>private:<br>    int width, height;<br>    int *p;<br>};<br>rect::rect(const rect *r)<br>{<br>    width = r-&gt;width;<br>    height = r-&gt;height;<br>    p = new int;<br>    *p = *(r-&gt;p);<br>}</p>
+<p>rect::rect()<br>{<br>    p = new int(100);<br>}</p>
+<p>rect::~rect()<br>{<br>    if (p != NULL)<br>        delete p;<br>}<br>int _tmain(int argc, _TCHAR* argv[])<br>{<br>    rect *rect1;<br>    rect *rect2;<br>    rect1 = new rect;<br>    rect2 = new rect(rect1);</p>
+<pre><code>return 0;
+</code></pre>
+<p>}<br>‘’’<br>Both the class pointers and the member pointer p now point to different addresses</p>
+  </article>
+  <nav class="post-nav"><a href="/blog/cpp-assignment-operator-returns-reference/"><span>← Older</span>Why the Assignment Operator Returns a Reference</a><a class="next" href="/blog/monte-carlo/"><span>Newer →</span>Monte Carlo</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

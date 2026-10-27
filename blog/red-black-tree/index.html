@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Red-Black Trees · Moule Lin</title>
+  <meta name="description" content="The five properties of red-black trees and the insertion cases with recolouring and rotations, plus a summary.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>Red-Black Trees</h1>
+    <div class="post-meta"><time datetime="2022-06-28">June 28, 2022</time><span class="chip">Data Structures</span><span class="chip">C++</span><span class="chip">CUDA</span></div>
+  </header>
+  <article class="prose">
+<h1 id="Five-properties-of-red-black-trees"><a href="#Five-properties-of-red-black-trees" class="headerlink" title="Five Properties of Red-Black Trees"></a>Five Properties of Red-Black Trees</h1><ul>
+<li>Every node is red or black</li>
+<li>The root is black</li>
+<li>Null leaves are black (this concerns leaf nodes and nodes of degree one: degree 0 and degree 1)</li>
+<li>The children of a red node must be black (no simple path from the root to a null leaf contains consecutive red nodes)</li>
+<li>Every simple path from the root to any null leaf contains the same number of <code>black</code> nodes</li>
+</ul>
+<blockquote>
+<p>Therefore, an all-black path is the shortest, and <code>longest&lt; 2*shortest</code></p>
+</blockquote>
+<h1 id="Building-the-tree"><a href="#Building-the-tree" class="headerlink" title="Building the Tree"></a>Building the Tree</h1><ul>
+<li>1 A newly inserted node is red; first build the red-black tree using plain binary-search-tree insertion</li>
+<li>2 After inserting, recolour and rotate</li>
+</ul>
+<h2 id="Cases-when-building-the-tree-inserted-node-is-red"><a href="#Cases-when-building-the-tree-inserted-node-is-red" class="headerlink" title="Cases When Building the Tree (inserted node is red)"></a>Cases When Building the Tree (inserted node is red)</h2><ul>
+<li>1 If the inserted node is the root, simply colour it black</li>
+<li>2 If the inserted node is a child and its parent is black, no adjustment is needed</li>
+<li>3 If the inserted node is a child and its parent is red (there must be a grandparent, and it is black, because the parent is red), there is also always an uncle (a null leaf counts). If the uncle is red, <code>colour the parent and uncle black</code>, <code>colour the grandparent red</code>-&gt; colouring it red may cause a violation, so treat the grandparent as the newly inserted node and repeat upwards</li>
+<li>4 If the inserted node is a child and its parent is red (there must be a grandparent), there is also always an uncle (a null leaf counts). If the uncle is black,<br>and the parent P’s value lies between the new node N and the grandparent G (N is on the same side as its parent, e.g. the parent is a left child and N is also a left child, or the parent is a right child and N is also a right child), rotate at G: if the left side is heavy (N inserted into the left subtree), <code>rotate right</code>; if the right side is heavy (N inserted into the right subtree), <code>rotate left</code> (skirt shape), and swap colours: <code>swap the colours of G and P</code><blockquote>
+<p>Right rotation: make the grandparent the right child of the parent<br>Left rotation: make the grandparent the left child of the parent</p>
+</blockquote>
+</li>
+<li>5 If the inserted node is a child and its parent is red (there must be a grandparent), there is also always an uncle (a null leaf counts). If the uncle is black but N is on the opposite side from its parent, rotate P (in case 4 we rotated G). If the parent is a left child, rotate P left; if the parent is a right child, rotate P right. This brings us back to case 4, so just apply the case 4 method. E.g. if the parent is on the right and N is on the left, rotate right at the parent; now both the parent and N are on the right, and then apply the right-side operation from case 4 above</li>
+</ul>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+<li>If the inserted node is the root, colour it black.</li>
+<li>If the parent is black, just insert.</li>
+<li>If both the parent and the uncle are red, colour both of them black and the grandparent red, then treat the grandparent as the node being inserted and repeat recursively.</li>
+<li>If the parent and the inserted node are on the same side, colour the parent black and the grandparent red; both on the left: rotate right, both on the right: rotate left. This is done at the grandparent.</li>
+<li>If the parent is red and the uncle is black and N is not on the same side as its parent, convert to the same-side case (N on the right: rotate left at the parent; N on the left: rotate right at the parent), then perform step four.</li>
+</ul>
+<p><img src="/images/red-black-tree.png"></p>
+
+  </article>
+  <nav class="post-nav"><a href="/blog/cuda-mempitch/"><span>← Older</span>cudaMallocPitch and cudaMemcpy2D</a><a class="next" href="/blog/stl-global-scope/"><span>Newer →</span>Global Scope in the STL</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

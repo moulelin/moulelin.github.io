@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LLTM Gradients · Moule Lin</title>
+  <meta name="description" content="Forward and backward pass of the LLTM PyTorch C++ extension, with notes on deriving the gradients via the chain rule.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>LLTM Gradients</h1>
+    <div class="post-meta"><time datetime="2023-02-21">February 21, 2023</time><span class="chip">CUDA</span><span class="chip">Pytorch</span><span class="chip">Backpropagation</span></div>
+  </header>
+  <article class="prose">
+<ul>
+<li>Forward pass</li>
+</ul>
+<pre><code>#include &lt;vector&gt;
+
+std::vector&lt;at::Tensor&gt; lltm_forward(
+    torch::Tensor input,
+    torch::Tensor weights,
+    torch::Tensor bias,
+    torch::Tensor old_h,
+    torch::Tensor old_cell) &#123;
+  auto X = torch::cat(&#123;old_h, input&#125;, /*dim=*/1);
+
+  auto gate_weights = torch::addmm(bias, X, weights.transpose(0, 1));
+  auto gates = gate_weights.chunk(3, /*dim=*/1);
+
+  auto input_gate = torch::sigmoid(gates[0]);
+  auto output_gate = torch::sigmoid(gates[1]);
+  auto candidate_cell = torch::elu(gates[2], /*alpha=*/1.0);
+
+  auto new_cell = old_cell + candidate_cell * input_gate;
+  auto new_h = torch::tanh(new_cell) * output_gate;
+
+  return &#123;new_h,
+          new_cell,
+          input_gate,
+          output_gate,
+          candidate_cell,
+          X,
+          gate_weights&#125;;
+&#125;
+</code></pre>
+<ul>
+<li>Backward pass</li>
+</ul>
+<pre><code>// tanh&#39;(z) = 1 - tanh^2(z)
+torch::Tensor d_tanh(torch::Tensor z) &#123;
+  return 1 - z.tanh().pow(2);
+&#125;
+
+// elu&#39;(z) = relu&#39;(z) + &#123; alpha * exp(z) if (alpha * (exp(z) - 1)) &lt; 0, else 0&#125;
+torch::Tensor d_elu(torch::Tensor z, torch::Scalar alpha = 1.0) &#123;
+  auto e = z.exp();
+  auto mask = (alpha * (e - 1)) &lt; 0;
+  return (z &gt; 0).type_as(z) + mask.type_as(z) * (alpha * e);
+&#125;
+
+std::vector&lt;torch::Tensor&gt; lltm_backward(
+    torch::Tensor grad_h,
+    torch::Tensor grad_cell,
+    torch::Tensor new_cell,
+    torch::Tensor input_gate,
+    torch::Tensor output_gate,
+    torch::Tensor candidate_cell,
+    torch::Tensor X,
+    torch::Tensor gate_weights,
+    torch::Tensor weights) &#123;
+  auto d_output_gate = torch::tanh(new_cell) * grad_h;
+  auto d_tanh_new_cell = output_gate * grad_h;
+  auto d_new_cell = d_tanh(new_cell) * d_tanh_new_cell + grad_cell;
+
+  auto d_old_cell = d_new_cell;
+  auto d_candidate_cell = input_gate * d_new_cell;
+  auto d_input_gate = candidate_cell * d_new_cell;
+
+  auto gates = gate_weights.chunk(3, /*dim=*/1);
+  d_input_gate *= d_sigmoid(gates[0]);
+  d_output_gate *= d_sigmoid(gates[1]);
+  d_candidate_cell *= d_elu(gates[2]);
+
+  auto d_gates =
+      torch::cat(&#123;d_input_gate, d_output_gate, d_candidate_cell&#125;, /*dim=*/1);
+
+  auto d_weights = d_gates.t().mm(X);
+  # d_gates is the gradient computed from the current cell's operations (e.g. sigmoid); multiplying it by the current input gives the gradient of the full weight matrix
+  auto d_bias = d_gates.sum(/*dim=*/0, /*keepdim=*/true);
+
+  auto d_X = d_gates.mm(weights);
+  # d_X is the gradient of X
+  const auto state_size = grad_h.size(1);
+  auto d_old_h = d_X.slice(/*dim=*/1, 0, state_size);
+  auto d_input = d_X.slice(/*dim=*/1, state_size);
+
+  return &#123;d_old_h, d_input, d_weights, d_bias, d_old_cell&#125;;
+&#125;
+</code></pre>
+<h3 id="How-to-compute-d-output-gate-the-output-gate-gradient-and-d-new-cell-the-new-cell-gradient"><a href="#How-to-compute-d-output-gate-the-output-gate-gradient-and-d-new-cell-the-new-cell-gradient" class="headerlink" title="How to compute d_output_gate (the output_gate gradient) and d_new_cell (the new_cell gradient)"></a>How to compute d_output_gate (the output_gate gradient) and d_new_cell (the new_cell gradient)</h3><ul>
+<li><p>Using the chain rule for d_output_gate, let L be the loss.<br>The forward pass is:<br>  auto new_h &#x3D; torch::tanh(new_cell) * output_gate;<br>The backward pass is then:<br>  d(L)&#x2F;d(new_h) * d(new_h)&#x2F;d(output_gate) &#x3D; grad_h*torch::tanh(new_cell)</p>
+</li>
+<li><p>Similarly, for d_new_cell,<br>the forward pass is<br>  auto new_cell &#x3D; old_cell + candidate_cell * input_gate;<br>  auto new_h &#x3D; torch::tanh(new_cell) * output_gate;<br>The backward pass is then:<br>  d(L)&#x2F;d(new_h)*d(new_h)&#x2F;d(new_cell) &#x3D; grad_h * (d_tanh(new_cell)*output_gate)<br>  I don't know yet why grad_cell is added here.<br>  My understanding is that new_cell uses old_cell; it can also be seen as substituting new_cell into torch::tanh(new_cell),</p>
+</li>
+</ul>
+  </article>
+  <nav class="post-nav"><a href="/blog/docker/"><span>← Older</span>Docker</a><a class="next" href="/blog/sequence-models/"><span>Newer →</span>Sequence Models</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

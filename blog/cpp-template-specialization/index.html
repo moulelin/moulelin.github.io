@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Template Specialization · Moule Lin</title>
+  <meta name="description" content="Explains full and partial template specialization in C++, and why function templates use overloading instead of partial specialization.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>Template Specialization</h1>
+    <div class="post-meta"><time datetime="2022-06-17">June 17, 2022</time><span class="chip">C++</span></div>
+  </header>
+  <article class="prose">
+<h1 id="Full-specialization"><a href="#Full-specialization" class="headerlink" title="Full specialization"></a>Full specialization</h1><pre><code>template &lt;class key&gt;
+class hash&#123;&#125;
+
+template&lt;&gt;
+class hash&lt;char&gt;&#123;&#125;
+
+template&lt;&gt;
+class hash&lt;int&gt;&#123;&#125;
+
+template&lt;&gt;
+class hash&lt;long&gt;&#123;
+    size_t operator() (const long x)&#123;
+        return x;
+    &#125;
+&#125;
+
+cout&lt;&lt; hash&lt;long&gt;() (100);
+//first create a temporary object, then call the overloaded ()
+
+</code></pre>
+<blockquote>
+<p>full specialization aims to specialize some type.<br>for example:<br><strong>this is a function for judging equality of two members</strong></p>
+</blockquote>
+<pre><code>template&lt;class T&gt;
+bool Isequal(T&amp; p1, T&amp; p2)&#123;
+    return p1 == p2;
+&#125;
+</code></pre>
+<p><strong>But it doesn’t work for string. We need to override this special type</strong></p>
+<pre><code>
+template&lt;&gt;
+bool Isequal&lt;char*&gt; (char* p1, char* p2)&#123;    
+    return strcmp(p1, p2) == 0;
+&#125;
+</code></pre>
+<ul>
+<li>A template and its specializations should be declared in the same header file. The declarations of all templates with the same name should come first, followed by their specializations</li>
+</ul>
+<p>Note that for a function template you don’t need to write &lt;&gt;</p>
+<pre><code>template &lt;class T&gt;
+T max(const T lhs, const T rhs)&#123;   
+    return lhs &gt; rhs ? lhs : rhs;
+&#125;
+
+template &lt;&gt;
+int max(const int lhs, const int rhs)&#123;   
+    return lhs &gt; rhs ? lhs : rhs;
+&#125;
+//This is because the compiler can deduce from the signature int max(const int, const int) that it is a specialization of T max(const T, const T).
+</code></pre>
+<blockquote>
+<p>Note that if specialization function doesn’t have arguments. It has various interpretation. For example</p>
+</blockquote>
+<pre><code>template &lt;class T&gt;
+void f()&#123; T d; &#125;
+
+template &lt;&gt;
+void f()&#123; int d; &#125;
+
+Here the compiler does not know that f() is specialized from f&lt;T&gt;(), so compilation fails with:
+
+error: no function template matches function template specialization &#39;f&#39;
+In this case we need to explicitly specify the &quot;template argument&quot;:
+
+template &lt;class T&gt;
+void f()&#123; T d; &#125;
+
+template &lt;&gt;
+void f&lt;int&gt;()&#123; int d; &#125;
+</code></pre>
+<hr>
+<h2 id="partial-specialization"><a href="#partial-specialization" class="headerlink" title="partial specialization"></a>partial specialization</h2><ul>
+<li>arguments (in the number of parameters)</li>
+<li>range: shrink the range. For example, arbitrary type to pointer (any type becomes any pointer type)</li>
+</ul>
+<p>For arguments:</p>
+<blockquote>
+<p>Like full specialization, partial specialization provides a custom template for a set of parameters, but a partially specialized template must be instantiated further before it has a concrete signature. Note that function templates cannot be partially specialized.</p>
+</blockquote>
+<pre><code>template &lt;class T1, class T2&gt;
+class A&lt;T1, T2&gt;&#123;
+    ...
+&#125;;
+template &lt;class T2&gt;
+class A&lt;int, T2&gt;&#123;
+    ...
+&#125;;
+
+
+Function templates cannot be partially specialized; the following declaration fails to compile:
+
+template &lt;class T1, class T2&gt;
+void f()&#123;&#125;
+
+template &lt;class T2&gt;
+void f&lt;int, T2&gt;()&#123;&#125;
+
+
+But functions can be overloaded, so declaring another function template meets the need for partial specialization:
+
+template &lt;class T2&gt;
+void f()&#123;&#125;              // Note: there is no &quot;template argument&quot; here
+
+In most cases, overloading function templates covers the need for partial specialization. One exception is the std namespace: std is a special namespace in which users may specialize templates but may not add templates (in fact, adding anything at all is forbidden)
+</code></pre>
+<p><strong>For range:</strong></p>
+<pre><code>template &lt;class T&gt;
+class A&#123;&#125;
+template &lt;class U&gt;
+class A&lt;U*&gt;&#123;&#125;
+// we limit if the type is pointer thereby goes second class
+
+A&lt;string&gt; a;
+
+A&lt;string*&gt; b;
+</code></pre>
+<p>The point of this design is that when pointers need different handling, this partial specialization is used</p>
+  </article>
+  <nav class="post-nav"><a href="/blog/cpp-member-template/"><span>← Older</span>P22: Member Templates</a><a class="next" href="/blog/paper-reviews/"><span>Newer →</span>Paper Reviews</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

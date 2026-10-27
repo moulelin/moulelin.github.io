@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Docker Network · Moule Lin</title>
+  <meta name="description" content="Overview of docker network commands, the default bridge/host/none networks, and connecting containers via a custom network with aliases.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>Docker Network</h1>
+    <div class="post-meta"><time datetime="2022-09-22">September 22, 2022</time><span class="chip">Docker</span><span class="chip">Networking</span></div>
+  </header>
+  <article class="prose">
+<ul>
+<li><p>docker network connect: add a container to the specified network;</p>
+</li>
+<li><p>docker network create: create a network;</p>
+</li>
+<li><p>docker network disconnect: remove a container from the specified network;</p>
+</li>
+<li><p>docker network inspect: show detailed information about the specified network;</p>
+</li>
+<li><p>docker network ls: list all networks;</p>
+</li>
+<li><p>docker network rm: delete the specified network.</p>
+</li>
+</ul>
+<p>Once Docker is installed, there are three networks by default (docker network ls):</p>
+<p>C:\Users\zsl-pc&gt;docker network ls<br>NETWORK ID          NAME                DRIVER              SCOPE<br>992344cd89fe        bridge              bridge              local<br>06445f4f5774        host                host                local<br>2d964ece79b9        none                null                local</p>
+<p>bridge: the default network for containers; once configured, it can communicate with the host and thereby reach the Internet.</p>
+<p>host and none: these count as having no network (check with docker network inspect host: there is no subnet or gateway). Adding a container to either of them attaches it to a specific container network stack, and it cannot communicate with external networks.</p>
+<p>Whenever you start a container with docker run, it gets a default network, namely bridge.</p>
+<p>You can use the inspect command to see the containers in each network (here, the bridge network):</p>
+<pre><code>C:\Users\zsl-pc&gt;docker network inspect bridge
+[
+    &#123;
+        &quot;Name&quot;: &quot;bridge&quot;,
+        &quot;Id&quot;: &quot;992344cd89fe90aa240651e7497131e5dc40539d3f1ad540f973feab6b345b3c&quot;
+        &quot;Scope&quot;: &quot;local&quot;,
+        &quot;Driver&quot;: &quot;bridge&quot;,
+        &quot;EnableIPv6&quot;: false,
+        &quot;IPAM&quot;: &#123;
+            &quot;Driver&quot;: &quot;default&quot;,
+            &quot;Options&quot;: null,
+            &quot;Config&quot;: [
+                &#123;
+                    &quot;Subnet&quot;: &quot;172.17.0.0/16&quot;,
+                    &quot;Gateway&quot;: &quot;172.17.0.1&quot;
+                &#125;
+            ]
+        &#125;,
+        &quot;Internal&quot;: false,
+        &quot;Containers&quot;: &#123;&#125;,
+        &quot;Options&quot;: &#123;
+            &quot;com.docker.network.bridge.default_bridge&quot;: &quot;true&quot;,
+            &quot;com.docker.network.bridge.enable_icc&quot;: &quot;true&quot;,
+            &quot;com.docker.network.bridge.enable_ip_masquerade&quot;: &quot;true&quot;,
+            &quot;com.docker.network.bridge.host_binding_ipv4&quot;: &quot;0.0.0.0&quot;,
+            &quot;com.docker.network.bridge.name&quot;: &quot;docker0&quot;,
+            &quot;com.docker.network.driver.mtu&quot;: &quot;1500&quot;
+        &#125;,
+        &quot;Labels&quot;: &#123;&#125;
+    &#125;
+]
+</code></pre>
+<blockquote>
+<p>Newly created containers are placed on the bridge network by default, so they can communicate with each other via their IPs.</p>
+</blockquote>
+<h5 id="You-can-create-a-custom-network-attach-the-containers-that-need-to-communicate-to-it-and-access-them-by-alias-IPs-also-work-but-they-are-hard-to-remember"><a href="#You-can-create-a-custom-network-attach-the-containers-that-need-to-communicate-to-it-and-access-them-by-alias-IPs-also-work-but-they-are-hard-to-remember" class="headerlink" title="You can create a custom network, attach the containers that need to communicate to it, and access them by alias; IPs also work, but they are hard to remember"></a>You can create a custom network, attach the containers that need to communicate to it, and access them by alias; IPs also work, but they are hard to remember</h5><pre><code>- 1. Create a network named test-net:
+docker network create test-net
+
+- 2. Run Redis on the test-net network with the alias redis
+docker run -d --name redis --network test-net --network-alias redis redis:latest
+
+- 3. Run the web project on the same network
+docker run -p 8080:8080 --name test -v D:/test:/app --network test-net -d test:v1
+</code></pre>
+<!-- flag of hidden posts -->
+  </article>
+  <nav class="post-nav"><a href="/blog/docker-compose/"><span>← Older</span>Docker Compose</a><a class="next" href="/blog/docker-push-image/"><span>Newer →</span>Pushing a Docker Image</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

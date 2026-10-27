@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Variadic Templates, auto and Range-Based for in C++ · Moule Lin</title>
+  <meta name="description" content="C++ notes on variadic template parameters, auto, range-based for loops, and what counts as a function signature.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>Variadic Templates, auto and Range-Based for in C++</h1>
+    <div class="post-meta"><time datetime="2022-06-18">June 18, 2022</time><span class="chip">C++</span></div>
+  </header>
+  <article class="prose">
+<h1 id="variadic-template-parameters"><a href="#variadic-template-parameters" class="headerlink" title="Variadic template parameters"></a>Variadic template parameters</h1><pre><code>template &lt;class T1, class... args&gt;
+void test(T1 t, args&amp;... arg)&#123;
+
+&#125;
+test(1,2,&#39;a&#39;,&#39;c&#39;);
+</code></pre>
+<h1 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h1><pre><code>list&lt;string&gt; c;
+auto ite = find(c.begin(), c.end(),traget);
+//A variable declared with auto must be assigned at declaration
+auto ite; //this line and the next one are wrong
+itr = find(c.begin(), c.end(),traget);
+
+or
+list&lt;string&gt;::interate ite = find(c.begin(), c.end(),traget);
+</code></pre>
+<h1 id="ranged-base-for"><a href="#ranged-base-for" class="headerlink" title="ranged-base for"></a>ranged-base for</h1><pre><code>for (decl:coll)&#123;
+    statement
+&#125;
+for(auto elem:vec)&#123; //each element is taken out and assigned to the left
+    // the right side is the container, the left side is each output element
+    cout &lt;&lt; elem &lt;&lt; endl;
+&#125;
+//a reference works too
+for(auto&amp; elem:vec)&#123;
+    // the right side is the container, the left side is each output element
+    cout &lt;&lt; elem &lt;&lt; endl;
+&#125;
+
+for (int i:&#123;1,2,3,4,5&#125;)&#123;
+    cout &lt;&lt; i;
+&#125;
+</code></pre>
+<h1 id="pass-by-reference-and-pass-by-value-have-the-same-signature"><a href="#pass-by-reference-and-pass-by-value-have-the-same-signature" class="headerlink" title="Pass by reference and pass by value have the same signature"></a>Pass by reference and pass by value have the same signature</h1><p>The signature is everything except the return type<br>double image(const double&amp; in) const {}<br>double image(const double in) const {}</p>
+<blockquote>
+<p>The two above are the same and cannot coexist</p>
+</blockquote>
+<p> notes: the const after image() is also part of the signature,<br> double image(const double&amp; in) const {}<br>double image(const double in) {}</p>
+<blockquote>
+<p>These two can coexist</p>
+</blockquote>
+  </article>
+  <nav class="post-nav"><a href="/blog/cpp-friends-in-templates/"><span>← Older</span>Friends in Class Templates</a><a class="next" href="/blog/const-rules/"><span>Newer →</span>p33 const</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

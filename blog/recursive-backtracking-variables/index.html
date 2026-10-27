@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Variable Changes in Recursive Backtracking · Moule Lin</title>
+  <meta name="description" content="Traces how local variables change during recursive backtracking, using a Python function that parses a VOC XML annotation into a dict.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>Variable Changes in Recursive Backtracking</h1>
+    <div class="post-meta"><time datetime="2023-02-11">February 11, 2023</time><span class="chip">Recursion</span><span class="chip">Object Detection</span><span class="chip">English</span><span class="chip">Vocabulary</span></div>
+  </header>
+  <article class="prose">
+<h2 id="Variable-changes-in-recursive-backtracking"><a href="#Variable-changes-in-recursive-backtracking" class="headerlink" title="Variable Changes in Recursive Backtracking"></a>Variable Changes in Recursive Backtracking</h2><pre><code>def parse_xml_to_dict(self, xml):
+
+        if len(xml) == 0:  # reached the bottom level, return the info for this tag directly
+            return &#123;xml.tag: xml.text&#125;
+
+        result = &#123;&#125;
+        print(&quot;bbb&quot;)
+        for child in xml:
+            print(&quot;aaa&quot;)
+            child_result = parse_xml_to_dict(child)  # recursively traverse the tag info
+            print(result)
+            
+            # if child.tag != &#39;object&#39;:
+            result[child.tag] = child_result[child.tag]
+            print(result)
+            # else:
+            #     if child.tag not in result:  # there may be multiple objects, so they need to go into a list
+            #         result[child.tag] = []
+            #     result[child.tag].append(child_result[child.tag])
+        return &#123;xml.tag: result&#125;
+</code></pre>
+<p>Input data:</p>
+<pre><code>
+&lt;annotation&gt;
+    &lt;folder&gt;VOC2007&lt;/folder&gt;
+    &lt;filename&gt;000001.jpg&lt;/filename&gt;
+    &lt;source&gt;
+        &lt;database&gt;The VOC2007 Database&lt;/database&gt;
+        &lt;annotation&gt;PASCAL VOC2007&lt;/annotation&gt;
+        &lt;image&gt;flickr&lt;/image&gt;
+        &lt;flickrid&gt;341012865&lt;/flickrid&gt;
+    &lt;/source&gt;
+    &lt;owner&gt;
+        &lt;flickrid&gt;Fried Camels&lt;/flickrid&gt;
+        &lt;name&gt;Jinky the Fruit Bat&lt;/name&gt;
+    &lt;/owner&gt;
+    &lt;size&gt;
+        &lt;width&gt;353&lt;/width&gt;
+        &lt;height&gt;500&lt;/height&gt;
+        &lt;depth&gt;3&lt;/depth&gt;
+    &lt;/size&gt;
+    &lt;segmented&gt;0&lt;/segmented&gt;
+    &lt;object&gt;
+        &lt;name&gt;dog&lt;/name&gt;
+        &lt;pose&gt;Left&lt;/pose&gt;
+        &lt;truncated&gt;1&lt;/truncated&gt;
+        &lt;difficult&gt;0&lt;/difficult&gt;
+        &lt;bndbox&gt;
+            &lt;xmin&gt;48&lt;/xmin&gt;
+            &lt;ymin&gt;240&lt;/ymin&gt;
+            &lt;xmax&gt;195&lt;/xmax&gt;
+            &lt;ymax&gt;371&lt;/ymax&gt;
+        &lt;/bndbox&gt;
+    &lt;/object&gt;
+    &lt;object&gt;
+        &lt;name&gt;person&lt;/name&gt;
+        &lt;pose&gt;Left&lt;/pose&gt;
+        &lt;truncated&gt;1&lt;/truncated&gt;
+        &lt;difficult&gt;0&lt;/difficult&gt;
+        &lt;bndbox&gt;
+            &lt;xmin&gt;8&lt;/xmin&gt;
+            &lt;ymin&gt;12&lt;/ymin&gt;
+            &lt;xmax&gt;352&lt;/xmax&gt;
+            &lt;ymax&gt;498&lt;/ymax&gt;
+        &lt;/bndbox&gt;
+    &lt;/object&gt;
+&lt;/annotation&gt;
+</code></pre>
+<p>Output:</p>
+<pre><code>bbb
+aaa
+&#123;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;&#125;
+aaa
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;&#125;
+aaa
+bbb
+aaa
+&#123;&#125;
+&#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;&#125;
+aaa
+&#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;&#125;
+&#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;&#125;
+aaa
+&#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;&#125;
+&#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;&#125;
+aaa
+&#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;&#125;
+&#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;&#125;
+aaa
+bbb
+aaa
+&#123;&#125;
+&#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;&#125;
+aaa
+&#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;&#125;
+&#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;&#125;
+aaa
+bbb
+aaa
+&#123;&#125;
+&#123;&#39;width&#39;: &#39;353&#39;&#125;
+aaa
+&#123;&#39;width&#39;: &#39;353&#39;&#125;
+&#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;&#125;
+aaa
+&#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;&#125;
+&#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;, &#39;size&#39;: &#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;&#125;
+aaa
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;, &#39;size&#39;: &#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;, &#39;size&#39;: &#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;, &#39;segmented&#39;: &#39;0&#39;&#125;
+aaa
+bbb
+aaa
+&#123;&#125;
+&#123;&#39;name&#39;: &#39;dog&#39;&#125;
+aaa
+&#123;&#39;name&#39;: &#39;dog&#39;&#125;
+&#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;&#125;
+aaa
+&#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;&#125;
+&#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;&#125;
+aaa
+&#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;&#125;
+&#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;&#125;
+aaa
+bbb
+aaa
+&#123;&#125;
+&#123;&#39;xmin&#39;: &#39;48&#39;&#125;
+aaa
+&#123;&#39;xmin&#39;: &#39;48&#39;&#125;
+&#123;&#39;xmin&#39;: &#39;48&#39;, &#39;ymin&#39;: &#39;240&#39;&#125;
+aaa
+&#123;&#39;xmin&#39;: &#39;48&#39;, &#39;ymin&#39;: &#39;240&#39;&#125;
+&#123;&#39;xmin&#39;: &#39;48&#39;, &#39;ymin&#39;: &#39;240&#39;, &#39;xmax&#39;: &#39;195&#39;&#125;
+aaa
+&#123;&#39;xmin&#39;: &#39;48&#39;, &#39;ymin&#39;: &#39;240&#39;, &#39;xmax&#39;: &#39;195&#39;&#125;
+&#123;&#39;xmin&#39;: &#39;48&#39;, &#39;ymin&#39;: &#39;240&#39;, &#39;xmax&#39;: &#39;195&#39;, &#39;ymax&#39;: &#39;371&#39;&#125;
+&#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;&#125;
+&#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;, &#39;bndbox&#39;: &#123;&#39;xmin&#39;: &#39;48&#39;, &#39;ymin&#39;: &#39;240&#39;, &#39;xmax&#39;: &#39;195&#39;, &#39;ymax&#39;: &#39;371&#39;&#125;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;, &#39;size&#39;: &#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;, &#39;segmented&#39;: &#39;0&#39;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;, &#39;size&#39;: &#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;, &#39;segmented&#39;: &#39;0&#39;, &#39;object&#39;: &#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;, &#39;bndbox&#39;: &#123;&#39;xmin&#39;: &#39;48&#39;, &#39;ymin&#39;: &#39;240&#39;, &#39;xmax&#39;: &#39;195&#39;, &#39;ymax&#39;: &#39;371&#39;&#125;&#125;&#125;
+aaa
+bbb
+aaa
+&#123;&#125;
+&#123;&#39;name&#39;: &#39;person&#39;&#125;
+aaa
+&#123;&#39;name&#39;: &#39;person&#39;&#125;
+&#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;&#125;
+aaa
+&#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;&#125;
+&#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;&#125;
+aaa
+&#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;&#125;
+&#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;&#125;
+aaa
+bbb
+aaa
+&#123;&#125;
+&#123;&#39;xmin&#39;: &#39;8&#39;&#125;
+aaa
+&#123;&#39;xmin&#39;: &#39;8&#39;&#125;
+&#123;&#39;xmin&#39;: &#39;8&#39;, &#39;ymin&#39;: &#39;12&#39;&#125;
+aaa
+&#123;&#39;xmin&#39;: &#39;8&#39;, &#39;ymin&#39;: &#39;12&#39;&#125;
+&#123;&#39;xmin&#39;: &#39;8&#39;, &#39;ymin&#39;: &#39;12&#39;, &#39;xmax&#39;: &#39;352&#39;&#125;
+aaa
+&#123;&#39;xmin&#39;: &#39;8&#39;, &#39;ymin&#39;: &#39;12&#39;, &#39;xmax&#39;: &#39;352&#39;&#125;
+&#123;&#39;xmin&#39;: &#39;8&#39;, &#39;ymin&#39;: &#39;12&#39;, &#39;xmax&#39;: &#39;352&#39;, &#39;ymax&#39;: &#39;498&#39;&#125;
+&#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;&#125;
+&#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;, &#39;bndbox&#39;: &#123;&#39;xmin&#39;: &#39;8&#39;, &#39;ymin&#39;: &#39;12&#39;, &#39;xmax&#39;: &#39;352&#39;, &#39;ymax&#39;: &#39;498&#39;&#125;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;, &#39;size&#39;: &#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;, &#39;segmented&#39;: &#39;0&#39;, &#39;object&#39;: &#123;&#39;name&#39;: &#39;dog&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;, &#39;bndbox&#39;: &#123;&#39;xmin&#39;: &#39;48&#39;, &#39;ymin&#39;: &#39;240&#39;, &#39;xmax&#39;: &#39;195&#39;, &#39;ymax&#39;: &#39;371&#39;&#125;&#125;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;, &#39;size&#39;: &#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;, &#39;segmented&#39;: &#39;0&#39;, &#39;object&#39;: &#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;, &#39;bndbox&#39;: &#123;&#39;xmin&#39;: &#39;8&#39;, &#39;ymin&#39;: &#39;12&#39;, &#39;xmax&#39;: &#39;352&#39;, &#39;ymax&#39;: &#39;498&#39;&#125;&#125;&#125;
+&#123;&#39;folder&#39;: &#39;VOC2007&#39;, &#39;filename&#39;: &#39;000001.jpg&#39;, &#39;source&#39;: &#123;&#39;database&#39;: &#39;The VOC2007 Database&#39;, &#39;annotation&#39;: &#39;PASCAL VOC2007&#39;, &#39;image&#39;: &#39;flickr&#39;, &#39;flickrid&#39;: &#39;341012865&#39;&#125;, &#39;owner&#39;: &#123;&#39;flickrid&#39;: &#39;Fried Camels&#39;, &#39;name&#39;: &#39;Jinky the Fruit Bat&#39;&#125;, &#39;size&#39;: &#123;&#39;width&#39;: &#39;353&#39;, &#39;height&#39;: &#39;500&#39;, &#39;depth&#39;: &#39;3&#39;&#125;, &#39;segmented&#39;: &#39;0&#39;, &#39;object&#39;: &#123;&#39;name&#39;: &#39;person&#39;, &#39;pose&#39;: &#39;Left&#39;, &#39;truncated&#39;: &#39;1&#39;, &#39;difficult&#39;: &#39;0&#39;, &#39;bndbox&#39;: &#123;&#39;xmin&#39;: &#39;8&#39;, &#39;ymin&#39;: &#39;12&#39;, &#39;xmax&#39;: &#39;352&#39;, &#39;ymax&#39;: &#39;498&#39;&#125;&#125;&#125;
+</code></pre>
+<h3 id="Note-the-for-loop-traverses-nodes-on-the-same-level-e-g-here-lt-folder-gt-lt-filename-gt-lt-source-gt-lt-owner-gt-etc"><a href="#Note-the-for-loop-traverses-nodes-on-the-same-level-e-g-here-lt-folder-gt-lt-filename-gt-lt-source-gt-lt-owner-gt-etc" class="headerlink" title="Note: the for loop traverses nodes on the same level, e.g. here: &lt;folder&gt;, &lt;filename&gt;, &lt;source&gt;, &lt;owner&gt;, etc."></a>Note: the for loop traverses nodes on the same level, e.g. here: <code>&lt;folder&gt;</code>, <code>&lt;filename&gt;</code>, <code>&lt;source&gt;</code>, <code>&lt;owner&gt;</code>, etc.</h3><ul>
+<li><p>After <code>&lt;folder&gt;</code> has been traversed, it has no child nodes, so we backtrack. Note that we backtrack to the point inside the for loop (where print(“aaa”) is), and result now holds the value after <code>&lt;folder&gt;</code> was traversed, because result is defined outside the for loop. The same applies to <code>&lt;filename&gt;</code>.</p>
+</li>
+<li><p>When we reach <code>&lt;source&gt;</code>, it has children, so the function is called recursively and result starts out empty. Once that for loop finishes, *there is a return that passes result back to where <code>&lt;source&gt;</code> was entered, i.e. the children's result is returned as the value for the parent node <code>&lt;source&gt;</code>.</p>
+</li>
+<li><p>child_result &#x3D; parse_xml_to_dict(child)  # recursively traverse the tag info</p>
+</li>
+<li><p>child_result stores the children's result, while result reverts to the parent node's result.</p>
+</li>
+</ul>
+  </article>
+  <nav class="post-nav"><a href="/blog/vocabulary-notes/"><span>← Older</span>Vocabulary</a><a class="next" href="/blog/generalized-rcnn-broadcasting/"><span>Newer →</span>GeneralizedRCNN Resize</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

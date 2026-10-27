@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CMake Basics · Moule Lin</title>
+  <meta name="description" content="Notes on CMake: why it exists, make install, CTest tests, configure_file, and embedding the Git hash and build time into a header.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>CMake Basics</h1>
+    <div class="post-meta"><time datetime="2022-11-26">November 26, 2022</time><span class="chip">C++</span><span class="chip">CMake</span><span class="chip">Build Tools</span></div>
+  </header>
+  <article class="prose">
+<p>The <a target="_blank" rel="noopener" href="https://github.com/moulelin/Cmake">cmake repository</a> contains some examples from my learning.</p>
+<h2 id="1-why-cmake"><a href="#1-why-cmake" class="headerlink" title="1. Why CMake?"></a>1. Why CMake?</h2><blockquote>
+<p>There are many Make tools, such as GNU Make, Qt's qmake, Microsoft's MS nmake, BSD Make (pmake), Makepp, and so on. These Make tools follow different specifications and standards, and the Makefile formats they execute vary widely. This creates a serious problem: if software is meant to be cross-platform, it must be guaranteed to compile on different platforms. With the Make tools above, you would have to write a Makefile for each standard, which would be maddening. CMake is a tool designed to solve exactly this problem: it first lets developers write a platform-independent CMakeList.txt file to customise the whole build process, and then generates the required native Makefiles and project files according to the target user's platform.</p>
+</blockquote>
+<h2 id="2-make-install"><a href="#2-make-install" class="headerlink" title="2. make install"></a>2. <a target="_blank" rel="noopener" href="https://github.com/moulelin/Cmake/tree/master/demo2_install">make install</a></h2><ul>
+<li><p>Customising the paths of the compiled .o files and .h files </p>
+<p>  2.1 CMakeLists.txt in the main directory</p>
+<pre><code>cmake_minimum_required(VERSION 2.8)
+
+project(demo1)
+#PROJECT_SOURCE_DIR/CMAKE_SOURCE_DIR/_SOURCE_DIR: the path of the folder containing the nearest CMakeLists.txt file that contains the PROJECT() command.
+#PROJECT_BINARY_DIR/CMAKE_BINARY_DIR/_BINARY_DIR: the directory where the cmake command is run, i.e. where the project build takes place.
+
+configure_file(
+    &quot;$&#123;PROJECT_SOURCE_DIR&#125;/config.h.in&quot;
+    &quot;$&#123;PROJECT_BINARY_DIR&#125;/config.h&quot;
+)
+option(USE_MYMATH &quot;Use the provide library&quot; ON)
+
+if(USE_MYMATH)
+    include_directories(&quot;$&#123;PROJECT_SOURCE_DIR&#125;/math&quot;)
+    add_subdirectory(math)
+    set(EXTRA_LIBS $&#123;EXTRA_LIBS&#125; MathFunctions)
+endif(USE_MYMATH)
+
+aux_source_directory(. DIR_SRCS)
+
+# Specify the generated exe file
+
+add_executable(Demo1 $&#123;DIR_SRCS&#125;)
+target_link_libraries(Demo1 $&#123;EXTRA_LIBS&#125;)
+
+# Specify the output directories
+install(TARGETS Demo1 DESTINATION bin)
+install(FILES &quot;$&#123;PROJECT_BINARY_DIR&#125;/config.h&quot; DESTINATION include)
+</code></pre>
+<ul>
+<li>cmake_minimum_required: the minimum required CMake version</li>
+<li>project: the project name</li>
+<li>configure_file: reads the configuration file; just write config.h.in here, and config.h will be generated automatically</li>
+<li>option: a switch with two values, ON and OFF</li>
+<li>Variables inside if don't need ${}</li>
+<li>include_directories: the paths in which to look for header files</li>
+<li>add_subdirectory: adds a subfolder, which holds some of the classes needed</li>
+<li>set: assigns the values that follow to the first variable; here:<ul>
+<li>set(EXTRA_LIBS ${EXTRA_LIBS} MathFunctions)</li>
+<li>EXTRA_LIBS ${EXTRA_LIBS} means: if EXTRA_LIBS already has a value, append to it; otherwise it is empty</li>
+<li>Same as path&#x3D;${path}:&#x2F;usr&#x2F;</li>
+</ul>
+</li>
+<li>aux_source_directory: finds the source files to build in the current folder</li>
+<li>add_executable: the name of the generated executable</li>
+<li>target_link_libraries: links the sub-libraries (the functions and classes main needs)</li>
+<li>install(TARGETS Demo1 DESTINATION bin): the path for the .o files; the default prefix is &#x2F;usr&#x2F;local&#x2F;, so here it is &#x2F;usr&#x2F;local&#x2F;bin</li>
+<li>You can use set to modify the built-in variable <code>CMAKE_INSTALL_PREFIX</code></li>
+<li>install(FILES “${PROJECT_BINARY_DIR}&#x2F;config.h” DESTINATION include): the path for the .h files, here &#x2F;usr&#x2F;local&#x2F;include’</li>
+</ul>
+<hr>
+<p>  2.2 CMakeLists.txt in the math directory</p>
+<pre><code>aux_source_directory(. DIR_LIB_SRCS)
+
+# Build the MathFunctions library
+add_library (MathFunctions $&#123;DIR_LIB_SRCS&#125;)
+install(TARGETS MathFunctions DESTINATION bin)
+install(FILES MathFunctions.h DESTINATION include)
+</code></pre>
+<hr>
+<p>  2.3 Adding tests to the project</p>
+<p>   CMake provides a testing tool called CTest. All we need to do is call a series of add_test commands in the CMakeLists file in the project root directory.</p>
+<pre><code># Enable testing
+  enable_testing()
+
+  # Test whether the program runs successfully
+  add_test (test_run Demo 5 2)
+
+  # Test whether the help message is shown correctly
+  add_test (test_usage Demo)
+  set_tests_properties (test_usage
+  PROPERTIES PASS_REGULAR_EXPRESSION &quot;Usage: .* base exponent&quot;)
+
+  # Test 5 squared
+  add_test (test_5_2 Demo 5 2)
+
+  set_tests_properties (test_5_2
+  PROPERTIES PASS_REGULAR_EXPRESSION &quot;is 25&quot;)
+
+  # Test 10 to the power of 5
+  add_test (test_10_5 Demo 10 5)
+
+  set_tests_properties (test_10_5
+  PROPERTIES PASS_REGULAR_EXPRESSION &quot;is 100000&quot;)
+
+  # Test 2 to the power of 10
+  add_test (test_2_10 Demo 2 10)
+
+  set_tests_properties (test_2_10
+  PROPERTIES PASS_REGULAR_EXPRESSION &quot;is 1024&quot;)
+</code></pre>
+<p>   Or use a macro</p>
+<pre><code># Define a macro to simplify testing
+  macro (do_test arg1 arg2 result)
+  add_test (test_$&#123;arg1&#125;_$&#123;arg2&#125; Demo $&#123;arg1&#125; $&#123;arg2&#125;)
+  set_tests_properties (test_$&#123;arg1&#125;_$&#123;arg2&#125;
+   PROPERTIES PASS_REGULAR_EXPRESSION $&#123;result&#125;)
+  endmacro (do_test)
+
+  # Use the macro to run a series of data tests
+  do_test (5 2 &quot;is 25&quot;)
+  do_test (10 5 &quot;is 100000&quot;)
+  do_test (2 10 &quot;is 1024&quot;)
+
+</code></pre>
+</li>
+</ul>
+<h2 id="3-configure-file"><a href="#3-configure-file" class="headerlink" title="3. configure_file"></a>3. configure_file</h2><ul>
+<li>configure_file(input output options)</li>
+<li>Copies a file (given by the input argument) to the specified location (given by the output argument) and modifies its contents according to options.</li>
+<li> The configure_file command is generally used for custom build options or custom macros. According to the rules specified by options, configure_file automatically converts the cmakedefine keywords and their contents in the input file.</li>
+</ul>
+<pre><code>Demo
+
+```
+#cmakedefine var1
+#cmakedefine var2 &quot;@var2@&quot; #Note: the name between the @@ must match the variable name after cmakedefine
+#cmakedefine var3 &quot;$&#123;var3&#125;&quot; #Note: the name inside $&#123;&#125; must match the variable name after cmakedefine
+
+```
+</code></pre>
+<h2 id="4-getting-the-git-hash-and-version-with-cmake-a-complete-example"><a href="#4-getting-the-git-hash-and-version-with-cmake-a-complete-example" class="headerlink" title="4. Getting the Git hash and version with CMake: a complete example"></a>4. Getting the Git hash and version with CMake: a complete example</h2><p><a target="_blank" rel="noopener" href="https://github.com/moulelin/Cmake/tree/master/demo_git_config">GitHub code</a><br>Sometimes we need to record information such as the version number, the Git hash and the build time in a project, but obviously we don't want to fill in the Git hash and build time by hand. Here is a way to write this information into a header file and then compile it into a .so library or an executable.</p>
+<p>That way, these values can be obtained through an interface provided by the library or from the output printed by the executable.</p>
+<h3 id="4-1-utils-cmake-file"><a href="#4-1-utils-cmake-file" class="headerlink" title="4.1 The utils.cmake file"></a>4.1 The utils.cmake file</h3><pre><code>```
+# Used to get the Git hash and branch
+macro(get_git_hash _git_hash)
+    find_package(GIT QUIET)
+    if(GIT_FOUND)# GIT_FOUND is a built-in variable
+        execute_process( # cmake: execute_process runs an external command
+            # COMMAND is the command-line command to run
+            # GIT_EXECUTABLE is the path to the git executable; -1 means the last commit
+            #--pretty=: display commit history in another format; options include oneline, short, medium, full, fuller, email, raw and format:&lt;string&gt;; the default is medium, e.g.:
+            # --pretty=oneline: one line per commit, showing only the hash and the commit message (--oneline can also be used as a standalone option)
+            # --pretty=format:” &quot;: controls the format of the displayed records, e.g.:
+            #     %H  full hash of the commit object
+            #     %h  abbreviated hash of the commit object
+            #     %T  full hash of the tree object
+            #     %t  abbreviated hash of the tree object
+            #     %P  full hash of the parent object
+            #     %p  abbreviated hash of the parent object
+            #     %an author name
+            #     %ae author email address
+            #     %ad author date (format can be customised with the -date= option)
+            #     %ar author date, relative ("how long ago")
+            #     %cn committer name
+            #         What is the difference between author and committer?
+            #         Relationship between author and committer: the author is the one who modified the program, the committer is the one who committed the code (how could someone else pull your changes and commit them if you never committed them yourself?)
+            #         In fact, the author is the person who actually made the change, and the committer is the person who finally committed that work to the repository. So when you publish a patch for a project and a core member merges it into the project, you are the author and that core member is the committer (got it)
+            #     %ce committer email address
+            #     %cd commit date (format can be customised with the -date= option)
+            #     %cr commit date, relative ("how long ago")
+            #     %s  commit message
+            COMMAND $&#123;GIT_EXECUTABLE&#125; log -1 --pretty=format:%h
+            OUTPUT_VARIABLE $&#123;_git_hash&#125;        # store the output string in a variable
+            # OUTPUT_VARIABLE: specifies the variable that receives what is written to standard output;
+            OUTPUT_STRIP_TRAILING_WHITESPACE    # strip the trailing newline from the string
+            ERROR_QUIET                         # silence execution errors
+            WORKING_DIRECTORY                   # working directory
+            $&#123;CMAKE_CURRENT_SOURCE_DIR&#125;
+            )
+        endif()
+endmacro()
+
+# get git branch
+macro(get_git_branch _git_branch)   # start of the macro
+    find_package(Git QUIET)     # find Git; QUIET suppresses errors
+    if(GIT_FOUND)
+    execute_process(          # run a child process
+        COMMAND $&#123;GIT_EXECUTABLE&#125; symbolic-ref --short -q HEAD
+        OUTPUT_VARIABLE $&#123;_git_branch&#125;        # store the output string in a variable
+        OUTPUT_STRIP_TRAILING_WHITESPACE    # strip the trailing newline from the string
+        ERROR_QUIET                         # silence execution errors
+        WORKING_DIRECTORY                   # working directory
+        $&#123;CMAKE_CURRENT_SOURCE_DIR&#125;
+        )
+    endif()
+endmacro()                      # end of the macro
+
+```
+</code></pre>
+<ul>
+<li>Use macro to define two macros</li>
+<li>Use execute_process to run external commands</li>
+<li>OUTPUT_VARIABLE captures what is printed to the command line and assigns it to a variable</li>
+</ul>
+<h3 id="4-2-CMakeLists-txt"><a href="#4-2-CMakeLists-txt" class="headerlink" title="4.2 CMakeLists.txt"></a>4.2 CMakeLists.txt</h3><pre><code>```
+cmake_minimum_required(VERSION 2.9)
+
+include(utils.cmake)
+project(demo_git_config)
+
+
+string(TIMESTAMP BUILD_TIMESTAMP &quot;%Y-%m-%d %H:%M:%S&quot;)
+message(&quot;Build timestamp is $&#123;BUILD_TIMESTAMP&#125;&quot;)
+
+set(VERSION_MAJOR 0)
+set(VERSION_MINOR 0)
+set(VERSION_PATCH 1)
+message(&quot;Version is $&#123;VERSION_MAJOR&#125; $&#123;VERSION_MINOR&#125; $&#123;VERSION_PATCH&#125;&quot;)
+
+set(GIT_HASH &quot;&quot;)
+get_git_hash(GIT_HASH)
+message(&quot;Git hash is $&#123;GIT_HASH&#125;&quot;)
+
+set(GIT_BRANCH &quot;&quot;)
+get_git_branch(GIT_BRANCH)
+message(&quot;Git branch is $&#123;GIT_BRANCH&#125;&quot;)
+
+
+configure_file(
+    &quot;$&#123;PROJECT_SOURCE_DIR&#125;/include/utils.h.in&quot;
+    &quot;$&#123;PROJECT_SOURCE_DIR&#125;/include/utils.h&quot;
+)
+add_executable($&#123;PROJECT_NAME&#125; main.cpp)
+
+include_directories(
+    $&#123;PROJECT_SOURCE_DIR&#125;/include
+)
+
+install(TARGETS $&#123;PROJECT_NAME&#125;
+    DESTINATION $&#123;PROJECT_SOURCE_DIR&#125;)
+
+```
+</code></pre>
+<ul>
+<li>Calls the macros</li>
+</ul>
+<h3 id="4-3-utils-h-in"><a href="#4-3-utils-h-in" class="headerlink" title="4.3 utils.h.in"></a>4.3 utils.h.in</h3><pre><code>```
+#ifndef UTILS_H_IN
+#define UTILS_H_IN
+
+#define VERSION_MAJOR @VERSION_MAJOR@
+#define VERSION_MINOR @VERSION_MINOR@
+#define VERSION_PATCH @VERSION_PATCH@
+
+#define BUILD_TIMESTAMP &quot;@BUILD_TIMESTAMP@&quot;
+
+#define GIT_BRANCH &quot;@GIT_BRANCH@&quot;
+#define GIT_HASH &quot;@GIT_HASH@&quot;
+
+#endif // UTILS_H_IN
+
+```
+</code></pre>
+<h3 id="4-4-run-cmake"><a href="#4-4-run-cmake" class="headerlink" title="4.4 Run cmake ."></a>4.4 Run cmake .</h3><p>  The generated utils.h is as follows</p>
+<pre><code>```
+#ifndef UTILS_H_IN
+#define UTILS_H_IN
+
+#define VERSION_MAJOR 0
+#define VERSION_MINOR 0
+#define VERSION_PATCH 1
+
+#define BUILD_TIMESTAMP &quot;2022-11-26 21:35:07&quot;
+
+#define GIT_BRANCH &quot;master&quot;
+#define GIT_HASH &quot;0e1f110&quot;
+
+#endif // UTILS_H_IN
+
+```
+</code></pre>
+<h3 id="4-5-link-the-o-files-with-make-to-build-the-executable"><a href="#4-5-link-the-o-files-with-make-to-build-the-executable" class="headerlink" title="4.5 Link the .o files with make to build the executable"></a>4.5 Link the .o files with make to build the executable</h3><p> The output is as follows</p>
+<pre><code>```
+(base) moule@mouledeMacBook-Air demo_git_config % ./demo_git_config
+version is 0, 0, 1
+timestamp is 2022-11-26 21:35:07
+git is master, 0e1f110
+```
+</code></pre>
+  </article>
+  <nav class="post-nav"><a href="/blog/ai-robotics-rotation-matrix/"><span>← Older</span>AI Robotics</a><a class="next" href="/blog/rotation-translation-derivation/"><span>Newer →</span>Deriving Coordinate Rotation and Translation</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

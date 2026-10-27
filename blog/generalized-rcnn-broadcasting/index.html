@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GeneralizedRCNN Resize · Moule Lin</title>
+  <meta name="description" content="Notes on NumPy/PyTorch broadcasting rules and how GeneralizedRCNN computes pairwise box overlaps with [:, None] indexing.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>GeneralizedRCNN Resize</h1>
+    <div class="post-meta"><time datetime="2023-02-12">February 12, 2023</time><span class="chip">Object Detection</span><span class="chip">Docker</span><span class="chip">Recursion</span></div>
+  </header>
+  <article class="prose">
+<h1 id="GenerlizedRCNN"><a href="#GenerlizedRCNN" class="headerlink" title="GenerlizedRCNN"></a>GenerlizedRCNN</h1><ul>
+<li><p>[:, None, None] : Shape [3] -&gt; [3, 1, 1] </p>
+</li>
+<li><p>In NumPy the * operator denotes the element-wise product (multiplying corresponding positions) </p>
+<ul>
+<li>a &#x3D; np.array([1,2,3]) </li>
+<li>b &#x3D; np.array([2,2,2]) </li>
+<li>a * b </li>
+<li>array([ 2., 4., 6.])</li>
+</ul>
+</li>
+<li><p>For two matrices a and b, compare their dimensions from the last one backwards; broadcasting is possible only if every dimension satisfies one of the following conditions. </p>
+<ul>
+<li><p>They are equal </p>
+</li>
+<li><p>One of them is 1</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>boxes1 # shape[N,4]<br>boxes2 # shape[M,4]</p>
+<pre><code>    lt = torch.max(boxes1[:, None, :2], boxes2[:, :2])  # left-top [N,M,2]
+    rb = torch.min(boxes1[:, None, 2:], boxes2[:, 2:])  # right-bottom [N,M,2]
+</code></pre>
+<ul>
+<li>Here a dimension is inserted as the second dimension of boxes1, making it [N,1,4], so when it meets boxes2 it is automatically broadcast to [N,M,4]: each row is copied M times (think of them as rows), so every column of boxes1&#39;s [:,M,4] is identical, e.g. [1,2,3]-&gt;[[1,2,3],[1,2,3]]</li>
+<li>Broadcasting again, when boxes2 meets boxes1 the last two dimensions are now identical, so boxes2 becomes [N,M,4], which amounts to copying the whole of boxes2 N times</li>
+<li>So boxes1&#39;s [:,M,4] is really just one box&#39;s [xmin,ymin,xmax,ymax] repeated M times; essentially there is only one set of coordinates</li>
+<li>boxes2&#39;s [0,:,:] is equivalent to the original boxes2, so this amounts to comparing (computing) the first box&#39;s coordinates (row) in boxes1 against all the coordinates in boxes2</li>
+</ul>
+  </article>
+  <nav class="post-nav"><a href="/blog/recursive-backtracking-variables/"><span>← Older</span>Variable Changes in Recursive Backtracking</a><a class="next" href="/blog/docker/"><span>Newer →</span>Docker</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

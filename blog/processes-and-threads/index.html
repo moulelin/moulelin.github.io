@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Processes and Threads · Moule Lin</title>
+  <meta name="description" content="Explains the differences between processes and threads using a train-and-carriages analogy, including mutexes and semaphores.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>Processes and Threads</h1>
+    <div class="post-meta"><time datetime="2022-03-12">March 12, 2022</time><span class="chip">C++</span></div>
+  </header>
+  <article class="prose">
+<p>A simple analogy: process = train, thread = carriage. Threads run within a process (<br>a carriage on its own cannot move). A process can contain multiple threads (a train can have multiple carriages)<br>Data is hard to share between different processes (passengers on one train find it hard to switch to another train, e.g. when transferring at a station)<br>Data is easy to share between threads of the same process (moving from carriage A to carriage B is easy)<br>Processes consume more computer resources than threads (running several trains costs more than adding several carriages)<br>Processes do not affect one another, but one thread crashing brings down the whole process (one train does not affect another, but if a carriage in the middle of a train catches fire, all its carriages are affected)<br>Processes can scale out to multiple machines, while threads are at most suited to multiple cores (different trains can run on multiple tracks, but carriages of the same train cannot run on different tracks)<br>Memory addresses used by a process can be locked, i.e. when one thread is using some shared memory, other threads must wait until it is done before using that memory (like the toilet on a train) — “mutex”. Memory addresses used by a process can be limited in how many may use them (like the dining car on a train, which only lets in a certain number of people; if it is full, you wait at the door until someone comes out) — “semaphore”</p>
+
+  </article>
+  <nav class="post-nav"><a href="/blog/cpp-in-class-definition/"><span>← Older</span>In-Class Declaration and Definition</a><a class="next" href="/blog/cpp-assignment-operator-returns-reference/"><span>Newer →</span>Why the Assignment Operator Returns a Reference</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

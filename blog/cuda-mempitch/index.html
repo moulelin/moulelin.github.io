@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cudaMallocPitch and cudaMemcpy2D · Moule Lin</title>
+  <meta name="description" content="An example of using cudaMallocPitch and cudaMemcpy2D to allocate and copy two-dimensional matrices on the GPU.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>cudaMallocPitch and cudaMemcpy2D</h1>
+    <div class="post-meta"><time datetime="2022-06-28">June 28, 2022</time><span class="chip">CUDA</span><span class="chip">GPU Programming</span></div>
+  </header>
+  <article class="prose">
+<h1 id="cudaMemPitch-is-for-tow-dimensions-matrix"><a href="#cudaMemPitch-is-for-tow-dimensions-matrix" class="headerlink" title="cudaMemPitch is for tow dimensions matrix"></a>cudaMemPitch is for tow dimensions matrix</h1><blockquote>
+<p>cudaMallocPitch ( void** devPtr, size_t* pitch, size_t width, size_t height )<br>devPtr - Pointer to allocated pitched device memory<br>pitch - Pitch for allocation<br>width - Requested pitched allocation width (in bytes)<br>height - Requested pitched allocation height</p>
+</blockquote>
+<blockquote>
+<p>cudaError_t cudaMemcpy2D    (    void *     dst,<br>size_t     dpitch,<br>const void *     src,<br>size_t     spitch,<br>size_t     width,<br>size_t     height,<br>enum cudaMemcpyKind     kind<br>)    </p>
+</blockquote>
+<blockquote>
+<p>Parameters:<br>dst     - Destination memory address<br>dpitch     - Pitch of destination memory<br>src     - Source memory address<br>spitch     - Pitch of source memory<br>width     - Width of matrix transfer (columns in bytes)<br>height     - Height of matrix transfer (rows)<br>kind     - Type of transfer</p>
+</blockquote>
+<pre><code>`The spitch is different when cudaMemcpyKind is different`
+
+#include&lt;stdio.h&gt;
+#include&lt;cuda.h&gt;
+#include&lt;cuda_runtime.h&gt;
+#include&lt;device_launch_parameters.h&gt;
+#include&lt;conio.h&gt;
+
+#define BLOCKSIZE_x 16
+#define BLOCKSIZE_y 16
+
+#define Nrows 3
+#define Ncols 5
+
+/*****************/
+/* CUDA MEMCHECK */
+/*****************/
+#define gpuErrchk(ans) &#123; gpuAssert((ans), __FILE__, __LINE__); &#125;
+
+inline void gpuAssert(cudaError_t code, char *file, int line, bool abort = true)
+&#123;
+    if (code != cudaSuccess)
+    &#123;
+        fprintf(stderr, &quot;GPUassert: %s %s %dn&quot;, cudaGetErrorString(code), file, line);
+        if (abort) &#123; getch(); exit(code); &#125;
+    &#125;
+&#125;
+
+/*******************/
+/* iDivUp FUNCTION */
+/*******************/
+int iDivUp(int hostPtr, int b)&#123; return ((hostPtr % b) != 0) ? (hostPtr / b + 1) : (hostPtr / b); &#125;
+
+/******************/
+/* TEST KERNEL 2D */
+/******************/
+__global__ void test_kernel_2D(float *devPtr, size_t pitch)
+&#123;
+    int    tidx = blockIdx.x*blockDim.x + threadIdx.x;
+    int    tidy = blockIdx.y*blockDim.y + threadIdx.y;
+
+    if ((tidx &lt; Ncols) &amp;&amp; (tidy &lt; Nrows))
+    &#123;
+        float *row_a = (float *)((char*)devPtr + tidy * pitch);
+        row_a[tidx] = row_a[tidx] * tidx * tidy;
+    &#125;
+&#125;
+
+/********/
+/* MAIN */
+/********/
+int main()
+&#123;
+    float hostPtr[Nrows][Ncols];
+    float *devPtr;
+    size_t pitch;
+
+    for (int i = 0; i &lt; Nrows; i++)
+        for (int j = 0; j &lt; Ncols; j++) &#123;
+            hostPtr[i][j] = 1.f;
+            //printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
+        &#125;
+
+    // --- 2D pitched allocation and host-&gt;device memcopy
+    gpuErrchk(cudaMallocPitch(&amp;devPtr, &amp;pitch, Ncols * sizeof(float), Nrows));
+    gpuErrchk(cudaMemcpy2D(devPtr, pitch, hostPtr, Ncols*sizeof(float), Ncols*sizeof(float), Nrows, cudaMemcpyHostToDevice));
+
+    dim3 gridSize(iDivUp(Ncols, BLOCKSIZE_x), iDivUp(Nrows, BLOCKSIZE_y));
+    dim3 blockSize(BLOCKSIZE_y, BLOCKSIZE_x);
+
+    test_kernel_2D &lt;&lt; &lt;gridSize, blockSize &gt;&gt; &gt;(devPtr, pitch);
+    gpuErrchk(cudaPeekAtLastError());
+    gpuErrchk(cudaDeviceSynchronize());
+
+    gpuErrchk(cudaMemcpy2D(hostPtr, Ncols * sizeof(float), devPtr, pitch, Ncols * sizeof(float), Nrows, cudaMemcpyDeviceToHost));
+
+    for (int i = 0; i &lt; Nrows; i++) 
+        for (int j = 0; j &lt; Ncols; j++) 
+            printf(&quot;row %i column %i value %f \n&quot;, i, j, hostPtr[i][j]);
+
+    return 0;    
+&#125;
+</code></pre>
+  </article>
+  <nav class="post-nav"><a href="/blog/sign-magnitude-ones-twos-complement/"><span>← Older</span>Sign-Magnitude, One&#x27;s and Two&#x27;s Complement</a><a class="next" href="/blog/red-black-tree/"><span>Newer →</span>Red-Black Trees</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

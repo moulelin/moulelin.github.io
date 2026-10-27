@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hierarchical Clustering · Moule Lin</title>
+  <meta name="description" content="Explains hierarchical clustering and compares single, complete and average linkage for measuring distances between clusters.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>Hierarchical Clustering</h1>
+    <div class="post-meta"><time datetime="2021-12-02">December 2, 2021</time><span class="chip">Clustering</span><span class="chip">Machine Learning</span></div>
+  </header>
+  <article class="prose">
+<blockquote>
+<p>Hierarchical clustering algorithms and the various linkages</p>
+</blockquote>
+<p>Basic principle<br>Given N objects to be clustered and an N*N distance matrix (or similarity matrix), the basic steps of hierarchical clustering (see S.C. Johnson in 1967) are as follows:</p>
+<ol>
+<li><pre><code>Assign each object to its own cluster, giving N clusters, each containing just one object. The distance between clusters is the distance between the objects they contain.
+</code></pre>
+</li>
+<li><pre><code>Find the two closest clusters and merge them into one, so the total number of clusters decreases by one.
+</code></pre>
+</li>
+<li><pre><code>Recompute the distances between the new cluster and all the old clusters.
+</code></pre>
+</li>
+<li><pre><code>Repeat steps 2 and 3 until everything has been merged into a single cluster (containing all N objects).
+</code></pre>
+<p>Depending on how step 3 is done, hierarchical clustering methods can be divided into several types: single-linkage, complete-linkage and average-linkage clustering, among others.</p>
+</li>
+</ol>
+<p>Single-linkage clustering (also called the connectedness or minimum method):</p>
+<p>The distance between clusters equals the minimum distance between objects in the two clusters; if similarity is used instead, it is the maximum similarity between any object in one cluster and any object in the other.</p>
+<p>Complete-linkage clustering (also called the diameter or maximum method):</p>
+<p>The distance between groups equals the maximum distance between objects in the two groups.</p>
+<p>Average-linkage clustering:</p>
+<p>The distance between groups equals the average distance between objects in the two groups.</p>
+<p>A variant of average-link clustering is R. D’Andrade's (1978) UCLUS method, which uses the median distance; it is somewhat more robust than the average distance to the influence of outlying data objects.</p>
+<p>This kind of hierarchical clustering is called the “agglomerative” method, because it iteratively merges all the clusters. There is also a “divisive” hierarchical clustering method, which works the other way round: it first puts all objects in a single cluster and keeps splitting it into smaller clusters. The divisive method is rarely used.</p>
+<p>The whole clustering process actually builds a tree. During construction, a threshold can be set in step 2: when the distance between the two closest clusters exceeds this threshold, the iteration can stop. The other key step is step 3; there are quite a few ways to measure the similarity between two clusters. Three are introduced here:</p>
+<p>SingleLinkage: also called nearest-neighbor. It takes the distance between the two closest samples of the two clusters as the distance between the two sets; in other words, the smaller the distance between the two closest samples, the greater the similarity between the two clusters. It tends to cause what is called the Chaining effect: two clusters that are clearly far apart “overall” get merged just because a few of their points are close together, and after such a merge the chaining effect grows further, eventually producing rather loose clusters.</p>
+<p>CompleteLinkage: this is the exact opposite extreme of Single Linkage. It takes the distance between the two farthest points of the two sets as the distance between them. Its effect is also the opposite: it is very restrictive. Even if two clusters are already very close, as long as there are uncooperative points, it stubbornly refuses to merge them, which is not a great approach either. The common problem with both of these similarity definitions is that they only consider certain particular data points and ignore the overall characteristics of the data within each cluster.</p>
+<p>Average-linkage: this method takes the pairwise distances between all points in the two sets and averages them, which gives relatively more reasonable results.</p>
+<p>A variant of average-linkage takes the median of the pairwise distances, which, compared with the mean, does a better job of removing the interference of individual outlying samples.</p>
+
+
+	<div class="row">
+    <embed src="https://moulelin.github.io/pdf/cluster.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+  </article>
+  <nav class="post-nav"><a href="/blog/probability-theory/"><span>← Older</span>Theory</a><a class="next" href="/blog/silhouette-coefficient/"><span>Newer →</span>The Silhouette Coefficient</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

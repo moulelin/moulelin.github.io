@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Function-like Classes · Moule Lin</title>
+  <meta name="description" content="Notes on when C++ creates temporary objects and why function-like classes (functors) are useful.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>Function-like Classes</h1>
+    <div class="post-meta"><time datetime="2022-06-16">June 16, 2022</time><span class="chip">C++</span></div>
+  </header>
+  <article class="prose">
+<ul>
+<li><a href="#temporary-objects">Temporary objects</a><h1 id="temporary-objects"><a href="#temporary-objects" class="headerlink" title="Temporary objects"></a>Temporary objects</h1></li>
+</ul>
+<pre><code>#include&lt;iostream&gt;
+
+class temporary&#123;
+public:
+    temporary()&#123;
+            std::cout &lt;&lt; &quot;temporary ctor&quot; &lt;&lt;std::endl;
+    &#125;
+    ~temporary()&#123;
+        std::cout &lt;&lt; &quot;destory&quot;  &lt;&lt;std::endl;
+    &#125;
+    void fun()&#123;
+        std::cout &lt;&lt; &quot;This is function output&quot;  &lt;&lt;std::endl;
+    &#125;
+
+&#125;;
+int main()&#123;
+    
+    temporary ().fun();
+    return 0;
+&#125;
+</code></pre>
+<p><strong>output</strong>:</p>
+<pre><code>temporary ctor
+This is function output
+destory
+</code></pre>
+<ul>
+<li>A temporary object is created when you create an unnamed non-heap object, i.e. an anonymous object</li>
+</ul>
+<pre><code>Integer inte= Integer(5); //initialize an object with an unnamed temporary object
+</code></pre>
+<ul>
+<li>When a constructor acts as an implicit type conversion, a temporary object is created and passed to the function as the argument.</li>
+</ul>
+<pre><code>class Integer
+&#123;
+public:
+    Integer(int i):m_val(i)&#123;&#125;
+    ~Integer()&#123;&#125;
+private:
+    int m_val;
+&#125;;
+ 
+void testFunc(Integer itgr)
+&#123;
+    //do something
+&#125;
+
+int  i = 10;
+testFunc(i);
+
+A temporary object is created and passed as the argument to testFunc.
+</code></pre>
+<ul>
+<li>When a function returns an object, a temporary object is created: it is constructed by the copy constructor with the returned object as the argument.</li>
+</ul>
+<pre><code>Integer Func()
+&#123;
+    Integer itgr;
+    return itgr;
+&#125;
+ 
+int main()
+&#123;
+    Integer in;
+    in = Func();
+&#125;
+</code></pre>
+<h1 id="Why-we-need-function-like-class"><a href="#Why-we-need-function-like-class" class="headerlink" title="Why we need function-like class?"></a>Why we need function-like class?</h1><ul>
+<li>An instance of the class can be passed around as an argument (the class can be changed at any time without affecting other classes or functions)</li>
+</ul>
+<p><img src="/images/function-like-class.png"></p>
+<ul>
+<li>The standard library contains many functors, and they inherit from various curious base classes</li>
+</ul>
+  </article>
+  <nav class="post-nav"><a href="/blog/who-vs-whom/"><span>← Older</span>Who vs. Whom</a><a class="next" href="/blog/cpp-namespace/"><span>Newer →</span>Namespaces</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>

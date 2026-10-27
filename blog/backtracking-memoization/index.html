@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Memoization for Backtracking · Moule Lin</title>
+  <meta name="description" content="How to use a memo keyed by index and depth to avoid repeated searches in backtracking, with a LeetCode Combinations example.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="/">Moule Lin</a>
+    <nav class="nav">
+      <a class="hide-sm" href="/#about">About</a>
+      <a href="/#publications">Publications</a>
+      <a class="active" href="/blog/">Blog</a>
+      <a href="/files/Moule_Lin_CV.pdf">CV</a>
+      <button class="theme-btn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <a class="back" href="/blog/">← All notes</a>
+  <header class="post-head">
+    <h1>Memoization for Backtracking</h1>
+    <div class="post-meta"><time datetime="2023-06-02">June 2, 2023</time><span class="chip">C++</span><span class="chip">Leetcode</span><span class="chip">Backtracking</span></div>
+  </header>
+  <article class="prose">
+<h2 id="Most-backtracking-involves-some-repeated-searching-a-memo-can-record-earlier-search-results-so-you-can-return-directly-when-you-reach-the-same-node"><a href="#Most-backtracking-involves-some-repeated-searching-a-memo-can-record-earlier-search-results-so-you-can-return-directly-when-you-reach-the-same-node" class="headerlink" title="Most backtracking involves some repeated searching; a memo can record earlier search results so you can return directly when you reach the same node"></a>Most backtracking involves some repeated searching; a memo can record earlier search results so you can return directly when you reach the same node</h2><h3 id="idx-is-an-important-index-to-its-left-are-idx-1-n-1-i-x3D-idx-1-idx-2-n-1"><a href="#idx-is-an-important-index-to-its-left-are-idx-1-n-1-i-x3D-idx-1-idx-2-n-1" class="headerlink" title="idx is an important index: to its left are idx + 1 ~ n-1 (i &#x3D; idx + 1, idx + 2 … n-1)"></a>idx is an important index: to its left are idx + 1 ~ n-1 (i &#x3D; idx + 1, idx + 2 … n-1)</h3><h3 id="Likewise-the-values-of-i-in-the-subtree-of-idx-are-also-idx-1-n-1-i-x3D-idx-1-idx-2-n-1"><a href="#Likewise-the-values-of-i-in-the-subtree-of-idx-are-also-idx-1-n-1-i-x3D-idx-1-idx-2-n-1" class="headerlink" title="Likewise, the values of i in the subtree of idx are also idx + 1 ~ n-1 (i &#x3D; idx + 1, idx + 2 … n-1)"></a>Likewise, the values of i in the subtree of idx are also idx + 1 ~ n-1 (i &#x3D; idx + 1, idx + 2 … n-1)</h3><ul>
+<li>Therefore, using idx and the depth as the memo key is a good way to store this node</li>
+</ul>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><pre><code>link : https://leetcode.com/problems/combinations/description/
+
+class Solution &#123;
+public:
+     vector&lt;vector&lt;int&gt;&gt; memo[21][21];
+    vector&lt;vector&lt;int&gt;&gt; combine(int n, int k, int cur=1) &#123;
+        if(k == 0) return &#123;&#123;&#125;&#125;;
+       
+        if(!memo[k][cur].empty()) &#123;
+           cout &lt;&lt; k &lt;&lt; &quot;memo&quot;&lt;&lt;cur;
+            return memo[k][cur];
+            &#125;
+        
+        vector&lt;vector&lt;int&gt;&gt; ans;
+        for(int i=cur; i&lt;=n; i++)&#123;
+            cout &lt;&lt; &quot;before idx= &quot;&lt;&lt; cur &lt;&lt;&quot; before i=&quot; &lt;&lt;i+1 &lt;&lt; &quot; k = &quot;&lt;&lt;k-1&lt;&lt; &quot; ;&quot;;
+            vector&lt;vector&lt;int&gt;&gt; temp = combine(n, k-1, i+1);
+            for(auto v: temp)&#123;
+                v.push_back(i);
+                ans.push_back(v);
+            &#125;
+            cout &lt;&lt; endl;
+            cout &lt;&lt; &quot;back idx= &quot;&lt;&lt; cur &lt;&lt;&quot; back i=&quot;&lt;&lt;i&lt;&lt; &quot; k = &quot;&lt;&lt;k&lt;&lt; endl;
+        &#125;
+        cout &lt;&lt; &quot;end&quot; &lt;&lt; endl;
+        cout &lt;&lt; endl;
+        for (auto a:ans)&#123;
+            cout &lt;&lt; &quot;[&quot;;
+            for (auto b:a) &#123;
+                cout &lt;&lt; b&lt;&lt;&quot; &quot;;
+            &#125;
+             cout &lt;&lt; &quot;]&quot;;
+        &#125;
+        cout &lt;&lt; endl;
+
+        cout &lt;&lt; &quot;k=&quot; &lt;&lt; k &lt;&lt; &quot; idx = &quot; &lt;&lt; cur &lt;&lt; endl;
+        // cout &lt;&lt; cur &lt;&lt; endl;
+        return memo[k][cur] = ans;
+    &#125;
+&#125;;
+</code></pre>
+<p>out : </p>
+<pre><code>before idx= 1 before i=2 k = 2 ;before idx= 2 before i=3 k = 1 ;before idx= 3 before i=4 k = 0 ;
+back idx= 3 back i=3 k = 1
+before idx= 3 before i=5 k = 0 ;
+back idx= 3 back i=4 k = 1
+before idx= 3 before i=6 k = 0 ;
+back idx= 3 back i=5 k = 1
+end
+
+[3 ][4 ][5 ]
+k=1 idx = 3
+
+back idx= 2 back i=2 k = 2
+before idx= 2 before i=4 k = 1 ;before idx= 4 before i=5 k = 0 ;
+back idx= 4 back i=4 k = 1
+before idx= 4 before i=6 k = 0 ;
+back idx= 4 back i=5 k = 1
+end
+
+[4 ][5 ]
+k=1 idx = 4
+
+back idx= 2 back i=3 k = 2
+before idx= 2 before i=5 k = 1 ;before idx= 5 before i=6 k = 0 ;
+back idx= 5 back i=5 k = 1
+end
+
+[5 ]
+k=1 idx = 5
+
+back idx= 2 back i=4 k = 2
+before idx= 2 before i=6 k = 1 ;end
+
+
+k=1 idx = 6
+
+back idx= 2 back i=5 k = 2
+end
+
+[3 2 ][4 2 ][5 2 ][4 3 ][5 3 ][5 4 ]
+k=2 idx = 2
+
+back idx= 1 back i=1 k = 3
+before idx= 1 before i=3 k = 2 ;before idx= 3 before i=4 k = 1 ;1memo4
+back idx= 3 back i=3 k = 2
+before idx= 3 before i=5 k = 1 ;1memo5
+back idx= 3 back i=4 k = 2
+before idx= 3 before i=6 k = 1 ;end
+
+
+k=1 idx = 6
+
+back idx= 3 back i=5 k = 2
+end
+
+[4 3 ][5 3 ][5 4 ]
+k=2 idx = 3
+
+back idx= 1 back i=2 k = 3
+before idx= 1 before i=4 k = 2 ;before idx= 4 before i=5 k = 1 ;1memo5
+back idx= 4 back i=4 k = 2
+before idx= 4 before i=6 k = 1 ;end
+
+
+k=1 idx = 6
+
+back idx= 4 back i=5 k = 2
+end
+
+[5 4 ]
+k=2 idx = 4
+
+back idx= 1 back i=3 k = 3
+before idx= 1 before i=5 k = 2 ;before idx= 5 before i=6 k = 1 ;end
+
+
+k=1 idx = 6
+
+back idx= 5 back i=5 k = 2
+end
+
+
+k=2 idx = 5
+
+back idx= 1 back i=4 k = 3
+before idx= 1 before i=6 k = 2 ;end
+
+
+k=2 idx = 6
+
+back idx= 1 back i=5 k = 3
+end
+
+[3 2 1 ][4 2 1 ][5 2 1 ][4 3 1 ][5 3 1 ][5 4 1 ][4 3 2 ][5 3 2 ][5 4 2 ][5 4 3 ]
+k=3 idx = 1
+</code></pre>
+  </article>
+  <nav class="post-nav"><a href="/blog/sequence-models/"><span>← Older</span>Sequence Models</a><a class="next" href="/blog/sharpening-function/"><span>Newer →</span>Sharpening Function</a></nav>
+</main>
+
+<footer class="site">
+  <div class="inner">
+    <span>© 2026 Moule Lin</span>
+    <span>Notes are personal study material, originally written in Chinese.</span>
+  </div>
+</footer>
+<script src="/assets/theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+  document.querySelectorAll('.prose pre code').forEach(function (el) { hljs.highlightElement(el); });
+  renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], throwOnError: false
+  });
+</script>
+</body>
+</html>
