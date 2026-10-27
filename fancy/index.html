@@ -24,6 +24,22 @@ a { color: var(--pink); text-decoration: none; }
 button { font: inherit; touch-action: manipulation; }
 body { -webkit-tap-highlight-color: transparent; }
 
+/* ---------- opening gate (a tap is needed before browsers allow sound) ---------- */
+.gate {
+  position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; cursor: pointer; text-align: center;
+  background: radial-gradient(circle at 30% 25%, #ffe3ec 0, transparent 45%), radial-gradient(circle at 75% 70%, #ffeedd 0, transparent 45%), #fff6f4;
+  transition: opacity .7s ease, transform .7s ease;
+}
+.gate.hide { opacity: 0; transform: scale(1.06); pointer-events: none; }
+.gate .env { font-size: 84px; animation: envBob 1.6s ease-in-out infinite; }
+.gate.hide .env { animation: envOpen .6s ease-in forwards; }
+@keyframes envBob { 50% { transform: translateY(-10px) rotate(-4deg); } }
+@keyframes envOpen { to { transform: scale(1.6) rotate(8deg); opacity: 0; } }
+.gate .g-t { font-family: "Pacifico", cursive; font-size: 46px; color: var(--pink); margin: 10px 0 4px; }
+.gate .g-s { font-size: 18px; color: var(--muted); margin: 0; animation: blinkSoft 1.6s ease-in-out infinite; }
+@keyframes blinkSoft { 50% { opacity: .45; } }
+body.gated { overflow: hidden; }
+
 /* ---------- hero ---------- */
 .home-link {
   position: absolute; top: 16px; left: 16px; z-index: 5; font-size: 14px; color: var(--muted);
@@ -522,7 +538,15 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 }
 </style>
 </head>
-<body>
+<body class="gated">
+
+<div class="gate" id="gate" role="button" tabindex="0" aria-label="轻触开启">
+  <div class="gate-in">
+    <div class="env">💌</div>
+    <p class="g-t">Mrs. Fancy</p>
+    <p class="g-s">轻触开启 ♪</p>
+  </div>
+</div>
 
 <header class="hero">
   <a class="home-link" href="/">← Moule Lin</a>
@@ -632,7 +656,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     <span>💗 心情<span class="bar"><i id="moodBar"></i></span></span>
   </div>
   <p class="counts">累计喂了 <b id="cFed">0</b> 次 · 摸了 <b id="cPet">0</b> 下 · 敲了 <b id="cHit">0</b> 下</p>
-  <p class="hint">在吉祥身上来回滑动可以摸摸它 · 点它一下会敲它脑袋（连敲三下它会生气哦）<br>太久不理它，它会自己睡着</p>
+  <p class="hint">在吉祥身上来回滑动可以摸摸它 · 点它一下会敲它脑袋（连敲三下它会生气哦）<br>吉祥一天会饿三次（大约每 8 小时），记得按时喂它 · 太久不理它，它会自己睡着</p>
 </section>
 
 <section class="block" id="gacha">
@@ -762,18 +786,25 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   /* ---------- pet: 吉祥 ---------- */
   var yard = $('#yard'), pet = $('#pet'), flip = $('#flip'), bubble = $('#bubble');
   var KEY = 'jixiang-v1', BOTTOM = 30;
-  var stats = { hunger: 70, mood: 80, fed: 0, pet: 0, hit: 0 };
+  var stats = { hunger: 70, hungerAt: 0, mood: 80, fed: 0, pet: 0, hit: 0 };
   try { Object.assign(stats, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) {}
   function save() { try { localStorage.setItem(KEY, JSON.stringify(stats)); } catch (e) {} touch(); }
   function clampStats() {
     stats.hunger = Math.max(0, Math.min(100, stats.hunger));
     stats.mood = Math.max(0, Math.min(100, stats.mood));
   }
+  // hunger drops in real time, from full to empty in about 8 hours (hungry three times a day)
+  var HUNGER_PER_HOUR = 12.5;
+  function decayHunger() {
+    var t = Date.now(), last = stats.hungerAt || t;
+    stats.hunger = Math.max(0, stats.hunger - HUNGER_PER_HOUR * (t - last) / 36e5);
+    stats.hungerAt = t;
+  }
   function renderStats() {
     $('#hungerBar').style.width = stats.hunger + '%';
     $('#moodBar').style.width = stats.mood + '%';
     $('#cFed').textContent = stats.fed; $('#cPet').textContent = stats.pet; $('#cHit').textContent = stats.hit;
-    pet.classList.toggle('sad', stats.mood < 30);
+    pet.classList.toggle('sad', stats.mood < 30 || stats.hunger < 15);
   }
 
   var W = yard.clientWidth, DW = pet.offsetWidth, DH = pet.offsetHeight;
@@ -867,6 +898,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   function eat() {
     var f = st.food; if (!f) { resume(); return; }
     st.facing = f.x >= st.x ? 1 : -1;
+    decayHunger();
     if (stats.hunger >= 100) {
       say('吃不下啦…嗝~', 2400);
       f.el.classList.add('gone'); setTimeout(f.el.remove.bind(f.el), 500); st.food = null;
@@ -878,7 +910,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     setTimeout(function () {
       clearInterval(crumbs); pet.classList.remove('eating');
       f.el.classList.add('gone'); setTimeout(f.el.remove.bind(f.el), 500); st.food = null;
-      stats.hunger += 22; stats.mood += 8; stats.fed++; clampStats(); renderStats(); save();
+      decayHunger(); stats.hunger += 34; stats.mood += 8; stats.fed++; clampStats(); renderStats(); save();
       flash('happy', 1600);
       var h = headPos(); fx(h.x, h.y + 20, ['💗', '💕', '✨'], 6, 70); earn(1, h);
       if (st.wasSulk) { st.wasSulk = false; say('看在好吃的份上…原谅你啦 💕', 2400); }
@@ -1082,13 +1114,13 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     st.x = clampX(st.x); if (st.target !== null) st.target = clampX(st.target);
   });
   setInterval(function () {
-    stats.hunger -= 1.5; stats.mood -= 1; clampStats(); renderStats(); save();
+    decayHunger(); stats.mood -= 1; clampStats(); renderStats(); save();
     if (st.mode === 'idle' && st.target === null) {
-      if (stats.hunger < 25 && Math.random() < 0.5) say('肚子饿饿… 🍖', 2200);
+      if (stats.hunger < 25 && Math.random() < 0.6) say(pick(['肚子饿饿… 🍖', '该吃饭啦 🥺', '咕噜咕噜…']), 2200);
       else if (stats.mood < 30 && Math.random() < 0.5) say('陪我玩一会儿嘛 🥺', 2200);
     }
   }, 12000);
-  renderStats();
+  decayHunger(); clampStats(); renderStats();
   requestAnimationFrame(frame);
   setTimeout(function () { say(isBirthday ? '生日快乐！汪汪 🎂' : '你来啦！我是吉祥 🐾', 2800); }, 1200);
 
@@ -1448,7 +1480,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   var syncReady = false, pushT = null, pushing = false;
   function snapshot() {
     return {
-      pet: { hunger: stats.hunger, mood: stats.mood, fed: stats.fed, pet: stats.pet, hit: stats.hit },
+      pet: { hunger: stats.hunger, hungerAt: stats.hungerAt, mood: stats.mood, fed: stats.fed, pet: stats.pet, hit: stats.hit },
       gacha: { earned: gs.earned, spent: gs.spent, got: gs.got.slice().sort(function (a, b) { return a - b; }), lastDay: gs.lastDay, playDay: gs.playDay || '', playEarned: gs.playEarned || 0, voucher: gs.voucher || null },
       updatedAt: gs.updatedAt
     };
@@ -1460,7 +1492,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       if (typeof rp[k] === 'number' && rp[k] > stats[k]) { stats[k] = rp[k]; changed = true; }
     });
     if ((r.updatedAt || 0) > gs.updatedAt && typeof rp.hunger === 'number') {
-      stats.hunger = rp.hunger; stats.mood = rp.mood; clampStats(); changed = true;
+      stats.hunger = rp.hunger; stats.hungerAt = rp.hungerAt || Date.now(); stats.mood = rp.mood; clampStats(); changed = true;
     }
     if (typeof rg.earned === 'number' && rg.earned > gs.earned) { gs.earned = rg.earned; changed = true; }
     if (typeof rg.spent === 'number' && rg.spent > gs.spent) { gs.spent = rg.spent; changed = true; }
@@ -1477,6 +1509,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     return changed;
   }
   function applyMerged() {
+    decayHunger(); clampStats();
     try { localStorage.setItem(KEY, JSON.stringify(stats)); } catch (e) {}
     writeLocal(); renderStats(); renderCoins(); renderBook();
   }
@@ -1538,13 +1571,13 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 
   /* ---------- music ---------- */
   var tracks = [
-    { src: 'music/Canon.mp3', title: 'Canon' },
     { src: 'music/lover.mp3', title: 'Lover' },
+    { src: 'music/Canon.mp3', title: 'Canon' },
     { src: 'music/love.mp3', title: 'Love' },
     { src: 'music/night.mp3', title: 'Night' }
   ];
   var audio = new Audio(), ti = 0, userPaused = false;
-  audio.preload = 'none';
+  audio.preload = 'auto';
   function load(k) { ti = (k + tracks.length) % tracks.length; audio.src = tracks[ti].src; $('#mTitle').textContent = tracks[ti].title; }
   function ui(on) {
     $('#music').classList.toggle('on', on);
@@ -1560,6 +1593,20 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   });
   $('#mNext').addEventListener('click', function () { load(ti + 1); userPaused = false; play(); });
   load(0);
+  var gate = $('#gate');
+  function openGate() {
+    if (!gate || gate.classList.contains('hide')) return;
+    gate.classList.add('hide'); document.body.classList.remove('gated');
+    setTimeout(function () { gate.remove(); }, 800);
+  }
+  function enter(e) {
+    userPaused = false; play(); openGate();
+    if (e && e.clientX) burstFixed(e.clientX, e.clientY);
+  }
+  gate.addEventListener('click', enter);
+  gate.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); enter(); } });
+  var auto = audio.play();
+  if (auto && auto.then) auto.then(openGate).catch(function () {});
   function firstTouch(e) {
     if (e.target.closest('.music')) return;
     ['pointerdown', 'touchend', 'click'].forEach(function (t) { document.removeEventListener(t, firstTouch); });

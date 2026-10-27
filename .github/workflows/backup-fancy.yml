@@ -43,6 +43,7 @@ jobs:
           merged = {
               "pet": {
                   "hunger": np.get("hunger", op.get("hunger", 70)),
+                  "hungerAt": np.get("hungerAt", op.get("hungerAt", 0)),
                   "mood": np.get("mood", op.get("mood", 80)),
                   **{k: max(np.get(k, 0), op.get(k, 0)) for k in ("fed", "pet", "hit")},
               },
