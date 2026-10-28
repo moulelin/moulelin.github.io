@@ -1,0 +1,20 @@
+{
+  "pet": {
+    "hunger": 99.77411458333333,
+    "hungerAt": 1793123572507,
+    "mood": 94,
+    "fed": 15,
+    "pet": 379,
+    "hit": 7
+  },
+  "gacha": {
+    "earned": 13,
+    "spent": 10,
+    "got": [
+      0
+    ],
+    "lastDay": "2026-10-27",
+    "voucher": null
+  },
+  "updatedAt": 1793123572508
+}
