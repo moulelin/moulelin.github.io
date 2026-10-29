@@ -168,7 +168,7 @@ h2 { font-weight: 400; font-size: 32px; text-align: center; margin: 0 0 6px; }
 .pet.eating .head-g { animation: chomp .22s ease-in-out infinite alternate; }
 .pet.eating .eyes-n, .pet.eating .eyes-h { display: none; }
 .pet.eating .eyes-c { display: inline; }
-.pet.sleeping .dog-inner { transform: translateY(15px); }
+.pet.sleeping .dog-inner { transform: translateY(26px); }
 .pet.sleeping .leg { transform: scaleY(.3); }
 .pet.sleeping .body-g { animation: breathe 2.6s ease-in-out infinite; }
 .pet.sleeping .head-g, .pet.sleeping .eyes-n { animation: none; }
@@ -580,7 +580,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 
 <section class="block" id="play">
   <h2>和吉祥玩一会儿 🐾</h2>
-  <p class="sub">吉祥是我们的小柯基，它最喜欢你啦</p>
+  <p class="sub">吉祥是我们的小柴犬，它最喜欢你啦</p>
   <div class="yard" id="yard">
     <div class="sun"></div>
     <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
@@ -597,24 +597,31 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       <div class="zzz"><span>z</span><span>z</span><span>Z</span></div>
       <div class="anger">💢</div>
       <div class="flip" id="flip">
-        <svg class="dog" viewBox="0 0 200 140" aria-label="小柯基吉祥">
-          <ellipse class="shadow" cx="100" cy="131" rx="62" ry="6"/>
+        <svg class="dog" viewBox="0 0 200 140" aria-label="小柴犬吉祥">
+          <ellipse class="shadow" cx="102" cy="131" rx="54" ry="6"/>
           <g class="dog-inner">
-            <g class="tail"><path class="o" d="M52 76 C36 70 26 56 32 44 C42 50 48 60 58 70 Z" fill="#EFA968"/></g>
-            <g class="leg b"><rect class="o" x="72" y="96" width="15" height="31" rx="7.5" fill="#D9914F"/><rect x="74" y="118" width="11" height="7" rx="3" fill="#FFF7EE"/></g>
-            <g class="leg a"><rect class="o" x="136" y="96" width="15" height="31" rx="7.5" fill="#D9914F"/><rect x="138" y="118" width="11" height="7" rx="3" fill="#FFF7EE"/></g>
-            <g class="leg a"><rect class="o" x="54" y="97" width="16" height="31" rx="8" fill="#EFA968"/><rect x="56.5" y="119" width="11" height="7" rx="3" fill="#FFF7EE"/></g>
-            <g class="leg b"><rect class="o" x="118" y="97" width="16" height="31" rx="8" fill="#EFA968"/><rect x="120.5" y="119" width="11" height="7" rx="3" fill="#FFF7EE"/></g>
+            <g class="tail">
+              <circle class="o" cx="62" cy="52" r="14" fill="#E8955A"/>
+              <path d="M62 44 A8 8 0 1 1 55 57" fill="none" stroke="#FFF4E6" stroke-width="4" stroke-linecap="round"/>
+              <path class="o" d="M66 64 Q70 58 74 62 L72 72 Z" fill="#E8955A" stroke-width="2.6"/>
+            </g>
+            <g class="leg b"><rect class="o" x="82" y="84" width="14" height="43" rx="7" fill="#CF7E45"/><rect x="84" y="117" width="10" height="8" rx="3" fill="#FFF4E6"/></g>
+            <g class="leg a"><rect class="o" x="132" y="84" width="14" height="43" rx="7" fill="#CF7E45"/><rect x="134" y="117" width="10" height="8" rx="3" fill="#FFF4E6"/></g>
+            <g class="leg a"><rect class="o" x="66" y="85" width="15" height="43" rx="7.5" fill="#E8955A"/><rect x="68.5" y="118" width="10" height="8" rx="3" fill="#FFF4E6"/></g>
+            <g class="leg b"><rect class="o" x="116" y="85" width="15" height="43" rx="7.5" fill="#E8955A"/><rect x="118.5" y="118" width="10" height="8" rx="3" fill="#FFF4E6"/></g>
             <g class="body-g">
-              <ellipse class="o" cx="96" cy="88" rx="56" ry="27" fill="#EFA968"/>
-              <ellipse cx="100" cy="104" rx="34" ry="9" fill="#FFF7EE"/>
+              <ellipse class="o" cx="100" cy="80" rx="45" ry="23" fill="#E8955A"/>
+              <ellipse cx="104" cy="95" rx="27" ry="7" fill="#FFF4E6"/>
+              <ellipse cx="134" cy="88" rx="11" ry="12" fill="#FFF4E6"/>
             </g>
             <g class="head-g">
-              <g class="ear ear-l"><path class="o" d="M126 50 L131 12 L152 38 Z" fill="#EFA968"/><path d="M132 42 L134 23 L146 38 Z" fill="#F9C3B4"/></g>
-              <g class="ear ear-r"><path class="o" d="M156 37 L180 13 L180 52 Z" fill="#EFA968"/><path d="M162 39 L175 25 L175 46 Z" fill="#F9C3B4"/></g>
-              <ellipse class="o" cx="152" cy="62" rx="32" ry="27" fill="#EFA968"/>
-              <ellipse cx="155" cy="46" rx="4" ry="11" fill="#FFF7EE"/>
-              <ellipse cx="169" cy="75" rx="17" ry="12" fill="#FFF7EE"/>
+              <g class="ear ear-l"><path class="o" d="M129 47 L136 17 L152 37 Z" fill="#E8955A"/><path d="M134 41 L138 25 L147 37 Z" fill="#FFC9B3"/></g>
+              <g class="ear ear-r"><path class="o" d="M156 37 L175 15 L179 46 Z" fill="#E8955A"/><path d="M161 38 L173 24 L175 42 Z" fill="#FFC9B3"/></g>
+              <ellipse class="o" cx="152" cy="62" rx="31" ry="26" fill="#E8955A"/>
+              <ellipse cx="143" cy="78" rx="13" ry="8" fill="#FFF4E6"/>
+              <ellipse cx="168" cy="75" rx="18" ry="12" fill="#FFF4E6"/>
+              <ellipse cx="142" cy="49" rx="3.4" ry="2.3" fill="#FFF4E6"/>
+              <ellipse cx="165" cy="47" rx="3.4" ry="2.3" fill="#FFF4E6"/>
               <path class="ln" d="M124 80 Q132 97 152 93" stroke="#E5534B" stroke-width="7"/>
               <circle class="o" cx="138" cy="96" r="4.2" fill="#FFD25E" stroke-width="2.4"/>
               <ellipse class="blush" cx="137" cy="70" rx="6.5" ry="3.6" fill="#FF8FA8"/>
