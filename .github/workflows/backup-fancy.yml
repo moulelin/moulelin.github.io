@@ -56,6 +56,25 @@ jobs:
               },
               "updatedAt": max(remote.get("updatedAt", 0), old.get("updatedAt", 0)),
           }
+          # intimacy level, diary and outfits: max counters, union whispers, newest outfit choice
+          nl, ol = newer.get("life") or {}, other.get("life") or {}
+          diary = {}
+          for src in (ol.get("diary") or {}, nl.get("diary") or {}):
+              for day, entry in src.items():
+                  m = diary.setdefault(day, {})
+                  for k, v in (entry or {}).items():
+                      if k == "got":
+                          m["got"] = sorted(set(m.get("got", [])) | set(v or []))
+                      elif isinstance(v, (int, float)):
+                          m[k] = max(m.get(k, 0), v)
+          merged["life"] = {
+              "xp": max(nl.get("xp", 0), ol.get("xp", 0)),
+              "xpDay": nl.get("xpDay", ol.get("xpDay", "")),
+              "xpToday": nl.get("xpToday", ol.get("xpToday", 0)),
+              "diary": diary,
+              "wear": (nl if nl.get("wearAt", 0) >= ol.get("wearAt", 0) else ol).get("wear") or {},
+              "wearAt": max(nl.get("wearAt", 0), ol.get("wearAt", 0)),
+          }
           with open(PATH, "w", encoding="utf-8") as f:
               json.dump(merged, f, ensure_ascii=False, indent=2)
               f.write("\n")

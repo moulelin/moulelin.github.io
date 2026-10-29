@@ -2,9 +2,16 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mrs. Fancy ♥</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>">
+<link rel="icon" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="theme-color" content="#ff9ab3">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="吉祥">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Pacifico&family=ZCOOL+KuaiLe&display=swap">
@@ -317,7 +324,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 
 /* ---------- music ---------- */
 .music {
-  position: fixed; right: 16px; bottom: 16px; z-index: 50; display: flex; align-items: center; gap: 8px;
+  position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 50; display: flex; align-items: center; gap: 8px;
   background: rgba(255,255,255,.9); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--line); border-radius: 999px; padding: 6px 6px 6px 6px;
   box-shadow: 0 8px 26px rgba(255,122,156,.18);
@@ -494,6 +501,102 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 }
 .toast.show { transform: translate(-50%, 0); opacity: 1; }
 
+/* ---------- day / night ---------- */
+.yard { transition: background .8s; }
+.sun { transition: top .8s, background .8s, box-shadow .8s; }
+.yard.dusk { background: linear-gradient(#ffb59c 0%, #ffd3bd 45%, #fff0e6 78%); }
+.yard.dusk .sun { top: 104px; background: radial-gradient(circle, #ffe2b0 0 45%, #ffad66 46% 100%); box-shadow: 0 0 50px #ffb36b; }
+.yard.dusk .ground { filter: saturate(.9) brightness(.95); }
+.yard.night { background: linear-gradient(#1f2550 0%, #353c74 62%, #555a92 100%); }
+.yard.night .sun { overflow: hidden; background: #fff8dc; box-shadow: 0 0 36px 8px rgba(255, 248, 220, .45); }
+.yard.night .sun::after { content: ""; position: absolute; width: 56px; height: 56px; border-radius: 50%; background: #232a58; top: -8px; left: 20px; }
+.yard.night .cloud { opacity: .16; }
+.yard.night .ground { filter: brightness(.55) saturate(.8); }
+.yard.night .deco, .yard.night .house { filter: brightness(.7); }
+.star { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #fff; opacity: 0; pointer-events: none; transition: opacity .8s; }
+.yard.night .star { opacity: .9; animation: twinkle var(--tw) ease-in-out infinite alternate; }
+@keyframes twinkle { to { opacity: .2; transform: scale(.6); } }
+.glow { position: absolute; left: 56px; bottom: 74px; width: 12px; height: 12px; border-radius: 50%; background: #ffe48a; box-shadow: 0 0 14px 6px rgba(255, 220, 120, .6); opacity: 0; pointer-events: none; transition: opacity .8s; }
+.yard.night .glow { opacity: 1; }
+
+/* ---------- festivals ---------- */
+.flake { position: absolute; top: -16px; pointer-events: none; z-index: 5; animation: fall var(--d) linear infinite; text-shadow: 0 0 4px rgba(150, 180, 255, .5); }
+@keyframes fall { to { transform: translate(var(--dx), 430px) rotate(180deg); } }
+.lantern { position: absolute; top: -2px; font-size: 30px; transform-origin: top center; animation: swingL 2.4s ease-in-out infinite alternate; pointer-events: none; z-index: 2; }
+@keyframes swingL { from { transform: rotate(-8deg); } to { transform: rotate(8deg); } }
+.dog .acc { display: none; }
+.dog .acc.on { display: inline; }
+
+/* ---------- add to home screen ---------- */
+.a2hs {
+  max-width: 660px; margin: 14px auto 0; display: flex; align-items: center; gap: 10px; background: #fff;
+  border: 1.5px dashed var(--pink2); border-radius: 18px; padding: 10px 10px 10px 16px; font-size: 14px; color: var(--ink);
+}
+.a2hs span { flex: 1; line-height: 1.55; }
+.a2hs button { border: 0; border-radius: 999px; padding: 7px 13px; background: var(--pink); color: #fff; cursor: pointer; font-size: 14px; white-space: nowrap; }
+.a2hs .x { background: none; color: var(--muted); padding: 4px 6px; font-size: 18px; }
+
+/* ---------- intimacy & wardrobe ---------- */
+.lv-card { max-width: 560px; margin: 0 auto 18px; background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 18px 20px 16px; box-shadow: 0 14px 40px rgba(255, 122, 156, .1); }
+.lv-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.lv-top b { font-weight: 400; font-size: 26px; color: var(--pink); }
+.lv-top span { color: var(--muted); font-size: 14px; }
+.lv-bar { width: 100%; height: 12px; margin: 8px 0 8px; }
+.lv-tip { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.closet { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; max-width: 560px; margin: 0 auto; }
+.item {
+  border: 1px solid var(--line); background: #fff; border-radius: 18px; padding: 12px 6px 10px; text-align: center; cursor: pointer;
+  color: var(--ink); font-size: 14px; line-height: 1.35; box-shadow: 0 3px 0 var(--line);
+}
+.item .ic { display: block; font-size: 28px; margin-bottom: 4px; }
+.item small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+.item.on { border-color: var(--pink); background: #fff2f6; }
+.item.on small { color: var(--pink); }
+.item.locked { opacity: .55; filter: grayscale(.6); }
+
+/* ---------- diary ---------- */
+.diary { max-width: 620px; margin: 0 auto; display: grid; gap: 14px; }
+.d-entry {
+  background: #fffdfb; border: 1px solid var(--line); border-radius: 18px; padding: 14px 18px 16px;
+  box-shadow: 0 10px 30px rgba(160, 90, 100, .08);
+}
+.d-head { display: flex; justify-content: space-between; color: var(--muted); font-size: 14px; margin-bottom: 4px; }
+.d-head b { font-weight: 400; color: var(--pink); font-size: 17px; }
+.d-entry p { margin: 0; font-family: "Ma Shan Zheng", "ZCOOL KuaiLe", cursive; font-size: 20px; line-height: 1.7; }
+.d-empty { text-align: center; color: var(--muted); }
+#diaryMore { display: block; margin: 16px auto 0; }
+
+/* ---------- photo album ---------- */
+.tl { position: relative; max-width: 760px; margin: 0 auto; padding-left: 26px; }
+.tl::before { content: ""; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 3px; border-radius: 3px; background: linear-gradient(var(--pink2), #ffd9c2); }
+.tl-item { position: relative; margin-bottom: 26px; }
+.tl-dot { position: absolute; left: -24px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 3px solid var(--pink); }
+.tl-item.ms .tl-dot { width: 20px; height: 20px; left: -27px; top: 1px; background: var(--pink); border-color: #ffd1dc; box-shadow: 0 0 0 4px rgba(255, 122, 156, .18); }
+.tl-date { font-size: 17px; color: var(--ink); margin-bottom: 8px; }
+.ms-card { display: inline-block; margin: 0 0 10px; padding: 8px 16px; border-radius: 14px; background: linear-gradient(90deg, #ffe1ea, #ffeedd); color: #c2416a; font-size: 18px; }
+.ms-card small { display: block; color: var(--muted); font-size: 13px; }
+.strip { display: flex; gap: 14px; overflow-x: auto; padding: 6px 4px 14px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.strip::-webkit-scrollbar { height: 6px; }
+.strip::-webkit-scrollbar-thumb { background: var(--pink2); border-radius: 3px; }
+.ph {
+  position: relative; flex: none; scroll-snap-align: start; background: #fff; padding: 8px 8px 26px; border-radius: 4px; cursor: zoom-in;
+  box-shadow: 0 8px 22px rgba(120, 70, 80, .16); transform: rotate(var(--r, 0deg)); transition: transform .25s; border: 0;
+}
+.ph:hover { transform: rotate(0) scale(1.03); }
+.ph img { display: block; height: 200px; width: auto; border-radius: 2px; background: #f6e9ec; }
+.ph .duo { position: absolute; right: 10px; bottom: 5px; font-size: 13px; }
+.album-h { text-align: center; font-weight: 400; font-size: 24px; margin: 46px 0 18px; }
+.masonry { columns: 3 200px; column-gap: 12px; max-width: 760px; margin: 0 auto; }
+.masonry button { display: block; width: 100%; margin: 0 0 12px; padding: 0; border: 0; background: none; cursor: zoom-in; break-inside: avoid; }
+.masonry img { display: block; width: 100%; height: auto; border-radius: 14px; box-shadow: 0 8px 22px rgba(120, 70, 80, .14); background: #f6e9ec; }
+.lightbox { position: fixed; inset: 0; z-index: 120; background: rgba(30, 20, 26, .92); display: grid; place-items: center; touch-action: pan-y; }
+.lightbox img { max-width: 94vw; max-height: 80vh; border-radius: 8px; box-shadow: 0 20px 60px rgba(0, 0, 0, .4); }
+.lightbox button { position: absolute; border: 0; background: rgba(255, 255, 255, .14); color: #fff; width: 44px; height: 44px; border-radius: 50%; font-size: 26px; cursor: pointer; line-height: 1; }
+.lb-x { top: calc(14px + env(safe-area-inset-top)); right: 14px; }
+.lb-prev { left: 12px; top: 50%; transform: translateY(-50%); }
+.lb-next { right: 12px; top: 50%; transform: translateY(-50%); }
+.lb-cap { position: absolute; left: 0; right: 0; bottom: calc(22px + env(safe-area-inset-bottom)); text-align: center; color: #fff; margin: 0; font-size: 16px; }
+
 @media (max-width: 760px) {
   .love { grid-template-columns: 1fr; gap: 40px; }
   .polaroid { max-width: 420px; margin: 0 auto; }
@@ -507,6 +610,9 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   .together { padding: 20px 18px; }
   .music .m-title, .music .disc { display: none; }
   .gacha { grid-template-columns: 1fr; }
+  .ph img { height: 168px; }
+  .masonry { columns: 2; column-gap: 10px; }
+  .lb-prev, .lb-next { display: none; }
   .slots { grid-template-columns: repeat(5, 1fr); gap: 8px; }
   .q-text { font-size: 24px; }
   .quote-card { padding: 24px 20px 20px; }
@@ -551,6 +657,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 <header class="hero">
   <a class="home-link" href="/">← Moule Lin</a>
   <div class="hero-inner">
+    <div class="bday-banner" id="festBanner" hidden><span id="festText"></span></div>
     <div class="bday-banner" id="bdayBanner" hidden>🎂 生日快乐，范洁心！<button type="button" id="fireAgain">再放一次烟花 🎆</button></div>
     <p class="kicker">为你做的小角落</p>
     <h1>Mrs. Fancy</h1>
@@ -563,6 +670,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
         <span><b id="mm">00</b><em>分钟</em></span>
         <span><b id="ss">00</b><em>秒</em></span>
       </div>
+      <span class="next" id="wed"></span>
       <span class="next" id="next"></span>
       <span class="next" id="bday"></span>
     </div>
@@ -576,6 +684,11 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     <p class="q-text" id="qText"></p>
     <button type="button" class="pill" id="qNext">换一句 ↻</button>
   </div>
+  <div class="a2hs" id="a2hs" hidden>
+    <span id="a2hsText">📲 把吉祥放到手机桌面，像 App 一样一点就打开</span>
+    <button type="button" id="a2hsBtn">添加到桌面</button>
+    <button type="button" class="x" id="a2hsX" aria-label="不再提示">×</button>
+  </div>
 </section>
 
 <section class="block" id="play">
@@ -586,6 +699,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
     <div class="ground"></div>
     <span class="house">🏡</span>
+    <span class="glow"></span>
     <span class="deco" style="left:22%">🌷</span>
     <span class="deco" style="left:41%;font-size:18px">🌼</span>
     <span class="deco" style="left:63%">🌷</span>
@@ -598,34 +712,46 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       <div class="anger">💢</div>
       <div class="flip" id="flip">
         <svg class="dog" viewBox="0 0 200 140" aria-label="小柴犬吉祥">
-          <ellipse class="shadow" cx="102" cy="131" rx="54" ry="6"/>
+          <defs>
+            <radialGradient id="gFur" cx="35%" cy="28%" r="78%"><stop offset="0" stop-color="#F8B887"/><stop offset=".55" stop-color="#E8955A"/><stop offset="1" stop-color="#C46F36"/></radialGradient>
+            <radialGradient id="gFurDark" cx="35%" cy="25%" r="85%"><stop offset="0" stop-color="#E29A63"/><stop offset="1" stop-color="#B0602B"/></radialGradient>
+            <radialGradient id="gCream" cx="40%" cy="30%" r="80%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".65" stop-color="#FFF4E6"/><stop offset="1" stop-color="#F1D8BC"/></radialGradient>
+            <radialGradient id="gShadow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="rgba(70,110,50,.32)"/><stop offset="1" stop-color="rgba(70,110,50,0)"/></radialGradient>
+          </defs>
+          <ellipse class="shadow" cx="102" cy="131" rx="60" ry="7" style="fill:url(#gShadow)"/>
           <g class="dog-inner">
             <g class="tail">
-              <circle class="o" cx="62" cy="52" r="14" fill="#E8955A"/>
+              <circle class="o" cx="62" cy="52" r="14" fill="url(#gFur)"/>
               <path d="M62 44 A8 8 0 1 1 55 57" fill="none" stroke="#FFF4E6" stroke-width="4" stroke-linecap="round"/>
-              <path class="o" d="M66 64 Q70 58 74 62 L72 72 Z" fill="#E8955A" stroke-width="2.6"/>
+              <path class="o" d="M66 64 Q70 58 74 62 L72 72 Z" fill="url(#gFur)" stroke-width="2.6"/>
             </g>
-            <g class="leg b"><rect class="o" x="82" y="84" width="14" height="43" rx="7" fill="#CF7E45"/><rect x="84" y="117" width="10" height="8" rx="3" fill="#FFF4E6"/></g>
-            <g class="leg a"><rect class="o" x="132" y="84" width="14" height="43" rx="7" fill="#CF7E45"/><rect x="134" y="117" width="10" height="8" rx="3" fill="#FFF4E6"/></g>
-            <g class="leg a"><rect class="o" x="66" y="85" width="15" height="43" rx="7.5" fill="#E8955A"/><rect x="68.5" y="118" width="10" height="8" rx="3" fill="#FFF4E6"/></g>
-            <g class="leg b"><rect class="o" x="116" y="85" width="15" height="43" rx="7.5" fill="#E8955A"/><rect x="118.5" y="118" width="10" height="8" rx="3" fill="#FFF4E6"/></g>
+            <g class="leg b"><rect class="o" x="82" y="84" width="14" height="43" rx="7" fill="url(#gFurDark)"/><rect x="84" y="117" width="10" height="8" rx="3" fill="url(#gCream)"/></g>
+            <g class="leg a"><rect class="o" x="132" y="84" width="14" height="43" rx="7" fill="url(#gFurDark)"/><rect x="134" y="117" width="10" height="8" rx="3" fill="url(#gCream)"/></g>
+            <g class="leg a"><rect class="o" x="66" y="85" width="15" height="43" rx="7.5" fill="url(#gFur)"/><rect x="68.5" y="118" width="10" height="8" rx="3" fill="url(#gCream)"/></g>
+            <g class="leg b"><rect class="o" x="116" y="85" width="15" height="43" rx="7.5" fill="url(#gFur)"/><rect x="118.5" y="118" width="10" height="8" rx="3" fill="url(#gCream)"/></g>
             <g class="body-g">
-              <ellipse class="o" cx="100" cy="80" rx="45" ry="23" fill="#E8955A"/>
-              <ellipse cx="104" cy="95" rx="27" ry="7" fill="#FFF4E6"/>
-              <ellipse cx="134" cy="88" rx="11" ry="12" fill="#FFF4E6"/>
+              <ellipse class="o" cx="100" cy="80" rx="45" ry="23" fill="url(#gFur)"/>
+              <ellipse cx="104" cy="95" rx="27" ry="7" fill="url(#gCream)"/>
+              <ellipse cx="134" cy="88" rx="11" ry="12" fill="url(#gCream)"/>
+              <ellipse cx="82" cy="66" rx="16" ry="5" fill="#fff" opacity=".28" transform="rotate(-12 82 66)"/>
             </g>
+            <g class="acc" id="acc-cape"><path class="o" d="M130 72 Q104 64 74 78 Q60 94 63 108 Q92 97 128 91 Z" fill="#FF6B8A" stroke-width="2.6"/></g>
             <g class="head-g">
-              <g class="ear ear-l"><path class="o" d="M129 47 L136 17 L152 37 Z" fill="#E8955A"/><path d="M134 41 L138 25 L147 37 Z" fill="#FFC9B3"/></g>
-              <g class="ear ear-r"><path class="o" d="M156 37 L175 15 L179 46 Z" fill="#E8955A"/><path d="M161 38 L173 24 L175 42 Z" fill="#FFC9B3"/></g>
-              <ellipse class="o" cx="152" cy="62" rx="31" ry="26" fill="#E8955A"/>
-              <ellipse cx="143" cy="78" rx="13" ry="8" fill="#FFF4E6"/>
-              <ellipse cx="168" cy="75" rx="18" ry="12" fill="#FFF4E6"/>
-              <ellipse cx="142" cy="49" rx="3.4" ry="2.3" fill="#FFF4E6"/>
-              <ellipse cx="165" cy="47" rx="3.4" ry="2.3" fill="#FFF4E6"/>
-              <path class="ln" d="M124 80 Q132 97 152 93" stroke="#E5534B" stroke-width="7"/>
-              <circle class="o" cx="138" cy="96" r="4.2" fill="#FFD25E" stroke-width="2.4"/>
-              <ellipse class="blush" cx="137" cy="70" rx="6.5" ry="3.6" fill="#FF8FA8"/>
-              <ellipse class="blush" cx="162" cy="67" rx="4.5" ry="2.8" fill="#FF8FA8"/>
+              <g class="ear ear-l"><path class="o" d="M129 47 L136 17 L152 37 Z" fill="url(#gFur)"/><path d="M134 41 L138 25 L147 37 Z" fill="#FFC9B3"/></g>
+              <g class="ear ear-r"><path class="o" d="M156 37 L175 15 L179 46 Z" fill="url(#gFur)"/><path d="M161 38 L173 24 L175 42 Z" fill="#FFC9B3"/></g>
+              <ellipse class="o" cx="152" cy="62" rx="31" ry="26" fill="url(#gFur)"/>
+              <ellipse cx="140" cy="77" rx="10" ry="8" fill="url(#gCream)"/>
+              <ellipse cx="170" cy="76" rx="10" ry="8" fill="url(#gCream)"/>
+              <ellipse cx="155" cy="76" rx="13" ry="10" fill="url(#gCream)"/>
+              <ellipse cx="140" cy="45" rx="9" ry="4.5" fill="#fff" opacity=".3" transform="rotate(-24 140 45)"/>
+              <ellipse cx="142" cy="49" rx="3.4" ry="2.3" fill="url(#gCream)"/>
+              <ellipse cx="165" cy="47" rx="3.4" ry="2.3" fill="url(#gCream)"/>
+              <g id="collar">
+                <path class="ln" d="M124 80 Q132 97 152 93" stroke="#E5534B" stroke-width="7"/>
+                <circle class="o" cx="138" cy="96" r="4.2" fill="#FFD25E" stroke-width="2.4"/>
+              </g>
+              <ellipse class="blush" cx="136" cy="68" rx="6" ry="3.4" fill="#FF8FA8"/>
+              <ellipse class="blush" cx="174" cy="66" rx="6" ry="3.4" fill="#FF8FA8"/>
               <g class="eyes-n">
                 <circle cx="143" cy="58" r="4.8" fill="#2E1E18"/><circle cx="166" cy="56" r="4.8" fill="#2E1E18"/>
                 <circle cx="144.8" cy="56.2" r="1.7" fill="#fff"/><circle cx="167.8" cy="54.2" r="1.7" fill="#fff"/>
@@ -633,13 +759,64 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
               <g class="eyes-h"><path class="ln" d="M138 60 Q143 53 148 60"/><path class="ln" d="M161 58 Q166 51 171 58"/></g>
               <g class="eyes-c"><path class="ln" d="M138 58 Q143 63 148 58"/><path class="ln" d="M161 56 Q166 61 171 56"/></g>
               <g class="eyes-x"><path class="ln" d="M139 54 l8 8 M147 54 l-8 8"/><path class="ln" d="M162 52 l8 8 M170 52 l-8 8"/></g>
-              <ellipse cx="181" cy="69" rx="5.2" ry="4" fill="#2E1E18"/>
-              <path class="ln" d="M170 78 Q175 83 180 78 Q184 83 187 79"/>
-              <path class="o tongue" d="M175 81 Q175 93 181 92 Q186 91 184 81 Z" fill="#FF7A8A" stroke-width="2.4"/>
+              <path class="o tongue" d="M152 78.5 Q152 88 155 88 Q158 88 158 78.5 Z" fill="#FF7A8A" stroke-width="2.2"/>
+              <ellipse cx="155" cy="70.5" rx="4.4" ry="3.3" fill="#2E1E18"/>
+              <ellipse cx="153.8" cy="69.5" rx="1.3" ry=".8" fill="#fff" opacity=".8"/>
+              <path class="ln" d="M155 73.5 L155 77" stroke-width="2.2"/>
+              <path class="ln" d="M149.5 77 Q152.2 80.5 155 77 Q157.8 80.5 160.5 77" stroke-width="2.4"/>
               <g class="hat">
                 <path class="o" d="M141 40 L156 0 L171 38 Q156 44 141 40 Z" fill="#FF8FAB" stroke-width="2.6"/>
                 <path d="M146 27 L166 24 M150 15 L162 13" stroke="#FFF7EE" stroke-width="3" stroke-linecap="round"/>
                 <circle class="o" cx="156" cy="0" r="5" fill="#FFD25E" stroke-width="2.4"/>
+              </g>
+              <g class="acc" id="acc-scarf">
+                <path d="M122 79 Q133 99 157 92" fill="none" stroke="#45302a" stroke-width="14" stroke-linecap="round"/>
+                <path d="M122 79 Q133 99 157 92" fill="none" stroke="#E5484D" stroke-width="10" stroke-linecap="round"/>
+                <path d="M125 85 Q134 97 152 92" fill="none" stroke="#FFF4E6" stroke-width="2" stroke-dasharray="4 4"/>
+                <path class="o" d="M131 92 L126 113 L139 111 L138 94 Z" fill="#E5484D" stroke-width="2.4"/>
+              </g>
+              <g class="acc" id="acc-bowtie">
+                <path class="o" d="M127 87 L140 94 L127 101 Z" fill="#6C8CFF" stroke-width="2.4"/>
+                <path class="o" d="M153 87 L140 94 L153 101 Z" fill="#6C8CFF" stroke-width="2.4"/>
+                <circle class="o" cx="140" cy="94" r="3.8" fill="#8FA8FF" stroke-width="2.2"/>
+              </g>
+              <g class="acc" id="acc-glasses">
+                <circle cx="143" cy="58" r="8.5" fill="rgba(255,255,255,.2)" stroke="#45302a" stroke-width="2.4"/>
+                <circle cx="166" cy="56" r="8.5" fill="rgba(255,255,255,.2)" stroke="#45302a" stroke-width="2.4"/>
+                <path d="M151.5 57.5 Q154.5 54.5 157.5 56.5" fill="none" stroke="#45302a" stroke-width="2.4"/>
+                <path d="M134.6 59 L125 55" stroke="#45302a" stroke-width="2.2" stroke-linecap="round"/>
+              </g>
+              <g class="acc" id="acc-bow">
+                <path class="o" d="M134 40 Q119 29 121 43 Q124 50 134 43 Z" fill="#FF8FB1" stroke-width="2.2"/>
+                <path class="o" d="M137 39 Q147 26 150 39 Q148 47 137 43 Z" fill="#FF8FB1" stroke-width="2.2"/>
+                <circle class="o" cx="135.5" cy="41" r="3.4" fill="#FF6B9A" stroke-width="2"/>
+              </g>
+              <g class="acc" id="acc-beanie">
+                <path class="o" d="M127 47 Q128 21 152 21 Q176 21 179 45 Q152 38 127 47 Z" fill="#7EC8C0" stroke-width="2.6"/>
+                <path class="o" d="M125 48 Q152 37 181 46 L180 53 Q152 44 126 54 Z" fill="#5FB3AA" stroke-width="2.4"/>
+                <circle class="o" cx="153" cy="18" r="6" fill="#ffffff" stroke-width="2.4"/>
+              </g>
+              <g class="acc" id="acc-flower">
+                <path d="M127 47 Q152 25 180 45" fill="none" stroke="#7CC47A" stroke-width="3.5" stroke-linecap="round"/>
+                <circle cx="130" cy="44" r="4.6" fill="#FF9EC0" stroke="#45302a" stroke-width="1.6"/><circle cx="130" cy="44" r="1.6" fill="#FFD25E"/>
+                <circle cx="140" cy="37" r="5" fill="#FFFFFF" stroke="#45302a" stroke-width="1.6"/><circle cx="140" cy="37" r="1.7" fill="#FFD25E"/>
+                <circle cx="152" cy="34" r="5.4" fill="#FFB3C6" stroke="#45302a" stroke-width="1.6"/><circle cx="152" cy="34" r="1.8" fill="#FFD25E"/>
+                <circle cx="164" cy="35" r="5" fill="#C9A7FF" stroke="#45302a" stroke-width="1.6"/><circle cx="164" cy="35" r="1.7" fill="#FFD25E"/>
+                <circle cx="174" cy="40" r="4.6" fill="#FF9EC0" stroke="#45302a" stroke-width="1.6"/><circle cx="174" cy="40" r="1.6" fill="#FFD25E"/>
+              </g>
+              <g class="acc" id="acc-straw">
+                <ellipse class="o" cx="153" cy="37" rx="29" ry="6.5" fill="#F2D27B" stroke-width="2.4"/>
+                <path class="o" d="M139 37 Q139 18 153 18 Q167 18 167 37 Z" fill="#F2D27B" stroke-width="2.4"/>
+                <path d="M139.5 32 Q153 35.5 166.5 32" fill="none" stroke="#FF6B8A" stroke-width="4"/>
+              </g>
+              <g class="acc" id="acc-crown">
+                <path class="o" d="M139 39 L141 22 L148 30 L153.5 17 L159 30 L166 22 L168 39 Z" fill="#FFD25E" stroke-width="2.4"/>
+                <circle cx="153.5" cy="31" r="2.6" fill="#FF6B8A"/><circle cx="145" cy="34" r="1.9" fill="#8EC2FF"/><circle cx="162" cy="34" r="1.9" fill="#8EC2FF"/>
+              </g>
+              <g class="acc" id="acc-santa">
+                <path class="o" d="M137 42 Q149 2 183 9 Q170 19 171 40 Z" fill="#E5484D" stroke-width="2.6"/>
+                <ellipse class="o" cx="154" cy="41" rx="19" ry="5.5" fill="#ffffff" stroke-width="2.4"/>
+                <circle class="o" cx="183" cy="9" r="5.5" fill="#ffffff" stroke-width="2.4"/>
               </g>
               <g class="tears">
                 <path d="M141 64 C138 69 138 72 141 72 C144 72 144 69 141 64 Z" fill="#8FD0FF"/>
@@ -664,6 +841,17 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   </div>
   <p class="counts">累计喂了 <b id="cFed">0</b> 次 · 摸了 <b id="cPet">0</b> 下 · 敲了 <b id="cHit">0</b> 下</p>
   <p class="hint">在吉祥身上来回滑动可以摸摸它 · 点它一下会敲它脑袋（连敲三下它会生气哦）<br>吉祥一天会饿三次（大约每 8 小时），记得按时喂它 · 太久不理它，它会自己睡着</p>
+</section>
+
+<section class="block" id="closet">
+  <h2>吉祥的衣柜 👗</h2>
+  <p class="sub">每天陪吉祥玩可以涨亲密度，升级解锁新衣服</p>
+  <div class="lv-card">
+    <div class="lv-top"><b id="lvN">Lv.1</b><span id="lvText"></span></div>
+    <div class="bar lv-bar"><i id="lvBar"></i></div>
+    <p class="lv-tip">喂食 +3 · 捡球回来 +2 · 抱抱 +2 · 摸摸 10 下 +1 · 每天来看看 +5<br><span id="lvToday"></span></p>
+  </div>
+  <div class="closet" id="closetGrid"></div>
 </section>
 
 <section class="block" id="gacha">
@@ -691,6 +879,21 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       <div class="legend"><span><i style="--c:#ffb3c6"></i>普通</span><span><i style="--c:#8ec2ff"></i>稀有</span><span><i style="--c:#ffc94d"></i>超稀有</span></div>
     </div>
   </div>
+</section>
+
+<section class="block" id="diary">
+  <h2>吉祥日记 📔</h2>
+  <p class="sub">吉祥每天都会偷偷记下你们的小事</p>
+  <div class="diary" id="diaryList"></div>
+  <button type="button" class="pill" id="diaryMore" hidden>翻看更早的日记</button>
+</section>
+
+<section class="block" id="album">
+  <h2>我们的时光 📷</h2>
+  <p class="sub">从在一起到结婚，一张一张都是我们</p>
+  <div class="tl" id="timeline"></div>
+  <h3 class="album-h">更多美好的瞬间 ✨</h3>
+  <div class="masonry" id="selfies"></div>
 </section>
 
 <section class="block">
@@ -723,6 +926,13 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   2024 – 2026
 </footer>
 
+<div class="lightbox" id="lb" hidden>
+  <img id="lbImg" alt="">
+  <button type="button" class="lb-x" aria-label="关闭">×</button>
+  <button type="button" class="lb-prev" aria-label="上一张">‹</button>
+  <button type="button" class="lb-next" aria-label="下一张">›</button>
+  <p class="lb-cap" id="lbCap"></p>
+</div>
 <div class="modal" id="modal" hidden></div>
 <div class="toast" id="toast"></div>
 
@@ -740,6 +950,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   var pick = function (a) { return a[Math.floor(Math.random() * a.length)]; };
   var now = function () { return performance.now(); };
   var reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var onEnter = [];   // run once the opening gate is tapped (effects would be hidden behind it)
 
   /* ---------- together counter ---------- */
   var together = new Date(2024, 3, 1, 12, 0, 0);
@@ -750,10 +961,18 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     $('#hh').textContent = pad(Math.floor(d / 36e5) % 24);
     $('#mm').textContent = pad(Math.floor(d / 6e4) % 60);
     $('#ss').textContent = pad(Math.floor(d / 1e3) % 60);
-    var t = new Date(), next = new Date(t.getFullYear(), 3, 1);
-    if (next <= t) next = new Date(t.getFullYear() + 1, 3, 1);
-    var left = Math.ceil((next - t) / 864e5);
-    $('#next').textContent = '距离我们的 ' + (next.getFullYear() - 2024) + ' 周年纪念日还有 ' + left + ' 天';
+    var t = new Date(), today = new Date(t.getFullYear(), t.getMonth(), t.getDate());
+    var wedding = new Date(2025, 11, 29);
+    $('#wed').textContent = '💍 我们结婚已经 ' + Math.floor((today - wedding) / 864e5) + ' 天';
+    // nearest upcoming anniversary: together (Apr 1, 2024) or wedding (Dec 29, 2025)
+    var best = null;
+    [['在一起', 3, 1, 2024], ['结婚', 11, 29, 2025]].forEach(function (a) {
+      var dt = new Date(t.getFullYear(), a[1], a[2]);
+      if (dt < today) dt = new Date(t.getFullYear() + 1, a[1], a[2]);
+      var left = Math.round((dt - today) / 864e5), n = dt.getFullYear() - a[3];
+      if (!best || left < best.left) best = { left: left, text: left === 0 ? '今天是' + a[0] + ' ' + n + ' 周年纪念日 💞' : '距离' + a[0] + ' ' + n + ' 周年还有 ' + left + ' 天' };
+    });
+    $('#next').textContent = best.text;
   }
   tick(); setInterval(tick, 1000);
 
@@ -786,7 +1005,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     }
   }
   document.addEventListener('click', function (e) {
-    if (e.target.closest('#pet, button, a, .music')) return;
+    if (e.target.closest('#pet, button, a, .music, .lightbox')) return;
     burstFixed(e.clientX, e.clientY);
   });
 
@@ -823,7 +1042,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   function margin() { return DW / 2 + 8; }
   function clampX(x) { return Math.max(margin(), Math.min(W - margin(), x)); }
   function headPos() { return { x: st.x + st.facing * DW * 0.26, y: BOTTOM + DH * 0.6 }; }
-  function mouthPos() { return { x: st.x + st.facing * DW * 0.41, y: BOTTOM + DH * 0.43 }; }
+  function mouthPos() { return { x: st.x + st.facing * DW * 0.28, y: BOTTOM + DH * 0.43 }; }
 
   var timers = {};
   function flash(cls, ms) {
@@ -897,7 +1116,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (st.mode === 'sulk') { st.wasSulk = true; pet.classList.remove('sulk'); }
     st.mode = 'busy';
     var dir = f.x >= st.x ? 1 : -1; st.facing = dir;
-    var target = f.x - dir * DW * 0.41;
+    var target = f.x - dir * DW * 0.28;
     if (Math.abs(target - st.x) < 3) { eat(); return; }
     if (Math.random() < 0.6) say(pick(['哇！好吃的！', '冲鸭！🐾', '是给我的吗！']), 1300);
     walkTo(target, true, eat);
@@ -917,7 +1136,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     setTimeout(function () {
       clearInterval(crumbs); pet.classList.remove('eating');
       f.el.classList.add('gone'); setTimeout(f.el.remove.bind(f.el), 500); st.food = null;
-      decayHunger(); stats.hunger += 34; stats.mood += 8; stats.fed++; clampStats(); renderStats(); save();
+      decayHunger(); stats.hunger += 34; stats.mood += 8; stats.fed++; clampStats(); renderStats(); save(); track('fed');
       flash('happy', 1600);
       var h = headPos(); fx(h.x, h.y + 20, ['💗', '💕', '✨'], 6, 70); earn(1, h);
       if (st.wasSulk) { st.wasSulk = false; say('看在好吃的份上…原谅你啦 💕', 2400); }
@@ -938,7 +1157,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       var h = headPos();
       pop(h.x + rand(-16, 16), h.y + 34, pick(['啪！', 'BONK!', '咚！']));
       fx(h.x, h.y + 14, ['💥', '⭐'], 3, 40, 16);
-      stats.hit++; stats.mood -= 10; clampStats(); renderStats(); save();
+      stats.hit++; stats.mood -= 10; clampStats(); renderStats(); save(); track('hit');
       if (pet.classList.contains('eating')) { say('吃饭呢！别打扰我 😤', 1800); return; }
       stop(); st.mode = 'hurt'; pet.classList.remove('sulk', 'happy');
       flash('hurt', 1200); flash('dizzy-on', 2200);
@@ -995,7 +1214,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     var b = st.ball; if (!b) { resume(); return; }
     st.mode = 'busy';
     var dir = b.x >= st.x ? 1 : -1; st.facing = dir;
-    walkTo(b.x - dir * DW * 0.41, true, function grab() {
+    walkTo(b.x - dir * DW * 0.28, true, function grab() {
       if (st.ball !== b) return;
       if (!b.landed) { setTimeout(grab, 80); return; }
       st.carrying = true; say('叼到啦！', 1200); bringBack();
@@ -1011,7 +1230,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
         b.el.style.bottom = (BOTTOM + 4) + 'px'; b.el.style.transform = 'translateX(-50%)';
         setTimeout(function () { b.el.classList.add('gone'); setTimeout(b.el.remove.bind(b.el), 500); }, 1500);
       }
-      stats.mood += 10; clampStats(); renderStats(); save();
+      stats.mood += 10; clampStats(); renderStats(); save(); track('ball');
       flash('happy', 1600);
       var h = headPos(); fx(h.x, h.y + 20, ['💗', '✨', '💕'], 6, 70);
       if (now() - lastBallCoin > 45000) { lastBallCoin = now(); earn(1, h); }
@@ -1029,7 +1248,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     stop(); st.mode = 'busy';
     flash('jump', 900); flash('happy', 1900);
     var h = headPos(); fx(h.x, h.y + 20, ['💗', '💖', '💕', '🌸'], 12, 110, 20);
-    stats.mood += 12; clampStats(); renderStats(); save();
+    stats.mood += 12; clampStats(); renderStats(); save(); track('hug');
     if (now() - lastHugCoin > 60000) { lastHugCoin = now(); earn(1, h); }
     say(pick(['抱抱！最喜欢你啦 💗', '蹭蹭~', '要一直在一起哦']), 2200);
     setTimeout(function () { if (st.mode === 'busy') { st.mode = 'idle'; st.nextWander = now() + 2500; } }, 950);
@@ -1052,7 +1271,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     st.nextWander = now() + 3000;
     flash('happy', 1300);
     fx(x, y, ['💗', '💕'], 1, 50);
-    stats.mood += 1.5; stats.pet++; clampStats(); renderStats();
+    stats.mood += 1.5; stats.pet++; clampStats(); renderStats(); track('pet');
     if (stats.pet % 7 === 0) { say(pick(PETS), 1800); save(); }
     if (stats.pet % 30 === 0) earn(1, { x: x, y: y });
   }
@@ -1092,8 +1311,10 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       if (Math.abs(dx) <= step) { st.x = st.target; var cb = st.onArrive; stop(); if (cb) cb(); }
       else { st.x += Math.sign(dx) * step; st.facing = Math.sign(dx); }
     } else if (st.mode === 'idle') {
-      if (t - st.last > 25000) {
-        st.mode = 'sleep'; pet.classList.add('sleeping'); say('困了…呼呼', 1600);
+      var nap = phase === 'night' ? 10000 : 25000;
+      if (t - st.last > nap) {
+        if (phase === 'night' && Math.abs(st.x - homeX()) > 24) walkTo(homeX(), false, null);   // go home to sleep
+        else { st.mode = 'sleep'; pet.classList.add('sleeping'); say(phase === 'night' ? '晚安… 🌙' : '困了…呼呼', 1600); }
       } else if (t > st.nextWander) {
         walkTo(rand(margin(), W - margin()), false, function () {
           st.nextWander = now() + rand(2500, 6000);
@@ -1129,7 +1350,9 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   }, 12000);
   decayHunger(); clampStats(); renderStats();
   requestAnimationFrame(frame);
-  setTimeout(function () { say(isBirthday ? '生日快乐！汪汪 🎂' : '你来啦！我是吉祥 🐾', 2800); }, 1200);
+  setTimeout(function () {
+    say(isBirthday ? '生日快乐！汪汪 🎂' : FEST ? FEST.say : phase === 'night' ? '这么晚还来看我呀 🌙' : '你来啦！我是吉祥 🐾', 2800);
+  }, 1200);
 
 
   /* ---------- birthday (Oct 13) ---------- */
@@ -1145,7 +1368,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     $('#bday').textContent = isBirthday ? '今天是你的生日！生日快乐 🎂' : '距离你的生日还有 ' + days + ' 天 🎂';
     if (isBirthday) {
       $('#bdayBanner').hidden = false;
-      setTimeout(function () { fireworks(9000); }, 600);
+      onEnter.push(function () { fireworks(9000); });
       $('#fireAgain').addEventListener('click', function () { fireworks(6000); });
     }
   })();
@@ -1384,7 +1607,8 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       toast('爱心币不够啦，去陪吉祥玩一会儿吧 🐾'); return;
     }
     gs.spent += COST; renderCoins(); spinning = true;
-    var i = drawWhisper(); gs.got.push(i); gsave();
+    var i = drawWhisper(); gs.got.push(i);
+    var de = dayEntry(); (de.got = de.got || []).push(i); gsave();
     machine.classList.add('spinning');
     setTimeout(function () {
       machine.classList.remove('spinning'); spinning = false; pending = i;
@@ -1479,6 +1703,249 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   renderCoins(); renderBook();
   if (isBirthday) pet.classList.add('party');
 
+
+  /* ---------- day / night ---------- */
+  var phase = '';
+  function dayPhase(h) {
+    if (h >= 6 && h < 17) return 'day';
+    if ((h >= 17 && h < 19.5) || (h >= 5 && h < 6)) return 'dusk';
+    return 'night';
+  }
+  function applyPhase() {
+    var t = new Date(), q = (location.search.match(/[?&]phase=(\w+)/) || [])[1];
+    var p = q || dayPhase(t.getHours() + t.getMinutes() / 60);
+    if (p === phase) return;
+    phase = p;
+    yard.classList.remove('day', 'dusk', 'night'); yard.classList.add(p);
+  }
+  (function stars() {
+    for (var i = 0; i < 26; i++) {
+      var s = document.createElement('span');
+      s.className = 'star';
+      s.style.left = rand(3, 97) + '%'; s.style.top = rand(4, 58) + '%';
+      s.style.setProperty('--tw', rand(1.2, 3.2) + 's');
+      s.style.animationDelay = -rand(0, 3) + 's';
+      yard.appendChild(s);
+    }
+  })();
+  function homeX() { return clampX(64); }
+  applyPhase(); setInterval(applyPhase, 60000);
+
+  /* ---------- festivals & special days ---------- */
+  var QIXI = ['2026-08-19', '2027-08-08', '2028-08-26', '2029-08-16', '2030-08-05'];
+  var CNY = ['2027-02-06', '2028-01-26', '2029-02-13', '2030-02-03'];
+  var FEST = (function () {
+    var t = new Date(), m = t.getMonth() + 1, d = t.getDate();
+    var iso = t.getFullYear() + '-' + pad(m) + '-' + pad(d);
+    var q = (location.search.match(/[?&]fest=(\w+)/) || [])[1];
+    function on(k, cond) { return q ? q === k : cond; }
+    var cny = CNY.some(function (s) {
+      var diff = (new Date(iso + 'T00:00') - new Date(s + 'T00:00')) / 864e5;
+      return diff >= -1 && diff <= 7;   // from New Year's Eve to the 7th day
+    });
+    if (on('wedding', m === 12 && d === 29))
+      return { banner: '💍 结婚纪念日快乐，范洁心！', wear: { head: 'flower', neck: 'bowtie' }, fireworks: true, hearts: true, say: '结婚纪念日快乐！汪 💍' };
+    if (on('xmas', m === 12 && d >= 20 && d <= 26))
+      return { banner: '🎄 Merry Christmas，范洁心！', wear: { head: 'santa' }, snow: true, say: '圣诞快乐！🎄' };
+    if (on('newyear', (m === 12 && d === 31) || (m === 1 && d === 1)))
+      return { banner: '🎆 新年快乐！新的一年也要一直在一起', fireworks: true, snow: true, say: '新年快乐！🎆' };
+    if (on('cny', cny))
+      return { banner: '🧧 新春快乐，吉祥如意！', wear: { neck: 'scarf' }, lanterns: true, fireworks: true, say: '吉祥给你拜年啦 🧧' };
+    if (on('valentine', m === 2 && d === 14))
+      return { banner: '💝 情人节快乐，我的 Mrs. Fancy', hearts: true, say: '情人节快乐！💝' };
+    if (on('520', m === 5 && d === 20))
+      return { banner: '💗 520 · 我爱你', hearts: true, say: '520！我也爱你 💗' };
+    if (on('qixi', QIXI.indexOf(iso) >= 0))
+      return { banner: '🌌 七夕快乐，今天也想见你', hearts: true, say: '七夕快乐 🌌' };
+    if (on('together', m === 4 && d === 1))
+      return { banner: '💞 在一起 ' + (t.getFullYear() - 2024) + ' 周年快乐！', hearts: true, fireworks: true, say: '纪念日快乐！💞' };
+    return null;
+  })();
+  function rain(chars, n, color) {
+    for (var i = 0; i < n; i++) {
+      var f = document.createElement('span');
+      f.className = 'flake'; f.textContent = pick(chars);
+      f.style.left = rand(0, 100) + '%';
+      f.style.fontSize = rand(10, 20) + 'px';
+      if (color) f.style.color = color;
+      f.style.setProperty('--d', rand(5, 11) + 's');
+      f.style.setProperty('--dx', rand(-40, 40) + 'px');
+      f.style.animationDelay = -rand(0, 11) + 's';
+      yard.appendChild(f);
+    }
+  }
+  if (FEST) {
+    if (!isBirthday) { $('#festText').textContent = FEST.banner; $('#festBanner').hidden = false; }
+    if (FEST.snow) rain(['❄', '❅', '✦'], 34, '#ffffff');
+    if (FEST.hearts) {
+      rain(['💗', '💕', '♥'], 24, '#ff7a9c');
+      for (var hk = 0; hk < 16; hk++) {
+        var hf = document.createElement('span');
+        hf.className = 'floaty'; hf.textContent = pick(['💗', '💕', '💖']);
+        hf.style.left = rand(0, 100) + '%';
+        hf.style.setProperty('--s', rand(16, 30) + 'px');
+        hf.style.setProperty('--d', rand(8, 15) + 's');
+        hf.style.setProperty('--delay', -rand(0, 15) + 's');
+        hf.style.setProperty('--dx', rand(-60, 60) + 'px');
+        hero.appendChild(hf);
+      }
+    }
+    if (FEST.lanterns) ['12%', '50%', '86%'].forEach(function (x, k) {
+      var l = document.createElement('span');
+      l.className = 'lantern'; l.textContent = '🏮'; l.style.left = x; l.style.animationDelay = -k * 0.7 + 's';
+      yard.appendChild(l);
+    });
+    if (FEST.fireworks) onEnter.push(function () { fireworks(6000); });
+  }
+
+  /* ---------- 亲密度 (intimacy level), wardrobe and diary ---------- */
+  var LV = [0, 30, 80, 150, 250, 380, 540, 740, 1000, 1300], XP_CAP = 25;
+  var XP_FOR = { fed: 3, ball: 2, hug: 2, visit: 5 };
+  var OUTFITS = [
+    { id: 'scarf', slot: 'neck', lv: 2, name: '红色小围巾', icon: '🧣' },
+    { id: 'bow', slot: 'head', lv: 3, name: '粉色蝴蝶结', icon: '🎀' },
+    { id: 'glasses', slot: 'face', lv: 4, name: '圆框眼镜', icon: '👓' },
+    { id: 'bowtie', slot: 'neck', lv: 5, name: '蓝色小领结', icon: '🎗️' },
+    { id: 'beanie', slot: 'head', lv: 6, name: '毛线帽', icon: '🧶' },
+    { id: 'flower', slot: 'head', lv: 7, name: '小花环', icon: '🌸' },
+    { id: 'cape', slot: 'back', lv: 8, name: '小斗篷', icon: '🦸' },
+    { id: 'straw', slot: 'head', lv: 9, name: '小草帽', icon: '👒' },
+    { id: 'crown', slot: 'head', lv: 10, name: '小皇冠', icon: '👑' }
+  ];
+  gs.life = gs.life || {};
+  var L = gs.life;
+  L.xp = L.xp || 0; L.diary = L.diary || {}; L.wear = L.wear || {}; L.wearAt = L.wearAt || 0;
+  function level() { var n = 1; for (var i = 1; i < LV.length; i++) if (L.xp >= LV[i]) n = i + 1; return n; }
+  function dayEntry() { var d = todayStr(); return L.diary[d] || (L.diary[d] = {}); }
+  function gainXp(n) {
+    var d = todayStr();
+    if (L.xpDay !== d) { L.xpDay = d; L.xpToday = 0; }
+    n = Math.min(n, XP_CAP - L.xpToday);
+    if (n <= 0) return;
+    var before = level();
+    L.xpToday += n; L.xp += n;
+    var after = level();
+    if (after > before) levelUp(after);
+    renderLevel();
+  }
+  function levelUp(n) {
+    dayEntry().lv = n;
+    var o = OUTFITS.filter(function (x) { return x.lv === n; })[0];
+    toast('亲密度升到 Lv.' + n + ' 啦！' + (o ? '解锁了' + o.name + ' ' + o.icon : ''));
+    fireworks(2200); flash('happy', 1800);
+    say(o ? '我想穿' + o.name + '！' : '最喜欢你了！', 2400);
+    renderCloset();
+  }
+  var diaryT;
+  function track(kind, n) {
+    var e = dayEntry();
+    e[kind] = (e[kind] || 0) + (n || 1);
+    if (XP_FOR[kind]) gainXp(XP_FOR[kind]);
+    else if (kind === 'pet' && e.pet % 10 === 0) gainXp(1);
+    var keys = Object.keys(L.diary).sort();
+    while (keys.length > 150) delete L.diary[keys.shift()];
+    gsave();
+    clearTimeout(diaryT); diaryT = setTimeout(renderDiary, 400);
+  }
+  function renderLevel() {
+    var n = level(), lo = LV[n - 1], hi = LV[n];
+    $('#lvN').textContent = 'Lv.' + n;
+    $('#lvText').textContent = hi ? (L.xp - lo) + ' / ' + (hi - lo) + ' → Lv.' + (n + 1) : '满级啦 👑';
+    $('#lvBar').style.width = (hi ? (L.xp - lo) / (hi - lo) * 100 : 100) + '%';
+    $('#lvToday').textContent = '今天已获得 ' + (L.xpDay === todayStr() ? L.xpToday : 0) + ' / ' + XP_CAP;
+  }
+  function renderWear() {
+    var w = { head: L.wear.head, neck: L.wear.neck, face: L.wear.face, back: L.wear.back };
+    if (FEST && FEST.wear) Object.keys(FEST.wear).forEach(function (s) { w[s] = FEST.wear[s]; });
+    if (isBirthday) w.head = null;
+    [].forEach.call(document.querySelectorAll('.dog .acc'), function (g) { g.classList.remove('on'); });
+    Object.keys(w).forEach(function (s) {
+      var g = w[s] && document.getElementById('acc-' + w[s]);
+      if (g) g.classList.add('on');
+    });
+    $('#collar').style.display = w.neck ? 'none' : '';
+  }
+  function renderCloset() {
+    var n = level(), html = '';
+    OUTFITS.forEach(function (o) {
+      var locked = n < o.lv, on = L.wear[o.slot] === o.id;
+      html += '<button type="button" class="item' + (locked ? ' locked' : '') + (on ? ' on' : '') + '" data-id="' + o.id + '">' +
+        '<span class="ic">' + (locked ? '🔒' : o.icon) + '</span>' + o.name +
+        '<small>' + (locked ? 'Lv.' + o.lv + ' 解锁' : on ? '穿着呢 ✓' : '点我穿上') + '</small></button>';
+    });
+    $('#closetGrid').innerHTML = html;
+  }
+  $('#closetGrid').addEventListener('click', function (e) {
+    var b = e.target.closest('.item'); if (!b) return;
+    var o = OUTFITS.filter(function (x) { return x.id === b.dataset.id; })[0];
+    if (level() < o.lv) { toast('亲密度到 Lv.' + o.lv + ' 才能解锁哦'); return; }
+    if (L.wear[o.slot] === o.id) delete L.wear[o.slot]; else L.wear[o.slot] = o.id;
+    L.wearAt = Date.now(); gsave(); renderWear(); renderCloset();
+    interact(); flash('happy', 1500);
+    say(L.wear[o.slot] ? pick(['好看吗？✨', '我是最靓的狗狗！', '谢谢你给我打扮 💗']) : '换回原来的样子啦', 2000);
+    var r = yard.getBoundingClientRect();
+    if (r.top < 0 || r.bottom > innerHeight) yard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  var WEATHER = ['晴 ☀️', '多云 ⛅', '晴 ☀️', '微风 🍃', '小雨 🌧️', '晴 ☀️', '阴 ☁️', '彩虹 🌈'];
+  var ENDINGS = ['今天也是被爱着的一天 💗', '明天也要来看我哦 🐾', '我最喜欢她了！', '汪！晚安～', '好想每天都这样 ✨', '尾巴摇了一整天 🐕'];
+  function hashStr(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return Math.abs(h); }
+  function diaryText(day, e) {
+    var parts = [];
+    if (e.fed) parts.push('喂了我 ' + e.fed + ' 次');
+    if (e.pet) parts.push('摸了我 ' + e.pet + ' 下');
+    if (e.ball) parts.push('陪我捡了 ' + e.ball + ' 次球');
+    if (e.hug) parts.push('抱了我 ' + e.hug + ' 次');
+    var s = parts.length ? '今天她' + parts.join('，') + '。' : '今天她来看我啦，虽然没怎么陪我玩，我还是很开心。';
+    if (e.hit) s += e.hit === 1 ? '还敲了我一下，哼。' : '还敲了我 ' + e.hit + ' 下，哼！不过我原谅她了。';
+    if (e.got && e.got.length) s += '她从扭蛋机里扭到了悄悄话 ' + e.got.map(function (n) { return 'No.' + (n + 1); }).join('、') + '。';
+    if (e.lv) s += '我的亲密度升到了 Lv.' + e.lv + '！';
+    return s + ENDINGS[hashStr(day + 'e') % ENDINGS.length];
+  }
+  var diaryShown = 4;
+  function renderDiary() {
+    var thisYear = String(new Date().getFullYear());
+    var days = Object.keys(L.diary).sort().reverse().filter(function (d) { return L.diary[d] && Object.keys(L.diary[d]).length; });
+    var box = $('#diaryList');
+    if (!days.length) {
+      box.innerHTML = '<p class="d-empty">吉祥还没开始写日记，今天陪它玩一会儿吧 🐾</p>';
+      $('#diaryMore').hidden = true; return;
+    }
+    box.innerHTML = days.slice(0, diaryShown).map(function (d) {
+      var p = d.split('-');
+      var title = (p[0] === thisYear ? '' : p[0] + ' 年 ') + (+p[1]) + ' 月 ' + (+p[2]) + ' 日';
+      return '<article class="d-entry"><div class="d-head"><b>' + title + '</b><span>' + WEATHER[hashStr(d) % WEATHER.length] + '</span></div><p>' + diaryText(d, L.diary[d]) + '</p></article>';
+    }).join('');
+    $('#diaryMore').hidden = days.length <= diaryShown;
+  }
+  $('#diaryMore').addEventListener('click', function () { diaryShown += 6; renderDiary(); });
+  renderLevel(); renderWear(); renderCloset(); renderDiary();
+
+  /* ---------- add to home screen ---------- */
+  (function () {
+    var box = $('#a2hs'), ua = navigator.userAgent;
+    var standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+    var mobile = /iPhone|iPad|iPod|Android/i.test(ua), ios = /iPhone|iPad|iPod/i.test(ua);
+    var dismissed = false;
+    try { dismissed = localStorage.getItem('a2hs-dismissed') === '1'; } catch (e) {}
+    var deferred = null;
+    window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; });
+    if (!mobile || standalone || dismissed) return;
+    box.hidden = false;
+    $('#a2hsBtn').addEventListener('click', function () {
+      if (deferred) { deferred.prompt(); deferred = null; return; }
+      $('#a2hsText').textContent = ios
+        ? '点 Safari 底部的「分享」按钮 ⬆️，往下滑选「添加到主屏幕」，吉祥就会住进你的手机桌面啦'
+        : '点浏览器右上角的 ⋮ 菜单，选「添加到主屏幕」或「安装应用」';
+      this.hidden = true;
+    });
+    $('#a2hsX').addEventListener('click', function () {
+      box.hidden = true;
+      try { localStorage.setItem('a2hs-dismissed', '1'); } catch (e) {}
+    });
+  })();
+  if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(function () {});
+
   /* ---------- cloud sync (Firebase) + GitHub backup ----------
      Progress lives in localStorage, Firebase and a daily GitHub backup
      (fancy/progress-backup.json). Merging only ever adds: unlocked whispers
@@ -1489,6 +1956,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     return {
       pet: { hunger: stats.hunger, hungerAt: stats.hungerAt, mood: stats.mood, fed: stats.fed, pet: stats.pet, hit: stats.hit },
       gacha: { earned: gs.earned, spent: gs.spent, got: gs.got.slice().sort(function (a, b) { return a - b; }), lastDay: gs.lastDay, playDay: gs.playDay || '', playEarned: gs.playEarned || 0, voucher: gs.voucher || null },
+      life: { xp: L.xp, xpDay: L.xpDay || '', xpToday: L.xpToday || 0, diary: L.diary, wear: L.wear, wearAt: L.wearAt },
       updatedAt: gs.updatedAt
     };
   }
@@ -1512,6 +1980,23 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       else if (rg.playDay === gs.playDay && rg.playEarned > gs.playEarned) { gs.playEarned = rg.playEarned; changed = true; }
     }
     if (rg.voucher && rg.voucher.code && !gs.voucher) { gs.voucher = rg.voucher; changed = true; }
+    var rl = r.life || {};
+    if (typeof rl.xp === 'number' && rl.xp > L.xp) { L.xp = rl.xp; changed = true; }
+    if (typeof rl.xpDay === 'string' && typeof rl.xpToday === 'number') {
+      if (rl.xpDay > (L.xpDay || '')) { L.xpDay = rl.xpDay; L.xpToday = rl.xpToday; changed = true; }
+      else if (rl.xpDay === L.xpDay && rl.xpToday > (L.xpToday || 0)) { L.xpToday = rl.xpToday; changed = true; }
+    }
+    if (rl.diary && typeof rl.diary === 'object') Object.keys(rl.diary).forEach(function (d) {
+      var re = rl.diary[d] || {}, le = L.diary[d] || (L.diary[d] = {});
+      Object.keys(re).forEach(function (k) {
+        if (k === 'got') (re.got || []).forEach(function (g) {
+          le.got = le.got || [];
+          if (le.got.indexOf(g) < 0) { le.got.push(g); changed = true; }
+        });
+        else if (typeof re[k] === 'number' && re[k] > (le[k] || 0)) { le[k] = re[k]; changed = true; }
+      });
+    });
+    if ((rl.wearAt || 0) > L.wearAt) { L.wear = rl.wear || {}; L.wearAt = rl.wearAt; changed = true; }
     if ((r.updatedAt || 0) > gs.updatedAt) gs.updatedAt = r.updatedAt;
     return changed;
   }
@@ -1519,6 +2004,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     decayHunger(); clampStats();
     try { localStorage.setItem(KEY, JSON.stringify(stats)); } catch (e) {}
     writeLocal(); renderStats(); renderCoins(); renderBook();
+    renderLevel(); renderWear(); renderCloset(); renderDiary();
   }
   // resolves to the parsed JSON (null when empty), or undefined when the request failed
   function getJSON(url) {
@@ -1546,10 +2032,66 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (a || b) applyMerged();
     syncReady = true;
     dailyBonus();
+    if (!dayEntry().visit) track('visit');
     push();
   });
   document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'hidden' && syncReady) { clearTimeout(pushT); push(); }
+  });
+
+
+  /* ---------- photo album ---------- */
+  var PHOTOS = [{"f": "p01", "d": "2024-10", "both": false, "w": 390, "h": 520}, {"f": "p02", "d": "2024-10", "both": false, "w": 390, "h": 520}, {"f": "p03", "d": "2024-11", "both": false, "w": 390, "h": 520}, {"f": "p04", "d": "2024-12", "both": true, "w": 390, "h": 520}, {"f": "p05", "d": "2024-12", "both": false, "w": 390, "h": 520}, {"f": "p06", "d": "2024-12", "both": true, "w": 390, "h": 520}, {"f": "p07", "d": "2024-12", "both": false, "w": 390, "h": 520}, {"f": "p08", "d": "2024-12", "both": false, "w": 520, "h": 390}, {"f": "p09", "d": "2024-12", "both": false, "w": 390, "h": 520}, {"f": "p10", "d": "2024-12", "both": true, "w": 390, "h": 520}, {"f": "p11", "d": "2024-12", "both": true, "w": 390, "h": 520}, {"f": "p12", "d": "2024-12", "both": true, "w": 520, "h": 390}, {"f": "p13", "d": "2024-12", "both": true, "w": 520, "h": 390}, {"f": "p14", "d": "2025-01", "both": false, "w": 520, "h": 390}, {"f": "p15", "d": "2025-02", "both": false, "w": 390, "h": 520}, {"f": "p16", "d": "2025-05", "both": false, "w": 520, "h": 390}, {"f": "p17", "d": "2025-09", "both": true, "w": 520, "h": 390}, {"f": "p18", "d": "2025-10", "both": false, "w": 520, "h": 390}, {"f": "p19", "d": "2025-12", "both": false, "w": 390, "h": 520}, {"f": "p20", "d": "2026-01", "both": false, "w": 390, "h": 520}, {"f": "p21", "d": "2026-01", "both": false, "w": 390, "h": 520}, {"f": "p22", "d": "2026-01", "both": true, "w": 390, "h": 520}, {"f": "p23", "d": "2026-01", "both": false, "w": 390, "h": 520}, {"f": "p24", "d": "2026-01", "both": false, "w": 390, "h": 520}, {"f": "p25", "d": "2026-01", "both": true, "w": 390, "h": 520}, {"f": "p26", "d": "2026-01", "both": false, "w": 390, "h": 520}, {"f": "p27", "d": "2026-01", "both": false, "w": 390, "h": 520}, {"f": "p28", "d": "2026-01", "both": false, "w": 390, "h": 520}, {"f": "p29", "d": "", "both": true, "w": 292, "h": 520}, {"f": "p30", "d": "", "both": true, "w": 520, "h": 293}, {"f": "p31", "d": "", "both": false, "w": 390, "h": 520}, {"f": "p32", "d": "", "both": false, "w": 390, "h": 520}, {"f": "p33", "d": "", "both": false, "w": 276, "h": 520}, {"f": "p34", "d": "", "both": false, "w": 390, "h": 520}, {"f": "p35", "d": "", "both": false, "w": 390, "h": 520}, {"f": "p36", "d": "", "both": false, "w": 520, "h": 520}, {"f": "p37", "d": "", "both": false, "w": 292, "h": 520}, {"f": "p38", "d": "", "both": false, "w": 292, "h": 520}, {"f": "p39", "d": "", "both": false, "w": 520, "h": 293}, {"f": "p40", "d": "", "both": false, "w": 292, "h": 520}, {"f": "p41", "d": "", "both": false, "w": 520, "h": 293}, {"f": "p42", "d": "", "both": false, "w": 385, "h": 520}, {"f": "p43", "d": "", "both": false, "w": 390, "h": 520}, {"f": "p44", "d": "", "both": false, "w": 390, "h": 520}, {"f": "p45", "d": "", "both": false, "w": 293, "h": 520}, {"f": "p46", "d": "", "both": false, "w": 390, "h": 520}, {"f": "p47", "d": "", "both": false, "w": 293, "h": 520}, {"f": "p48", "d": "", "both": false, "w": 390, "h": 520}];
+  var MILESTONES = { '2024-04': ['💞 我们在一起了', '2024.04.01'], '2025-12': ['💍 我们结婚了', '2025.12.29'] };
+  function monthName(m) { var p = m.split('-'); return p[0] + ' 年 ' + (+p[1]) + ' 月'; }
+  (function renderAlbum() {
+    var months = {}, html = '';
+    PHOTOS.forEach(function (ph, i) { if (ph.d) (months[ph.d] = months[ph.d] || []).push(i); });
+    Object.keys(MILESTONES).forEach(function (m) { months[m] = months[m] || []; });
+    Object.keys(months).sort().forEach(function (m) {
+      var ms = MILESTONES[m];
+      html += '<div class="tl-item' + (ms ? ' ms' : '') + '"><span class="tl-dot"></span><div class="tl-date">' + monthName(m) + '</div>' +
+        (ms ? '<div class="ms-card">' + ms[0] + '<small>' + ms[1] + '</small></div>' : '') +
+        (months[m].length ? '<div class="strip">' + months[m].map(function (i, k) {
+          var ph = PHOTOS[i];
+          return '<button type="button" class="ph" data-i="' + i + '" style="--r:' + (k % 2 ? 1.6 : -1.6) + 'deg"><img src="photos/' + ph.f + '_s.jpg" loading="lazy" alt="" width="' + ph.w + '" height="' + ph.h + '">' +
+            (ph.both ? '<span class="duo">💕</span>' : '') + '</button>';
+        }).join('') + '</div>' : '') + '</div>';
+    });
+    $('#timeline').innerHTML = html;
+    $('#selfies').innerHTML = PHOTOS.map(function (ph, i) {
+      return ph.d ? '' : '<button type="button" data-i="' + i + '"><img src="photos/' + ph.f + '_s.jpg" loading="lazy" alt="" width="' + ph.w + '" height="' + ph.h + '"></button>';
+    }).join('');
+  })();
+  var lb = $('#lb'), lbIdx = 0;
+  function showPhoto(i) {
+    lbIdx = (i + PHOTOS.length) % PHOTOS.length;
+    var ph = PHOTOS[lbIdx];
+    $('#lbImg').src = 'photos/' + ph.f + '.jpg';
+    $('#lbCap').textContent = (ph.d ? monthName(ph.d) : '美好的瞬间 ✨') + (ph.both ? ' · 我们 💕' : '') + '  ·  ' + (lbIdx + 1) + ' / ' + PHOTOS.length;
+    lb.hidden = false; document.body.style.overflow = 'hidden';
+  }
+  function closePhoto() { lb.hidden = true; document.body.style.overflow = ''; $('#lbImg').removeAttribute('src'); }
+  $('#album').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-i]'); if (b) showPhoto(+b.dataset.i);
+  });
+  lb.addEventListener('click', function (e) {
+    if (e.target.closest('.lb-prev')) showPhoto(lbIdx - 1);
+    else if (e.target.closest('.lb-next')) showPhoto(lbIdx + 1);
+    else if (e.target === lb || e.target.closest('.lb-x')) closePhoto();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') closePhoto();
+    if (e.key === 'ArrowLeft') showPhoto(lbIdx - 1);
+    if (e.key === 'ArrowRight') showPhoto(lbIdx + 1);
+  });
+  var tx = null;
+  lb.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function (e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx; tx = null;
+    if (Math.abs(dx) > 45) showPhoto(lbIdx + (dx < 0 ? 1 : -1));
   });
 
   /* ---------- letter typewriter ---------- */
@@ -1604,6 +2146,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   function openGate() {
     if (!gate || gate.classList.contains('hide')) return;
     gate.classList.add('hide'); document.body.classList.remove('gated');
+    onEnter.splice(0).forEach(function (fn) { setTimeout(fn, 400); });
     setTimeout(function () { gate.remove(); }, 800);
   }
   function enter(e) {
