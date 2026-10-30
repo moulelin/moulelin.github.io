@@ -23,6 +23,7 @@ jobs:
 
           URL = "https://fancy-9e6a8-default-rtdb.europe-west1.firebasedatabase.app/fancy/state.json"
           PATH = "fancy/progress-backup.json"
+          REVOKED = {9}  # whispers withdrawn on purpose; must match REVOKED in fancy/index.html
 
           with urllib.request.urlopen(URL, timeout=30) as r:
               remote = json.load(r)
@@ -50,7 +51,7 @@ jobs:
               "gacha": {
                   "earned": max(ng.get("earned", 0), og.get("earned", 0)),
                   "spent": max(ng.get("spent", 0), og.get("spent", 0)),
-                  "got": sorted(set(ng.get("got", [])) | set(og.get("got", []))),
+                  "got": sorted((set(ng.get("got", [])) | set(og.get("got", []))) - REVOKED),
                   "lastDay": max(ng.get("lastDay", ""), og.get("lastDay", "")),
                   "voucher": ng.get("voucher") or og.get("voucher"),
               },
@@ -64,7 +65,7 @@ jobs:
                   m = diary.setdefault(day, {})
                   for k, v in (entry or {}).items():
                       if k == "got":
-                          m["got"] = sorted(set(m.get("got", [])) | set(v or []))
+                          m["got"] = sorted((set(m.get("got", [])) | set(v or [])) - REVOKED)
                       elif isinstance(v, (int, float)):
                           m[k] = max(m.get(k, 0), v)
           merged["life"] = {

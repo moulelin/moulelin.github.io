@@ -1532,9 +1532,11 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     ['SSR', '下辈子，我也要先遇见你。']
   ];
   var COST = 10, PLAY_CAP = 3, DAILY = 2, G_KEY = 'jixiang-gacha-v1';
+  var REVOKED = [9];   // drawn by mistake on another device; dropped everywhere, even when synced back in
   var gs = { earned: 10, spent: 0, got: [], lastDay: '', playDay: '', playEarned: 0, updatedAt: 0 };
   try { Object.assign(gs, JSON.parse(localStorage.getItem(G_KEY) || '{}')); } catch (e) {}
   if (typeof gs.coins === 'number') { gs.spent = gs.got.length * 3; gs.earned = gs.coins + gs.spent; delete gs.coins; }
+  gs.got = gs.got.filter(function (i) { return REVOKED.indexOf(i) < 0; });
   if (gs.lastDay && !/^\d{4}-\d{2}-\d{2}$/.test(gs.lastDay)) gs.lastDay = '';
   function coins() { return Math.max(0, gs.earned - gs.spent); }
   function writeLocal() { try { localStorage.setItem(G_KEY, JSON.stringify(gs)); } catch (e) {} }
@@ -1972,7 +1974,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (typeof rg.earned === 'number' && rg.earned > gs.earned) { gs.earned = rg.earned; changed = true; }
     if (typeof rg.spent === 'number' && rg.spent > gs.spent) { gs.spent = rg.spent; changed = true; }
     (rg.got || []).forEach(function (i) {
-      if (typeof i === 'number' && i >= 0 && i < WHISPERS.length && gs.got.indexOf(i) < 0) { gs.got.push(i); changed = true; }
+      if (typeof i === 'number' && i >= 0 && i < WHISPERS.length && REVOKED.indexOf(i) < 0 && gs.got.indexOf(i) < 0) { gs.got.push(i); changed = true; }
     });
     if (typeof rg.lastDay === 'string' && rg.lastDay > gs.lastDay) { gs.lastDay = rg.lastDay; changed = true; }
     if (typeof rg.playDay === 'string' && typeof rg.playEarned === 'number') {
@@ -1991,7 +1993,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       Object.keys(re).forEach(function (k) {
         if (k === 'got') (re.got || []).forEach(function (g) {
           le.got = le.got || [];
-          if (le.got.indexOf(g) < 0) { le.got.push(g); changed = true; }
+          if (REVOKED.indexOf(g) < 0 && le.got.indexOf(g) < 0) { le.got.push(g); changed = true; }
         });
         else if (typeof re[k] === 'number' && re[k] > (le[k] || 0)) { le[k] = re[k]; changed = true; }
       });
