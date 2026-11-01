@@ -1,27 +1,27 @@
 {
   "pet": {
-    "hunger": 0,
-    "hungerAt": 1793439408985,
-    "mood": 52,
-    "fed": 53,
-    "pet": 1443,
+    "hunger": 99.9327673611111,
+    "hungerAt": 1793521034632,
+    "mood": 100,
+    "fed": 64,
+    "pet": 1545,
     "hit": 10
   },
   "gacha": {
-    "earned": 33,
+    "earned": 38,
     "spent": 30,
     "got": [
       0,
       22,
       24
     ],
-    "lastDay": "2026-10-31",
+    "lastDay": "2026-11-01",
     "voucher": null
   },
-  "updatedAt": 1793439406963,
+  "updatedAt": 1793521043108,
   "life": {
-    "xp": 60,
-    "xpDay": "2026-10-31",
+    "xp": 85,
+    "xpDay": "2026-11-01",
     "xpToday": 25,
     "diary": {
       "2026-10-29": {
@@ -39,19 +39,28 @@
         "visit": 1
       },
       "2026-10-31": {
-        "ball": 4,
-        "fed": 8,
+        "ball": 5,
+        "fed": 16,
         "got": [
           22
         ],
+        "hug": 3,
+        "pet": 167,
+        "visit": 1
+      },
+      "2026-11-01": {
+        "ball": 2,
+        "fed": 3,
         "hug": 2,
-        "pet": 101,
+        "lv": 3,
+        "pet": 36,
         "visit": 1
       }
     },
     "wear": {
+      "head": "bow",
       "neck": "scarf"
     },
-    "wearAt": 1793388747017
+    "wearAt": 1793521032240
   }
 }
