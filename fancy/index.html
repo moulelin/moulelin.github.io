@@ -501,6 +501,40 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 }
 .toast.show { transform: translate(-50%, 0); opacity: 1; }
 
+/* ---------- 吉祥消消乐 ---------- */
+.m3 { max-width: 420px; margin: 0 auto; }
+.m3-hud { display: flex; justify-content: space-between; gap: 8px; font-size: 15px; color: var(--muted); }
+.m3-hud b { color: var(--pink); font-weight: 400; font-size: 20px; }
+.bar.m3-bar { display: block; width: auto; margin: 8px 0 0; }
+.m3-say { text-align: center; font-size: 15px; min-height: 22px; margin: 10px 0; }
+.m3-say.bump { animation: m3Say .4s; }
+@keyframes m3Say { 40% { transform: scale(1.08); } }
+.m3-wrap { position: relative; background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 8px; box-shadow: 0 14px 40px rgba(255,122,156,.12); }
+.m3-board { position: relative; aspect-ratio: 1; overflow: hidden; touch-action: none; user-select: none; -webkit-user-select: none; }
+.m3-t { position: absolute; left: 0; top: 0; width: var(--sz); height: var(--sz); display: grid; place-items: center; transition: transform .26s cubic-bezier(.3,1.25,.6,1), opacity .25s; }
+.m3-t::before { content: ""; position: absolute; inset: 2.5px; border-radius: 32%; background: var(--bg); box-shadow: inset 0 -3px 0 rgba(90,62,70,.07); transition: box-shadow .15s; }
+.m3-t i { position: relative; font-style: normal; font-size: calc(var(--sz) * .56); line-height: 1; transition: transform .25s; pointer-events: none; }
+.m3-t.sel::before { box-shadow: inset 0 0 0 3px var(--pink); }
+.m3-t.sel i { transform: scale(1.15); }
+.m3-t.gone { opacity: 0; }
+.m3-t.gone i { transform: scale(1.7); }
+.m3-t.born i { animation: bump .45s; }
+.m3-t.s-row::before { background: repeating-linear-gradient(0deg, var(--bg) 0 6px, #fff 6px 9px); box-shadow: inset 0 0 0 2px #ffb3c6; }
+.m3-t.s-col::before { background: repeating-linear-gradient(90deg, var(--bg) 0 6px, #fff 6px 9px); box-shadow: inset 0 0 0 2px #ffb3c6; }
+.m3-t.s-bomb::before { box-shadow: inset 0 0 0 3px #ff7a9c, 0 0 10px rgba(255,122,156,.6); }
+.m3-t.s-paw::before { background: conic-gradient(#ffb3c6, #ffd88a, #b8e8b0, #a8d4ff, #d6b8ff, #ffb3c6); animation: m3Spin 3s linear infinite; }
+@keyframes m3Spin { to { transform: rotate(360deg); } }
+.m3-over { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; border-radius: 22px; background: rgba(255,247,243,.9); animation: m3In .35s; }
+.m3-over[hidden] { display: none; }
+@keyframes m3In { from { opacity: 0; transform: scale(.94); } }
+.m3-over p { margin: 4px 0; }
+.m3-over .m3-big { font-size: 30px; color: var(--pink); }
+.m3-over .m3-stars { font-size: 34px; letter-spacing: 4px; }
+.m3-over .m3-stars span { filter: grayscale(1); opacity: .35; }
+.m3-over .spin-btn { margin-top: 16px; }
+.m3-ctl { text-align: center; margin-top: 12px; }
+.m3-ctl button { border: 1px solid var(--line); background: #fff; color: var(--muted); border-radius: 999px; padding: 6px 16px; cursor: pointer; }
+
 /* ---------- day / night ---------- */
 .yard { transition: background .8s; }
 .sun { transition: top .8s, background .8s, box-shadow .8s; }
@@ -936,7 +970,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   <div class="lv-card">
     <div class="lv-top"><b id="lvN">Lv.1</b><span id="lvText"></span></div>
     <div class="bar lv-bar"><i id="lvBar"></i></div>
-    <p class="lv-tip">喂食 +3 · 捡球回来 +2 · 抱抱 +2 · 摸摸 10 下 +1 · 每天来看看 +5<br><span id="lvToday"></span></p>
+    <p class="lv-tip">喂食 +3 · 捡球回来 +2 · 抱抱 +2 · 摸摸 10 下 +1 · 消消乐过关 +3 · 每天来看看 +5<br><span id="lvToday"></span></p>
   </div>
   <div class="closet" id="closetGrid"></div>
 </section>
@@ -957,7 +991,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       <p class="cap-hint" id="capHint"></p>
       <button type="button" class="spin-btn" id="spinBtn">扭一下（10 💗）</button>
       <p class="coins">💗 爱心币 × <b id="coins">0</b></p>
-      <p class="earn-tip">陪吉祥玩可以赚爱心币：喂食、捡球回来、抱抱各 +1，摸摸 30 下 +1<br>陪玩每天最多赚 3 个 · 每天来看看再送 2 个</p>
+      <p class="earn-tip">陪吉祥玩可以赚爱心币：喂食、捡球回来、抱抱各 +1，摸摸 30 下 +1<br>陪玩每天最多赚 3 个 · 消消乐过关每天再送 3 个 · 每天来看看再送 2 个</p>
     </div>
     <div class="book">
       <h3>悄悄话收集册</h3>
@@ -965,6 +999,19 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       <div class="slots" id="slots"></div>
       <div class="legend"><span><i style="--c:#ffb3c6"></i>普通</span><span><i style="--c:#8ec2ff"></i>稀有</span><span><i style="--c:#ffc94d"></i>超稀有</span></div>
     </div>
+  </div>
+</section>
+
+<section class="block" id="match">
+  <h2>吉祥消消乐 🍡</h2>
+  <p class="sub">三个一样的连成一排就能消掉，过关送爱心币</p>
+  <div class="m3">
+    <div class="m3-hud"><span>第 <b id="m3Lv">1</b> 关</span><span>剩余 <b id="m3Moves">20</b> 步</span><span><b id="m3Score">0</b> / <span id="m3Target">0</span> 分</span></div>
+    <div class="bar m3-bar"><i id="m3Bar"></i></div>
+    <p class="m3-say" id="m3Say"></p>
+    <div class="m3-wrap"><div class="m3-board" id="m3Board"></div><div class="m3-over" id="m3Over" hidden></div></div>
+    <div class="m3-ctl"><button type="button" id="m3Restart">重新开始这一关 ↻</button></div>
+    <p class="hint">滑动或先后点两个相邻的格子来交换<br>四连变成直线道具 · L / T 形变成炸弹 · 五连变成吉祥的爪印 🐾<br>每天前 3 次过关各送 1 个爱心币</p>
   </div>
 </section>
 
@@ -1887,7 +1934,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 
   /* ---------- 亲密度 (intimacy level), wardrobe and diary ---------- */
   var LV = [0, 30, 80, 150, 250, 380, 540, 740, 1000, 1300], XP_CAP = 25;
-  var XP_FOR = { fed: 3, ball: 2, hug: 2, visit: 5 };
+  var XP_FOR = { fed: 3, ball: 2, hug: 2, visit: 5, m3: 3 };
   var OUTFITS = [
     { id: 'scarf', slot: 'neck', lv: 2, name: '红色小围巾', icon: '🧣' },
     { id: 'bow', slot: 'head', lv: 3, name: '粉色蝴蝶结', icon: '🎀' },
@@ -1986,6 +2033,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (e.pet) parts.push('摸了我 ' + e.pet + ' 下');
     if (e.ball) parts.push('陪我捡了 ' + e.ball + ' 次球');
     if (e.hug) parts.push('抱了我 ' + e.hug + ' 次');
+    if (e.m3) parts.push('陪我玩消消乐过了 ' + e.m3 + ' 关');
     var s = parts.length ? '今天她' + parts.join('，') + '。' : '今天她来看我啦，虽然没怎么陪我玩，我还是很开心。';
     if (e.hit) s += e.hit === 1 ? '还敲了我一下，哼。' : '还敲了我 ' + e.hit + ' 下，哼！不过我原谅她了。';
     if (e.got && e.got.length) s += '她从扭蛋机里扭到了悄悄话 ' + e.got.map(function (n) { return 'No.' + (n + 1); }).join('、') + '。';
@@ -2038,6 +2086,291 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   })();
   if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(function () {});
 
+  /* ---------- 吉祥消消乐 (match-3) ----------
+     Swap two neighbours to line up three of a kind. Four in a row leaves a line
+     clearer, an L or T leaves a bomb, five leaves 吉祥's paw (swap it with any tile
+     to clear every tile of that kind). Reach the target before the moves run out. */
+  var M3_ICONS = ['🦴', '🍓', '🧁', '🌸', '🍖', '🍡'];
+  var M3_BG = ['#fff0d6', '#ffe0e6', '#efe4ff', '#ffe4f2', '#ffe3d2', '#e2f4e4'];
+  var M3_N = 7, M3_CAP = 3;
+  gs.match = gs.match || {};
+  var MS = gs.match;
+  MS.lv = MS.lv || 1; MS.day = MS.day || ''; MS.earned = MS.earned || 0;
+  // five kinds of tile for the first ten levels, six (harder to line up) after that with a few more moves
+  function m3Level(n) {
+    return n <= 10 ? { types: 5, moves: 20, target: 1000 + (n - 1) * 120 } : { types: 6, moves: 24, target: Math.min(1300 + (n - 11) * 50, 2200) };
+  }
+  function m3Tile(t, s) { return { t: t, s: s || '' }; }
+  // a fresh board with no ready-made lines of three
+  function m3Fill(types) {
+    var g = [];
+    for (var r = 0; r < M3_N; r++) {
+      g.push([]);
+      for (var c = 0; c < M3_N; c++) {
+        var t;
+        do t = Math.floor(Math.random() * types);
+        while ((c >= 2 && g[r][c - 1].t === t && g[r][c - 2].t === t) || (r >= 2 && g[r - 1][c].t === t && g[r - 2][c].t === t));
+        g[r].push(m3Tile(t));
+      }
+    }
+    return g;
+  }
+  // every horizontal and vertical line of three or more (the paw, t = -1, never matches)
+  function m3Runs(g) {
+    var runs = [];
+    for (var v = 0; v < 2; v++) for (var a = 0; a < M3_N; a++) {
+      var start = 0;
+      for (var b = 1; b <= M3_N; b++) {
+        var first = v ? g[start][a] : g[a][start], cur = b < M3_N ? (v ? g[b][a] : g[a][b]) : null;
+        if (cur && first.t >= 0 && cur.t === first.t) continue;
+        if (b - start >= 3 && first.t >= 0) {
+          var cells = [];
+          for (var k = start; k < b; k++) cells.push(v ? [k, a] : [a, k]);
+          runs.push({ cells: cells, h: !v, t: first.t });
+        }
+        start = b;
+      }
+    }
+    return runs;
+  }
+  // what a set of lines clears and which special tiles it leaves behind
+  function m3Plan(g, runs, focus) {
+    var hits = {}, make = {};
+    function key(p) { return p[0] * M3_N + p[1]; }
+    runs.forEach(function (run) { run.cells.forEach(function (p) { hits[key(p)] = (hits[key(p)] || 0) + 1; }); });
+    runs.forEach(function (run) {
+      var cross = run.cells.filter(function (p) { return hits[key(p)] > 1; })[0];
+      if (cross) { if (!make[key(cross)]) make[key(cross)] = { r: cross[0], c: cross[1], t: run.t, s: 'bomb' }; return; }
+      if (run.cells.length < 4) return;
+      var plain = run.cells.filter(function (p) { return !g[p[0]][p[1]].s && !make[key(p)]; });
+      var at = plain.filter(function (p) { return (focus || []).some(function (f) { return f[0] === p[0] && f[1] === p[1]; }); })[0] ||
+        plain[Math.floor(plain.length / 2)];
+      if (!at) return;
+      make[key(at)] = run.cells.length >= 5 ? { r: at[0], c: at[1], t: -1, s: 'paw' } : { r: at[0], c: at[1], t: run.t, s: run.h ? 'row' : 'col' };
+    });
+    var seeds = [];
+    runs.forEach(function (run) { seeds = seeds.concat(run.cells); });
+    return m3Expand(g, seeds, make);
+  }
+  // clear the seed cells, setting off any special tiles caught in the blast
+  function m3Expand(g, seeds, make) {
+    var clear = {}, q = [];
+    function add(r, c) {
+      if (r < 0 || c < 0 || r >= M3_N || c >= M3_N) return;
+      var k = r * M3_N + c;
+      if (clear[k] || make[k]) return;
+      clear[k] = [r, c]; q.push([r, c]);
+    }
+    seeds.forEach(function (p) { add(p[0], p[1]); });
+    while (q.length) {
+      var p = q.shift(), s = g[p[0]][p[1]].s, i;
+      if (s === 'row') for (i = 0; i < M3_N; i++) add(p[0], i);
+      if (s === 'col') for (i = 0; i < M3_N; i++) add(i, p[1]);
+      if (s === 'bomb') for (i = 0; i < 9; i++) add(p[0] + Math.floor(i / 3) - 1, p[1] + i % 3 - 1);
+      if (s === 'paw') {
+        var t = g[p[0]][(p[1] + 1) % M3_N].t;
+        g.forEach(function (row, r) { row.forEach(function (x, c) { if (x.t === t) add(r, c); }); });
+      }
+    }
+    return { clear: Object.keys(clear).map(function (k) { return clear[k]; }), make: Object.keys(make).map(function (k) { return make[k]; }) };
+  }
+  // drop tiles into the gaps and top the columns back up; new tiles remember how far above the board they start
+  function m3Drop(g, types) {
+    for (var c = 0; c < M3_N; c++) {
+      var w = M3_N - 1;
+      for (var r = M3_N - 1; r >= 0; r--) if (g[r][c]) { var x = g[r][c]; g[r][c] = null; g[w--][c] = x; }
+      for (var n = w; n >= 0; n--) { g[n][c] = m3Tile(Math.floor(Math.random() * types)); g[n][c].from = n - w - 1; }
+    }
+  }
+  function m3HasMove(g) {
+    for (var r = 0; r < M3_N; r++) for (var c = 0; c < M3_N; c++) {
+      if (g[r][c].s === 'paw') return true;
+      for (var d = 0; d < 2; d++) {
+        var r2 = r + d, c2 = c + 1 - d;
+        if (r2 >= M3_N || c2 >= M3_N) continue;
+        var x = g[r][c]; g[r][c] = g[r2][c2]; g[r2][c2] = x;
+        var ok = m3Runs(g).length > 0;
+        g[r2][c2] = g[r][c]; g[r][c] = x;
+        if (ok) return true;
+      }
+    }
+    return false;
+  }
+
+  var m3 = { g: null, lv: 1, moves: 0, score: 0, busy: false, sel: null, down: null, size: 48, done: false };
+  var m3Board = $('#m3Board');
+  function m3Wait(ms) { return new Promise(function (ok) { setTimeout(ok, ms); }); }
+  function m3Paint(x) {
+    if (!x.el) { x.el = document.createElement('div'); x.el.innerHTML = '<i></i>'; m3Board.appendChild(x.el); }
+    x.el.className = 'm3-t' + (x.s ? ' s-' + x.s : '');
+    x.el.firstChild.textContent = x.s === 'paw' ? '🐾' : M3_ICONS[x.t];
+    x.el.style.setProperty('--bg', x.s === 'paw' ? '#fff' : M3_BG[x.t]);
+  }
+  function m3Place(x, r, c, from) {
+    if (from !== undefined) {
+      x.el.style.transition = 'none';
+      x.el.style.transform = 'translate(' + c * m3.size + 'px,' + from * m3.size + 'px)';
+      void x.el.offsetWidth; x.el.style.transition = '';
+    }
+    x.el.style.transform = 'translate(' + c * m3.size + 'px,' + r * m3.size + 'px)';
+  }
+  // iOS fires resize while scrolling (the address bar); only re-lay out when the board really changed width
+  function m3Layout() {
+    if (m3.g && m3Board.clientWidth / M3_N === m3.size) return;
+    m3.size = m3Board.clientWidth / M3_N;
+    m3Board.style.setProperty('--sz', m3.size + 'px');
+    if (m3.g) m3.g.forEach(function (row, r) { row.forEach(function (x, c) { m3Place(x, r, c, r); }); });
+  }
+  function m3Hud() {
+    var lv = m3Level(m3.lv);
+    $('#m3Lv').textContent = m3.lv; $('#m3Moves').textContent = m3.moves;
+    $('#m3Score').textContent = m3.score; $('#m3Target').textContent = lv.target;
+    $('#m3Bar').style.width = Math.min(100, m3.score / lv.target * 100) + '%';
+  }
+  var m3SayT;
+  function m3Say(t) {
+    var el = $('#m3Say'); el.textContent = '🐶 ' + t;
+    el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump');
+    clearTimeout(m3SayT); m3SayT = setTimeout(function () { el.textContent = '🐶 加油加油～'; }, 3000);
+  }
+  function m3Start(n) {
+    m3.lv = n; m3.moves = m3Level(n).moves; m3.score = 0; m3.busy = false; m3.sel = null; m3.done = false;
+    m3Board.innerHTML = ''; $('#m3Over').hidden = true;
+    do m3.g = m3Fill(m3Level(n).types); while (!m3HasMove(m3.g));
+    m3.g.forEach(function (row, r) { row.forEach(function (x, c) { m3Paint(x); m3Place(x, r, c, r - M3_N); }); });
+    m3Hud();
+    $('#m3Say').textContent = '🐶 ' + (n === 1 ? '把三个一样的连成一排就能消掉哦～' : '第 ' + n + ' 关，一起加油！');
+  }
+  function m3Select(p) {
+    if (m3.sel) m3.g[m3.sel[0]][m3.sel[1]].el.classList.remove('sel');
+    m3.sel = p;
+    if (p) m3.g[p[0]][p[1]].el.classList.add('sel');
+  }
+  function m3Swap(a, b) {
+    var g = m3.g, x = g[a[0]][a[1]], y = g[b[0]][b[1]];
+    g[a[0]][a[1]] = y; g[b[0]][b[1]] = x;
+    m3Place(x, b[0], b[1]); m3Place(y, a[0], a[1]);
+    return [x, y];
+  }
+  async function m3Try(a, b) {
+    if (Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]) !== 1) return;
+    m3Select(null); m3.busy = true;
+    var g = m3.g, xy = m3Swap(a, b), plan;
+    await m3Wait(170);
+    if (xy[0].s === 'paw' || xy[1].s === 'paw') {
+      var other = xy[0].s === 'paw' ? xy[1] : xy[0], seeds = [];
+      g.forEach(function (row, r) { row.forEach(function (x, c) { if (x === xy[0] || x === xy[1] || other.s === 'paw' || x.t === other.t) seeds.push([r, c]); }); });
+      xy.forEach(function (x) { if (x.s === 'paw') x.s = 'used'; });
+      plan = m3Expand(g, seeds, {});
+      m3Say(other.s === 'paw' ? '两个爪印！全部清空！' : '吉祥的爪印出动！🐾');
+    } else {
+      var runs = m3Runs(g);
+      if (!runs.length) { m3Swap(a, b); await m3Wait(170); m3.busy = false; return; }
+      plan = m3Plan(g, runs, [a, b]);
+    }
+    m3.moves--; m3Hud();
+    await m3Resolve(plan);
+    m3.busy = false;
+    m3Check();
+  }
+  var M3_CHEER = ['', '', '好棒！', '太厉害了！', '哇！连击！', '你是消消乐天才！', '吉祥看呆了 🤩'];
+  async function m3Resolve(plan) {
+    var g = m3.g, types = m3Level(m3.lv).types, combo = 0;
+    while (plan) {
+      combo++;
+      plan.clear.forEach(function (p) {
+        var x = g[p[0]][p[1]]; g[p[0]][p[1]] = null;
+        x.el.classList.add('gone'); setTimeout(function () { x.el.remove(); }, 300);
+      });
+      plan.make.forEach(function (m) {
+        var x = g[m.r][m.c]; x.t = m.t; x.s = m.s; m3Paint(x); x.el.classList.add('born');
+      });
+      m3.score += plan.clear.length * 10 * combo + plan.make.length * 30;
+      m3Hud();
+      if (plan.make.some(function (m) { return m.s === 'paw'; })) m3Say('变出了吉祥的爪印！和任意一个交换试试 🐾');
+      else if (plan.make.length) m3Say(plan.make[0].s === 'bomb' ? '做出了一个炸弹 💥' : '做出了一个直线道具 ✨');
+      else if (combo >= 2) m3Say(M3_CHEER[Math.min(combo, M3_CHEER.length - 1)]);
+      await m3Wait(230);
+      m3Drop(g, types);
+      g.forEach(function (row, r) {
+        row.forEach(function (x, c) {
+          if (!x.el) { m3Paint(x); m3Place(x, r, c, x.from); } else { x.el.classList.remove('born'); m3Place(x, r, c); }
+        });
+      });
+      await m3Wait(300);
+      var runs = m3Runs(g);
+      plan = runs.length ? m3Plan(g, runs, null) : null;
+    }
+    if (!m3HasMove(g)) {
+      m3Say('没有能消的了，我帮你重新洗一下牌～');
+      await m3Wait(600);
+      m3Board.innerHTML = '';
+      do m3.g = m3Fill(types); while (!m3HasMove(m3.g));
+      m3.g.forEach(function (row, r) { row.forEach(function (x, c) { m3Paint(x); m3Place(x, r, c, r - M3_N); }); });
+    }
+  }
+  // the first three level wins each day pay a 爱心币 each
+  function m3Reward() {
+    var d = todayStr();
+    if (MS.day !== d) { MS.day = d; MS.earned = 0; }
+    if (MS.earned >= M3_CAP) return 0;
+    MS.earned++; gs.earned++; renderCoins(true);
+    return 1;
+  }
+  function m3Check() {
+    var lv = m3Level(m3.lv), over = $('#m3Over');
+    if (m3.done) return;
+    if (m3.score >= lv.target) {
+      m3.done = true;
+      var stars = 1 + (m3.moves >= 5) + (m3.moves >= 10);
+      if (m3.lv >= MS.lv) MS.lv = m3.lv + 1;
+      var got = m3Reward();
+      track('m3');
+      over.innerHTML = '<div><p class="m3-big">过关啦！</p><p class="m3-stars">' + '⭐'.repeat(stars) + '<span>' + '⭐'.repeat(3 - stars) + '</span></p>' +
+        '<p>' + (got ? '爱心币 +1 💗' : '今天的消消乐爱心币已经领满啦') + '</p>' +
+        '<button type="button" class="spin-btn" data-go="' + (m3.lv + 1) + '">下一关 →</button></div>';
+      over.hidden = false; fireworks(1800);
+      say(pick(['她又过了一关！', '好厉害呀 ✨', '汪！我们赢啦！']), 2200);
+    } else if (m3.moves <= 0) {
+      m3.done = true;
+      over.innerHTML = '<div><p class="m3-big">差一点点！</p><p>还差 ' + (lv.target - m3.score) + ' 分，吉祥陪你再来一次 🐾</p>' +
+        '<button type="button" class="spin-btn" data-go="' + m3.lv + '">再试一次 ↻</button></div>';
+      over.hidden = false;
+    }
+  }
+  $('#m3Over').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-go]'); if (b) m3Start(+b.dataset.go);
+  });
+  $('#m3Restart').addEventListener('click', function () { if (!m3.busy) m3Start(m3.lv); });
+  function m3Cell(e) {
+    var rect = m3Board.getBoundingClientRect();
+    var r = Math.floor((e.clientY - rect.top) / m3.size), c = Math.floor((e.clientX - rect.left) / m3.size);
+    return r >= 0 && c >= 0 && r < M3_N && c < M3_N ? [r, c] : null;
+  }
+  m3Board.addEventListener('pointerdown', function (e) {
+    if (m3.busy || m3.done) return;
+    var p = m3Cell(e); if (!p) return;
+    m3.down = { p: p, x: e.clientX, y: e.clientY };
+  });
+  m3Board.addEventListener('pointermove', function (e) {
+    var d = m3.down; if (!d) return;
+    var dx = e.clientX - d.x, dy = e.clientY - d.y;
+    if (Math.max(Math.abs(dx), Math.abs(dy)) < m3.size * 0.35) return;
+    m3.down = null;
+    var q = Math.abs(dx) > Math.abs(dy) ? [d.p[0], d.p[1] + (dx > 0 ? 1 : -1)] : [d.p[0] + (dy > 0 ? 1 : -1), d.p[1]];
+    if (q[0] >= 0 && q[1] >= 0 && q[0] < M3_N && q[1] < M3_N) m3Try(d.p, q);
+  });
+  m3Board.addEventListener('pointerup', function () {
+    var d = m3.down; m3.down = null; if (!d) return;
+    var s = m3.sel;
+    if (s && Math.abs(s[0] - d.p[0]) + Math.abs(s[1] - d.p[1]) === 1) m3Try(s, d.p);
+    else m3Select(s && s[0] === d.p[0] && s[1] === d.p[1] ? null : d.p);
+  });
+  m3Board.addEventListener('pointercancel', function () { m3.down = null; });
+  addEventListener('resize', m3Layout);
+  m3Layout();
+  m3Start(MS.lv);
+
   /* ---------- cloud sync (Firebase) + GitHub backup ----------
      Progress lives in localStorage, Firebase and a daily GitHub backup
      (fancy/progress-backup.json). Merging only ever adds: unlocked whispers
@@ -2047,7 +2380,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   function snapshot() {
     return {
       pet: { hunger: stats.hunger, hungerAt: stats.hungerAt, mood: stats.mood, fed: stats.fed, pet: stats.pet, hit: stats.hit },
-      gacha: { earned: gs.earned, spent: gs.spent, got: gs.got.slice().sort(function (a, b) { return a - b; }), lastDay: gs.lastDay, playDay: gs.playDay || '', playEarned: gs.playEarned || 0, voucher: gs.voucher || null },
+      gacha: { earned: gs.earned, spent: gs.spent, got: gs.got.slice().sort(function (a, b) { return a - b; }), lastDay: gs.lastDay, playDay: gs.playDay || '', playEarned: gs.playEarned || 0, voucher: gs.voucher || null, match: { lv: MS.lv, day: MS.day, earned: MS.earned } },
       life: { xp: L.xp, xpDay: L.xpDay || '', xpToday: L.xpToday || 0, diary: L.diary, wear: L.wear, wearAt: L.wearAt },
       updatedAt: gs.updatedAt
     };
@@ -2072,6 +2405,12 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       else if (rg.playDay === gs.playDay && rg.playEarned > gs.playEarned) { gs.playEarned = rg.playEarned; changed = true; }
     }
     if (rg.voucher && rg.voucher.code && !gs.voucher) { gs.voucher = rg.voucher; changed = true; }
+    var rm = rg.match || {};
+    if (typeof rm.lv === 'number' && rm.lv > MS.lv) { MS.lv = rm.lv; changed = true; }
+    if (typeof rm.day === 'string' && typeof rm.earned === 'number') {
+      if (rm.day > MS.day) { MS.day = rm.day; MS.earned = rm.earned; changed = true; }
+      else if (rm.day === MS.day && rm.earned > MS.earned) { MS.earned = rm.earned; changed = true; }
+    }
     var rl = r.life || {};
     if (typeof rl.xp === 'number' && rl.xp > L.xp) { L.xp = rl.xp; changed = true; }
     if (typeof rl.xpDay === 'string' && typeof rl.xpToday === 'number') {

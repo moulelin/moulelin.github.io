@@ -54,6 +54,7 @@ jobs:
                   "got": sorted((set(ng.get("got", [])) | set(og.get("got", []))) - REVOKED),
                   "lastDay": max(ng.get("lastDay", ""), og.get("lastDay", "")),
                   "voucher": ng.get("voucher") or og.get("voucher"),
+                  "match": {"lv": max((ng.get("match") or {}).get("lv", 1), (og.get("match") or {}).get("lv", 1))},
               },
               "updatedAt": max(remote.get("updatedAt", 0), old.get("updatedAt", 0)),
           }
