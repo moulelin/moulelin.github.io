@@ -938,7 +938,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 
 <div class="music" id="music">
   <span class="disc">💿</span>
-  <span class="m-title"><span id="mTitle">Canon</span><span class="eq"><i></i><i></i><i></i></span></span>
+  <span class="m-title"><span id="mTitle"></span><span class="eq"><i></i><i></i><i></i></span></span>
   <button type="button" id="mPlay" aria-label="播放">▶</button>
   <button type="button" id="mNext" class="ghost" aria-label="下一首">⏭</button>
 </div>
@@ -2121,15 +2121,27 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   }
 
   /* ---------- music ---------- */
+  // public-domain recordings from Wikimedia Commons
   var tracks = [
-    { src: 'music/lover.mp3', title: 'Lover' },
-    { src: 'music/Canon.mp3', title: 'Canon' },
-    { src: 'music/love.mp3', title: 'Love' },
-    { src: 'music/night.mp3', title: 'Night' }
+    { src: 'music/clair-de-lune.mp3', title: 'Clair de Lune' },
+    { src: 'music/gymnopedie.mp3', title: 'Gymnopédie' },
+    { src: 'music/reverie.mp3', title: 'Rêverie' },
+    { src: 'music/traumerei.mp3', title: 'Träumerei' },
+    { src: 'music/nocturne.mp3', title: 'Nocturne' }
   ];
-  var audio = new Audio(), ti = 0, userPaused = false;
+  var audio = new Audio(), ti = 0, order = [], userPaused = false;
   audio.preload = 'auto';
-  function load(k) { ti = (k + tracks.length) % tracks.length; audio.src = tracks[ti].src; $('#mTitle').textContent = tracks[ti].title; }
+  // shuffle play: a fresh random order each round, never the same song twice in a row
+  function shuffle() {
+    var last = order[order.length - 1];
+    order = tracks.map(function (t, i) { return i; });
+    for (var i = order.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = order[i]; order[i] = order[j]; order[j] = t; }
+    if (order.length > 1 && order[0] === last) order.push(order.shift());
+  }
+  function load(k) {
+    if (k >= order.length) { shuffle(); k = 0; }
+    ti = k; audio.src = tracks[order[ti]].src; $('#mTitle').textContent = tracks[order[ti]].title;
+  }
   function ui(on) {
     $('#music').classList.toggle('on', on);
     $('#mPlay').textContent = on ? '❚❚' : '▶';
@@ -2143,7 +2155,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (audio.paused) { userPaused = false; play(); } else { userPaused = true; audio.pause(); }
   });
   $('#mNext').addEventListener('click', function () { load(ti + 1); userPaused = false; play(); });
-  load(0);
+  shuffle(); load(0);
   var gate = $('#gate');
   function openGate() {
     if (!gate || gate.classList.contains('hide')) return;
