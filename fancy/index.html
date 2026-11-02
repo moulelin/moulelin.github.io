@@ -527,7 +527,46 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 .dog .acc { display: none; }
 .dog .acc.on { display: inline; }
 
+/* ---------- weather ---------- */
+.wx {
+  position: absolute; top: 12px; left: 12px; z-index: 6; display: none; align-items: center; gap: 5px;
+  padding: 4px 11px; border-radius: 999px; background: rgba(255,255,255,.85); color: var(--ink); font-size: 13px;
+  pointer-events: none; box-shadow: 0 4px 12px rgba(255,122,156,.12);
+}
+.wx.show { display: inline-flex; }
+.yard.night .wx { background: rgba(40,46,90,.6); color: #ecebff; }
+.yard.day.wx-rain, .yard.day.wx-cloud { background: linear-gradient(#e6e9f1 0%, #f6f2ef 70%); }
+.yard.day.wx-snow { background: linear-gradient(#e9eef7 0%, #fbf8f6 70%); }
+.yard.wx-rain .sun, .yard.wx-snow .sun, .yard.wx-cloud .sun, .yard.wx-fog .sun { opacity: .35; }
+.yard.wx-fog::after { content: ""; position: absolute; inset: 0; z-index: 4; pointer-events: none; background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.12)); }
+.drop {
+  position: absolute; top: -30px; width: 2px; height: 16px; border-radius: 2px; pointer-events: none; z-index: 5;
+  background: linear-gradient(rgba(140,170,225,0), rgba(110,150,220,.75)); animation: dropFall var(--d) linear infinite;
+}
+@keyframes dropFall { to { transform: translate(-34px, 440px); } }
+/* ---------- weather end ---------- */
+
+/* ---------- notes from Moral ---------- */
+.controls .mail { background: #fff0f4; border-color: var(--pink2); color: var(--pink); }
+.controls .mail.new { animation: nudge 1.2s ease-in-out infinite; }
+@keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.card-w .note {
+  font-family: "Ma Shan Zheng", "ZCOOL KuaiLe", cursive; font-size: 24px; line-height: 1.75; text-align: left; white-space: pre-wrap;
+  word-break: break-word; margin: 14px 0 6px; color: var(--ink); max-height: 52vh; overflow: auto;
+  background: repeating-linear-gradient(transparent 0 41px, #f8dce3 41px 42px); padding: 0 4px;
+}
+.card-w .note-meta { color: var(--muted); font-size: 13px; text-align: right; margin: 0 0 16px; }
+.card-w .mb { max-height: 52vh; overflow: auto; margin: 14px 0 16px; text-align: left; }
+.mb-item {
+  display: block; width: 100%; text-align: left; border: 1px solid var(--line); background: #fff; border-radius: 14px;
+  padding: 10px 12px; margin: 0 0 8px; cursor: pointer; color: var(--ink); font-size: 15px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.mb-item small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+.mb-item.unread { border-color: var(--pink2); background: #fff6f8; }
+
 /* ---------- add to home screen ---------- */
+
 .a2hs {
   max-width: 660px; margin: 14px auto 0; display: flex; align-items: center; gap: 10px; background: #fff;
   border: 1.5px dashed var(--pink2); border-radius: 18px; padding: 10px 10px 10px 16px; font-size: 14px; color: var(--ink);
@@ -700,6 +739,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     <div class="ground"></div>
     <span class="house">🏡</span>
     <span class="glow"></span>
+    <span class="wx" id="wx"></span>
     <span class="deco" style="left:22%">🌷</span>
     <span class="deco" style="left:41%;font-size:18px">🌼</span>
     <span class="deco" style="left:63%">🌷</span>
@@ -713,57 +753,74 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       <div class="flip" id="flip">
         <svg class="dog" viewBox="0 0 200 140" aria-label="小柴犬吉祥">
           <defs>
-            <radialGradient id="gFur" cx="35%" cy="28%" r="78%"><stop offset="0" stop-color="#F8B887"/><stop offset=".55" stop-color="#E8955A"/><stop offset="1" stop-color="#C46F36"/></radialGradient>
-            <radialGradient id="gFurDark" cx="35%" cy="25%" r="85%"><stop offset="0" stop-color="#E29A63"/><stop offset="1" stop-color="#B0602B"/></radialGradient>
-            <radialGradient id="gCream" cx="40%" cy="30%" r="80%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".65" stop-color="#FFF4E6"/><stop offset="1" stop-color="#F1D8BC"/></radialGradient>
-            <radialGradient id="gShadow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="rgba(70,110,50,.32)"/><stop offset="1" stop-color="rgba(70,110,50,0)"/></radialGradient>
+            <radialGradient id="gFur" cx="38%" cy="22%" r="85%"><stop offset="0" stop-color="#FBC08E"/><stop offset=".5" stop-color="#EE9A5C"/><stop offset="1" stop-color="#C96E33"/></radialGradient>
+            <radialGradient id="gFurDark" cx="40%" cy="20%" r="90%"><stop offset="0" stop-color="#E39860"/><stop offset="1" stop-color="#A85A26"/></radialGradient>
+            <radialGradient id="gHead" cx="40%" cy="24%" r="80%"><stop offset="0" stop-color="#FDC898"/><stop offset=".55" stop-color="#F0A062"/><stop offset="1" stop-color="#CF7638"/></radialGradient>
+            <radialGradient id="gCream" cx="45%" cy="30%" r="80%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".6" stop-color="#FFF6EA"/><stop offset="1" stop-color="#F3DCC0"/></radialGradient>
+            <radialGradient id="gEar" cx="50%" cy="80%" r="80%"><stop offset="0" stop-color="#FFD9CC"/><stop offset="1" stop-color="#F7A99A"/></radialGradient>
+            <radialGradient id="gEye" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#5B3A2C"/><stop offset=".55" stop-color="#2A1A14"/><stop offset="1" stop-color="#140C09"/></radialGradient>
+            <radialGradient id="gShadow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="rgba(70,110,50,.34)"/><stop offset="1" stop-color="rgba(70,110,50,0)"/></radialGradient>
           </defs>
-          <ellipse class="shadow" cx="102" cy="131" rx="60" ry="7" style="fill:url(#gShadow)"/>
+          <ellipse class="shadow" cx="102" cy="130" rx="62" ry="7" style="fill:url(#gShadow)"/>
           <g class="dog-inner">
             <g class="tail">
-              <circle class="o" cx="62" cy="52" r="14" fill="url(#gFur)"/>
-              <path d="M62 44 A8 8 0 1 1 55 57" fill="none" stroke="#FFF4E6" stroke-width="4" stroke-linecap="round"/>
-              <path class="o" d="M66 64 Q70 58 74 62 L72 72 Z" fill="url(#gFur)" stroke-width="2.6"/>
+              <path d="M76 66 C58 68 50 55 56 46 C62 37 77 39 77 50 C77 57 70 59 66 55" fill="none" stroke="#4A3128" stroke-width="17" stroke-linecap="round"/>
+              <path d="M76 66 C58 68 50 55 56 46 C62 37 77 39 77 50 C77 57 70 59 66 55" fill="none" stroke="url(#gFur)" stroke-width="11.6" stroke-linecap="round"/>
+              <path d="M61 59 C55 53 56 45 62 43 C68 41 72 45 72 50" fill="none" stroke="#FFF6EA" stroke-width="4.4" stroke-linecap="round"/>
+              <path d="M57 40 l-2 -4 M63 37 l0 -4 M51 47 l-4 -1" stroke="#4A3128" stroke-width="2.2" stroke-linecap="round"/>
             </g>
-            <g class="leg b"><rect class="o" x="82" y="84" width="14" height="43" rx="7" fill="url(#gFurDark)"/><rect x="84" y="117" width="10" height="8" rx="3" fill="url(#gCream)"/></g>
-            <g class="leg a"><rect class="o" x="132" y="84" width="14" height="43" rx="7" fill="url(#gFurDark)"/><rect x="134" y="117" width="10" height="8" rx="3" fill="url(#gCream)"/></g>
-            <g class="leg a"><rect class="o" x="66" y="85" width="15" height="43" rx="7.5" fill="url(#gFur)"/><rect x="68.5" y="118" width="10" height="8" rx="3" fill="url(#gCream)"/></g>
-            <g class="leg b"><rect class="o" x="116" y="85" width="15" height="43" rx="7.5" fill="url(#gFur)"/><rect x="118.5" y="118" width="10" height="8" rx="3" fill="url(#gCream)"/></g>
+            <g class="leg b"><path class="o" d="M80 86 L80 122 Q87.5 127 95 122 L95 86" fill="url(#gFurDark)"/><ellipse class="o" cx="87.5" cy="124.5" rx="9.1" ry="5" fill="url(#gCream)" stroke-width="2.8"/><path d="M84.9 124.4 l0 2.6 M90.1 124.4 l0 2.6" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
+            <g class="leg a"><path class="o" d="M128 86 L128 122 Q135.5 127 143 122 L143 86" fill="url(#gFurDark)"/><ellipse class="o" cx="135.5" cy="124.5" rx="9.1" ry="5" fill="url(#gCream)" stroke-width="2.8"/><path d="M132.9 124.4 l0 2.6 M138.1 124.4 l0 2.6" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
             <g class="body-g">
-              <ellipse class="o" cx="100" cy="80" rx="45" ry="23" fill="url(#gFur)"/>
-              <ellipse cx="104" cy="95" rx="27" ry="7" fill="url(#gCream)"/>
-              <ellipse cx="134" cy="88" rx="11" ry="12" fill="url(#gCream)"/>
-              <ellipse cx="82" cy="66" rx="16" ry="5" fill="#fff" opacity=".28" transform="rotate(-12 82 66)"/>
+              <path class="o" d="M60 84 C58 66 76 58 99 59 C120 60 136 62 142 76 C147 90 139 104 120 105 L80 105 C66 104 61 96 60 84 Z" fill="url(#gFur)"/>
+              <path d="M70 70 C80 63 100 62 112 64" fill="none" stroke="#C96E33" stroke-width="5" stroke-linecap="round" opacity=".25"/>
+              <path d="M84 104 C90 95 116 93 132 99 C127 104 122 105 118 105 L86 105 Z" fill="url(#gCream)"/>
+              <path d="M126 80 C130 74 142 74 144 84 C146 94 140 102 132 102 C124 100 122 88 126 80 Z" fill="url(#gCream)"/>
+              <path d="M127 99 l3 4 l2 -4 l3 4 l2 -4" fill="none" stroke="#E9CDAE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <ellipse cx="84" cy="67" rx="15" ry="4.5" fill="#fff" opacity=".32" transform="rotate(-10 84 67)"/>
+              <path d="M66 96 C64 88 68 80 76 78" fill="none" stroke="#B9652E" stroke-width="2.4" stroke-linecap="round" opacity=".45"/>
             </g>
-            <g class="acc" id="acc-cape"><path class="o" d="M130 72 Q104 64 74 78 Q60 94 63 108 Q92 97 128 91 Z" fill="#FF6B8A" stroke-width="2.6"/></g>
+            <g class="leg a"><path class="o" d="M64 86 L64 122 Q72.0 127 80 122 L80 86" fill="url(#gFur)"/><ellipse class="o" cx="72.0" cy="124.5" rx="9.6" ry="5" fill="url(#gCream)" stroke-width="2.8"/><path d="M69.4 124.4 l0 2.6 M74.6 124.4 l0 2.6" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
+            <g class="leg b"><path class="o" d="M112 86 L112 122 Q120.0 127 128 122 L128 86" fill="url(#gFur)"/><ellipse class="o" cx="120.0" cy="124.5" rx="9.6" ry="5" fill="url(#gCream)" stroke-width="2.8"/><path d="M117.4 124.4 l0 2.6 M122.6 124.4 l0 2.6" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
+            <g class="acc" id="acc-cape"><path class="o" d="M132 70 Q104 62 72 76 Q58 92 61 106 Q92 96 130 90 Z" fill="#FF6B8A" stroke-width="2.6"/><path d="M70 82 Q96 72 126 76" fill="none" stroke="#FFC2D1" stroke-width="2" stroke-dasharray="3 4"/></g>
+            <g class="acc" id="acc-raincoat">
+              <path class="o" d="M138 72 C120 58 80 58 66 70 C58 80 59 97 64 103 L136 103 C144 94 145 80 138 72 Z" fill="#FFD23F" stroke-width="2.8"/>
+              <path d="M74 72 C88 64 110 63 126 67" fill="none" stroke="#FFF1A8" stroke-width="4" stroke-linecap="round"/>
+              <path d="M64 98 L136 98" stroke="#E6B21F" stroke-width="3"/>
+              <circle cx="124" cy="80" r="2.4" fill="#4A3128"/><circle cx="124" cy="90" r="2.4" fill="#4A3128"/>
+            </g>
+            <g transform="translate(140 80) scale(1.13) translate(-140 -80)">
             <g class="head-g">
-              <g class="ear ear-l"><path class="o" d="M129 47 L136 17 L152 37 Z" fill="url(#gFur)"/><path d="M134 41 L138 25 L147 37 Z" fill="#FFC9B3"/></g>
-              <g class="ear ear-r"><path class="o" d="M156 37 L175 15 L179 46 Z" fill="url(#gFur)"/><path d="M161 38 L173 24 L175 42 Z" fill="#FFC9B3"/></g>
-              <ellipse class="o" cx="152" cy="62" rx="31" ry="26" fill="url(#gFur)"/>
-              <ellipse cx="140" cy="77" rx="10" ry="8" fill="url(#gCream)"/>
-              <ellipse cx="170" cy="76" rx="10" ry="8" fill="url(#gCream)"/>
-              <ellipse cx="155" cy="76" rx="13" ry="10" fill="url(#gCream)"/>
-              <ellipse cx="140" cy="45" rx="9" ry="4.5" fill="#fff" opacity=".3" transform="rotate(-24 140 45)"/>
-              <ellipse cx="142" cy="49" rx="3.4" ry="2.3" fill="url(#gCream)"/>
-              <ellipse cx="165" cy="47" rx="3.4" ry="2.3" fill="url(#gCream)"/>
+              <path d="M134 84 Q150 94 166 86" fill="none" stroke="#7a4a30" stroke-width="7" stroke-linecap="round" opacity=".14"/>
+              <g class="ear ear-l"><path class="o" d="M127 52 Q127 30 135.5 17.5 Q144 22 154 37 Z" fill="url(#gHead)"/><path d="M132.5 45 Q133 32 137 25 Q142 29 147.5 37 Z" fill="url(#gEar)"/><path d="M134 41 l3 2 M135 36 l3 1" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".8"/></g>
+              <g class="ear ear-r"><path class="o" d="M155 36 Q165 22 176 15.5 Q182 28 181 50 Z" fill="url(#gHead)"/><path d="M161 36 Q168 28 173 24 Q176 32 175.5 43 Z" fill="url(#gEar)"/><path d="M171 39 l-3 1 M172 34 l-3 1" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".8"/></g>
+              <path class="o" d="M123 63 C121 45 135 34 153 34 C171 34 185 45 183 62 C186 68 185 76 179 81 C172 89 140 91 130 84 C123 79 120 70 123 63 Z" fill="url(#gHead)"/>
+              <path d="M123.5 70 l-3.4 2.2 l3.6 1.4 M182.6 67.6 l3.6 1.8 l-3.4 2" fill="none" stroke="#4A3128" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M128 72 C130 63 145 62 150.5 69 L159.5 69 C165 61 179 62 180 71 C181 80 170 88 155 88 C140 88 127 81 128 72 Z" fill="url(#gCream)"/>
+              <ellipse cx="141" cy="43" rx="10" ry="4.6" fill="#fff" opacity=".34" transform="rotate(-22 141 43)"/>
+              <ellipse cx="142.5" cy="49" rx="3.8" ry="2.5" fill="url(#gCream)"/>
+              <ellipse cx="165.5" cy="47" rx="3.8" ry="2.5" fill="url(#gCream)"/>
               <g id="collar">
-                <path class="ln" d="M124 80 Q132 97 152 93" stroke="#E5534B" stroke-width="7"/>
-                <circle class="o" cx="138" cy="96" r="4.2" fill="#FFD25E" stroke-width="2.4"/>
+                <path class="ln" d="M126 82 Q134 98 154 93" stroke="#E5534B" stroke-width="7"/>
+                <path d="M128 85 Q135 95 150 92.6" fill="none" stroke="#FF8A80" stroke-width="1.8" stroke-linecap="round"/>
+                <circle class="o" cx="139" cy="96.5" r="4.4" fill="#FFD25E" stroke-width="2.4"/>
+                <circle cx="137.8" cy="95.2" r="1.3" fill="#fff"/>
               </g>
-              <ellipse class="blush" cx="136" cy="68" rx="6" ry="3.4" fill="#FF8FA8"/>
-              <ellipse class="blush" cx="174" cy="66" rx="6" ry="3.4" fill="#FF8FA8"/>
+              <ellipse class="blush" cx="135" cy="70" rx="6.4" ry="3.6" fill="#FF8FA8"/>
+              <ellipse class="blush" cx="175.5" cy="68" rx="6.4" ry="3.6" fill="#FF8FA8"/>
               <g class="eyes-n">
-                <circle cx="143" cy="58" r="4.8" fill="#2E1E18"/><circle cx="166" cy="56" r="4.8" fill="#2E1E18"/>
-                <circle cx="144.8" cy="56.2" r="1.7" fill="#fff"/><circle cx="167.8" cy="54.2" r="1.7" fill="#fff"/>
+                <ellipse cx="143" cy="58.5" rx="5.4" ry="6" fill="url(#gEye)"/><ellipse cx="166" cy="56.5" rx="5.4" ry="6" fill="url(#gEye)"/>
+                <circle cx="145.2" cy="56" r="2.1" fill="#fff"/><circle cx="168.2" cy="54" r="2.1" fill="#fff"/>
+                <circle cx="141.4" cy="61.2" r="1" fill="#fff" opacity=".85"/><circle cx="164.4" cy="59.2" r="1" fill="#fff" opacity=".85"/>
               </g>
-              <g class="eyes-h"><path class="ln" d="M138 60 Q143 53 148 60"/><path class="ln" d="M161 58 Q166 51 171 58"/></g>
-              <g class="eyes-c"><path class="ln" d="M138 58 Q143 63 148 58"/><path class="ln" d="M161 56 Q166 61 171 56"/></g>
+              <g class="eyes-h"><path class="ln" d="M137.5 60 Q143 52.5 148.5 60"/><path class="ln" d="M160.5 58 Q166 50.5 171.5 58"/></g>
+              <g class="eyes-c"><path class="ln" d="M137.5 58 Q143 63.5 148.5 58"/><path class="ln" d="M160.5 56 Q166 61.5 171.5 56"/></g>
               <g class="eyes-x"><path class="ln" d="M139 54 l8 8 M147 54 l-8 8"/><path class="ln" d="M162 52 l8 8 M170 52 l-8 8"/></g>
-              <path class="o tongue" d="M152 78.5 Q152 88 155 88 Q158 88 158 78.5 Z" fill="#FF7A8A" stroke-width="2.2"/>
-              <ellipse cx="155" cy="70.5" rx="4.4" ry="3.3" fill="#2E1E18"/>
-              <ellipse cx="153.8" cy="69.5" rx="1.3" ry=".8" fill="#fff" opacity=".8"/>
-              <path class="ln" d="M155 73.5 L155 77" stroke-width="2.2"/>
-              <path class="ln" d="M149.5 77 Q152.2 80.5 155 77 Q157.8 80.5 160.5 77" stroke-width="2.4"/>
+              <path class="o tongue" d="M151.6 77.5 Q151.6 88 155.2 88 Q158.8 88 158.8 77.5 Z" fill="#FF7A8A" stroke-width="2.2"/>
+              <path d="M150.2 68.6 Q155 65.6 159.8 68.6 Q159.6 73.4 155 74.4 Q150.4 73.4 150.2 68.6 Z" fill="#2E1E18"/>
+              <ellipse cx="153.4" cy="68.4" rx="1.8" ry=".9" fill="#fff" opacity=".75"/>
+              <path class="ln" d="M155 74.4 L155 76.6" stroke-width="2.2"/>
+              <path class="ln" d="M149.6 76.2 Q152.3 80 155 76.6 Q157.7 80 160.4 76.2" stroke-width="2.4"/>
               <g class="hat">
                 <path class="o" d="M141 40 L156 0 L171 38 Q156 44 141 40 Z" fill="#FF8FAB" stroke-width="2.6"/>
                 <path d="M146 27 L166 24 M150 15 L162 13" stroke="#FFF7EE" stroke-width="3" stroke-linecap="round"/>
@@ -785,6 +842,13 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
                 <circle cx="166" cy="56" r="8.5" fill="rgba(255,255,255,.2)" stroke="#45302a" stroke-width="2.4"/>
                 <path d="M151.5 57.5 Q154.5 54.5 157.5 56.5" fill="none" stroke="#45302a" stroke-width="2.4"/>
                 <path d="M134.6 59 L125 55" stroke="#45302a" stroke-width="2.2" stroke-linecap="round"/>
+              </g>
+              <g class="acc" id="acc-shades">
+                <path class="o" d="M134 53 Q143 51 152 53 Q152 63 143 64 Q134 63 134 53 Z" fill="#2B2B3A" stroke-width="2.2"/>
+                <path class="o" d="M157 51 Q166 49 175 51 Q175 61 166 62 Q157 61 157 51 Z" fill="#2B2B3A" stroke-width="2.2"/>
+                <path d="M152 53.5 Q154.5 51 157 52" fill="none" stroke="#45302a" stroke-width="2.4"/>
+                <path d="M134 54 L125 51" stroke="#45302a" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M137 55.5 l5 -2 M160 53.5 l5 -2" stroke="#fff" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
               </g>
               <g class="acc" id="acc-bow">
                 <path class="o" d="M134 40 Q119 29 121 43 Q124 50 134 43 Z" fill="#FF8FB1" stroke-width="2.2"/>
@@ -809,6 +873,11 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
                 <path class="o" d="M139 37 Q139 18 153 18 Q167 18 167 37 Z" fill="#F2D27B" stroke-width="2.4"/>
                 <path d="M139.5 32 Q153 35.5 166.5 32" fill="none" stroke="#FF6B8A" stroke-width="4"/>
               </g>
+              <g class="acc" id="acc-rainhat">
+                <path class="o" d="M122 44 Q153 30 185 42 Q187 50 178 49 Q153 41 129 51 Q120 52 122 44 Z" fill="#FFD23F" stroke-width="2.4"/>
+                <path class="o" d="M134 41 Q136 20 154 20 Q172 20 173 40 Q153 34 134 41 Z" fill="#FFD23F" stroke-width="2.4"/>
+                <path d="M141 27 Q153 22 165 27" fill="none" stroke="#FFF1A8" stroke-width="3" stroke-linecap="round"/>
+              </g>
               <g class="acc" id="acc-crown">
                 <path class="o" d="M139 39 L141 22 L148 30 L153.5 17 L159 30 L166 22 L168 39 Z" fill="#FFD25E" stroke-width="2.4"/>
                 <circle cx="153.5" cy="31" r="2.6" fill="#FF6B8A"/><circle cx="145" cy="34" r="1.9" fill="#8EC2FF"/><circle cx="162" cy="34" r="1.9" fill="#8EC2FF"/>
@@ -818,10 +887,18 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
                 <ellipse class="o" cx="154" cy="41" rx="19" ry="5.5" fill="#ffffff" stroke-width="2.4"/>
                 <circle class="o" cx="183" cy="9" r="5.5" fill="#ffffff" stroke-width="2.4"/>
               </g>
-              <g class="tears">
-                <path d="M141 64 C138 69 138 72 141 72 C144 72 144 69 141 64 Z" fill="#8FD0FF"/>
-                <path d="M167 62 C164 67 164 70 167 70 C170 70 170 67 167 62 Z" fill="#8FD0FF"/>
+              <g class="acc" id="acc-envelope">
+                <g transform="rotate(-8 160 86)">
+                  <rect class="o" x="146" y="79" width="28" height="18" rx="2.5" fill="#FFF8F0" stroke-width="2.2"/>
+                  <path d="M147 80.5 L160 90 L173 80.5" fill="none" stroke="#4A3128" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M160 92.5 c-2.6 -2.4 -4.6 -4 -4.6 -6 a2.3 2.3 0 0 1 4.6 -.6 a2.3 2.3 0 0 1 4.6 .6 c0 2 -2 3.6 -4.6 6 z" fill="#FF6B8A"/>
+                </g>
               </g>
+              <g class="tears">
+                <path d="M141 65 C138 70 138 73 141 73 C144 73 144 70 141 65 Z" fill="#8FD0FF"/>
+                <path d="M167 63 C164 68 164 71 167 71 C170 71 170 68 167 63 Z" fill="#8FD0FF"/>
+              </g>
+            </g>
             </g>
           </g>
         </svg>
@@ -834,6 +911,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     <button type="button" id="bBall">⚾ 扔球</button>
     <button type="button" id="bHit">🔨 敲一下</button>
     <button type="button" id="bHug">💗 求抱抱</button>
+    <button type="button" id="bMail" class="mail" hidden>💌 信箱</button>
   </div>
   <div class="stats">
     <span>🍖 饱腹<span class="bar food-bar"><i id="hungerBar"></i></span></span>
@@ -1275,7 +1353,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (stats.pet % 7 === 0) { say(pick(PETS), 1800); save(); }
     if (stats.pet % 30 === 0) earn(1, { x: x, y: y });
   }
-  var down = null, lastP = null, rubDist = 0;
+  var down = null, lastP = null, rubDist = 0, onPetTap = null;
   pet.addEventListener('pointerdown', function (e) {
     down = { x: e.clientX, y: e.clientY, t: now(), moved: 0 };
     lastP = { x: e.clientX, y: e.clientY };
@@ -1291,7 +1369,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   });
   pet.addEventListener('pointerleave', function () { lastP = null; });
   pet.addEventListener('pointerup', function () {
-    if (down && down.moved < 10 && now() - down.t < 400) hit();
+    if (down && down.moved < 10 && now() - down.t < 400) { if (!(onPetTap && onPetTap())) hit(); }
     down = null;
   });
   pet.addEventListener('pointercancel', function () { down = null; lastP = null; });
@@ -1318,7 +1396,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       } else if (t > st.nextWander) {
         walkTo(rand(margin(), W - margin()), false, function () {
           st.nextWander = now() + rand(2500, 6000);
-          if (Math.random() < 0.25) say(pick(IDLE), 2000);
+          if (Math.random() < 0.25) say(pick(idleLines()), 2400);
         });
       }
     } else if (st.mode === 'sulk' && t > st.sulkUntil) {
@@ -1350,9 +1428,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   }, 12000);
   decayHunger(); clampStats(); renderStats();
   requestAnimationFrame(frame);
-  setTimeout(function () {
-    say(isBirthday ? '生日快乐！汪汪 🎂' : FEST ? FEST.say : phase === 'night' ? '这么晚还来看我呀 🌙' : '你来啦！我是吉祥 🐾', 2800);
-  }, 1200);
+  setTimeout(greet, 1200);
 
 
   /* ---------- birthday (Oct 13) ---------- */
@@ -1860,6 +1936,9 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     var w = { head: L.wear.head, neck: L.wear.neck, face: L.wear.face, back: L.wear.back };
     if (FEST && FEST.wear) Object.keys(FEST.wear).forEach(function (s) { w[s] = FEST.wear[s]; });
     if (isBirthday) w.head = null;
+    var g = wxGear();   // weather gear never replaces festival outfits; the raincoat goes over a cape
+    Object.keys(g).forEach(function (k) { if (!(FEST && FEST.wear && FEST.wear[k]) && (k === 'back' || !w[k])) w[k] = g[k]; });
+    if (LETTER_ON) w.mouth = 'envelope';
     [].forEach.call(document.querySelectorAll('.dog .acc'), function (g) { g.classList.remove('on'); });
     Object.keys(w).forEach(function (s) {
       var g = w[s] && document.getElementById('acc-' + w[s]);
@@ -1902,6 +1981,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (e.hit) s += e.hit === 1 ? '还敲了我一下，哼。' : '还敲了我 ' + e.hit + ' 下，哼！不过我原谅她了。';
     if (e.got && e.got.length) s += '她从扭蛋机里扭到了悄悄话 ' + e.got.map(function (n) { return 'No.' + (n + 1); }).join('、') + '。';
     if (e.lv) s += '我的亲密度升到了 Lv.' + e.lv + '！';
+    if (e.note) s += '我还帮 Moral 给她送了' + (e.note > 1 ? ' ' + e.note + ' 张' : '一张') + '纸条，她看完笑得好开心。';
     return s + ENDINGS[hashStr(day + 'e') % ENDINGS.length];
   }
   var diaryShown = 4;
@@ -1916,7 +1996,8 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     box.innerHTML = days.slice(0, diaryShown).map(function (d) {
       var p = d.split('-');
       var title = (p[0] === thisYear ? '' : p[0] + ' 年 ') + (+p[1]) + ' 月 ' + (+p[2]) + ' 日';
-      return '<article class="d-entry"><div class="d-head"><b>' + title + '</b><span>' + WEATHER[hashStr(d) % WEATHER.length] + '</span></div><p>' + diaryText(d, L.diary[d]) + '</p></article>';
+      var e = L.diary[d], wd = e.wx ? wxDesc(e.wx - 1, true) : null;
+      return '<article class="d-entry"><div class="d-head"><b>' + title + '</b><span>' + (wd ? wd[1] + ' ' + wd[0] : WEATHER[hashStr(d) % WEATHER.length]) + '</span></div><p>' + diaryText(d, e) + '</p></article>';
     }).join('');
     $('#diaryMore').hidden = days.length <= diaryShown;
   }
@@ -2040,6 +2121,217 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'hidden' && syncReady) { clearTimeout(pushT); push(); }
   });
+
+
+  /* ---------- weather (Dublin, via open-meteo: free, no key) ---------- */
+  var WX = null, WX_KEY = 'jixiang-wx';
+  function wxDesc(c, day) {
+    if (c <= 1) return day ? ['☀️', '晴'] : ['🌙', '晴'];
+    if (c === 2) return ['⛅', '晴间多云'];
+    if (c === 3) return ['☁️', '阴'];
+    if (c === 45 || c === 48) return ['🌫️', '有雾'];
+    if (c >= 51 && c <= 57) return ['🌦️', '毛毛雨'];
+    if (c >= 61 && c <= 67) return ['🌧️', c >= 65 ? '大雨' : '下雨'];
+    if ((c >= 71 && c <= 77) || c === 85 || c === 86) return ['❄️', '下雪'];
+    if (c >= 80 && c <= 82) return ['🌦️', '阵雨'];
+    if (c >= 95) return ['⛈️', '雷雨'];
+    return ['☁️', '多云'];
+  }
+  function wxKind(c) {
+    if ((c >= 51 && c <= 67) || (c >= 80 && c <= 82) || c >= 95) return 'rain';
+    if ((c >= 71 && c <= 77) || c === 85 || c === 86) return 'snow';
+    if (c === 45 || c === 48) return 'fog';
+    if (c === 3) return 'cloud';
+    return 'sun';
+  }
+  function wxGear() {
+    if (!WX) return {};
+    if (WX.kind === 'rain') return { back: 'raincoat', head: 'rainhat' };
+    if (WX.kind === 'snow' || WX.temp <= 4) return { neck: 'scarf' };
+    if (WX.kind === 'sun' && WX.day && WX.temp >= 17) return { face: 'shades' };
+    return {};
+  }
+  function wxLine() {
+    if (!WX) return '';
+    if (WX.kind === 'rain') return pick(['外面在下雨，出门记得带伞 ☔', '下雨啦，我都穿上小雨衣了 🌧️']);
+    if (WX.kind === 'snow') return '下雪啦！出门穿暖和一点 ❄️';
+    if (WX.temp <= 4) return pick(['今天好冷，多穿点衣服哦 🧣', '外面才 ' + Math.round(WX.temp) + ' 度，别冻着 🧣']);
+    if (WX.kind === 'fog') return '今天雾蒙蒙的，路上小心 🌫️';
+    if (WX.temp >= 22) return '今天好热，记得多喝水 💧';
+    if (WX.kind === 'sun' && WX.day) return '今天阳光好好，出去走走吧 ☀️';
+    return '';
+  }
+  function applyWx(w) {
+    WX = w;
+    yard.classList.add('wx-' + w.kind);
+    var d = wxDesc(w.code, w.day), b = $('#wx');
+    b.textContent = '都柏林 ' + Math.round(w.temp) + '° ' + d[0] + ' ' + d[1]; b.classList.add('show');
+    if (w.kind === 'rain' && !reduceMotion) {
+      for (var i = 0, n = w.code === 51 || w.code === 80 ? 22 : 40; i < n; i++) {
+        var r = document.createElement('span');
+        r.className = 'drop'; r.style.left = rand(0, 105) + '%';
+        r.style.setProperty('--d', rand(0.7, 1.2) + 's'); r.style.animationDelay = -rand(0, 1.2) + 's';
+        yard.appendChild(r);
+      }
+    }
+    if (w.kind === 'snow' && !(FEST && FEST.snow)) rain(['❄', '❅', '✦'], 30, '#ffffff');
+    var e = dayEntry(); if (!e.wx) e.wx = w.code + 1;   // the diary remembers the real weather
+    renderWear();
+  }
+  function wwoToWmo(c) {
+    function any(list) { return list.indexOf(c) >= 0; }
+    if (c === 113) return 0;
+    if (c === 116) return 2;
+    if (c === 119 || c === 122) return 3;
+    if (any([143, 248, 260])) return 45;
+    if (any([200, 386, 389, 392, 395])) return 95;
+    if (any([179, 227, 230, 323, 326, 329, 332, 335, 338, 368, 371, 182, 185, 317, 320, 350, 362, 365, 374, 377])) return 73;
+    if (any([305, 308, 356, 359])) return 65;
+    if (any([299, 302, 311, 314])) return 63;
+    if (any([296, 281, 284])) return 61;
+    if (any([176, 263, 266, 293, 353])) return 51;
+    return 3;
+  }
+  function mkWx(code, temp, day) { return { code: code, temp: temp, day: day, kind: wxKind(code), at: Date.now() }; }
+  (function loadWx() {
+    var q = (location.search.match(/[?&]wx=(\w+)/) || [])[1];
+    if (q) {
+      var fake = { rain: [63, 11], snow: [73, -1], fog: [45, 9], cloud: [3, 12], sun: [0, 21], storm: [95, 14], cold: [2, 2] }[q] || [0, 15];
+      applyWx(mkWx(fake[0], fake[1], phase !== 'night')); return;
+    }
+    try {
+      var c = JSON.parse(localStorage.getItem(WX_KEY) || 'null');
+      if (c && Date.now() - c.at < 30 * 60000) { applyWx(c); return; }
+    } catch (e) {}
+    function done(w) {
+      try { localStorage.setItem(WX_KEY, JSON.stringify(w)); } catch (e) {}
+      applyWx(w);
+    }
+    getJSON('https://api.open-meteo.com/v1/forecast?latitude=53.35&longitude=-6.26&current=temperature_2m,weather_code,is_day&timezone=Europe%2FDublin').then(function (r) {
+      var c = r && r.current;
+      if (c && typeof c.weather_code === 'number') { done(mkWx(c.weather_code, c.temperature_2m, !!c.is_day)); return; }
+      // fallback: wttr.in, whose weather codes are mapped onto the same WMO codes
+      return getJSON('https://wttr.in/Dublin?format=j1').then(function (r) {
+        var c = r && r.current_condition && r.current_condition[0];
+        if (!c || isNaN(+c.temp_C)) return;
+        done(mkWx(wwoToWmo(+c.weatherCode), +c.temp_C, phase !== 'night'));
+      });
+    });
+  })();
+
+  /* ---------- 吉祥 talks: time of day, how long she was away, weather, special days ---------- */
+  var SEEN_KEY = 'jixiang-seen', lastSeen = 0;
+  try { lastSeen = +localStorage.getItem(SEEN_KEY) || 0; } catch (e) {}
+  function markSeen() { try { localStorage.setItem(SEEN_KEY, String(Date.now())); } catch (e) {} }
+  markSeen(); setInterval(markSeen, 60000);
+  function timeLine(h) {
+    if (h < 5) return pick(['这么晚还不睡？快去睡觉啦 🌙', '熬夜对身体不好哦，我陪你一起睡 💤']);
+    if (h < 10) return pick(['早安！今天也要开开心心 ☀️', '早上好～记得吃早饭哦 🥛']);
+    if (h < 14) return pick(['中午啦，午饭吃了吗？🍚', '要好好吃饭，别饿着自己哦']);
+    if (h < 18) return pick(['下午好～累了就休息一下 ☕', '下午也要元气满满！']);
+    if (h < 22) return pick(['晚上好！今天辛苦啦 💗', '今天过得开心吗？']);
+    return pick(['该准备睡觉啦，晚安 🌙', '早点睡，明天见 💤']);
+  }
+  function specialLine() {
+    var t = new Date(), today = new Date(t.getFullYear(), t.getMonth(), t.getDate());
+    var days = Math.round((today - new Date(2024, 3, 1)) / 864e5);
+    if (days > 0 && days % 100 === 0) return '今天是我们在一起的第 ' + days + ' 天！💞';
+    var months = (t.getFullYear() - 2025) * 12 + t.getMonth() - 11;
+    if (t.getDate() === 29 && months > 0 && months % 12) return '今天是结婚 ' + months + ' 个月纪念日 💍';
+    return '';
+  }
+  function idleLines() {
+    if (LETTER_ON) return ['点我一下，有你的纸条 💌', '纸条要叼不住啦，快点我 💌'];
+    var a = IDLE.concat([timeLine(new Date().getHours())]), w = wxLine();
+    if (w) a.push(w);
+    return a;
+  }
+  function greet() {
+    var away = lastSeen ? Date.now() - lastSeen : 0;
+    var first = isBirthday ? '生日快乐！汪汪 🎂' : FEST ? FEST.say : specialLine() ||
+      (away > 3 * 864e5 ? '你终于来啦！我好想你 🥺' : away > 864e5 ? '一天没见，想你啦 💗' : timeLine(new Date().getHours()));
+    say(first, 3000);
+    setTimeout(function () {
+      var w = wxLine();
+      if (w && !LETTER_ON && st.mode === 'idle') say(w, 3200);
+    }, 3800);
+  }
+
+  /* ---------- notes from Moral: written on write.html, kept in Firebase under /fancy/notes,
+     and 吉祥 brings each new one over in an envelope ---------- */
+  var NOTES = CLOUD.replace('state.json', 'notes'), READ_KEY = 'jixiang-notes-read';
+  var notes = [], readIds = {}, LETTER_ON = false;
+  try { readIds = JSON.parse(localStorage.getItem(READ_KEY) || '{}') || {}; } catch (e) {}
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function when(ms) { var d = new Date(ms); return d.getFullYear() + ' 年 ' + (d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日 ' + pad(d.getHours()) + ':' + pad(d.getMinutes()); }
+  function unread() { return notes.filter(function (n) { return !n.readAt && !readIds[n.id]; }); }
+  function loadNotes() {
+    getJSON(NOTES + '.json').then(function (r) {
+      if (!r || typeof r !== 'object') return;
+      notes = Object.keys(r).map(function (id) {
+        var n = r[id] || {};
+        return { id: id, text: String(n.text || ''), from: String(n.from || 'Moral'), at: +n.at || 0, readAt: +n.readAt || 0 };
+      }).filter(function (n) { return n.text; }).sort(function (a, b) { return b.at - a.at; });
+      renderMail();
+      if (unread().length && !LETTER_ON) bringLetter();
+    });
+  }
+  function renderMail() {
+    var b = $('#bMail'), u = unread().length;
+    b.hidden = !notes.length;
+    b.textContent = u ? '💌 新纸条 (' + u + ')' : '💌 信箱';
+    b.classList.toggle('new', !!u);
+  }
+  function bringLetter() {
+    LETTER_ON = true; renderWear();
+    setTimeout(function () {
+      if (!LETTER_ON) return;
+      interact(); stop(); pet.classList.remove('sulk'); st.mode = 'busy';
+      walkTo(W / 2, true, function () {
+        st.mode = 'idle'; st.nextWander = now() + 9000; flash('happy', 1600);
+        say('有你的纸条！点我看看 💌', 4200);
+      });
+    }, 4600);
+  }
+  function openNote(n) {
+    modal.hidden = false;
+    modal.innerHTML = '<div class="card-w"><span class="rar" style="--c:linear-gradient(135deg,#ffb3c6,#ff7a9c)">💌 ' + esc(n.from) + ' 写给你的纸条</span>' +
+      '<p class="note">' + esc(n.text) + '</p><p class="note-meta">' + when(n.at) + '</p><button type="button" class="close">收到啦 💗</button></div>';
+    var fresh = !n.readAt && !readIds[n.id];
+    if (fresh) {
+      n.readAt = Date.now(); readIds[n.id] = 1;
+      try { localStorage.setItem(READ_KEY, JSON.stringify(readIds)); } catch (e) {}
+      fetch(NOTES + '/' + encodeURIComponent(n.id) + '.json', { method: 'PATCH', body: JSON.stringify({ readAt: n.readAt }) }).catch(function () {});
+      track('note');
+    }
+    modal.querySelector('.close').addEventListener('click', function () {
+      closeModal(); renderMail();
+      if (!fresh) return;
+      if (unread().length) { say('还有一张哦！再点我 💌', 2600); return; }
+      LETTER_ON = false; renderWear(); flash('happy', 1600);
+      var h = headPos(); fx(h.x, h.y + 20, ['💗', '💕', '💌'], 8, 80);
+      say(pick(['他好爱你呀 💗', '我送信送得好吧！', '纸条送到啦，汪！']), 2400);
+    });
+  }
+  function nextUnread() { var u = unread(); return u[u.length - 1]; }   // oldest first
+  onPetTap = function () {
+    if (!LETTER_ON || !nextUnread()) return false;
+    interact(); openNote(nextUnread()); return true;
+  };
+  $('#bMail').addEventListener('click', function () {
+    if (nextUnread()) { openNote(nextUnread()); return; }
+    modal.hidden = false;
+    modal.innerHTML = '<div class="card-w"><span class="rar" style="--c:linear-gradient(135deg,#ffb3c6,#ff7a9c)">📮 吉祥的信箱</span><div class="mb">' +
+      notes.map(function (n, i) {
+        return '<button type="button" class="mb-item" data-i="' + i + '">' + esc(n.text.split('\n')[0]) + '<small>' + when(n.at) + '</small></button>';
+      }).join('') + '</div><button type="button" class="close">关上信箱</button></div>';
+    modal.querySelector('.mb').addEventListener('click', function (e) {
+      var b = e.target.closest('.mb-item'); if (b) openNote(notes[+b.dataset.i]);
+    });
+    modal.querySelector('.close').addEventListener('click', closeModal);
+  });
+  onEnter.push(loadNotes);
+  setInterval(function () { if (document.visibilityState === 'visible') loadNotes(); }, 120000);
 
 
   /* ---------- photo album ---------- */
