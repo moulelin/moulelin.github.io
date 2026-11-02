@@ -753,9 +753,11 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       <div class="flip" id="flip">
         <svg class="dog" viewBox="0 0 200 140" aria-label="小柴犬吉祥">
           <defs>
-            <radialGradient id="gFur" cx="38%" cy="22%" r="85%"><stop offset="0" stop-color="#FBC08E"/><stop offset=".5" stop-color="#EE9A5C"/><stop offset="1" stop-color="#C96E33"/></radialGradient>
-            <radialGradient id="gFurDark" cx="40%" cy="20%" r="90%"><stop offset="0" stop-color="#E39860"/><stop offset="1" stop-color="#A85A26"/></radialGradient>
-            <radialGradient id="gHead" cx="40%" cy="24%" r="80%"><stop offset="0" stop-color="#FDC898"/><stop offset=".55" stop-color="#F0A062"/><stop offset="1" stop-color="#CF7638"/></radialGradient>
+            <radialGradient id="gFur" cx="38%" cy="22%" r="85%"><stop offset="0" stop-color="#F8D2AE"/><stop offset=".5" stop-color="#E7A777"/><stop offset="1" stop-color="#C47F52"/></radialGradient>
+            <radialGradient id="gFurDark" cx="40%" cy="20%" r="90%"><stop offset="0" stop-color="#DDA175"/><stop offset="1" stop-color="#A9693F"/></radialGradient>
+            <radialGradient id="gHead" cx="40%" cy="24%" r="80%"><stop offset="0" stop-color="#FAD6B3"/><stop offset=".55" stop-color="#EBAD7C"/><stop offset="1" stop-color="#C98552"/></radialGradient>
+            <linearGradient id="gLeg" x1="0" y1="86" x2="0" y2="124" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#E3A475"/><stop offset=".3" stop-color="#EFC7A2"/><stop offset=".42" stop-color="#FFF6EA"/><stop offset="1" stop-color="#F6E6D2"/></linearGradient>
+            <linearGradient id="gLegDark" x1="0" y1="86" x2="0" y2="124" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#C98A5E"/><stop offset=".3" stop-color="#DDB794"/><stop offset=".42" stop-color="#F3E6D6"/><stop offset="1" stop-color="#E4D2BC"/></linearGradient>
             <radialGradient id="gCream" cx="45%" cy="30%" r="80%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".6" stop-color="#FFF6EA"/><stop offset="1" stop-color="#F3DCC0"/></radialGradient>
             <radialGradient id="gEar" cx="50%" cy="80%" r="80%"><stop offset="0" stop-color="#FFD9CC"/><stop offset="1" stop-color="#F7A99A"/></radialGradient>
             <radialGradient id="gEye" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#5B3A2C"/><stop offset=".55" stop-color="#2A1A14"/><stop offset="1" stop-color="#140C09"/></radialGradient>
@@ -769,19 +771,26 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
               <path d="M61 59 C55 53 56 45 62 43 C68 41 72 45 72 50" fill="none" stroke="#FFF6EA" stroke-width="4.4" stroke-linecap="round"/>
               <path d="M57 40 l-2 -4 M63 37 l0 -4 M51 47 l-4 -1" stroke="#4A3128" stroke-width="2.2" stroke-linecap="round"/>
             </g>
-            <g class="leg b"><path class="o" d="M80 86 L80 122 Q87.5 127 95 122 L95 86" fill="url(#gFurDark)"/><ellipse class="o" cx="87.5" cy="124.5" rx="9.1" ry="5" fill="url(#gCream)" stroke-width="2.8"/><path d="M84.9 124.4 l0 2.6 M90.1 124.4 l0 2.6" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
-            <g class="leg a"><path class="o" d="M128 86 L128 122 Q135.5 127 143 122 L143 86" fill="url(#gFurDark)"/><ellipse class="o" cx="135.5" cy="124.5" rx="9.1" ry="5" fill="url(#gCream)" stroke-width="2.8"/><path d="M132.9 124.4 l0 2.6 M138.1 124.4 l0 2.6" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
+            <g class="leg b"><path class="o" d="M80 86 L80 122 Q87.5 127 95 122 L95 86" fill="url(#gLegDark)"/><ellipse class="o" cx="87.5" cy="124.5" rx="9.1" ry="5" fill="url(#gCream)" stroke-width="2.8"/><path d="M84.9 124.4 l0 2.6 M90.1 124.4 l0 2.6" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
+            <g class="leg a"><path class="o" d="M128 86 L128 122 Q135.5 127 143 122 L143 86" fill="url(#gLegDark)"/><ellipse class="o" cx="135.5" cy="124.5" rx="9.1" ry="5" fill="url(#gCream)" stroke-width="2.8"/><path d="M132.9 124.4 l0 2.6 M138.1 124.4 l0 2.6" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
             <g class="body-g">
               <path class="o" d="M60 84 C58 66 76 58 99 59 C120 60 136 62 142 76 C147 90 139 104 120 105 L80 105 C66 104 61 96 60 84 Z" fill="url(#gFur)"/>
-              <path d="M70 70 C80 63 100 62 112 64" fill="none" stroke="#C96E33" stroke-width="5" stroke-linecap="round" opacity=".25"/>
+              <path d="M70 70 C80 63 100 62 112 64" fill="none" stroke="#C47F52" stroke-width="5" stroke-linecap="round" opacity=".25"/>
               <path d="M84 104 C90 95 116 93 132 99 C127 104 122 105 118 105 L86 105 Z" fill="url(#gCream)"/>
-              <path d="M126 80 C130 74 142 74 144 84 C146 94 140 102 132 102 C124 100 122 88 126 80 Z" fill="url(#gCream)"/>
+              <path d="M120 82 C124 72 142 70 145 83 C148 95 141 104 130 104 C120 102 117 90 120 82 Z" fill="url(#gCream)"/>
               <path d="M127 99 l3 4 l2 -4 l3 4 l2 -4" fill="none" stroke="#E9CDAE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
               <ellipse cx="84" cy="67" rx="15" ry="4.5" fill="#fff" opacity=".32" transform="rotate(-10 84 67)"/>
-              <path d="M66 96 C64 88 68 80 76 78" fill="none" stroke="#B9652E" stroke-width="2.4" stroke-linecap="round" opacity=".45"/>
+              <g id="harness">
+                <path d="M116 61 C112.5 74 112.5 87 116 97" fill="none" stroke="#4A3128" stroke-width="9.6" stroke-linecap="round"/>
+                <path d="M116 61 C112.5 74 112.5 87 116 97" fill="none" stroke="#F7A8BC" stroke-width="6.4" stroke-linecap="round"/>
+                <path d="M115 66 C113 76 113 85 115.5 93" fill="none" stroke="#FFD3DE" stroke-width="1.6" stroke-linecap="round"/>
+                <rect class="o" x="109.5" y="64" width="9" height="7" rx="2" fill="#5A4A4E" stroke-width="1.8"/>
+                <circle class="o" cx="114" cy="61" r="3.2" fill="#D9D4D0" stroke-width="1.8"/>
+              </g>
+              <path d="M66 96 C64 88 68 80 76 78" fill="none" stroke="#B4744A" stroke-width="2.4" stroke-linecap="round" opacity=".45"/>
             </g>
-            <g class="leg a"><path class="o" d="M64 86 L64 122 Q72.0 127 80 122 L80 86" fill="url(#gFur)"/><ellipse class="o" cx="72.0" cy="124.5" rx="9.6" ry="5" fill="url(#gCream)" stroke-width="2.8"/><path d="M69.4 124.4 l0 2.6 M74.6 124.4 l0 2.6" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
-            <g class="leg b"><path class="o" d="M112 86 L112 122 Q120.0 127 128 122 L128 86" fill="url(#gFur)"/><ellipse class="o" cx="120.0" cy="124.5" rx="9.6" ry="5" fill="url(#gCream)" stroke-width="2.8"/><path d="M117.4 124.4 l0 2.6 M122.6 124.4 l0 2.6" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
+            <g class="leg a"><path class="o" d="M64 86 L64 122 Q72.0 127 80 122 L80 86" fill="url(#gLeg)"/><ellipse class="o" cx="72.0" cy="124.5" rx="9.6" ry="5" fill="url(#gCream)" stroke-width="2.8"/><path d="M69.4 124.4 l0 2.6 M74.6 124.4 l0 2.6" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
+            <g class="leg b"><path class="o" d="M112 86 L112 122 Q120.0 127 128 122 L128 86" fill="url(#gLeg)"/><ellipse class="o" cx="120.0" cy="124.5" rx="9.6" ry="5" fill="url(#gCream)" stroke-width="2.8"/><path d="M117.4 124.4 l0 2.6 M122.6 124.4 l0 2.6" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
             <g class="acc" id="acc-cape"><path class="o" d="M132 70 Q104 62 72 76 Q58 92 61 106 Q92 96 130 90 Z" fill="#FF6B8A" stroke-width="2.6"/><path d="M70 82 Q96 72 126 76" fill="none" stroke="#FFC2D1" stroke-width="2" stroke-dasharray="3 4"/></g>
             <g class="acc" id="acc-raincoat">
               <path class="o" d="M138 72 C120 58 80 58 66 70 C58 80 59 97 64 103 L136 103 C144 94 145 80 138 72 Z" fill="#FFD23F" stroke-width="2.8"/>
@@ -792,19 +801,19 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
             <g transform="translate(140 80) scale(1.13) translate(-140 -80)">
             <g class="head-g">
               <path d="M134 84 Q150 94 166 86" fill="none" stroke="#7a4a30" stroke-width="7" stroke-linecap="round" opacity=".14"/>
-              <g class="ear ear-l"><path class="o" d="M127 52 Q127 30 135.5 17.5 Q144 22 154 37 Z" fill="url(#gHead)"/><path d="M132.5 45 Q133 32 137 25 Q142 29 147.5 37 Z" fill="url(#gEar)"/><path d="M134 41 l3 2 M135 36 l3 1" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".8"/></g>
-              <g class="ear ear-r"><path class="o" d="M155 36 Q165 22 176 15.5 Q182 28 181 50 Z" fill="url(#gHead)"/><path d="M161 36 Q168 28 173 24 Q176 32 175.5 43 Z" fill="url(#gEar)"/><path d="M171 39 l-3 1 M172 34 l-3 1" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".8"/></g>
+              <g class="ear ear-l"><path class="o" d="M127 52 Q126 31 133 19.5 Q136.5 15.5 139.5 19.5 Q147 25 154 37 Z" fill="url(#gHead)"/><path d="M132.5 45 Q133 32 137 25 Q142 29 147.5 37 Z" fill="url(#gEar)"/><path d="M134 41 l3 2 M135 36 l3 1" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".8"/></g>
+              <g class="ear ear-r"><path class="o" d="M155 36 Q164 24 172.5 17.5 Q177.5 14 179 19 Q182.5 31 181 50 Z" fill="url(#gHead)"/><path d="M161 36 Q168 28 173 24 Q176 32 175.5 43 Z" fill="url(#gEar)"/><path d="M171 39 l-3 1 M172 34 l-3 1" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".8"/></g>
               <path class="o" d="M123 63 C121 45 135 34 153 34 C171 34 185 45 183 62 C186 68 185 76 179 81 C172 89 140 91 130 84 C123 79 120 70 123 63 Z" fill="url(#gHead)"/>
               <path d="M123.5 70 l-3.4 2.2 l3.6 1.4 M182.6 67.6 l3.6 1.8 l-3.4 2" fill="none" stroke="#4A3128" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M128 72 C130 63 145 62 150.5 69 L159.5 69 C165 61 179 62 180 71 C181 80 170 88 155 88 C140 88 127 81 128 72 Z" fill="url(#gCream)"/>
+              <path d="M124.5 70 C126 62 136 60.5 142 64 C146 66 149 68 151 69 L159 69 C161 68 164 66 168 63.5 C174 60 183 61.5 182.5 69.5 C182 80 171 89 155 89 C139 89 124 81 124.5 70 Z" fill="url(#gCream)"/>
               <ellipse cx="141" cy="43" rx="10" ry="4.6" fill="#fff" opacity=".34" transform="rotate(-22 141 43)"/>
               <ellipse cx="142.5" cy="49" rx="3.8" ry="2.5" fill="url(#gCream)"/>
               <ellipse cx="165.5" cy="47" rx="3.8" ry="2.5" fill="url(#gCream)"/>
               <g id="collar">
-                <path class="ln" d="M126 82 Q134 98 154 93" stroke="#E5534B" stroke-width="7"/>
-                <path d="M128 85 Q135 95 150 92.6" fill="none" stroke="#FF8A80" stroke-width="1.8" stroke-linecap="round"/>
-                <circle class="o" cx="139" cy="96.5" r="4.4" fill="#FFD25E" stroke-width="2.4"/>
-                <circle cx="137.8" cy="95.2" r="1.3" fill="#fff"/>
+                <path class="ln" d="M126 82 Q134 98 154 93" stroke="#F7A8BC" stroke-width="7"/>
+                <path d="M128 85 Q135 95 150 92.6" fill="none" stroke="#FFD3DE" stroke-width="1.8" stroke-linecap="round"/>
+                <rect class="o" x="134" y="92" width="10" height="7.5" rx="2.4" fill="#F0625A" stroke-width="2.2"/>
+                <path d="M136.5 94.2 h5" stroke="#FFB4A8" stroke-width="1.4" stroke-linecap="round"/>
               </g>
               <ellipse class="blush" cx="135" cy="70" rx="6.4" ry="3.6" fill="#FF8FA8"/>
               <ellipse class="blush" cx="175.5" cy="68" rx="6.4" ry="3.6" fill="#FF8FA8"/>
