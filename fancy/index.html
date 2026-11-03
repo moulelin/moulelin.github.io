@@ -589,7 +589,8 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   word-break: break-word; margin: 14px 0 6px; color: var(--ink); max-height: 52vh; overflow: auto;
   background: repeating-linear-gradient(transparent 0 41px, #f8dce3 41px 42px); padding: 0 4px;
 }
-.card-w .note-meta { color: var(--muted); font-size: 13px; text-align: right; margin: 0 0 16px; }
+.card-w .note-meta { color: var(--muted); font-size: 15px; line-height: 1.6; text-align: right; margin: 0 0 16px; }
+.card-w .note-meta b { font-weight: 400; color: var(--ink); }
 .card-w .mb { max-height: 52vh; overflow: auto; margin: 14px 0 16px; text-align: left; }
 .mb-item {
   display: block; width: 100%; text-align: left; border: 1px solid var(--line); background: #fff; border-radius: 14px;
@@ -2611,7 +2612,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   var notes = [], readIds = {}, LETTER_ON = false;
   try { readIds = JSON.parse(localStorage.getItem(READ_KEY) || '{}') || {}; } catch (e) {}
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
-  function when(ms) { var d = new Date(ms); return d.getFullYear() + ' 年 ' + (d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日 ' + pad(d.getHours()) + ':' + pad(d.getMinutes()); }
+  function when(ms) { var d = new Date(ms); return d.getFullYear() + ' 年 ' + (d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日 ' + '周' + '日一二三四五六'[d.getDay()] + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes()); }
   function unread() { return notes.filter(function (n) { return !n.readAt && !readIds[n.id]; }); }
   function loadNotes() {
     getJSON(NOTES + '.json').then(function (r) {
@@ -2644,7 +2645,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   function openNote(n) {
     modal.hidden = false;
     modal.innerHTML = '<div class="card-w"><span class="rar" style="--c:linear-gradient(135deg,#ffb3c6,#ff7a9c)">💌 ' + esc(n.from) + ' 写给你的纸条</span>' +
-      '<p class="note">' + esc(n.text) + '</p><p class="note-meta">' + when(n.at) + '</p><button type="button" class="close">收到啦 💗</button></div>';
+      '<p class="note">' + esc(n.text) + '</p><p class="note-meta"><b>—— ' + esc(n.from || 'Moral') + '</b><br>写于 ' + when(n.at) + '</p><button type="button" class="close">收到啦 💗</button></div>';
     var fresh = !n.readAt && !readIds[n.id];
     if (fresh) {
       n.readAt = Date.now(); readIds[n.id] = 1;
@@ -2671,7 +2672,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     modal.hidden = false;
     modal.innerHTML = '<div class="card-w"><span class="rar" style="--c:linear-gradient(135deg,#ffb3c6,#ff7a9c)">📮 吉祥的信箱</span><div class="mb">' +
       notes.map(function (n, i) {
-        return '<button type="button" class="mb-item" data-i="' + i + '">' + esc(n.text.split('\n')[0]) + '<small>' + when(n.at) + '</small></button>';
+        return '<button type="button" class="mb-item" data-i="' + i + '">' + esc(n.text.split('\n')[0]) + '<small>写于 ' + when(n.at) + '</small></button>';
       }).join('') + '</div><button type="button" class="close">关上信箱</button></div>';
     modal.querySelector('.mb').addEventListener('click', function (e) {
       var b = e.target.closest('.mb-item'); if (b) openNote(notes[+b.dataset.i]);
