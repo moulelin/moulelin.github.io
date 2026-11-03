@@ -126,7 +126,13 @@ h2 { font-weight: 400; font-size: 32px; text-align: center; margin: 0 0 6px; }
   background: linear-gradient(var(--grass), var(--grass2)); border-top: 3px solid #a3d896;
 }
 .deco { position: absolute; bottom: 44px; font-size: 22px; pointer-events: none; }
-.house { position: absolute; bottom: 50px; left: 18px; font-size: 64px; pointer-events: none; filter: drop-shadow(0 4px 0 rgba(0,0,0,.06)); }
+/* the kennel is two layers so 吉祥 can sleep between them: the dark inside behind it, the walls and roof in front */
+.kennel { position: absolute; bottom: 34px; left: 8px; width: 190px; z-index: 2; pointer-events: none; transition: filter .8s; }
+.kennel-front { filter: drop-shadow(0 4px 0 rgba(0,0,0,.06)); }
+.yard.home-in .kennel-front { z-index: 4; }
+.kennel .lamp { opacity: 0; transition: opacity .8s; }
+.yard.night .kennel .lamp { opacity: 1; }
+.pet.in-house { transform: translateX(-50%) translateY(-7px) scale(.8); transform-origin: 50% 100%; }
 
 .pet {
   position: absolute; bottom: 30px; left: 50%; width: 170px; transform: translateX(-50%);
@@ -546,7 +552,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 .yard.night .sun::after { content: ""; position: absolute; width: 56px; height: 56px; border-radius: 50%; background: #232a58; top: -8px; left: 20px; }
 .yard.night .cloud { opacity: .16; }
 .yard.night .ground { filter: brightness(.55) saturate(.8); }
-.yard.night .deco, .yard.night .house { filter: brightness(.7); }
+.yard.night .deco, .yard.night .kennel-front { filter: brightness(.7); }
 .star { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #fff; opacity: 0; pointer-events: none; transition: opacity .8s; }
 .yard.night .star { opacity: .9; animation: twinkle var(--tw) ease-in-out infinite alternate; }
 @keyframes twinkle { to { opacity: .2; transform: scale(.6); } }
@@ -676,7 +682,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   .polaroid { max-width: 420px; margin: 0 auto; }
   .yard { height: 330px; }
   .pet { width: 132px; }
-  .house { font-size: 50px; }
+  .kennel { width: 158px; left: 4px; }
   .letter { font-size: 20px; line-height: 36px; padding: 24px 20px; background-image: repeating-linear-gradient(transparent 0 35px, #f8e3e8 35px 36px); background-position: 0 24px; }
   .letter p { min-height: 36px; }
   .hms span { min-width: 54px; font-size: 21px; }
@@ -772,13 +778,36 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     <div class="sun"></div>
     <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
     <div class="ground"></div>
-    <span class="house">🏡</span>
+    <svg class="kennel kennel-back" viewBox="0 0 200 170" aria-hidden="true">
+      <defs>
+        <linearGradient id="kIn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a3a2e"/><stop offset="1" stop-color="#7b5040"/></linearGradient>
+        <radialGradient id="kLamp" cx="50%" cy="70%" r="65%"><stop offset="0" stop-color="#ffe0a3"/><stop offset=".6" stop-color="#f5b56e"/><stop offset="1" stop-color="#b9774a"/></radialGradient>
+      </defs>
+      <path d="M52 166 L52 98 A48 48 0 0 1 148 98 L148 166 Z" fill="url(#kIn)"/>
+      <path class="lamp" d="M52 166 L52 98 A48 48 0 0 1 148 98 L148 166 Z" fill="url(#kLamp)"/>
+      <ellipse cx="100" cy="160" rx="44" ry="9" fill="#ffb3c6"/>
+      <ellipse cx="100" cy="157" rx="36" ry="5" fill="#ffd3de"/>
+    </svg>
+    <svg class="kennel kennel-front" viewBox="0 0 200 170" aria-hidden="true">
+      <defs>
+        <linearGradient id="kWood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe2bd"/><stop offset="1" stop-color="#f4c28e"/></linearGradient>
+        <linearGradient id="kRoof" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffa3bb"/><stop offset="1" stop-color="#ff7a9c"/></linearGradient>
+      </defs>
+      <path d="M24 166 L24 80 L100 34 L176 80 L176 166 Z M52 166 L52 98 A48 48 0 0 1 148 98 L148 166 Z" fill="url(#kWood)" fill-rule="evenodd" stroke="#4A3128" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M26 104 L50 104 M26 128 L52 128 M26 150 L52 150 M150 104 L174 104 M150 128 L174 128 M150 150 L174 150" stroke="#e3a873" stroke-width="2" stroke-linecap="round"/>
+      <path d="M52 166 L52 98 A48 48 0 0 1 148 98 L148 166" fill="none" stroke="#e9b27c" stroke-width="7"/>
+      <path d="M52 166 L52 98 A48 48 0 0 1 148 98 L148 166" fill="none" stroke="#4A3128" stroke-width="3"/>
+      <path d="M6 88 L100 16 L194 88 Q197 98 186 98 L100 34 L14 98 Q3 98 6 88 Z" fill="url(#kRoof)" stroke="#4A3128" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M30 76 L100 24 L120 39" fill="none" stroke="#ffd0dc" stroke-width="3.5" stroke-linecap="round"/>
+      <rect x="74" y="34" width="52" height="20" rx="6" fill="#fff6ea" stroke="#4A3128" stroke-width="2.5" transform="rotate(-3 100 44)"/>
+      <text x="100" y="49" text-anchor="middle" font-size="13" fill="#5a3e46" transform="rotate(-3 100 44)">吉祥 ♥</text>
+    </svg>
     <span class="glow"></span>
     <span class="wx" id="wx"></span>
-    <span class="deco" style="left:22%">🌷</span>
-    <span class="deco" style="left:41%;font-size:18px">🌼</span>
-    <span class="deco" style="left:63%">🌷</span>
-    <span class="deco" style="left:84%;font-size:18px">🌸</span>
+    <span class="deco" style="left:52%">🌷</span>
+    <span class="deco" style="left:70%;font-size:18px">🌼</span>
+    <span class="deco" style="left:80%">🌷</span>
+    <span class="deco" style="left:92%;font-size:18px">🌸</span>
 
     <div class="pet" id="pet">
       <div class="bubble" id="bubble"></div>
@@ -1220,7 +1249,8 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   function interact() {
     st.last = now();
     if (st.mode === 'sleep') {
-      pet.classList.remove('sleeping'); st.mode = 'idle'; st.nextWander = now() + 3000;
+      pet.classList.remove('sleeping', 'in-house'); yard.classList.remove('home-in');
+      st.mode = 'idle'; st.nextWander = now() + 3000;
       return true;
     }
     return false;
@@ -1448,8 +1478,12 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     } else if (st.mode === 'idle') {
       var nap = phase === 'night' ? 10000 : 25000;
       if (t - st.last > nap) {
-        if (phase === 'night' && Math.abs(st.x - homeX()) > 24) walkTo(homeX(), false, null);   // go home to sleep
-        else { st.mode = 'sleep'; pet.classList.add('sleeping'); say(phase === 'night' ? '晚安… 🌙' : '困了…呼呼', 1600); }
+        if (phase === 'night' && Math.abs(st.x - homeX()) > 24) { walkTo(homeX(), false, null); say('困了，我回窝睡觉啦 🌙', 2400); }   // go home to sleep
+        else {
+          st.mode = 'sleep'; pet.classList.add('sleeping');
+          if (phase === 'night') { st.facing = 1; pet.classList.add('in-house'); yard.classList.add('home-in'); }
+          else say('困了…呼呼', 1600);   // at night it said goodnight on the way home; inside, the walls would hide the bubble
+        }
       } else if (t > st.nextWander) {
         walkTo(rand(margin(), W - margin()), false, function () {
           st.nextWander = now() + rand(2500, 6000);
@@ -1863,7 +1897,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       yard.appendChild(s);
     }
   })();
-  function homeX() { return clampX(64); }
+  function homeX() { var k = $('.kennel-front').getBoundingClientRect(); return clampX(k.left + k.width / 2 - yard.getBoundingClientRect().left); }
   applyPhase(); setInterval(applyPhase, 60000);
 
   /* ---------- festivals & special days ---------- */
