@@ -42,7 +42,13 @@ h2 { font-weight: 400; font-size: 20px; margin: 30px 0 10px; }
 .meta { display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; }
 .meta .st { padding: 1px 9px; border-radius: 999px; background: #f4eef0; }
 .meta .st.read { background: #e4f6e4; color: #3f8f4f; }
-.meta button { margin-left: auto; border: 0; background: none; color: var(--muted); cursor: pointer; font-size: 13px; }
+.meta button { border: 0; background: none; color: var(--muted); cursor: pointer; font-size: 13px; }
+.meta .acts { margin-left: auto; display: flex; gap: 6px; }
+.note textarea {
+  width: 100%; min-height: 100px; resize: vertical; border: 1px solid var(--line); border-radius: 12px; outline: 0; color: var(--ink);
+  padding: 6px 10px; margin-bottom: 8px; font-family: "Ma Shan Zheng", cursive; font-size: 19px; line-height: 1.6;
+}
+.meta .save { color: #fff; background: var(--pink); border-radius: 999px; padding: 2px 12px; }
 .empty { color: var(--muted); text-align: center; font-size: 14px; }
 </style>
 </head>
@@ -78,9 +84,11 @@ h2 { font-weight: 400; font-size: 20px; margin: 30px 0 10px; }
       var list = Object.keys(r || {}).map(function (id) { var n = r[id]; n.id = id; return n; })
         .filter(function (n) { return n && n.text; }).sort(function (a, b) { return b.at - a.at; });
       $('#list').innerHTML = list.length ? list.map(function (n) {
-        return '<div class="note"><p>' + esc(n.text) + '</p><div class="meta"><span>' + when(n.at) + ' · ' + esc(n.from || '') + '</span>' +
+        return '<div class="note" data-id="' + esc(n.id) + '"><p>' + esc(n.text) + '</p><div class="meta"><span>' + when(n.at) + ' · ' + esc(n.from || '') +
+          (n.editedAt ? ' · 改过' : '') + '</span>' +
           (n.readAt ? '<span class="st read">她看过了 · ' + when(n.readAt) + '</span>' : '<span class="st">还没看</span>') +
-          '<button type="button" data-id="' + esc(n.id) + '">删除</button></div></div>';
+          '<span class="acts">' + (n.readAt ? '' : '<button type="button" data-act="edit">编辑</button>') +
+          '<button type="button" data-act="del">删除</button></span></div></div>';
       }).join('') : '<p class="empty">还没有写过纸条</p>';
     }).catch(function () { $('#list').innerHTML = '<p class="empty">加载失败了，刷新试试</p>'; });
   }
@@ -99,9 +107,30 @@ h2 { font-weight: 400; font-size: 20px; margin: 30px 0 10px; }
       .then(function () { send.disabled = false; });
   });
   $('#list').addEventListener('click', function (e) {
-    var b = e.target.closest('button[data-id]');
-    if (!b || !confirm('删除这张纸条？她那边也会看不到了')) return;
-    fetch(NOTES + '/' + encodeURIComponent(b.dataset.id) + '.json', { method: 'DELETE' }).then(load);
+    var b = e.target.closest('button[data-act]'); if (!b) return;
+    var card = b.closest('.note'), url = NOTES + '/' + encodeURIComponent(card.dataset.id) + '.json', act = b.dataset.act;
+    if (act === 'del') {
+      if (confirm('删除这张纸条？她那边也会看不到了')) fetch(url, { method: 'DELETE' }).then(load);
+    } else if (act === 'edit') {
+      var p = card.querySelector('p'), ta = document.createElement('textarea');
+      ta.maxLength = 400; ta.value = p.textContent; p.replaceWith(ta); ta.focus();
+      card.querySelector('.acts').innerHTML = '<button type="button" data-act="cancel">取消</button><button type="button" class="save" data-act="save">保存</button>';
+    } else if (act === 'cancel') {
+      load();
+    } else if (act === 'save') {
+      var t = card.querySelector('textarea').value.trim();
+      if (!t) { alert('纸条不能是空的'); return; }
+      b.disabled = true;
+      // she may have opened it while it was being edited; a note she has read stays as she saw it
+      fetch(url, { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (n) {
+        if (!n) { alert('这张纸条已经被删掉了'); return load(); }
+        if (n.readAt) { alert('她刚刚已经看过这张纸条了，就不能再改啦'); return load(); }
+        return fetch(url, { method: 'PATCH', body: JSON.stringify({ text: t, editedAt: Date.now() }) }).then(function (r) {
+          if (!r.ok) throw new Error();
+          msg.textContent = '改好啦 ✏️'; load();
+        });
+      }).catch(function () { b.disabled = false; alert('没保存成功，检查一下网络再试试'); });
+    }
   });
   load();
 })();
