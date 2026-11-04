@@ -55,6 +55,9 @@ jobs:
                   "lastDay": max(ng.get("lastDay", ""), og.get("lastDay", "")),
                   "voucher": ng.get("voucher") or og.get("voucher"),
                   "match": {"lv": max((ng.get("match") or {}).get("lv", 1), (og.get("match") or {}).get("lv", 1))},
+                  # fewest flips per mode, from either side
+                  "memo": {"best": {k: min(v for v in ((ng.get("memo") or {}).get("best", {}).get(k), (og.get("memo") or {}).get("best", {}).get(k)) if v)
+                                    for k in set((ng.get("memo") or {}).get("best", {})) | set((og.get("memo") or {}).get("best", {}))}},
               },
               "updatedAt": max(remote.get("updatedAt", 0), old.get("updatedAt", 0)),
           }

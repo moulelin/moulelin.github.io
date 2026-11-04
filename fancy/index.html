@@ -541,6 +541,29 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 .m3-ctl { text-align: center; margin-top: 12px; }
 .m3-ctl button { border: 1px solid var(--line); background: #fff; color: var(--muted); border-radius: 999px; padding: 6px 16px; cursor: pointer; }
 
+/* ---------- 翻牌配对 ---------- */
+.mm { max-width: 420px; margin: 0 auto; }
+.mm-modes { display: flex; justify-content: center; gap: 8px; margin-bottom: 14px; }
+.mm-modes button { border: 1px solid var(--line); background: #fff; color: var(--muted); border-radius: 999px; padding: 6px 16px; cursor: pointer; }
+.mm-modes button.on { background: var(--pink); border-color: var(--pink); color: #fff; }
+.mm-hud { display: flex; justify-content: space-between; gap: 8px; color: var(--muted); font-size: 15px; margin-bottom: 10px; }
+.mm-hud b { color: var(--pink); font-weight: 400; font-size: 20px; }
+.mm-wrap { position: relative; }
+.mm-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.mm-c { position: relative; aspect-ratio: 3 / 4; perspective: 700px; border: 0; padding: 0; background: none; cursor: pointer; }
+.mm-c .in { position: absolute; inset: 0; transition: transform .45s; transform-style: preserve-3d; }
+.mm-c.up .in, .mm-c.ok .in { transform: rotateY(180deg); }
+.mm-c .bk, .mm-c .fr { position: absolute; inset: 0; border-radius: 12px; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.mm-c .bk {
+  display: grid; place-items: center; font-size: 26px;
+  background: repeating-linear-gradient(45deg, #ffb3c6 0 10px, #ffc6d4 10px 20px); box-shadow: inset 0 0 0 3px #fff, 0 4px 10px rgba(255,122,156,.22);
+}
+.mm-c .fr { transform: rotateY(180deg); background: #f6e9ec; box-shadow: 0 4px 10px rgba(120,70,80,.18); }
+.mm-c .fr img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.mm-c.ok .fr { box-shadow: 0 0 0 3px #ffc94d, 0 4px 14px rgba(255,201,77,.5); }
+.mm-c.ok { animation: bump .5s; }
+.mm-cap { text-align: center; font-size: 15px; min-height: 22px; margin: 12px 0 0; }
+
 /* ---------- day / night ---------- */
 .yard { transition: background .8s; }
 .sun { transition: top .8s, background .8s, box-shadow .8s; }
@@ -1000,7 +1023,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   <div class="lv-card">
     <div class="lv-top"><b id="lvN">Lv.1</b><span id="lvText"></span></div>
     <div class="bar lv-bar"><i id="lvBar"></i></div>
-    <p class="lv-tip">喂食 +3 · 捡球回来 +2 · 抱抱 +2 · 摸摸 10 下 +1 · 消消乐过关 +3 · 每天来看看 +5<br><span id="lvToday"></span></p>
+    <p class="lv-tip">喂食 +3 · 捡球回来 +2 · 抱抱 +2 · 摸摸 10 下 +1 · 消消乐过关 +3 · 翻牌配对 +3 · 每天来看看 +5<br><span id="lvToday"></span></p>
   </div>
   <div class="closet" id="closetGrid"></div>
 </section>
@@ -1021,7 +1044,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       <p class="cap-hint" id="capHint"></p>
       <button type="button" class="spin-btn" id="spinBtn">扭一下（10 💗）</button>
       <p class="coins">💗 爱心币 × <b id="coins">0</b></p>
-      <p class="earn-tip">陪吉祥玩可以赚爱心币：喂食、捡球回来、抱抱各 +1，摸摸 30 下 +1<br>陪玩每天最多赚 3 个 · 消消乐过关每天再送 3 个 · 每天来看看再送 2 个</p>
+      <p class="earn-tip">陪吉祥玩可以赚爱心币：喂食、捡球回来、抱抱各 +1，摸摸 30 下 +1<br>陪玩每天最多赚 3 个 · 消消乐过关每天再送 3 个 · 翻牌配对每天再送 2 个 · 每天来看看再送 2 个</p>
     </div>
     <div class="book">
       <h3>悄悄话收集册</h3>
@@ -1042,6 +1065,18 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     <div class="m3-wrap"><div class="m3-board" id="m3Board"></div><div class="m3-over" id="m3Over" hidden></div></div>
     <div class="m3-ctl"><button type="button" id="m3Restart">重新开始这一关 ↻</button></div>
     <p class="hint">滑动或先后点两个相邻的格子来交换<br>四连变成直线道具 · L / T 形变成炸弹 · 五连变成吉祥的爪印 🐾<br>每天前 3 次过关各送 1 个爱心币</p>
+  </div>
+</section>
+
+<section class="block" id="memo">
+  <h2>翻翻我们的回忆 🃏</h2>
+  <p class="sub">牌面是我们的照片，翻开两张一样的就配对成功</p>
+  <div class="mm">
+    <div class="mm-modes" id="mmModes"><button type="button" data-m="easy">简单</button><button type="button" data-m="mid">普通</button><button type="button" data-m="hard">困难</button></div>
+    <div class="mm-hud"><span>已翻 <b id="mmFlips">0</b> 次</span><span>用时 <b id="mmTime">0</b> 秒</span><span>最好 <b id="mmBest">-</b> 次</span></div>
+    <div class="mm-wrap"><div class="mm-grid" id="mmGrid"></div><div class="m3-over" id="mmOver" hidden></div></div>
+    <p class="mm-cap" id="mmCap"></p>
+    <p class="hint">每次翻两张，一样的就留下，不一样的会翻回去 · 配对好的照片点一下能看大图<br>每天前 2 局全部翻完各送 1 个爱心币</p>
   </div>
 </section>
 
@@ -1969,7 +2004,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 
   /* ---------- 亲密度 (intimacy level), wardrobe and diary ---------- */
   var LV = [0, 30, 80, 150, 250, 380, 540, 740, 1000, 1300], XP_CAP = 25;
-  var XP_FOR = { fed: 3, ball: 2, hug: 2, visit: 5, m3: 3 };
+  var XP_FOR = { fed: 3, ball: 2, hug: 2, visit: 5, m3: 3, memo: 3 };
   var OUTFITS = [
     { id: 'scarf', slot: 'neck', lv: 2, name: '红色小围巾', icon: '🧣' },
     { id: 'bow', slot: 'head', lv: 3, name: '粉色蝴蝶结', icon: '🎀' },
@@ -2069,6 +2104,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (e.ball) parts.push('陪我捡了 ' + e.ball + ' 次球');
     if (e.hug) parts.push('抱了我 ' + e.hug + ' 次');
     if (e.m3) parts.push('陪我玩消消乐过了 ' + e.m3 + ' 关');
+    if (e.memo) parts.push('翻了 ' + e.memo + ' 局我们的照片牌');
     var s = parts.length ? '今天她' + parts.join('，') + '。' : '今天她来看我啦，虽然没怎么陪我玩，我还是很开心。';
     if (e.hit) s += e.hit === 1 ? '还敲了我一下，哼。' : '还敲了我 ' + e.hit + ' 下，哼！不过我原谅她了。';
     if (e.got && e.got.length) s += '她从扭蛋机里扭到了悄悄话 ' + e.got.map(function (n) { return 'No.' + (n + 1); }).join('、') + '。';
@@ -2415,7 +2451,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   function snapshot() {
     return {
       pet: { hunger: stats.hunger, hungerAt: stats.hungerAt, mood: stats.mood, fed: stats.fed, pet: stats.pet, hit: stats.hit },
-      gacha: { earned: gs.earned, spent: gs.spent, got: gs.got.slice().sort(function (a, b) { return a - b; }), lastDay: gs.lastDay, playDay: gs.playDay || '', playEarned: gs.playEarned || 0, voucher: gs.voucher || null, match: { lv: MS.lv, day: MS.day, earned: MS.earned } },
+      gacha: { earned: gs.earned, spent: gs.spent, got: gs.got.slice().sort(function (a, b) { return a - b; }), lastDay: gs.lastDay, playDay: gs.playDay || '', playEarned: gs.playEarned || 0, voucher: gs.voucher || null, match: { lv: MS.lv, day: MS.day, earned: MS.earned }, memo: { best: MM.best, day: MM.day, earned: MM.earned } },
       life: { xp: L.xp, xpDay: L.xpDay || '', xpToday: L.xpToday || 0, diary: L.diary, wear: L.wear, wearAt: L.wearAt },
       updatedAt: gs.updatedAt
     };
@@ -2445,6 +2481,15 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (typeof rm.day === 'string' && typeof rm.earned === 'number') {
       if (rm.day > MS.day) { MS.day = rm.day; MS.earned = rm.earned; changed = true; }
       else if (rm.day === MS.day && rm.earned > MS.earned) { MS.earned = rm.earned; changed = true; }
+    }
+    var rmm = rg.memo || {};
+    Object.keys(rmm.best || {}).forEach(function (k) {
+      var v = rmm.best[k];
+      if (typeof v === 'number' && v > 0 && !(MM.best[k] <= v)) { MM.best[k] = v; changed = true; }
+    });
+    if (typeof rmm.day === 'string' && typeof rmm.earned === 'number') {
+      if (rmm.day > MM.day) { MM.day = rmm.day; MM.earned = rmm.earned; changed = true; }
+      else if (rmm.day === MM.day && rmm.earned > MM.earned) { MM.earned = rmm.earned; changed = true; }
     }
     var rl = r.life || {};
     if (typeof rl.xp === 'number' && rl.xp > L.xp) { L.xp = rl.xp; changed = true; }
@@ -2770,6 +2815,81 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     var dx = e.changedTouches[0].clientX - tx; tx = null;
     if (Math.abs(dx) > 45) showPhoto(lbIdx + (dx < 0 ? 1 : -1));
   });
+
+  /* ---------- 翻牌配对: memory game with our photos as the cards ---------- */
+  var MM_MODES = { easy: 6, mid: 8, hard: 10 }, MM_CAP = 2;   // pairs per mode; coins per day
+  gs.memo = gs.memo || {};
+  var MM = gs.memo;
+  MM.best = MM.best || {}; MM.day = MM.day || ''; MM.earned = MM.earned || 0;
+  var mm = { mode: 'easy', cards: [], open: [], flips: 0, found: 0, t0: 0, lock: false, timer: null };
+  function shuffled(a) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), x = a[i]; a[i] = a[j]; a[j] = x; }
+    return a;
+  }
+  function mmHud() {
+    $('#mmFlips').textContent = mm.flips;
+    $('#mmTime').textContent = mm.t0 ? Math.round((Date.now() - mm.t0) / 1000) : 0;
+    $('#mmBest').textContent = MM.best[mm.mode] || '-';
+  }
+  function mmStart(mode) {
+    clearInterval(mm.timer);
+    mm = { mode: mode, cards: [], open: [], flips: 0, found: 0, t0: 0, lock: false, timer: null };
+    var pics = shuffled(PHOTOS.map(function (p, i) { return i; })).slice(0, MM_MODES[mode]);
+    mm.cards = shuffled(pics.concat(pics));
+    $('#mmGrid').innerHTML = mm.cards.map(function (i, k) {
+      return '<button type="button" class="mm-c" data-k="' + k + '" aria-label="翻牌"><span class="in"><span class="bk">🐾</span>' +
+        '<span class="fr"><img src="photos/' + PHOTOS[i].f + '_s.jpg" alt=""></span></span></button>';
+    }).join('');
+    [].forEach.call($('#mmModes').children, function (b) { b.classList.toggle('on', b.dataset.m === mode); });
+    $('#mmOver').hidden = true;
+    $('#mmCap').textContent = '🐶 翻开两张看看，找找一样的照片～';
+    mmHud();
+  }
+  function mmCaption(i) {
+    var ph = PHOTOS[i];
+    $('#mmCap').textContent = '🐶 ' + (ph.d ? '这张是 ' + monthName(ph.d) + ' 拍的' : pick(['这张好好看！', '找到啦！', '这天的你好可爱'])) + (ph.both ? '，是我们俩 💕' : '');
+  }
+  function mmWin() {
+    clearInterval(mm.timer);
+    var secs = Math.round((Date.now() - mm.t0) / 1000), best = MM.best[mm.mode], record = !best || mm.flips < best;
+    if (record) MM.best[mm.mode] = mm.flips;
+    var d = todayStr(), got = 0;
+    if (MM.day !== d) { MM.day = d; MM.earned = 0; }
+    if (MM.earned < MM_CAP) { MM.earned++; gs.earned++; got = 1; renderCoins(true); }
+    track('memo');
+    mmHud();
+    var over = $('#mmOver');
+    over.innerHTML = '<div><p class="m3-big">全部找到啦！</p><p>翻了 ' + mm.flips + ' 次 · 用了 ' + secs + ' 秒' + (record ? ' · 新纪录 🏆' : '') + '</p>' +
+      '<p>' + (got ? '爱心币 +1 💗' : '今天翻牌的爱心币已经领满啦') + '</p><button type="button" class="spin-btn" data-again>再来一局 ↻</button></div>';
+    over.hidden = false; fireworks(1800);
+    say(pick(['她记得我们的每一张照片 💕', '好厉害呀 ✨', '汪！全部找到啦！']), 2400);
+  }
+  $('#mmGrid').addEventListener('click', function (e) {
+    var b = e.target.closest('.mm-c'); if (!b) return;
+    if (b.classList.contains('ok')) { showPhoto(mm.cards[b.dataset.k]); return; }
+    if (mm.lock || b.classList.contains('up')) return;
+    if (!mm.t0) { mm.t0 = Date.now(); mm.timer = setInterval(mmHud, 1000); }
+    b.classList.add('up'); mm.open.push(b);
+    if (mm.open.length < 2) return;
+    var a = mm.open[0], c = mm.open[1], i = mm.cards[a.dataset.k];
+    mm.open = []; mm.flips++; mmHud();
+    if (i === mm.cards[c.dataset.k]) {
+      setTimeout(function () { a.classList.add('ok'); c.classList.add('ok'); }, 380);
+      mm.found++; mmCaption(i);
+      if (mm.found === MM_MODES[mm.mode]) setTimeout(mmWin, 1000);
+    } else {
+      mm.lock = true;
+      setTimeout(function () { a.classList.remove('up'); c.classList.remove('up'); mm.lock = false; }, 950);
+    }
+  });
+  $('#mmModes').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-m]'); if (b) mmStart(b.dataset.m);
+  });
+  $('#mmOver').addEventListener('click', function (e) {
+    if (e.target.closest('[data-again]')) mmStart(mm.mode);
+  });
+  mmStart('easy');
 
   /* ---------- letter typewriter ---------- */
   var letter = $('#letter'), ps = [].slice.call(letter.querySelectorAll('p'));
