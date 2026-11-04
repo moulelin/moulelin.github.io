@@ -628,6 +628,13 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 }
 .mb-item small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
 .mb-item.unread { border-color: var(--pink2); background: #fff6f8; }
+.mb-tabs { display: flex; justify-content: center; gap: 8px; margin: 14px 0 0; }
+.mb-tabs button { border: 1px solid var(--line); background: #fff; color: var(--muted); border-radius: 999px; padding: 5px 14px; cursor: pointer; font-size: 14px; }
+.mb-tabs button.on { background: var(--pink); border-color: var(--pink); color: #fff; }
+.mb-empty { color: var(--muted); text-align: center; font-size: 14px; margin: 20px 0; }
+.card-w textarea.note { display: block; width: 100%; min-height: 168px; border: 0; outline: 0; resize: none; background-color: transparent; }
+.card-w .lt-from { width: 110px; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 16px; color: var(--ink); outline: 0; text-align: center; }
+.card-w .write { margin-top: 2px; }
 
 /* ---------- add to home screen ---------- */
 
@@ -1007,7 +1014,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     <button type="button" id="bBall">⚾ 扔球</button>
     <button type="button" id="bHit">🔨 敲一下</button>
     <button type="button" id="bHug">💗 求抱抱</button>
-    <button type="button" id="bMail" class="mail" hidden>💌 信箱</button>
+    <button type="button" id="bMail" class="mail">💌 信箱</button>
   </div>
   <div class="stats">
     <span>🍖 饱腹<span class="bar food-bar"><i id="hungerBar"></i></span></span>
@@ -1044,7 +1051,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       <p class="cap-hint" id="capHint"></p>
       <button type="button" class="spin-btn" id="spinBtn">扭一下（10 💗）</button>
       <p class="coins">💗 爱心币 × <b id="coins">0</b></p>
-      <p class="earn-tip">陪吉祥玩可以赚爱心币：喂食、捡球回来、抱抱各 +1，摸摸 30 下 +1<br>陪玩每天最多赚 3 个 · 消消乐过关每天再送 3 个 · 翻牌配对每天再送 2 个 · 每天来看看再送 2 个</p>
+      <p class="earn-tip">陪吉祥玩可以赚爱心币：喂食、捡球回来、抱抱各 +1，摸摸 30 下 +1<br>陪玩每天最多赚 2 个 · 消消乐打通新关卡每天 1 个 · 翻牌配对每天 1 个 · 每天来看看送 1 个</p>
     </div>
     <div class="book">
       <h3>悄悄话收集册</h3>
@@ -1064,7 +1071,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     <p class="m3-say" id="m3Say"></p>
     <div class="m3-wrap"><div class="m3-board" id="m3Board"></div><div class="m3-over" id="m3Over" hidden></div></div>
     <div class="m3-ctl"><button type="button" id="m3Restart">重新开始这一关 ↻</button></div>
-    <p class="hint">滑动或先后点两个相邻的格子来交换<br>四连变成直线道具 · L / T 形变成炸弹 · 五连变成吉祥的爪印 🐾<br>每天前 3 次过关各送 1 个爱心币</p>
+    <p class="hint">滑动或先后点两个相邻的格子来交换<br>四连变成直线道具 · L / T 形变成炸弹 · 五连变成吉祥的爪印 🐾<br>每天打通一个新关卡送 1 个爱心币</p>
   </div>
 </section>
 
@@ -1076,7 +1083,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     <div class="mm-hud"><span>已翻 <b id="mmFlips">0</b> 次</span><span>用时 <b id="mmTime">0</b> 秒</span><span>最好 <b id="mmBest">-</b> 次</span></div>
     <div class="mm-wrap"><div class="mm-grid" id="mmGrid"></div><div class="m3-over" id="mmOver" hidden></div></div>
     <p class="mm-cap" id="mmCap"></p>
-    <p class="hint">每次翻两张，一样的就留下，不一样的会翻回去 · 配对好的照片点一下能看大图<br>每天前 2 局全部翻完各送 1 个爱心币</p>
+    <p class="hint">每次翻两张，一样的就留下，不一样的会翻回去 · 配对好的照片点一下能看大图<br>每天第一局全部翻完送 1 个爱心币</p>
   </div>
 </section>
 
@@ -1733,7 +1740,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     ['SSR', '等我，我会给你一个最好的未来。'],
     ['SSR', '下辈子，我也要先遇见你。']
   ];
-  var COST = 10, PLAY_CAP = 3, DAILY = 2, G_KEY = 'jixiang-gacha-v1';
+  var COST = 10, PLAY_CAP = 2, DAILY = 1, G_KEY = 'jixiang-gacha-v1';
   var REVOKED = [9];   // drawn by mistake on another device; dropped everywhere, even when synced back in
   var gs = { earned: 10, spent: 0, got: [], lastDay: '', playDay: '', playEarned: 0, updatedAt: 0 };
   try { Object.assign(gs, JSON.parse(localStorage.getItem(G_KEY) || '{}')); } catch (e) {}
@@ -2064,7 +2071,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (isBirthday) w.head = null;
     var g = wxGear();   // weather gear never replaces festival outfits; the raincoat goes over a cape
     Object.keys(g).forEach(function (k) { if (!(FEST && FEST.wear && FEST.wear[k]) && (k === 'back' || !w[k])) w[k] = g[k]; });
-    if (LETTER_ON) w.mouth = 'envelope';
+    if (LETTER_ON || SENDING) w.mouth = 'envelope';
     [].forEach.call(document.querySelectorAll('.dog .acc'), function (g) { g.classList.remove('on'); });
     Object.keys(w).forEach(function (s) {
       var g = w[s] && document.getElementById('acc-' + w[s]);
@@ -2110,6 +2117,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (e.got && e.got.length) s += '她从扭蛋机里扭到了悄悄话 ' + e.got.map(function (n) { return 'No.' + (n + 1); }).join('、') + '。';
     if (e.lv) s += '我的亲密度升到了 Lv.' + e.lv + '！';
     if (e.note) s += '我还帮 Moral 给她送了' + (e.note > 1 ? ' ' + e.note + ' 张' : '一张') + '纸条，她看完笑得好开心。';
+    if (e.letter) s += '她还写了' + (e.letter > 1 ? ' ' + e.letter + ' 封' : '一封') + '信，让我送给 Moral，我跑得可快了！';
     return s + ENDINGS[hashStr(day + 'e') % ENDINGS.length];
   }
   var diaryShown = 4;
@@ -2163,7 +2171,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
      to clear every tile of that kind). Reach the target before the moves run out. */
   var M3_ICONS = ['🦴', '🍓', '🧁', '🌸', '🍖', '🍡'];
   var M3_BG = ['#fff0d6', '#ffe0e6', '#efe4ff', '#ffe4f2', '#ffe3d2', '#e2f4e4'];
-  var M3_N = 7, M3_CAP = 3;
+  var M3_N = 7, M3_CAP = 1;
   gs.match = gs.match || {};
   var MS = gs.match;
   MS.lv = MS.lv || 1; MS.day = MS.day || ''; MS.earned = MS.earned || 0;
@@ -2380,7 +2388,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       m3.g.forEach(function (row, r) { row.forEach(function (x, c) { m3Paint(x); m3Place(x, r, c, r - M3_N); }); });
     }
   }
-  // the first three level wins each day pay a 爱心币 each
+  // clearing a new level pays a 爱心币, once a day
   function m3Reward() {
     var d = todayStr();
     if (MS.day !== d) { MS.day = d; MS.earned = 0; }
@@ -2394,11 +2402,12 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (m3.score >= lv.target) {
       m3.done = true;
       var stars = 1 + (m3.moves >= 5) + (m3.moves >= 10);
-      if (m3.lv >= MS.lv) MS.lv = m3.lv + 1;
-      var got = m3Reward();
+      var fresh = m3.lv >= MS.lv;
+      if (fresh) MS.lv = m3.lv + 1;
+      var got = fresh ? m3Reward() : 0;
       track('m3');
       over.innerHTML = '<div><p class="m3-big">过关啦！</p><p class="m3-stars">' + '⭐'.repeat(stars) + '<span>' + '⭐'.repeat(3 - stars) + '</span></p>' +
-        '<p>' + (got ? '爱心币 +1 💗' : '今天的消消乐爱心币已经领满啦') + '</p>' +
+        '<p>' + (got ? '爱心币 +1 💗' : fresh ? '今天的消消乐爱心币已经领过啦，明天再来' : '重玩的关卡不送爱心币哦') + '</p>' +
         '<button type="button" class="spin-btn" data-go="' + (m3.lv + 1) + '">下一关 →</button></div>';
       over.hidden = false; fireworks(1800);
       say(pick(['她又过了一关！', '好厉害呀 ✨', '汪！我们赢啦！']), 2200);
@@ -2706,7 +2715,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   }
   function renderMail() {
     var b = $('#bMail'), u = unread().length;
-    b.hidden = !notes.length;
+    b.hidden = false;
     b.textContent = u ? '💌 新纸条 (' + u + ')' : '💌 信箱';
     b.classList.toggle('new', !!u);
   }
@@ -2724,7 +2733,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   function openNote(n) {
     modal.hidden = false;
     modal.innerHTML = '<div class="card-w"><span class="rar" style="--c:linear-gradient(135deg,#ffb3c6,#ff7a9c)">💌 ' + esc(n.from) + ' 写给你的纸条</span>' +
-      '<p class="note">' + esc(n.text) + '</p><p class="note-meta"><b>—— ' + esc(n.from || 'Moral') + '</b><br>写于 ' + when(n.at) + '</p><button type="button" class="close">收到啦 💗</button></div>';
+      '<p class="note">' + esc(n.text) + '</p><p class="note-meta"><b>—— ' + esc(n.from || 'Moral') + '</b><br>写于 ' + when(n.at) + '</p><button type="button" class="close">收到啦 💗</button><button type="button" class="later reply">给他回信 ✍️</button></div>';
     var fresh = !n.readAt && !readIds[n.id];
     if (fresh) {
       n.readAt = Date.now(); readIds[n.id] = 1;
@@ -2732,32 +2741,110 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       fetch(NOTES + '/' + encodeURIComponent(n.id) + '.json', { method: 'PATCH', body: JSON.stringify({ readAt: n.readAt }) }).catch(function () {});
       track('note');
     }
-    modal.querySelector('.close').addEventListener('click', function () {
+    function done() {
       closeModal(); renderMail();
       if (!fresh) return;
       if (unread().length) { say('还有一张哦！再点我 💌', 2600); return; }
       LETTER_ON = false; renderWear(); flash('happy', 1600);
       var h = headPos(); fx(h.x, h.y + 20, ['💗', '💕', '💌'], 8, 80);
       say(pick(['他好爱你呀 💗', '我送信送得好吧！', '纸条送到啦，汪！']), 2400);
-    });
+    }
+    modal.querySelector('.close').addEventListener('click', done);
+    modal.querySelector('.reply').addEventListener('click', function () { done(); compose(n); });
   }
   function nextUnread() { var u = unread(); return u[u.length - 1]; }   // oldest first
   onPetTap = function () {
     if (!LETTER_ON || !nextUnread()) return false;
     interact(); openNote(nextUnread()); return true;
   };
+  function openMailbox(tab) {
+    modal.hidden = false;
+    modal.innerHTML = '<div class="card-w"><span class="rar" style="--c:linear-gradient(135deg,#ffb3c6,#ff7a9c)">📮 吉祥的信箱</span>' +
+      '<div class="mb-tabs"><button type="button" data-t="in">他写给我的</button><button type="button" data-t="out">我写给他的</button></div>' +
+      '<div class="mb"></div><button type="button" class="close write">✍️ 给 Moral 写信</button><button type="button" class="later">关上信箱</button></div>';
+    function show(t) {
+      tab = t;
+      [].forEach.call(modal.querySelectorAll('.mb-tabs button'), function (b) { b.classList.toggle('on', b.dataset.t === t); });
+      var list = t === 'in' ? notes : letters;
+      modal.querySelector('.mb').innerHTML = list.length ? list.map(function (n, i) {
+        var st = t === 'in' ? '' : (n.readAt ? ' · 他看过了 💗' : ' · 他还没看');
+        return '<button type="button" class="mb-item" data-i="' + i + '">' + esc(n.text.split('\n')[0]) + '<small>写于 ' + when(n.at) + st + '</small></button>';
+      }).join('') : '<p class="mb-empty">' + (t === 'in' ? '还没有收到纸条' : '还没有给他写过信，写一封吧 ✍️') + '</p>';
+    }
+    show(tab || 'in');
+    loadLetters().then(function () { if (!modal.hidden && tab === 'out' && modal.querySelector('.mb-tabs')) show('out'); });
+    modal.querySelector('.mb-tabs').addEventListener('click', function (e) { var b = e.target.closest('[data-t]'); if (b) show(b.dataset.t); });
+    modal.querySelector('.mb').addEventListener('click', function (e) {
+      var b = e.target.closest('.mb-item'); if (!b) return;
+      if (tab === 'in') openNote(notes[+b.dataset.i]); else openLetter(letters[+b.dataset.i]);
+    });
+    modal.querySelector('.write').addEventListener('click', function () { compose(null); });
+    modal.querySelector('.later').addEventListener('click', closeModal);
+  }
   $('#bMail').addEventListener('click', function () {
     if (nextUnread()) { openNote(nextUnread()); return; }
-    modal.hidden = false;
-    modal.innerHTML = '<div class="card-w"><span class="rar" style="--c:linear-gradient(135deg,#ffb3c6,#ff7a9c)">📮 吉祥的信箱</span><div class="mb">' +
-      notes.map(function (n, i) {
-        return '<button type="button" class="mb-item" data-i="' + i + '">' + esc(n.text.split('\n')[0]) + '<small>写于 ' + when(n.at) + '</small></button>';
-      }).join('') + '</div><button type="button" class="close">关上信箱</button></div>';
-    modal.querySelector('.mb').addEventListener('click', function (e) {
-      var b = e.target.closest('.mb-item'); if (b) openNote(notes[+b.dataset.i]);
-    });
-    modal.querySelector('.close').addEventListener('click', closeModal);
+    openMailbox('in');
   });
+
+  /* her letters back to Moral: kept under /fancy/letters and read on write.html; 吉祥 runs off to deliver them */
+  var LETTERS = CLOUD.replace('state.json', 'letters'), FROM_KEY = 'jixiang-letter-from';
+  var letters = [], SENDING = false;
+  function loadLetters() {
+    return getJSON(LETTERS + '.json').then(function (r) {
+      if (r === undefined) return;
+      letters = Object.keys(r || {}).map(function (id) {
+        var n = r[id] || {};
+        return { id: id, text: String(n.text || ''), from: String(n.from || ''), at: +n.at || 0, readAt: +n.readAt || 0, re: n.re || '' };
+      }).filter(function (n) { return n.text; }).sort(function (a, b) { return b.at - a.at; });
+    });
+  }
+  function openLetter(n) {
+    modal.hidden = false;
+    modal.innerHTML = '<div class="card-w"><span class="rar" style="--c:linear-gradient(135deg,#8ec2ff,#b39cff)">✉️ 我写给 Moral 的信</span>' +
+      '<p class="note">' + esc(n.text) + '</p><p class="note-meta"><b>—— ' + esc(n.from) + '</b><br>写于 ' + when(n.at) +
+      '<br>' + (n.readAt ? '他在 ' + when(n.readAt) + ' 看过了 💗' : '他还没看') + '</p><button type="button" class="close">好</button></div>';
+    modal.querySelector('.close').addEventListener('click', function () { openMailbox('out'); });
+  }
+  function compose(re) {
+    var from = 'Fancy';
+    try { from = localStorage.getItem(FROM_KEY) || from; } catch (e) {}
+    modal.hidden = false;
+    modal.innerHTML = '<div class="card-w"><span class="rar" style="--c:linear-gradient(135deg,#8ec2ff,#b39cff)">✍️ 写给 Moral 的信</span>' +
+      (re ? '<p class="no">回复他的纸条：' + esc(re.text.split('\n')[0].slice(0, 22)) + (re.text.length > 22 ? '…' : '') + '</p>' : '') +
+      '<textarea class="note" maxlength="600" placeholder="想对他说的话…"></textarea>' +
+      '<p class="note-meta">署名 <input class="lt-from" maxlength="20" value="' + esc(from) + '"></p>' +
+      '<button type="button" class="close send">交给吉祥送去 🐾</button><button type="button" class="later">先不写了</button></div>';
+    var send = modal.querySelector('.send');
+    modal.querySelector('.later').addEventListener('click', closeModal);
+    send.addEventListener('click', function () {
+      var t = modal.querySelector('textarea').value.trim(), f = modal.querySelector('.lt-from').value.trim() || 'Fancy';
+      if (!t) { toast('先写点什么吧 ✍️'); return; }
+      try { localStorage.setItem(FROM_KEY, f); } catch (e) {}
+      send.disabled = true; send.textContent = '正在交给吉祥…';
+      fetch(LETTERS + '.json', { method: 'POST', body: JSON.stringify({ text: t, from: f, at: Date.now(), re: re ? re.id : '' }) }).then(function (r) {
+        if (!r.ok) throw new Error('send failed');
+        closeModal(); track('letter'); loadLetters(); sendOff();
+        toast('信交给吉祥啦，它这就给 Moral 送去 💌');
+      }).catch(function () {
+        send.disabled = false; send.textContent = '交给吉祥送去 🐾';
+        toast('没送出去，检查一下网络再试试');
+      });
+    });
+  }
+  function sendOff() {
+    interact(); stop(); pet.classList.remove('sulk'); st.mode = 'busy';
+    SENDING = true; renderWear();
+    var r = yard.getBoundingClientRect();
+    if (r.top < 0 || r.bottom > innerHeight) yard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    say('我这就给 Moral 送去！🐾', 2000);
+    walkTo(W, true, function () {
+      setTimeout(function () {
+        SENDING = false; renderWear(); flash('happy', 1800);
+        say(pick(['送到啦！他一定会很开心 💗', '信送到啦，汪！', '他看到会笑的 😊']), 2600);
+        st.mode = 'idle'; st.nextWander = now() + 5000;
+      }, 1200);
+    });
+  }
   onEnter.push(loadNotes);
   setInterval(function () { if (document.visibilityState === 'visible') loadNotes(); }, 120000);
 
@@ -2817,7 +2904,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   });
 
   /* ---------- 翻牌配对: memory game with our photos as the cards ---------- */
-  var MM_MODES = { easy: 6, mid: 8, hard: 10 }, MM_CAP = 2;   // pairs per mode; coins per day
+  var MM_MODES = { easy: 6, mid: 8, hard: 10 }, MM_CAP = 1;   // pairs per mode; coins per day
   gs.memo = gs.memo || {};
   var MM = gs.memo;
   MM.best = MM.best || {}; MM.day = MM.day || ''; MM.earned = MM.earned || 0;
@@ -2861,7 +2948,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     mmHud();
     var over = $('#mmOver');
     over.innerHTML = '<div><p class="m3-big">全部找到啦！</p><p>翻了 ' + mm.flips + ' 次 · 用了 ' + secs + ' 秒' + (record ? ' · 新纪录 🏆' : '') + '</p>' +
-      '<p>' + (got ? '爱心币 +1 💗' : '今天翻牌的爱心币已经领满啦') + '</p><button type="button" class="spin-btn" data-again>再来一局 ↻</button></div>';
+      '<p>' + (got ? '爱心币 +1 💗' : '今天翻牌的爱心币已经领过啦，明天再来') + '</p><button type="button" class="spin-btn" data-again>再来一局 ↻</button></div>';
     over.hidden = false; fireworks(1800);
     say(pick(['她记得我们的每一张照片 💕', '好厉害呀 ✨', '汪！全部找到啦！']), 2400);
   }

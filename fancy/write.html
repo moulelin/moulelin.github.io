@@ -50,6 +50,9 @@ h2 { font-weight: 400; font-size: 20px; margin: 30px 0 10px; }
 }
 .meta .save { color: #fff; background: var(--pink); border-radius: 999px; padding: 2px 12px; }
 .empty { color: var(--muted); text-align: center; font-size: 14px; }
+.note.from-her { border-color: #cfe0ff; background: #f8fbff; }
+.note .re { color: var(--muted); font-size: 13px; margin: 0 0 4px; font-family: inherit; }
+.meta .st.new { background: #ffe1ea; color: var(--pink); }
 </style>
 </head>
 <body>
@@ -65,6 +68,8 @@ h2 { font-weight: 400; font-size: 20px; margin: 30px 0 10px; }
     <button type="button" class="send" id="send">交给吉祥 🐾</button>
     <p class="msg" id="msg"></p>
   </div>
+  <h2>她写给你的信 💗</h2>
+  <div id="letters"><p class="empty">加载中…</p></div>
   <h2>写过的纸条</h2>
   <div id="list"><p class="empty">加载中…</p></div>
 </main>
@@ -79,8 +84,25 @@ h2 { font-weight: 400; font-size: 20px; margin: 30px 0 10px; }
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   text.addEventListener('input', function () { $('#n').textContent = text.value.length + ' / 400'; });
 
+  var LETTERS = NOTES.replace(/notes$/, 'letters'), noteText = {};
+  function loadLetters() {
+    fetch(LETTERS + '.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (r) {
+      var list = Object.keys(r || {}).map(function (id) { var n = r[id]; n.id = id; return n; })
+        .filter(function (n) { return n && n.text; }).sort(function (a, b) { return b.at - a.at; });
+      $('#letters').innerHTML = list.length ? list.map(function (n) {
+        return '<div class="note from-her">' + (n.re && noteText[n.re] ? '<p class="re">回复你的纸条：' + esc(noteText[n.re].split('\n')[0].slice(0, 30)) + '</p>' : '') +
+          '<p>' + esc(n.text) + '</p><div class="meta"><span>' + when(n.at) + ' · ' + esc(n.from || '') + '</span>' +
+          (n.readAt ? '' : '<span class="st new">新</span>') + '</div></div>';
+      }).join('') : '<p class="empty">她还没有写信给你</p>';
+      // opening this page counts as reading them; her mailbox then shows 他看过了
+      list.forEach(function (n) {
+        if (!n.readAt) fetch(LETTERS + '/' + encodeURIComponent(n.id) + '.json', { method: 'PATCH', body: JSON.stringify({ readAt: Date.now() }) });
+      });
+    }).catch(function () { $('#letters').innerHTML = '<p class="empty">加载失败了，刷新试试</p>'; });
+  }
   function load() {
     fetch(NOTES + '.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (r) {
+      Object.keys(r || {}).forEach(function (id) { if (r[id] && r[id].text) noteText[id] = r[id].text; });
       var list = Object.keys(r || {}).map(function (id) { var n = r[id]; n.id = id; return n; })
         .filter(function (n) { return n && n.text; }).sort(function (a, b) { return b.at - a.at; });
       $('#list').innerHTML = list.length ? list.map(function (n) {
@@ -90,6 +112,7 @@ h2 { font-weight: 400; font-size: 20px; margin: 30px 0 10px; }
           '<span class="acts">' + (n.readAt ? '' : '<button type="button" data-act="edit">编辑</button>') +
           '<button type="button" data-act="del">删除</button></span></div></div>';
       }).join('') : '<p class="empty">还没有写过纸条</p>';
+      loadLetters();   // after the notes, so a reply can quote the note it answers
     }).catch(function () { $('#list').innerHTML = '<p class="empty">加载失败了，刷新试试</p>'; });
   }
   send.addEventListener('click', function () {
