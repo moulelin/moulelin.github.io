@@ -464,6 +464,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 
 .modal {
   position: fixed; inset: 0; z-index: 95; display: grid; place-items: center; padding: 16px;
+  grid-template-columns: minmax(0, 1fr);   /* a long one-line note in the mailbox must not widen the card off screen */
   background: rgba(90,62,70,.38); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
 }
 .stage { text-align: center; color: #fff; }
@@ -477,7 +478,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 @keyframes wobble { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-8deg); } 75% { transform: rotate(8deg); } }
 .stage p { margin: 18px 0 0; font-size: 18px; text-shadow: 0 2px 8px rgba(0,0,0,.25); }
 .card-w {
-  position: relative; width: min(420px, 100%); background: #fffdfb; border-radius: 26px; padding: 30px 26px 24px;
+  position: relative; width: min(420px, 100%, calc(100vw - 32px)); min-width: 0; background: #fffdfb; border-radius: 26px; padding: 30px 26px 24px;
   text-align: center; box-shadow: 0 30px 80px rgba(90,40,50,.3); animation: cardIn .5s cubic-bezier(.3,1.5,.5,1);
 }
 @keyframes cardIn { from { transform: scale(.5); opacity: 0; } }
@@ -622,7 +623,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 .card-w .note-meta b { font-weight: 400; color: var(--ink); }
 .card-w .mb { max-height: 52vh; overflow: auto; margin: 14px 0 16px; text-align: left; }
 .mb-item {
-  display: block; width: 100%; text-align: left; border: 1px solid var(--line); background: #fff; border-radius: 14px;
+  display: block; width: 100%; min-width: 0; text-align: left; border: 1px solid var(--line); background: #fff; border-radius: 14px;
   padding: 10px 12px; margin: 0 0 8px; cursor: pointer; color: var(--ink); font-size: 15px;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
