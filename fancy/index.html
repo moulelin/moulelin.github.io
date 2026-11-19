@@ -360,6 +360,8 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   animation: glow 1.6s ease-in-out infinite alternate;
 }
 @keyframes glow { to { box-shadow: 0 8px 36px rgba(255,150,120,.5); } }
+.card-w .wed-big { font-family: Pacifico, cursive; font-size: 64px; line-height: 1.1; color: var(--pink); margin: 10px 0 0; }
+.card-w .wed-big small { font-family: inherit; font-size: 20px; margin-left: 6px; color: var(--muted); }
 .bday-banner button {
   border: 0; border-radius: 999px; padding: 6px 14px; background: #fff; color: #c2416a; cursor: pointer; font-size: 15px;
 }
@@ -1220,7 +1222,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   var onEnter = [];   // run once the opening gate is tapped (effects would be hidden behind it)
 
   /* ---------- together counter ---------- */
-  var together = new Date(2024, 3, 1, 12, 0, 0);
+  var together = new Date(2024, 3, 3, 0, 0, 0);   // midnight, so Dec 29, 2026 reads 1000 days all day
   function pad(n) { return String(n).padStart(2, '0'); }
   function tick() {
     var d = Date.now() - together.getTime();
@@ -1231,9 +1233,9 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     var t = new Date(), today = new Date(t.getFullYear(), t.getMonth(), t.getDate());
     var wedding = new Date(2025, 11, 29);
     $('#wed').textContent = '💍 我们结婚已经 ' + Math.floor((today - wedding) / 864e5) + ' 天';
-    // nearest upcoming anniversary: together (Apr 1, 2024) or wedding (Dec 29, 2025)
+    // nearest upcoming anniversary: together (Apr 3, 2024) or wedding (Dec 29, 2025)
     var best = null;
-    [['在一起', 3, 1, 2024], ['结婚', 11, 29, 2025]].forEach(function (a) {
+    [['在一起', 3, 3, 2024], ['结婚', 11, 29, 2025]].forEach(function (a) {
       var dt = new Date(t.getFullYear(), a[1], a[2]);
       if (dt < today) dt = new Date(t.getFullYear() + 1, a[1], a[2]);
       var left = Math.round((dt - today) / 864e5), n = dt.getFullYear() - a[3];
@@ -2004,6 +2006,10 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   applyPhase(); setInterval(applyPhase, 60000);
 
   /* ---------- festivals & special days ---------- */
+  /* letters for the wedding anniversary (Dec 29), by year; 2026 is also our 1000th day together */
+  var WED_LETTERS = {
+    2026: '范洁心：\n\n今天是我们结婚一周年，\n也是我们在一起的第 1000 天。\n\n1000 天，\n是从喜欢到爱，从两个人到一个家。\n\n这 1000 天里有好多好多瞬间：\n一起吃过的饭，一起走过的路，\n吵过的架，和每一次和好。\n我都记得。\n\n谢谢你愿意嫁给我。\n接下来的第 1001 天、第 2000 天、第 10000 天，\n我都想牵着你的手一起过。\n\n一周年快乐，我的 Mrs. Fancy。\n我爱你。\n\n—— Moral'
+  };
   var QIXI = ['2026-08-19', '2027-08-08', '2028-08-26', '2029-08-16', '2030-08-05'];
   var CNY = ['2027-02-06', '2028-01-26', '2029-02-13', '2030-02-03'];
   var FEST = (function () {
@@ -2015,8 +2021,12 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       var diff = (new Date(iso + 'T00:00') - new Date(s + 'T00:00')) / 864e5;
       return diff >= -1 && diff <= 7;   // from New Year's Eve to the 7th day
     });
-    if (on('wedding', m === 12 && d === 29))
-      return { banner: '💍 结婚纪念日快乐，范洁心！', wear: { head: 'flower', neck: 'bowtie' }, fireworks: true, hearts: true, say: '结婚纪念日快乐！汪 💍' };
+    if (on('wedding', m === 12 && d === 29)) {
+      var wy = t.getFullYear() - 2025, td = Math.round((new Date(t.getFullYear(), m - 1, d) - new Date(2024, 3, 3)) / 864e5);
+      return { banner: '💍 结婚 ' + wy + ' 周年快乐' + (td === 1000 ? ' · 我们在一起 1000 天啦' : '') + '，范洁心！', wear: { head: 'flower', neck: 'bowtie' },
+               fireworks: true, hearts: true, say: td === 1000 ? '一周年快乐！也是在一起第 1000 天 💍' : '结婚纪念日快乐！汪 💍',
+               letter: WED_LETTERS[t.getFullYear()] && { title: '💍 结婚 ' + wy + ' 周年' + (td === 1000 ? ' · 在一起 1000 天' : ''), big: td === 1000 ? '1000' : '', text: WED_LETTERS[t.getFullYear()] } };
+    }
     if (on('xmas', m === 12 && d <= 26))
       return { banner: d < 25 && !q ? '🎄 离圣诞还有 ' + (25 - d) + ' 天 · 今天的礼物在日历里 🎁' : '🎄 Merry Christmas，范洁心！',
                wear: { head: 'santa' }, snow: true, xmas: true, say: d < 25 && !q ? '下雪啦！圣诞快到了 🎄' : '圣诞快乐！🎄' };
@@ -2030,7 +2040,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       return { banner: '💗 520 · 我爱你', hearts: true, say: '520！我也爱你 💗' };
     if (on('qixi', QIXI.indexOf(iso) >= 0))
       return { banner: '🌌 七夕快乐，今天也想见你', hearts: true, say: '七夕快乐 🌌' };
-    if (on('together', m === 4 && d === 1))
+    if (on('together', m === 4 && d === 3))
       return { banner: '💞 在一起 ' + (t.getFullYear() - 2024) + ' 周年快乐！', hearts: true, fireworks: true, say: '纪念日快乐！💞' };
     return null;
   })();
@@ -2049,6 +2059,23 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   }
   if (FEST) {
     if (!isBirthday) { $('#festText').textContent = FEST.banner; $('#festBanner').hidden = false; }
+    if (FEST.letter) {
+      var openWed = function () {
+        var L2 = FEST.letter;
+        modal.hidden = false;
+        modal.innerHTML = '<div class="card-w ssr"><span class="rar" style="--c:linear-gradient(135deg,#ff9bb5,#ffc94d)">' + L2.title + '</span>' +
+          (L2.big ? '<p class="wed-big">' + L2.big + '<small>天</small></p>' : '') +
+          '<div class="adv-letter">' + esc(L2.text) + '</div><button type="button" class="close">我也爱你 💗</button></div>';
+        modal.querySelector('.close').addEventListener('click', function () { closeModal(); fireworks(3000); });
+      };
+      $('#festBanner').insertAdjacentHTML('beforeend', '<button type="button" id="wedLetter">读他的信 💌</button>');
+      $('#wedLetter').addEventListener('click', openWed);
+      onEnter.push(function () {   // opens by itself the first time she visits that day
+        var k = 'wed-letter-' + todayStr(), seen = false;
+        try { seen = localStorage.getItem(k) === '1'; localStorage.setItem(k, '1'); } catch (e) {}
+        if (!seen) setTimeout(openWed, 2600);
+      });
+    }
     if (FEST.snow) rain(['❄', '❅', '✦'], 34, '#ffffff');
     if (FEST.hearts) {
       rain(['💗', '💕', '♥'], 24, '#ff7a9c');
@@ -2100,7 +2127,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     23: { t: 'v', k: '抓娃娃兑换券', i: '🧸', x: '凭此券可以让 Moral 陪你去抓娃娃，抓到为止。' },
     24: { t: 'v', k: '平安果兑换券', i: '🍎', x: '平安夜快乐！凭此券可以向 Moral 兑换一个平安果。' },
     25: { t: 'big', c: 5, k: '圣诞愿望券', i: '🎄', x: '凭此券可以向 Moral 许一个圣诞愿望，Moral 一定做到。',
-          letter: '圣诞快乐，范洁心。\n\n这是我们结婚以后的第一个圣诞节。\n\n这一年我们隔着好远，很多时候只能在屏幕里看着你，所以我做了这个小角落，让吉祥替我每天陪着你。\n\n谢谢你嫁给我，谢谢你一直等我。\n以后的每一个圣诞节，我都想在你身边过。\n\n再过四天，就是我们的结婚一周年了。\n我爱你，一直都是。\n\n—— Moral' }
+          letter: '圣诞快乐，范洁心。\n\n这是我们结婚以后的第一个圣诞节。\n\n这一年我们隔着好远，很多时候只能在屏幕里看着你，所以我做了这个小角落，让吉祥替我每天陪着你。\n\n谢谢你嫁给我，谢谢你一直等我。\n以后的每一个圣诞节，我都想在你身边过。\n\n再过四天，就是我们的结婚一周年，\n也是我们在一起的第 1000 天。\n我爱你，一直都是。\n\n—— Moral' }
   };
   var MISS = ['啊呀，今天没有抽到兑换券 🥲\n明天再来抽吧！', '呜… 今天手气不太好，什么都没抽到\n吉祥说明天一定行！🐾', '今天是空的 💨\n别灰心，明天再来抽一次！'];
   var ADV_E = 2;   // bump to wipe every opened door (v1 was opened by a preview in November)
@@ -2889,7 +2916,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   }
   function specialLine() {
     var t = new Date(), today = new Date(t.getFullYear(), t.getMonth(), t.getDate());
-    var days = Math.round((today - new Date(2024, 3, 1)) / 864e5);
+    var days = Math.round((today - new Date(2024, 3, 3)) / 864e5);
     if (days > 0 && days % 100 === 0) return '今天是我们在一起的第 ' + days + ' 天！💞';
     var months = (t.getFullYear() - 2025) * 12 + t.getMonth() - 11;
     if (t.getDate() === 29 && months > 0 && months % 12) return '今天是结婚 ' + months + ' 个月纪念日 💍';
@@ -3069,7 +3096,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 
   /* ---------- photo album ---------- */
   var PHOTOS = [{"f": "p01", "d": "2024-05", "both": false, "w": 389, "h": 520}, {"f": "p02", "d": "2024-05", "both": false, "w": 296, "h": 520}, {"f": "p03", "d": "2024-10", "both": false, "w": 390, "h": 520}, {"f": "p04", "d": "2024-10", "both": false, "w": 390, "h": 520}, {"f": "p05", "d": "2024-10", "both": false, "w": 390, "h": 520}, {"f": "p06", "d": "2024-10", "both": false, "w": 390, "h": 520}, {"f": "p07", "d": "2024-11", "both": false, "w": 390, "h": 520}, {"f": "p08", "d": "2024-11", "both": false, "w": 520, "h": 390}, {"f": "p09", "d": "2024-12", "both": true, "w": 390, "h": 520}, {"f": "p10", "d": "2024-12", "both": false, "w": 390, "h": 520}, {"f": "p11", "d": "2024-12", "both": false, "w": 390, "h": 520}, {"f": "p12", "d": "2024-12", "both": false, "w": 520, "h": 390}, {"f": "p13", "d": "2024-12", "both": false, "w": 390, "h": 520}, {"f": "p14", "d": "2024-12", "both": false, "w": 390, "h": 520}, {"f": "p15", "d": "2024-12", "both": false, "w": 390, "h": 520}, {"f": "p16", "d": "2024-12", "both": true, "w": 390, "h": 520}, {"f": "p17", "d": "2024-12", "both": true, "w": 390, "h": 520}, {"f": "p18", "d": "2024-12", "both": true, "w": 520, "h": 390}, {"f": "p19", "d": "2024-12", "both": false, "w": 520, "h": 390}, {"f": "p20", "d": "2024-12", "both": true, "w": 520, "h": 390}, {"f": "p21", "d": "2025-01", "both": false, "w": 520, "h": 390}, {"f": "p22", "d": "2025-02", "both": false, "w": 390, "h": 520}, {"f": "p23", "d": "2025-12", "both": false, "w": 390, "h": 520}, {"f": "p24", "d": "2026-01", "both": false, "w": 390, "h": 520}, {"f": "p25", "d": "2026-01", "both": true, "w": 390, "h": 520}, {"f": "p26", "d": "2026-01", "both": false, "w": 390, "h": 520}, {"f": "p27", "d": "2026-01", "both": false, "w": 390, "h": 520}, {"f": "p28", "d": "2026-01", "both": false, "w": 390, "h": 520}, {"f": "p29", "d": "2026-01", "both": false, "w": 390, "h": 520}, {"f": "p30", "d": "", "both": false, "w": 375, "h": 520}, {"f": "p31", "d": "", "both": false, "w": 390, "h": 520}, {"f": "p32", "d": "", "both": false, "w": 390, "h": 520}, {"f": "p33", "d": "", "both": false, "w": 276, "h": 520}, {"f": "p34", "d": "", "both": false, "w": 390, "h": 520}, {"f": "p35", "d": "", "both": false, "w": 390, "h": 520}, {"f": "p36", "d": "", "both": false, "w": 390, "h": 520}, {"f": "p37", "d": "", "both": false, "w": 390, "h": 520}, {"f": "p38", "d": "", "both": false, "w": 520, "h": 520}, {"f": "p39", "d": "", "both": true, "w": 292, "h": 520}, {"f": "p40", "d": "", "both": false, "w": 292, "h": 520}, {"f": "p41", "d": "", "both": true, "w": 520, "h": 293}, {"f": "p42", "d": "", "both": false, "w": 520, "h": 293}, {"f": "p43", "d": "", "both": false, "w": 292, "h": 520}, {"f": "p44", "d": "", "both": false, "w": 520, "h": 293}, {"f": "p45", "d": "", "both": false, "w": 292, "h": 520}, {"f": "p46", "d": "", "both": false, "w": 385, "h": 520}, {"f": "p47", "d": "", "both": false, "w": 390, "h": 520}, {"f": "p48", "d": "", "both": false, "w": 390, "h": 520}, {"f": "p49", "d": "", "both": false, "w": 390, "h": 520}, {"f": "p50", "d": "", "both": false, "w": 293, "h": 520}, {"f": "p51", "d": "", "both": false, "w": 390, "h": 520}, {"f": "p52", "d": "", "both": false, "w": 293, "h": 520}, {"f": "p53", "d": "", "both": false, "w": 347, "h": 520}, {"f": "p54", "d": "", "both": false, "w": 292, "h": 520}, {"f": "p55", "d": "", "both": false, "w": 390, "h": 520}];
-  var MILESTONES = { '2024-04': ['💞 我们在一起了', '2024.04.01'], '2025-12': ['💍 我们结婚了', '2025.12.29'] };
+  var MILESTONES = { '2024-04': ['💞 我们在一起了', '2024.04.03'], '2025-12': ['💍 我们结婚了', '2025.12.29'] };
   function monthName(m) { var p = m.split('-'); return p[0] + ' 年 ' + (+p[1]) + ' 月'; }
   (function renderAlbum() {
     var months = {}, html = '';
