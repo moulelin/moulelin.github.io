@@ -58,6 +58,7 @@ jobs:
                   # fewest flips per mode, from either side
                   "memo": {"best": {k: min(v for v in ((ng.get("memo") or {}).get("best", {}).get(k), (og.get("memo") or {}).get("best", {}).get(k)) if v)
                                     for k in set((ng.get("memo") or {}).get("best", {})) | set((og.get("memo") or {}).get("best", {}))}},
+                  "catch": {"best": max((ng.get("catch") or {}).get("best", 0), (og.get("catch") or {}).get("best", 0))},
                   # advent doors opened this December, from either side; a newer year wins
                   # (only epoch 2 counts; epoch 1 was opened by a preview in November)
                   "advent": (lambda a, b: {"e": 2, "y": a.get("y", 0), "open": sorted(set(a.get("open", [])) | set(b.get("open", [])))}

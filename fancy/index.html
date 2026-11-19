@@ -369,24 +369,8 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 .dog .hat { display: none; }
 .pet.party .hat { display: inline; }
 
-/* ---------- daily quote ---------- */
-.quote-block { padding-bottom: 0; }
-.quote-card {
-  position: relative; max-width: 660px; margin: 0 auto; text-align: center; background: #fff;
-  border: 1px solid var(--line); border-radius: 26px; padding: 26px 30px 22px;
-  box-shadow: 0 16px 46px rgba(255,122,156,.12);
-}
-.quote-card::before {
-  content: "\201C"; position: absolute; left: 22px; top: 2px; font-family: "Pacifico", cursive;
-  font-size: 76px; line-height: 1; color: var(--pink2);
-}
-.q-head { display: flex; justify-content: center; gap: 10px; color: var(--muted); font-size: 14px; margin-bottom: 8px; }
-.q-head b { color: var(--pink); font-weight: 400; }
-.q-text {
-  font-family: "Ma Shan Zheng", "ZCOOL KuaiLe", cursive; font-size: 29px; line-height: 1.6; margin: 0 0 14px;
-  min-height: 1.6em; transition: opacity .25s, transform .25s;
-}
-.q-text.fade { opacity: 0; transform: translateY(6px); }
+/* the section now only holds the add-to-home-screen tip */
+.quote-block { padding-top: 0; padding-bottom: 0; }
 .pill {
   border: 1px solid var(--line); background: #fff7f9; color: var(--pink); border-radius: 999px;
   padding: 6px 16px; cursor: pointer; font-size: 15px;
@@ -543,6 +527,27 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 .m3-over .spin-btn { margin-top: 16px; }
 .m3-ctl { text-align: center; margin-top: 12px; }
 .m3-ctl button { border: 1px solid var(--line); background: #fff; color: var(--muted); border-radius: 999px; padding: 6px 16px; cursor: pointer; }
+
+/* ---------- 吉祥接零食 ---------- */
+.ct { max-width: 420px; margin: 0 auto; }
+.ct-hud { display: flex; justify-content: space-between; align-items: center; gap: 8px; color: var(--muted); font-size: 15px; margin-bottom: 10px; }
+.ct-hud b { color: var(--pink); font-weight: 400; font-size: 20px; }
+.ct-field {
+  position: relative; height: 400px; border-radius: 22px; overflow: hidden; border: 1px solid var(--line);
+  background: linear-gradient(#ffe6ee, #fff6f1 72%); touch-action: none; user-select: none; -webkit-user-select: none; cursor: grab;
+}
+.ct-field::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 22px; background: linear-gradient(var(--grass), var(--grass2)); border-top: 3px solid #a3d896; }
+.ct-dog { position: absolute; left: 0; bottom: 12px; width: 96px; z-index: 2; will-change: transform; }
+.ct-flip { transition: transform .15s; }
+.ct-flip.l { transform: scaleX(-1); }
+.ct-dog.walking .leg.a { animation: legA .3s ease-in-out infinite alternate; }
+.ct-dog.walking .leg.b { animation: legB .3s ease-in-out infinite alternate; }
+.ct-dog.hurt .dog { filter: drop-shadow(0 0 10px #ff4d6d) saturate(.6); }
+.ct-it { position: absolute; left: 0; top: 0; font-size: 30px; line-height: 1; z-index: 1; pointer-events: none; will-change: transform; }
+.ct-pop { position: absolute; z-index: 3; font-size: 17px; color: var(--pink); pointer-events: none; animation: ctPop .8s ease-out forwards; white-space: nowrap; }
+.ct-pop.bad { color: #e0465f; }
+@keyframes ctPop { to { transform: translateY(-36px); opacity: 0; } }
+.ct-field .m3-over { z-index: 4; }
 
 /* ---------- 翻牌配对 ---------- */
 .mm { max-width: 420px; margin: 0 auto; }
@@ -773,7 +778,6 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   .lb-prev, .lb-next { display: none; }
   .slots { grid-template-columns: repeat(5, 1fr); gap: 8px; }
   .q-text { font-size: 24px; }
-  .quote-card { padding: 24px 20px 20px; }
   .music { right: 12px; bottom: 12px; }
 }
 @media (max-width: 380px) {
@@ -786,7 +790,6 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   .next { font-size: 14px; }
   h2 { font-size: 26px; }
   .q-text { font-size: 21px; }
-  .quote-card { padding: 22px 16px 18px; }
   .letter { font-size: 18px; padding: 22px 16px; }
   .yard { height: 300px; }
   .pet { width: 120px; }
@@ -837,11 +840,6 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 </header>
 
 <section class="block quote-block">
-  <div class="quote-card">
-    <div class="q-head"><b>今日情话</b><span id="qDate"></span></div>
-    <p class="q-text" id="qText"></p>
-    <button type="button" class="pill" id="qNext">换一句 ↻</button>
-  </div>
   <div class="a2hs" id="a2hs" hidden>
     <span id="a2hsText">📲 把吉祥放到手机桌面，像 App 一样一点就打开</span>
     <button type="button" id="a2hsBtn">添加到桌面</button>
@@ -1093,7 +1091,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   <div class="lv-card">
     <div class="lv-top"><b id="lvN">Lv.1</b><span id="lvText"></span></div>
     <div class="bar lv-bar"><i id="lvBar"></i></div>
-    <p class="lv-tip">喂食 +3 · 捡球回来 +2 · 抱抱 +2 · 摸摸 10 下 +1 · 消消乐过关 +3 · 翻牌配对 +3 · 每天来看看 +5<br><span id="lvToday"></span></p>
+    <p class="lv-tip">喂食 +3 · 捡球回来 +2 · 抱抱 +2 · 摸摸 10 下 +1 · 消消乐过关 +3 · 翻牌配对 +3 · 接零食 +3 · 每天来看看 +5<br><span id="lvToday"></span></p>
   </div>
   <div class="closet" id="closetGrid"></div>
 </section>
@@ -1114,7 +1112,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       <p class="cap-hint" id="capHint"></p>
       <button type="button" class="spin-btn" id="spinBtn">扭一下（10 💗）</button>
       <p class="coins">💗 爱心币 × <b id="coins">0</b></p>
-      <p class="earn-tip">陪吉祥玩可以赚爱心币：喂食、捡球回来、抱抱各 +1，摸摸 30 下 +1<br>陪玩每天最多赚 2 个 · 消消乐打通新关卡每天 1 个 · 翻牌配对每天 1 个 · 每天来看看送 1 个</p>
+      <p class="earn-tip">陪吉祥玩可以赚爱心币：喂食、捡球回来、抱抱各 +1，摸摸 30 下 +1<br>陪玩每天最多赚 2 个 · 消消乐打通新关卡每天 1 个 · 翻牌配对每天 1 个 · 接零食 500 分每天 1 个 · 每天来看看送 1 个</p>
     </div>
     <div class="book">
       <h3>悄悄话收集册</h3>
@@ -1147,6 +1145,16 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     <div class="mm-wrap"><div class="mm-grid" id="mmGrid"></div><div class="m3-over" id="mmOver" hidden></div></div>
     <p class="mm-cap" id="mmCap"></p>
     <p class="hint">每次翻两张，一样的就留下，不一样的会翻回去 · 配对好的照片点一下能看大图<br>每天第一局全部翻完送 1 个爱心币</p>
+  </div>
+</section>
+
+<section class="block" id="catch">
+  <h2>吉祥接零食 🍖</h2>
+  <p class="sub">左右拖动吉祥，接住掉下来的好吃的，躲开洋葱和巧克力</p>
+  <div class="ct">
+    <div class="ct-hud"><span>得分 <b id="ctScore">0</b></span><span id="ctLives">❤️❤️❤️</span><span>最高 <b id="ctBest">-</b></span></div>
+    <div class="ct-field" id="ctField"><div class="ct-dog" id="ctDog"><div class="ct-flip" id="ctFlip"></div></div><div class="m3-over" id="ctOver"></div></div>
+    <p class="hint">🍖🦴🍓 +10 · 🍣🧋🍰 +20 · 💗 +50 · 🧅🍫 狗狗不能吃，碰到会丢一颗心<br>越到后面掉得越快 · 每天第一次拿到 500 分送 1 个爱心币</p>
   </div>
 </section>
 
@@ -1692,80 +1700,6 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     clearTimeout(toastT); toastT = setTimeout(function () { el.classList.remove('show'); }, 2400);
   }
 
-  /* ---------- daily love quote ---------- */
-  var QUOTES = [
-    '今天也很想你，比昨天多一点点。',
-    '你是我平淡日子里的小确幸。',
-    '遇见你，是我做过最幸运的事。',
-    '想把世界上最好的都给你，后来发现最好的就是你。',
-    '和你在一起的每一天，都像在过节。',
-    '你一笑，我的一整天都亮了。',
-    '我不怕路远，只要终点是你。',
-    '今天的风很温柔，但比不上你。',
-    '你是我的软肋，也是我的铠甲。',
-    '想和你一起，慢慢变老。',
-    '有你在的地方，就是家。',
-    '如果可以，我想每天都对你说一次"我爱你"。',
-    '你是我看过最美的风景。',
-    '别人问我喜欢什么类型，我说：你这个型号的。',
-    '我的心很小，只装得下一个你。',
-    '余生请多指教。',
-    '今天也要吃饱饱、睡好好，因为有人很在乎你。',
-    '想你的时候，连空气都是甜的。',
-    '世界那么大，我只想待在你身边。',
-    '你是例外，也是偏爱。',
-    '喜欢你，像风走了八千里，不问归期。',
-    '三餐四季，都想和你一起。',
-    '你不用很厉害，有我在。',
-    '每天醒来第一个想到的人，是你。',
-    '我把所有的温柔，都留给了你。',
-    '星星很亮，但你更亮。',
-    '你是我藏在心里的小秘密，也是我想告诉全世界的骄傲。',
-    '今天的我，也在认真地喜欢你。',
-    '只要和你在一起，去哪里都可以。',
-    '你是我写过最长的情书，还没写完。',
-    '累了就靠一靠我吧。',
-    '想和你一起看日出，也想和你一起赖床。',
-    '你是我的今天，也是我所有的明天。',
-    '我对你的喜欢，比吉祥对肉肉的喜欢还多。',
-    '再忙也要记得，有一个人一直在想你。',
-    '人间值得，因为有你。',
-    '喜欢你这件事，我是认真的。',
-    '你一出现，别的都变得不重要了。',
-    '我身边，永远给你留一个位置。',
-    '愿你的每一天都被温柔以待，这件事由我来负责。',
-    '今天不想做别的，只想见你。',
-    '你皱眉的样子也很可爱，但我更想看你笑。',
-    '你的名字，是我听过最好听的情话。',
-    '就算吵架，我也会先抱住你。',
-    '和你分享一切，是我最开心的事。',
-    '天冷了记得加衣服，不然我会心疼的。',
-    '晚安之前，再说一次喜欢你。',
-    '在我这里，你永远可以做小朋友。',
-    '我们的故事，才刚刚开始。',
-    '谢谢你，让我成为更好的人。',
-    '有你，平凡的日子也闪闪发光。',
-    '我想陪你走过每一个春夏秋冬。',
-    '你一句"想你"，我可以开心一整天。',
-    '每一个有你的瞬间，我都想按下暂停键。',
-    '不管多远，我的心都朝着你。',
-    '爱你，是我做过最简单也最坚定的决定。',
-    '今天也是被你可爱到的一天。',
-    '我会一直一直在。',
-    '月亮很圆，我很想你。',
-    '你是我的 Mrs. Fancy，独一无二。'
-  ];
-  (function () {
-    var t = new Date(), dayN = Math.floor((new Date(t.getFullYear(), t.getMonth(), t.getDate()) - new Date(2024, 0, 1)) / 864e5);
-    var qi = (dayN * 7) % QUOTES.length, el = $('#qText');
-    el.textContent = QUOTES[qi];
-    $('#qDate').textContent = (t.getMonth() + 1) + ' 月 ' + t.getDate() + ' 日';
-    $('#qNext').addEventListener('click', function () {
-      el.classList.add('fade');
-      setTimeout(function () { qi = (qi + 1) % QUOTES.length; el.textContent = QUOTES[qi]; el.classList.remove('fade'); }, 250);
-    });
-  })();
-
   /* ---------- gacha: whispers ---------- */
   var RAR = {
     N: { c: '#ffb3c6', name: 'N · 普通', w: 8 },
@@ -2246,7 +2180,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 
   /* ---------- 亲密度 (intimacy level), wardrobe and diary ---------- */
   var LV = [0, 30, 80, 150, 250, 380, 540, 740, 1000, 1300], XP_CAP = 25;
-  var XP_FOR = { fed: 3, ball: 2, hug: 2, visit: 5, m3: 3, memo: 3, advent: 2 };
+  var XP_FOR = { fed: 3, ball: 2, hug: 2, visit: 5, m3: 3, memo: 3, advent: 2, catch: 3 };
   var OUTFITS = [
     { id: 'scarf', slot: 'neck', lv: 2, name: '红色小围巾', icon: '🧣' },
     { id: 'bow', slot: 'head', lv: 3, name: '粉色蝴蝶结', icon: '🎀' },
@@ -2309,7 +2243,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     var g = wxGear();   // weather gear never replaces festival outfits; the raincoat goes over a cape
     Object.keys(g).forEach(function (k) { if (!(FEST && FEST.wear && FEST.wear[k]) && (k === 'back' || !w[k])) w[k] = g[k]; });
     if (LETTER_ON || SENDING) w.mouth = 'envelope';
-    [].forEach.call(document.querySelectorAll('.dog .acc'), function (g) { g.classList.remove('on'); });
+    [].forEach.call(document.querySelectorAll('#pet .dog .acc'), function (g) { g.classList.remove('on'); });   // not the copy in 接零食
     Object.keys(w).forEach(function (s) {
       var g = w[s] && document.getElementById('acc-' + w[s]);
       if (g) g.classList.add('on');
@@ -2349,6 +2283,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (e.hug) parts.push('抱了我 ' + e.hug + ' 次');
     if (e.m3) parts.push('陪我玩消消乐过了 ' + e.m3 + ' 关');
     if (e.memo) parts.push('翻了 ' + e.memo + ' 局我们的照片牌');
+    if (e.catch) parts.push('接零食吃得饱饱的，玩了 ' + e.catch + ' 局');
     if (e.advent) parts.push('抽了 ' + e.advent + ' 次圣诞抽奖 🎁');
     var s = parts.length ? '今天她' + parts.join('，') + '。' : '今天她来看我啦，虽然没怎么陪我玩，我还是很开心。';
     if (e.hit) s += e.hit === 1 ? '还敲了我一下，哼。' : '还敲了我 ' + e.hit + ' 下，哼！不过我原谅她了。';
@@ -2698,7 +2633,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   function snapshot() {
     return {
       pet: { hunger: stats.hunger, hungerAt: stats.hungerAt, mood: stats.mood, fed: stats.fed, pet: stats.pet, hit: stats.hit },
-      gacha: { earned: gs.earned, spent: gs.spent, got: gs.got.slice().sort(function (a, b) { return a - b; }), lastDay: gs.lastDay, playDay: gs.playDay || '', playEarned: gs.playEarned || 0, voucher: gs.voucher || null, match: { lv: MS.lv, day: MS.day, earned: MS.earned }, memo: { best: MM.best, day: MM.day, earned: MM.earned }, advent: { e: ADV.e, y: ADV.y, open: ADV.open } },
+      gacha: { earned: gs.earned, spent: gs.spent, got: gs.got.slice().sort(function (a, b) { return a - b; }), lastDay: gs.lastDay, playDay: gs.playDay || '', playEarned: gs.playEarned || 0, voucher: gs.voucher || null, match: { lv: MS.lv, day: MS.day, earned: MS.earned }, memo: { best: MM.best, day: MM.day, earned: MM.earned }, catch: { best: CS.best, day: CS.day, earned: CS.earned }, advent: { e: ADV.e, y: ADV.y, open: ADV.open } },
       life: { xp: L.xp, xpDay: L.xpDay || '', xpToday: L.xpToday || 0, diary: L.diary, wear: L.wear, wearAt: L.wearAt },
       updatedAt: gs.updatedAt
     };
@@ -2737,6 +2672,12 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (typeof rmm.day === 'string' && typeof rmm.earned === 'number') {
       if (rmm.day > MM.day) { MM.day = rmm.day; MM.earned = rmm.earned; changed = true; }
       else if (rmm.day === MM.day && rmm.earned > MM.earned) { MM.earned = rmm.earned; changed = true; }
+    }
+    var rc = rg.catch || {};
+    if (typeof rc.best === 'number' && rc.best > CS.best) { CS.best = rc.best; changed = true; }
+    if (typeof rc.day === 'string' && typeof rc.earned === 'number') {
+      if (rc.day > CS.day) { CS.day = rc.day; CS.earned = rc.earned; changed = true; }
+      else if (rc.day === CS.day && rc.earned > CS.earned) { CS.earned = rc.earned; changed = true; }
     }
     var ra = rg.advent || {};
     if (ra.e === ADV_E && typeof ra.y === 'number' && Array.isArray(ra.open)) {
@@ -3222,6 +3163,120 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (e.target.closest('[data-again]')) mmStart(mm.mode);
   });
   mmStart('easy');
+
+  /* ---------- 吉祥接零食: drag 吉祥 left and right to catch falling treats ---------- */
+  var CT_GOOD = [['🍖', 10, 5], ['🦴', 10, 5], ['🍓', 10, 3], ['🍣', 20, 2], ['🧋', 20, 2], ['🍰', 20, 2]];   // icon, points, weight
+  var CT_BAD = ['🧅', '🍫'], CT_GOAL = 500, CT_CAP = 1;
+  gs.catch = gs.catch || {};
+  var CS = gs.catch;
+  CS.best = CS.best || 0; CS.day = CS.day || ''; CS.earned = CS.earned || 0;
+  var ct = { on: false }, ctField = $('#ctField'), ctDog = $('#ctDog');
+  function ctHud() {
+    $('#ctScore').textContent = ct.score || 0;
+    var lv = typeof ct.lives === 'number' ? ct.lives : 3;
+    $('#ctLives').textContent = '❤️'.repeat(lv) + '🤍'.repeat(3 - lv);
+    $('#ctBest').textContent = CS.best || '-';
+  }
+  function ctDress() {   // a copy of the yard's 吉祥, in today's outfit
+    var svg = $('#pet .dog').cloneNode(true), env = svg.querySelector('#acc-envelope');
+    if (env) env.classList.remove('on');
+    [].forEach.call(svg.querySelectorAll('[id]'), function (el) { el.removeAttribute('id'); });   // gradients still resolve to the yard's
+    svg.removeAttribute('aria-label');
+    $('#ctFlip').innerHTML = ''; $('#ctFlip').appendChild(svg);
+  }
+  function ctPlace() { ctDog.style.transform = 'translateX(' + (ct.x - 48) + 'px)'; }
+  function ctMenu(html) { var o = $('#ctOver'); o.innerHTML = html; o.hidden = false; }
+  function ctStart() {
+    ct.items && ct.items.forEach(function (it) { it.el.remove(); });
+    var W = ctField.clientWidth;
+    ct = { on: true, score: 0, lives: 3, items: [], x: W / 2, tx: W / 2, t: 0, next: 0.6, last: 0, W: W, H: ctField.clientHeight };
+    ctDress(); ctPlace(); ctHud();
+    $('#ctOver').hidden = true;
+    requestAnimationFrame(ctLoop);
+  }
+  function ctSpawn() {
+    var bad = Math.random() < Math.min(0.32, 0.14 + ct.t * 0.004), heart = !bad && Math.random() < 0.05, g;
+    if (bad) g = [pick(CT_BAD), 0];
+    else if (heart) g = ['💗', 50];
+    else {
+      var tot = CT_GOOD.reduce(function (a, x) { return a + x[2]; }, 0), r = Math.random() * tot;
+      for (var i = 0; i < CT_GOOD.length; i++) { r -= CT_GOOD[i][2]; if (r <= 0) { g = CT_GOOD[i]; break; } }
+      g = g || CT_GOOD[0];
+    }
+    var el = document.createElement('span');
+    el.className = 'ct-it'; el.textContent = g[0];
+    ctField.appendChild(el);
+    var v = Math.min(430, 150 + ct.t * 6) * (0.85 + Math.random() * 0.3);
+    ct.items.push({ el: el, x: 20 + Math.random() * (ct.W - 40), y: -34, v: v, pts: g[1], bad: bad });
+  }
+  function ctPop(x, y, text, bad) {
+    var el = document.createElement('span');
+    el.className = 'ct-pop' + (bad ? ' bad' : ''); el.textContent = text;
+    el.style.left = (x - 14) + 'px'; el.style.top = y + 'px';
+    ctField.appendChild(el); setTimeout(function () { el.remove(); }, 800);
+  }
+  function ctLoop(ts) {
+    if (!ct.on) return;
+    var dt = ct.last ? Math.min(0.05, (ts - ct.last) / 1000) : 0;
+    ct.last = ts; ct.t += dt;
+    var dx = ct.tx - ct.x, step = 900 * dt;
+    ct.x += Math.abs(dx) <= step ? dx : (dx > 0 ? step : -step);
+    ctDog.classList.toggle('walking', Math.abs(dx) > 2);
+    if (Math.abs(dx) > 2) $('#ctFlip').classList.toggle('l', dx < 0);
+    ctPlace();
+    ct.next -= dt;
+    if (ct.next <= 0) { ctSpawn(); ct.next = Math.max(0.36, 0.95 - ct.t * 0.012) * (0.7 + Math.random() * 0.6); }
+    var mouth = ct.H - 12 - 58;   // about where 吉祥's head is
+    ct.items = ct.items.filter(function (it) {
+      it.y += it.v * dt;
+      it.el.style.transform = 'translate(' + (it.x - 16) + 'px,' + it.y + 'px)';
+      if (it.y + 30 >= mouth && it.y < mouth + 30 && Math.abs(it.x - ct.x) < 44) {
+        it.el.remove();
+        if (it.bad) {
+          ct.lives--; ctPop(it.x, mouth - 10, '呜… 💔', true);
+          ctDog.classList.add('hurt'); setTimeout(function () { ctDog.classList.remove('hurt'); }, 500);
+          if (navigator.vibrate) try { navigator.vibrate(80); } catch (e) {}
+        } else { ct.score += it.pts; ctPop(it.x, mouth - 10, '+' + it.pts); }
+        ctHud();
+        return false;
+      }
+      if (it.y > ct.H) { it.el.remove(); return false; }
+      return true;
+    });
+    if (ct.lives <= 0) return ctOver();
+    requestAnimationFrame(ctLoop);
+  }
+  function ctOver() {
+    ct.on = false; ctDog.classList.remove('walking');
+    ct.items.forEach(function (it) { it.el.remove(); }); ct.items = [];
+    var record = ct.score > CS.best, d = todayStr(), got = 0;
+    if (record) CS.best = ct.score;
+    if (CS.day !== d) { CS.day = d; CS.earned = 0; }
+    if (ct.score >= CT_GOAL && CS.earned < CT_CAP) { CS.earned++; gs.earned++; got = 1; renderCoins(true); }
+    track('catch'); ctHud();
+    ctMenu('<div><p class="m3-big">' + (record ? '新纪录 🏆' : '吃饱啦！') + '</p><p>这一局得了 ' + ct.score + ' 分</p>' +
+      '<p>' + (got ? '爱心币 +1 💗' : CS.earned >= CT_CAP ? '今天的爱心币已经领过啦' : '拿到 ' + CT_GOAL + ' 分就送 1 个爱心币哦') + '</p>' +
+      '<button type="button" class="spin-btn" data-go>再来一局 ↻</button></div>');
+    if (record || got) fireworks(1800);
+    say(record ? '我吃得好饱！新纪录 🏆' : pick(['好好吃！再来一局吗？', '汪！谢谢你喂我 🍖', '肚子圆滚滚的 🐶']), 2400);
+  }
+  function ctAim(e) {
+    if (!ct.on) return;
+    var r = ctField.getBoundingClientRect();
+    ct.tx = Math.max(30, Math.min(r.width - 30, e.clientX - r.left));
+  }
+  ctField.addEventListener('pointerdown', function (e) { ctAim(e); try { ctField.setPointerCapture(e.pointerId); } catch (x) {} });
+  ctField.addEventListener('pointermove', ctAim);
+  document.addEventListener('keydown', function (e) {
+    if (!ct.on || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+    e.preventDefault();
+    ct.tx = Math.max(30, Math.min(ct.W - 30, ct.tx + (e.key === 'ArrowLeft' ? -60 : 60)));
+  });
+  $('#ctOver').addEventListener('click', function (e) { if (e.target.closest('[data-go]')) ctStart(); });
+  window.addEventListener('resize', function () { if (!ct.on) return; ct.W = ctField.clientWidth; ct.H = ctField.clientHeight; });
+  ct.x = ctField.clientWidth / 2 || 160; ctDress(); ctPlace(); ctHud();
+  ctMenu('<div><p class="m3-big">吉祥接零食</p><p>按住吉祥左右拖，帮它接住好吃的</p><p>碰到 🧅🍫 会丢一颗心，三颗心丢完就结束</p>' +
+    '<button type="button" class="spin-btn" data-go>开始 ▶</button></div>');
 
   /* ---------- letter typewriter ---------- */
   var letter = $('#letter'), ps = [].slice.call(letter.querySelectorAll('p'));
