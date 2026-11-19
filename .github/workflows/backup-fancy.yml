@@ -59,8 +59,10 @@ jobs:
                   "memo": {"best": {k: min(v for v in ((ng.get("memo") or {}).get("best", {}).get(k), (og.get("memo") or {}).get("best", {}).get(k)) if v)
                                     for k in set((ng.get("memo") or {}).get("best", {})) | set((og.get("memo") or {}).get("best", {}))}},
                   # advent doors opened this December, from either side; a newer year wins
-                  "advent": (lambda a, b: {"y": a.get("y", 0), "open": sorted(set(a.get("open", [])) | set(b.get("open", [])))}
-                             if a.get("y", 0) == b.get("y", 0) else max(a, b, key=lambda x: x.get("y", 0)))(ng.get("advent") or {}, og.get("advent") or {}),
+                  # (only epoch 2 counts; epoch 1 was opened by a preview in November)
+                  "advent": (lambda a, b: {"e": 2, "y": a.get("y", 0), "open": sorted(set(a.get("open", [])) | set(b.get("open", [])))}
+                             if a.get("y", 0) == b.get("y", 0) else dict(max(a, b, key=lambda x: x.get("y", 0)), e=2))(
+                      *[x if x.get("e") == 2 else {} for x in (ng.get("advent") or {}, og.get("advent") or {})]),
               },
               "updatedAt": max(remote.get("updatedAt", 0), old.get("updatedAt", 0)),
           }
@@ -73,6 +75,8 @@ jobs:
                   for k, v in (entry or {}).items():
                       if k == "got":
                           m["got"] = sorted((set(m.get("got", [])) | set(v or [])) - REVOKED)
+                      elif k == "advent" and day[5:7] != "12":
+                          continue   # draws only happen in December
                       elif isinstance(v, (int, float)):
                           m[k] = max(m.get(k, 0), v)
           merged["life"] = {

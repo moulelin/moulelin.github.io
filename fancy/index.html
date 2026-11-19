@@ -594,6 +594,18 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 .adv-d.opened .n { font-size: 24px; text-shadow: none; }
 .adv-d.opened small { position: absolute; left: 4px; top: 2px; font-size: 11px; color: var(--muted); }
 .adv-cap { text-align: center; font-size: 15px; min-height: 22px; margin: 12px 0 0; }
+.adv-d.opened.miss { background: #f6f2f3; }
+.adv-draw { font-size: 84px; animation: rattle .18s ease-in-out infinite alternate; --r: 0deg; }
+.wl-h { font-weight: 400; font-size: 19px; text-align: center; margin: 26px 0 10px; }
+.wl-h small { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+.wl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; max-width: 420px; margin: 0 auto; }
+.wl { position: relative; border: 1.5px solid #ffd3de; border-radius: 14px; background: linear-gradient(135deg, #fff8f0, #ffeef3); padding: 10px 4px 8px; cursor: pointer; font: inherit; color: var(--ink); }
+.wl-i { display: block; font-size: 28px; line-height: 1.2; }
+.wl b { display: block; font-weight: 400; font-size: 14px; }
+.wl small { font-size: 11px; color: var(--pink); }
+.wl.used { filter: grayscale(.8); opacity: .6; }
+.wl.used small { color: var(--muted); }
+.ticket.used { filter: grayscale(.7); opacity: .75; }
 .card-w .adv-ph { display: block; width: 100%; max-height: 46vh; object-fit: cover; border-radius: 16px; margin: 12px 0 10px; cursor: zoom-in; }
 .card-w .adv-letter { text-align: left; white-space: pre-wrap; font-family: "Ma Shan Zheng", "ZCOOL KuaiLe", cursive; font-size: 21px; line-height: 1.7;
   max-height: 40vh; overflow: auto; margin: 12px 0 16px; color: var(--ink); }
@@ -1059,11 +1071,18 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 </section>
 
 <section class="block" id="advent" hidden>
-  <h2>圣诞倒数日历 🎄</h2>
-  <p class="sub">12 月 1 日到 25 日，每天可以拆一个小礼物，25 号是最大的那个</p>
-  <div class="adv" id="advGrid"></div>
-  <p class="adv-cap" id="advCap"></p>
-  <p class="hint">没来的日子也不会错过，之前的礼物随时都能补拆 · 拆过的点一下还能再看</p>
+  <h2>圣诞抽奖日历 🎄</h2>
+  <div id="advCal">
+    <p class="sub">12 月 1 日到 25 日，每天可以抽一次兑换券，25 号是最大的礼物</p>
+    <div class="adv" id="advGrid"></div>
+    <p class="adv-cap" id="advCap"></p>
+    <p class="hint">没来的日子也不会错过，之前的可以补抽 · 抽过的点一下还能再看</p>
+  </div>
+  <div id="advWalletBox" hidden>
+    <h3 class="wl-h">我的兑换券 🎟️ <small id="advWalletN"></small></h3>
+    <div class="wl-grid" id="advWallet"></div>
+    <p class="hint">点一下看券面，截图给 Moral 就能兑现，兑换过的会盖上「已兑换」</p>
+  </div>
 </section>
 
 <section class="block" id="closet">
@@ -2052,104 +2071,147 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (FEST.fireworks) onEnter.push(function () { fireworks(6000); });
   }
 
-  /* ---------- 圣诞倒数日历: one gift a day from Dec 1, the big one on the 25th.
-     t: msg | coin (c coins) | photo (p = PHOTOS index) | coupon (k = name) | big ---------- */
+  /* ---------- 圣诞倒数日历: one draw a day from Dec 1. Most days win a voucher Moral redeems in person
+     (marked used on redeem.html, kept under /fancy/coupons); some days the draw comes up empty.
+     t: v (voucher: k name, i icon, x text) | miss | big (the 25th) ---------- */
   var ADVENT = {
-    1: { t: 'msg', x: '十二月的第一天。\n这个冬天也要好好的，被我好好地爱着。' },
-    2: { t: 'coin', c: 2, x: '天冷了，这两个爱心币拿去扭蛋机试试手气吧 ☃️' },
-    3: { t: 'photo', p: 8, x: '翻到这张的时候，我盯着看了好久。' },
-    4: { t: 'coupon', k: '抱抱券', x: '凭此券可以要一个很久很久的拥抱，不限时长，不许提前松开。' },
-    5: { t: 'msg', x: '今天不管发生什么，\n记得有一个人在很远的地方很想你。' },
-    6: { t: 'coin', c: 1, x: '吉祥偷偷塞给你一个爱心币，它说不要告诉 Moral 🐾' },
-    7: { t: 'photo', p: 15, x: '那天的我们，笑得好傻，也好开心。' },
-    8: { t: 'coupon', k: '撒娇券', x: '凭此券可以无理由撒娇一次，Moral 必须全盘接受。' },
-    9: { t: 'msg', x: '娶到你，是我这辈子做过最对的决定。' },
-    10: { t: 'photo', p: 17, x: '想回到这一天，再和你过一遍。' },
-    11: { t: 'coin', c: 2, x: '两个爱心币 💗 今天也要开开心心的。' },
-    12: { t: 'coupon', k: '不生气券', x: '凭此券，下次吵架的时候 Moral 立刻认错，先抱抱再讲道理。' },
-    13: { t: 'msg', x: '冬天的晚上，最想做的事\n是和你挤在沙发上，看一部很无聊的电影。' },
-    14: { t: 'photo', p: 19, x: '有你在的照片，每一张都好看。' },
-    15: { t: 'coupon', k: '点菜券', x: '下次见面，第一顿饭你说吃什么就吃什么，Moral 不许有意见。' },
-    16: { t: 'coin', c: 2, x: '还有九天就圣诞啦，再送你两个爱心币 🎄' },
-    17: { t: 'msg', x: '今天也辛苦啦。\n范洁心是全世界最棒的人，我说的。' },
-    18: { t: 'photo', p: 24, x: '这是我们结婚以后的冬天 💍' },
-    19: { t: 'coupon', k: '视频券', x: '凭此券可以随时打视频过来，Moral 再忙也会接。' },
-    20: { t: 'msg', x: '离圣诞还有 5 天。\n吉祥已经把最大的礼物藏好了，它不让我告诉你在哪 🤫' },
-    21: { t: 'photo', p: 40, x: '冬至快乐。今天要吃饺子，也要想我。' },
-    22: { t: 'coin', c: 3, x: '最后一次发爱心币啦，三个！去把扭蛋都扭出来吧 ✨' },
-    23: { t: 'coupon', k: '拍照券', x: '下次见面，Moral 负责给你拍一百张好看的照片，不许嫌麻烦。' },
-    24: { t: 'msg', x: '平安夜快乐 🍎\n苹果我没办法亲手给你，就让吉祥叼一个过去。\n明天还有最后一个礼物，记得来拆。' },
-    25: { t: 'big', c: 5, k: '圣诞愿望券', x: '凭此券可以向 Moral 许一个圣诞愿望，Moral 一定做到。',
+    1: { t: 'v', k: '奶茶兑换券', i: '🧋', x: '凭此券可以向 Moral 兑换一杯奶茶，甜度和小料你说了算。' },
+    2: { t: 'miss' },
+    3: { t: 'v', k: '寿司兑换券', i: '🍣', x: '凭此券可以向 Moral 兑换一顿寿司，想吃几盘吃几盘。' },
+    4: { t: 'v', k: '咖啡兑换券', i: '☕', x: '凭此券可以向 Moral 兑换一杯咖啡，热的冰的都可以。' },
+    5: { t: 'miss' },
+    6: { t: 'v', k: '小蛋糕兑换券', i: '🍰', x: '凭此券可以向 Moral 兑换一块小蛋糕，口味你挑。' },
+    7: { t: 'v', k: '冰淇淋兑换券', i: '🍦', x: '凭此券可以向 Moral 兑换一个冰淇淋，冬天吃也可以！' },
+    8: { t: 'miss' },
+    9: { t: 'v', k: '鲜花兑换券', i: '💐', x: '凭此券可以向 Moral 兑换一束花。' },
+    10: { t: 'v', k: '火锅兑换券', i: '🍲', x: '凭此券可以向 Moral 兑换一顿火锅，Moral 负责涮和夹菜。' },
+    11: { t: 'miss' },
+    12: { t: 'v', k: '炸鸡兑换券', i: '🍗', x: '凭此券可以向 Moral 兑换一份炸鸡，配可乐。' },
+    13: { t: 'v', k: '电影兑换券', i: '🎬', x: '凭此券可以和 Moral 去看一场电影，片子你选，爆米花他买。' },
+    14: { t: 'miss' },
+    15: { t: 'v', k: '奶茶兑换券', i: '🧋', x: '又一杯奶茶！凭此券可以向 Moral 兑换一杯奶茶。' },
+    16: { t: 'v', k: '甜甜圈兑换券', i: '🍩', x: '凭此券可以向 Moral 兑换一个甜甜圈。' },
+    17: { t: 'miss' },
+    18: { t: 'v', k: '零食大礼包兑换券', i: '🍫', x: '凭此券可以向 Moral 兑换一大袋零食，超市里随便挑。' },
+    19: { t: 'v', k: '咖啡兑换券', i: '☕', x: '再来一杯！凭此券可以向 Moral 兑换一杯咖啡。' },
+    20: { t: 'miss' },
+    21: { t: 'v', k: '饺子兑换券', i: '🥟', x: '冬至快乐！凭此券可以向 Moral 兑换一顿饺子。' },
+    22: { t: 'v', k: '草莓兑换券', i: '🍓', x: '凭此券可以向 Moral 兑换一盒草莓。' },
+    23: { t: 'v', k: '抓娃娃兑换券', i: '🧸', x: '凭此券可以让 Moral 陪你去抓娃娃，抓到为止。' },
+    24: { t: 'v', k: '平安果兑换券', i: '🍎', x: '平安夜快乐！凭此券可以向 Moral 兑换一个平安果。' },
+    25: { t: 'big', c: 5, k: '圣诞愿望券', i: '🎄', x: '凭此券可以向 Moral 许一个圣诞愿望，Moral 一定做到。',
           letter: '圣诞快乐，范洁心。\n\n这是我们结婚以后的第一个圣诞节。\n\n这一年我们隔着好远，很多时候只能在屏幕里看着你，所以我做了这个小角落，让吉祥替我每天陪着你。\n\n谢谢你嫁给我，谢谢你一直等我。\n以后的每一个圣诞节，我都想在你身边过。\n\n再过四天，就是我们的结婚一周年了。\n我爱你，一直都是。\n\n—— Moral' }
   };
-  var XM = (function () {   // the advent day today; ?xmasday=N previews day N
+  var MISS = ['啊呀，今天没有抽到兑换券 🥲\n明天再来抽吧！', '呜… 今天手气不太好，什么都没抽到\n吉祥说明天一定行！🐾', '今天是空的 💨\n别灰心，明天再来抽一次！'];
+  var ADV_E = 2;   // bump to wipe every opened door (v1 was opened by a preview in November)
+  var XM = (function () {   // the advent day today; ?xmasday=N previews day N without saving anything
     var t = new Date(), q = (location.search.match(/[?&]xmasday=(\d+)/) || [])[1];
-    if (q) return { y: t.getFullYear(), day: +q };
+    if (q) return { y: t.getFullYear(), day: +q, preview: true };
     return t.getMonth() === 11 ? { y: t.getFullYear(), day: t.getDate() } : null;
   })();
-  gs.advent = gs.advent || { y: 0, open: [] };
+  gs.advent = gs.advent || {};
   var ADV = gs.advent;
-  if (XM && ADV.y < XM.y) { ADV.y = XM.y; ADV.open = []; }   // a new December starts with every door shut
-  function advOpened(n) { return ADV.y === (XM && XM.y) && ADV.open.indexOf(n) >= 0; }
+  if (ADV.e !== ADV_E) { ADV.y = 0; ADV.open = []; ADV.e = ADV_E; }
+  if (XM && !XM.preview && ADV.y < XM.y) { ADV.y = XM.y; ADV.open = []; }   // a new December starts with every door shut
+  var PV = [], COUPONS_RT = {};   // doors opened in a preview (not saved); redemption state from the cloud
+  function advOpened(n) { return XM && XM.preview ? PV.indexOf(n) >= 0 : ADV.y === (XM ? XM.y : ADV.y) && ADV.open.indexOf(n) >= 0; }
+  function couponsUrl() { return CLOUD.replace('state.json', 'coupons'); }
+  function cid(y, n) { return 'x' + y + '-' + pad(n); }
+  function wallet() {   // vouchers won this season, newest first
+    var y = XM && XM.preview ? XM.y : ADV.y, list = XM && XM.preview ? PV : ADV.open;
+    return list.filter(function (n) { return ADVENT[n] && ADVENT[n].t !== 'miss'; }).sort(function (a, b) { return b - a; })
+      .map(function (n) { return { n: n, id: cid(y, n), g: ADVENT[n], r: (COUPONS_RT[cid(y, n)] || {}).redeemedAt }; });
+  }
+  function ticket(g, n, r) {
+    return '<div class="ticket' + (r ? ' used' : '') + '"><div class="t-main"><span class="t-k">MORAL · CHRISTMAS COUPON</span><b>' + g.k + '</b><span class="t-d">' + esc(g.x) + '</span>' +
+      '<span class="t-f">12 月 ' + n + ' 日抽到 · ' + (r ? '已兑换 ✓ ' + when(r) : '还没兑换 · 找 Moral 兑现') + '</span></div><div class="t-stub"><b>' + g.i + '</b>' + (r ? '已用' : '券') + '</div></div>';
+  }
   function renderAdvent() {
+    var ws = wallet();
+    $('#advent').hidden = !XM && !ws.length;
+    $('#advCal').hidden = !XM;
+    $('#advWalletBox').hidden = !ws.length;
+    var left = ws.filter(function (v) { return !v.r; }).length;
+    $('#advWalletN').textContent = ws.length + ' 张 · ' + (left ? left + ' 张还没用' : '全部兑换完啦');
+    $('#advWallet').innerHTML = ws.map(function (v) {
+      return '<button type="button" class="wl' + (v.r ? ' used' : '') + '" data-n="' + v.n + '"><span class="wl-i">' + v.g.i + '</span><b>' + v.g.k.replace('兑换券', '') + '</b><small>' + (v.r ? '已兑换' : '未使用') + '</small></button>';
+    }).join('');
     if (!XM) return;
-    $('#advent').hidden = false;
     var html = '';
     for (var n = 1; n <= 25; n++) {
       var g = ADVENT[n], open = advOpened(n), locked = n > XM.day;
-      var icon = { msg: '💌', coin: '💗', photo: '📷', coupon: '🎟️', big: '🎁' }[g.t];
-      html += '<button type="button" class="adv-d' + (n === 25 ? ' big' : '') + (open ? ' opened' : locked ? ' locked' : n === XM.day ? ' today' : '') + '" data-n="' + n + '" aria-label="12 月 ' + n + ' 日">' +
+      var icon = g.t === 'miss' ? '💨' : g.i;
+      html += '<button type="button" class="adv-d' + (n === 25 ? ' big' : '') + (open ? ' opened' + (g.t === 'miss' ? ' miss' : '') : locked ? ' locked' : n === XM.day ? ' today' : '') + '" data-n="' + n + '" aria-label="12 月 ' + n + ' 日">' +
         (open ? '<small>' + n + '</small><span class="n">' + icon + '</span>' : '<span class="n">' + n + '</span>') + '</button>';
     }
     $('#advGrid').innerHTML = html;
-    var left = [];
-    for (var k = 1; k <= Math.min(XM.day, 25); k++) if (!advOpened(k)) left.push(k);
-    $('#advCap').textContent = XM.day > 25 ? (left.length ? '🎄 还有 ' + left.length + ' 个礼物没拆哦' : '🎄 25 个礼物全部拆完啦，圣诞快乐！') :
-      left.length ? '🐶 ' + (left.length === 1 && left[0] === XM.day ? '今天的礼物还没拆，点一下 ' + XM.day + ' 号试试' : '有 ' + left.length + ' 个礼物等你拆') + ' 🎁' :
-      XM.day < 25 ? '🐶 今天的拆完啦，明天再来 ✨' : '🎄 全部拆完啦，圣诞快乐！';
+    var todo = [];
+    for (var k = 1; k <= Math.min(XM.day, 25); k++) if (!advOpened(k)) todo.push(k);
+    $('#advCap').textContent = XM.preview ? '👀 预览模式：可以随便点，什么都不会记下来' :
+      XM.day > 25 ? (todo.length ? '🎄 还有 ' + todo.length + ' 次没抽哦' : '🎄 25 次全部抽完啦，圣诞快乐！') :
+      todo.length ? '🐶 ' + (todo.length === 1 && todo[0] === XM.day ? '今天还没抽，点一下 ' + XM.day + ' 号试试手气' : '有 ' + todo.length + ' 次抽奖等你') + ' 🎁' :
+      XM.day < 25 ? '🐶 今天抽过啦，明天再来 ✨' : '🎄 全部抽完啦，圣诞快乐！';
   }
-  function showGift(n, fresh) {
-    var g = ADVENT[n], body = '';
-    var ticket = function (k, x) {
-      return '<div class="ticket"><div class="t-main"><span class="t-k">MORAL · CHRISTMAS COUPON</span><b>' + k + '</b><span class="t-d">' + esc(x) + '</span>' +
-        '<span class="t-f">12 月 ' + n + ' 日 · 长期有效 · 截图找 Moral 兑现</span></div><div class="t-stub"><b>券</b>' + (n === 25 ? '🎄' : '🎁') + '</div></div>';
-    };
-    if (g.t === 'photo') body = '<img class="adv-ph" src="photos/' + PHOTOS[g.p].f + '.jpg" alt=""><p class="msg">' + esc(g.x) + '</p>';
-    else if (g.t === 'coupon') body = '<p class="no">' + esc(g.k) + ' 一张</p>' + ticket(g.k, g.x);
-    else if (g.t === 'big') body = '<div class="adv-letter">' + esc(g.letter) + '</div>' + ticket(g.k, g.x) + '<p class="no">爱心币 +' + g.c + ' 💗</p>';
-    else body = '<p class="msg">' + esc(g.x).replace(/\n/g, '<br>') + '</p>' + (g.c ? '<p class="no">爱心币 +' + g.c + ' 💗' + (fresh ? '' : '（已经领过啦）') + '</p>' : '');
+  function showGift(n) {
+    var g = ADVENT[n], body, y = XM && XM.preview ? XM.y : ADV.y, r = (COUPONS_RT[cid(y, n)] || {}).redeemedAt;
+    if (g.t === 'miss') body = '<p class="msg">' + esc(MISS[n % MISS.length]).replace(/\n/g, '<br>') + '</p>';
+    else if (g.t === 'big') body = '<div class="adv-letter">' + esc(g.letter) + '</div>' + ticket(g, n, r) + '<p class="no">爱心币 +' + g.c + ' 💗</p>';
+    else body = '<p class="no">恭喜抽到 ' + g.i + '</p>' + ticket(g, n, r) + '<p class="no">' + (r ? '这张已经兑换过啦 💗' : '已经放进下面的「我的兑换券」啦，截图给 Moral 就能兑现') + '</p>';
     modal.hidden = false;
-    modal.innerHTML = '<div class="card-w' + (n === 25 ? ' ssr' : '') + '"><span class="rar" style="--c:linear-gradient(135deg,#7fd3a8,#e94f6e)">🎄 12 月 ' + n + ' 日的礼物</span>' +
-      body + '<button type="button" class="close">' + (n === 25 ? '圣诞快乐 🎄' : '收下啦 💗') + '</button></div>';
+    modal.innerHTML = '<div class="card-w' + (n === 25 ? ' ssr' : '') + '"><span class="rar" style="--c:linear-gradient(135deg,#7fd3a8,#e94f6e)">🎄 12 月 ' + n + ' 日的抽奖</span>' +
+      body + '<button type="button" class="close">' + (n === 25 ? '圣诞快乐 🎄' : g.t === 'miss' ? '明天再来 💪' : '收下啦 💗') + '</button></div>';
     modal.querySelector('.close').addEventListener('click', closeModal);
-    var img = modal.querySelector('.adv-ph');
-    if (img) img.addEventListener('click', function () { closeModal(); showPhoto(g.p); });
   }
+  function drawing(n) {   // a short suspense before the result
+    modal.hidden = false;
+    modal.innerHTML = '<div class="stage"><div class="adv-draw">🎁</div><p>吉祥正在帮你抽…</p></div>';
+    setTimeout(function () {
+      var g = ADVENT[n];
+      if (g.t === 'miss') say('呜… 明天再来抽！', 2000);
+      else { fireworks(n === 25 ? 6000 : 1400); say(n === 25 ? '圣诞快乐！这是最大的礼物 🎁' : '抽到' + g.k.replace('兑换券', '') + '啦！🎉', 2200); }
+      showGift(n);
+    }, 1100);
+  }
+  function loadCoupons() {
+    if (!ADV.y && !(XM && XM.preview)) return;
+    getJSON(couponsUrl() + '.json').then(function (r) {
+      if (r === undefined) return;
+      COUPONS_RT = r || {};
+      if (!(XM && XM.preview)) wallet().forEach(function (v) {   // vouchers won while offline reach redeem.html now
+        if (!COUPONS_RT[v.id]) putCoupon(v.n);
+      });
+      renderAdvent();
+    });
+  }
+  function putCoupon(n) {   // PATCH keeps a redeemedAt that redeem.html may already have set
+    var g = ADVENT[n];
+    fetch(couponsUrl() + '/' + cid(ADV.y, n) + '.json', { method: 'PATCH',
+      body: JSON.stringify({ name: g.k, icon: g.i, text: g.x, day: n, year: ADV.y, at: Date.now() }) }).catch(function () {});
+  }
+  $('#advWallet').addEventListener('click', function (e) { var b = e.target.closest('.wl'); if (b) showGift(+b.dataset.n); });
   if (XM) {
     $('#advGrid').addEventListener('click', function (e) {
       var b = e.target.closest('.adv-d'); if (!b) return;
       var n = +b.dataset.n;
-      if (n > XM.day) {
-        b.classList.remove('shake'); void b.offsetWidth;
-        toast(n - XM.day === 1 ? '明天才能拆哦 🎄' : '还要等 ' + (n - XM.day) + ' 天才能拆哦 🎄');
-        return;
-      }
-      var fresh = !advOpened(n);
-      if (fresh) {
+      if (n > XM.day) { toast(n - XM.day === 1 ? '明天才能抽哦 🎄' : '还要等 ' + (n - XM.day) + ' 天才能抽哦 🎄'); return; }
+      if (advOpened(n)) { showGift(n); return; }
+      interact();
+      if (XM.preview) PV.push(n);
+      else {
         ADV.open.push(n);
         if (ADVENT[n].c) { gs.earned += ADVENT[n].c; renderCoins(true); }
+        if (ADVENT[n].t !== 'miss') putCoupon(n);
         track('advent');
-        fireworks(n === 25 ? 6000 : 1200);
-        say(n === 25 ? '圣诞快乐！这是最大的礼物 🎁' : pick(['拆礼物啦！🎁', '汪！今天是什么呢？', '是 Moral 准备的哦 💗']), 2200);
       }
-      showGift(n, fresh); renderAdvent();
+      renderAdvent(); drawing(n);
     });
-    renderAdvent();
     onEnter.push(function () {
-      if (XM.day <= 25 && !advOpened(Math.min(XM.day, 25)))
-        setTimeout(function () { if (st.mode === 'idle' && !LETTER_ON) say('今天的圣诞礼物还没拆哦 🎁 就在下面的日历里', 3600); }, 8000);
+      if (!XM.preview && XM.day <= 25 && !advOpened(Math.min(XM.day, 25)))
+        setTimeout(function () { if (st.mode === 'idle' && !LETTER_ON) say('今天的圣诞抽奖还没抽哦 🎁 就在下面的日历里', 3600); }, 8000);
     });
   }
+  renderAdvent();
+  onEnter.push(loadCoupons);
   if (FEST && FEST.xmas) {
     yard.classList.add('xmas');
     yard.insertAdjacentHTML('beforeend', '<span class="xtree" aria-hidden="true">🎄</span><span class="xgifts" aria-hidden="true">🎁🎁</span>');
@@ -2172,6 +2234,8 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   gs.life = gs.life || {};
   var L = gs.life;
   L.xp = L.xp || 0; L.diary = L.diary || {}; L.wear = L.wear || {}; L.wearAt = L.wearAt || 0;
+  function strayAdvent(d, k) { return k === 'advent' && d.slice(5, 7) !== '12'; }   // only December has draws
+  Object.keys(L.diary).forEach(function (d) { if (L.diary[d] && L.diary[d].advent && strayAdvent(d, 'advent')) delete L.diary[d].advent; });
   function level() { var n = 1; for (var i = 1; i < LV.length; i++) if (L.xp >= LV[i]) n = i + 1; return n; }
   function dayEntry() { var d = todayStr(); return L.diary[d] || (L.diary[d] = {}); }
   function gainXp(n) {
@@ -2258,7 +2322,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (e.hug) parts.push('抱了我 ' + e.hug + ' 次');
     if (e.m3) parts.push('陪我玩消消乐过了 ' + e.m3 + ' 关');
     if (e.memo) parts.push('翻了 ' + e.memo + ' 局我们的照片牌');
-    if (e.advent) parts.push('拆了 ' + e.advent + ' 个圣诞礼物 🎁');
+    if (e.advent) parts.push('抽了 ' + e.advent + ' 次圣诞抽奖 🎁');
     var s = parts.length ? '今天她' + parts.join('，') + '。' : '今天她来看我啦，虽然没怎么陪我玩，我还是很开心。';
     if (e.hit) s += e.hit === 1 ? '还敲了我一下，哼。' : '还敲了我 ' + e.hit + ' 下，哼！不过我原谅她了。';
     if (e.got && e.got.length) s += '她从扭蛋机里扭到了悄悄话 ' + e.got.map(function (n) { return 'No.' + (n + 1); }).join('、') + '。';
@@ -2607,7 +2671,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   function snapshot() {
     return {
       pet: { hunger: stats.hunger, hungerAt: stats.hungerAt, mood: stats.mood, fed: stats.fed, pet: stats.pet, hit: stats.hit },
-      gacha: { earned: gs.earned, spent: gs.spent, got: gs.got.slice().sort(function (a, b) { return a - b; }), lastDay: gs.lastDay, playDay: gs.playDay || '', playEarned: gs.playEarned || 0, voucher: gs.voucher || null, match: { lv: MS.lv, day: MS.day, earned: MS.earned }, memo: { best: MM.best, day: MM.day, earned: MM.earned }, advent: { y: ADV.y, open: ADV.open } },
+      gacha: { earned: gs.earned, spent: gs.spent, got: gs.got.slice().sort(function (a, b) { return a - b; }), lastDay: gs.lastDay, playDay: gs.playDay || '', playEarned: gs.playEarned || 0, voucher: gs.voucher || null, match: { lv: MS.lv, day: MS.day, earned: MS.earned }, memo: { best: MM.best, day: MM.day, earned: MM.earned }, advent: { e: ADV.e, y: ADV.y, open: ADV.open } },
       life: { xp: L.xp, xpDay: L.xpDay || '', xpToday: L.xpToday || 0, diary: L.diary, wear: L.wear, wearAt: L.wearAt },
       updatedAt: gs.updatedAt
     };
@@ -2648,7 +2712,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       else if (rmm.day === MM.day && rmm.earned > MM.earned) { MM.earned = rmm.earned; changed = true; }
     }
     var ra = rg.advent || {};
-    if (typeof ra.y === 'number' && Array.isArray(ra.open)) {
+    if (ra.e === ADV_E && typeof ra.y === 'number' && Array.isArray(ra.open)) {
       var nums = ra.open.filter(function (n) { return typeof n === 'number' && n >= 1 && n <= 25; });
       if (ra.y > ADV.y) { ADV.y = ra.y; ADV.open = nums; changed = true; }
       else if (ra.y === ADV.y) nums.forEach(function (n) { if (ADV.open.indexOf(n) < 0) { ADV.open.push(n); changed = true; } });
@@ -2667,7 +2731,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
           le.got = le.got || [];
           if (REVOKED.indexOf(g) < 0 && le.got.indexOf(g) < 0) { le.got.push(g); changed = true; }
         });
-        else if (typeof re[k] === 'number' && re[k] > (le[k] || 0)) { le[k] = re[k]; changed = true; }
+        else if (typeof re[k] === 'number' && re[k] > (le[k] || 0) && !strayAdvent(d, k)) { le[k] = re[k]; changed = true; }
       });
     });
     if ((rl.wearAt || 0) > L.wearAt) { L.wear = rl.wear || {}; L.wearAt = rl.wearAt; changed = true; }
