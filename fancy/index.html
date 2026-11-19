@@ -3265,7 +3265,11 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     var r = ctField.getBoundingClientRect();
     ct.tx = Math.max(30, Math.min(r.width - 30, e.clientX - r.left));
   }
-  ctField.addEventListener('pointerdown', function (e) { ctAim(e); try { ctField.setPointerCapture(e.pointerId); } catch (x) {} });
+  ctField.addEventListener('pointerdown', function (e) {
+    // only while playing: capturing the pointer on the menu would steal the click from its buttons
+    if (!ct.on || e.target.closest('#ctOver')) return;
+    ctAim(e); try { ctField.setPointerCapture(e.pointerId); } catch (x) {}
+  });
   ctField.addEventListener('pointermove', ctAim);
   document.addEventListener('keydown', function (e) {
     if (!ct.on || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;

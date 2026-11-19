@@ -5,7 +5,8 @@ self.addEventListener('install', function () { self.skipWaiting(); });
 self.addEventListener('activate', function (e) { e.waitUntil(self.clients.claim()); });
 self.addEventListener('fetch', function (e) {
   if (e.request.mode !== 'navigate') return;
-  e.respondWith(fetch(e.request).catch(function () {
+  // no-cache: revalidate with the server, so a new version shows up right after a deploy (Pages caches for 10 min)
+  e.respondWith(fetch(e.request.url, { cache: 'no-cache', credentials: 'same-origin' }).catch(function () {
     return new Response('<meta charset="utf-8"><p style="font:18px sans-serif;text-align:center;margin-top:40vh">网络断开了，吉祥在等你回来 🐾</p>',
       { headers: { 'Content-Type': 'text/html; charset=utf-8' } });
   }));
