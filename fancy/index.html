@@ -1154,7 +1154,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   <div class="ct">
     <div class="ct-hud"><span>得分 <b id="ctScore">0</b></span><span id="ctLives">❤️❤️❤️</span><span>最高 <b id="ctBest">-</b></span></div>
     <div class="ct-field" id="ctField"><div class="ct-dog" id="ctDog"><div class="ct-flip" id="ctFlip"></div></div><div class="m3-over" id="ctOver"></div></div>
-    <p class="hint">🍖🦴🍓 +10 · 🍣🧋🍰 +20 · 💗 +50 · 🧅🍫 狗狗不能吃，碰到会丢一颗心<br>越到后面掉得越快 · 每天第一次拿到 500 分送 1 个爱心币</p>
+    <p class="hint">🍖🦴🍓 +10 · 🍣🧋🍰 +20 · 💗 +50 · 🧅🍫 狗狗不能吃，碰到会丢一颗心<br>吉祥跑得没那么快，要提前去等 · 越到后面掉得越快、坏东西越多 · 每天第一次拿到 500 分送 1 个爱心币</p>
   </div>
 </section>
 
@@ -3195,7 +3195,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     requestAnimationFrame(ctLoop);
   }
   function ctSpawn() {
-    var bad = Math.random() < Math.min(0.32, 0.14 + ct.t * 0.004), heart = !bad && Math.random() < 0.05, g;
+    var bad = Math.random() < Math.min(0.45, 0.22 + ct.t * 0.006), heart = !bad && Math.random() < 0.05, g;
     if (bad) g = [pick(CT_BAD), 0];
     else if (heart) g = ['💗', 50];
     else {
@@ -3206,7 +3206,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     var el = document.createElement('span');
     el.className = 'ct-it'; el.textContent = g[0];
     ctField.appendChild(el);
-    var v = Math.min(430, 150 + ct.t * 6) * (0.85 + Math.random() * 0.3);
+    var v = Math.min(580, 210 + ct.t * 9) * (0.85 + Math.random() * 0.3) * (bad ? 1.15 : 1);   // onions and chocolate drop a bit faster
     ct.items.push({ el: el, x: 20 + Math.random() * (ct.W - 40), y: -34, v: v, pts: g[1], bad: bad });
   }
   function ctPop(x, y, text, bad) {
@@ -3219,18 +3219,18 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (!ct.on) return;
     var dt = ct.last ? Math.min(0.05, (ts - ct.last) / 1000) : 0;
     ct.last = ts; ct.t += dt;
-    var dx = ct.tx - ct.x, step = 900 * dt;
+    var dx = ct.tx - ct.x, step = 620 * dt;   // 吉祥 can't teleport: it has to run there
     ct.x += Math.abs(dx) <= step ? dx : (dx > 0 ? step : -step);
     ctDog.classList.toggle('walking', Math.abs(dx) > 2);
     if (Math.abs(dx) > 2) $('#ctFlip').classList.toggle('l', dx < 0);
     ctPlace();
     ct.next -= dt;
-    if (ct.next <= 0) { ctSpawn(); ct.next = Math.max(0.36, 0.95 - ct.t * 0.012) * (0.7 + Math.random() * 0.6); }
+    if (ct.next <= 0) { ctSpawn(); ct.next = Math.max(0.26, 0.8 - ct.t * 0.015) * (0.7 + Math.random() * 0.6); }
     var mouth = ct.H - 12 - 58;   // about where 吉祥's head is
     ct.items = ct.items.filter(function (it) {
       it.y += it.v * dt;
       it.el.style.transform = 'translate(' + (it.x - 16) + 'px,' + it.y + 'px)';
-      if (it.y + 30 >= mouth && it.y < mouth + 30 && Math.abs(it.x - ct.x) < 44) {
+      if (it.y + 30 >= mouth && it.y < mouth + 30 && Math.abs(it.x - ct.x) < 36) {
         it.el.remove();
         if (it.bad) {
           ct.lives--; ctPop(it.x, mouth - 10, '呜… 💔', true);
