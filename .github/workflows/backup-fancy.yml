@@ -46,7 +46,8 @@ jobs:
                   "hunger": np.get("hunger", op.get("hunger", 70)),
                   "hungerAt": np.get("hungerAt", op.get("hungerAt", 0)),
                   "mood": np.get("mood", op.get("mood", 80)),
-                  **{k: max(np.get(k, 0), op.get(k, 0)) for k in ("fed", "pet", "hit")},
+                  "akiHunger": np.get("akiHunger", op.get("akiHunger", 70)),
+                  **{k: max(np.get(k, 0), op.get(k, 0)) for k in ("fed", "pet", "hit", "akiFed")},
               },
               "gacha": {
                   "earned": max(ng.get("earned", 0), og.get("earned", 0)),

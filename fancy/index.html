@@ -7,14 +7,14 @@
 <link rel="icon" href="icon-192.png">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
-<meta name="theme-color" content="#ff9ab3">
+<meta name="theme-color" content="#f2f2f5">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="吉祥">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Pacifico&family=ZCOOL+KuaiLe&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Ma+Shan+Zheng&family=Silkscreen&display=swap">
 <style>
 :root {
   --bg: #fff7f3; --ink: #5a3e46; --muted: #a0848b; --pink: #ff7a9c; --pink2: #ffb3c6;
@@ -31,7 +31,7 @@ a { color: var(--pink); text-decoration: none; }
 button { font: inherit; touch-action: manipulation; }
 body { -webkit-tap-highlight-color: transparent; }
 
-/* ---------- opening gate (a tap is needed before browsers allow sound) ---------- */
+/* ---------- opening gate: an envelope to tap open ---------- */
 .gate {
   position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; cursor: pointer; text-align: center;
   background: radial-gradient(circle at 30% 25%, #ffe3ec 0, transparent 45%), radial-gradient(circle at 75% 70%, #ffeedd 0, transparent 45%), #fff6f4;
@@ -328,28 +328,32 @@ h2 { font-weight: 400; font-size: 32px; text-align: center; margin: 0 0 6px; }
 
 footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px 16px 90px; line-height: 1.9; }
 
-/* ---------- music ---------- */
+/* ---------- music: off until she flips the switch ---------- */
 .music {
-  position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 50; display: flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,.9); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--line); border-radius: 999px; padding: 6px 6px 6px 6px;
-  box-shadow: 0 8px 26px rgba(255,122,156,.18);
+  position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 50; display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,.94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--line); border-radius: 999px; padding: 6px 6px 6px 16px; font-size: 14px; color: var(--ink);
+  box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 12px 32px rgba(0,0,0,.10);
 }
-.music .disc { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-size: 22px; }
-.music.on .disc { animation: spin 3s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.music .m-title { font-size: 14px; min-width: 64px; color: var(--ink); }
-.eq { display: inline-flex; gap: 2px; align-items: flex-end; height: 12px; margin-left: 4px; }
-.eq i { width: 3px; height: 4px; background: var(--pink); border-radius: 2px; }
+.music .m-lab { font-weight: 600; }
+.music .m-title { display: none; align-items: center; color: var(--muted); max-width: 150px; white-space: nowrap; overflow: hidden; }
+.music.on .m-title { display: inline-flex; }
+.eq { display: inline-flex; gap: 2px; align-items: flex-end; height: 12px; margin-left: 6px; flex: none; }
+.eq i { width: 3px; height: 4px; background: var(--pink); border-radius: 1px; }
 .music.on .eq i { animation: eq .8s ease-in-out infinite alternate; }
 .music.on .eq i:nth-child(2) { animation-delay: .2s; }
 .music.on .eq i:nth-child(3) { animation-delay: .4s; }
 @keyframes eq { to { height: 12px; } }
-.music button {
-  width: 34px; height: 34px; border-radius: 50%; border: 0; cursor: pointer; font-size: 13px;
-  background: var(--pink); color: #fff; display: grid; place-items: center;
+@keyframes spin { to { transform: rotate(360deg); } }
+.music .m-next {
+  display: none; width: 30px; height: 30px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; font-size: 11px;
+  background: var(--chip); color: var(--ink); place-items: center;
 }
-.music button.ghost { background: #fff0f4; color: var(--pink); }
+.music.on .m-next { display: grid; }
+.sw { position: relative; flex: none; width: 50px; height: 30px; border-radius: 999px; border: 0; padding: 0; cursor: pointer; background: #dcdce1; transition: background .2s; }
+.sw i { position: absolute; left: 3px; top: 3px; width: 24px; height: 24px; border-radius: 50%; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,.2); transition: transform .22s cubic-bezier(.3,1.3,.5,1); }
+.sw[aria-checked="true"] { background: var(--dark); }
+.sw[aria-checked="true"] i { transform: translateX(20px); }
 
 /* ---------- birthday ---------- */
 [hidden] { display: none !important; }
@@ -771,7 +775,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   .hms span { min-width: 54px; font-size: 21px; }
   .controls button { padding: 9px 15px; font-size: 16px; }
   .together { padding: 20px 18px; }
-  .music .m-title, .music .disc { display: none; }
+  .music .m-title { max-width: 96px; }
   .gacha { grid-template-columns: 1fr; }
   .ph img { height: 168px; }
   .masonry { columns: 2; column-gap: 10px; }
@@ -803,6 +807,182 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 @media (prefers-reduced-motion: reduce) {
   .floaty, .cloud { display: none; }
 }
+
+/* ================= Pixel Play look: calm grey page, white cards, black pills, pixel art ================= */
+:root {
+  --bg: #f2f2f5; --ink: #1d1d1f; --muted: #86868b; --line: #e3e3e8; --pink: #e9577f; --pink2: #f4b4c6;
+  --dark: #1d1d1f; --chip: #e8e8ed; --px: "Silkscreen", "Inter", monospace;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 10px 30px rgba(0,0,0,.06);
+}
+body { font-family: "Inter", "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", system-ui, sans-serif; }
+h2 { font-weight: 600; font-size: 26px; letter-spacing: -.01em; }
+.sub { font-size: 15px; }
+.gate { background: var(--bg); }
+.gate .g-t { font-family: var(--px); font-size: 40px; color: var(--ink); }
+.gate .g-s { font-size: 15px; }
+.home-link { background: #fff; border-color: var(--line); color: var(--ink); font-weight: 500; box-shadow: var(--shadow); }
+.hero { background: var(--bg); }
+.hero .kicker { font-size: 14px; letter-spacing: .2em; }
+.hero h1 { font-family: var(--px); font-size: clamp(42px, 9.5vw, 88px); color: var(--ink); text-shadow: none; line-height: 1.2; }
+.names { font-size: 18px; font-weight: 500; margin-bottom: 22px; }
+.together { background: #fff; backdrop-filter: none; -webkit-backdrop-filter: none; border-color: var(--line); border-radius: 28px; box-shadow: var(--shadow); }
+.days { font-family: var(--px); color: var(--ink); }
+.days small { font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 16px; color: var(--muted); }
+.hms span { background: var(--bg); border: 0; font-weight: 600; }
+.hms em { font-weight: 400; }
+.bday-banner { background: #fff; color: var(--ink); border: 1px solid var(--line); box-shadow: var(--shadow); animation: none; font-size: 16px; font-weight: 500; }
+.bday-banner button, .a2hs button, .card-w .close { background: var(--dark); color: #fff; font-weight: 500; }
+.card-w .wed-big { font-family: var(--px); color: var(--ink); }
+.pill { background: #fff; color: var(--ink); border-color: var(--line); font-weight: 500; }
+.pill:hover { border-color: #d2d2d7; }
+
+/* the 3D yard (yard3d.js): bigger, and the flat scenery steps aside */
+.yard3d { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; display: block; touch-action: pan-y; }
+.yard.is3d { height: 560px; }
+.yard.is3d .ground, .yard.is3d .deco, .yard.is3d .kennel, .yard.is3d .yard-trees, .yard.is3d .glow, .yard.is3d .xtree, .yard.is3d .xgifts { visibility: hidden; }
+.yard.is3d .pet { width: 220px; bottom: var(--gb, 30px); transition: bottom .45s ease, transform .45s ease; transform-origin: 50% 100%; }
+.yard.is3d .pet.in-house { bottom: var(--hb, 30px); transform: translateX(-50%) scale(var(--hs, .8)); }
+.yard.is3d.night .pet .flip { filter: brightness(.82) saturate(.9); }
+.yard.is3d .food { bottom: calc(var(--gb, 30px) + 4px); }
+@media (max-width: 760px) { .yard.is3d { height: 460px; } .yard.is3d .pet { width: 156px; } }
+@media (max-width: 380px) { .yard.is3d { height: 430px; } }
+
+.hint3d { display: none; }
+.yard.is3d ~ .hint .hint3d, .hint .hint3d.on { display: inline; }
+
+/* 小aki, 吉祥's little pixel-art sidekick */
+.aki { position: absolute; bottom: 30px; left: 30%; width: 70px; transform: translateX(-50%); transform-origin: 50% 100%; z-index: 3; cursor: pointer; transition: bottom .45s ease, transform .45s ease; -webkit-tap-highlight-color: transparent; }
+.yard.is3d .aki { bottom: var(--gb, 30px); width: 88px; }
+.yard.is3d.home-in .aki { bottom: calc(var(--hb, 30px) - 8px); transform: translateX(-50%) scale(var(--hs, .8)); }
+.yard.night .aki .aki-flip { filter: brightness(.82) saturate(.9); }
+.px-dog { display: block; width: 100%; height: auto; overflow: visible; }
+.px-dog .p-shut, .px-dog .p-glad, .px-dog .p-tear { display: none; }
+.aki-say {
+  position: absolute; left: 50%; bottom: 96%; transform: translate(-50%, 6px) scale(.7); opacity: 0; transition: transform .2s, opacity .2s; pointer-events: none;
+  background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 4px 10px; font-size: 13px; white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,.08); color: var(--ink);
+}
+.aki-say.show { opacity: 1; transform: translate(-50%, 0) scale(1); }
+.aki .p-tail { animation: px-hop .5s steps(1) infinite; }
+.aki.walking .p-all { animation: px-hop .3s steps(1) infinite; }
+.aki.walking .p-head { animation: px-nod .6s steps(1) infinite; }   /* the head only dips down onto the body: no gap at the neck */
+.aki.walking .p-legA { animation: px-hop .3s steps(1) infinite; }
+.aki.walking .p-legB { animation: px-hop .3s steps(1) -.15s infinite; }
+.aki.walking .p-tail, .aki.happy .p-tail { animation-duration: .2s; }
+.aki.happy .p-all { animation: px-jump .36s steps(1) infinite; }
+.aki.sleeping .p-all { animation: none; transform: translateY(1px); }
+.aki.sleeping .p-head { transform: translateY(2px); }
+.aki.sleeping .p-tail { animation-duration: 2s; }
+.aki.sleeping .p-shut, .aki.eating .p-shut { display: inline; }
+.aki.eating .p-head { animation: px-nom .28s steps(1) infinite; }
+.aki.begging .p-all { animation: px-hop .26s steps(1) infinite; }
+.food.small { font-size: 24px; }
+.aki.happy:not(.sleeping) .p-glad { display: inline; }
+.aki.scared .p-all { animation: px-shake .12s steps(1) infinite; }
+.aki.scared .p-shut, .aki.scared .p-tear { display: inline; }
+@keyframes px-hop { 50% { transform: translateY(-1px); } }
+@keyframes px-nod { 50% { transform: translateY(1px); } }
+@keyframes px-nom { 0% { transform: translateY(1px); } 50% { transform: translateY(2px); } }
+@keyframes px-jump { 33% { transform: translateY(-2px); } 66% { transform: translateY(-3px); } }
+@keyframes px-shake { 50% { transform: translateX(1px); } }
+@media (max-width: 760px) { .aki { width: 54px; } .yard.is3d .aki { width: 64px; } }
+
+/* yard trees and the storm note */
+.yard-trees { position: absolute; right: 3%; bottom: 40px; z-index: 1; height: auto; image-rendering: crisp-edges; image-rendering: pixelated; cursor: pointer; }
+.yard.night .yard-trees { filter: brightness(.62) saturate(.8); }
+.yard.dusk .yard-trees { filter: saturate(.9) brightness(.95); }
+.yard-note {
+  position: absolute; left: 50%; top: 14px; z-index: 6; transform: translateX(-50%); width: max-content; max-width: calc(100% - 24px);
+  background: rgba(255,255,255,.92); color: var(--ink); border-radius: 14px; padding: 7px 14px; font-size: 14px; line-height: 1.5; text-align: center;
+  box-shadow: 0 4px 14px rgba(0,0,0,.12); pointer-events: none;
+}
+.yard.night .yard-note { background: rgba(40,46,90,.78); color: #ecebff; }
+@media (max-width: 760px) { .yard-note { top: 46px; font-size: 13px; } }
+
+/* pixel trees in the hero */
+.px-scene { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 0 auto 26px; }
+.px-count {
+  display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 1px solid var(--line); border-radius: 999px;
+  padding: 6px 14px; font-size: 14px; color: var(--muted); box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+.px-count b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+#pxTrees { display: block; width: min(560px, 100%); height: auto; aspect-ratio: 180 / 64; image-rendering: crisp-edges; image-rendering: pixelated; cursor: pointer; touch-action: manipulation; }
+
+/* yard */
+.yard { background: linear-gradient(#e8eff7 0%, #f7f7f9 72%); border-color: var(--line); border-radius: 28px; box-shadow: var(--shadow); }
+.ground { background: linear-gradient(#9fd48f 0 6px, #86c378 6px 14px, #74b368 14px); border-top: 0; }
+.ground::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -6px; height: 6px;
+  background: repeating-linear-gradient(90deg, #9fd48f 0 12px, transparent 12px 18px, #9fd48f 18px 24px, transparent 24px 30px);
+}
+.yard.xmas .ground::before { background: repeating-linear-gradient(90deg, #fff 0 12px, transparent 12px 18px); }
+.bubble { border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,.08); font-size: 15px; }
+.bubble::after { border-color: var(--line); }
+.wx { box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+.controls button {
+  border: 1px solid var(--line); background: #fff; color: var(--ink); font-size: 15px; font-weight: 500; padding: 10px 18px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.05); transition: transform .12s, background .15s;
+}
+.controls button:hover { border-color: #d2d2d7; background: #fafafa; }
+.controls button:active { transform: scale(.96); box-shadow: none; }
+.controls .mail { background: var(--dark); border-color: var(--dark); color: #fff; }
+.controls .mail:hover { background: #3a3a3c; border-color: #3a3a3c; }
+.bar { height: 8px; background: var(--chip); }
+.bar i { background: var(--pink); }
+.bar.food-bar i { background: #f2a65a; }
+.lv-bar i { background: var(--dark); }
+.counts b { color: var(--ink); font-weight: 600; }
+
+/* letter & photo */
+.letter { background-color: #fff; border-color: var(--line); box-shadow: var(--shadow); background-image: repeating-linear-gradient(transparent 0 39px, #eeeef2 39px 40px); }
+.letter .en { font-family: "Inter", sans-serif; font-style: italic; font-weight: 600; }
+.polaroid { box-shadow: 0 18px 50px rgba(0,0,0,.14); }
+
+/* gacha & collection */
+.spin-btn { background: var(--dark); box-shadow: 0 6px 16px rgba(0,0,0,.18); font-size: 16px; font-weight: 600; padding: 12px 26px; transition: transform .12s, box-shadow .12s; }
+.spin-btn:active { transform: scale(.96); box-shadow: 0 2px 6px rgba(0,0,0,.18); }
+.book, .lv-card, .m3-wrap, .d-entry { background: #fff; border-color: var(--line); box-shadow: var(--shadow); }
+.book .prog b { color: var(--ink); font-weight: 600; }
+.slot-i { border-color: #d8d8de; background: #fafafa; color: #c7c7cc; }
+.modal { background: rgba(20,20,24,.36); }
+.card-w { background: #fff; border-radius: 28px; box-shadow: 0 30px 80px rgba(0,0,0,.25); }
+.toast { box-shadow: 0 10px 30px rgba(0,0,0,.12); font-weight: 500; }
+.a2hs { border: 1px solid var(--line); box-shadow: var(--shadow); }
+
+/* games: score digits in the pixel font, segmented controls like the reference */
+.m3-hud b, .ct-hud b, .mm-hud b { font-family: var(--px); color: var(--ink); font-size: 18px; }
+.m3-over { background: rgba(242,242,245,.94); }
+.m3-over .m3-big { color: var(--ink); font-weight: 600; }
+.m3-ctl button { border-color: var(--line); color: var(--ink); font-weight: 500; }
+.ct-field { background: linear-gradient(#e8eff7, #f7f7f9 72%); border-color: var(--line); }
+.ct-field::after { background: linear-gradient(#9fd48f 0 6px, #86c378 6px); border-top: 0; }
+.mm-modes, .mb-tabs { width: fit-content; margin-left: auto; margin-right: auto; gap: 2px; padding: 3px; background: var(--chip); border-radius: 999px; }
+.mm-modes button, .mb-tabs button { border: 0; background: transparent; color: var(--muted); font-weight: 500; padding: 7px 16px; }
+.mm-modes button.on, .mb-tabs button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.14); }
+.mb-item { border-color: var(--line); }
+.mb-item.unread { border-color: var(--pink2); background: #fff7f9; }
+
+/* wardrobe, diary, album */
+.lv-top b { font-family: var(--px); color: var(--ink); }
+.item { border-color: var(--line); box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+.item.on { border-color: var(--ink); background: #fff; box-shadow: 0 0 0 1px var(--ink); }
+.item.on small { color: var(--ink); }
+.d-head b { color: var(--ink); font-weight: 600; }
+.tl::before { background: var(--line); }
+.tl-dot { border-color: var(--ink); }
+.tl-item.ms .tl-dot { background: var(--ink); border-color: #fff; box-shadow: 0 0 0 3px var(--line); }
+.ms-card { background: #fff; border: 1px solid var(--line); color: var(--ink); box-shadow: var(--shadow); }
+.strip::-webkit-scrollbar-thumb { background: #d1d1d6; }
+.ph { box-shadow: 0 8px 22px rgba(0,0,0,.12); }
+.masonry img { box-shadow: 0 8px 22px rgba(0,0,0,.10); background: #e8e8ed; }
+.ph img, .mm-c .fr { background: #e8e8ed; }
+
+@media (max-width: 760px) {
+  .letter { background-image: repeating-linear-gradient(transparent 0 35px, #eeeef2 35px 36px); }
+  .controls button { padding: 9px 15px; }
+}
+@media (max-width: 380px) {
+  .controls button { padding: 8px 13px; }
+}
 </style>
 </head>
 <body class="gated">
@@ -811,7 +991,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   <div class="gate-in">
     <div class="env">💌</div>
     <p class="g-t">Mrs. Fancy</p>
-    <p class="g-s">轻触开启 ♪</p>
+    <p class="g-s">轻触开启</p>
   </div>
 </div>
 
@@ -823,6 +1003,10 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     <p class="kicker">为你做的小角落</p>
     <h1>Mrs. Fancy</h1>
     <p class="names">范洁心 <b>♥</b> Moral</p>
+    <div class="px-scene">
+      <span class="px-count" id="pxCount">🌸 点一下小树，摇一摇</span>
+      <canvas id="pxTrees" width="180" height="64" role="img" aria-label="三棵像素小树，点一下会摇"></canvas>
+    </div>
     <div class="together">
       <span class="label">我们已经在一起</span>
       <span class="days"><span id="days">0</span><small>天</small></span>
@@ -880,10 +1064,10 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     </svg>
     <span class="glow"></span>
     <span class="wx" id="wx"></span>
-    <span class="deco" style="left:52%">🌷</span>
-    <span class="deco" style="left:70%;font-size:18px">🌼</span>
-    <span class="deco" style="left:80%">🌷</span>
-    <span class="deco" style="left:92%;font-size:18px">🌸</span>
+    <canvas class="yard-trees" id="yardTrees" width="112" height="86" aria-hidden="true"></canvas>
+    <span class="deco" style="left:50%">🌷</span>
+    <span class="deco" style="left:60%;font-size:18px">🌼</span>
+    <div class="yard-note" id="yardNote" hidden></div>
 
     <div class="pet" id="pet">
       <div class="bubble" id="bubble"></div>
@@ -893,11 +1077,11 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       <div class="flip" id="flip">
         <svg class="dog" viewBox="0 0 200 140" aria-label="小柴犬吉祥">
           <defs>
-            <radialGradient id="gFur" cx="38%" cy="22%" r="85%"><stop offset="0" stop-color="#F8D2AE"/><stop offset=".5" stop-color="#E7A777"/><stop offset="1" stop-color="#C47F52"/></radialGradient>
-            <radialGradient id="gFurDark" cx="40%" cy="20%" r="90%"><stop offset="0" stop-color="#DDA175"/><stop offset="1" stop-color="#A9693F"/></radialGradient>
-            <radialGradient id="gHead" cx="40%" cy="24%" r="80%"><stop offset="0" stop-color="#FAD6B3"/><stop offset=".55" stop-color="#EBAD7C"/><stop offset="1" stop-color="#C98552"/></radialGradient>
-            <linearGradient id="gLeg" x1="0" y1="86" x2="0" y2="124" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#E3A475"/><stop offset=".3" stop-color="#EFC7A2"/><stop offset=".42" stop-color="#FFF6EA"/><stop offset="1" stop-color="#F6E6D2"/></linearGradient>
-            <linearGradient id="gLegDark" x1="0" y1="86" x2="0" y2="124" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#C98A5E"/><stop offset=".3" stop-color="#DDB794"/><stop offset=".42" stop-color="#F3E6D6"/><stop offset="1" stop-color="#E4D2BC"/></linearGradient>
+            <radialGradient id="gFur" cx="38%" cy="22%" r="85%"><stop offset="0" stop-color="#FFDDAE"/><stop offset=".5" stop-color="#F7B267"/><stop offset="1" stop-color="#E0924A"/></radialGradient>
+            <radialGradient id="gFurDark" cx="40%" cy="20%" r="90%"><stop offset="0" stop-color="#EDAA66"/><stop offset="1" stop-color="#CC7F3E"/></radialGradient>
+            <radialGradient id="gHead" cx="40%" cy="24%" r="80%"><stop offset="0" stop-color="#FFE0B4"/><stop offset=".55" stop-color="#F8B76C"/><stop offset="1" stop-color="#E3964C"/></radialGradient>
+            <linearGradient id="gLeg" x1="0" y1="86" x2="0" y2="124" gradientUnits="userSpaceOnUse"><stop offset=".28" stop-color="#F0A45C" stop-opacity="0"/><stop offset=".42" stop-color="#F2A860"/><stop offset=".58" stop-color="#FFF8EE"/><stop offset="1" stop-color="#FBECD8"/></linearGradient>
+            <linearGradient id="gLegDark" x1="0" y1="86" x2="0" y2="124" gradientUnits="userSpaceOnUse"><stop offset=".28" stop-color="#DC914E" stop-opacity="0"/><stop offset=".42" stop-color="#DC914E"/><stop offset=".58" stop-color="#F6E9D8"/><stop offset="1" stop-color="#EAD8C0"/></linearGradient>
             <radialGradient id="gCream" cx="45%" cy="30%" r="80%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".6" stop-color="#FFF6EA"/><stop offset="1" stop-color="#F3DCC0"/></radialGradient>
             <radialGradient id="gEar" cx="50%" cy="80%" r="80%"><stop offset="0" stop-color="#FFD9CC"/><stop offset="1" stop-color="#F7A99A"/></radialGradient>
             <radialGradient id="gEye" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#5B3A2C"/><stop offset=".55" stop-color="#2A1A14"/><stop offset="1" stop-color="#140C09"/></radialGradient>
@@ -911,26 +1095,20 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
               <path d="M61 59 C55 53 56 45 62 43 C68 41 72 45 72 50" fill="none" stroke="#FFF6EA" stroke-width="4.4" stroke-linecap="round"/>
               <path d="M57 40 l-2 -4 M63 37 l0 -4 M51 47 l-4 -1" stroke="#4A3128" stroke-width="2.2" stroke-linecap="round"/>
             </g>
-            <g class="leg b"><path class="o" d="M80 86 L80 122 Q87.5 127 95 122 L95 86" fill="url(#gLegDark)"/><ellipse class="o" cx="87.5" cy="124.5" rx="9.1" ry="5" fill="url(#gCream)" stroke-width="2.8"/><path d="M84.9 124.4 l0 2.6 M90.1 124.4 l0 2.6" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
-            <g class="leg a"><path class="o" d="M128 86 L128 122 Q135.5 127 143 122 L143 86" fill="url(#gLegDark)"/><ellipse class="o" cx="135.5" cy="124.5" rx="9.1" ry="5" fill="url(#gCream)" stroke-width="2.8"/><path d="M132.9 124.4 l0 2.6 M138.1 124.4 l0 2.6" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
+            <g class="leg b"><path d="M79 97 L79 121 Q87.5 127 96 121 L96 97 Z" fill="url(#gLegDark)"/><path class="ln" d="M79 103.5 L79 121 Q87.5 127 96 121 L96 103.5"/><ellipse class="o" cx="87.5" cy="124.3" rx="10.4" ry="5.6" fill="url(#gCream)" stroke-width="2.8"/><path d="M84.7 124.4 l0 2.8 M90.3 124.4 l0 2.8" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
+            <g class="leg a"><path d="M127 97 L127 121 Q135.5 127 144 121 L144 97 Z" fill="url(#gLegDark)"/><path class="ln" d="M127 103.5 L127 121 Q135.5 127 144 121 L144 103.5"/><ellipse class="o" cx="135.5" cy="124.3" rx="10.4" ry="5.6" fill="url(#gCream)" stroke-width="2.8"/><path d="M132.7 124.4 l0 2.8 M138.3 124.4 l0 2.8" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
             <g class="body-g">
               <path class="o" d="M60 84 C58 66 76 58 99 59 C120 60 136 62 142 76 C147 90 139 104 120 105 L80 105 C66 104 61 96 60 84 Z" fill="url(#gFur)"/>
-              <path d="M70 70 C80 63 100 62 112 64" fill="none" stroke="#C47F52" stroke-width="5" stroke-linecap="round" opacity=".25"/>
+              <path d="M70 70 C80 63 100 62 112 64" fill="none" stroke="#E0924A" stroke-width="5" stroke-linecap="round" opacity=".3"/>
               <path d="M84 104 C90 95 116 93 132 99 C127 104 122 105 118 105 L86 105 Z" fill="url(#gCream)"/>
               <path d="M120 82 C124 72 142 70 145 83 C148 95 141 104 130 104 C120 102 117 90 120 82 Z" fill="url(#gCream)"/>
               <path d="M127 99 l3 4 l2 -4 l3 4 l2 -4" fill="none" stroke="#E9CDAE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
               <ellipse cx="84" cy="67" rx="15" ry="4.5" fill="#fff" opacity=".32" transform="rotate(-10 84 67)"/>
-              <g id="harness">
-                <path d="M116 61 C112.5 74 112.5 87 116 97" fill="none" stroke="#4A3128" stroke-width="9.6" stroke-linecap="round"/>
-                <path d="M116 61 C112.5 74 112.5 87 116 97" fill="none" stroke="#F7A8BC" stroke-width="6.4" stroke-linecap="round"/>
-                <path d="M115 66 C113 76 113 85 115.5 93" fill="none" stroke="#FFD3DE" stroke-width="1.6" stroke-linecap="round"/>
-                <rect class="o" x="109.5" y="64" width="9" height="7" rx="2" fill="#5A4A4E" stroke-width="1.8"/>
-                <circle class="o" cx="114" cy="61" r="3.2" fill="#D9D4D0" stroke-width="1.8"/>
-              </g>
-              <path d="M66 96 C64 88 68 80 76 78" fill="none" stroke="#B4744A" stroke-width="2.4" stroke-linecap="round" opacity=".45"/>
+              <g id="harness"></g>
+              <path d="M66 96 C64 88 68 80 76 78" fill="none" stroke="#D08544" stroke-width="2.4" stroke-linecap="round" opacity=".45"/>
             </g>
-            <g class="leg a"><path class="o" d="M64 86 L64 122 Q72.0 127 80 122 L80 86" fill="url(#gLeg)"/><ellipse class="o" cx="72.0" cy="124.5" rx="9.6" ry="5" fill="url(#gCream)" stroke-width="2.8"/><path d="M69.4 124.4 l0 2.6 M74.6 124.4 l0 2.6" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
-            <g class="leg b"><path class="o" d="M112 86 L112 122 Q120.0 127 128 122 L128 86" fill="url(#gLeg)"/><ellipse class="o" cx="120.0" cy="124.5" rx="9.6" ry="5" fill="url(#gCream)" stroke-width="2.8"/><path d="M117.4 124.4 l0 2.6 M122.6 124.4 l0 2.6" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
+            <g class="leg a"><path d="M63 97 L63 121 Q72 127 81 121 L81 97 Z" fill="url(#gLeg)"/><path class="ln" d="M63 103.5 L63 121 Q72 127 81 121 L81 103.5"/><ellipse class="o" cx="72" cy="124.3" rx="10.4" ry="5.6" fill="url(#gCream)" stroke-width="2.8"/><path d="M69.2 124.4 l0 2.8 M74.8 124.4 l0 2.8" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
+            <g class="leg b"><path d="M111 97 L111 121 Q120 127 129 121 L129 97 Z" fill="url(#gLeg)"/><path class="ln" d="M111 103.5 L111 121 Q120 127 129 121 L129 103.5"/><ellipse class="o" cx="120" cy="124.3" rx="10.4" ry="5.6" fill="url(#gCream)" stroke-width="2.8"/><path d="M117.2 124.4 l0 2.8 M122.8 124.4 l0 2.8" stroke="#CDAE8C" stroke-width="1.3" stroke-linecap="round"/></g>
             <g class="acc" id="acc-cape"><path class="o" d="M132 70 Q104 62 72 76 Q58 92 61 106 Q92 96 130 90 Z" fill="#FF6B8A" stroke-width="2.6"/><path d="M70 82 Q96 72 126 76" fill="none" stroke="#FFC2D1" stroke-width="2" stroke-dasharray="3 4"/></g>
             <g class="acc" id="acc-raincoat">
               <path class="o" d="M138 72 C120 58 80 58 66 70 C58 80 59 97 64 103 L136 103 C144 94 145 80 138 72 Z" fill="#FFD23F" stroke-width="2.8"/>
@@ -950,10 +1128,12 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
               <ellipse cx="142.5" cy="49" rx="3.8" ry="2.5" fill="url(#gCream)"/>
               <ellipse cx="165.5" cy="47" rx="3.8" ry="2.5" fill="url(#gCream)"/>
               <g id="collar">
-                <path class="ln" d="M126 82 Q134 98 154 93" stroke="#F7A8BC" stroke-width="7"/>
-                <path d="M128 85 Q135 95 150 92.6" fill="none" stroke="#FFD3DE" stroke-width="1.8" stroke-linecap="round"/>
-                <rect class="o" x="134" y="92" width="10" height="7.5" rx="2.4" fill="#F0625A" stroke-width="2.2"/>
-                <path d="M136.5 94.2 h5" stroke="#FFB4A8" stroke-width="1.4" stroke-linecap="round"/>
+                <path d="M127 83.5 Q133 94.4 143 95" fill="none" stroke="#45302a" stroke-width="9.4" stroke-linecap="round"/>
+                <path d="M127 83.5 Q133 94.4 143 95" fill="none" stroke="#F0625A" stroke-width="5.4" stroke-linecap="round"/>
+                <path d="M129 86.5 Q134 92.8 141.5 93.6" fill="none" stroke="#FF9C92" stroke-width="1.6" stroke-linecap="round"/>
+                <circle class="o" cx="138.5" cy="97.6" r="4.6" fill="#FFD25E" stroke-width="2.2"/>
+                <path d="M136.4 98.4 h4.2" stroke="#C99A2E" stroke-width="1.3" stroke-linecap="round"/>
+                <circle cx="137.2" cy="96" r="1" fill="#FFF3C4"/>
               </g>
               <ellipse class="blush" cx="135" cy="70" rx="6.4" ry="3.6" fill="#FF8FA8"/>
               <ellipse class="blush" cx="175.5" cy="68" rx="6.4" ry="3.6" fill="#FF8FA8"/>
@@ -1056,18 +1236,20 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   </div>
 
   <div class="controls">
-    <button type="button" id="bFeed">🍖 喂食</button>
+    <button type="button" id="bFeed">🍖 喂吉祥</button>
+    <button type="button" id="bFeedAki">🍪 喂小aki</button>
     <button type="button" id="bBall">⚾ 扔球</button>
     <button type="button" id="bHit">🔨 敲一下</button>
     <button type="button" id="bHug">💗 求抱抱</button>
     <button type="button" id="bMail" class="mail">💌 信箱</button>
   </div>
   <div class="stats">
-    <span>🍖 饱腹<span class="bar food-bar"><i id="hungerBar"></i></span></span>
+    <span>🍖 吉祥<span class="bar food-bar"><i id="hungerBar"></i></span></span>
+    <span>🍪 小aki<span class="bar food-bar"><i id="akiBar"></i></span></span>
     <span>💗 心情<span class="bar"><i id="moodBar"></i></span></span>
   </div>
   <p class="counts">累计喂了 <b id="cFed">0</b> 次 · 摸了 <b id="cPet">0</b> 下 · 敲了 <b id="cHit">0</b> 下</p>
-  <p class="hint">在吉祥身上来回滑动可以摸摸它 · 点它一下会敲它脑袋（连敲三下它会生气哦）<br>吉祥一天会饿三次（大约每 8 小时），记得按时喂它 · 太久不理它，它会自己睡着</p>
+  <p class="hint">在吉祥身上来回滑动可以摸摸它 · 点它一下会敲它脑袋（连敲三下它会生气哦）<br>吉祥一天会饿三次（大约每 8 小时），记得按时喂它 · 太久不理它，它会自己睡着<br>小aki 是吉祥的小跟班，吉祥去哪它跟到哪 · 点它一下会跟你说话 · 两只要分开喂，只喂一只另一只会眼馋<span class="hint3d"><br>院子里的东西也能点：信箱看纸条 · 大树会掉叶子 · 小鸭会叫 · 路灯能开关</span></p>
 </section>
 
 <section class="block" id="advent" hidden>
@@ -1214,10 +1396,10 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 <div class="toast" id="toast"></div>
 
 <div class="music" id="music">
-  <span class="disc">💿</span>
+  <span class="m-lab">音乐</span>
   <span class="m-title"><span id="mTitle"></span><span class="eq"><i></i><i></i><i></i></span></span>
-  <button type="button" id="mPlay" aria-label="播放">▶</button>
-  <button type="button" id="mNext" class="ghost" aria-label="下一首">⏭</button>
+  <button type="button" id="mNext" class="m-next" aria-label="下一首">⏭</button>
+  <button type="button" id="mPlay" class="sw" role="switch" aria-checked="false" aria-label="背景音乐"><i></i></button>
 </div>
 
 <script>
@@ -1289,11 +1471,47 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   /* ---------- pet: 吉祥 ---------- */
   var yard = $('#yard'), pet = $('#pet'), flip = $('#flip'), bubble = $('#bubble');
   var KEY = 'jixiang-v1', BOTTOM = 30;
-  var stats = { hunger: 70, hungerAt: 0, mood: 80, fed: 0, pet: 0, hit: 0 };
+
+  /* 小aki: a little pixel-art shiba that tags along behind 吉祥 */
+  var AKI = (function () {
+    var L = ['....kk.......', '...kook......', '..koppok.....', '..koppdok....', '..koppookkkkk', '..kooohhhhhhh', '.kooohhhooooo', '.kooooccooooo', 'koooooooooooo', 'koooccccooooo',
+             'kooccwecccooo', 'koccceeccccoo', 'kdccceecccccc', 'kdcppcccccccn', 'kdcppcccckcck', '.ksccccccckkc', '..ksscccccccc', '...kkkssccccc',
+             '...kdoooccccc', '..kdooooccccc', '..kdooooccscc', '..kdoookccckc', '.kdooookccckc', '.koooookccckc', '.kcccokkccckk', '..kkkk.kkkkk.'];
+    var C = { k: '#5A3A2E', o: '#F4A95E', h: '#FFC585', d: '#DE8A44', c: '#FFF6E9', s: '#EFDCC2', p: '#FFA9B4', e: '#33211B', w: '#FFFFFF', n: '#33211B' };
+    var T = [[16, 25, 'k'], [16, 26, 'k'], [16, 27, 'k'], [17, 24, 'k'], [17, 25, 'o'], [17, 26, 'h'], [17, 27, 'o'], [17, 28, 'k'], [18, 24, 'k'], [18, 25, 'o'], [18, 26, 'c'], [18, 27, 'c'], [18, 28, 'k'],
+             [19, 24, 'o'], [19, 25, 'o'], [19, 26, 'c'], [19, 27, 'o'], [19, 28, 'k'], [20, 24, 'o'], [20, 25, 'o'], [20, 26, 'o'], [20, 27, 'd'], [20, 28, 'k'], [21, 24, 'k'], [21, 25, 'd'], [21, 26, 'd'], [21, 27, 'k'], [22, 25, 'k'], [22, 26, 'k']];
+    function px(x, y, c) { return '<rect x="' + x + '" y="' + y + '" width="1.02" height="1.02" fill="' + C[c] + '"/>'; }
+    function rows(a, b, keep) {
+      var s = '';
+      for (var y = a; y <= b; y++) { var full = L[y] + L[y].split('').reverse().join(''); for (var x = 0; x < full.length; x++) if (C[full[x]] && (!keep || keep(x, y))) s += px(x, y, full[x]); }
+      return s;
+    }
+    function eyes(dark) {   // a patch over both eyes: closed, or smiling
+      var s = '';
+      [5, 19].forEach(function (x0) {
+        for (var y = 10; y <= 12; y++) for (var x = x0; x <= x0 + 1; x++) s += px(x, y, 'c');
+        dark.forEach(function (d) { s += px(x0 + d[0], 10 + d[1], 'e'); });
+      });
+      return s;
+    }
+    var legA = function (x, y) { return y >= 21 && x >= 7 && x <= 11; }, legB = function (x, y) { return y >= 21 && x >= 14 && x <= 18; };
+    var el = document.createElement('div');
+    el.className = 'aki'; el.id = 'aki';
+    el.innerHTML = '<div class="aki-say"></div><div class="aki-flip"><svg class="px-dog" viewBox="-3 -3.5 35 31.5" shape-rendering="crispEdges" aria-label="吉祥的小跟班小aki"><ellipse cx="13" cy="26.2" rx="12" ry="1.1" fill="rgba(60,100,40,.2)"/>' +
+      '<g class="p-all"><g class="p-tail">' + T.map(function (t) { return px(t[1], t[0], t[2]); }).join('') + '</g>' +
+      '<g class="p-body">' + rows(18, 25, function (x, y) { return !legA(x, y) && !legB(x, y); }) + '</g>' +
+      '<g class="p-legA">' + rows(21, 25, legA) + '</g><g class="p-legB">' + rows(21, 25, legB) + '</g>' +
+      '<g class="p-head">' + rows(0, 17) + '<g class="p-shut">' + eyes([[0, 1], [1, 1]]) + '</g><g class="p-glad">' + eyes([[0, 1], [1, 0], [-1, 2]]) + '</g>' +
+      '<g class="p-tear">' + px(5, 13, 'w') + px(20, 13, 'w') + '</g></g></g></svg></div>';
+    yard.appendChild(el);
+    return { el: el, flip: el.querySelector('.aki-flip'), say: el.querySelector('.aki-say'), x: null, facing: 1, walking: false, sayT: 0, glad: 0 };
+  })();
+  var stats = { hunger: 70, hungerAt: 0, mood: 80, fed: 0, pet: 0, hit: 0, akiHunger: 70, akiFed: 0 };
   try { Object.assign(stats, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) {}
   function save() { try { localStorage.setItem(KEY, JSON.stringify(stats)); } catch (e) {} touch(); }
   function clampStats() {
     stats.hunger = Math.max(0, Math.min(100, stats.hunger));
+    stats.akiHunger = Math.max(0, Math.min(100, stats.akiHunger));
     stats.mood = Math.max(0, Math.min(100, stats.mood));
   }
   // hunger drops in real time, from full to empty in about 8 hours (hungry three times a day)
@@ -1301,10 +1519,12 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   function decayHunger() {
     var t = Date.now(), last = stats.hungerAt || t;
     stats.hunger = Math.max(0, stats.hunger - HUNGER_PER_HOUR * (t - last) / 36e5);
+    stats.akiHunger = Math.max(0, stats.akiHunger - HUNGER_PER_HOUR * (t - last) / 36e5);
     stats.hungerAt = t;
   }
   function renderStats() {
     $('#hungerBar').style.width = stats.hunger + '%';
+    $('#akiBar').style.width = stats.akiHunger + '%';
     $('#moodBar').style.width = stats.mood + '%';
     $('#cFed').textContent = stats.fed; $('#cPet').textContent = stats.pet; $('#cHit').textContent = stats.hit;
     pet.classList.toggle('sad', stats.mood < 30 || stats.hunger < 15);
@@ -1315,6 +1535,15 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     x: W / 2, target: null, speed: 0, onArrive: null, facing: 1, mode: 'idle',
     nextWander: now() + 3000, last: now(), food: null, ball: null, carrying: false,
     sulkUntil: 0, sulkRubs: 0, hits: [], wasSulk: false
+  };
+  // what the 3D yard (yard3d.js) reads to draw 吉祥, and the few things it tells the page back
+  window.JX = {
+    st: st,
+    phase: function () { return phase; },
+    wx: function () { return WX; },
+    mail: function () { var b = $('#bMail'); if (b && !b.hidden) b.click(); },
+    toast: function (t) { toast(t); },
+    setGround: function (v) { BOTTOM = v; W = yard.clientWidth; DW = pet.offsetWidth; DH = pet.offsetHeight; st.x = clampX(st.x); }
   };
   function margin() { return DW / 2 + 8; }
   function clampX(x) { return Math.max(margin(), Math.min(W - margin(), x)); }
@@ -1334,9 +1563,24 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   }
   function walkTo(x, run, cb) {
     st.target = clampX(x); st.speed = run ? 190 : 80; st.onArrive = cb || null;
+    pet.classList.remove('in-house'); yard.classList.remove('home-in');
     pet.classList.add('walking'); pet.classList.toggle('running', !!run);
   }
   function stop() { st.target = null; st.onArrive = null; pet.classList.remove('walking', 'running'); }
+
+  /* storm: 吉祥 stays in its house (it still eats there and lets her pet it) */
+  var SHELTER = false;
+  function shelter(w) {
+    SHELTER = true;
+    var why = w.code >= 95 ? '打雷下大雨' : (w.wind >= 40 || w.gust >= 65) ? (w.precip >= 1 || w.kind === 'rain' ? '风雨太大' : '风太大') : w.kind === 'snow' ? '雪太大' : '雨太大';
+    var n = $('#yardNote');
+    n.textContent = '🏠 都柏林现在' + why + '，吉祥躲在小屋里不出来啦'; n.hidden = false;
+  }
+  function shelterIn() {
+    stop(); st.mode = 'shelter'; st.facing = 1;
+    pet.classList.remove('sleeping'); pet.classList.add('in-house'); yard.classList.add('home-in');
+  }
+  function shelterSay(t) { toast(t); }
 
   function fx(x, y, emoji, n, spread, size) {
     n = n || 6; spread = spread || 60; size = size || 18;
@@ -1361,6 +1605,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   }
   function interact() {
     st.last = now();
+    if (st.mode === 'shelter') return false;
     if (st.mode === 'sleep') {
       pet.classList.remove('sleeping', 'in-house'); yard.classList.remove('home-in');
       st.mode = 'idle'; st.nextWander = now() + 3000;
@@ -1375,6 +1620,93 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     st.mode = 'idle'; st.nextWander = now() + rand(2000, 4000);
   }
 
+  /* 小aki follows a step behind, looks at 吉祥 when it stops, and shares its naps and its joy */
+  var AKI_LINES = ['我是小aki ✨', '吉祥去哪我去哪', '汪！', '小aki也要抱抱 🥺', '最喜欢跟着吉祥啦', '今天也要开心哦'];
+  function akiSay(t, ms) {
+    AKI.say.textContent = t; AKI.say.classList.add('show'); clearTimeout(AKI.sayT);
+    AKI.sayT = setTimeout(function () { AKI.say.classList.remove('show'); }, ms || 2000);
+  }
+  function akiTick(dt) {
+    var c = pet.classList, home = c.contains('in-house'), lo = 26, hi = W - 26, AW = AKI.el.offsetWidth, want, speed;
+    if (AKI.food) {                       // its own snack comes first
+      var dir = AKI.food.x >= AKI.x ? 1 : -1;
+      want = AKI.food.x - dir * AW * 0.5; speed = 170;
+    } else {
+      var gap = DW * (home ? 0.42 : 0.5) + 16, side = home ? 1 : -st.facing;
+      want = st.x + side * gap;
+      if (want < lo || want > hi) want = st.x - side * gap;
+      want = Math.max(lo, Math.min(hi, want));
+    }
+    if (AKI.x === null) AKI.x = want;
+    var dx = want - AKI.x, far = Math.abs(dx);
+    if (AKI.eating) AKI.walking = false;
+    else if (!AKI.walking && far > (AKI.food ? 2 : 30)) AKI.walking = true;
+    if (AKI.walking) {
+      var step = (speed || (far > 150 ? 230 : c.contains('running') ? 175 : 92)) * dt;
+      if (far <= step) { AKI.x = want; AKI.walking = false; if (AKI.food) akiEat(); } else { AKI.x += Math.sign(dx) * step; AKI.facing = Math.sign(dx); }
+    } else if (AKI.food && !AKI.eating) akiEat();
+    if (!AKI.walking) AKI.facing = (AKI.food ? AKI.food.x : st.x) >= AKI.x ? 1 : -1;
+    var k = AKI.el.classList;
+    k.toggle('walking', AKI.walking);
+    k.toggle('eating', !!AKI.eating);
+    k.toggle('begging', AKI.beg > now() && !AKI.walking && !AKI.eating);
+    k.toggle('sleeping', c.contains('sleeping') && !AKI.walking && !AKI.food);
+    k.toggle('happy', (c.contains('happy') || AKI.glad > now()) && !AKI.walking && !AKI.eating);
+    k.toggle('scared', c.contains('hurt'));
+    AKI.el.style.left = AKI.x + 'px';
+    AKI.flip.style.transform = 'scaleX(' + AKI.facing + ')';
+  }
+  /* each dog has its own food; whoever is left out, and still has room, asks for some too */
+  var AKI_FOODS = ['🍪', '🦴', '🧀', '🍗'];
+  function feedAki() {
+    if (AKI.food) { akiSay('还没吃完呢~', 1500); return; }
+    var el = document.createElement('span');
+    el.className = 'food small'; el.textContent = pick(AKI_FOODS);
+    var x = AKI.x + (AKI.x < W / 2 ? 1 : -1) * rand(70, 150);
+    if (pet.classList.contains('in-house')) x = AKI.x + 40;
+    x = Math.max(30, Math.min(W - 30, x));
+    el.style.left = x + 'px'; yard.appendChild(el);
+    AKI.food = { el: el, x: x };
+    if (!pet.classList.contains('sleeping')) akiSay(pick(['是给小aki的吗！', '哇！我的！', '冲鸭！']), 1300);
+  }
+  function akiEat() {
+    var f = AKI.food; if (!f || AKI.eating) return;
+    decayHunger();
+    function done() { f.el.classList.add('gone'); setTimeout(f.el.remove.bind(f.el), 500); AKI.food = null; AKI.eating = false; }
+    if (stats.akiHunger >= 100) { akiSay('小aki吃不下啦…嗝~', 2200); done(); return; }
+    AKI.eating = true; envy();
+    setTimeout(function () {
+      done();
+      decayHunger(); stats.akiHunger += 34; stats.akiFed++; stats.mood += 4; clampStats(); renderStats(); save(); track('fed');
+      AKI.glad = now() + 1500;
+      fx(AKI.x, BOTTOM + AKI.el.offsetHeight * 0.8, ['💗', '✨'], 4, 46, 14);
+      akiSay(pick(['好吃！谢谢你 💗', '还要还要！', '小aki吃饱饱~', '嗷呜 😋']), 2000);
+    }, 1400);
+  }
+  // 吉祥 watches 小aki eat
+  function envy() {
+    decayHunger();
+    if (stats.hunger >= 85 || st.food || st.mode !== 'idle') return;
+    stop(); st.facing = AKI.x >= st.x ? 1 : -1; st.nextWander = now() + 3600; st.last = now();
+    setTimeout(function () { if (st.mode === 'idle' && !st.food) say(pick(['我也想吃… 🥺', '能不能也给我一个？', '小aki吃独食！我也要 🍖', '口水要流下来了…']), 2600); }, 350);
+  }
+  // 小aki watches 吉祥 eat
+  function akiEnvy() {
+    decayHunger();
+    if (stats.akiHunger >= 85 || AKI.food || AKI.eating) return;
+    AKI.beg = now() + 1600;
+    setTimeout(function () { if (!AKI.food) akiSay(pick(['小aki也想吃… 🥺', '能不能也给我一个？', '我也要我也要！', '给我留一口嘛…']), 2600); }, 350);
+  }
+  AKI.el.addEventListener('click', function (e) {
+    e.stopPropagation();
+    if (pet.classList.contains('sleeping')) { akiSay('嘘…吉祥在睡觉 💤', 1800); return; }
+    AKI.glad = now() + 1300;
+    akiSay(pick(AKI_LINES), 2000);
+    fx(AKI.x, BOTTOM + AKI.el.offsetHeight * 0.8, ['💗', '✨'], 4, 46, 14);
+    stats.mood += 2; clampStats(); renderStats();
+  });
+  setTimeout(function () { if (!pet.classList.contains('sleeping')) akiSay('我是小aki，吉祥的小跟班 ✨', 3200); }, 5200);
+
   /* feed */
   var FOODS = ['🍖', '🦴', '🍗', '🥩', '🍪', '🧀'];
   function feed() {
@@ -1384,6 +1716,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     el.className = 'food'; el.textContent = pick(FOODS);
     var x = rand(margin(), W - margin());
     if (Math.abs(x - st.x) < 100) x = clampX(st.x + (st.x < W / 2 ? 1 : -1) * rand(130, 230));
+    if (st.mode === 'shelter') { x = st.x + DW * 0.28; shelterSay('放在小屋门口啦，吉祥在里面吃 🍖'); }
     el.style.left = x + 'px'; yard.appendChild(el);
     st.food = { el: el, x: x };
     if (woke) say('嗯？有好吃的！', 1500);
@@ -1409,7 +1742,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       if (st.wasSulk) { st.wasSulk = false; forgive('吃不下…但是原谅你啦'); return; }
       resume(); return;
     }
-    pet.classList.add('eating');
+    pet.classList.add('eating'); akiEnvy();
     var crumbs = setInterval(function () { fx(f.x, BOTTOM + 14, ['·', '✦', '•'], 2, 30, 12); }, 220);
     setTimeout(function () {
       clearInterval(crumbs); pet.classList.remove('eating');
@@ -1426,6 +1759,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   /* hit */
   var OUCH = ['嗷呜！', '好痛呜呜…', '你欺负我 🥺', '干嘛打我！', '呜…头好晕', '我要告诉妈妈！'];
   function hit() {
+    if (st.mode === 'shelter') { shelterSay('它躲在小屋里呢，别敲它啦 🥺'); return; }
     var woke = interact(), h = headPos();
     var ham = document.createElement('span');
     ham.className = 'hammer'; ham.textContent = '🔨';
@@ -1466,6 +1800,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
 
   /* ball */
   function throwBall() {
+    if (st.mode === 'shelter') { shelterSay('外面风雨太大，吉祥不出去捡球啦，等天气好了再玩 🌧️'); return; }
     interact();
     if (st.mode === 'sulk') { say('哼，不捡！💢', 1800); return; }
     if (st.ball) { say('球还没捡回来呢~'); return; }
@@ -1522,6 +1857,14 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   function hug() {
     interact();
     if (st.mode === 'sulk') { forgive('抱抱就原谅你啦 🥺💕'); return; }
+    if (st.mode === 'shelter') {
+      flash('happy', 1900);
+      var hh = headPos(); fx(hh.x, hh.y + 20, ['💗', '💖', '💕'], 10, 100, 20);
+      stats.mood += 12; clampStats(); renderStats(); save(); track('hug');
+      if (now() - lastHugCoin > 60000) { lastHugCoin = now(); earn(1, hh); }
+      shelterSay('隔着小屋抱抱 💗 吉祥好开心');
+      return;
+    }
     if (st.mode !== 'idle') { say('等一下下~', 1200); return; }
     stop(); st.mode = 'busy';
     flash('jump', 900); flash('happy', 1900);
@@ -1575,6 +1918,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   pet.addEventListener('pointercancel', function () { down = null; lastP = null; });
 
   $('#bFeed').addEventListener('click', feed);
+  $('#bFeedAki').addEventListener('click', feedAki);
   $('#bBall').addEventListener('click', throwBall);
   $('#bHit').addEventListener('click', hit);
   $('#bHug').addEventListener('click', hug);
@@ -1588,6 +1932,9 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       var dx = st.target - st.x, step = st.speed * dt;
       if (Math.abs(dx) <= step) { st.x = st.target; var cb = st.onArrive; stop(); if (cb) cb(); }
       else { st.x += Math.sign(dx) * step; st.facing = Math.sign(dx); }
+    } else if (st.mode === 'idle' && SHELTER) {
+      if (Math.abs(st.x - homeX()) > 3) { walkTo(homeX(), true, shelterIn); if (!st.toldStorm) { st.toldStorm = true; say('风雨好大，我回小屋躲一躲 🏠', 2200); } }
+      else shelterIn();
     } else if (st.mode === 'idle') {
       var nap = phase === 'night' ? 10000 : 25000;
       if (t - st.last > nap) {
@@ -1607,6 +1954,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       forgive('…算了，不生气了');
     }
     pet.style.left = st.x + 'px';
+    akiTick(dt);
     flip.style.transform = 'scaleX(' + st.facing + ')';
     pet.style.setProperty('--hx', st.facing * DW * 0.26 + 'px');
     var bcx = st.x + st.facing * DW * 0.26, bh = bubbleW / 2 + 6;
@@ -1626,6 +1974,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   setInterval(function () {
     decayHunger(); stats.mood -= 1; clampStats(); renderStats(); save();
     if (st.mode === 'idle' && st.target === null) {
+      if (stats.akiHunger < 25 && Math.random() < 0.4) akiSay(pick(['小aki肚子饿了… 🍪', '咕噜…小aki也要吃饭']), 2200);
       if (stats.hunger < 25 && Math.random() < 0.6) say(pick(['肚子饿饿… 🍖', '该吃饭啦 🥺', '咕噜咕噜…']), 2200);
       else if (stats.mood < 30 && Math.random() < 0.5) say('陪我玩一会儿嘛 🥺', 2200);
     }
@@ -1936,7 +2285,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
       yard.appendChild(s);
     }
   })();
-  function homeX() { var k = $('.kennel-front').getBoundingClientRect(); return clampX(k.left + k.width / 2 - yard.getBoundingClientRect().left); }
+  function homeX() { if (window.JX && JX.homeX) return clampX(JX.homeX()); var k = $('.kennel-front').getBoundingClientRect(); return clampX(k.left + k.width / 2 - yard.getBoundingClientRect().left); }
   applyPhase(); setInterval(applyPhase, 60000);
 
   /* ---------- festivals & special days ---------- */
@@ -2632,7 +2981,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   var syncReady = false, pushT = null, pushing = false;
   function snapshot() {
     return {
-      pet: { hunger: stats.hunger, hungerAt: stats.hungerAt, mood: stats.mood, fed: stats.fed, pet: stats.pet, hit: stats.hit },
+      pet: { hunger: stats.hunger, hungerAt: stats.hungerAt, mood: stats.mood, fed: stats.fed, pet: stats.pet, hit: stats.hit, akiHunger: stats.akiHunger, akiFed: stats.akiFed },
       gacha: { earned: gs.earned, spent: gs.spent, got: gs.got.slice().sort(function (a, b) { return a - b; }), lastDay: gs.lastDay, playDay: gs.playDay || '', playEarned: gs.playEarned || 0, voucher: gs.voucher || null, match: { lv: MS.lv, day: MS.day, earned: MS.earned }, memo: { best: MM.best, day: MM.day, earned: MM.earned }, catch: { best: CS.best, day: CS.day, earned: CS.earned }, advent: { e: ADV.e, y: ADV.y, open: ADV.open } },
       life: { xp: L.xp, xpDay: L.xpDay || '', xpToday: L.xpToday || 0, diary: L.diary, wear: L.wear, wearAt: L.wearAt },
       updatedAt: gs.updatedAt
@@ -2641,11 +2990,13 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   function mergeIn(r) {
     if (!r || typeof r !== 'object') return false;
     var rp = r.pet || {}, rg = r.gacha || {}, changed = false;
-    ['fed', 'pet', 'hit'].forEach(function (k) {
+    ['fed', 'pet', 'hit', 'akiFed'].forEach(function (k) {
       if (typeof rp[k] === 'number' && rp[k] > stats[k]) { stats[k] = rp[k]; changed = true; }
     });
     if ((r.updatedAt || 0) > gs.updatedAt && typeof rp.hunger === 'number') {
-      stats.hunger = rp.hunger; stats.hungerAt = rp.hungerAt || Date.now(); stats.mood = rp.mood; clampStats(); changed = true;
+      stats.hunger = rp.hunger; stats.hungerAt = rp.hungerAt || Date.now(); stats.mood = rp.mood;
+      if (typeof rp.akiHunger === 'number') stats.akiHunger = rp.akiHunger;
+      clampStats(); changed = true;
     }
     if (typeof rg.earned === 'number' && rg.earned > gs.earned) { gs.earned = rg.earned; changed = true; }
     if (typeof rg.spent === 'number' && rg.spent > gs.spent) { gs.spent = rg.spent; changed = true; }
@@ -2788,7 +3139,8 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     WX = w;
     yard.classList.add('wx-' + w.kind);
     var d = wxDesc(w.code, w.day), b = $('#wx');
-    b.textContent = '都柏林 ' + Math.round(w.temp) + '° ' + d[0] + ' ' + d[1]; b.classList.add('show');
+    b.textContent = '都柏林 ' + Math.round(w.temp) + '° ' + d[0] + ' ' + d[1] + (w.wind >= 1 ? ' · 💨 ' + Math.round(w.wind) + ' km/h' : ''); b.classList.add('show');
+    if (wxStorm(w)) shelter(w);
     if (w.kind === 'rain' && !reduceMotion) {
       for (var i = 0, n = w.code === 51 || w.code === 80 ? 22 : 40; i < n; i++) {
         var r = document.createElement('span');
@@ -2815,29 +3167,35 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     if (any([176, 263, 266, 293, 353])) return 51;
     return 3;
   }
-  function mkWx(code, temp, day) { return { code: code, temp: temp, day: day, kind: wxKind(code), at: Date.now() }; }
+  function mkWx(code, temp, day, wind, gust, dir, precip) {
+    return { code: code, temp: temp, day: day, kind: wxKind(code), wind: wind || 0, gust: gust || 0, dir: dir, precip: precip || 0, at: Date.now() };
+  }
+  // too wild to go out: storms, heavy rain or snow, a strong wind or gusts
+  function wxStorm(w) {
+    return !!w && (w.code >= 95 || [65, 67, 75, 82, 86].indexOf(w.code) >= 0 || w.precip >= 4 || w.wind >= 40 || w.gust >= 65);
+  }
   (function loadWx() {
     var q = (location.search.match(/[?&]wx=(\w+)/) || [])[1];
     if (q) {
-      var fake = { rain: [63, 11], snow: [73, -1], fog: [45, 9], cloud: [3, 12], sun: [0, 21], storm: [95, 14], cold: [2, 2] }[q] || [0, 15];
-      applyWx(mkWx(fake[0], fake[1], phase !== 'night')); return;
+      var fake = { rain: [63, 11, 18], snow: [73, -1, 10], fog: [45, 9, 4], cloud: [3, 12, 15], sun: [0, 21, 8], storm: [95, 14, 45, 80], cold: [2, 2, 12], windy: [3, 10, 32, 50], gale: [61, 10, 52, 78] }[q] || [0, 15, 10];
+      applyWx(mkWx(fake[0], fake[1], phase !== 'night', fake[2], fake[3], 250, 0)); return;
     }
     try {
       var c = JSON.parse(localStorage.getItem(WX_KEY) || 'null');
-      if (c && Date.now() - c.at < 30 * 60000) { applyWx(c); return; }
+      if (c && c.wind != null && Date.now() - c.at < 30 * 60000) { applyWx(c); return; }
     } catch (e) {}
     function done(w) {
       try { localStorage.setItem(WX_KEY, JSON.stringify(w)); } catch (e) {}
       applyWx(w);
     }
-    getJSON('https://api.open-meteo.com/v1/forecast?latitude=53.35&longitude=-6.26&current=temperature_2m,weather_code,is_day&timezone=Europe%2FDublin').then(function (r) {
+    getJSON('https://api.open-meteo.com/v1/forecast?latitude=53.35&longitude=-6.26&current=temperature_2m,weather_code,is_day,precipitation,wind_speed_10m,wind_gusts_10m,wind_direction_10m&timezone=Europe%2FDublin').then(function (r) {
       var c = r && r.current;
-      if (c && typeof c.weather_code === 'number') { done(mkWx(c.weather_code, c.temperature_2m, !!c.is_day)); return; }
+      if (c && typeof c.weather_code === 'number') { done(mkWx(c.weather_code, c.temperature_2m, !!c.is_day, c.wind_speed_10m, c.wind_gusts_10m, c.wind_direction_10m, c.precipitation)); return; }
       // fallback: wttr.in, whose weather codes are mapped onto the same WMO codes
       return getJSON('https://wttr.in/Dublin?format=j1').then(function (r) {
         var c = r && r.current_condition && r.current_condition[0];
         if (!c || isNaN(+c.temp_C)) return;
-        done(mkWx(wwoToWmo(+c.weatherCode), +c.temp_C, phase !== 'night'));
+        done(mkWx(wwoToWmo(+c.weatherCode), +c.temp_C, phase !== 'night', +c.windspeedKmph, null, +c.winddirDegree, +c.precipMM));
       });
     });
   })();
@@ -3306,6 +3664,174 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     io.observe(letter);
   }
 
+  /* ---------- pixel trees: they sway in the wind; tap one to shake it ---------- */
+  // opt.kinds: trees to grow; opt.wind(): {speed km/h, dir degrees it blows from}; opt.seed: same trees on every visit
+  function pixelTrees(cv, opt) {
+    if (!cv || !cv.getContext) return null;
+    var W = cv.width, H = cv.height, g = cv.getContext('2d'), img = g.createImageData(W, H);
+    var buf = new Uint32Array(img.data.buffer), GROUND = H - 5, seed = opt.seed;
+    function rnd() {
+      seed = (seed + 0x6D2B79F5) | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    }
+    function col(h) { var n = parseInt(h.slice(1), 16); return (255 << 24 | (n & 255) << 16 | (n >> 8 & 255) << 8 | n >> 16) >>> 0; }
+    function cols(a) { return a ? a.map(col) : null; }
+    var ground = [];
+    var trees = opt.kinds.map(function (k) {
+      var pal = cols(k.pal), bark = cols(k.bark), px = [], at = {};
+      function put(x, y, c, leaf) {
+        var key = x + ',' + y, p = { x: x, y: y, c: c, h: GROUND - y, leaf: leaf };
+        if (at[key] != null) px[at[key]] = p; else { at[key] = px.length; px.push(p); }
+      }
+      var cx = k.x + k.lean, cy = k.trunk ? GROUND - k.trunk - k.h * .28 : GROUND - k.h * .45, blobs = [];
+      for (var i = 0; i < k.blobs; i++) {
+        var r = k.w * (.26 + rnd() * .14);
+        blobs.push([cx + (rnd() - .5) * k.w * .85, cy + (rnd() - .5) * k.h * .45, r]);
+      }
+      if (bark) {   // trunk, thinner as it rises, and a few branches into the crown
+        var top = GROUND - k.trunk - 3;
+        for (var y = GROUND; y > top; y--) {
+          var f = (GROUND - y) / (GROUND - top), x0 = Math.round(k.x + k.lean * f * f), wd = f < .18 ? 4 : f < .6 ? 3 : 2;
+          for (var j = 0; j < wd; j++) put(x0 - (wd >> 1) + j, y, bark[j === 0 ? 1 : 0], false);
+        }
+        put(k.x - 3, GROUND, bark[1], false); put(k.x + 2, GROUND, bark[1], false);
+        for (var b = 0; b < 5; b++) {
+          var bx = k.x + k.lean * .5, by = GROUND - k.trunk * (.5 + rnd() * .4), dir = b % 2 ? 1 : -1, len = 5 + rnd() * 8;
+          for (var s = 0; s < len; s++) { bx += dir * (.7 + rnd() * .4); by -= .5 + rnd() * .35; put(Math.round(bx), Math.round(by), bark[1], false); }
+        }
+      }
+      for (var y2 = Math.floor(cy - k.h); y2 <= GROUND; y2++) {
+        for (var x2 = Math.floor(cx - k.w); x2 <= cx + k.w; x2++) {
+          var best = 9, bb = null;
+          for (var q = 0; q < blobs.length; q++) {
+            var bl = blobs[q], dx = (x2 - bl[0]) / bl[2], dy = (y2 - bl[1]) / (bl[2] * .8), d = Math.sqrt(dx * dx + dy * dy);
+            if (d < best) { best = d; bb = bl; }
+          }
+          if (best > 1 + (rnd() - .5) * .4) continue;
+          if (best > .82 && rnd() < .3) continue;            // ragged edge
+          if (bark && rnd() < (k.sparse || .035)) continue;  // gaps that show the branches
+          var lx = (x2 - bb[0]) / bb[2], ly = (y2 - bb[1]) / bb[2];
+          var l = -lx * .45 - ly * .75 + (cy - y2) / k.h * .7 + (rnd() - .5) * .8;
+          put(x2, y2, pal[l > .8 ? 0 : l > .25 ? 1 : l > -.25 ? 2 : l > -.7 ? 3 : 4], true);
+        }
+      }
+      var fall = cols(k.fall), spread = k.w * .8;   // fallen petals at the foot
+      for (var gx = Math.round(k.x - spread); gx <= k.x + spread; gx++) {
+        var near = 1 - Math.abs(gx - k.x) / spread;
+        if (rnd() < near * .9) ground.push({ x: gx, y: GROUND + 1, c: fall[Math.floor(rnd() * fall.length)] });
+        if (rnd() < near * .5) ground.push({ x: gx, y: GROUND + 2, c: fall[Math.floor(rnd() * fall.length)] });
+        if (rnd() < near * .18) ground.push({ x: gx, y: GROUND, c: fall[Math.floor(rnd() * fall.length)] });
+      }
+      var tall = 1; px.forEach(function (p) { if (p.h > tall) tall = p.h; });
+      return { k: k, px: px, tall: tall, fall: fall, a: 0, t0: 0, ph: rnd() * 6, leaves: px.filter(function (p) { return p.leaf; }) };
+    });
+    var petals = [], last = 0, nextDrift = 0, running = false, seen = true;
+    function wind() { var w = opt.wind() || {}; return { v: Math.max(0, w.speed || 0), s: w.dir == null ? 0 : -Math.sin(w.dir * Math.PI / 180) }; }
+    function plot(x, y, c) { x = Math.round(x); y = Math.round(y); if (x >= 0 && x < W && y >= 0 && y < H) buf[y * W + x] = c; }
+    function drop(tr, n) {
+      for (var i = 0; i < n && petals.length < 180; i++) {
+        var p = tr.leaves[Math.floor(Math.random() * tr.leaves.length)];
+        petals.push({ x: p.x, y: p.y, vx: (Math.random() - .5) * .5, vy: 0, c: tr.fall[Math.floor(Math.random() * tr.fall.length)], ph: Math.random() * 6, land: 0 });
+      }
+    }
+    function draw(t) {
+      var w = wind(), s = t / 1000, f = 1.2 + w.v / 30;
+      buf.fill(0);
+      ground.forEach(function (p) { plot(p.x, p.y, p.c); });
+      trees.forEach(function (tr) {
+        var shake = tr.a ? tr.a * Math.exp(-(t - tr.t0) / 650) * Math.sin((t - tr.t0) / 1000 * 19) : 0;
+        if (tr.a && t - tr.t0 > 2600) tr.a = 0;
+        var lean = w.s * w.v / 22;                                                  // leans away from the wind
+        var gust = (Math.sin(s * .9 + tr.ph) * Math.sin(s * 2.3 + 1)) * w.v / 16;   // stronger wind, bigger gusts
+        var amp = lean + Math.sin(s * f + tr.ph) * (.7 + w.v / 30) + Math.sin(s * 3.1 + tr.ph * 2) * .3 + gust + shake;
+        var stiff = tr.k.trunk ? 2.4 : 1.4;
+        tr.px.forEach(function (p) { var h = p.h / tr.tall; plot(p.x + amp * h * h * stiff, p.y, p.c); });
+      });
+      petals.forEach(function (p) { plot(p.x, p.y, p.c); });
+      g.putImageData(img, 0, 0);
+    }
+    function step(t) {
+      var dt = Math.min(50, t - (last || t)) / 16.7, w = wind(); last = t;
+      if (t > nextDrift) {
+        var falling = trees.filter(function (tr) { return tr.k.trunk; });
+        if (falling.length) drop(falling[Math.floor(Math.random() * falling.length)], 1 + Math.floor(w.v / 25));
+        nextDrift = t + (900 + Math.random() * 1600) / (1 + w.v / 15);
+      }
+      petals = petals.filter(function (p) {
+        if (p.land) return t - p.land < 7000;
+        p.vy = Math.min(p.vy + .012 * dt, .32);
+        p.x += (p.vx + w.s * w.v / 90 + Math.sin(t / 1000 * 2.6 + p.ph) * .18) * dt; p.y += p.vy * dt;
+        if (p.y >= GROUND + 1) { p.y = GROUND + 1 + Math.floor(Math.random() * 2); p.land = t; }
+        return p.x > -2 && p.x < W + 2;
+      });
+      draw(t);
+      if (seen && !document.hidden) requestAnimationFrame(step); else running = false;
+    }
+    function go() { if (!running && !reduceMotion) { running = true; last = 0; requestAnimationFrame(step); } }
+    cv.addEventListener('pointerdown', function (e) {
+      var r = cv.getBoundingClientRect(), lx = (e.clientX - r.left) / r.width * W, best = null, bd = 1e9;
+      trees.forEach(function (tr) { var d = Math.abs(lx - tr.k.x); if (d < bd) { bd = d; best = tr; } });
+      if (!best || bd > best.k.w + 4) return;
+      best.a = 2.6; best.t0 = performance.now();
+      drop(best, best.k.trunk ? 10 + Math.floor(Math.random() * 8) : 4);
+      if (opt.onShake) opt.onShake();
+      if (reduceMotion) draw(performance.now()); else go();
+    });
+    draw(performance.now());
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { seen = es[0].isIntersecting; if (seen) go(); }).observe(cv);
+    } else go();
+    document.addEventListener('visibilitychange', function () { if (!document.hidden && seen) go(); });
+    return { redraw: function () { draw(performance.now()); } };
+  }
+  var BARK = ['#6a4038', '#43282a'];
+  var TREE = {
+    sakura: { pal: ['#fdeef3', '#f8cfdc', '#f0a8c0', '#dc80a0', '#b9587c'], fall: ['#f8cfdc', '#f0a8c0', '#fdeef3'], bark: BARK },
+    green: { pal: ['#d4f09a', '#a6d46c', '#78b551', '#52913b', '#376e2b'], fall: ['#a6d46c', '#78b551'], bark: BARK },
+    maple: { pal: ['#ffe6a8', '#f9c46e', '#ee9d47', '#d77832', '#a95525'], fall: ['#f9c46e', '#ee9d47', '#d77832'], bark: BARK },
+    snow: { pal: ['#ffffff', '#f3f6fb', '#dfe7f2', '#c3d0e3', '#9fb1cc'], fall: ['#ffffff', '#eef3fa'], bark: BARK, sparse: .12 },
+    bush: { pal: ['#d4f09a', '#a6d46c', '#78b551', '#52913b', '#376e2b'], fall: ['#a6d46c', '#78b551'], bark: null }
+  };
+  function kind(name, o) { var k = TREE[name], r = {}; for (var p in k) r[p] = k[p]; for (var q in o) r[q] = o[q]; return r; }
+
+  // hero: three trees in a calm breeze
+  (function () {
+    var shaken = 0;
+    try { shaken = +localStorage.getItem('fancy-shaken') || 0; } catch (e) {}
+    function label() { if (shaken) $('#pxCount').innerHTML = '🌸 小树被摇了 <b>' + shaken + '</b> 次'; }
+    label();
+    pixelTrees($('#pxTrees'), {
+      seed: 20240403,
+      kinds: [
+        kind('sakura', { x: 34, trunk: 19, lean: -2, w: 30, h: 30, blobs: 10 }),
+        kind('bush', { x: 90, trunk: 0, lean: 0, w: 28, h: 21, blobs: 8 }),
+        kind('maple', { x: 147, trunk: 18, lean: 3, w: 32, h: 30, blobs: 11 })
+      ],
+      wind: function () { return { speed: 6, dir: 250 }; },
+      onShake: function () { shaken++; label(); try { localStorage.setItem('fancy-shaken', shaken); } catch (x) {} }
+    });
+  })();
+
+  // yard: the tree of the season, moving with the real wind in Dublin
+  (function () {
+    var cv = $('#yardTrees'); if (!cv) return;
+    var m = new Date().getMonth() + 1;
+    var season = m >= 3 && m <= 5 ? 'sakura' : m >= 6 && m <= 8 ? 'green' : m >= 9 && m <= 11 ? 'maple' : 'snow';
+    pixelTrees(cv, {
+      seed: 20251229,
+      kinds: [
+        kind(season, { x: 46, trunk: 24, lean: 1, w: 38, h: 38, blobs: 15 }),
+        kind('bush', { x: 97, trunk: 0, lean: 0, w: 15, h: 12, blobs: 5 })
+      ],
+      wind: function () { return WX ? { speed: WX.wind || 0, dir: WX.dir } : { speed: 8, dir: 250 }; }
+    });
+    // the same pixel size as 吉祥 (3 SVG units of a 200-unit-wide dog)
+    function size() { cv.style.width = Math.round(cv.width * pet.offsetWidth / (200 / 3)) + 'px'; }
+    size(); window.addEventListener('resize', size);
+  })();
+
   /* ---------- music ---------- */
   // public-domain recordings from Wikimedia Commons
   var tracks = [
@@ -3315,8 +3841,8 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     { src: 'music/traumerei.mp3', title: 'Träumerei' },
     { src: 'music/nocturne.mp3', title: 'Nocturne' }
   ];
-  var audio = new Audio(), ti = 0, order = [], userPaused = false;
-  audio.preload = 'auto';
+  var audio = new Audio(), ti = 0, order = [];
+  audio.preload = 'none';   // off when she arrives; nothing downloads until she turns it on
   // shuffle play: a fresh random order each round, never the same song twice in a row
   function shuffle() {
     var last = order[order.length - 1];
@@ -3330,17 +3856,16 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
   }
   function ui(on) {
     $('#music').classList.toggle('on', on);
-    $('#mPlay').textContent = on ? '❚❚' : '▶';
-    $('#mPlay').setAttribute('aria-label', on ? '暂停' : '播放');
+    $('#mPlay').setAttribute('aria-checked', on ? 'true' : 'false');
   }
   function play() { var p = audio.play(); if (p && p.catch) p.catch(function () { ui(false); }); }
   audio.addEventListener('play', function () { ui(true); });
   audio.addEventListener('pause', function () { ui(false); });
   audio.addEventListener('ended', function () { load(ti + 1); play(); });
   $('#mPlay').addEventListener('click', function () {
-    if (audio.paused) { userPaused = false; play(); } else { userPaused = true; audio.pause(); }
+    if (audio.paused) play(); else audio.pause();
   });
-  $('#mNext').addEventListener('click', function () { load(ti + 1); userPaused = false; play(); });
+  $('#mNext').addEventListener('click', function () { load(ti + 1); play(); });
   shuffle(); load(0);
   var gate = $('#gate');
   function openGate() {
@@ -3350,20 +3875,13 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px
     setTimeout(function () { gate.remove(); }, 800);
   }
   function enter(e) {
-    userPaused = false; play(); openGate();
+    openGate();
     if (e && e.clientX) burstFixed(e.clientX, e.clientY);
   }
   gate.addEventListener('click', enter);
   gate.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); enter(); } });
-  var auto = audio.play();
-  if (auto && auto.then) auto.then(openGate).catch(function () {});
-  function firstTouch(e) {
-    if (e.target.closest('.music')) return;
-    ['pointerdown', 'touchend', 'click'].forEach(function (t) { document.removeEventListener(t, firstTouch); });
-    if (!userPaused && audio.paused) play();
-  }
-  ['pointerdown', 'touchend', 'click'].forEach(function (t) { document.addEventListener(t, firstTouch); });
 })();
 </script>
+<script type="module" src="yard3d.js?v=2"></script>
 </body>
 </html>
