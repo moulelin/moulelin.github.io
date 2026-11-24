@@ -1,20 +1,21 @@
 {
   "pet": {
-    "hunger": 0,
-    "hungerAt": 1795435551083,
-    "mood": 91,
-    "akiHunger": 0,
-    "fed": 235,
-    "pet": 4950,
-    "hit": 26,
-    "akiFed": 1
+    "hunger": 99.94025694444444,
+    "hungerAt": 1795455502762,
+    "mood": 99,
+    "akiHunger": 99.92825347222221,
+    "fed": 243,
+    "pet": 5068,
+    "hit": 27,
+    "akiFed": 6
   },
   "gacha": {
-    "earned": 160,
-    "spent": 150,
+    "earned": 163,
+    "spent": 160,
     "got": [
       0,
       3,
+      4,
       5,
       6,
       7,
@@ -32,12 +33,12 @@
     "lastDay": "2026-11-23",
     "voucher": null,
     "match": {
-      "lv": 37
+      "lv": 38
     },
     "memo": {
       "best": {
-        "hard": 20,
         "mid": 14,
+        "hard": 20,
         "easy": 9
       }
     },
@@ -50,11 +51,11 @@
       "open": []
     }
   },
-  "updatedAt": 1795435551083,
+  "updatedAt": 1795455502762,
   "life": {
-    "xp": 618,
+    "xp": 635,
     "xpDay": "2026-11-23",
-    "xpToday": 8,
+    "xpToday": 25,
     "diary": {
       "2026-10-29": {
         "ball": 1,
@@ -349,10 +350,17 @@
         "pet": 243
       },
       "2026-11-23": {
-        "fed": 1,
-        "pet": 3,
+        "fed": 14,
+        "pet": 121,
         "visit": 1,
-        "wx": 4
+        "wx": 52,
+        "got": [
+          4
+        ],
+        "hit": 1,
+        "hug": 2,
+        "m3": 1,
+        "memo": 1
       }
     },
     "wear": {
