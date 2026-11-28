@@ -39,9 +39,9 @@
     },
     "memo": {
       "best": {
+        "easy": 9,
         "mid": 14,
-        "hard": 20,
-        "easy": 9
+        "hard": 20
       }
     },
     "catch": {
